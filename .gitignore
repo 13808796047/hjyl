@@ -4,3 +4,4 @@ web_admin/html/Runtime
 web_mobile/html/Runtime
 .idea
 .vscode
+web/application/database.php
