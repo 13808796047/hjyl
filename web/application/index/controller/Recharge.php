@@ -59,7 +59,11 @@ class Recharge extends  Controller
     }
 	public function store()
 	{
-		$this->user = Session::get('userData');
+        $this->user = Session::get('userData');
+       $count =  MemberRecharge::where(['uid'=>$this->user->uid,'state'=>10])->order('id desc')->limit(5)->count();
+       if($count>5){
+        return json(["code" => 2,"msg" => "充值次数太多，请30分钟后再操作!","data"=>1800]);;
+       }
 		$amount = input('amount');
 		       $data = array(
                 'amount' => $amount,
@@ -79,12 +83,13 @@ class Recharge extends  Controller
             $data['state'] = 10;
             $data['mBankId'] = 1;
             $data['rechargeId'] = date('YmdHis').mt_rand(10, 99);
-           $result =  MemberRecharge::create($data);
+             $result =  MemberRecharge::create($data);
+             
            if(!$result){
            		return json(["code" => 0,"msg" => "失败","data"=>'']);;
            }
 		// $this->user
-		return json(["code" => 1,"msg" => "成功","data"=>'']);;
+		return json(["code" => 1,"msg" => "成功","data"=>15]);;
 	}
     public function getRecharge(){
         header("Content-type: text/html; charset=utf-8");
