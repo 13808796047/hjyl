@@ -29,4 +29,9 @@ class Members extends Model
         $m = self::where(array('uid'=>$uid))->find();
         return $m;
     }
+    // 上级
+    public function parent()
+    {
+        return $this->belongsTo('Members','parentId');
+    }
 }

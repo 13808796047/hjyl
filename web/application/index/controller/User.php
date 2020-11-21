@@ -127,7 +127,7 @@ class User extends Controller
 //        $where['uid'] = array('or',$uid);
 
 //        $list = Members::where($where)->where('FIND_IN_SET('.$uid.',parents)')->order('username')
-        $list = Members::where($where)->whereOr('uid',$uid)->order('username')
+        $list = Members::with('parent')->where($where)->whereOr('uid',$uid)->order('username')
             ->paginate($pageSize,false,['query' => $_GET]);
         // 获取分页显示
         $page = $list->render();
@@ -152,7 +152,9 @@ class User extends Controller
             unset($list[$kk]);
             array_unshift($list,$first);
         }
+        // dump($list);
         $this->assign('data_list',$list);
+        
         $member = Members::get($uid)->getData();
         $this->assign('username',$username);
         $this->assign('userType',$user['type']);
