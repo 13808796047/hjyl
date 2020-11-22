@@ -121,17 +121,19 @@ class ReportManage extends Controller
         
         //    ->select();
         $data = Db::view('Members','uid,username,coin,parents,type')
-                     ->where("find_in_set({$uid},parents)")
-                    ->view('MemberRecharge','amount','MemberRecharge.uid=Members.uid','left')
-                    ->view('MemberCash','amount','MemberCash.uid=Members.uid','left')
-        ->field('sum(MemberRecharge.amount) totalRecharge ,sum(MemberCash.amount) totalCash')
+                    
+                    ->view('MemberRecharge','amount','MemberRecharge.uid=Members.uid','LEFT')
+                    // ->view('MemberCash','amount','MemberCash.uid=Members.uid')
+                   
+        ->field('sum(MemberRecharge.amount) totalRecharge ')
+        ->where("FIND_IN_SET({$uid},parents)")
         ->select();
 //         $data2 = Db::view('Members','uid,username,parents')
-//         ->where("find_in_set({$uid},parents)")
+//         ->where('m.parents', 'like', $uid.',%')
 //        ->view('MemberCash','amount','MemberCash.uid=Members.uid','left')
 // ->field('sum(MemberCash.amount) totalCash')
 // ->select();
-    //   dump($data2);
+      dump($data);
            $this->assign('days',$days);
         return view('report_manage/recharge_stat',['data'=>$data]);
     }
