@@ -4,35 +4,35 @@
 <ul class="w-goodsList w-goodsList-l m-user-goodsList" data-pro="list">
 	<php>foreach($data as $vo){</php>
 	<li id="pro-view-8" class="w-goodsList-item">
-	<div class="w-goods w-goods-l w-goods-ing m-user-goods" style="background: #007c71!important;color: white;">
-		<div class="w-goods-info">
-			<p>
-				用户名：{$vo.username} 
-			</p>
-			<p>
-				提现金额：{$vo.amount} 
-			</p>
-			<p>
-				申请时间：<?=date('m-d H:i:s', $vo['actionTime'])?>
-			</p>
-			<p>
-				提款银行：<?=$bankData[$vo['bankId']]['name']?>
-			</p>
-			<p>
-				银行尾号：<?='***'.preg_replace('/^.*(.{4})$/', '\1', $vo['account'])?>
-			</p>
-			<p>
-				状态：<?php
+		<div class="w-goods w-goods-l w-goods-ing m-user-goods" style="background: #007c71!important;color: white;">
+			<div class="w-goods-info">
+				<p>
+					用户名：{$vo.username}
+				</p>
+				<p>
+					提现金额：{$vo.amount}
+				</p>
+				<p>
+					申请时间：<?=date('Y-m-d H:i:s', $vo['actionTime'])?>
+				</p>
+				<p>
+					提款银行：<?=$bankData[$vo['bankId']]['name']?>
+				</p>
+				<p>
+					银行尾号：<?='***'.preg_replace('/^.*(.{4})$/', '\1', $vo['account'])?>
+				</p>
+				<p>
+					状态：<?php
 						if($vo['state']==3 && $vo['uid']==$user['uid']){
 							echo '<div class="sure" id="', $vo['id'], '"></div>';
 						}else{
 							echo $stateName[$vo['state']];
 						}
 					?>
-			</p>
-			
+				</p>
+
+			</div>
 		</div>
-	</div>
 	</li>
 	<php>} if(!$data) {</php>
 	<div style="text-align:center">当前条件下没有记录，请更改条件后搜索</div>
