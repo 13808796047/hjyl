@@ -91,31 +91,34 @@ class ReportManage extends Controller
                $cur_day = strtotime(date('Y-m-d',time()));
                $days[$idx] = date("Y-m-d",$cur_day-(86400*$idx));
            }
-           dump($request->param());
+        //    dump($request->param());
+           $params = $request->param();
            if(!$id = input('id')){
                 $user = session('userData');
            }
-           $user = Members::get(11);
-        //    $childrenIds = $user->children()->column('uid');
+           $user = Members::get($id);
+           $uid = $user['uid'];
+
           
-        // 时间限制
-        if (!empty($para['days']) && !empty($para['days2'])) {
-            $where['actionTime'] = array('between', array(strtotime($para['days']), strtotime($para['days2']." 23:59:59")));
-        } elseif (!empty($para['days'])) {
-            $where['actionTime'] = array('egt', strtotime($para['days']));
-        } elseif (!empty($para['days2'])) {
-            $where['actionTime'] = array('elt', strtotime($para['days2']." 23:59:59"));
-        } else {
-            $where['actionTime'] = array('between', array(strtotime(date("Y-m-d")), time()));
-        }
-            dump($where['actionTime']);
+   
+            if(!empty($params['days'])){
+                $start = strtotime($params['days'].'00:00:00');
+                $end = strtotime($params['days2']." 23:59:59");
+            }else{
+                $start = strtotime(date('Y-m-d 00:00:00',time()));
+                $end = strtotime(date('Y-m-d 23:59:59',time()));
+            }
+ 
           $data =  Db::table('gygy_members')->alias('m')
-          ->where('m.uid','like','%'.$user->uid.'%')
-           ->join('gygy_member_recharge r','m.uid = r.uid','left')          
-           ->join('gygy_member_cash c','m.uid = c.uid','left')
-           ->field('m.uid,m.username, m.type ,m.coin,sum(r.amount) as totalAmount,sum(c.amount) as totalCashAmount')
-        //    ->where($where)
+          ->where('m.parents', 'like', $uid.',%')
+           ->join('gygy_member_recharge r',"m.uid = r.uid and r.actionTime BETWEEN {$start} AND {$end}",'left')
+                  
+           ->join('gygy_member_cash c',"m.uid = c.uid and c.actionTime BETWEEN {$start} AND {$end}",'left')   
+   
+           ->field('m.uid,m.username, m.type ,m.coin,sum(r.amount) as totalAmount ,sum(c.amount) as totalCashAmount')
+        
            ->select();
+      
            $this->assign('days',$days);
         return view('report_manage/recharge_stat',['data'=>$data]);
     }
