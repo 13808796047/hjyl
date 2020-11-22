@@ -38,4 +38,12 @@ class Members extends Model
     {
         return $this->hasMany('Members', 'parentId');
     }
+    public function memberRecharges()
+    {
+        return $this->hasMany('MemberRecharge','uid');
+    }
+    public function memberCashs()
+    {
+        return $this->hasMany('MemberCash','uid');
+    }
 }

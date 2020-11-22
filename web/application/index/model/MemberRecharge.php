@@ -14,4 +14,5 @@ use think\Model;
 class MemberRecharge extends Model
 {
     protected $pk = 'id';
+
 }

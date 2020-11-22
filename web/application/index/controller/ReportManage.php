@@ -110,7 +110,20 @@ class ReportManage extends Controller
                 $start = strtotime(date('Y-m-d 00:00:00',time()));
                 $end = strtotime(date('Y-m-d 23:59:59',time()));
             }
- 
+            $users = Members::where("FIND_IN_SET({$uid},parents)")
+                ->field('uid,username,coin,type')
+                ->select();
+                $data = [];
+                foreach ($users as $key => $value) {
+                    $data[$key] = [
+                        'uid'=>$value->uid,
+                        'username'=>$value->username,
+                        'type'=>$value->type,
+                        'coin'=>$value->coin,
+                        'totalRecharge'=>$value->memberRecharges()->where('actionTime','between',[$start,$end])->sum('amount'),
+                        'totalCash'=>$value->memberCashs()->where('actionTime','between',[$start,$end])->sum('amount')
+                    ];
+                }
         //   $data =  Db::table('gygy_members')->alias('m')
         //   ->where('m.parents', 'like', $uid.',%')
         //    ->join('gygy_member_recharge r',"m.uid = r.uid and r.actionTime BETWEEN {$start} AND {$end}",'left')
@@ -120,20 +133,19 @@ class ReportManage extends Controller
         //    ->field('m.uid,m.username, m.type ,m.coin,sum(r.amount) as totalAmount ,sum(c.amount) as totalCashAmount')
         
         //    ->select();
-        $data = Db::view('Members','uid,username,coin,parents,type')
+        // $data = Db::view('Members','uid,username,coin,parents,type')
                     
-                    ->view('MemberRecharge','amount','MemberRecharge.uid=Members.uid','LEFT')
-                    // ->view('MemberCash','amount','MemberCash.uid=Members.uid')
+        //             ->view('MemberRecharge','amount','MemberRecharge.uid=Members.uid','LEFT')
+        //             // ->view('MemberCash','amount','MemberCash.uid=Members.uid')
                    
-        ->field('sum(MemberRecharge.amount) totalRecharge ')
-        ->where("FIND_IN_SET({$uid},parents)")
-        ->select();
+        // ->field('sum(MemberRecharge.amount) totalRecharge ')
+        // ->where("FIND_IN_SET({$uid},parents)")
+        // ->select();
 //         $data2 = Db::view('Members','uid,username,parents')
 //         ->where('m.parents', 'like', $uid.',%')
 //        ->view('MemberCash','amount','MemberCash.uid=Members.uid','left')
 // ->field('sum(MemberCash.amount) totalCash')
 // ->select();
-      dump($data);
            $this->assign('days',$days);
         return view('report_manage/recharge_stat',['data'=>$data]);
     }
