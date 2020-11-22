@@ -141,7 +141,7 @@ class CountController extends AdminController {
             ->where([
                 'r.actionTime'=> ['between',[$fromTime,$toTime]],
                 'm.is_test'=>0,
-                '_string' => 'r.state =9 r.state=10 or ( r.state=1 and r.actionUid is null)',
+                '_string' => 'r.state =9 or r.state=11 or ( r.state=1 and r.actionUid is null)',
             ])->sum('r.rechargeAmount');
 
         $cashAmount = M('member_cash')->where(['actionTime'=> ['between',[$fromTime,$toTime]],'state'=>0])->sum('amount');
