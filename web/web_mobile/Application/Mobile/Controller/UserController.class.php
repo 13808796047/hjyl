@@ -460,8 +460,11 @@ class UserController extends HomeController {
 		if(IS_POST){
 			if(I('amount')<=0)
 				$this->error('充值金额必须大于0');
-			$this->user = session('user');		;
-			
+			$this->user = session('user');		
+			$count =   M('member_recharge')->where(['uid'=>$this->user->uid,'state'=>10])->order('id desc')->limit(5)->count();
+			if($count>5){
+			 return json(["code" => 2,"msg" => "充值次数太多，请30分钟后再操作!","data"=>1800]);;
+			}
 		$amount =I('amount');
 		       $data = array(
                 'amount' => $amount,
@@ -505,7 +508,7 @@ class UserController extends HomeController {
 		
 			// $data['rechargeId'] = $para['rechargeId'];
 			
-			$this->ajaxReturn(['code'=>1,'msg'=>'提交成功'],'json');
+			$this->ajaxReturn(['code'=>1,'msg'=>'提交成功','data'=>15],'json');
 			
 		}else{
 			$bank = M('member_bank')->where(['uid'=>1,'admin'=>1,'enable'=>1])->find();
