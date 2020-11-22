@@ -19,6 +19,8 @@ use think\Session;
 use think\Db;
 use think\View;
 use app\index\model\Params;
+use think\model\Merge;
+
 class ReportManage extends Controller
 {
 
@@ -96,7 +98,7 @@ class ReportManage extends Controller
            if(!$id = input('id')){
                 $user = session('userData');
            }
-           $user = Members::get($id);
+           $user = Members::get(2);
            $uid = $user['uid'];
 
           
@@ -109,16 +111,28 @@ class ReportManage extends Controller
                 $end = strtotime(date('Y-m-d 23:59:59',time()));
             }
  
-          $data =  Db::table('gygy_members')->alias('m')
-          ->where('m.parents', 'like', $uid.',%')
-           ->join('gygy_member_recharge r',"m.uid = r.uid and r.actionTime BETWEEN {$start} AND {$end}",'left')
+        //   $data =  Db::table('gygy_members')->alias('m')
+        //   ->where('m.parents', 'like', $uid.',%')
+        //    ->join('gygy_member_recharge r',"m.uid = r.uid and r.actionTime BETWEEN {$start} AND {$end}",'left')
                   
-           ->join('gygy_member_cash c',"m.uid = c.uid and c.actionTime BETWEEN {$start} AND {$end}",'left')   
+        //    ->join('gygy_member_cash c',"m.uid = c.uid and c.actionTime BETWEEN {$start} AND {$end}",'left')   
    
-           ->field('m.uid,m.username, m.type ,m.coin,sum(r.amount) as totalAmount ,sum(c.amount) as totalCashAmount')
+        //    ->field('m.uid,m.username, m.type ,m.coin,sum(r.amount) as totalAmount ,sum(c.amount) as totalCashAmount')
         
-           ->select();
-      
+        //    ->select();
+        $data1 = Db::view('Members','uid,username,parents')
+                     ->where("find_in_set({$uid},parents)")
+                    ->view('MemberRecharge','amount','MemberRecharge.uid=Members.uid')
+          
+        ->field('sum(MemberRecharge.amount) totalRecharge')
+        ->select();
+        $data2 = Db::view('Members','uid,username,parents')
+        ->where("find_in_set({$uid},parents)")
+       ->view('MemberCash','amount','MemberCash.uid=Members.uid')
+->field('sum(MemberCash.amount) totalCash')
+->select();
+      dump($data1);
+      dump($data2);
            $this->assign('days',$days);
         return view('report_manage/recharge_stat',['data'=>$data]);
     }
