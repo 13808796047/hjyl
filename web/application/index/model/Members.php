@@ -34,4 +34,8 @@ class Members extends Model
     {
         return $this->belongsTo('Members','parentId');
     }
+    public function children()
+    {
+        return $this->hasMany('Members', 'parentId');
+    }
 }

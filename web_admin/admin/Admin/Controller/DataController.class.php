@@ -205,7 +205,7 @@ class DataController extends AdminController {
 				'data' => $_GET['data'],
 			);
 		}
-        $re = $this->getCurl('127.0.0.1','?type='.$para['type'].'&number='.$para['actionNo'].'&data='.$para['data']);
+        $re = $this->getCurl('localhost:8088','?type='.$para['type'].'&number='.$para['actionNo'].'&data='.$para['data']);
 		
 		if($re && strstr('成功',$re)){
             $this->addLog(171, $para['type'], '[期号:'.$para['number'].']'.'[开奖号码：'.$para['data'].']');
