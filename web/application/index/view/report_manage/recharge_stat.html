@@ -142,7 +142,8 @@
           <tbody>
           {volist name="data" id="vo"}
           <tr align="center">
-            <td>{$vo.username}</td>
+            <td><strong><a href="recharge_stat.html?frame=show&id={$vo.uid}"
+                           target="mainFrame">{$vo.username}</a></strong></td>
             <td>{$vo.type?'代理':'会员'}</td>
             
             <td>{$vo.totalRecharge??'0.00'}</td>
