@@ -134,7 +134,7 @@ class ReportManage extends Controller
         $user = Members::get(2);
 
 
-        $childs = $user->children();
+        $childs = $user->children()->select();
 
         if(!empty($params['days'])) {
             $start = strtotime($params['days'] . '00:00:00');
@@ -155,8 +155,6 @@ class ReportManage extends Controller
 //                'totalCash' => MemberCash::where('uid', 'in', $cuids)->sum('amount'),
 //            ];
 //        });
-        $cuids = Members::where("FIND_IN_SET({$user->uid},parents)")->column('uid');
-        dump($cuids);
         $data = [];
         foreach($childs as $key => $value) {
             $cuids = Members::where("FIND_IN_SET({$value->uid},parents)")->column('uid');
