@@ -3,87 +3,90 @@
 <link rel="stylesheet" type="text/css" href="__CSS__/default_content.min.css"/>
 <link rel="stylesheet" type="text/css" href="__CSS__/select2.min.css"/>
 <link rel="stylesheet" href="__CSS__/page.css"/>
-
+<link href="https://cdn.bootcdn.net/ajax/libs/bootstrap-datetimepicker/4.7.14/css/bootstrap-datetimepicker.min.css"
+      rel="stylesheet">
+<script
+    src="https://cdn.bootcdn.net/ajax/libs/bootstrap-datetimepicker/4.7.14/js/bootstrap-datetimepicker.min.js"></script>
 <script language="javascript">
-    var localpath = '';
 
-    function firadio_cookie_set(name, value, expire, path) {
-        //expire=expire||30*24*60*60*1000;
-        var curdate = new Date();
-        var cookie = name + "=" + encodeURIComponent(value) + "; ";
-        if (expire != undefined || expire == 0) {
-            if (expire == -1) {
-                expire = 366 * (86400 * 1000); //保存一年
-            } else {
-                expire = parseInt(expire);
-            }
-            curdate.setTime(curdate.getTime() + expire);
-            cookie += "expires=" + curdate.toUTCString() + "; ";
-        }
-        path = path || "/";
-        cookie += "path=" + path;
-        document.cookie = cookie;
-    }
-
-    function firadio_cookie_get(name) {
-        var re = "(?:; )?" + encodeURIComponent(name) + "=([^;]*);?";
-        re = new RegExp(re);
-        if (re.test(document.cookie)) {
-            return decodeURIComponent(RegExp.$1);
-        }
-        return '';
-    }
 </script>
 <!--<link rel="stylesheet" href="http://upccry1.3smao.net/sy2/css/default_content.min.css">-->
 <!--<link rel="stylesheet" type="text/css" href="http://upccry1.3smao.net/sy2/css/select2.min.css">-->
 <!--<script type="text/javascript" src="http://upccry1.3smao.net/sy2/js/select2.min.js"></script>-->
 <script>
-    jQuery(document).ready(function () {
-        if (jQuery('#date0').val() == '1') {
-            jQuery('#lol').hide();
-            jQuery('#lol1').show();
-            jQuery('#lol2').hide();
-            jQuery('#lol3').hide();
-            jQuery('#lol4').hide();
-        } else if (jQuery('#date0').val() == '2') {
-            jQuery('#lol').show();
-            jQuery('#lol2').show();
-            jQuery('#lol1').hide();
-            jQuery('#lol3').hide();
-            jQuery('#lol4').hide();
-        } else if (jQuery('#date0').val() == '3') {
-            jQuery('#lol').show();
-            jQuery('#lol3').show();
-            jQuery('#lol1').hide();
-            jQuery('#lol2').hide();
-            jQuery('#lol4').show();
-        }
-
-        $("#lottery").val();
-        $("#lottery").change();
-        $("#method").val();
-        $("select").select2();
-    });
+    // jQuery(document).ready(function () {
+    //     if (jQuery('#date0').val() == '1') {
+    //         jQuery('#lol').hide();
+    //         jQuery('#lol1').show();
+    //         jQuery('#lol2').hide();
+    //         jQuery('#lol3').hide();
+    //         jQuery('#lol4').hide();
+    //     } else if (jQuery('#date0').val() == '2') {
+    //         jQuery('#lol').show();
+    //         jQuery('#lol2').show();
+    //         jQuery('#lol1').hide();
+    //         jQuery('#lol3').hide();
+    //         jQuery('#lol4').hide();
+    //     } else if (jQuery('#date0').val() == '3') {
+    //         jQuery('#lol').show();
+    //         jQuery('#lol3').show();
+    //         jQuery('#lol1').hide();
+    //         jQuery('#lol2').hide();
+    //         jQuery('#lol4').show();
+    //     }
+    //
+    //     $("#lottery").val();
+    //     $("#lottery").change();
+    //     $("#method").val();
+    //     $("select").select2();
+    // });
 </script>
 <div class="ys-content">
   <div class="header">充提统计</div>
   <div class="main">
     <div class="form section">
+      <div class="row">
+        <div class='col-sm-6'>
+          <div class="form-group">
+            <label>选择日期：</label>
+            <!--指定 date标记-->
+            <div class='input-group date' id='datetimepicker1'>
+              <input type='text' class="form-control"/>
+              <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+          </div>
+        </div>
+        <div class='col-sm-6'>
+          <div class="form-group">
+            <label>选择日期+时间：</label>
+            <!--指定 date标记-->
+            <div class='input-group date' id='datetimepicker2'>
+              <input type='text' class="form-control"/>
+              <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      
       <form action="" method="get" name="search">
-        <input type="hidden" name="isquery" value="1">
-        <input type="hidden" name="controller" value="report"/>
-        <input type="hidden" name="action" value="bankreport"/>
-        <dl class="field">
-          <label>充值时间</label>
-          <select name="days" class="dept_select selection">
-            {volist name="days" id="vo"}
-            <option value="{$vo}" {if $vo==@$_GET['days']} selected {
-            /if}>{$vo} </option> {/volist}
-          </select> ~ <select name="days2" class=" dept_select selection">
-          {volist name="days" id="vo"}
-          <option value="{$vo}" {if $vo==@$_GET['days2']} selected {
-          /if}>{$vo} </option> {/volist}
-        </select></dl>
+        <!--        <input type="hidden" name="isquery" value="1">-->
+        <!--        <input type="hidden" name="controller" value="report"/>-->
+        <!--        <input type="hidden" name="action" value="bankreport"/>-->
+        <!--        <dl class="field">-->
+        <!--          <label>充值时间</label>-->
+        <!--          <select name="days" class="dept_select selection">-->
+        <!--            {volist name="days" id="vo"}-->
+        <!--            <option value="{$vo}" {if $vo==@$_GET['days']} selected {-->
+        <!--            /if}>{$vo} </option> {/volist}-->
+        <!--          </select> ~ <select name="days2" class=" dept_select selection">-->
+        <!--          {volist name="days" id="vo"}-->
+        <!--          <option value="{$vo}" {if $vo==@$_GET['days2']} selected {-->
+        <!--          /if}>{$vo}</option> {/volist}-->
+        <!--        </select></dl>-->
         <!--        <dl class="field">-->
         <!--          <label>用户名</label>-->
         <!--          <select name="utype" id="ordertype" class="dept_select selection">-->
@@ -141,82 +144,82 @@
 </div>
 <script type="text/javascript" src="__TODO__/js/common/model/details.js"></script>
 <script type="text/javascript" src="__JS__/select2.min.js"></script>
-<script type="text/javascript">
-    $(function () {
-        $("select[name='days']").select2();
-        $("select[name='days2']").select2();
-        $("#ordertype").select2();
-    });
-</script>
-<script type="text/javascript">
-    jQuery("#starttime").dynDateTime({
-        ifFormat: "%Y-%m-%d %H:%M:00",
-        daFormat: "%l;%M %p, %e %m,  %Y",
-        align: "Br",
-        electric: true,
-        singleClick: false,
-        button: ".next()", //next sibling
-        onUpdate: function () {
-            $("#starttime").change();
-        },
-        showOthers: true,
-        weekNumbers: true,
-        showsTime: true
-    });
-    jQuery("#starttime").change(function () {
-        if (!validateInputDate(jQuery("#starttime").val())) {
-            jQuery("#starttime").val('');
-            alert("时间格式不正确,正确的格式为:2009-06-10 10:59");
-        }
-        if ($("#endtime").val() != "") {
-            if ($("#starttime").val() > $("#endtime").val()) {
-                $("#starttime").val("");
-                alert("输入的时间不符合逻辑");
-            }
-        }
-    });
-    jQuery("#endtime").dynDateTime({
-        ifFormat: "%Y-%m-%d %H:%M:00",
-        daFormat: "%l;%M %p, %e %m,  %Y",
-        align: "Br",
-        electric: true,
-        singleClick: false,
-        button: ".next()", //next sibling
-        onUpdate: function () {
-            $("#endtime").change();
-        },
-        showOthers: true,
-        weekNumbers: true,
-        showsTime: true
-    });
-    jQuery("#endtime").change(function () {
-        if (!validateInputDate(jQuery("#endtime").val())) {
-            jQuery("#endtime").val('');
-            alert("时间格式不正确,正确的格式为:2009-06-10 10:59");
-        }
-        if ($("#starttime").val() != "") {
-            if ($("#starttime").val() > $("#endtime").val()) {
-                $("#endtime").val("");
-                alert("输入的时间不符合逻辑");
-            }
-        }
-    });
-    jQuery(function () {
-        var parentWindow = window.parent,
-            height = Number($('.ys-content').outerHeight(true));
-        parentWindow.autoResizeHeight(height);
-        $("#show-detail").click(function () {
-            if ($(this).hasClass("hidden")) {
-                $(".hidable").show();
-                $(".no-records").attr("colspan", "10");
-                $(".yingkui_chaxun").css("width", "1000px");
-                $(this).removeClass("hidden").addClass("showing").val("隐藏详情");
-            } else {
-                $(".hidable").hide();
-                $(".no-records").attr("colspan", "7");
-                $(".yingkui_chaxun").css("width", "753px");
-                $(this).removeClass("showing").addClass("hidden").val("显示详情");
-            }
-        });
-    });
-</script>
+<!--<script type="text/javascript">-->
+<!--    $(function () {-->
+<!--        $("select[name='days']").select2();-->
+<!--        $("select[name='days2']").select2();-->
+<!--        $("#ordertype").select2();-->
+<!--    });-->
+<!--</script>-->
+<!--<script type="text/javascript">-->
+<!--    jQuery("#starttime").dynDateTime({-->
+<!--        ifFormat: "%Y-%m-%d %H:%M:00",-->
+<!--        daFormat: "%l;%M %p, %e %m,  %Y",-->
+<!--        align: "Br",-->
+<!--        electric: true,-->
+<!--        singleClick: false,-->
+<!--        button: ".next()", //next sibling-->
+<!--        onUpdate: function () {-->
+<!--            $("#starttime").change();-->
+<!--        },-->
+<!--        showOthers: true,-->
+<!--        weekNumbers: true,-->
+<!--        showsTime: true-->
+<!--    });-->
+<!--    jQuery("#starttime").change(function () {-->
+<!--        if (!validateInputDate(jQuery("#starttime").val())) {-->
+<!--            jQuery("#starttime").val('');-->
+<!--            alert("时间格式不正确,正确的格式为:2009-06-10 10:59");-->
+<!--        }-->
+<!--        if ($("#endtime").val() != "") {-->
+<!--            if ($("#starttime").val() > $("#endtime").val()) {-->
+<!--                $("#starttime").val("");-->
+<!--                alert("输入的时间不符合逻辑");-->
+<!--            }-->
+<!--        }-->
+<!--    });-->
+<!--    jQuery("#endtime").dynDateTime({-->
+<!--        ifFormat: "%Y-%m-%d %H:%M:00",-->
+<!--        daFormat: "%l;%M %p, %e %m,  %Y",-->
+<!--        align: "Br",-->
+<!--        electric: true,-->
+<!--        singleClick: false,-->
+<!--        button: ".next()", //next sibling-->
+<!--        onUpdate: function () {-->
+<!--            $("#endtime").change();-->
+<!--        },-->
+<!--        showOthers: true,-->
+<!--        weekNumbers: true,-->
+<!--        showsTime: true-->
+<!--    });-->
+<!--    jQuery("#endtime").change(function () {-->
+<!--        if (!validateInputDate(jQuery("#endtime").val())) {-->
+<!--            jQuery("#endtime").val('');-->
+<!--            alert("时间格式不正确,正确的格式为:2009-06-10 10:59");-->
+<!--        }-->
+<!--        if ($("#starttime").val() != "") {-->
+<!--            if ($("#starttime").val() > $("#endtime").val()) {-->
+<!--                $("#endtime").val("");-->
+<!--                alert("输入的时间不符合逻辑");-->
+<!--            }-->
+<!--        }-->
+<!--    });-->
+<!--    jQuery(function () {-->
+<!--        var parentWindow = window.parent,-->
+<!--            height = Number($('.ys-content').outerHeight(true));-->
+<!--        parentWindow.autoResizeHeight(height);-->
+<!--        $("#show-detail").click(function () {-->
+<!--            if ($(this).hasClass("hidden")) {-->
+<!--                $(".hidable").show();-->
+<!--                $(".no-records").attr("colspan", "10");-->
+<!--                $(".yingkui_chaxun").css("width", "1000px");-->
+<!--                $(this).removeClass("hidden").addClass("showing").val("隐藏详情");-->
+<!--            } else {-->
+<!--                $(".hidable").hide();-->
+<!--                $(".no-records").attr("colspan", "7");-->
+<!--                $(".yingkui_chaxun").css("width", "753px");-->
+<!--                $(this).removeClass("showing").addClass("hidden").val("显示详情");-->
+<!--            }-->
+<!--        });-->
+<!--    });-->
+<!--</script>-->
