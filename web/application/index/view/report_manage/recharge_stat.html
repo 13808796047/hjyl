@@ -9,11 +9,32 @@
     src="https://cdn.bootcdn.net/ajax/libs/bootstrap-datetimepicker/4.7.14/js/bootstrap-datetimepicker.min.js"></script>
 <script language="javascript">
 
+    $(function () {
+        var picker1 = $('#datetimepicker1').datetimepicker({
+            format: 'YYYY-MM-DD',
+            locale: moment.locale('zh-cn'),
+            //minDate: '2016-7-1'
+        });
+        var picker2 = $('#datetimepicker2').datetimepicker({
+            format: 'YYYY-MM-DD',
+            locale: moment.locale('zh-cn')
+        });
+        //动态设置最小值
+        picker1.on('dp.change', function (e) {
+            picker2.data('DateTimePicker').minDate(e.date);
+        });
+        //动态设置最大值
+        picker2.on('dp.change', function (e) {
+            picker1.data('DateTimePicker').maxDate(e.date);
+        });
+    });
+
 </script>
 <!--<link rel="stylesheet" href="http://upccry1.3smao.net/sy2/css/default_content.min.css">-->
 <!--<link rel="stylesheet" type="text/css" href="http://upccry1.3smao.net/sy2/css/select2.min.css">-->
 <!--<script type="text/javascript" src="http://upccry1.3smao.net/sy2/js/select2.min.js"></script>-->
 <script>
+
     // jQuery(document).ready(function () {
     //     if (jQuery('#date0').val() == '1') {
     //         jQuery('#lol').hide();
@@ -48,7 +69,7 @@
       <div class="row">
         <div class='col-sm-6'>
           <div class="form-group">
-            <label>选择日期：</label>
+            <label>选择开始时间：</label>
             <!--指定 date标记-->
             <div class='input-group date' id='datetimepicker1'>
               <input type='text' class="form-control"/>
@@ -60,7 +81,7 @@
         </div>
         <div class='col-sm-6'>
           <div class="form-group">
-            <label>选择日期+时间：</label>
+            <label>选择结束时间：</label>
             <!--指定 date标记-->
             <div class='input-group date' id='datetimepicker2'>
               <input type='text' class="form-control"/>
@@ -71,6 +92,7 @@
           </div>
         </div>
       </div>
+      
       
       <form action="" method="get" name="search">
         <!--        <input type="hidden" name="isquery" value="1">-->
