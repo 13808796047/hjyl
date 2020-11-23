@@ -132,7 +132,6 @@ class ReportManage extends Controller
             $user = session('userData');
         }
         $user = Members::get(2);
-        $uid = $user['uid'];
 
 
         $childs = $user->children();
@@ -144,8 +143,7 @@ class ReportManage extends Controller
             $start = strtotime(date('Y-m-d 00:00:00', time()));
             $end = strtotime(date('Y-m-d 23:59:59', time()));
         }
-        $cuids = Members::where("FIND_IN_SET({$uid},parents)")->column('uid');
-        dump($cuids);
+
 //        dump($childs->select());
 //        $data = $childs->select()->each(function($value) use ($cuids) {
 //            return [
@@ -159,6 +157,8 @@ class ReportManage extends Controller
 //        });
         $data = [];
         foreach($childs as $key => $value) {
+            $cuids = Members::where("FIND_IN_SET({$value->uid},parents)")->column('uid');
+            dump($cuids);
             $data[$key] = [
                 'uid' => $value->uid,
                 'username' => $value->username,
@@ -168,6 +168,7 @@ class ReportManage extends Controller
                 'totalCash' => MemberCash::where('uid', 'in', $cuids)->sum('amount'),
             ];
         }
+        dump($data);
         //   $data =  Db::table('gygy_members')->alias('m')
         //   ->where('m.parents', 'like', $uid.',%')
         //    ->join('gygy_member_recharge r',"m.uid = r.uid and r.actionTime BETWEEN {$start} AND {$end}",'left')
