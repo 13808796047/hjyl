@@ -27,18 +27,18 @@
                         {/volist}
                     </select>
                 </dl>
-                <dl class="field">
-                    <label>用户名</label>
-                    <select name="utype" id="ordertype"  class="dept_select selection">
-                        <option value="1" selected="selected">仅自己</option>
-                        <option value="2" {if 2 == @$_GET['utype']} selected {/if} >直属下级</option>
-                        <option value="3" {if 3 == @$_GET['utype']} selected {/if} >所有下级</option>
-                    </select>
-                </dl>
-                <dl class="field">
-                    <label>提现会员</label>
-                    <input name="username" id="username" class="selection" value="{$_GET['username'] ? $_GET['username'] : ''}" placeholder="用户名" style="height: 28px"/>
-                </dl>
+<!--                <dl class="field">-->
+                <!--                    <label>用户名</label>-->
+                <!--                    <select name="utype" id="ordertype"  class="dept_select selection">-->
+                <!--                        <option value="1" selected="selected">仅自己</option>-->
+                <!--                        <option value="2" {if 2 == @$_GET['utype']} selected {/if} >直属下级</option>-->
+                <!--                        <option value="3" {if 3 == @$_GET['utype']} selected {/if} >所有下级</option>-->
+                <!--                    </select>-->
+                <!--                </dl>-->
+                <!--                <dl class="field">-->
+                <!--                    <label>提现会员</label>-->
+                <!--                    <input name="username" id="username" class="selection" value="{$_GET['username'] ? $_GET['username'] : ''}" placeholder="用户名" style="height: 28px"/>-->
+                <!--                </dl>-->
                 <input id="gameInfoBtn" type="submit" class="btn" value="搜索" />
             </form>
         </div>
