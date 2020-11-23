@@ -119,7 +119,7 @@
           {volist name="data" id="vo"}
           <tr align="center">
             <td>{$vo.username}</td>
-            <td>{$vo.type==1?'代理':'会员'}</td>
+            <td>{$vo.type?'代理':'会员'}</td>
             
             <td>{$vo.totalRecharge??'0.00'}</td>
             <td>{$vo.totalCash??'0.00'}</td>
