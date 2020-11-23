@@ -20,6 +20,52 @@ class TeamController extends HomeController{
 		$this->assign('user',$user);
 		$this->display();
 	}
+
+    public function rechargestat()
+    {
+        $this->searchRechargeStat();
+        if(!I('get.'))
+            $this->display('Team/recharge_stat');
+        else
+            $this->display('Team/recharge_stat_list');
+    }
+
+    public function searchRechargeStat()
+    {
+        $para=I('get.');
+
+        // 时间限制
+        if($para['fromTime'] && $para['toTime']){
+            $where['actionTime'] = array('between',array(strtotime($para['fromTime']),strtotime($para['toTime'])));
+        }elseif($para['fromTime']){
+            $where['actionTime'] = array('egt',strtotime($para['fromTime']));
+        }elseif($para['toTime']){
+            $where['actionTime'] = array('elt',strtotime($para['toTime']));
+        }else{
+            if($GLOBALS['fromTime'] && $GLOBALS['toTime']){
+                $where['actionTime'] = array('between',array($GLOBALS['fromTime'],$GLOBALS['toTime']));
+            }
+        }
+
+
+        isset($para['id'])? $user =  M('members')->get($para['id']): $user = $this->user;
+
+        $childs = M('members')->where(['parentId'=>$user['uid']])->select();
+        $data = [];
+        foreach($childs as $key => $value) {
+            $cuids =M('members')->where("FIND_IN_SET({$value['uid']},parents)")->getField('uid',true);
+            $map['uid']= ['in',$cuids];
+            $data[$key] = [
+                'uid' => $value['uid'],
+                'username' => $value['username'],
+                'type' => $value['type'],
+                'coin' => $value['coin'],
+                'totalRecharge' => M('member_recharge')->where($map)->where($where)->sum('amount'),
+                'totalCash' => M('member_cash')->where($map)->where($where)->sum('amount'),
+            ];
+        }
+        $this->assign('data',$data);
+    }
 	/*游戏记录*/
 	public final function record(){
 		$this->getTypes();
