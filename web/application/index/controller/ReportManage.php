@@ -155,6 +155,8 @@ class ReportManage extends Controller
 //                'totalCash' => MemberCash::where('uid', 'in', $cuids)->sum('amount'),
 //            ];
 //        });
+        $cuids = Members::where("FIND_IN_SET({$user->uid},parents)")->column('uid');
+        dump($cuids);
         $data = [];
         foreach($childs as $key => $value) {
             $cuids = Members::where("FIND_IN_SET({$value->uid},parents)")->column('uid');
