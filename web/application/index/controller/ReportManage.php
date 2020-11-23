@@ -145,6 +145,7 @@ class ReportManage extends Controller
             $end = strtotime(date('Y-m-d 23:59:59', time()));
         }
         $cuids = Members::where("FIND_IN_SET({$uid},parents)")->column('uid');
+        dd($childs->select());
         $data = $childs->select()->each(function($value) use ($cuids) {
             return [
                 'uid' => $value->uid,
