@@ -405,7 +405,9 @@ class BusinessController extends AdminController
              $para = I('post.');
 			$data->state = $para['state'];
 			$data->save();
-          
+           $user =  M('members')->where('uid',$data['uid'])->find();
+           $user->coin += $data->amount;
+           $user->save();
 
         } else {
             $this->display('rechargeChange_modal');
