@@ -121,9 +121,9 @@
             <td>{$vo.username}</td>
             <td>{$vo.type==1?'代理':'会员'}</td>
             
-            <td>{$vo.totalRecharge}</td>
-            <td>{$vo.totalCash}</td>
-            <td>{$vo.coin}</td>
+            <td>{$vo.totalRecharge??'0.00'}</td>
+            <td>{$vo.totalCash??'0.00'}</td>
+            <td>{$vo.coin??'0.00'}</td>
           
           </tr>
           {/volist}
