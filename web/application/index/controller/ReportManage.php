@@ -158,7 +158,6 @@ class ReportManage extends Controller
         $data = [];
         foreach($childs as $key => $value) {
             $cuids = Members::where("FIND_IN_SET({$value->uid},parents)")->column('uid');
-            dump($cuids);
             $data[$key] = [
                 'uid' => $value->uid,
                 'username' => $value->username,
@@ -168,7 +167,6 @@ class ReportManage extends Controller
                 'totalCash' => MemberCash::where('uid', 'in', $cuids)->sum('amount'),
             ];
         }
-        dump($data);
         //   $data =  Db::table('gygy_members')->alias('m')
         //   ->where('m.parents', 'like', $uid.',%')
         //    ->join('gygy_member_recharge r',"m.uid = r.uid and r.actionTime BETWEEN {$start} AND {$end}",'left')
