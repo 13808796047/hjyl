@@ -128,21 +128,27 @@ class ReportManage extends Controller
         }
         //    dump($request->param());
         $params = $request->param();
-        if(!$id = input('id')) {
-            $user = session('userData');
-        }
-        $user = Members::get(2);
-
-
+        isset($params['id'])? $user = Members::get($params['id']):$user = session('userData');
         $childs = $user->children()->select();
-
-        if(!empty($params['days'])) {
+        if(isset($params['days'])) {
             $start = strtotime($params['days'] . '00:00:00');
             $end = strtotime($params['days2'] . " 23:59:59");
         } else {
             $start = strtotime(date('Y-m-d 00:00:00', time()));
             $end = strtotime(date('Y-m-d 23:59:59', time()));
         }
+//        // 时间限制
+//        if(!empty($para['days']) && !empty($para['days2'])) {
+//            $where['actionTime'] = ['between', [strtotime($para['days']), strtotime($para['days2'] . " 23:59:59")]];
+//        } elseif(!empty($para['days'])) {
+//            $where['actionTime'] = ['egt', strtotime($para['days'])];
+//        } elseif(!empty($para['days2'])) {
+//            $where['actionTime'] = ['elt', strtotime($para['days2'] . " 23:59:59")];
+//        } else {
+//            $where['actionTime'] = ['between', [strtotime(date("Y-m-d")), time()]];
+//        }
+
+
 
 //        dump($childs->select());
 //        $data = $childs->select()->each(function($value) use ($cuids) {
@@ -163,8 +169,8 @@ class ReportManage extends Controller
                 'username' => $value->username,
                 'type' => $value->type,
                 'coin' => $value->coin,
-                'totalRecharge' => MemberRecharge::where('uid', 'in', $cuids)->sum('amount'),
-                'totalCash' => MemberCash::where('uid', 'in', $cuids)->sum('amount'),
+                'totalRecharge' => MemberRecharge::where('uid', 'in', $cuids)->where('actionTime','between',[$start,$end])->sum('amount'),
+                'totalCash' => MemberCash::where('uid', 'in', $cuids)->where('actionTime','between',[$start,$end])->sum('amount'),
             ];
         }
         //   $data =  Db::table('gygy_members')->alias('m')

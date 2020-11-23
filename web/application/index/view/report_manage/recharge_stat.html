@@ -69,32 +69,34 @@
         <input type="hidden" name="controller" value="report"/>
         <input type="hidden" name="action" value="bankreport"/>
         <dl class="field">
-          <label>充值时间</label>
+          <label>提现时间</label>
           <select name="days" class="dept_select selection">
             {volist name="days" id="vo"}
-            <option value="{$vo}" {if $vo==@$_GET['days']} selected {
-            /if}>{$vo} </option> {/volist}
-          </select> ~ <select name="days2" class=" dept_select selection">
-          {volist name="days" id="vo"}
-          <option value="{$vo}" {if $vo==@$_GET['days2']} selected {
-          /if}>{$vo} </option> {/volist}
-        </select></dl>
-        <dl class="field">
-          <label>用户名</label>
-          <select name="utype" id="ordertype" class="dept_select selection">
-            <option value="1" selected="selected">仅自己</option>
-            <option value="2" {if 2==@$_GET['utype']} selected {
-            /if}>直属下级 </option>
-            <option
-                value="3" {if 3==@$_GET['utype']} selected {
-            /if}>所有下级 </option> </select></dl>
-        <dl
-            class="field">
-          <label>充值会员</label>
-          <input name="username" id="username" class="selection"
-                 value="{$_GET['username'] ? $_GET['username'] : ''}" placeholder="用户名"
-                 style="height: 28px"/>
+            <option  value="{$vo}" {if $vo == @$_GET['days']} selected {/if}>{$vo}</option>
+            {/volist}
+          </select> ~
+          <select name="days2" class=" dept_select selection">
+            {volist name="days" id="vo"}
+            <option  value="{$vo}" {if $vo == @$_GET['days2']} selected {/if}>{$vo}</option>
+            {/volist}
+          </select>
         </dl>
+<!--        <dl class="field">-->
+<!--          <label>用户名</label>-->
+<!--          <select name="utype" id="ordertype" class="dept_select selection">-->
+<!--            <option value="1" selected="selected">仅自己</option>-->
+<!--            <option value="2" {if 2==@$_GET['utype']} selected {-->
+<!--            /if}>直属下级 </option>-->
+<!--            <option-->
+<!--                value="3" {if 3==@$_GET['utype']} selected {-->
+<!--            /if}>所有下级 </option> </select></dl>-->
+<!--        <dl-->
+<!--            class="field">-->
+<!--          <label>充值会员</label>-->
+<!--          <input name="username" id="username" class="selection"-->
+<!--                 value="{$_GET['username'] ? $_GET['username'] : ''}" placeholder="用户名"-->
+<!--                 style="height: 28px"/>-->
+<!--        </dl>-->
         <input id="gameInfoBtn" type="submit" class="btn" value="搜索"/>
       </form>
     </div>
@@ -115,7 +117,7 @@
         <tbody>
         {volist name="data" id="vo"}
         <tr align="center">
-          <td><strong><a href="recharge_stat.html?frame=show&id={$vo.uid}"
+          <td><strong><a href="rechargestat.html?frame=show&id={$vo.uid}"
                          target="mainFrame">{$vo.username}</a></strong></td>
           <td>{$vo.type?'代理':'会员'}</td>
           
