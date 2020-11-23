@@ -3,7 +3,6 @@
 <link rel="stylesheet" type="text/css" href="__CSS__/default_content.min.css"/>
 <link rel="stylesheet" type="text/css" href="__CSS__/select2.min.css"/>
 <link rel="stylesheet" href="__CSS__/page.css"/>
-
 <script language="javascript">
     var localpath = '';
 
@@ -65,54 +64,38 @@
   <div class="header">充提统计</div>
   <div class="main">
     <div class="form section">
-      
-      <form action="" method="GET" class="list-form">
+      <form action="" method="get" name="search">
         <input type="hidden" name="isquery" value="1">
-        <input type="hidden" name="controller" value="report">
-        <input type="hidden" name="action" value="list">
-        <input type="hidden" name="isgetdata" value="1">
-        <dl class="clearfix field">
-          <label>投注时间</label>
-          <select class="selection" id="date0" name="date0"
-                  onchange="if(jQuery(this).val()=='1') {jQuery('#lol').hide();jQuery('#lol1').show();jQuery('#lol2').hide();jQuery('#lol3').hide();jQuery('#lol4').hide();};
-										  if(jQuery(this).val()=='2' ) {jQuery('#lol').show();jQuery('#lol2').show();jQuery('#lol1').hide();jQuery('#lol3').hide();jQuery('#lol4').hide();};
-										  if(jQuery(this).val()=='3' ) {jQuery('#lol').show();jQuery('#lol3').show();jQuery('#lol1').hide();jQuery('#lol2').hide();jQuery('#lol4').show();}">
-            <option value="1" {if 1== @$_GET[
-            'date0']} selected {/if}>今天统计</option>
-            <option value="2" {if 2== @$_GET[
-            'date0']} selected {/if}>历史总计</option>
-            <!-- <option  value="3">历史详情</option> -->
-          </select> &nbsp;&nbsp;&nbsp;
-          <span id="lol">
-							<select class="selection" name="date1">
-								{volist name="days" id="vo"}
-		                        <option value="{$vo}" {if $vo== @$_GET['date1']} selected {/if}>{$vo}</option>
-                {/volist}
-	                        </select>
-							&nbsp; ~ &nbsp;
-							<select class="selection" name="date2">
-								{volist name="days" id="vo"}
-		                        <option value="{$vo}" {if $vo== @$_GET['date2']} selected {/if}>{$vo}</option>
-                {/volist}
-		                    </select> &nbsp;&nbsp;&nbsp;
-						</span>
-        </dl>
-        <dl id="lol4" class="field">
-          <label>用户名</label>
-          <input type="text" name="username" id="username" size="16" class="custom_input" value=""/>
-          <label for="include" class="user_type_checkbox"><input type="checkbox" name="include" id="include" value="1">
-            包含下级 </label>
-        </dl>
+        <input type="hidden" name="controller" value="report"/>
+        <input type="hidden" name="action" value="bankreport"/>
         <dl class="field">
-          <label>备注</label>
-          <span style="color:red">
-								<span id="lol1">※今天统计※ 统计您与下级今日的盈亏总和，统计时间为早上7点至次日凌晨5点</span>
-								<span id="lol2">※历史总计※ 会统计您与下级查询时间内的盈亏总和</span>
-            <!-- <span id="lol3">※历史详情※ 输入下级名称可查看下级每日盈亏记录，不输入为查询自己的</span> -->
-						</span>
+          <label>充值时间</label>
+          <select name="days" class="dept_select selection">
+            {volist name="days" id="vo"}
+            <option value="{$vo}" {if $vo==@$_GET['days']} selected {
+            /if}>{$vo} </option> {/volist}
+          </select> ~ <select name="days2" class=" dept_select selection">
+          {volist name="days" id="vo"}
+          <option value="{$vo}" {if $vo==@$_GET['days2']} selected {
+          /if}>{$vo} </option> {/volist}
+        </select></dl>
+        <dl class="field">
+          <label>用户名</label>
+          <select name="utype" id="ordertype" class="dept_select selection">
+            <option value="1" selected="selected">仅自己</option>
+            <option value="2" {if 2==@$_GET['utype']} selected {
+            /if}>直属下级 </option>
+            <option
+                value="3" {if 3==@$_GET['utype']} selected {
+            /if}>所有下级 </option> </select></dl>
+        <dl
+            class="field">
+          <label>充值会员</label>
+          <input name="username" id="username" class="selection"
+                 value="{$_GET['username'] ? $_GET['username'] : ''}" placeholder="用户名"
+                 style="height: 28px"/>
         </dl>
-        <input type="submit" value="查询" class="btn">
-        <!-- <input type="button" id="show-detail" class="alert_btn hidden" value="显示详情" style="margin: 20px 0 0;"> -->
+        <input id="gameInfoBtn" type="submit" class="btn" value="搜索"/>
       </form>
     </div>
   </div>
@@ -161,77 +144,5 @@
         $("select[name='days']").select2();
         $("select[name='days2']").select2();
         $("#ordertype").select2();
-    });
-</script>
-<script type="text/javascript">
-    jQuery("#starttime").dynDateTime({
-        ifFormat: "%Y-%m-%d %H:%M:00",
-        daFormat: "%l;%M %p, %e %m,  %Y",
-        align: "Br",
-        electric: true,
-        singleClick: false,
-        button: ".next()", //next sibling
-        onUpdate: function () {
-            $("#starttime").change();
-        },
-        showOthers: true,
-        weekNumbers: true,
-        showsTime: true
-    });
-    jQuery("#starttime").change(function () {
-        if (!validateInputDate(jQuery("#starttime").val())) {
-            jQuery("#starttime").val('');
-            alert("时间格式不正确,正确的格式为:2009-06-10 10:59");
-        }
-        if ($("#endtime").val() != "") {
-            if ($("#starttime").val() > $("#endtime").val()) {
-                $("#starttime").val("");
-                alert("输入的时间不符合逻辑");
-            }
-        }
-    });
-    jQuery("#endtime").dynDateTime({
-        ifFormat: "%Y-%m-%d %H:%M:00",
-        daFormat: "%l;%M %p, %e %m,  %Y",
-        align: "Br",
-        electric: true,
-        singleClick: false,
-        button: ".next()", //next sibling
-        onUpdate: function () {
-            $("#endtime").change();
-        },
-        showOthers: true,
-        weekNumbers: true,
-        showsTime: true
-    });
-    jQuery("#endtime").change(function () {
-        if (!validateInputDate(jQuery("#endtime").val())) {
-            jQuery("#endtime").val('');
-            alert("时间格式不正确,正确的格式为:2009-06-10 10:59");
-        }
-        if ($("#starttime").val() != "") {
-            if ($("#starttime").val() > $("#endtime").val()) {
-                $("#endtime").val("");
-                alert("输入的时间不符合逻辑");
-            }
-        }
-    });
-    jQuery(function () {
-        var parentWindow = window.parent,
-            height = Number($('.ys-content').outerHeight(true));
-        parentWindow.autoResizeHeight(height);
-        $("#show-detail").click(function () {
-            if ($(this).hasClass("hidden")) {
-                $(".hidable").show();
-                $(".no-records").attr("colspan", "10");
-                $(".yingkui_chaxun").css("width", "1000px");
-                $(this).removeClass("hidden").addClass("showing").val("隐藏详情");
-            } else {
-                $(".hidable").hide();
-                $(".no-records").attr("colspan", "7");
-                $(".yingkui_chaxun").css("width", "753px");
-                $(this).removeClass("showing").addClass("hidden").val("显示详情");
-            }
-        });
     });
 </script>
