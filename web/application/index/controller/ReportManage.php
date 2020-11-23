@@ -145,20 +145,9 @@ class ReportManage extends Controller
             $end = strtotime(date('Y-m-d 23:59:59', time()));
         }
         $cuids = Members::where("FIND_IN_SET({$uid},parents)")->column('uid');
-        dump($childs->select());
-        $data = $childs->select()->each(function($value) use ($cuids) {
-            return [
-                'uid' => $value->uid,
-                'username' => $value->username,
-                'type' => $value->type,
-                'coin' => $value->coin,
-                'totalRecharge' => MemberRecharge::where('uid', 'in', $cuids)->sum('amount'),
-                'totalCash' => MemberCash::where('uid', 'in', $cuids)->sum('amount'),
-            ];
-        });
-//        $data = [];
-//        foreach($childs as $key => $value) {
-//            $data[$key] = [
+//        dump($childs->select());
+//        $data = $childs->select()->each(function($value) use ($cuids) {
+//            return [
 //                'uid' => $value->uid,
 //                'username' => $value->username,
 //                'type' => $value->type,
@@ -166,7 +155,18 @@ class ReportManage extends Controller
 //                'totalRecharge' => MemberRecharge::where('uid', 'in', $cuids)->sum('amount'),
 //                'totalCash' => MemberCash::where('uid', 'in', $cuids)->sum('amount'),
 //            ];
-//        }
+//        });
+        $data = [];
+        foreach($childs as $key => $value) {
+            $data[$key] = [
+                'uid' => $value->uid,
+                'username' => $value->username,
+                'type' => $value->type,
+                'coin' => $value->coin,
+                'totalRecharge' => MemberRecharge::where('uid', 'in', $cuids)->sum('amount'),
+                'totalCash' => MemberCash::where('uid', 'in', $cuids)->sum('amount'),
+            ];
+        }
         //   $data =  Db::table('gygy_members')->alias('m')
         //   ->where('m.parents', 'like', $uid.',%')
         //    ->join('gygy_member_recharge r',"m.uid = r.uid and r.actionTime BETWEEN {$start} AND {$end}",'left')
