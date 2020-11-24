@@ -408,9 +408,11 @@ class BusinessController extends AdminController
             // 开始事物处理
             $Model = new \Think\Model();
             $Model->startTrans();
-            $member_recharge->state = $para['state'];
-            $member_recharge->save();
-            if($member_recharge) {
+
+            $result = $member_recharge->save([
+                'state' => $para['state']
+            ]);
+            if($result) {
                 $user = M('members')->where('uid', $member_recharge['uid'])->find();
                 $return = $this->addCoin([
                     'uid' => $user['uid'],
