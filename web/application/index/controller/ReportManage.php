@@ -138,10 +138,9 @@ class ReportManage extends Controller
             $this->assign('days', $days);
 //            $this->assign('types_data', $this->types());
             $this->assign('data', []);
-            dump('未');
             return view('report_manage/recharge_stat');
         }
-        dump('有');
+
         isset($params['id']) ? $user = Members::get($params['id']) : $user = session('userData');
         $childs = $user->children()->select();
         if(isset($params['days'])) {
@@ -186,6 +185,7 @@ class ReportManage extends Controller
                 'totalCash' => MemberCash::where('uid', 'in', $cuids)->where('actionTime', 'between', [$start, $end])->sum('amount'),
             ];
         }
+        dump($data);
         //   $data =  Db::table('gygy_members')->alias('m')
         //   ->where('m.parents', 'like', $uid.',%')
         //    ->join('gygy_member_recharge r',"m.uid = r.uid and r.actionTime BETWEEN {$start} AND {$end}",'left')
@@ -209,7 +209,8 @@ class ReportManage extends Controller
 // ->field('sum(MemberCash.amount) totalCash')
 // ->select();
         $this->assign('days', $days);
-        return view('report_manage/recharge_stat', ['data' => $data]);
+        $this->assign('data', $data);
+        return view('report_manage/recharge_stat');
     }
 
     public function getOrdersList(Request $request)
