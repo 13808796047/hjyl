@@ -143,9 +143,7 @@ class ReportManage extends Controller
 
         isset($params['id']) ? $user = Members::get($params['id']) : $user = session('userData');
 
-        $childs = Members::where('uid',$user['uid'])->column('uid');
-        dump($childs);
-        die;
+        $childs = Members::where('parentId', $user['uid'])->column('uid');
         if(isset($params['days']) && isset($params['days2'])) {
             $start = strtotime($params['days'] . '00:00:00');
             $end = strtotime($params['days2'] . " 23:59:59");
