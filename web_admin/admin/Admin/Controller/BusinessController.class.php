@@ -412,20 +412,22 @@ class BusinessController extends AdminController
             M('member_recharge')->state = $para['state'];
             M('member_recharge')->save();
             $user = M('members')->where('uid', $member_recharge['uid'])->find();
-            $return = $this->addCoin([
-                'uid' => $user['uid'],
-                'coin' => $member_recharge['amount'],
-                'liqType' => 1,
-                'info' => '充值'
-            ]);
-            if($return) {
-                //每天首次充值赠送
+            $user->coin += $member_recharge['amount'];
+            $user->liqType = 1;
+            $user->info = '充值';
+            $user->save();
+//            $return = $this->addCoin([
+//                'uid' => $user['uid'],
+//                'coin' => $member_recharge['amount'],
+//                'liqType' => 1,
+//                'info' => '充值'
+//            ]);
 
-                $Model->commit();//成功则提交
-                $this->addLog(2, $member_recharge['uid'], $para['amount']);
-                $this->success('充值到账成功', U('business/recharge'));
-            }
 
+            $Model->commit();//成功则提交
+            $this->addLog(2, $member_recharge['uid'], $para['amount']);
+            $this->success('充值到账成功', U('business/recharge'));
+            
 
         } else {
             $this->display('rechargeChange_modal');
