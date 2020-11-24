@@ -302,7 +302,7 @@ class AdminController extends Controller
 
     /**
      * 获取控制器中允许禁止任何人(超管除外)通过url访问的方法
-     * @param  string $controller 控制器类名(不含命名空间)
+     * @param string $controller 控制器类名(不含命名空间)
      * @author 朱亚杰  <xcoolcc@gmail.com>
      */
     final static protected function getDeny($controller = CONTROLLER_NAME)
@@ -324,7 +324,7 @@ class AdminController extends Controller
 
     /**
      * 获取控制器中允许所有管理员通过url访问的方法
-     * @param  string $controller 控制器类名(不含命名空间)
+     * @param string $controller 控制器类名(不含命名空间)
      * @author 朱亚杰  <xcoolcc@gmail.com>
      */
     final static protected function getAllow($controller = CONTROLLER_NAME)
@@ -404,8 +404,8 @@ class AdminController extends Controller
                     (!$this->isServantAllowed($user, $item)
                         //&& !IS_ROOT
                         || !$this->checkRule($item['url'], AuthRuleModel::RULE_MAIN, null)
-                        ||(($user['sb'] == 2)&&$item['id']==127)
-                    )&&($item['id']!=134)
+                        || (($user['sb'] == 2) && $item['id'] == 127)
+                    ) && ($item['id'] != 134)
                 ) {
                     unset($menus['main'][$key]);
                     continue;//继续循环
@@ -472,7 +472,7 @@ class AdminController extends Controller
                                     unset($menuList[$smKey]);
                                 }
                                 if ($user['sb'] == 2) { //控制客服能看那些列表 132,133,
-                                    if (in_array($smVal['id'], [106, 137, 138, 147, 152,128,166,135,136,150,151,158])) {
+                                    if (in_array($smVal['id'], [106, 137, 138, 147, 152, 128, 166, 135, 136, 150, 151, 158])) {
                                         unset($menuList[$smKey]);
                                     }
                                 }
@@ -480,7 +480,7 @@ class AdminController extends Controller
                         }
                         foreach ($menuList as $smKey => $smVal) {
                             if ($user['sb'] == 2) {//控制客服能看那些列表 132,133,
-                                if (in_array($smVal['id'], [106, 137, 138, 147, 152,128,166,135,136,150,151,158])) {
+                                if (in_array($smVal['id'], [106, 137, 138, 147, 152, 128, 166, 135, 136, 150, 151, 158])) {
                                     unset($menuList[$smKey]);
                                 }
                             }
@@ -567,10 +567,10 @@ class AdminController extends Controller
      *
      * @param array $base 基本的查询条件
      * @param boolean $field 单表模型用不到该参数,要用在多表join时为field()方法指定参数
-     * @author 朱亚杰 <xcoolcc@gmail.com>
-     *
      * @return array|false
      * 返回数据集
+     * @author 朱亚杰 <xcoolcc@gmail.com>
+     *
      */
     protected function lists($model, $where = array(), $order = '', $base = array('status' => array('egt', 0)), $field = true)
     {
