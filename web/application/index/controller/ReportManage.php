@@ -141,9 +141,9 @@ class ReportManage extends Controller
             return view('report_manage/recharge_stat');
         }
 
-        isset($params['id']) ? $user = Members::get($params['id']) : $user = Members::where('uid', session('userData')['uid'])->select();
+        isset($params['id']) ? $user = Members::get($params['id']) : $user = session('userData');
 
-        $childs = $user->children()->select();
+        $childs = Members::where('uid',$user['uid'])->column('uid');
         dump($childs);
         die;
         if(isset($params['days']) && isset($params['days2'])) {
