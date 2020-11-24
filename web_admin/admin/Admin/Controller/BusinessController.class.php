@@ -413,7 +413,7 @@ class BusinessController extends AdminController
             $userModel = M('members')->where('uid', $member_recharge['uid']);
             $userModel->liqType = 1;
             $userModel->info = '充值';
-            $userModel->setInc('coin', $member_recharge['amount']);
+            $userModel->coin+=$member_recharge['amount'];
             $userModel->save();
 
 
