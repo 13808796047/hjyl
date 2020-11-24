@@ -93,6 +93,9 @@ class Recharge extends Controller
             'liqType' => 106,
             'info' => "银行卡充值",
             'extfield0' => $result['rechargeId'],
+            'userCoin' => $this->user['coin'],
+            'actionIP' => $this->ip(true),
+            'actionTime' => time(),
         ];
         CoinLog::create($coinlog);
         if (!$result) {
