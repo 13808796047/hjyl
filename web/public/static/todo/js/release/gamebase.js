@@ -1,65 +1,65 @@
-!function(e, t, a) {
-        var n = {};
-        n.cacheData = {},
-            n.currentGame = null,
-            n.currentGameTypes = null,
-            n.currentGameStatistics = null,
-            n.currentGameOrder = null,
-            n.currentGameTrace = null,
-            n.currentGameSubmit = null,
-            n.currentGameMessage = null,
-            n.currentGamePlan = null,
-            n.getCurrentGame = function() {
-                return n.currentGame
-            },
-            n.setCurrentGame = function(e) {
-                n.currentGame = e
-            },
-            n.getCurrentGameTypes = function() {
-                return n.currentGameTypes
-            },
-            n.setCurrentGameTypes = function(e) {
-                n.currentGameTypes = e
-            },
-            n.getCurrentGameStatistics = function() {
-                return n.currentGameStatistics
-            },
-            n.setCurrentGameStatistics = function(e) {
-                n.currentGameStatistics = e
-            },
-            n.getCurrentGameOrder = function() {
-                return n.currentGameOrder
-            },
-            n.setCurrentGameOrder = function(e) {
-                n.currentGameOrder = e
-            },
-            n.getCurrentGameTrace = function() {
-                return n.currentGameTrace
-            },
-            n.setCurrentGameTrace = function(e) {
-                n.currentGameTrace = e
-            },
-            n.getCurrentGameSubmit = function() {
-                return n.currentGameSubmit
-            },
-            n.setCurrentGameSubmit = function(e) {
-                n.currentGameSubmit = e
-            },
-            n.getCurrentGameMessage = function() {
-                return n.currentGameMessage
-            },
-            n.setCurrentGameMessage = function(e) {
-                n.currentGameMessage = e
-            },
-            n.getCurrentGamePlan = function() {
-                return n.currentGamePlan
-            },
-            n.setCurrentGamePlan = function(e) {
-                n.currentGamePlan = e
-            },
-            e[t] = n
-    } (phoenix, "Games"),
-    function(e, t, a, n) {
+!function (e, t, a) {
+    var n = {};
+    n.cacheData = {},
+        n.currentGame = null,
+        n.currentGameTypes = null,
+        n.currentGameStatistics = null,
+        n.currentGameOrder = null,
+        n.currentGameTrace = null,
+        n.currentGameSubmit = null,
+        n.currentGameMessage = null,
+        n.currentGamePlan = null,
+        n.getCurrentGame = function () {
+            return n.currentGame
+        },
+        n.setCurrentGame = function (e) {
+            n.currentGame = e
+        },
+        n.getCurrentGameTypes = function () {
+            return n.currentGameTypes
+        },
+        n.setCurrentGameTypes = function (e) {
+            n.currentGameTypes = e
+        },
+        n.getCurrentGameStatistics = function () {
+            return n.currentGameStatistics
+        },
+        n.setCurrentGameStatistics = function (e) {
+            n.currentGameStatistics = e
+        },
+        n.getCurrentGameOrder = function () {
+            return n.currentGameOrder
+        },
+        n.setCurrentGameOrder = function (e) {
+            n.currentGameOrder = e
+        },
+        n.getCurrentGameTrace = function () {
+            return n.currentGameTrace
+        },
+        n.setCurrentGameTrace = function (e) {
+            n.currentGameTrace = e
+        },
+        n.getCurrentGameSubmit = function () {
+            return n.currentGameSubmit
+        },
+        n.setCurrentGameSubmit = function (e) {
+            n.currentGameSubmit = e
+        },
+        n.getCurrentGameMessage = function () {
+            return n.currentGameMessage
+        },
+        n.setCurrentGameMessage = function (e) {
+            n.currentGameMessage = e
+        },
+        n.getCurrentGamePlan = function () {
+            return n.currentGamePlan
+        },
+        n.setCurrentGamePlan = function (e) {
+            n.currentGamePlan = e
+        },
+        e[t] = n
+}(phoenix, "Games"),
+    function (e, t, a, n) {
         var l = {
                 name: "",
                 basePath: "../game/",
@@ -69,7 +69,7 @@
                 requestLastBallUrl: "/newgame_play.html"
             },
             i = e.Games,
-            r = function(e) {
+            r = function (e) {
                 for (var t, a = $.trim(e).split("&"), n = 0, l = a.length, i = {}; n < l; n++) t = a[n].split("="),
                 t.length > 0 && (2 == t.length ? i[t[0]] = t[1] : i[t[0]] = "");
                 return i
@@ -78,10 +78,10 @@
             o = !1;
         window.translate = GamesInitData.multilingual,
             window.fxid = GamesInitData.fxid,
-            translate.defConfig.Dollar = 3 !== fxid ? translate.defConfig.Dollar: "VND",
-            translate.MsgDollar = 3 !== fxid ? translate.MsgDollar: "VND";
+            translate.defConfig.Dollar = 3 !== fxid ? translate.defConfig.Dollar : "VND",
+            translate.MsgDollar = 3 !== fxid ? translate.MsgDollar : "VND";
         var c = {
-                init: function(e) {
+                init: function (e) {
                     var t = this,
                         a = i.getCurrentGameMessage();
                     t.setName(e.name),
@@ -91,28 +91,28 @@
                         t.currentGameMethod = null,
                         t.dynamicConfig = null,
                         t.addEvent("afterSwitchGameMethod",
-                            function() {
+                            function () {
                                 i.getCurrentGame().getCurrentGameMethod().reSet();
                                 i.getCurrentGame().getCurrentGameMethod().getGameMethodName();
                                 i.getCurrentGameStatistics().setMultipleLimit(999999999),
                                     i.getCurrentGame().getCurrentGameMethod().updataGamesInfo()
                             }),
                         t.addEvent("changeDynamicConfig",
-                            function() {
+                            function () {
                                 t.updateDynamicConfig()
                             }),
                         t.addEvent("afterSwitchGameMethod",
-                            function() {
+                            function () {
                                 a = i.getCurrentGameMessage(),
                                     s = !1,
                                     o = !1,
                                     a.hide()
                             }),
                         t.addEvent("beforeSwitchGameMethod",
-                            function() {
+                            function () {
                                 a = i.getCurrentGameMessage(),
                                     o = !0,
-                                    setTimeout(function() {
+                                    setTimeout(function () {
                                             o && a.show({
                                                 mask: !0,
                                                 content: ['<div class="bd text-center">', '<div class="pop-waring">', '<div style="font-size:14px;"><em class="icon-spinner icon-spin icon-large mr10"></em> ' + translate.GameLoading + "</div>", "</div>", "</div>"].join("")
@@ -121,56 +121,56 @@
                                         600)
                             })
                 },
-                getMaxMultipleLimit: function(e) {
+                getMaxMultipleLimit: function (e) {
                     var t = e || i.getCurrentGame().getCurrentGameMethod().getGameMethodName(),
                         a = i.getCurrentGame().getDynamicConfig().gamelimit;
                     return Number(a[t].maxmultiple)
                 },
-                getDynamicConfigUrl: function() {
+                getDynamicConfigUrl: function () {
                     return "/newgame_play.html"
                 },
-                getLang: function() {
+                getLang: function () {
                     $.ajax({
                         url: getLangPath,
                         dataType: "json",
                         async: !1,
-                        success: function(e) {
+                        success: function (e) {
                             window.translate = e
                         }
                     })
                 },
-                systemInitNotice: function() {
+                systemInitNotice: function () {
                     var e = i.getCurrentGameMessage();
                     e.show({
                         mask: !0,
                         content: ['<div class="bd text-center">', '<div class="pop-waring">', '<div style="font-size:14px;"><em class="icon-spinner icon-spin icon-large mr10"></em> ' + translate.PageLoading + "</div>", "</div>", "</div>"].join("")
                     })
                 },
-                setBalanceValue: function(e) {
+                setBalanceValue: function (e) {
                     var t = this;
                     t.setDynamicConfig({
                         balance: e
                     })
                 },
-                getBalance: function() {
+                getBalance: function () {
                     var e = this;
                     e.getDynamicConfig().balance
                 },
-                getBalanceFormServer: function() {
+                getBalanceFormServer: function () {
                     var e = this;
                     $.ajax({
                         url: e.getDynamicConfigUrl() + "?tag=getuserbalance",
                         cache: !1,
                         dataType: "JSON",
-                        success: function(t) {
+                        success: function (t) {
                             1 == Number(t.isSuccess) && e.setBalanceValue(t.availablebalance)
                         }
                     })
                 },
-                getCurrentMid: function() {
+                getCurrentMid: function () {
                     return window.GamesInitData.curmid
                 },
-                getServerDynamicConfig: function(e) {
+                getServerDynamicConfig: function (e) {
                     var t = this,
                         a = (t.defConfig, t.getName(), r(window.location.href.replace(/^.*?\?/, "")).curmid.replace(/\D/g, "")),
                         n = (new Date).getTime();
@@ -178,35 +178,35 @@
                         url: t.getDynamicConfigUrl() + "?curmid=" + a + "&flag=dynamicConfig&tag=" + n,
                         dataType: "JSON",
                         cache: !1,
-                        success: function(a) {
+                        success: function (a) {
                             1 == Number(a.isSuccess) && (t.setDynamicConfig(a.data), $.isFunction(e) && e.call(t, a.data))
                         }
                     })
                 },
-                getDynamicConfig: function() {
+                getDynamicConfig: function () {
                     return this.dynamicConfig
                 },
-                setDynamicConfig: function(e) {
+                setDynamicConfig: function (e) {
                     var t = this;
                     e.curmid = t.getCurrentMid(),
                         this.dynamicConfig = $.extend(!0, this.dynamicConfig, e),
                         this.fireEvent("changeDynamicConfig", e)
                 },
-                addDynamicBonus: function(e, t) {
+                addDynamicBonus: function (e, t) {
                     "undefined" != typeof this.dynamicConfig.gamelimit && "undefined" != typeof this.dynamicConfig.gamelimit[e] && (this.dynamicConfig.gamelimit[e].usergroupmoney = t)
                 },
-                delCurrentPeriod: function(e) {
+                delCurrentPeriod: function (e) {
                     for (var t = this,
                              a = e || t.getDynamicConfig(), n = a.gamenumbers || [], l = n.length - 1; l >= 0; l--) if ($.trim(n[l].number) == $.trim(a.number)) {
                         n.splice(l, 1);
                         break
                     }
                 },
-                updateDynamicConfig: function() {
+                updateDynamicConfig: function () {
                     var e = this,
                         t = e.getDynamicConfig();
                     t.lastballs.split(",");
-                    return 1 == t.isstop ? void setTimeout(function() {
+                    return 1 == t.isstop ? void setTimeout(function () {
                             phoenix.Games.getCurrentGameMessage().show({
                                 type: "lotteryClose",
                                 data: {
@@ -235,37 +235,37 @@
                                 }
                             })
                         },
-                        1e3) : (e.setCurrentNumber(t.number), $(".J-balance-show").text(t.balance), void(i.cacheData = {}))
+                        1e3) : (e.setCurrentNumber(t.number), $(".J-balance-show").text(t.balance), void (i.cacheData = {}))
                 },
-                eventProxy: function() {
+                eventProxy: function () {
                     var e = this,
                         t = e.defConfig,
                         a = $(t.eventProxyPanel);
-                    a.click(function(t) {
+                    a.click(function (t) {
                         var a, n, l = t.target.getAttribute("data-param");
                         l && "" != $.trim(l) && (t.preventDefault(), a = r(l), n = e.getCurrentGameMethod(), n && n.exeEvent(a, t.target))
                     })
                 },
-                startGetBetBall: function() {
-              
+                startGetBetBall: function () {
+
                     var e = this;
-                    setTimeout(function() {
-                    		
-                            e.startGetBetBallProcess = setInterval(function() {
-                            	
+                    setTimeout(function () {
+
+                            e.startGetBetBallProcess = setInterval(function () {
+
                                     e.getCurrentTimeBall()
                                 },
                                 3e3)
-                                e.getCurrentTimeBall()
+                            e.getCurrentTimeBall()
                         },
-                        5e3)
+                        3e3)
                 },
-                stopGetBetBall: function() {
+                stopGetBetBall: function () {
                     var e = this;
                     clearInterval(e.startGetBetBallProcess),
                         e.startGetBetBallProcess = null
                 },
-                getCurrentTimeBall: function(e) {
+                getCurrentTimeBall: function (e) {
                     var t = this;
                     t.lastRequest && t.lastRequest.abort(),
                         t.lastRequest = $.ajax({
@@ -273,29 +273,29 @@
                             dataType: "json",
                             async: !1,
                             cache: !1,
-                            success: function(a) {
-                            	if(a.isSuccess==1){
-                            		var currN = t.getDynamicConfig().number.split('-')[1];
-                            		var befN = a.period.split('-')[1];
-                            	
-                            		if(Math.abs(currN-befN)==2){
-                            			t.fireEvent("afterGetLastBall", a)
-                            		}else{
-                            			t.fireEvent("afterSuccessGetLastBall", a)
-                            		}
-                            	
-                            	}
-                            
+                            success: function (a) {
+                                if (a.isSuccess == 1) {
+                                    var currN = t.getDynamicConfig().number.split('-')[1];
+                                    var befN = a.period.split('-')[1];
+
+                                    if (Math.abs(currN - befN) == 2) {
+                                        t.fireEvent("afterGetLastBall", a)
+                                    } else {
+                                        t.fireEvent("afterSuccessGetLastBall", a)
+                                    }
+
+                                }
+
                                 // 1 == Number(a.isSuccess) && (t.fireEvent("afterGetLastBall", a), t.getDynamicConfig().number && a.period.replace(/-/g, "") !== Number((t.getDynamicConfig().number+"").replace(/-/g, "")) && (e && e(), t.fireEvent("afterSuccessGetLastBall", a)))
                             }
                         })
                 },
-                getGameMethodByName: function(e) {
+                getGameMethodByName: function (e) {
                     var t = this;
                     t.loadedHas;
                     if (t.hasOwnProperty(e) && t[e] && $.isArray(t[e].balls) && $.isFunction(t[e].hide)) return t[e]
                 },
-                switchGameMethod: function(e) {
+                switchGameMethod: function (e) {
                     var t, a, n = this;
                     n.loadedHas;
                     if (!s) {
@@ -303,7 +303,7 @@
                             n.fireEvent("beforeSwitchGameMethod");
                         for (t in n) n.getGameMethodByName(t) && (t != e ? n[t].hide() : (n[t].show(), n.currentGameMethod = n[t], n.fireEvent("afterSwitchGameMethod", e)));
                         n.getGameMethodByName(e) || n.setup(e,
-                            function() {
+                            function () {
                                 a = n.getGameMethodByName(e),
                                     a.show(),
                                     n.currentGameMethod = a,
@@ -312,13 +312,14 @@
                             })
                     }
                 },
-                getCurrentGameMethod: function() {
+                getCurrentGameMethod: function () {
                     return this.currentGameMethod
                 },
-                setup: function(e, t) {
+                setup: function (e, t) {
                     var a, n = this,
                         l = n.buildPath(e),
-                        i = function() {};
+                        i = function () {
+                        };
                     a = arguments.length > 0 ? arguments[arguments.length - 1] : i,
                     $.isFunction(a) || (a = i),
                     n.isSetuped(e) || $.ajax({
@@ -326,46 +327,48 @@
                         type: "GET",
                         cache: !0,
                         dataType: "script",
-                        success: function() {
+                        success: function () {
                             n.loadedHas[l] = !0,
                                 a.call(n)
                         },
-                        error: function(e, t) {
+                        error: function (e, t) {
                             alert(translate.FailLoaded + "\n" + l + "\n" + translate.ErrorTypes + t)
                         }
                     })
                 },
-                buildPath: function(e) {
+                buildPath: function (e) {
                     var t = this,
                         a = t.defConfig.basePath,
                         n = t.defConfig.baseNamespace,
                         l = a + n + e + ".js";
                     return l
                 },
-                isSetuped: function(e) {
+                isSetuped: function (e) {
                     var t = this,
                         a = t.loadedHas,
                         n = t.buildPath(e);
                     return a.hasOwnProperty(n)
                 },
-                setSetuped: function(e, t, a) {},
-                getGameConfig: function() {},
-                getName: function() {
+                setSetuped: function (e, t, a) {
+                },
+                getGameConfig: function () {
+                },
+                getName: function () {
                     return this.name
                 },
-                setName: function(e) {
+                setName: function (e) {
                     this.name = e
                 },
-                setCurrentNumber: function(e) {
+                setCurrentNumber: function (e) {
                     this.currentNumber = e
                 },
-                getCurrentNumber: function() {
+                getCurrentNumber: function () {
                     return this.currentNumber
                 },
-                editSubmitData: function(e) {
+                editSubmitData: function (e) {
                     return e
                 },
-                parseBallData: function(t, a) {
+                parseBallData: function (t, a) {
                     var n = e.Games,
                         l = {},
                         r = [],
@@ -389,7 +392,7 @@
                             o.add(l)
                     }
                 },
-                parseDataFormUrl: function() {
+                parseDataFormUrl: function () {
                     var t = this,
                         a = e.Games.getCurrentGameTypes(),
                         n = $.trim(e.util.getParam("gametype")),
@@ -397,17 +400,17 @@
                     n && a.changeMode(n),
                     l && t.parseBallData(n, l)
                 },
-                showLotteryDescription: function(e) {
+                showLotteryDescription: function (e) {
                     var t = "",
                         a = $("#J-lottery-info-status");
-                    ! e || e.length <= 0 || (t = 2 == e.length ? '<span class="f-left ml10">' + e[0] + '</span><span class="f-right mr10">' + e[1] + "</span>": '<span class="f-left ml10">' + e[0] + "</span><span>" + e[1] + '</span><span class="f-right mr10">' + e[2] + "</span>", a.html(t))
+                    !e || e.length <= 0 || (t = 2 == e.length ? '<span class="f-left ml10">' + e[0] + '</span><span class="f-right mr10">' + e[1] + "</span>" : '<span class="f-left ml10">' + e[0] + "</span><span>" + e[1] + '</span><span class="f-right mr10">' + e[2] + "</span>", a.html(t))
                 }
             },
             d = e.Class(c, a);
         d.defConfig = l,
             e[t] = d
-    } (phoenix, "Game", phoenix.Event),
-    function(e, t, a, n) {
+    }(phoenix, "Game", phoenix.Event),
+    function (e, t, a, n) {
         var l = {
                 name: "",
                 UIContainer: "#J-balls-main-panel",
@@ -425,7 +428,7 @@
             },
             r = e.Games,
             s = {
-                init: function(e) {
+                init: function (e) {
                     var t = this;
                     t.UIContainer = $(e.UIContainer),
                         t.container = $("<div></div>").appendTo(t.UIContainer),
@@ -438,9 +441,9 @@
                         t.ballsAidDom = t.getBallsAidDom(),
                         t.isBallsComplete = !1,
                         t.addEvent("updateData",
-                            function(e, t) {
+                            function (e, t) {
                                 var a = this,
-                                    t = a.isBallsComplete ? t: {
+                                    t = a.isBallsComplete ? t : {
                                         lotterys: [],
                                         original: []
                                     };
@@ -448,32 +451,32 @@
                                     a.batchSetBallDom()
                             }),
                         t.addEvent("afterReset",
-                            function() {
+                            function () {
                                 t.exeEvent_cancelCurrentButton()
                             }),
                         t.addEvent("afterSetBallData",
-                            function(e, a, n, l) {
+                            function (e, a, n, l) {
                                 t.exeEvent_cancelCurrentButton(a, n, l)
                             })
                 },
-                savePeriodData: function(e) {
+                savePeriodData: function (e) {
                     this.periodData = e
                 },
-                getPeriodData: function(e) {
+                getPeriodData: function (e) {
                     return this.periodData
                 },
-                getBallsDom: function() {
+                getBallsDom: function () {
                     var e = this,
                         t = e.defConfig,
                         a = e.balls;
                     return a.length < 1 ? [] : e.ballsDom ||
-                        function() {
+                        function () {
                             for (var n = e.container.find(t.ballsDom), l = 0, i = n.length, r = [], s = [], o = a[0].length; l < i; l++) r.push(n[l]),
                             (l + 1) % o != 0 && l + 1 != i || (s.push(r), r = []);
                             return s
-                        } ()
+                        }()
                 },
-                updataGamesInfo: function() {
+                updataGamesInfo: function () {
                     var e = this,
                         t = e.getGameMethodName(),
                         a = r.getCurrentGame(),
@@ -484,7 +487,7 @@
                     }),
                         t.indexOf("gundonghouerzhixuan") >= 0 || t.indexOf("gundonghousanzhixuan") >= 0 || phoenix.Games.currentGame.defConfig.basePath.indexOf("vitenam-new") >= 0 && (t.indexOf("erxing") >= 0 || t.indexOf("sanxing") >= 0) ? $("#J-play-select #announce").show(0) : $("#J-play-select #announce").hide(0)
                 },
-                getChart: function(e, t) {
+                getChart: function (e, t) {
                     var a = this,
                         n = $.trim(e),
                         l = "simulatedata/historyballs.php?type=" + e + "&extent=currentFre&line=5&lenth=30&lotteryid=99101&userid=31";
@@ -492,27 +495,28 @@
                         "undefined" != typeof r.cacheData.charts[n] ? t && t(r.cacheData.charts[n]) : $.ajax({
                             url: l,
                             dataType: "json",
-                            success: function(e) {
+                            success: function (e) {
                                 if (1 == e.isSuccess) e.data.historyBalls,
                                     r.cacheData.charts[n] = e.data.historyBalls,
                                 t && t(r.cacheData.charts[n]);
                                 else try {
                                     window.console && console.log("服务器异常,请刷新页面重试。")
-                                } catch(a) {}
+                                } catch (a) {
+                                }
                             }
                         }),
                         a.fireEvent("afterUpdataGamesInfo", e)
                 },
-                methodTip: function(e) {
+                methodTip: function (e) {
                     var t = this,
                         a = t.defConfig;
                     $(a.methodMassageDom).html(e.tips),
                         $(a.methodExampleDom).html(e.example)
                 },
-                getHotCold: function(e, t, a, n) {
+                getHotCold: function (e, t, a, n) {
                     return
                 },
-                reBuildHotCold: function(e, t) {
+                reBuildHotCold: function (e, t) {
                     var a, n = this,
                         l = [],
                         i = [],
@@ -545,27 +549,28 @@
                             i = []
                     }
                 },
-                initHotColdEvent: function() {
+                initHotColdEvent: function () {
                     var e = this,
                         t = 30,
                         a = "lost",
                         n = ".game-frequency-type li",
                         l = ".game-frequency-lost-length a, .game-frequency-fre-length a";
                     e.container.on("click", n,
-                        function() {
-                            var e, n = ($(this).parent(), r.getCurrentGame().getCurrentGameMethod().getGameMethodName());
+                        function () {
+                            var e,
+                                n = ($(this).parent(), r.getCurrentGame().getCurrentGameMethod().getGameMethodName());
                             $(this).hasClass("fre") ? (a = $(this).attr("data-type"), t = 30, e = "30期") : $(this).hasClass("lost") && (a = $(this).attr("data-type"), t = "currentFre", e = "当前遗漏"),
                                 r.getCurrentGame().getCurrentGameMethod().getHotCold(n, t, a, e)
                         }),
                         e.container.on("click", l,
-                            function() {
+                            function () {
                                 var e = ($(this).parent(), r.getCurrentGame().getCurrentGameMethod().getGameMethodName()),
                                     t = $(this).html(),
                                     n = $(this).attr("data-type");
                                 r.getCurrentGame().getCurrentGameMethod().getHotCold(e, n, a, t)
                             })
                 },
-                reSelect: function(e) {
+                reSelect: function (e) {
                     var t, a, n, l, i, r, s = this,
                         o = (s.getGameMethodName(), e),
                         c = !1;
@@ -575,49 +580,50 @@
                         c = !0;
                     c && s.updateData()
                 },
-                makePostParameter: function(e) {
+                makePostParameter: function (e) {
                     for (var t = [], a = e.length, n = 0; n < a; n++) t = t.concat(e[n].join("&"));
                     return t.join(",")
                 },
-                arrIndexOf: function(e, t) {
+                arrIndexOf: function (e, t) {
                     for (var a = 0,
                              n = 0; n < t.length; n++) t[n] == e && (a += 1);
                     return a || -1
                 },
-                rebuildData: function() {},
-                getBallData: function() {
+                rebuildData: function () {
+                },
+                getBallData: function () {
                     return this.balls
                 },
-                setBallData: function(e, t, a) {
+                setBallData: function (e, t, a) {
                     var n = this,
                         l = n.getBallData();
                     n.fireEvent("beforeSetBallData", e, t, a, l),
                     e >= 0 && e < l.length && t >= 0 && t < l[0].length && (l[e][t] = a),
                         n.fireEvent("afterSetBallData", e, t, a)
                 },
-                getBetData: function() {
+                getBetData: function () {
                     return this.bets
                 },
-                setBetData: function(e, t, a) {
+                setBetData: function (e, t, a) {
                     var n = this,
                         l = n.getBetData();
                     n.fireEvent("beforeSetBetData", e, t, a),
                     e >= 0 && e < l.length && t >= 0 && t < l[0].length && (l[e][t] = a),
                         n.fireEvent("afterSetBetData", e, t, a)
                 },
-                setBallAidData: function(e, t, a, n) {
+                setBallAidData: function (e, t, a, n) {
                     var l = this,
                         i = "ball-aid",
                         r = l.getBallsAidDom(),
-                        n = n ? i + " " + n: i;
+                        n = n ? i + " " + n : i;
                     e >= 0 && e < r.length && r[e] && t >= 0 && t < r[e].length && r[e][t] && (r[e][t].innerHTML = a, r[e][t].className = n)
                 },
-                getBallsAidDom: function() {
+                getBallsAidDom: function () {
                     var e = this,
                         t = e.defConfig,
                         a = e.balls;
                     return a.length < 1 ? [] : e.ballsAidDom ||
-                        function() {
+                        function () {
                             var n = e.container.find(t.ballAidDom),
                                 l = 0,
                                 r = a.length,
@@ -631,35 +637,35 @@
                                 s.push(d)
                             }
                             return s
-                        } ()
+                        }()
                 },
-                reSet: function(e) {
+                reSet: function (e) {
                     var t = this;
                     t.isBallsComplete = !1,
                         t.rebuildData(e),
                         t.updateData(),
                         t.fireEvent("afterReset")
                 },
-                getGameMethodName: function() {
+                getGameMethodName: function () {
                     return this.defConfig.name
                 },
-                show: function() {
+                show: function () {
                     var e = this;
                     e.fireEvent("beforeShow", e.container),
                         e.container.show(),
                         e.fireEvent("afterShow", e.container)
                 },
-                hide: function() {
+                hide: function () {
                     var e = this;
                     e.fireEvent("beforeHide", e.container),
                         e.container.hide(),
                         e.fireEvent("afterHide", e.container)
                 },
-                exeEvent: function(e, t) {
+                exeEvent: function (e, t) {
                     var a = this;
                     $.isFunction(a["exeEvent_" + e.action]) && a["exeEvent_" + e.action].call(a, e, t)
                 },
-                exeEvent_addValue: function(e, t) {
+                exeEvent_addValue: function (e, t) {
                     var a = this,
                         n = a.bets,
                         l = Number(e.row),
@@ -678,11 +684,11 @@
                     a.exeEvent_bets(e, s.parent().prev()),
                         a.updateData()
                 },
-                exeEvent_addplan: function(e, t) {
+                exeEvent_addplan: function (e, t) {
                     var a = this;
                     r.getCurrentGamePlan().add(a, e, t)
                 },
-                exeEvent_batchSetBall: function(e, t) {
+                exeEvent_batchSetBall: function (e, t) {
                     var a = this,
                         n = a.balls,
                         l = Number(e.row),
@@ -690,7 +696,7 @@
                         s = e.bound,
                         o = n[l],
                         c = 0,
-                        d = isNaN(i) ? o.length: 0,
+                        d = isNaN(i) ? o.length : 0,
                         u = n.length,
                         m = "undefined" == typeof e.start ? 0 : Number(e.start),
                         f = Math.ceil((d - m) / 2 + m),
@@ -711,46 +717,49 @@
                             for (c = m; c < f; c++) a.setBallData(l, c, 1);
                             break;
                         case "odd":
-                            for (c = m; c < d; c++)(c + 1) % 2 != 1 && a.setBallData(l, c, 1);
+                            for (c = m; c < d; c++) (c + 1) % 2 != 1 && a.setBallData(l, c, 1);
                             break;
                         case "even":
-                            for (c = m; c < d; c++)(c + 1) % 2 == 1 && a.setBallData(l, c, 1);
+                            for (c = m; c < d; c++) (c + 1) % 2 == 1 && a.setBallData(l, c, 1);
                             break;
                         case "none":
                     }
                     p.addClass("current"),
                         a.updateData()
                 },
-                exeEvent_cancelCurrentButton: function(e, t, a) {
+                exeEvent_cancelCurrentButton: function (e, t, a) {
                     var n = this,
                         l = n.container,
                         i = "undefined" != typeof e ? l.find(".ball-control").eq(e) : l.find(".ball-control");
                     i.find("a").removeClass("current")
                 },
-                exeEvent_ball: function(e, t) {
+                exeEvent_ball: function (e, t) {
                     var a = this,
                         l = $(t),
                         i = a.defConfig.ballCurrentCls;
-                    if (e.value != n && e.row != n)"a" == l.get(0).nodeName.toLowerCase() ? l.hasClass(i) ? a.setBallData(Number(e.row), Number(e.value), -1) : (a.fireEvent("beforeSelect", e), a.setBallData(Number(e.row), Number(e.value), 1)) : l.parent().hasClass(i) ? a.setBallData(Number(e.row), Number(e.value), -1) : (a.fireEvent("beforeSelect", e), a.setBallData(Number(e.row), Number(e.value), 1));
+                    if (e.value != n && e.row != n) "a" == l.get(0).nodeName.toLowerCase() ? l.hasClass(i) ? a.setBallData(Number(e.row), Number(e.value), -1) : (a.fireEvent("beforeSelect", e), a.setBallData(Number(e.row), Number(e.value), 1)) : l.parent().hasClass(i) ? a.setBallData(Number(e.row), Number(e.value), -1) : (a.fireEvent("beforeSelect", e), a.setBallData(Number(e.row), Number(e.value), 1));
                     else try {
                         window.console && console.log("GameMethod.exeEvent_ball: lack param")
-                    } catch(s) {}
+                    } catch (s) {
+                    }
                     try {
                         r.getCurrentGame().fireEvent("afterSelectBall", e)
-                    } catch(s) {}
+                    } catch (s) {
+                    }
                     a.updateData()
                 },
-                exeEvent_bets: function(e, t) {
+                exeEvent_bets: function (e, t) {
                     var a = this,
                         l = $(t),
                         i = a.defConfig.betCurrentCls;
                     if (e.value != n && e.row != n) l.hasClass(i) ? a.setBetData(Number(e.row), Number(e.value), -1) : (a.fireEvent("beforeSelect", e), a.setBetData(Number(e.row), Number(e.value), +l.val()));
                     else try {
                         window.console && console.log("GameMethod.exeEvent_bets: lack param")
-                    } catch(r) {}
+                    } catch (r) {
+                    }
                     a.updateData()
                 },
-                batchSetBallDom: function() {
+                batchSetBallDom: function () {
                     for (var e = this,
                              t = e.defConfig,
                              a = t.ballCurrentCls,
@@ -761,7 +770,7 @@
                              s = 0,
                              o = e.getBallsDom(), c = ""; l < r; l++) for (s = n[l].length, i = 0; i < s; i++) 1 == n[l][i] ? (c = o[l][i].className, c = (" " + c + " ").replace(" " + a, ""), c += " " + a, o[l][i].className = c.replace(/\s/, "")) : (c = o[l][i].className, c = (" " + c + " ").replace(" " + a, ""), o[l][i].className = c.replace(/\s/, ""))
                 },
-                makeSubmitParameter: function(e) {
+                makeSubmitParameter: function (e) {
                     var t = r.getCurrentGame().getName(),
                         a = $.extend(!0, [], e);
                     if ("N115" == t) for (var n = 0; n < a.length; n++) {
@@ -770,7 +779,7 @@
                     } else for (var n = 0; n < a.length; n++) a[n] = a[n].join("&");
                     return a.join("|")
                 },
-                updateData: function() {
+                updateData: function () {
                     var e = this,
                         t = e.getLottery(),
                         a = e.getOriginal();
@@ -779,7 +788,7 @@
                         original: a
                     })
                 },
-                getOriginal: function() {
+                getOriginal: function () {
                     for (var e = this,
                              t = e.getBallData(), a = t.length, n = t[0].length, l = 0, i = 0, r = [], s = []; l < a; l++) {
                         for (r = [], i = 0; i < n; i++) t[l][i] > 0 && r.push(i);
@@ -787,7 +796,7 @@
                     }
                     return s
                 },
-                getLottery: function(e) {
+                getLottery: function (e) {
                     for (var t, a = this,
                              n = a.getBallData(), l = 0, i = n.length, r = !0, s = 0, o = 0, c = [], d = 1, u = 0; l < i; l++) {
                         for (c[l] = [], t = n[l], o = t.length, r = !0, u = 0, s = 0; s < o; s++) t[s] > 0 && (r = !1, e || c[l].push(s), u++);
@@ -796,9 +805,9 @@
                         d *= u
                     }
                     return a.isBallsComplete = !0,
-                        e ? d: a.isBallsComplete ? a.combination(c) : []
+                        e ? d : a.isBallsComplete ? a.combination(c) : []
                 },
-                removeSame: function(e) {
+                removeSame: function (e) {
                     var t, a = 0,
                         n = this,
                         l = this.getBallData()[0].length;
@@ -806,7 +815,7 @@
                     for (t = Math.floor(Math.random() * l); a < e.length; a++) if (t == e[a]) return arguments.callee.call(n, e);
                     return t
                 },
-                removeArraySame: function(e) {
+                removeArraySame: function (e) {
                     var t, a = this,
                         n = 0,
                         l = a.getBallData()[0].length;
@@ -814,18 +823,18 @@
                     for (t = Math.floor(Math.random() * l); n < e.length; n++) if (t == e[n]) return arguments.callee.call(a, e);
                     return t
                 },
-                getRandomBetsNum: function() {
+                getRandomBetsNum: function () {
                     return this.defConfig.randomBetsNum
                 },
-                createRandomNum: function() {
+                createRandomNum: function () {
                     for (var e = this,
                              t = [], a = e.getBallData().length, n = e.getBallData()[0].length, l = 0; l < a; l++) t[l] = [Math.floor(Math.random() * n)],
-                        t[l].sort(function(e, t) {
+                        t[l].sort(function (e, t) {
                             return e > t ? 1 : -1
                         });
                     return t
                 },
-                checkRandomBets: function(e, t) {
+                checkRandomBets: function (e, t) {
                     var a = this,
                         n = "undefined" == typeof e,
                         e = e || {},
@@ -839,7 +848,7 @@
                     }
                     return e[l.join("")] ? (t++, arguments.callee.call(a, e, t)) : l
                 },
-                randomNum: function() {
+                randomNum: function () {
                     var e = this,
                         t = [],
                         a = null,
@@ -860,15 +869,15 @@
                         a.amountText = r.getCurrentGameStatistics().formatMoney(a.num * a.moneyUnit * a.multiple * a.onePrice),
                         a
                 },
-                setOrderIndex: function(e) {
+                setOrderIndex: function (e) {
                     var t = this;
                     t.lists = e
                 },
-                getOrderIndex: function() {
+                getOrderIndex: function () {
                     var e = this;
                     return e.lists
                 },
-                getNum: function() {
+                getNum: function () {
                     var e = this,
                         t = [],
                         a = e.getBallData().length,
@@ -876,20 +885,20 @@
                         l = e.getOrderIndex()[n],
                         i = e.keep[l];
                     if (n >= 0 && i.length > 0 && a >= i.length) for (var r = 0; r < a; r++) t[r] = [i[r]],
-                        t[r].sort(function(e, t) {
+                        t[r].sort(function (e, t) {
                             return e > t ? 1 : -1
                         });
                     return t
                 },
-                getTimes: function() {
+                getTimes: function () {
                     var e = this;
                     return e.num
                 },
-                setTimes: function(e) {
+                setTimes: function (e) {
                     var t = this;
                     t.num = e
                 },
-                checkBets: function(e, t) {
+                checkBets: function (e, t) {
                     var a = this,
                         n = "undefined" == typeof e,
                         e = e || {},
@@ -902,7 +911,7 @@
                     }
                     return e[l.join("")] ? (t++, arguments.callee.call(a, e, t)) : l
                 },
-                getNumOrder: function(e) {
+                getNumOrder: function (e) {
                     var t = this,
                         a = [],
                         n = null,
@@ -922,11 +931,11 @@
                         n.amountText = r.getCurrentGameStatistics().formatMoney(n.num * n.moneyUnit * n.multiple * n.onePrice),
                         n
                 },
-                checkTestUserAddOrderNumber: function(e) {
+                checkTestUserAddOrderNumber: function (e) {
                     var e = e || 3;
                     return window.GamesInitData.isTestUser && r.getCurrentGameSubmit().getSubmitData().lt_total_nums > e - 1
                 },
-                randomLotterys: function(e) {
+                randomLotterys: function (e) {
                     var t, a = this,
                         n = 0,
                         l = "",
@@ -940,13 +949,14 @@
                     }),
                         r.getCurrentGameOrder().add(l)
                 },
-                getBetsNumber: function(e) {},
-                formatParam: function(e) {
+                getBetsNumber: function (e) {
+                },
+                formatParam: function (e) {
                     for (var t, a = $.trim(e).split("&"), n = 0, l = a.length, i = {}; n < l; n++) t = a[n].split("="),
                     t.length > 0 && (2 == t.length ? i[t[0]] = t[1] : i[t[0]] = "");
                     return i
                 },
-                buildLotterys: function(e) {
+                buildLotterys: function (e) {
                     var t = this,
                         a = 0,
                         l = 0,
@@ -955,38 +965,39 @@
                         o = e.length,
                         c = t.getBetData();
                     t.setOrderIndex(e);
-                    for (var d = r.getCurrentGameStatistics().getMultip(); a < o; a++) c[e[a]].forEach(function(e, a) {
+                    for (var d = r.getCurrentGameStatistics().getMultip(); a < o; a++) c[e[a]].forEach(function (e, a) {
                         if (e > 0) {
                             s = !1,
                                 i = t.getNumOrder(l);
                             var o = i.original[i.original.length - 1];
                             o !== n && o[0] !== n ? (i.type = t.betTypes[a], i.subType = t.getSubmitType(), i.num = t.getBetsNumber(a), i.multiple = e * d, t.checkTestUserAddOrderNumber() && (i = {
                                 overTest: !0
-                            })) : i = t.getNumOrder( - 1),
+                            })) : i = t.getNumOrder(-1),
                                 r.getCurrentGameOrder().add(i)
                         }
                     }),
-                    s && (i = t.getNumOrder( - 1), r.getCurrentGameOrder().add(i)),
+                    s && (i = t.getNumOrder(-1), r.getCurrentGameOrder().add(i)),
                         l++;
                     t.fireEvent("afterAdd")
                 },
-                getHistoryBallLength: function() {
+                getHistoryBallLength: function () {
                     var e = r.getCurrentGameStatistics().getPeriodData().ball || r.getCurrentGameStatistics().getPeriodData().lastballs;
                     return e.split(",").length
                 },
-                getIsNorth: function() {
-                    var e = window.GamesInitData.areatype ? window.GamesInitData.areatype[0].type: -1;
+                getIsNorth: function () {
+                    var e = window.GamesInitData.areatype ? window.GamesInitData.areatype[0].type : -1;
                     return 1 !== e
                 },
-                ballsErrorTip: function() {},
-                countBallsNum: function() {
+                ballsErrorTip: function () {
+                },
+                countBallsNum: function () {
                     for (var e = this,
                              t = 0,
                              a = e.getBallData(), n = a.length - 1; n >= 0; n--) if ("[object Array]" == Object.prototype.toString.call(a[n]) && a[n].length > 0) for (var l = a[n].length - 1; l >= 0; l--) 1 == a[n][l] && t++;
                     else 1 == a[n] && t++;
                     return t
                 },
-                countBallsNumInLine: function(e) {
+                countBallsNumInLine: function (e) {
                     var t = this,
                         a = 0,
                         n = t.getBallData();
@@ -994,7 +1005,7 @@
                     else 1 == n[e] && a++;
                     return a || -1
                 },
-                LimitMaxBalls: function(e) {
+                LimitMaxBalls: function (e) {
                     var t = this,
                         a = 0;
                     t.getBallData(),
@@ -1002,16 +1013,16 @@
                     return a = t.countBallsNum(),
                     a > e
                 },
-                fullToHalf: function(e) {
+                fullToHalf: function (e) {
                     var t = e || "",
                         a = "";
                     if (t) for (var n = 0; n <= t.length; n++) {
                         var l = t.charCodeAt(n);
-                        a += 12288 == l ? " ": l > 65280 && l < 65375 ? String.fromCharCode(l - 65248) : String.fromCharCode(l)
+                        a += 12288 == l ? " " : l > 65280 && l < 65375 ? String.fromCharCode(l - 65248) : String.fromCharCode(l)
                     }
                     return a
                 },
-                appendProgramToDom: function(e, t, a) {
+                appendProgramToDom: function (e, t, a) {
                     var n = e.length || 0,
                         a = a || "",
                         l = $(t);
@@ -1025,11 +1036,11 @@
                         l.prepend(s)
                     }
                 },
-                updateProgramStatus: function(e, t, a) {
+                updateProgramStatus: function (e, t, a) {
                     var n = $(e).children().eq(t);
                     n.length && a
                 },
-                appendChaseToDom: function(e, t, a) {
+                appendChaseToDom: function (e, t, a) {
                     var n = e.length || 0,
                         a = a || "",
                         l = $(t);
@@ -1043,11 +1054,11 @@
                         l.prepend(s)
                     }
                 },
-                updateChaseStatus: function(e, t, a) {
+                updateChaseStatus: function (e, t, a) {
                     var n = $(e).children().eq(t);
                     n.length && a
                 },
-                checkBallIsComplete: function() {
+                checkBallIsComplete: function () {
                     for (var e, t = this,
                              a = t.getBallData(), n = 0, l = a.length, i = !0, r = 0, s = 0; n < l; n++) {
                         for (e = a[n], s = e.length, i = !0, r = 0; r < s; r++) e[r] > 0 && (i = !1);
@@ -1056,14 +1067,14 @@
                     }
                     return t.isBallsComplete = !0
                 },
-                combine: function(e, t, a) {
+                combine: function (e, t, a) {
                     var n = [],
                         l = 0;
                     if (a = a || [], 0 == t) return [a];
                     for (; l <= e.length - t; l++) n = n.concat(arguments.callee(e.slice(l + 1), t - 1, a.slice(0).concat(e[l])));
                     return n
                 },
-                combination: function(e) {
+                combination: function (e) {
                     if (e.length < 1) return [];
                     var t, a, n, l = (e[0].length, e.length),
                         i = [],
@@ -1071,12 +1082,12 @@
                         s = [];
                     for (i[t = l] = 1; t--;) i[t] = i[t + 1] * e[t].length;
                     for (n = i[0], t = 0; t < n; t++) {
-                        for (s = [], a = 0; a < l; a++) s[a] = e[a][~~ (t % i[a] / i[a + 1])];
+                        for (s = [], a = 0; a < l; a++) s[a] = e[a][~~(t % i[a] / i[a + 1])];
                         r[t] = s
                     }
                     return r
                 },
-                checkLimitBall: function(e) {
+                checkLimitBall: function (e) {
                     /*var t = this,
                         a = r.getCurrentGameMessage(),
                         n = Number(e.lotterys.length) || 0;
@@ -1089,62 +1100,62 @@
                         }
                     }))*/
                 },
-                removeArrFormTarget: function(e, t) {
+                removeArrFormTarget: function (e, t) {
                     for (var a = $.trim(e.join(" ")), n = 0; n < t.length; n++) a = a.replace(t[n].join(","), "");
                     return a = $.trim(a),
                         a ? a.split(/\s+/) : []
                 },
-                mathCorretBet: function(e, t) {
+                mathCorretBet: function (e, t) {
                     var a = this,
                         n = [].concat(e);
                     return 3 == t ? n = a.copySameArrappend(e, 3) : 4 == t ? n = a.copySameArrappend(e, 6) : 5 == t ? n = a.copySameArrappend(e, 10) : t <= 1 && (n = []),
                         n
                 },
-                copySameArrappend: function(e, t) {
+                copySameArrappend: function (e, t) {
                     for (var a = [], n = t - 1; n >= 0; n--) a = a.concat(e);
                     return a
                 },
-                checkPositionRules: function() {
+                checkPositionRules: function () {
                     var e = this,
                         t = 0,
                         a = e.container.find("#J-postion-select"),
                         n = a.find("input");
-                    return n.each(function(e) {
+                    return n.each(function (e) {
                         $(this).prop("checked") && t++
                     }),
                         t
                 },
-                bindEventInstance: function() {
+                bindEventInstance: function () {
                     var e = this,
                         t = e.container.find("#J-postion-select");
                     t.on("change", "input",
-                        function() {
+                        function () {
                             e.handleDigitstrType("", $(this).attr("data-position")),
                                 e.updateData()
                         })
                 },
-                getSubmitType: function() {
+                getSubmitType: function () {
                     return "digital"
                 },
-                setCurrentDigitstr: function(e) {
+                setCurrentDigitstr: function (e) {
                     var t = this;
                     t.digitstrType = e
                 },
-                getCurrentDigitstr: function() {
+                getCurrentDigitstr: function () {
                     var e = this;
                     return e.digitstrType
                 },
-                handleDigitstrType: function(e, t) {
+                handleDigitstrType: function (e, t) {
                     var a = this,
                         n = e || a.getCurrentDigitstr();
                     return n.indexOf(t) != -1 ? n = n.replace(t, "") : n += t,
                         a.setCurrentDigitstr(n),
                         n
                 },
-                pasteValidate: function(e, t) {
+                pasteValidate: function (e, t) {
                     t !== t.replace(/[^0-9]/g, "") ? $(e.target).val(t.replace(/[^0-9]/g, "")) : (e.returnValue = !1, e.preventDefault && e.preventDefault())
                 },
-                refreshHistory: function(e) {
+                refreshHistory: function (e) {
                     e && r.getCurrentGameStatistics().savePeriodData(e);
                     var t = "",
                         a = "",
@@ -1163,21 +1174,21 @@
                                 a = ['<table class="table text-center">', "<tbody>"].join("");
                                 for (t in e.historyBall) n = e.historyBall[t],
                                     i = n.code.split(" "),
-                                    l = i[2] == i[3] || i[2] == i[4] || i[3] == i[4] ? translate.Group3: translate.Group6,
+                                    l = i[2] == i[3] || i[2] == i[4] || i[3] == i[4] ? translate.Group3 : translate.Group6,
                                     a += ["<tr>", "<td>" + n.issue + "</td>", "<td>" + n.code + "</td>", "<td>" + l + "</td>", "</tr>"].join("")
                             }
                             if (o.indexOf("zhongsan") != -1) {
                                 a = ['<table class="table text-center">', "<tbody>"].join("");
                                 for (t in e.historyBall) n = e.historyBall[t],
                                     i = n.code.split(" "),
-                                    l = i[1] == i[2] || i[1] == i[3] || i[2] == i[3] ? translate.Group3: translate.Group6,
+                                    l = i[1] == i[2] || i[1] == i[3] || i[2] == i[3] ? translate.Group3 : translate.Group6,
                                     a += ["<tr>", "<td>" + n.issue + "</td>", "<td>" + n.code + "</td>", "<td>" + l + "</td>", "</tr>"].join("")
                             }
                             if (o.indexOf("qiansan") != -1) {
                                 a = ['<table class="table text-center">', "<tbody>"].join("");
                                 for (t in e.historyBall) n = e.historyBall[t],
                                     i = n.code.split(" "),
-                                    l = i[0] == i[1] || i[0] == i[2] || i[1] == i[2] ? translate.Group3: translate.Group6,
+                                    l = i[0] == i[1] || i[0] == i[2] || i[1] == i[2] ? translate.Group3 : translate.Group6,
                                     a += ["<tr>", "<td>" + n.issue + "</td>", "<td>" + n.code + "</td>", "<td>" + l + "</td>", "</tr>"].join("")
                             }
                             if (o.indexOf("daxiaodanshuangzu") != -1) {
@@ -1187,7 +1198,7 @@
                                         i = n.code.split(" "),
                                         l = "";
                                     var d = "";
-                                    o.indexOf("houerdaxiaodanshuang") != -1 ? (d += i[3] >= 5 ? "EN" == __LAN__ ? translate.Big + "/": translate.Big: "EN" == __LAN__ ? translate.Small + "/": translate.Small, d += i[4] >= 5 ? "EN" == __LAN__ ? translate.Big + "/": translate.Big: "EN" == __LAN__ ? translate.Small + "/": translate.Small, d += i[3] % 2 == 1 ? "EN" == __LAN__ ? translate.Odds + "/": translate.Odds: "EN" == __LAN__ ? translate.Evens + "/": translate.Evens, d += i[4] % 2 == 1 ? "EN" == __LAN__ ? translate.Odds: translate.Odds: "EN" == __LAN__ ? translate.Evens: translate.Evens) : o.indexOf("qianerdaxiaodanshuang") != -1 && (d += i[0] >= 5 ? "EN" == __LAN__ ? translate.Big + "/": translate.Big: "EN" == __LAN__ ? translate.Small + "/": translate.Small, d += i[1] >= 5 ? "EN" == __LAN__ ? translate.Big + "/": translate.Big: "EN" == __LAN__ ? translate.Small + "/": translate.Small, d += i[0] % 2 == 1 ? "EN" == __LAN__ ? translate.Odds + "/": translate.Odds: "EN" == __LAN__ ? translate.Evens + "/": translate.Evens, d += i[1] % 2 == 1 ? "EN" == __LAN__ ? translate.Odds: translate.Odds: "EN" == __LAN__ ? translate.Evens: translate.Evens),
+                                    o.indexOf("houerdaxiaodanshuang") != -1 ? (d += i[3] >= 5 ? "EN" == __LAN__ ? translate.Big + "/" : translate.Big : "EN" == __LAN__ ? translate.Small + "/" : translate.Small, d += i[4] >= 5 ? "EN" == __LAN__ ? translate.Big + "/" : translate.Big : "EN" == __LAN__ ? translate.Small + "/" : translate.Small, d += i[3] % 2 == 1 ? "EN" == __LAN__ ? translate.Odds + "/" : translate.Odds : "EN" == __LAN__ ? translate.Evens + "/" : translate.Evens, d += i[4] % 2 == 1 ? "EN" == __LAN__ ? translate.Odds : translate.Odds : "EN" == __LAN__ ? translate.Evens : translate.Evens) : o.indexOf("qianerdaxiaodanshuang") != -1 && (d += i[0] >= 5 ? "EN" == __LAN__ ? translate.Big + "/" : translate.Big : "EN" == __LAN__ ? translate.Small + "/" : translate.Small, d += i[1] >= 5 ? "EN" == __LAN__ ? translate.Big + "/" : translate.Big : "EN" == __LAN__ ? translate.Small + "/" : translate.Small, d += i[0] % 2 == 1 ? "EN" == __LAN__ ? translate.Odds + "/" : translate.Odds : "EN" == __LAN__ ? translate.Evens + "/" : translate.Evens, d += i[1] % 2 == 1 ? "EN" == __LAN__ ? translate.Odds : translate.Odds : "EN" == __LAN__ ? translate.Evens : translate.Evens),
                                         l += d,
                                         a += ["<tr>", "<td>" + n.issue + "</td>", "<td>" + n.code + "</td>", "<td>" + l + "</td>", "</tr>"].join("")
                                 }
@@ -1197,10 +1208,10 @@
                     a += "</tbody></table>",
                         c.html(a)
                 },
-                getPopupHelper: function(e, t) {
+                getPopupHelper: function (e, t) {
                     var a = '<div class="popup-tools">';
                     return $.each(["Clear", "+10", "+50", "+100", "+500", "+1000", "+2000", "+5000"],
-                        function(n) {
+                        function (n) {
                             a += '<button type="button" class="tool-button" data-param="action=addValue&value=' + t + "&row=" + e + "&bounds=" + this + '">' + this + "</button>"
                         }),
                         a += "</div>"
@@ -1209,8 +1220,8 @@
             o = e.Class(s, a);
         o.defConfig = l,
             e[t] = o
-    } (phoenix, "GameMethod", phoenix.Event),
-    function(e, t, a, n) {
+    }(phoenix, "GameMethod", phoenix.Event),
+    function (e, t, a, n) {
         var l, i = {
                 lotteryClose: ['<div class="bd text-center">', '<p class="text-title text-left">非常抱歉，本彩种已休市。<br />请与<#=orderDate#>后再购买</p>', '<div class="lottery-numbers text-left">', '<div class="tltle"><#=lotteryName#> 第<strong class="color-green"><#=lotteryPeriods#></strong>期开奖号码：</div>', '<div class="content">', "<#=lotterys#>", '<a href="#">查看更多&raquo;</a>', "</div>", "</div>", '<dl class="lottery-list">', "<dt>您可以购买以下彩种</dt>", "<#=lotteryType#>", "</dl>", "</div>"].join(""),
                 checkProject: ['<div class="bd">', '<ul class="ui-form">', "<li>", '<input type="input" placeholder="方案名称" class="">', "</li>", "<li>", '<label for="question1" class="ui-label">彩种：</label>', '<span class="ui-text-info"><#=lotteryName#></span>', "</li>", "<li>", '<label for="answer1" class="ui-label">详情：</label>', '<div class="textarea" style="font-size:12px;">', "<#=lotteryInfo#>", "</div>", "</li>", "</ul>", "</div>"].join(""),
@@ -1232,7 +1243,7 @@
             s = e.Games;
         "undefined" == typeof translate && (window.translate = parent.GamesInitData.multilingual);
         var o = {
-                init: function(t) {
+                init: function (t) {
                     var a = this;
                     a.win = new e.util.MiniWindow({
                         cls: "pop w-9"
@@ -1240,7 +1251,7 @@
                         a.mask = e.util.Mask.getInstance(),
                         a.reSet(),
                         a.win.addEvent("afterHide",
-                            function() {
+                            function () {
                                 a.reSet()
                             }),
                         this.defConfig = {
@@ -1261,46 +1272,47 @@
                             blockade: ['<div class="bd panel-game-msg-blockade" id="J-blockade-panel-main">', '<form id="J-form-blockade-detail" action="ssc-blockade-detail.php" target="_blank" method="post"></form>', '<div class="game-msg-blockade-text">' + translate.defConfig.blockade.TitleInfo[0] + "<#=blockadeType#>" + translate.defConfig.blockade.TitleInfo[1] + ' <a href="#" data-action="blockade-detail">' + translate.defConfig.blockade.TitleInfo[2] + "</a> ，" + translate.defConfig.blockade.TitleInfo[3] + '<span class="color-red">“' + translate.defConfig.blockade.TitleInfo[4] + "”</span>" + translate.defConfig.blockade.TitleInfo[5] + "</div>", "<div>", '<div class="game-msg-blockade-line-title">' + translate.defConfig.Types + "<#=gameTypeTitle#></div>", '<div class="game-msg-blockade-line-title">' + translate.defConfig.Periods + "<#=currentGameNumber#></div>", "</div>", '<div id="J-game-panel-msg-blockade-0">', '<div class="game-msg-blockade-cont" id="J-msg-panel-submit-blockade-error0"><#=blockadeData0#></div>', "</div>", '<div class="game-msg-blockade-panel-money">', "<div><b>" + translate.defConfig.PayAmout + '</b><span class="color-red"><b id="J-money-blockade-adjust"><#=amountAdjust#></b></span> ' + translate.defConfig.Dollar + '&nbsp;&nbsp;&nbsp;&nbsp;<span style="display:<#=display#>"><b>减少投入：</b><span class="color-red"><b id="J-money-blockade-change"><#=amountChange#></b></span> ' + translate.defConfig.Dollar + "</span></div>", "<div><b>" + translate.defConfig.PayAccount + "</b><#=username#></div>", "</div>", "<div>", '<p class="text-note">' + translate.defConfig.blockade.Note[0] + '￥<span class="handlingCharge">0.00</span>' + translate.defConfig.Dollar + "</p>", '<p class="text-note">' + translate.defConfig.blockade.Note[1] + "</p>", "</div>", '<ul class="textarea cancel-bets clearfix" style="font-size:12px;margin-top:10px;">', '<li><span class="">' + translate.defConfig.Award + '</span><span class="">' + translate.defConfig.Cost + "</span></li>", "<li><span>2312321312</span><span>123131312313</span></li>", "<li><span>2312321312</span><span>123131312313</span></li>", "<li><span>2312321312</span><span>123131312313</span></li>", "<li><span>2312321312</span><span>123131312313</span></li>", "<li><span>2312321312</span><span>123131312313</span></li>", "<li><span>2312321312</span><span>123131312313</span></li>", "<li><span>2312321312</span><span>123131312313</span></li>", "<li><span>2312321312</span><span>123131312313</span></li>", "<li></li>", "</ul>", "</div>"].join("")
                         }
                 },
-                doAction: function(e) {
+                doAction: function (e) {
                     var t = this,
                         a = "rebulid" + e.type,
                         n = "getHtml" + e.type,
-                        l = function() {};
+                        l = function () {
+                        };
                     t[a] && $.isFunction(t[a]) && (l = t[a]),
                         e.tpl = "undefined" == typeof e.tpl ? t[n]() : "" + e.tpl,
                         delete e.type,
                         l.call(t, e)
                 },
-                formatHtml: function(e, t) {
+                formatHtml: function (e, t) {
                     var a, n, l = t;
                     for (a in l) l.hasOwnProperty(a) && (n = RegExp("<#=" + a + "#>", "g"), e = e.replace(n, l[a]));
                     return e
                 },
-                arrIndexOf: function(e, t) {
+                arrIndexOf: function (e, t) {
                     for (var a = 0,
                              n = 0; n < t.length; n++) t[n] == e && (a += 1);
                     return a || -1
                 },
-                getHtmlWaring: function() {
+                getHtmlWaring: function () {
                     var e = this.defConfig;
                     return e.normal
                 },
-                rebulidnormal: function(e) {
+                rebulidnormal: function (e) {
                     var t = this,
                         a = {};
                     a.mask = !0,
                         a.closeText = translate.Close,
                         a.closeIsShow = !0,
-                        a.closeFun = function() {
+                        a.closeFun = function () {
                             t.hide()
                         },
                         a.content = t.formatHtml(e.tpl, e.data.tplData),
                         t.show($.extend(a, e))
                 },
-                getHtmlnormal: function() {
+                getHtmlnormal: function () {
                     return this.getHtmlWaring()
                 },
-                rebulidcheckLotters: function(e) {
+                rebulidcheckLotters: function (e) {
                     var t = this,
                         a = (s.getCurrentGameOrder().getTotal().orders, {});
                     a.mask = !0,
@@ -1308,11 +1320,11 @@
                         a.content = t.formatHtml(e.tpl, e.data.tplData),
                         t.show($.extend(a, e))
                 },
-                getHtmlcheckLotters: function() {
+                getHtmlcheckLotters: function () {
                     var e = this.defConfig;
                     return e.checkLotters
                 },
-                rebulidcheckProject: function(e) {
+                rebulidcheckProject: function (e) {
                     var t = this,
                         a = (s.getCurrentGameOrder().getTotal().orders, {});
                     a.mask = !0,
@@ -1320,11 +1332,11 @@
                         a.content = t.formatHtml(e.tpl, e.data.tplData),
                         t.show($.extend(a, e))
                 },
-                getHtmlcheckProject: function() {
+                getHtmlcheckProject: function () {
                     var e = this.defConfig;
                     return e.checkLotters
                 },
-                rebulidcheckPlan: function(e) {
+                rebulidcheckPlan: function (e) {
                     var t = this,
                         a = (s.getCurrentGameOrder().getTotal().orders, {});
                     a.mask = !0,
@@ -1332,11 +1344,11 @@
                         a.content = t.formatHtml(e.tpl, e.data.tplData),
                         t.show($.extend(a, e))
                 },
-                getHtmlcheckPlan: function() {
+                getHtmlcheckPlan: function () {
                     var e = this.defConfig;
                     return e.checkPlan
                 },
-                rebulidplanDetails: function(e) {
+                rebulidplanDetails: function (e) {
                     var t = this,
                         a = (s.getCurrentGameOrder().getTotal().orders, {});
                     a.mask = !0,
@@ -1344,11 +1356,11 @@
                         a.content = t.formatHtml(e.tpl, e.data.tplData),
                         t.show($.extend(a, e))
                 },
-                getHtmlplanDetails: function() {
+                getHtmlplanDetails: function () {
                     var e = this.defConfig;
                     return e.planDetails
                 },
-                rebulidlotteryClose: function(e) {
+                rebulidlotteryClose: function (e) {
                     var t = this,
                         a = {};
                     lotteryName = e.data.tplData.lotteryName,
@@ -1359,24 +1371,24 @@
                         a.mask = !0,
                         a.iconClass = "",
                         a.closeIsShow = !0,
-                        a.closeFun = function() {
+                        a.closeFun = function () {
                             t.hide()
                         },
-                        e.data.tplData.lotteryName = function() {
+                        e.data.tplData.lotteryName = function () {
                             return lotteryName || ""
                         },
-                        e.data.tplData.lotteryPeriods = function() {
+                        e.data.tplData.lotteryPeriods = function () {
                             return lotteryPeriods || ""
                         },
-                        e.data.tplData.orderDate = function() {
+                        e.data.tplData.orderDate = function () {
                             return time.year + "年" + time.month + "月" + time.day + "日 " + time.hour + ":" + time.min
                         },
-                        e.data.tplData.lotterys = function() {
+                        e.data.tplData.lotterys = function () {
                             var e = "";
                             if ($.isArray(lotterys)) for (var t = 0; t < lotterys.length; t++) e += "<em>" + lotterys[t] + "</em>";
                             return e
                         },
-                        e.data.tplData.lotteryType = function() {
+                        e.data.tplData.lotteryType = function () {
                             var e = "";
                             if ($.isArray(typeArray)) for (var t = 0; t < typeArray.length; t++) e += '<dd><span style="background:url(' + typeArray[t].pic + ')" class="pic" title="' + typeArray[t].name + '" alt="' + typeArray[t].name + '"></span><a href="' + typeArray[t].url + '" class="btn">' + translate.GoBetting + '<b class="btn-inner"></b></a></dd>';
                             return e
@@ -1384,11 +1396,11 @@
                         a.content = t.formatHtml(e.tpl, e.data.tplData),
                         t.show($.extend(a, e))
                 },
-                getHtmllotteryClose: function() {
+                getHtmllotteryClose: function () {
                     var e = this.defConfig;
                     return e.lotteryClose
                 },
-                rebulidnonSaleTime: function(e) {
+                rebulidnonSaleTime: function (e) {
                     var t = this,
                         a = {};
                     time = e.data.tplData.orderDate,
@@ -1396,13 +1408,13 @@
                         a.mask = !0,
                         a.iconClass = "",
                         a.closeIsShow = !0,
-                        a.closeFun = function() {
+                        a.closeFun = function () {
                             t.hide()
                         },
-                        e.data.tplData.orderDate = function() {
+                        e.data.tplData.orderDate = function () {
                             return time.year + "年" + time.month + "月" + time.day + "日 " + time.hour + ":" + time.min
                         },
-                        e.data.tplData.lotteryType = function() {
+                        e.data.tplData.lotteryType = function () {
                             var e = "";
                             if ($.isArray(typeArray)) for (var t = 0; t < typeArray.length; t++) e += '<dd><span style="background:url(' + typeArray[t].pic + ')" class="pic" title="' + typeArray[t].name + '" alt="' + typeArray[t].name + '"></span><a href="' + typeArray[t].url + '" class="btn">' + translate.GoBetting + '<b class="btn-inner"></b></a></dd>';
                             return e
@@ -1410,131 +1422,131 @@
                         a.content = t.formatHtml(e.tpl, e.data.tplData),
                         t.show($.extend(a, e))
                 },
-                getHtmlnonSaleTime: function() {
+                getHtmlnonSaleTime: function () {
                     var e = this.defConfig;
                     return e.nonSaleTime
                 },
-                rebulidmustChoose: function(e) {
+                rebulidmustChoose: function (e) {
                     var t = this,
                         a = {};
                     a.mask = !0,
                         a.iconClass = "",
                         a.closeIsShow = !0,
-                        a.closeFun = function() {
+                        a.closeFun = function () {
                             t.hide()
                         },
                         a.content = t.formatHtml(e.tpl, e.data.tplData),
                         t.show($.extend(a, e))
                 },
-                getHtmlmustChoose: function() {
+                getHtmlmustChoose: function () {
                     return this.getHtmlWaring()
                 },
-                rebulidnetAbnormal: function(e) {
+                rebulidnetAbnormal: function (e) {
                     var t = this,
                         a = {};
                     a.mask = !0,
                         a.iconClass = "",
                         a.closeIsShow = !0,
-                        a.closeFun = function() {
+                        a.closeFun = function () {
                             t.hide()
                         },
                         a.content = t.formatHtml(e.tpl, e.data.tplData),
                         t.show($.extend(a, e))
                 },
-                getHtmlnetAbnormal: function() {
+                getHtmlnetAbnormal: function () {
                     return this.getHtmlWaring()
                 },
-                rebulidsuccess: function(e) {
+                rebulidsuccess: function (e) {
                     var t = this,
                         a = {};
                     a.mask = !0,
                         a.iconClass = "",
                         a.closeIsShow = !0,
                         e.data.tplData.msg = translate.BetSuccessMsgs,
-                        a.closeFun = function() {
+                        a.closeFun = function () {
                             t.hide()
                         },
                         a.content = t.formatHtml(e.tpl, e.data.tplData),
                         t.show($.extend(a, e))
                 },
-                getHtmlsuccess: function() {
+                getHtmlsuccess: function () {
                     var e = this.defConfig;
                     return e.successTip
                 },
-                rebulidloginTimeout: function(e) {
+                rebulidloginTimeout: function (e) {
                     var t = this,
                         a = {};
                     a.mask = !0,
                         a.closeIsShow = !0,
-                        a.closeFun = function() {
+                        a.closeFun = function () {
                             t.hide()
                         },
                         a.content = t.formatHtml(e.tpl, e.data.tplData),
                         t.show($.extend(a, e))
                 },
-                getHtmlloginTimeout: function() {
+                getHtmlloginTimeout: function () {
                     return this.getHtmlWaring()
                 },
-                rebulidserverError: function(e) {
+                rebulidserverError: function (e) {
                     var t = this,
                         a = {};
                     a.mask = !0,
                         a.iconClass = "",
                         a.closeIsShow = !0,
-                        a.closeFun = function() {
+                        a.closeFun = function () {
                             t.hide()
                         },
                         a.content = t.formatHtml(e.tpl, e.data.tplData),
                         t.show($.extend(a, e))
                 },
-                getHtmlserverError: function() {
+                getHtmlserverError: function () {
                     return this.getHtmlWaring()
                 },
-                rebulidsysErrorShow: function(e) {
+                rebulidsysErrorShow: function (e) {
                     var t = this,
                         a = {};
                     a.mask = !0,
                         a.iconClass = "",
                         a.closeIsShow = !0,
-                        a.closeFun = function() {
+                        a.closeFun = function () {
                             window.location.href = "/"
                         },
                         a.content = t.formatHtml(e.tpl, e.data.tplData),
                         t.show($.extend(a, e))
                 },
-                getHtmlsysErrorShow: function() {
+                getHtmlsysErrorShow: function () {
                     return this.getHtmlWaring()
                 },
-                rebulidInsufficientbalance: function(e) {
+                rebulidInsufficientbalance: function (e) {
                     var t = this,
                         a = {};
                     a.mask = !0,
                         a.closeIsShow = !0,
-                        a.closeFun = function() {
+                        a.closeFun = function () {
                             t.hide()
                         },
                         a.content = t.formatHtml(e.tpl, e.data.tplData),
                         t.show($.extend(a, e))
                 },
-                getHtmlInsufficientbalance: function() {
+                getHtmlInsufficientbalance: function () {
                     return this.getHtmlWaring()
                 },
-                rebulidpauseBet: function(e) {
+                rebulidpauseBet: function (e) {
                     var t = this,
                         a = {};
                     a.mask = !0,
                         a.confirmText = translate.Bet,
                         a.confirmIsShow = !0,
-                        a.confirmFun = function() {
+                        a.confirmFun = function () {
                             for (var t = s.getCurrentGameOrder(), a = 0; a < e.data.tplData.balls.length; a++) t.removeData(e.data.tplData.balls[a].id);
                             s.getCurrentGameSubmit().submitData()
                         },
                         a.closeText = translate.Close,
                         a.closeIsShow = !0,
-                        a.closeFun = function() {
+                        a.closeFun = function () {
                             t.hide()
                         },
-                        e.data.tplData.msg = function() {
+                        e.data.tplData.msg = function () {
                             for (var a = [], n = s.getCurrentGame().getGameConfig().getInstance(), l = 0; l < e.data.tplData.balls.length; l++) {
                                 var i = e.data.tplData.balls[l].type,
                                     r = n.getTitleByName(i);
@@ -1545,21 +1557,21 @@
                         a.content = t.formatHtml(e.tpl, e.data.tplData),
                         t.show($.extend(a, e))
                 },
-                getHtmlpauseBet: function() {
+                getHtmlpauseBet: function () {
                     var e = this.defConfig;
                     return e.pauseBet
                 },
-                rebulidmultipleOver: function(e) {
+                rebulidmultipleOver: function (e) {
                     var t = this,
                         a = {};
                     a.mask = !0,
                         a.iconClass = "",
                         a.closeText = translate.Close,
                         a.closeIsShow = !0,
-                        a.closeFun = function() {
+                        a.closeFun = function () {
                             t.hide()
                         },
-                        e.data.tplData.msg = function() {
+                        e.data.tplData.msg = function () {
                             for (var a = [], n = s.getCurrentGame().getGameConfig().getInstance(), l = 0; l < e.data.tplData.balls.length; l++) {
                                 var i = e.data.tplData.balls[l].type,
                                     r = n.getTitleByName(i);
@@ -1570,61 +1582,61 @@
                         a.content = t.formatHtml(e.tpl, e.data.tplData),
                         t.show($.extend(a, e))
                 },
-                getHtmlmultipleOver: function() {
+                getHtmlmultipleOver: function () {
                     var e = this.defConfig;
                     return e.multipleOver
                 },
-                rebulidinvalidtext: function(e) {
+                rebulidinvalidtext: function (e) {
                     var t = this,
                         a = {};
                     a.mask = !0,
                         a.confirmText = translate.RefreshPage,
                         a.confirmIsShow = !0,
-                        a.confirmFun = function() {
+                        a.confirmFun = function () {
                             window.location.reload()
                         },
                         a.content = t.formatHtml(t.getHtmlinvalidtext(), e),
                         t.show($.extend(a, e))
                 },
-                getHtmlinvalidtext: function() {
+                getHtmlinvalidtext: function () {
                     var e = this.defConfig;
                     return e.invalidtext
                 },
-                rebulidbetExpired: function(e) {
+                rebulidbetExpired: function (e) {
                     var t = this,
                         a = {};
                     a.mask = !0,
                         a.closeText = translate.Close,
                         a.closeIsShow = !0,
-                        a.closeFun = function() {
+                        a.closeFun = function () {
                             t.hide()
                         },
-                        e.data.tplData.msg = function() {
+                        e.data.tplData.msg = function () {
                             return translate.StopSaleMsgs.msg4[0] + e.data.tplData.bitDate.expiredDate + translate.StopSaleMsgs.msg4[1] + e.data.tplData.bitDate.current + translate.StopSaleMsgs.msg4[2]
                         },
                         a.content = t.formatHtml(t.getHtmlbetExpired(), e.data.tplData),
                         t.show($.extend(a, e))
                 },
-                getHtmlbetExpired: function() {
+                getHtmlbetExpired: function () {
                     var e = this.defConfig;
                     return e.betExpired
                 },
-                rebulidillegalTools: function(e) {
+                rebulidillegalTools: function (e) {
                     var t = this,
                         a = {};
                     a.mask = !0,
                         a.confirmText = translate.RefreshPage,
                         a.confirmIsShow = !0,
-                        a.confirmFun = function() {
+                        a.confirmFun = function () {
                             window.location.reload()
                         },
                         a.content = t.formatHtml(t.getHtmlbetExpired(), e.data.tplData),
                         t.show($.extend(a, e))
                 },
-                getHtmlblockade: function() {
+                getHtmlblockade: function () {
                     return this.defConfig.blockade
                 },
-                rebulidblockade: function(t) {
+                rebulidblockade: function (t) {
                     var a = this,
                         n = {},
                         l = t.data.tplData,
@@ -1643,11 +1655,11 @@
                         n.closeText = translate.Close,
                         n.confirmIsShow = !0,
                         n.confirmText = translate.OK,
-                        n.closeFun = function() {
+                        n.closeFun = function () {
                             a.hide()
                         },
                         $.each(o,
-                            function(e) {
+                            function (e) {
                                 c["" + this.id] = this,
                                     d = this.ball,
                                 d.length > f && (d = d.substr(0, f) + "..."),
@@ -1662,41 +1674,41 @@
                         l.amountAdjust = m(r.amountAdjust),
                         l.amountChange = m(i.amount - r.amountAdjust),
                         l.display = "",
-                        1 == r.type ? l.blockadeType = translate.Limit: 2 == r.type ? (l.blockadeType = translate.ChangeAward, l.display = "none") : l.blockadeType = translate.ChangeAwardAndLimit,
-                        n.callback = function() {
+                        1 == r.type ? l.blockadeType = translate.Limit : 2 == r.type ? (l.blockadeType = translate.ChangeAward, l.display = "none") : l.blockadeType = translate.ChangeAwardAndLimit,
+                        n.callback = function () {
                             $.ajax({
                                 url: s.getCurrentGameSubmit().defConfig.handlingChargeURL + "?amout=" + r.amountAdjust,
                                 dataType: "json",
                                 method: "GET",
-                                success: function(e) {
+                                success: function (e) {
                                     1 == Number(e.isSuccess) && a.getContentDom().find(".handlingCharge").html(e.data.handingcharge)
                                 }
                             })
                         },
                         n.content = a.formatHtml(a.getHtmlbetExpired(), l),
-                        n.confirmFun = function() {
+                        n.confirmFun = function () {
                             var e = s.getCurrentGameMessage();
-                            return ! p && void $.ajax({
-                                    url: s.getCurrentGameSubmit().defConfig.URL,
-                                    data: i,
-                                    dataType: "json",
-                                    method: "POST",
-                                    beforeSend: function() {
-                                        p = !0
-                                    },
-                                    success: function(t) {
-                                        1 == Number(t.isSuccess) ? (e.show(t), a.clearData(), a.fireEvent("afterSubmitSuccess")) : e.show(t)
-                                    },
-                                    complete: function() {
-                                        p = !1,
-                                            a.fireEvent("afterSubmit")
-                                    }
-                                })
+                            return !p && void $.ajax({
+                                url: s.getCurrentGameSubmit().defConfig.URL,
+                                data: i,
+                                dataType: "json",
+                                method: "POST",
+                                beforeSend: function () {
+                                    p = !0
+                                },
+                                success: function (t) {
+                                    1 == Number(t.isSuccess) ? (e.show(t), a.clearData(), a.fireEvent("afterSubmitSuccess")) : e.show(t)
+                                },
+                                complete: function () {
+                                    p = !1,
+                                        a.fireEvent("afterSubmit")
+                                }
+                            })
                         },
                         a.show($.extend(n, t)),
                         e.util.toViewCenter(a.win.dom),
                         $("#J-blockade-panel-main").on("click", "[data-action]",
-                            function(e) {
+                            function (e) {
                                 var t = $(this),
                                     a = $.trim(t.attr("data-action"));
                                 $.trim(t.parent().attr("data-id"));
@@ -1707,14 +1719,14 @@
                                         n.html(""),
                                             $('<input type="hidden" value="' + i.gameType + '" name="gameType" />').appendTo(n),
                                             $.each(o,
-                                                function() {
+                                                function () {
                                                     var e = this;
                                                     e.lockPoint && ("" != $.trim(e.lockPoint.beforeBlockadeList) && $.each(e.lockPoint.beforeBlockadeList,
-                                                        function() {
+                                                        function () {
                                                             var t = this;
                                                             $('<input type="hidden" value="' + t.beishu + l + t.blockadeDetail + l + t.realBeishu + l + e.type + l + e.ball + '" name="beforeBlockadeList[]" />').appendTo(n)
                                                         }), "" != $.trim(e.lockPoint.pointsList) && $.each(e.lockPoint.pointsList,
-                                                        function() {
+                                                        function () {
                                                             var t = this;
                                                             $('<input type="hidden" value="' + t.mult + l + t.point + l + t.retValue + l + e.type + l + e.ball + '" name="pointsList[]" />').appendTo(n)
                                                         }))
@@ -1723,55 +1735,55 @@
                                 }
                             })
                 },
-                getHtmlillegalTools: function() {
+                getHtmlillegalTools: function () {
                     return this.getHtmlWaring()
                 },
-                rebulidsubFailed: function(e) {
+                rebulidsubFailed: function (e) {
                     var t = this,
                         a = {};
                     a.mask = !0,
                         a.closeText = translate.Close,
                         a.closeIsShow = !0,
-                        a.closeFun = function() {
+                        a.closeFun = function () {
                             t.hide()
                         },
                         a.content = t.formatHtml(t.getHtmlbetExpired(), e.data.tplData),
                         t.show($.extend(a, e))
                 },
-                getHtmlsubFailed: function() {
+                getHtmlsubFailed: function () {
                     return this.getHtmlWaring()
                 },
-                setTitle: function(e) {
+                setTitle: function (e) {
                     var t = this,
                         a = t.win;
                     a.setTitle(e)
                 },
-                setContent: function(e, t) {
+                setContent: function (e, t) {
                     var a = this,
                         n = a.win;
                     n.setContent(e, t)
                 },
-                hideClose: function() {
+                hideClose: function () {
                     var e = this,
                         t = e.win;
                     t.getCloseDom().hide()
                 },
-                hasOpenDialog: function() {
+                hasOpenDialog: function () {
                     return $(".j-ui-miniwindow").size() > 0 && !$(".j-ui-miniwindow").is(":hidden")
                 },
-                checkDialogRules: function(e) {
+                checkDialogRules: function (e) {
                     var t = this;
                     return "no" === e.cover && !!t.hasOpenDialog()
                 },
-                hideTitle: function() {
+                hideTitle: function () {
                     var e = this,
                         t = e.win;
                     t.getTitleDom().hide()
                 },
-                show: function(e) {
+                show: function (e) {
                     var t = this,
                         a = t.win;
-                    if (!t.checkDialogRules(e) && (t.reSet(), "undefined" == typeof e.data && (e.data = {}), e.data.tplData = "undefined" == typeof e.data.tplData ? {}: e.data.tplData, e)) {
+                    if (!t.checkDialogRules(e) && (t.reSet(), "undefined" == typeof e.data && (e.data = {}), e.data.tplData = "undefined" == typeof e.data.tplData ? {} : e.data.tplData, e)) {
                         if (e.type) return void t.doAction(e);
                         "undefined" != typeof e.tpl && (e.content = t.formatHtml(e.tpl, e.data.tplData)),
                         r && (clearTimeout(r), r = null),
@@ -1795,7 +1807,7 @@
                             t.limitHeight(),
                             a.show(),
                         e.callback && e.callback.call(t),
-                        e.time && (r = setTimeout(function() {
+                        e.time && (r = setTimeout(function () {
                                 t.hide(),
                                     clearTimeout(r),
                                     r = null
@@ -1803,7 +1815,7 @@
                             1e3 * e.time))
                     }
                 },
-                limitHeight: function() {
+                limitHeight: function () {
                     var e = this,
                         t = $(window).height(),
                         a = e.getContainerDom(),
@@ -1812,21 +1824,21 @@
                         overflow: "auto"
                     }))
                 },
-                getContainerDom: function() {
+                getContainerDom: function () {
                     var e = this;
                     return e.win.getContainerDom()
                 },
-                getContentDom: function() {
+                getContentDom: function () {
                     var e = this;
                     return e.win.getContentDom()
                 },
-                hide: function() {
+                hide: function () {
                     var e = this,
                         t = e.win;
                     t.hide(),
                         e.reSet()
                 },
-                reSet: function() {
+                reSet: function () {
                     var e = this,
                         t = e.win;
                     e.mask.hide(),
@@ -1835,10 +1847,14 @@
                         t.hideConfirmButton(),
                         t.hideCancelButton(),
                         t.hideCloseButton(),
-                        t.doConfirm = function() {},
-                        t.doCancel = function() {},
-                        t.doClose = function() {},
-                        t.doNormalClose = function() {},
+                        t.doConfirm = function () {
+                        },
+                        t.doCancel = function () {
+                        },
+                        t.doClose = function () {
+                        },
+                        t.doNormalClose = function () {
+                        },
                         t.setConfirmName(translate.OK),
                         t.setCancelName(translate.Cancel),
                         t.setCloseName(translate.Close),
@@ -1847,8 +1863,8 @@
             },
             c = e.Class(o, a);
         c.defConfig = i,
-            c.getInstance = function(e) {
+            c.getInstance = function (e) {
                 return l || (l = new c(e))
             },
             e[t] = c
-    } (phoenix, "GameMessage", phoenix.Event);
+    }(phoenix, "GameMessage", phoenix.Event);
