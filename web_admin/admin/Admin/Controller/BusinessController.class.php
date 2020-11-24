@@ -410,7 +410,6 @@ class BusinessController extends AdminController
             $Model->startTrans();
             M('member_recharge')->state = $para['state'];
             M('member_recharge')->save();
-            //$result = M('members')->where('uid=' . $member_recharge['uid'])->setInc('coin', $member_recharge['amount']);
 
             $return = $this->addCoin([
                 'uid' => $member_recharge['uid'],
