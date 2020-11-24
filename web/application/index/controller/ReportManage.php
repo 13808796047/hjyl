@@ -142,7 +142,7 @@ class ReportManage extends Controller
         }
 
         isset($params['id']) ? $user = Members::get($params['id']) : $user = session('userData');
-
+        dump($user['uid']);
         $childs = Members::where('parentId', $user['uid'])->select();
         dump($childs);
         if(isset($params['days']) && isset($params['days2'])) {
