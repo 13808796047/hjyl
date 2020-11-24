@@ -400,18 +400,33 @@ class BusinessController extends AdminController
     {
         if(IS_POST) {
 
-            $data = M('member_recharge')->where(['id' => I('id')])->find();
-            if(!$data)
+            $member_recharge = M('member_recharge')->where(['id' => I('id')])->find();
+            if(!$member_recharge)
                 $this->error('此充值id不存在');
-            if($data['isDelete']) $this->error('充值已经被删除');
+            if($member_recharge['isDelete']) $this->error('充值已经被删除');
             $para = I('post.');
-            $data->state = $para['state'];
-            $data->save();
-            $user = M('members')->where('uid', $data['uid'])->find();
-            dump($user);
-            exit;
-            $user->coin += $data->amount;
-            $user->save();
+            // 开始事物处理
+            $Model = new \Think\Model();
+            $Model->startTrans();
+            $member_recharge->state = $para['state'];
+            $member_recharge->save();
+            if($member_recharge) {
+                $user = M('members')->where('uid', $member_recharge['uid'])->find();
+                $return = $this->addCoin([
+                    'uid' => $user['uid'],
+                    'coin' => $member_recharge['amount'],
+                    'liqType' => 1,
+                    'info' => '充值'
+                ]);
+                if($return) {
+                    //每天首次充值赠送
+
+                    $Model->commit();//成功则提交
+                    $this->addLog(2, $member_recharge['uid'], $para['amount']);
+                    $this->success('充值到账成功', U('business/recharge'));
+                }
+            }
+
 
         } else {
             $this->display('rechargeChange_modal');
@@ -428,7 +443,7 @@ class BusinessController extends AdminController
             if(!$data)
                 $this->error('此充值id不存在');
 
-            if($data['state']) $this->error('充值已经到账，请不要重复确认');
+//            if($data['state']) $this->error('充值已经到账，请不要重复确认');
             if($data['isDelete']) $this->error('充值已经被删除');
 
             $user = M('members')->where(['uid' => $data['uid']])->field('coin,fcoin')->find();
