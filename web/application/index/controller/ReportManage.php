@@ -143,7 +143,7 @@ class ReportManage extends Controller
 
         isset($params['id']) ? $user = Members::get($params['id']) : $user = session('userData');
         $childs = $user->children()->select();
-        if(isset($params['days'])) {
+        if(isset($params['days']) && isset($params['days2'])) {
             $start = strtotime($params['days'] . '00:00:00');
             $end = strtotime($params['days2'] . " 23:59:59");
         } else {
@@ -185,7 +185,7 @@ class ReportManage extends Controller
                 'totalCash' => MemberCash::where('uid', 'in', $cuids)->where('actionTime', 'between', [$start, $end])->sum('amount'),
             ];
         }
-        dump($data);
+
         //   $data =  Db::table('gygy_members')->alias('m')
         //   ->where('m.parents', 'like', $uid.',%')
         //    ->join('gygy_member_recharge r',"m.uid = r.uid and r.actionTime BETWEEN {$start} AND {$end}",'left')
