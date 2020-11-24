@@ -138,8 +138,10 @@ class ReportManage extends Controller
             $this->assign('days', $days);
 //            $this->assign('types_data', $this->types());
             $this->assign('data', []);
+            dump('未');
             return view('report_manage/recharge_stat');
         }
+        dump('有');
         isset($params['id']) ? $user = Members::get($params['id']) : $user = session('userData');
         $childs = $user->children()->select();
         if(isset($params['days'])) {
