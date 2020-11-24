@@ -87,16 +87,14 @@ class Recharge extends Controller
         $data['mBankId'] = 1;
         $data['rechargeId'] = date('YmdHis') . mt_rand(10, 99);
         $result = MemberRecharge::create($data);
-        // 流动资金
-//        if($result){
-//            $return = $this->addCoin(array(
-//                'coin' => $amount,
-//                'uid' => $this->user['uid'],
-//                'liqType' => 106,
-//                'info' => "银行卡充值",
-//                'extfield0' => $result['rechargeId'],
-//            ));
-//        }
+        $coinlog = [
+            'coin' => $amount,
+            'uid' => $this->user['uid'],
+            'liqType' => 106,
+            'info' => "银行卡充值",
+            'extfield0' => $result['rechargeId'],
+        ];
+        CoinLog::create($coinlog);
         if (!$result) {
             return json(["code" => 0, "msg" => "失败", "data" => '']);
         }
