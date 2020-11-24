@@ -141,7 +141,8 @@ class ReportManage extends Controller
             return view('report_manage/recharge_stat');
         }
 
-        isset($params['id']) ? $user = Members::get($params['id']) : $user = session('userData');
+        isset($params['id']) ? $user = Members::get($params['id']) : $user = Members::where('uid', session('userData')['uid'])->select();
+
         $childs = $user->children()->select();
         dump($childs);
         die;
