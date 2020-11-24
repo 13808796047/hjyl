@@ -128,7 +128,7 @@ class ReportManage extends Controller
         }
         //    dump($request->param());
         $params = $request->param();
-        if(!isset($params['isquery']) || !isset($params['id'])) {
+        if(!isset($params['isquery'])) {
 //            $this->assign('liqTypeName', $this->liqTypeName);
 //            $this->assign('modeConfig', $this->modeConfig);
 //            $this->assign('total', 0);
