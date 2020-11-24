@@ -117,6 +117,8 @@
         </tr>
         </thead>
         <tbody>
+        {$Request.get.days}
+        {$Request.get.days2}
         {volist name="data" id="vo"}
         <tr align="center">
           <td><strong><a href="rechargestat.html?isquery=1&id={$vo.uid}&days={@$_GET['days']}&days2={@$_GET['days2']}"
