@@ -128,7 +128,19 @@ class ReportManage extends Controller
         }
         //    dump($request->param());
         $params = $request->param();
-        isset($params['id'])? $user = Members::get($params['id']):$user = session('userData');
+        if(!isset($para['isquery'])) {
+//            $this->assign('liqTypeName', $this->liqTypeName);
+//            $this->assign('modeConfig', $this->modeConfig);
+//            $this->assign('total', 0);
+//            $this->assign('page', "");
+//            $this->assign('currentPage', "");
+//            $this->assign('totalPage', 0);
+            $this->assign('days', $days);
+//            $this->assign('types_data', $this->types());
+            $this->assign('data', []);
+            return view('report_manage/recharge_stat');
+        }
+        isset($params['id']) ? $user = Members::get($params['id']) : $user = session('userData');
         $childs = $user->children()->select();
         if(isset($params['days'])) {
             $start = strtotime($params['days'] . '00:00:00');
@@ -147,7 +159,6 @@ class ReportManage extends Controller
 //        } else {
 //            $where['actionTime'] = ['between', [strtotime(date("Y-m-d")), time()]];
 //        }
-
 
 
 //        dump($childs->select());
@@ -169,8 +180,8 @@ class ReportManage extends Controller
                 'username' => $value->username,
                 'type' => $value->type,
                 'coin' => $value->coin,
-                'totalRecharge' => MemberRecharge::where('uid', 'in', $cuids)->where('actionTime','between',[$start,$end])->sum('amount'),
-                'totalCash' => MemberCash::where('uid', 'in', $cuids)->where('actionTime','between',[$start,$end])->sum('amount'),
+                'totalRecharge' => MemberRecharge::where('uid', 'in', $cuids)->where('actionTime', 'between', [$start, $end])->sum('amount'),
+                'totalCash' => MemberCash::where('uid', 'in', $cuids)->where('actionTime', 'between', [$start, $end])->sum('amount'),
             ];
         }
         //   $data =  Db::table('gygy_members')->alias('m')
