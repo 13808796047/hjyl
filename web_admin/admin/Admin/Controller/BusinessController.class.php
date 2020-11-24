@@ -408,14 +408,14 @@ class BusinessController extends AdminController
             // 开始事物处理
             $Model = new \Think\Model();
             $Model->startTrans();
-            dump($member_recharge['amount']);
             M('member_recharge')->state = $para['state'];
             M('member_recharge')->save();
             $userModel = M('members')->where('uid', $member_recharge['uid']);
-            $userModel->setInc('coin', $member_recharge['amount']);
             $userModel->liqType = 1;
             $userModel->info = '充值';
             $userModel->save();
+            $userModel->setInc('coin', $member_recharge['amount']);
+
 
 //            $return = $this->addCoin([
 //                'uid' => $user['uid'],
