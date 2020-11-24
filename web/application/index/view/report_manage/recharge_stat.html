@@ -121,8 +121,9 @@
         {$Request.get.days2}
         {volist name="data" id="vo"}
         <tr align="center">
-          <td><strong><a href="rechargestat.html?isquery=1&id={$vo.uid}&days={@$_GET['days']}&days2={@$_GET['days2']}"
-                         target="mainFrame">{$vo.username}</a></strong></td>
+          <td><strong><a
+              href="rechargestat.html?isquery=1&id={$vo.uid}&days={$Request.get.days}&days2={$Request.get.days2}"
+              target="mainFrame">{$vo.username}</a></strong></td>
           <td>{$vo.type?'代理':'会员'}</td>
           
           <td>{$vo.totalRecharge??'0.00'}</td>
