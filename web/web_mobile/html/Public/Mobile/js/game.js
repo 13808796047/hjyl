@@ -218,8 +218,7 @@ function gamePostCode() {
                         if (data.status == 0)//失败
                         {
                             gamePostedCode(data.info);
-                        }
-                        else {
+                        } else {
                             gamePostedCode(null, data.info);
                             if (data) winjinAlert(data.info, "ok");
                         }
@@ -364,8 +363,8 @@ function gamePostedCode(err, data) {
     if (err) {
         if ('您的可用资金不足，是否充值？' == err) {
             if (window.confirm(err))
-                winjinAlert('请使用PC版登录进行充值！', "alert");
-            // location='/index.php?s=/mobile/cash/recharge';
+                // winjinAlert('请使用PC版登录进行充值！', "alert");
+                location = '/index.php?s=/mobile/user/recharge';
         } else {
             winjinAlert(err, "alert");
         }
@@ -491,7 +490,7 @@ function gameSetPl(value, flag, fanDianBdw) {
         var fandian = ((prop - base) / maxfd * myfandian + base).toFixed(2);
         var fan1 = fandian + "-" + "0.0%";
         var fan2 = base.toFixed(2) + "-" + myfandian.toFixed(1) + "%";
-        if(prop <= base){
+        if (prop <= base) {
             fan1 = prop + "-" + "0.0%";
         }
         $dom.html("<option value=" + fan1 + ">" + fan1 + "</option>");
@@ -503,7 +502,7 @@ function gameSetPl(value, flag, fanDianBdw) {
         var fandian = ((prop - base) / maxfd * myfandian + base).toFixed(2);
         var fan1 = fandian + "-" + "0.0%";
         var fan2 = base.toFixed(2) + "-" + myfandian.toFixed(1) + "%";
-        if(prop <= base){
+        if (prop <= base) {
             fan1 = prop + "-" + "0.0%";
             fan2 = prop + "-" + "0.0%";
         }
@@ -603,7 +602,7 @@ function loadKjData() {
             kjTimer = setTimeout(loadKjData, 2000);
         },
         success: function (data, textStatus, xhr) {
-        // console.log(data);
+            // console.log(data);
             if (!data) {
                 if (kjTimer) clearTimeout(kjTimer);
                 kjTimer = setTimeout(loadKjData, 2000);

@@ -285,9 +285,10 @@ class GameController extends HomeController
             //检查赔率
             $chkBonus = ($played['bonusProp'] - $played['bonusPropBase']) / $this->settings['fanDianMax'] * ($this->user['fanDian'] - $code['fanDian']) + $played['bonusPropBase']; //实际奖金
 
-            if($code['bonusProp'] > $played['bonusProp']) {
-                $this->error('投注金额过大');
-            }
+//            if($code['bonusProp'] > $played['bonusProp']) {
+//                $this->error('投注金额过大');
+//            }
+            $this->success('最高赔付' . $played['bonusProp']);
             if($code['bonusProp'] < $played['bonusPropBase']) {
                 $this->error('提交数据出错，请重新投注 -2');
             }
