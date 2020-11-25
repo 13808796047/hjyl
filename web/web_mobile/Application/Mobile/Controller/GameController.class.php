@@ -288,7 +288,7 @@ class GameController extends HomeController
 //            if($code['bonusProp'] > $played['bonusProp']) {
 //                $this->error('投注金额过大');
 //            }
-            $this->success('最高赔付' . $played['bonusProp']);
+//            $this->success('最高赔付' . $played['bonusProp']);
             if($code['bonusProp'] < $played['bonusPropBase']) {
                 $this->error('提交数据出错，请重新投注 -2');
             }
