@@ -404,14 +404,11 @@ class BusinessController extends AdminController
                 $this->error('此充值id不存在');
             if($member_recharge['isDelete']) $this->error('充值已经被删除');
             $para = I('post.');
-            dump($para);
             // 开始事物处理
             $Model = new \Think\Model();
             $Model->startTrans();
             $MemberRecharge = M('member_recharge');
-            $data['id'] = $para['id'];
-            $data['state'] = $para['state'];
-            $MemberRecharge->save($data);
+            $MemberRecharge->where('id=' . $para['id'])->setField(['state' => $para['state']]);
 
             if($para['state'] == 11) {
                 $return = $this->addCoin([
