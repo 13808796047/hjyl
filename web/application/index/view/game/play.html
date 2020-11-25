@@ -23,18 +23,11 @@
             curmid: {$lottery['curmid']},
             lotteryid: {$lottery['lotteryid']},
             mode: 1,
-            isTestUser: {
-        :
+            isTestUser: {:
         session('userData.is_test')
         },
-        lotterycnname: '{$lottery['
-        lotterycnname
-        ']}',
-            LANG
-        :
-        '' === __LAN__ ? 'CN' : __LAN__,
-            multilingual
-        :
+        lotterycnname: '{$lottery['lotterycnname']}',
+            LANG:'' === __LAN__ ? 'CN' : __LAN__, multilingual:
         {:
             json_encode($multilingual)
         }
@@ -1015,7 +1008,7 @@
                 success: function (data) {
                     if (data.code == 1) {
                         alert(data.msg);
-                        //document.location.reload();
+                        document.location.reload();
                     } else {
                         alert(data.msg);
                     }
