@@ -38,25 +38,25 @@ class BusinessController extends AdminController
 
         $para = I('post.');
 
-        if (!$para)
+        if(!$para)
             $para = I('get.');
 
         // 用户限制
         $userWhere = '';
-        if ($para['username']) {
+        if($para['username']) {
             $_username = trim($para['username']);
             $userWhere = " and m.username like '%{$_username}%'";
         }
 
         // 时间限制
-        if ($para['fromTime'] && $para['toTime']) {
+        if($para['fromTime'] && $para['toTime']) {
             $fromTime = strtotime($para['fromTime']);
             $toTime = strtotime($para['toTime']) + 24 * 3600;
             $timeWhere = " and c.actionTime between $fromTime and $toTime";
-        } elseif ($para['fromTime']) {
+        } elseif($para['fromTime']) {
             $fromTime = strtotime($para['fromTime']);
             $timeWhere = " and c.actionTime>=$fromTime";
-        } elseif ($para['toTime']) {
+        } elseif($para['toTime']) {
             $toTime = strtotime($para['toTime']) + 24 * 3600;
             $timeWhere = " and c.actionTime<$toTime";
         } else {
@@ -64,7 +64,7 @@ class BusinessController extends AdminController
         }
 
         $pageIndex = I('p') > 0 ? I('p') : 1;
-        if (isset($request['r'])) {
+        if(isset($request['r'])) {
             $listRows = (int)I('r');
         } else {
             $listRows = C('LIST_ROWS') > 0 ? C('LIST_ROWS') : 10;
@@ -96,7 +96,7 @@ class BusinessController extends AdminController
         $page = new \COM\Page($total, $listRows, $request);
         $p = $page->show();
         $this->assign('_list', $list);
-        if ($total > $listRows) {
+        if($total > $listRows) {
             $this->assign('_page', $p ? $p : '');
         }
 
@@ -109,7 +109,7 @@ class BusinessController extends AdminController
     public final function to_cash_split()
     {
         $para = I('post.');
-        if (!$para)
+        if(!$para)
             $para = I('get.');
 
         $Model = new \Think\Model();
@@ -128,10 +128,10 @@ class BusinessController extends AdminController
     public final function split_cash()
     {
         $para = I();
-        if (!$para)
+        if(!$para)
             $this->error('分账记录不存在');
 
-        if (M('member_cash_split')->where(['id' => $para['id']])->save(['state' => 2])) {
+        if(M('member_cash_split')->where(['id' => $para['id']])->save(['state' => 2])) {
             $data = [
                 'result' => true,
                 'msg' => '处理提现分账成功',
@@ -154,20 +154,20 @@ class BusinessController extends AdminController
     public final function to_cash()
     {
 
-        if (IS_POST) {
+        if(IS_POST) {
 
             $MCash = M('member_cash');
             $data = $MCash->create();
 
-            if ($data) {
+            if($data) {
                 $cash = $MCash->where(['id' => I('id')])->find();
-                if ($cash['state'] != 1)
+                if($cash['state'] != 1)
                     $this->error('提现已经被其他管理员处理过');
 
                 // 检查分账
-                if ($data['state'] == 0) {
+                if($data['state'] == 0) {
                     $splitCount = M('member_cash_split')->where(['cashId' => I('id'), 'state' => 1])->count();
-                    if ((int)$splitCount > 0) {
+                    if((int)$splitCount > 0) {
                         $this->error('请先处理提现分账');
                     }
                 }
@@ -181,7 +181,7 @@ class BusinessController extends AdminController
                     'fcoin' => -$cash['amount']
                 ];
 
-                if ($data['state'] == 4) {
+                if($data['state'] == 4) {
                     $log['info'] = "提现[{$data['id']}]处理失败";
                     $log['coin'] = $cash['amount'];
                     $log['liqType'] = 8;
@@ -192,7 +192,7 @@ class BusinessController extends AdminController
                     $log['extfield0'] = $data['id'];
                 }
 
-                if ($this->addCoin($log) && $MCash->save($data)) {
+                if($this->addCoin($log) && $MCash->save($data)) {
                     $Model->commit();//成功则提交
                     $this->addLog(1, $cash['uid'], $log['info']);
                     $this->success('处理提现成功', U('business/cash'));
@@ -216,26 +216,26 @@ class BusinessController extends AdminController
 
         $para = I('post.');
 
-        if (!$para)
+        if(!$para)
             $para = I('get.');
 
         //dump($para);
         // 用户限制
-        if ($para['username']) {
+        if($para['username']) {
             $_username = trim($para['username']);
             $userWhere = " and r.username like '%{$_username}%'";
         }
 
         // 充值编号限制
-        if ($para['rechargeId']) {
+        if($para['rechargeId']) {
             $rechargeIdWhere = " and r.rechargeId={$para['rechargeId']}";
         }
 
         //状态类型限制
-        if ($para['type'] != '9999') {
-            if ($para['type'] == 1) {
+        if($para['type'] != '9999') {
+            if($para['type'] == 1) {
                 $typeWhere = " and r.flag=1";
-            } elseif ($para['type'] == 2) {
+            } elseif($para['type'] == 2) {
                 $typeWhere = " and r.state <> 9 AND r.flag=0";
             } else {
                 $typeWhere = " and r.state={$para['type']}";
@@ -244,14 +244,14 @@ class BusinessController extends AdminController
         $this->assign('type', !is_null($para['type']) ? $para['type'] : '9999');
 
         // 时间限制
-        if ($para['fromTime'] && $para['toTime']) {
+        if($para['fromTime'] && $para['toTime']) {
             $fromTime = strtotime($para['fromTime']);
             $toTime = strtotime($para['toTime']) + 24 * 3600;
             $timeWhere = " and r.actionTime between $fromTime and $toTime";
-        } elseif ($para['fromTime']) {
+        } elseif($para['fromTime']) {
             $fromTime = strtotime($para['fromTime']);
             $timeWhere = " and r.actionTime>=$fromTime";
-        } elseif ($para['toTime']) {
+        } elseif($para['toTime']) {
             $toTime = strtotime($para['toTime']) + 24 * 3600;
             $timeWhere = " and r.actionTime<$toTime";
         } else {
@@ -259,7 +259,7 @@ class BusinessController extends AdminController
         }
 
         $pageIndex = I('p') > 0 ? I('p') : 1;
-        if (isset($request['r'])) {
+        if(isset($request['r'])) {
             $listRows = (int)I('r');
         } else {
             $listRows = C('LIST_ROWS') > 0 ? C('LIST_ROWS') : 10;
@@ -290,12 +290,12 @@ class BusinessController extends AdminController
         $page = new \COM\Page($total, $listRows, $request);
         $p = $page->show();
         $this->assign('_list', $list);
-        if ($total > $listRows) {
+        if($total > $listRows) {
             $this->assign('_page', $p ? $p : '');
         }
 
         $members = M('Members')->field('uid, username')->select();
-        foreach ($members as $m) {
+        foreach($members as $m) {
             $members_list[$m['uid']] = $m['username'];
         }
         $this->assign('members_list', $members_list);
@@ -307,12 +307,12 @@ class BusinessController extends AdminController
     //新增充值
     public final function to_recharge()
     {
-        if (IS_POST) {
+        if(IS_POST) {
             $this->user = session('user_auth');
             $uid = 0;
-            if (I('user') == 1) {
+            if(I('user') == 1) {
                 $uid = intval(I('uid'));
-                if ($uid <= 0) $this->error('用户ID不正确');
+                if($uid <= 0) $this->error('用户ID不正确');
             } else
                 $uid = I('uid');
 
@@ -329,12 +329,12 @@ class BusinessController extends AdminController
             ];
             $info = I('info', '充值');
             // 查找用户信息
-            if (I('user') == 1) {
+            if(I('user') == 1) {
                 $user = M('members')->where(['uid' => $uid])->find();
             } else {
                 $user = M('members')->where(['username' => $uid])->find();
             }
-            if (!$user) $this->error('用户不存在');
+            if(!$user) $this->error('用户不存在');
 
             // 开始事物处理
             $Model = new \Think\Model();
@@ -353,15 +353,15 @@ class BusinessController extends AdminController
              } while ($recharge = M('member_recharge')->where(array('rechargeId' => $data['rechargeId']))->find());*/
             $re = false;
             $dataId = -1;
-            if ($info == '活动赠送') {
+            if($info == '活动赠送') {
                 $re = true;
             } else {
                 $dataId = M('member_recharge')->add($data);
-                if ($dataId) {
+                if($dataId) {
                     $re = true;
                 }
             }
-            if ($re) {
+            if($re) {
                 $return = $this->addCoin([
                     'uid' => $user['uid'],
                     'liqType' => 1,
@@ -370,7 +370,7 @@ class BusinessController extends AdminController
                     'extfield1' => $data['rechargeId'],
                     'info' => $info
                 ]);
-                if ($return) {
+                if($return) {
                     //每天首次充值赠送
 
                     $Model->commit();//成功则提交
@@ -390,7 +390,7 @@ class BusinessController extends AdminController
 
     public final function del_recharge()
     {
-        if (M('member_recharge')->where(['id' => I('id', '', 'intval')])->save(['isDelete' => 1]))
+        if(M('member_recharge')->where(['id' => I('id', '', 'intval')])->save(['isDelete' => 1]))
             $this->success('删除充值成功', U('business/recharge'));
         else
             $this->error('删除充值失败');
@@ -398,39 +398,41 @@ class BusinessController extends AdminController
 
     public function changeState()
     {
-        if (IS_POST) {
-
+        if(IS_POST) {
             $member_recharge = M('member_recharge')->where(['id' => I('id')])->find();
-            if (!$member_recharge)
+            if(!$member_recharge)
                 $this->error('此充值id不存在');
-            if ($member_recharge['isDelete']) $this->error('充值已经被删除');
+            if($member_recharge['isDelete']) $this->error('充值已经被删除');
             $para = I('post.');
             // 开始事物处理
-            $Model = new \Think\Model();
-            $Model->startTrans();
-            M('member_recharge')->state = $para['state'];
-            M('member_recharge')->save();
+//            $Model = new \Think\Model();
+//            $Model->startTrans();
+//            $MemberRecharge = M('member_recharge');
+//            $MemberRecharge->where('id=' . $para['id'])->setField(['state' => $para['state']]);
+            M('member_recharge')->where(['id' => I('id', '', 'intval')])->save(['state' => $para['state']]);
 
-            $return = $this->addCoin([
-                'uid' => $member_recharge['uid'],
-                'coin' => $para['amount'],
-                'liqType' => 1,
-                'extfield0' => $member_recharge['id'],
-                'extfield1' => $member_recharge['rechargeId'],
-                'info' => '上账余额'
-            ]);
+            if($para['state'] == 11) {
+                $return = $this->addCoin([
+                    'uid' => $member_recharge['uid'],
+                    'coin' => $para['amount'],
+                    'liqType' => 1,
+                    'extfield0' => $member_recharge['id'],
+                    'extfield1' => $member_recharge['rechargeId'],
+                    'info' => '上账余额'
+                ]);
+                if($return) {
+//                    $Model->commit();//成功则提交
+                    $this->addLog(2, $member_recharge['uid'], $para['amount']);
+                    $this->success('上账成功', U('business/recharge'));
 
-            if ($return) {
-                $Model->commit();//成功则提交
-                $this->addLog(2, $member_recharge['uid'], $para['amount']);
-                $this->success('上账成功', U('business/recharge'));
-
+                }
+                //dump($MRecharge->getLastSql());
+//                $Model->rollback();//不成功，则回滚
+                $this->error('上账失败');
+            } else {
+                $this->success('操作成功', U('business/recharge'));
             }
 
-
-            //dump($MRecharge->getLastSql());
-            $Model->rollback();//不成功，则回滚
-            $this->error('上账失败');
 
         } else {
             $this->display('rechargeChange_modal');
@@ -440,18 +442,18 @@ class BusinessController extends AdminController
     //到账处理
     public final function toOn_recharge()
     {
-        if (IS_POST) {
+        if(IS_POST) {
             $this->user = session('user_auth');
 
             $data = M('member_recharge')->where(['id' => I('id')])->find();
-            if (!$data)
+            if(!$data)
                 $this->error('此充值id不存在');
 
 //            if($data['state']) $this->error('充值已经到账，请不要重复确认');
-            if ($data['isDelete']) $this->error('充值已经被删除');
+            if($data['isDelete']) $this->error('充值已经被删除');
 
             $user = M('members')->where(['uid' => $data['uid']])->field('coin,fcoin')->find();
-            if (!$user)
+            if(!$user)
                 $this->error('此充值用户不存在');
 
             // 开始事物处理
@@ -465,7 +467,7 @@ class BusinessController extends AdminController
             $para = array_merge(['id' => $para['id'], 'rechargeAmount' => $para['rechargeAmount'], 'state' => 1, 'info' => '手动确认', 'actionUid' => $this->user['uid'],
                 'actionTime' => time(), 'rechargeTime' => time(), 'actionIP' => $this->ip(true), 'coin' => $user['coin'], 'fcoin' => $user['fcoin']]);
 
-            if ($MRecharge->save($para)) {
+            if($MRecharge->save($para)) {
                 $return = $this->addCoin([
                     'uid' => $data['uid'],
                     'coin' => $para['rechargeAmount'],
@@ -474,7 +476,7 @@ class BusinessController extends AdminController
                     'extfield1' => $data['rechargeId'],
                     'info' => '充值'
                 ]);
-                if ($return) {
+                if($return) {
                     //每天首次充值赠送
 
                     $Model->commit();//成功则提交
@@ -498,49 +500,49 @@ class BusinessController extends AdminController
         $map = [];
 
         //账号类型限制
-        if (I('isTest') == 2) {
+        if(I('isTest') == 2) {
             $map['istest'] = ['EQ', 0];
-        } elseif (I('isTest') == 3) {
+        } elseif(I('isTest') == 3) {
             $map['istest'] = ['EQ', 1];
         }
         $this->assign('isTest', I('isTest'));
 
         // 账号限制
-        if (I('username')) {
+        if(I('username')) {
             $map['username'] = trim(I('username'));
         }
 
         //期号
-        if (I('actionNo')) {
+        if(I('actionNo')) {
             $map['actionNo'] = I('actionNo');
         }
 
         //开奖状态
-        if (I('lottery_status') == 2) {
+        if(I('lottery_status') == 2) {
             $map['lotteryNo'] = ['NEQ', ''];
-        } elseif (I('lottery_status') == 3) {
+        } elseif(I('lottery_status') == 3) {
             $map['lotteryNo'] = ['EQ', ''];
         }
 
         // 彩种限制
-        if (I('type')) {
+        if(I('type')) {
             $map['type'] = I('type');
         }
 
         // 单号限制
-        if (I('wjorderId')) {
+        if(I('wjorderId')) {
             $map['wjorderId'] = I('wjorderId');
         }
 
         // 时间限制
-        if (I('fromTime') && I('toTime')) {
+        if(I('fromTime') && I('toTime')) {
             $fromTime = strtotime(I('fromTime'));
             $toTime = strtotime(I('toTime')) + 24 * 3600;
             $map['actionTime'] = ['between', [$fromTime, $toTime]];
-        } elseif (I('fromTime')) {
+        } elseif(I('fromTime')) {
             $fromTime = strtotime(I('fromTime'));
             $map['actionTime'] = ['egt', $fromTime];
-        } elseif (I('toTime')) {
+        } elseif(I('toTime')) {
             $toTime = strtotime(I('toTime')) + 24 * 3600;
             $map['actionTime'] = ['elt', $toTime];
         } else {
@@ -548,7 +550,7 @@ class BusinessController extends AdminController
         }
 
         $pageIndex = I('p') > 0 ? I('p') : 1;
-        if (isset($request['r'])) {
+        if(isset($request['r'])) {
             $listRows = (int)I('r');
         } else {
             $listRows = C('LIST_ROWS') > 0 ? C('LIST_ROWS') : 10;
@@ -556,14 +558,14 @@ class BusinessController extends AdminController
         $list = M('bets')->where($map)->order('id desc')->page($pageIndex, $listRows)->select();
         $total = M('bets')->where($map)->count();
         $total = $total > 0 ? $total : 0;
-        if ($total > 1000) {
+        if($total > 1000) {
             $total = 1000;
         }
         $request = (array)I('request.');
         $page = new \COM\Page($total, $listRows, $request);
         $p = $page->show();
         $this->assign('_list', $list);
-        if ($total > $listRows) {
+        if($total > $listRows) {
             $this->assign('_page', $p ? $p : '');
         }
 //        $list = M('bets')->where($map)->order('id desc')->limit(1000)->select();
@@ -606,7 +608,7 @@ class BusinessController extends AdminController
         $list = M('bank_list')->order('id')->select();
 
         $bankList = [];
-        if ($list) foreach ($list as $var) {
+        if($list) foreach($list as $var) {
             $bankList[$var['id']] = $var;
         }
 
@@ -625,7 +627,7 @@ class BusinessController extends AdminController
         $list = M('bank_list')->order('id')->select();
 
         $bankList = [];
-        if ($list) foreach ($list as $var) {
+        if($list) foreach($list as $var) {
             $bankList[$var['id']] = $var;
         }
 
@@ -638,7 +640,7 @@ class BusinessController extends AdminController
 
     public final function del_cash()
     {
-        if (M('member_cash')->where(['id' => I('id', '', 'intval')])->save(['isDelete' => 1]))
+        if(M('member_cash')->where(['id' => I('id', '', 'intval')])->save(['isDelete' => 1]))
             $this->success('删除提现成功', U('business/cash'));
         else
             $this->error('删除提现失败');
@@ -647,19 +649,19 @@ class BusinessController extends AdminController
     //改单
     public final function updateBet()
     {
-        if (IS_POST) {
+        if(IS_POST) {
             $bet = M('bets')->where(['id' => I('id')])->find();
-            if (!$bet) $this->error('单号不存在');
+            if(!$bet) $this->error('单号不存在');
 
             $data['id'] = I('id');
             $data['actionData'] = I('actionData');
 
-            if (M('bets')->save($data)) {
+            if(M('bets')->save($data)) {
                 //将投注记录写入文件
                 $fp = fopen(__ROOT__ . "Record/record.txt", "a+");
                 $tz_content = $bet['wjorderId'] . " 会员：" . $bet['username'] . " 投注内容：" . $bet['actionData'] . " 玩法：" . $bet['playedId'] . " 元角分：" . $bet['mode'] . " 倍数：" . $bet['beiShu'] . " 注数：" . $bet['actionNum'] . " 时间：" . date('m-d H:i:s', time()) . " " . $_SERVER['REMOTE_ADDR'] . "\r\n\r\n";
                 $flag = fwrite($fp, $tz_content);
-                if (!$flag) {
+                if(!$flag) {
                     throw new Exception('创建投注记录文件失败');
                 }
                 fclose($fp);
@@ -676,7 +678,7 @@ class BusinessController extends AdminController
             $this->assign('playeds', $this->playeds);
 
             $bet = M('bets')->where(['id' => I('id')])->find();
-            if (!$bet) $this->error('单号不存在');
+            if(!$bet) $this->error('单号不存在');
 
             $this->assign('bet', $bet);
             $this->display('update-bet-info');
@@ -686,10 +688,10 @@ class BusinessController extends AdminController
     //撤单
     public final function deleteBet()
     {
-        if (!$data = M('bets')->where(['id' => I('id')])->find()) $this->error('找不到定单或已经撤单。');
-        if ($data['isDelete']) $this->error('这单子已经撤单过了。');
-        if ($data['lotteryNo']) $this->error('已开奖投注不可撤单，可以进行删单操作');
-        if ($data['qz_uid']) $this->error('单子已经被人抢庄，不能撤单');
+        if(!$data = M('bets')->where(['id' => I('id')])->find()) $this->error('找不到定单或已经撤单。');
+        if($data['isDelete']) $this->error('这单子已经撤单过了。');
+        if($data['lotteryNo']) $this->error('已开奖投注不可撤单，可以进行删单操作');
+        if($data['qz_uid']) $this->error('单子已经被人抢庄，不能撤单');
 
         // 开始事物处理
         $Model = new \Think\Model();
@@ -710,7 +712,7 @@ class BusinessController extends AdminController
 
         // 更改定单为已经删除状态
         $return2 = M('bets')->where(['id' => I('id')])->save(['isDelete' => 1]);
-        if ($return1 && $return2) {
+        if($return1 && $return2) {
             //将投注记录写入文件
             /*$fp = fopen(__ROOT__ . "Record/record.txt", "a+");
             $tz_content = $data['wjorderId'] . " 撤单 " . date('m-d H:i:s', time()) . $_SERVER['REMOTE_ADDR'] . "\r\n\r\n";
@@ -735,7 +737,7 @@ class BusinessController extends AdminController
     public final function deleteBetTrue()
     {
         $id = I('id');
-        if (!$data = M('bets')->where(['id' => $id])->find()) $this->error('找不到定单或已经删单。');
+        if(!$data = M('bets')->where(['id' => $id])->find()) $this->error('找不到定单或已经删单。');
 //        if(!$data['lotteryNo']) $this->error('只能删除已开奖单');
 
         // 开始事物处理
@@ -774,13 +776,13 @@ class BusinessController extends AdminController
 
         $para = I('post.');
 
-        if (!$para)
+        if(!$para)
             $para = I('get.');
         // 用户限制
-        if ($para['username']) {
+        if($para['username']) {
             $username = trim($para['username']);
             $member = M('members')->where(['username' => $username])->find();
-            if (empty($member)) {
+            if(empty($member)) {
                 $this->display('coinlog');
                 return;
             }
@@ -790,18 +792,18 @@ class BusinessController extends AdminController
         }
 
         // 账变类型限制
-        if ($para['liqType']) {
+        if($para['liqType']) {
             $liqTypeWhere = " and l.liqType={$para['liqType']}";
-            if ($para['liqType'] == 2) $liqTypeWhere = ' and liqType=2 or liqType=3';
+            if($para['liqType'] == 2) $liqTypeWhere = ' and liqType=2 or liqType=3';
         }
 
         // 彩种限制
-        if ($para['type']) {
+        if($para['type']) {
             $typeWhere = " and l.type={$para['type']}";
         }
 
         // 时间限制
-        if ($para['fromTime']) {
+        if($para['fromTime']) {
             $fromTime = strtotime($para['fromTime']);
             $toTime = strtotime($para['fromTime']) + 24 * 3600;
             $timeWhere = " l.actionTime between $fromTime and $toTime";
@@ -814,11 +816,11 @@ class BusinessController extends AdminController
         $min_money = $para['min_money'];
         $max_money = $para['max_money'];
         $money_where = '';
-        if (!empty($min_money) && !empty($max_money)) {
+        if(!empty($min_money) && !empty($max_money)) {
             $money_where = " and l.coin between " . abs($min_money) . " and " . abs($max_money);
-        } elseif ($min_money) {
+        } elseif($min_money) {
             $money_where = " and l.coin >= " . abs($min_money);
-        } elseif ($max_money) {
+        } elseif($max_money) {
             $money_where = " and l.coin <= " . abs($max_money);
         }
         //$Model = M('coin_log');
@@ -833,7 +835,7 @@ class BusinessController extends AdminController
         //$list = M()->table('__COIN_LOG__ l,__MEMBERS__ u')->where('l.uid=u.uid '. $timeWhere. $liqTypeWhere. $typeWhere. $userWhere)->order('l.id desc')->field('l.*,u.username')->select();
 
         $pageIndex = I('p') > 0 ? I('p') : 1;
-        if (isset($request['r'])) {
+        if(isset($request['r'])) {
             $listRows = (int)I('r');
         } else {
             $listRows = C('LIST_ROWS') > 0 ? C('LIST_ROWS') : 10;
@@ -844,7 +846,7 @@ class BusinessController extends AdminController
             ->order('l.id desc')
             ->page($pageIndex, $listRows)
             ->select();
-        foreach ($list as $item => $sub) {
+        foreach($list as $item => $sub) {
             $list[$item]['username'] = $member['username'];
         }
 
@@ -854,14 +856,14 @@ class BusinessController extends AdminController
             ->count();
 
         $total = $total > 0 ? $total : 0;
-        if ($total > 10000) {
+        if($total > 10000) {
             $total = 10000;
         }
         $request = (array)I('request.');
         $page = new \COM\Page($total, $listRows, $request);
         $p = $page->show();
         $this->assign('_list', $list);
-        if ($total > $listRows) {
+        if($total > $listRows) {
             $this->assign('_page', $p ? $p : '');
         }
 
@@ -879,11 +881,11 @@ class BusinessController extends AdminController
 
     public final function getTip_cash()
     {
-        if ($data = M('member_cash')->where(['state' => 1, 'isDelete' => 0, 'actionTime' => ['gt', strtotime(' 00:00:00')]])->field('id,flag')->select()) {
+        if($data = M('member_cash')->where(['state' => 1, 'isDelete' => 0, 'actionTime' => ['gt', strtotime(' 00:00:00')]])->field('id,flag')->select()) {
 
             $isDialog = false;
-            foreach ($data as $d) {
-                if ($d['flag'] == 0)
+            foreach($data as $d) {
+                if($d['flag'] == 0)
                     $isDialog = true;
             }
 
@@ -903,7 +905,7 @@ class BusinessController extends AdminController
 
     public final function getTip_recharge()
     {
-        if ($data = M('member_recharge')->where(['state' => 0, 'isDelete' => 0, 'actionTime' => ['gt', strtotime(' 00:00:00')]])->field('id,flag')->select()) {
+        if($data = M('member_recharge')->where(['state' => 0, 'isDelete' => 0, 'actionTime' => ['gt', strtotime(' 00:00:00')]])->field('id,flag')->select()) {
 
             // if($cookie=$_COOKIE['recharge-tip']){
             // $cookie=explode(',',$cookie);
@@ -919,8 +921,8 @@ class BusinessController extends AdminController
             // if($data) setcookie('recharge-tip', $data);
 
             $isDialog = false;
-            foreach ($data as $d) {
-                if ($d['flag'] == 0)
+            foreach($data as $d) {
+                if($d['flag'] == 0)
                     $isDialog = true;
             }
 
@@ -957,7 +959,7 @@ class BusinessController extends AdminController
         $type = I('type');
         $lotteryStatus = I('lottery_status');
         $actionNo = I('action_no');
-        if (!$type) {
+        if(!$type) {
             $data = [
                 'result' => false,
                 'msg' => '请先选择彩种'
@@ -965,7 +967,7 @@ class BusinessController extends AdminController
 
             $this->ajaxReturn($data, 'JSON');
         }
-        if (!$lotteryStatus) {
+        if(!$lotteryStatus) {
             $data = [
                 'result' => false,
                 'msg' => '请先选择开奖状态'
@@ -973,7 +975,7 @@ class BusinessController extends AdminController
 
             $this->ajaxReturn($data, 'JSON');
         }
-        if (!$actionNo) {
+        if(!$actionNo) {
             $data = [
                 'result' => false,
                 'msg' => '请先输入期号'
@@ -985,24 +987,24 @@ class BusinessController extends AdminController
         $map = [];
 
         //期号
-        if ($actionNo) {
+        if($actionNo) {
             $map['actionNo'] = $actionNo;
         }
 
         //开奖状态
-        if ($lotteryStatus == 2) {
+        if($lotteryStatus == 2) {
             $map['lotteryNo'] = ['NEQ', ''];
-        } elseif ($lotteryStatus == 3) {
+        } elseif($lotteryStatus == 3) {
             $map['lotteryNo'] = ['EQ', ''];
         }
 
         // 彩种限制
-        if ($type) {
+        if($type) {
             $map['type'] = $type;
         }
         $map['isDelete'] = ['NEQ', 1];
         $list = M('bets')->where($map)->order('id desc')->select();
-        if (!$list) {
+        if(!$list) {
             $data = [
                 'result' => false,
                 'msg' => '没有投注记录'
@@ -1014,15 +1016,15 @@ class BusinessController extends AdminController
         // 开始事物处理
         $Model = new \Think\Model();
         $Model->startTrans();
-        foreach ($list as $value) {
-            if (!$value) {
+        foreach($list as $value) {
+            if(!$value) {
                 $data = [
                     'result' => false,
                     'msg' => '找不到定单'
                 ];
                 $this->ajaxReturn($data, 'JSON');
             }
-            if ($value['isDelete']) {
+            if($value['isDelete']) {
                 continue;
             }
 
@@ -1041,12 +1043,12 @@ class BusinessController extends AdminController
 
             // 更改定单为已经删除状态
             $return2 = M('bets')->where(['id' => $value['id']])->save(['isDelete' => 1]);
-            if ($return1 && $return2) {
+            if($return1 && $return2) {
                 //将投注记录写入文件
                 $fp = fopen(__ROOT__ . "Record/record.txt", "a+");
                 $tz_content = $value['wjorderId'] . " 撤单 " . date('m-d H:i:s', time()) . $_SERVER['REMOTE_ADDR'] . "\r\n\r\n";
                 $flag = fwrite($fp, $tz_content);
-                if (!$flag) {
+                if(!$flag) {
                     $Model->rollback();//不成功，则回滚
                     $data = [
                         'result' => false,
@@ -1080,10 +1082,10 @@ class BusinessController extends AdminController
     {
         $map = [];
         // 账号限制
-        if (I('username')) {
+        if(I('username')) {
             $username = trim(I('username'));
             $member = M('members')->where(['username' => $username])->find();
-            if (!empty($member)) {
+            if(!empty($member)) {
                 $map['uid'] = $member['uid'];
             }
         }
@@ -1095,7 +1097,7 @@ class BusinessController extends AdminController
         */
 
         //账号类型限制
-        if (I('isTest') == 3) {
+        if(I('isTest') == 3) {
             $map['istest'] = ['EQ', 1];
         } else {
             $map['istest'] = ['EQ', 0];
@@ -1103,14 +1105,14 @@ class BusinessController extends AdminController
         $this->assign('isTest', I('isTest'));
 
         //开奖状态
-        if (I('lottery_status') == 2) {
+        if(I('lottery_status') == 2) {
             $map['lotteryNo'] = ['NEQ', ''];
-        } elseif (I('lottery_status') == 3) {
+        } elseif(I('lottery_status') == 3) {
             $map['lotteryNo'] = ['EQ', ''];
         }
 
         // 彩种限制
-        if (I('type')) {
+        if(I('type')) {
             $map['type'] = I('type');
         }
 
@@ -1120,7 +1122,7 @@ class BusinessController extends AdminController
         }*/
 
         // 时间限制
-        if (I('fromTime')) {
+        if(I('fromTime')) {
             $fromTime = strtotime(I('fromTime'));
             $toTime = strtotime(I('fromTime')) + 86399;
             $map['actionTime'] = ['between', [$fromTime, $toTime]];
@@ -1129,14 +1131,14 @@ class BusinessController extends AdminController
         }
 
         // 投注金额限制
-        if (I('minAmount') && I('maxAmount')) {
+        if(I('minAmount') && I('maxAmount')) {
             $minAmount = floatval(I('minAmount'));
             $maxAmount = floatval(I('maxAmount'));
             $whereStr = "bets_money between $minAmount and $maxAmount";
-        } elseif (I('minAmount')) {
+        } elseif(I('minAmount')) {
             $minAmount = floatval(I('minAmount'));
             $whereStr = "bets_money >= $minAmount";
-        } elseif (I('maxAmount')) {
+        } elseif(I('maxAmount')) {
             $maxAmount = floatval(I('maxAmount'));
             $whereStr = "bets_money <= $maxAmount";
         } else {
@@ -1144,7 +1146,7 @@ class BusinessController extends AdminController
         }
 
         $pageIndex = I('p') > 0 ? I('p') : 1;
-        if (isset($request['r'])) {
+        if(isset($request['r'])) {
             $listRows = (int)I('r');
         } else {
             $listRows = C('LIST_ROWS') > 0 ? C('LIST_ROWS') : 10;
@@ -1158,7 +1160,7 @@ class BusinessController extends AdminController
         $page = new \COM\Page($total, $listRows, $request);
         $p = $page->show();
         $this->assign('_list', $list);
-        if ($total > $listRows) {
+        if($total > $listRows) {
             $this->assign('_page', $p ? $p : '');
         }
 //        $this->recordList($list);
@@ -1182,12 +1184,12 @@ class BusinessController extends AdminController
         $toTime = strtotime(I('toTime'));
         $username = trim(I('username'));
 
-        if (IS_POST || ($fromTime && $toTime)) {
-            if (empty($fromTime) || empty($toTime)) {
+        if(IS_POST || ($fromTime && $toTime)) {
+            if(empty($fromTime) || empty($toTime)) {
                 $this->error('请选择时间');
-            } elseif ($toTime - $fromTime > 31 * 86400) {
+            } elseif($toTime - $fromTime > 31 * 86400) {
                 $this->error('时间区间不能大于31天');
-            } elseif (empty($username)) {
+            } elseif(empty($username)) {
                 $this->error('请输入用户名');
             }
             $map = [
@@ -1195,14 +1197,14 @@ class BusinessController extends AdminController
                 'istest' => 0
             ];
             $m = M('members')->where(['username' => $username])->find();
-            if (!empty($username) && empty($m)) {
+            if(!empty($username) && empty($m)) {
                 $this->display();
                 return;
-            } elseif (!empty($username) && !empty($m)) {
+            } elseif(!empty($username) && !empty($m)) {
                 $map['uid'] = $m['uid'];
             }
             $pageIndex = I('p') > 0 ? I('p') : 1;
-            if (isset($request['r'])) {
+            if(isset($request['r'])) {
                 $listRows = (int)I('r');
             } else {
                 $listRows = C('LIST_ROWS') > 0 ? C('LIST_ROWS') : 10;
@@ -1215,7 +1217,7 @@ class BusinessController extends AdminController
             $page = new \COM\Page($total, $listRows, $request);
             $p = $page->show();
             $this->assign('_list', $list);
-            if ($total > $listRows) {
+            if($total > $listRows) {
                 $this->assign('_page', $p ? $p : '');
             }
             $col = [
@@ -1227,7 +1229,7 @@ class BusinessController extends AdminController
                 'brokerageAmount' => 0,
                 'zyk' => 0,
             ];
-            foreach ($list as $item => $sub) {
+            foreach($list as $item => $sub) {
                 $col['sum_rechargeAmount'] += $sub['rechargeAmount'];
 //                $col['sum_cashAmount'] += $sub['cashAmount'];
                 $col['sum_betAmount'] += $sub['betAmount'];
@@ -1252,7 +1254,7 @@ class BusinessController extends AdminController
         $sql = 'Insert into gygy_coin_log_report_hist(id, actionTime, uid, username, istest, coin, rechargeAmount, cashAmount, betAmount, zjAmount, fanDianAmount, brokerageAmount, zyk) 
 select id, actionTime, uid, username, istest, coin, rechargeAmount, cashAmount, betAmount, zjAmount, fanDianAmount, brokerageAmount, zyk from gygy_coin_log_report 
 WHERE actionTime < ' . $time;
-        if ($Model->execute($sql) === false) {
+        if($Model->execute($sql) === false) {
 //            return false;
         } else {
             $sql = 'DELETE FROM gygy_coin_log_report WHERE actionTime < ' . $time;
@@ -1266,12 +1268,12 @@ WHERE actionTime < ' . $time;
         $fromTime = strtotime(I('fromTime'));
         $toTime = strtotime(I('toTime'));
         $username = trim(I('username'));
-        if (IS_POST || ($fromTime && $toTime)) {
-            if (empty($fromTime) || empty($toTime)) {
+        if(IS_POST || ($fromTime && $toTime)) {
+            if(empty($fromTime) || empty($toTime)) {
                 $this->error('请选择时间');
-            } elseif ($toTime - $fromTime > 31 * 86400) {
+            } elseif($toTime - $fromTime > 31 * 86400) {
                 $this->error('时间区间不能大于31天');
-            } elseif (empty($username)) {
+            } elseif(empty($username)) {
                 $this->error('请输入用户名');
             }
             $map = [
@@ -1279,14 +1281,14 @@ WHERE actionTime < ' . $time;
                 'istest' => 0
             ];
             $m = M('members')->where(['username' => $username])->find();
-            if (!empty($username) && empty($m)) {
+            if(!empty($username) && empty($m)) {
                 $this->display();
                 return;
-            } elseif (!empty($username) && !empty($m)) {
+            } elseif(!empty($username) && !empty($m)) {
                 $map['uid'] = $m['uid'];
             }
             $pageIndex = I('p') > 0 ? I('p') : 1;
-            if (isset($request['r'])) {
+            if(isset($request['r'])) {
                 $listRows = (int)I('r');
             } else {
                 $listRows = C('LIST_ROWS') > 0 ? C('LIST_ROWS') : 10;
@@ -1299,7 +1301,7 @@ WHERE actionTime < ' . $time;
             $page = new \COM\Page($total, $listRows, $request);
             $p = $page->show();
             $this->assign('_list', $list);
-            if ($total > $listRows) {
+            if($total > $listRows) {
                 $this->assign('_page', $p ? $p : '');
             }
             $col = [
@@ -1311,7 +1313,7 @@ WHERE actionTime < ' . $time;
                 'brokerageAmount' => 0,
                 'zyk' => 0,
             ];
-            foreach ($list as $item => $sub) {
+            foreach($list as $item => $sub) {
                 $col['sum_rechargeAmount'] += $sub['rechargeAmount'];
 //                $col['sum_cashAmount'] += $sub['cashAmount'];
                 $col['sum_betAmount'] += $sub['betAmount'];
@@ -1330,32 +1332,32 @@ WHERE actionTime < ' . $time;
     {
         $para = I('post.');
 
-        if (!$para)
+        if(!$para)
             $para = I('get.');
 
         // 用户限制
         $userWhere = '1=1';
-        if ($para['username']) {
+        if($para['username']) {
             $_username = trim($para['username']);
             $userWhere = "1=1 and m.username like '%{$_username}%'";
         }
 
         // 类型限制
         $typeWhere = '';
-        if ($para['type']) {
+        if($para['type']) {
             $_type = trim($para['type']);
             $typeWhere = " and al.type = {$_type}";
         }
 
         // 时间限制
-        if ($para['fromTime'] && $para['toTime']) {
+        if($para['fromTime'] && $para['toTime']) {
             $fromTime = strtotime($para['fromTime']);
             $toTime = strtotime($para['toTime']) + 24 * 3600;
             $timeWhere = " and al.created_at between $fromTime and $toTime";
-        } elseif ($para['fromTime']) {
+        } elseif($para['fromTime']) {
             $fromTime = strtotime($para['fromTime']);
             $timeWhere = " and al.actionTime>=$fromTime";
-        } elseif ($para['toTime']) {
+        } elseif($para['toTime']) {
             $toTime = strtotime($para['toTime']) + 24 * 3600;
             $timeWhere = " and al.created_at<$toTime";
         } else {
@@ -1363,7 +1365,7 @@ WHERE actionTime < ' . $time;
         }
 
         $pageIndex = I('p') > 0 ? I('p') : 1;
-        if (isset($request['r'])) {
+        if(isset($request['r'])) {
             $listRows = (int)I('r');
         } else {
             $listRows = C('LIST_ROWS') > 0 ? C('LIST_ROWS') : 10;
@@ -1385,7 +1387,7 @@ WHERE actionTime < ' . $time;
         $page = new \COM\Page($total, $listRows, $request);
         $p = $page->show();
         $this->assign('_list', $list);
-        if ($total > $listRows) {
+        if($total > $listRows) {
             $this->assign('_page', $p ? $p : '');
         }
 
@@ -1400,7 +1402,7 @@ WHERE actionTime < ' . $time;
         $cnt = M('bets')->where('istest=0 and actionTime>=' . $startTime . ' and actionTime<=' . $now)->getField('MAX(bets_money) bets_money');
         $daetouzhu = M('params')->where('id=169')->getField('value');
         $betmoney = $cnt ? $cnt : 0;
-        if ($betmoney < $daetouzhu) {
+        if($betmoney < $daetouzhu) {
             $betmoney = 0;
         }
         $this->ajaxReturn($betmoney, 'JSON');
