@@ -133,8 +133,9 @@ $(function () {
                             winjinAlert(data.info, 'error');
                         } else {
                             $('a[role=button]').click();//关闭dialog
-							
+
                             winjinAlert('撤单成功', 'ok');
+                            window.location.reload()
                         }
                     } catch (e) {
                         $('a[role=button]').click();//关闭dialog
