@@ -421,19 +421,19 @@ class BusinessController extends AdminController
                     'extfield1' => $member_recharge['rechargeId'],
                     'info' => '上账余额'
                 ]);
+                if($return) {
+                    $Model->commit();//成功则提交
+                    $this->addLog(2, $member_recharge['uid'], $para['amount']);
+                    $this->success('上账成功', U('business/recharge'));
+
+                }
+                //dump($MRecharge->getLastSql());
+                $Model->rollback();//不成功，则回滚
+                $this->error('上账失败');
+            } else {
+                $this->success('操作成功', U('business/recharge'));
             }
 
-            if($return) {
-                $Model->commit();//成功则提交
-                $this->addLog(2, $member_recharge['uid'], $para['amount']);
-                $this->success('上账成功', U('business/recharge'));
-
-            }
-
-
-            //dump($MRecharge->getLastSql());
-            $Model->rollback();//不成功，则回滚
-            $this->error('上账失败');
 
         } else {
             $this->display('rechargeChange_modal');
