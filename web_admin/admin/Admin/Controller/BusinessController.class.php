@@ -408,9 +408,9 @@ class BusinessController extends AdminController
             // 开始事物处理
             $Model = new \Think\Model();
             $Model->startTrans();
+            $MemberRecharge = M('member_recharge');
             $data['id'] = $para['id'];
             $data['state'] = $para['state'];
-            $MemberRecharge = M('member_recharge');
             $MemberRecharge->save($data);
 
             if($para['state'] == 11) {
