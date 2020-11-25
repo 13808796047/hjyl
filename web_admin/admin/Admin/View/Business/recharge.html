@@ -126,11 +126,14 @@
             <td><a href="<?='http://'.$vo['home']?>" target="_blank">{$vo.name}</a></td>
             <!--			<td><?=$this->iff($vo['state'], '充值成功', '正在充值')?></td>-->
             <td>
-              <switch name="{$vo.state}">
-                <case value="10">未上账</case>
-                <case value="11">已上账</case>
-                <case value="12">无效</case>
-              </switch>
+              <if condition="$vo.state eq 10 ">
+                未上账
+                <elseif condition="$vo.state eq 11"/>
+                已上账
+                <elseif condition="$vo.state eq 12"/>
+                无效
+                <else/>
+              </if>
             </td>
             <?php
 				$note = "";
