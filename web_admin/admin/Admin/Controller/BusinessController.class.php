@@ -407,8 +407,9 @@ class BusinessController extends AdminController
             // 开始事物处理
             $Model = new \Think\Model();
             $Model->startTrans();
-            $MemberRecharge = M('member_recharge');
-            $MemberRecharge->where('id=' . $para['id'])->setField(['state' => $para['state']]);
+//            $MemberRecharge = M('member_recharge');
+//            $MemberRecharge->where('id=' . $para['id'])->setField(['state' => $para['state']]);
+            M('member_recharge')->where(['id' => I('id', '', 'intval')])->save(['state' => $para['state']]);
 
             if($para['state'] == 11) {
                 $return = $this->addCoin([
