@@ -66,8 +66,7 @@ class TeamController extends HomeController
                 'totalCash' => M('member_cash')->where($map)->where($where)->sum('amount'),
             ];
         }
-        dump($data);
-        $this->assign('data', $data);
+        $this->recordList($data);
     }
 
     /*游戏记录*/
