@@ -30,7 +30,7 @@ class TeamController extends HomeController
         if(!I('get.'))
             $this->display('Team/recharge_stat');
         else
-            $this->display('Team/recharge_stat');
+            $this->display('Team/rechargestat-list');
     }
 
     public function searchRechargeStat()
