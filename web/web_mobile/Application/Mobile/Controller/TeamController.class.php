@@ -43,7 +43,7 @@ class TeamController extends HomeController
         } elseif(!empty($para['toTime'])) {
             $where['actionTime'] = ['elt', strtotime($para['toTime'])];
         } else {
-            $where['actionTime'] = ['between', [strtotime(date("Y-m-d"), time() . '00:00:00'), strtotime(date("Y-m-d"), time() . '23:59:59')]];
+            $where['actionTime'] = ['between', [strtotime(date("Y-m-d")), time()]];
         }
         dump($where);
 //        // 时间限制
