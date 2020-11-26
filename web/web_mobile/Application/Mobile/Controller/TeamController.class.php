@@ -85,7 +85,7 @@ class TeamController extends HomeController
             ];
         }
         $this->assign('data', $data);
-        $this->display('Team/recharge_stat_list');
+        $this->display('Team/recharge_stat');
     }
 
     /*游戏记录*/
