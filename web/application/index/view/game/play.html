@@ -267,7 +267,7 @@
             </div>
         </div>
         <div class="header-links">
-            {if condition="($curmid == 6) OR ($curmid == 15) OR ($curmid == 16) OR ($curmid == 38) OR ($curmid == 39)"} 
+            {if condition="($curmid == 6) OR ($curmid == 15) OR ($curmid == 16) OR ($curmid == 38) OR ($curmid == 39)"}
             <a href="./newgame_trend.html?type={$curmid}&issuecount=30&mod=five&type_name={$cur_play_name}" target="_blank">号码走势</a>
             {elseif condition="$curmid == 24"/}
             <a href="./newgame_trend_k18.html?type={$curmid}&issuecount=30&mod=five&type_name={$cur_play_name}" target="_blank">号码走势</a>
@@ -938,7 +938,7 @@ $(function(){
                 success: function (data) {
                     if (data.code==1) {
                         alert(data.msg);
-                        //document.location.reload();
+                        document.location.reload();
                     }
                     else {
                         alert(data.msg);
