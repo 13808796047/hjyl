@@ -144,8 +144,9 @@ class ReportManage extends Controller
         isset($params['id']) ? $user = Members::get($params['id']) : $user = session('userData');
 
         $builder = Members::where('parentId', $user['uid']);
-        if(!empty($para['user_name'])) {
-            $builder->where('username', $para['username']);
+        dump($params['username']);
+        if(!empty($params['username'])) {
+            $builder->where('username', $params['username']);
         }
         $childs = $builder->select();
         if(isset($params['days']) && isset($params['days2'])) {
