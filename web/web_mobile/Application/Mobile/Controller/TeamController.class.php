@@ -37,14 +37,16 @@ class TeamController extends HomeController
     {
         $para = I('get.');
         dump($para);
-        if(!empty($para['fromTime']) && !empty($para['toTime'])) {
-            $where['actionTime'] = ['between', [strtotime($para['fromTime'] . '00:00:00'), strtotime($para['toTime'] . "23:59:59")]];
-        } elseif(!empty($para['fromTime'])) {
+        if($para['fromTime'] && $para['toTime']) {
+            $where['actionTime'] = ['between', [strtotime($para['fromTime']), strtotime($para['toTime'])]];
+        } elseif($para['fromTime']) {
             $where['actionTime'] = ['egt', strtotime($para['fromTime'])];
-        } elseif(!empty($para['toTime'])) {
+        } elseif($para['toTime']) {
             $where['actionTime'] = ['elt', strtotime($para['toTime'])];
         } else {
-            $where['actionTime'] = ['between', [strtotime(date("Y-m-d")), time()]];
+            if($GLOBALS['fromTime'] && $GLOBALS['toTime']) {
+                $where['actionTime'] = ['between', [$GLOBALS['fromTime'], $GLOBALS['toTime']]];
+            }
         }
         dump($where);
 //        // 时间限制
