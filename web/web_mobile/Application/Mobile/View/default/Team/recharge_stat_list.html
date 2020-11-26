@@ -10,13 +10,13 @@
           用户名：<a href="{:U('team/rechargeStat?id='.$vo['uid'])}">{$vo.username}</a>
         </p>
         <p>
-          充值：{$vo.totalRecharge??0}
+          充值：{$vo.totalRecharge?$vo.totalRecharge:0}
         </p>
         <p>
-          提现：{$vo.totalCash??0}
+          提现：{$vo.totalCash?$vo.totalCash:0}
         </p>
         <p>
-          余额：{$vo.coin??0}
+          余额：{$vo.coin?$vo.coin:0}
         </p>
         <!--                <div class="m-user-goods-my">-->
         <!--                    <a class="link" href="javascript:void(0);" data-pro="mycode" data-data="{$vo.actionData}" url="{:U('record/betInfo?id='.$vo['id'])}">查看详情</a>-->
