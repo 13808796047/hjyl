@@ -61,85 +61,85 @@
     });
 </script>
 <div class="ys-content">
-  <div class="header">充提统计</div>
-  <div class="main" style="min-height: 0">
-    <div class="form section">
-      <form action="" method="get" name="search">
-        <input type="hidden" name="isquery" value="1">
-        <!--        <input type="hidden" name="controller" value="report"/>-->
-        <!--        <input type="hidden" name="action" value="bankreport"/>-->
-        <dl class="field">
-          <label>充提时间</label>
-          <select name="days" class="dept_select selection">
-            {volist name="days" id="vo"}
-            <option value="{$vo}" {if $vo== @$_GET[
-            'days']} selected {/if}>{$vo}</option>
-            {/volist}
-          </select> ~
-          <select name="days2" class=" dept_select selection">
-            {volist name="days" id="vo"}
-            <option value="{$vo}" {if $vo== @$_GET[
-            'days2']} selected {/if}>{$vo}</option>
-            {/volist}
-          </select>
-        </dl>
-        <!--        <dl class="field">-->
-        <!--          <label>用户名</label>-->
-        <!--          <select name="utype" id="ordertype" class="dept_select selection">-->
-        <!--            <option value="1" selected="selected">仅自己</option>-->
-        <!--            <option value="2" {if 2==@$_GET['utype']} selected {-->
-        <!--            /if}>直属下级 </option>-->
-        <!--            <option-->
-        <!--                value="3" {if 3==@$_GET['utype']} selected {-->
-        <!--            /if}>所有下级 </option> </select></dl>-->
-        <dl
-            class="field">
-          <label>用户名</label>
-          <input name="username" id="username" class="selection"
-                 value="{$_GET['username'] ? $_GET['username'] : ''}" placeholder="用户名"
-                 style="height: 28px"/>
-        </dl>
-        <input id="gameInfoBtn" type="submit" class="btn" value="搜索"/>
-      </form>
+    <div class="header">充提统计</div>
+    <div class="main" style="min-height: 0">
+        <div class="form section">
+            <form action="" method="get" name="search">
+                <input type="hidden" name="isquery" value="1">
+                <!--        <input type="hidden" name="controller" value="report"/>-->
+                <!--        <input type="hidden" name="action" value="bankreport"/>-->
+                <dl class="field">
+                    <label>充提时间</label>
+                    <select name="days" class="dept_select selection">
+                        {volist name="days" id="vo"}
+                        <option value="{$vo}" {if $vo== @$_GET[
+                        'days']} selected {/if}>{$vo}</option>
+                        {/volist}
+                    </select> ~
+                    <select name="days2" class=" dept_select selection">
+                        {volist name="days" id="vo"}
+                        <option value="{$vo}" {if $vo== @$_GET[
+                        'days2']} selected {/if}>{$vo}</option>
+                        {/volist}
+                    </select>
+                </dl>
+                <!--        <dl class="field">-->
+                <!--          <label>用户名</label>-->
+                <!--          <select name="utype" id="ordertype" class="dept_select selection">-->
+                <!--            <option value="1" selected="selected">仅自己</option>-->
+                <!--            <option value="2" {if 2==@$_GET['utype']} selected {-->
+                <!--            /if}>直属下级 </option>-->
+                <!--            <option-->
+                <!--                value="3" {if 3==@$_GET['utype']} selected {-->
+                <!--            /if}>所有下级 </option> </select></dl>-->
+                <dl
+                        class="field">
+                    <label>用户名</label>
+                    <input name="username" id="username" class="selection"
+                           value="{$Request.get.days}" placeholder="用户名"
+                           style="height: 28px"/>
+                </dl>
+                <input id="gameInfoBtn" type="submit" class="btn" value="搜索"/>
+            </form>
+        </div>
     </div>
-  </div>
-  <div class="list">
-    <div style=" overflow-x:auto">
-      <table style="width:753px" class="yingkui_chaxun">
-        <thead>
-        <tr>
-          <th>用户名</th>
-          <th>类型</th>
-          <th>充值</th>
-          <th>提现</th>
-          <th>余额</th>
-        
-        </tr>
-        </thead>
-        <tbody>
-        {volist name="data" id="vo"}
-        <tr align="center">
-          <td><strong><a
-              href="rechargestat.html?isquery=1&id={$vo.uid}&days={$Request.get.days}&days2={$Request.get.days2}"
-              target="mainFrame">{$vo.username}</a></strong></td>
-          <td>{$vo.type?'代理':'会员'}</td>
-          
-          <td>{$vo.totalRecharge??'0.00'}</td>
-          <td>{$vo.totalCash??'0.00'}</td>
-          <td>{$vo.coin??'0.00'}</td>
-        
-        </tr>
-        {/volist}
-        {empty name="data"}
-        <tr>
-          <td height="37" colspan="8" align="center">请选择查询条件之后进行查询</td>
-        </tr>
-        {/empty}
-        
-        </tbody>
-      </table>
+    <div class="list">
+        <div style=" overflow-x:auto">
+            <table style="width:753px" class="yingkui_chaxun">
+                <thead>
+                <tr>
+                    <th>用户名</th>
+                    <th>类型</th>
+                    <th>充值</th>
+                    <th>提现</th>
+                    <th>余额</th>
+
+                </tr>
+                </thead>
+                <tbody>
+                {volist name="data" id="vo"}
+                <tr align="center">
+                    <td><strong><a
+                            href="rechargestat.html?isquery=1&id={$vo.uid}&days={$Request.get.days}&days2={$Request.get.days2}"
+                            target="mainFrame">{$vo.username}</a></strong></td>
+                    <td>{$vo.type?'代理':'会员'}</td>
+
+                    <td>{$vo.totalRecharge??'0.00'}</td>
+                    <td>{$vo.totalCash??'0.00'}</td>
+                    <td>{$vo.coin??'0.00'}</td>
+
+                </tr>
+                {/volist}
+                {empty name="data"}
+                <tr>
+                    <td height="37" colspan="8" align="center">请选择查询条件之后进行查询</td>
+                </tr>
+                {/empty}
+
+                </tbody>
+            </table>
+        </div>
     </div>
-  </div>
 </div>
 </div>
 <script type="text/javascript" src="__TODO__/js/common/model/details.js"></script>
