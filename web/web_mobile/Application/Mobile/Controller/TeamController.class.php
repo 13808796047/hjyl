@@ -35,7 +35,7 @@ class TeamController extends HomeController
 
     }
 
-    public final function searchRechargeStat()
+    public final function searchrechargestat()
     {
         $this->searchRecStat();
         $this->display('Team/recharge_stat_list');
