@@ -56,7 +56,7 @@ class TeamController extends HomeController
                 $where['actionTime'] = ['between', [$GLOBALS['fromTime'], $GLOBALS['toTime']]];
             }
         }
-        isset($para['uid']) ? $user = M('members')->where(['uid' => $uid])->find() : $user = $this->user;
+        isset($para['uid']) ? $user = M('members')->where('uid=' . $uid)->find() : $user = $this->user;
         dump($user);
         $builder = M('members')->where('parentId=' . $user['uid']);
         if ($para['username'] && $para['username'] != '用户名') {
