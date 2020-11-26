@@ -40,8 +40,9 @@
                                     用户名
                                 </div>
                                 <p>
-                                    <input name="username" class="form-control" id="username" type="text"
-                                           placeholder="用户名" value="">
+                                    <input name="username" id="username" class="selection"
+                                           value="{$_GET['username'] ? $_GET['username'] : ''}" placeholder="用户名"
+                                           style="height: 28px"/>
                                 </p>
                             </li>
                             <li>
