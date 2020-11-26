@@ -42,7 +42,7 @@ class TeamController extends HomeController
 //        $this->display('Team/recharge_stat_list');
 //    }
 
-    public function searchRecStat()
+    public function searchstat()
     {
         $para = I('get.');
         if ($para['fromTime'] && $para['toTime']) {
