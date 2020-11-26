@@ -56,10 +56,10 @@ class TeamController extends HomeController
                 $where['actionTime'] = ['between', [$GLOBALS['fromTime'], $GLOBALS['toTime']]];
             }
         }
-        dump($para['uid']);
-        isset($para['uid']) ? $user = M('members')->where('uid=' . $uid)->find() : $user = $this->user;
-        dump($user);
-        $builder = M('members')->where('parentId=' . $user['uid']);
+
+        isset($para['uid']) ? $uid = $para['uid'] : $uid = $this->user['uid'];
+        dump($uid);
+        $builder = M('members')->where('parentId=' . $uid);
         if ($para['username'] && $para['username'] != '用户名') {
             // 按用户名查找时
             // 只要符合用户名且是自己所有下级的都可查询
