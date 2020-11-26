@@ -37,7 +37,6 @@ class TeamController extends HomeController
     {
         $para = I('get.');
         dump($para);
-        die;
         if(!empty($para['fromTime']) && !empty($para['toTime'])) {
             $where['actionTime'] = ['between', [strtotime($para['fromTime'] . '00:00:00'), strtotime($para['toTime'] . "23:59:59")]];
         } elseif(!empty($para['fromTime'])) {
