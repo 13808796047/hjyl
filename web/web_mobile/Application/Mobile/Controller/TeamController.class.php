@@ -26,20 +26,21 @@ class TeamController extends HomeController
 
     public function rechargestat()
     {
+        $this->display('Team/recharge_stat');
 //        $this->searchRechargestat();
-        if (!I('get.')) {
-            $this->display('Team/recharge_stat');
-        } else {
-            $this->display('Team/recharge_stat_list');
-        }
+//        if (!I('get.')) {
+//            $this->display('Team/recharge_stat');
+//        } else {
+//            $this->display('Team/recharge_stat_list');
+//        }
 
     }
 
-    public function statlist()
-    {
-        $this->searchRecStat();
-        $this->display('Team/recharge_stat_list');
-    }
+//    public function statlist()
+//    {
+//        $this->searchRecStat();
+//        $this->display('Team/recharge_stat_list');
+//    }
 
     public function searchRecStat()
     {
@@ -83,6 +84,7 @@ class TeamController extends HomeController
             ];
         }
         $this->assign('data', $data);
+        $this->display('Team/recharge_stat_list');
     }
 
     /*游戏记录*/
