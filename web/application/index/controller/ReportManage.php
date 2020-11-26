@@ -144,14 +144,13 @@ class ReportManage extends Controller
         isset($params['id']) ? $uid = $params['id'] : $uid = session('userData')['uid'];
 
         $builder = new Members();
-        $pwhere[] = ['exp', 'FIND_IN_SET(' . $uid . ',parents)'];
-        $pwhere['isDelete'] = 0;
+//        $pwhere[] = ['exp', 'FIND_IN_SET(' . $uid . ',parents)'];
+//        $pwhere['isDelete'] = 0;
         if (!empty($params['username'])) {
             $builder->whereLike('username', $params['username']);
             // $userBaseSql->whereLike('parents',$uid);
-            $builder->where($pwhere);
         }
-//        $childs = $builder->where('parentId', $uid)->select();
+        $childs = $builder->where('parentId', $uid)->select();
         if (isset($params['days']) && isset($params['days2'])) {
 
             $start = strtotime($params['days'] . '00:00:00');
@@ -183,17 +182,24 @@ class ReportManage extends Controller
 //                'totalCash' => MemberCash::where('uid', 'in', $cuids)->sum('amount'),
 //            ];
 //        });
-        $userList = $builder->select();
-        $userData = [];
-        $userStr = '';
-        foreach ($userList as $user) {
-            $userStr = $userStr . $user['uid'] . ',';
-            $userData[$user['uid']] = $user;
-        }
+//        $userList = $builder->select();
+//        $userData = [];
+//        $userStr = '';
+//        $data = [];
+//        foreach ($userList as $user) {
+//            $userStr = $userStr . $user['uid'] . ',';
+//            $userData[$user['uid']] = $user;
+//            $where = [
+//                'isDelete' => 0
+//            ];
+//            $where['uid'] = ['in', $userStr];
+//            $rechargeList = Db::table('gygy_member_recharge')
+//                ->field('id,uid,actionTime,amount,account,username,state')
+//                ->where($where)
+//                ->order('username asc')
+//                ->sum('amount');
+//        }
 
-        $where = [
-            'isDelete' => 0
-        ];
 
         // 时间限制
 //        if (!empty($para['days']) && !empty($para['days2'])) {
@@ -205,30 +211,20 @@ class ReportManage extends Controller
 //        } else {
 //            $where['actionTime'] = ['between', [strtotime(date("Y-m-d")), time()]];
 //        }
-        $where['uid'] = ['in', $userStr];
-        $rechargeList = Db::table('gygy_member_recharge')
-            ->field('id,uid,actionTime,amount,account,username,state')
-            ->where($where)
-            ->order('username asc')
-            ->sum('amount');
+
 //        $total = $rechargeList->total();
-        $data = [];
-        dump($rechargeList);
-        die;
-        foreach ($rechargeList as $key => $cash) {
-            $rechargeList[$key] = array_merge($cash, $userData[$cash['uid']]);
+
+        foreach ($childs as $key => $value) {
+            $cuids = Members::where("FIND_IN_SET({$value->uid},parents)")->column('uid');
+            $data[$key] = [
+                'uid' => $value->uid,
+                'username' => $value->username,
+                'type' => $value->type,
+                'coin' => $value->coin,
+                'totalRecharge' => MemberRecharge::where('uid', 'in', $cuids)->where('state', 11)->where('actionTime', 'between', [$start, $end])->sum('amount'),
+                'totalCash' => MemberCash::where('uid', 'in', $cuids)->where('actionTime', 'between', [$start, $end])->sum('amount'),
+            ];
         }
-//        foreach ($childs as $key => $value) {
-//            $cuids = Members::where("FIND_IN_SET({$value->uid},parents)")->column('uid');
-//            $data[$key] = [
-//                'uid' => $value->uid,
-//                'username' => $value->username,
-//                'type' => $value->type,
-//                'coin' => $value->coin,
-//                'totalRecharge' => MemberRecharge::where('uid', 'in', $cuids)->where('state', 11)->where('actionTime', 'between', [$start, $end])->sum('amount'),
-//                'totalCash' => MemberCash::where('uid', 'in', $cuids)->where('actionTime', 'between', [$start, $end])->sum('amount'),
-//            ];
-//        }
 
         //   $data =  Db::table('gygy_members')->alias('m')
         //   ->where('m.parents', 'like', $uid.',%')
