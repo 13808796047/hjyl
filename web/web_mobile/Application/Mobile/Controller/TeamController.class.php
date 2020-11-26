@@ -28,10 +28,8 @@ class TeamController extends HomeController
     {
         $this->searchRechargeStat();
         if(!I('get.')) {
-            dump('111');
             $this->display('Team/recharge_stat');
         } else {
-            dump(222);
             die;
             $this->display('Team/recharge_stat_list');
         }
