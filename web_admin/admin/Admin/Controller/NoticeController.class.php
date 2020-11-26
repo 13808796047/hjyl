@@ -59,12 +59,12 @@ class NoticeController extends AdminController
     public function update()
     {
         if (IS_POST) {
-            $data['id'] = I('id', '', 'intval');
+//            $data['id'] = I('id', '', 'intval');
             $data['title'] = I('title');
             $data['content'] = I('content');
             $data['enable'] = I('enable', '1', 'intval');
             $data['addTime'] = time();
-            if (M('content')->where('id', $data['id'])->save($data))
+            if (M('content')->where('id=' . I('id', '', 'intval'))->save($data))
                 $this->success('更新成功', U('notice/index'));
             else
                 $this->error('更新失败');
