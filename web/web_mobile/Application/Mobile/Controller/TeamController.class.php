@@ -37,14 +37,15 @@ class TeamController extends HomeController
     {
         $para = I('get.');
         if(!empty($para['fromTime']) && !empty($para['toTime'])) {
-            $where['actionTime'] = ['between', [strtotime($para['fromTime'] . '00:00:00'), strtotime($para['toTime'] . " 23:59:59")]];
-        } elseif(!empty($para['days'])) {
+            $where['actionTime'] = ['between', [strtotime($para['fromTime'] . '00:00:00'), strtotime($para['toTime'] . "23:59:59")]];
+        } elseif(!empty($para['fromTime'])) {
             $where['actionTime'] = ['egt', strtotime($para['fromTime'])];
-        } elseif(!empty($para['days2'])) {
+        } elseif(!empty($para['toTime'])) {
             $where['actionTime'] = ['elt', strtotime($para['toTime'])];
         } else {
-            $where['actionTime'] = ['between', [strtotime(date("Y-m-d")), time()]];
+            $where['actionTime'] = ['between', [strtotime(date("Y-m-d"), time() . '00:00:00'), strtotime(date("Y-m-d"), time() . '23:59:59')]];
         }
+        dump($where);
 //        // 时间限制
 //        if($para['fromTime'] && $para['toTime']) {
 //            $where['actionTime'] = ['between', [strtotime($para['fromTime']), strtotime($para['toTime'])]];
@@ -76,7 +77,6 @@ class TeamController extends HomeController
                 'totalCash' => M('member_cash')->where($map)->where($where)->sum('amount'),
             ];
         }
-        dump($data);
         $this->assign('data', $data);
     }
 
