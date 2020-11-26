@@ -36,19 +36,27 @@ class TeamController extends HomeController
     public function searchRechargeStat()
     {
         $para = I('get.');
-
-        // 时间限制
-        if($para['fromTime'] && $para['toTime']) {
-            $where['actionTime'] = ['between', [strtotime($para['fromTime']), strtotime($para['toTime'])]];
-        } elseif($para['fromTime']) {
+        if(!empty($para['fromTime']) && !empty($para['toTime'])) {
+            $where['actionTime'] = ['between', [strtotime($para['fromTime'] . '00:00:00'), strtotime($para['toTime'] . " 23:59:59")]];
+        } elseif(!empty($para['days'])) {
             $where['actionTime'] = ['egt', strtotime($para['fromTime'])];
-        } elseif($para['toTime']) {
+        } elseif(!empty($para['days2'])) {
             $where['actionTime'] = ['elt', strtotime($para['toTime'])];
         } else {
-            if($GLOBALS['fromTime'] && $GLOBALS['toTime']) {
-                $where['actionTime'] = ['between', [$GLOBALS['fromTime'], $GLOBALS['toTime']]];
-            }
+            $where['actionTime'] = ['between', [strtotime(date("Y-m-d")), time()]];
         }
+//        // 时间限制
+//        if($para['fromTime'] && $para['toTime']) {
+//            $where['actionTime'] = ['between', [strtotime($para['fromTime']), strtotime($para['toTime'])]];
+//        } elseif($para['fromTime']) {
+//            $where['actionTime'] = ['egt', strtotime($para['fromTime'])];
+//        } elseif($para['toTime']) {
+//            $where['actionTime'] = ['elt', strtotime($para['toTime'])];
+//        } else {
+//            if($GLOBALS['fromTime'] && $GLOBALS['toTime']) {
+//                $where['actionTime'] = ['between', [$GLOBALS['fromTime'], $GLOBALS['toTime']]];
+//            }
+//        }
 
 
         isset($para['id']) ? $user = M('members')->get($para['id']) : $user = $this->user;
