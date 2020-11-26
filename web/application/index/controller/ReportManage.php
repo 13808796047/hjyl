@@ -396,7 +396,6 @@ class ReportManage extends Controller
                 $this->assign('data', []);
                 return;
             }
-            dump($para['username']);
             // 按用户名查找时
             // 只要符合用户名且是自己所有下级的都可查询
             // 用户名用模糊方式查询
@@ -441,7 +440,7 @@ class ReportManage extends Controller
         // 时间限制
         // 时间限制
         if(!empty($para['days']) && !empty($para['days2'])) {
-            $where['actionTime'] = ['between', [strtotime($para['days']), strtotime($para['days2'])]];
+            $where['actionTime'] = ['between', [strtotime($para['days'] . '00:00:00'), strtotime($para['days2'] . " 23:59:59")]];
         } elseif(!empty($para['days'])) {
             $where['actionTime'] = ['egt', strtotime($para['days'])];
         } elseif(!empty($para['days2'])) {
@@ -449,7 +448,14 @@ class ReportManage extends Controller
         } else {
             $where['actionTime'] = ['between', [strtotime(date("Y-m-d")), time()]];
         }
-
+//        if(isset($params['days']) && isset($params['days2'])) {
+//
+//            $start = strtotime($params['days'] . '00:00:00');
+//            $end = strtotime($params['days2'] . " 23:59:59");
+//        } else {
+//            $start = strtotime(date('Y-m-d 00:00:00', time()));
+//            $end = strtotime(date('Y-m-d 23:59:59', time()));
+//        }
         $where['uid'] = ['in', $userStr];
         $cashList = Db::table('gygy_member_recharge')
             ->field('id,uid,username,rechargeId,amount,rechargeAmount,mBankId,state,info,actionTime')
