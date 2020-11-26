@@ -195,6 +195,7 @@ class ReportManage extends Controller
 //        ->view('MemberCash','amount','MemberCash.uid=Members.uid','left')
 // ->field('sum(MemberCash.amount) totalCash')
 // ->select();
+        $this->assign('uid', $uid);
         $this->assign('days', $days);
         $this->assign('data', $data);
         return view('report_manage/recharge_stat');
