@@ -146,11 +146,15 @@ class ReportManage extends Controller
         $builder = new Members();
 //        $pwhere[] = ['exp', 'FIND_IN_SET(' . $uid . ',parents)'];
 //        $pwhere['isDelete'] = 0;
-        if (!empty($params['username'])) {
-            $builder->whereLike('username', $params['username']);
-            // $userBaseSql->whereLike('parents',$uid);
+        if (isset($_GET['username']) && $_GET['username'] != '') {
+            $where['username'] = ['like', strtolower(trim($_GET['username'])) . '%'];
+            $where[] = ['exp', 'FIND_IN_SET(' . $uid . ',parents)'];
+        } else {
+            $where['parentId'] = $uid;
         }
-        $childs = $builder->where('parentId', $uid)->select();
+
+
+        $childs = $builder->where($where)->select();
         if (isset($params['days']) && isset($params['days2'])) {
 
             $start = strtotime($params['days'] . '00:00:00');
@@ -172,29 +176,6 @@ class ReportManage extends Controller
                 'totalCash' => MemberCash::where('uid', 'in', $cuids)->where('actionTime', 'between', [$start, $end])->sum('amount'),
             ];
         }
-
-        //   $data =  Db::table('gygy_members')->alias('m')
-        //   ->where('m.parents', 'like', $uid.',%')
-        //    ->join('gygy_member_recharge r',"m.uid = r.uid and r.actionTime BETWEEN {$start} AND {$end}",'left')
-
-        //    ->join('gygy_member_cash c',"m.uid = c.uid and c.actionTime BETWEEN {$start} AND {$end}",'left')   
-
-        //    ->field('m.uid,m.username, m.type ,m.coin,sum(r.amount) as totalAmount ,sum(c.amount) as totalCashAmount')
-
-        //    ->select();
-        // $data = Db::view('Members','uid,username,coin,parents,type')
-
-        //             ->view('MemberRecharge','amount','MemberRecharge.uid=Members.uid','LEFT')
-        //             // ->view('MemberCash','amount','MemberCash.uid=Members.uid')
-
-        // ->field('sum(MemberRecharge.amount) totalRecharge ')
-        // ->where("FIND_IN_SET({$uid},parents)")
-        // ->select();
-//         $data2 = Db::view('Members','uid,username,parents')
-//         ->where('m.parents', 'like', $uid.',%')
-//        ->view('MemberCash','amount','MemberCash.uid=Members.uid','left')
-// ->field('sum(MemberCash.amount) totalCash')
-// ->select();
         $this->assign('uid', $uid);
         $this->assign('days', $days);
         $this->assign('data', $data);
