@@ -374,8 +374,7 @@ class ReportManage extends Controller
             $cur_day = strtotime(date('Y-m-d', time()));
             $days[$idx] = date("Y-m-d", $cur_day - (86400 * $idx));
         }
-        dump($days);
-        
+
         $para = $_GET;
         if(!isset($para['isquery'])) {
             $this->assign('data', []);
