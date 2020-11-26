@@ -59,17 +59,15 @@ class TeamController extends HomeController
 
         isset($para['uid']) ? $uid = $para['uid'] : $uid = $this->user['uid'];
         $builder = M('members')->where('parentId=' . $uid);
-        if ($para['username'] && $para['username'] != '用户名') {
-            // 按用户名查找时
-            // 只要符合用户名且是自己所有下级的都可查询
-            // 用户名用模糊方式查询
-            $where['username'] = ['like', "%" . I('username') . "%"];
-//            $where['parents'] = ['like', "%," . $this->user['uid'] . ",%"];
-            $builder->where($where);
+        if (isset($_GET['username']) && $_GET['username'] != '') {
+            $where['username'] = ['like', strtolower(trim($_GET['username'])) . '%'];
+            $where[] = ['exp', 'FIND_IN_SET(' . $uid . ',parents)'];
+        } else {
+            $where['parentId'] = $uid;
         }
 
 
-        $childs = $builder->select();
+        $childs = $builder->where($where)->select();
 
         $data = [];
         foreach ($childs as $key => $value) {
