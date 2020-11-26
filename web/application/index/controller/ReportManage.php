@@ -74,7 +74,7 @@ class ReportManage extends Controller
         $stauts = Params::getParams('kefuStatus')['kefuStatus'];
 
         View::share(['kefu' => $kefu, 'status' => $stauts]);
-        if(!empty(Session::get('userData'))) {
+        if (!empty(Session::get('userData'))) {
             $this->assign('play_lists', (new Game())->play_list);
             return view('index/login');
         } else {
@@ -98,14 +98,14 @@ class ReportManage extends Controller
     public function getUnderlingUIds($uid, $ids = '')
     {
         $back = Db('gygy_members')->field('uid')->where('parent_uid', $uid)->select();
-        if(!empty($back) && is_array($back)) {
-            foreach($back as $v) {
+        if (!empty($back) && is_array($back)) {
+            foreach ($back as $v) {
                 //防止当前人的ID重复去查询，形成恶性循环
-                if($v['id'] == $uid) {
+                if ($v['id'] == $uid) {
                     continue;
                 }
                 $back2 = Db('ns_member', '', false)->where('parent_uid', $v['uid'])->count('uid');
-                if($back2 > 0) {
+                if ($back2 > 0) {
                     $ids = $this->getUnderlingUIds($v['uid'], $ids);
                 } else {
                     $ids .= ',' . $v['id'];
@@ -122,13 +122,13 @@ class ReportManage extends Controller
     {
         //获取查询时间
         $days = [];
-        for($idx = 0; $idx < 32; $idx++) {
+        for ($idx = 0; $idx < 32; $idx++) {
             $cur_day = strtotime(date('Y-m-d', time()));
             $days[$idx] = date("Y-m-d", $cur_day - (86400 * $idx));
         }
         //    dump($request->param());
         $params = $request->param();
-        if(!isset($params['isquery']) && !isset($params['id'])) {
+        if (!isset($params['isquery']) && !isset($params['id'])) {
 //            $this->assign('liqTypeName', $this->liqTypeName);
 //            $this->assign('modeConfig', $this->modeConfig);
 //            $this->assign('total', 0);
@@ -141,14 +141,14 @@ class ReportManage extends Controller
             return view('report_manage/recharge_stat');
         }
 
-        isset($params['id']) ? $user = Members::get($params['id']) : $user = session('userData');
+        isset($params['id']) ? $uid = $params['id'] : $uid = session('userData')['uid'];
 
-        $builder = Members::where('parentId', $user['uid']);
-        if(!empty($params['username'])) {
+        $builder = new Members();
+        if (!empty($params['username'])) {
             $builder->where('username', $params['username']);
         }
-        $childs = $builder->select();
-        if(isset($params['days']) && isset($params['days2'])) {
+        $childs = $builder->where('parentId', $uid)->select();
+        if (isset($params['days']) && isset($params['days2'])) {
 
             $start = strtotime($params['days'] . '00:00:00');
             $end = strtotime($params['days2'] . " 23:59:59");
@@ -180,7 +180,7 @@ class ReportManage extends Controller
 //            ];
 //        });
         $data = [];
-        foreach($childs as $key => $value) {
+        foreach ($childs as $key => $value) {
             $cuids = Members::where("FIND_IN_SET({$value->uid},parents)")->column('uid');
             $data[$key] = [
                 'uid' => $value->uid,
@@ -224,13 +224,13 @@ class ReportManage extends Controller
         set_time_limit(0);
         //获取投注时间
         $days = [];
-        for($idx = 0; $idx < 5; $idx++) {
+        for ($idx = 0; $idx < 5; $idx++) {
             $cur_day = strtotime(date('Y-m-d', time()));
             $days[$idx] = date("Y-m-d", $cur_day - (86400 * $idx));
         }
 
         $para = $_GET;
-        if(!isset($para['isquery'])) {
+        if (!isset($para['isquery'])) {
             $this->assign('liqTypeName', $this->liqTypeName);
             $this->assign('modeConfig', $this->modeConfig);
             $this->assign('total', 0);
@@ -251,14 +251,14 @@ class ReportManage extends Controller
                 'c.uid,c.actionTime,c.liqType,c.extfield0,c.extfield1,c.coin,c.userCoin,m.uid,m.username'
             );
         // 彩种限制
-        if(!empty($lotteryid)) {
+        if (!empty($lotteryid)) {
             $baseSql->where('c.type', '=', $lotteryid);
         }
         // 用户名限制
         $pwhere[] = ['exp', 'FIND_IN_SET(' . $uid . ',m.parents)'];
         $pwhere['m.isDelete'] = 0;
-        if(isset($para['username']) && $para['username'] && $para['username'] != '用户名') {
-            if(mb_strlen($para['username']) > 20) {
+        if (isset($para['username']) && $para['username'] && $para['username'] != '用户名') {
+            if (mb_strlen($para['username']) > 20) {
                 $this->assign('data', []);
                 return;
             }
@@ -267,7 +267,7 @@ class ReportManage extends Controller
             // $baseSql->where('m.parents', 'like', "%$uid%");
 //            $baseSql->where($pwhere);
         }
-        if(!empty($para['user_select'])) {
+        if (!empty($para['user_select'])) {
             //用户类型限制
             switch ($para['user_select']) {
                 case 1:
@@ -284,39 +284,39 @@ class ReportManage extends Controller
                     break;
                 default:
                     //所有人
-                    $baseSql->where(function($query) use ($uid) {
+                    $baseSql->where(function ($query) use ($uid) {
                         $query->where($pwhere)->whereOr('m.uid', '=', $uid);
                     });
                     break;
             }
         } else {
-            $baseSql->where(function($query) use ($uid, $pwhere) {
+            $baseSql->where(function ($query) use ($uid, $pwhere) {
                 // $query->whereLike('m.parents', $uid)->whereOr('m.uid','=', $uid);
                 $query->where($pwhere)->whereOr('m.uid', '=', $uid);
             });
         }
         // 账变类型限制
-        if(!empty($para['ordertype'])) {
+        if (!empty($para['ordertype'])) {
             $baseSql->where('c.liqType', '=', $para['ordertype']);
-            if($para['ordertype'] == 2) {
+            if ($para['ordertype'] == 2) {
                 $baseSql->whereBetween('c.liqType', [2, 3]);
             }
         }
 
         // 模式限制
-        if(!empty($para['modes'])) {
-            if($para['modes'] == 1) {
+        if (!empty($para['modes'])) {
+            if ($para['modes'] == 1) {
                 $baseSql->where('b.mode', 2);
-            } elseif($para['modes'] == 2) {
+            } elseif ($para['modes'] == 2) {
                 $baseSql->where('b.mode', 0.2);
-            } elseif($para['modes'] == 3) {
+            } elseif ($para['modes'] == 3) {
                 $baseSql->where('b.mode', 0.02);
-            } elseif($para['modes'] == 4) {
+            } elseif ($para['modes'] == 4) {
                 $baseSql->where('b.mode', 0.002);
             }
         }
 
-        if(empty($para['days'])) {
+        if (empty($para['days'])) {
             $time = strtotime(date('Y-m-d'));
         } else {
             $time = strtotime($para['days']);
@@ -346,7 +346,7 @@ class ReportManage extends Controller
         $this->assign('days', $days);
         $this->assign('types_data', $this->types());
         $new_data = $data->toArray()['data'];
-        foreach($new_data as $ke => $v) {
+        foreach ($new_data as $ke => $v) {
             $bets = Bets::alias('b')->where('b.id', $v['extfield0'])
                 ->field('b.id,b.actionNo,b.mode,b.type,b.playedId,b.wjorderId,t.title as type_cn,p.name as played_name')
                 ->join("gygy_type t", "t.id=b.type")
@@ -370,13 +370,13 @@ class ReportManage extends Controller
     {
         //获取提现时间
         $days = [];
-        for($idx = 0; $idx < 5; $idx++) {
+        for ($idx = 0; $idx < 5; $idx++) {
             $cur_day = strtotime(date('Y-m-d', time()));
             $days[$idx] = date("Y-m-d", $cur_day - (86400 * $idx));
         }
 
         $para = $_GET;
-        if(!isset($para['isquery'])) {
+        if (!isset($para['isquery'])) {
             $this->assign('data', []);
             $this->assign('days', $days);
             $this->assign('total', 0);
@@ -391,8 +391,8 @@ class ReportManage extends Controller
         $pwhere[] = ['exp', 'FIND_IN_SET(' . $uid . ',parents)'];
         $pwhere['isDelete'] = 0;
         // 用户名限制
-        if(isset($para['username']) && $para['username'] && $para['username'] != '用户名') {
-            if(mb_strlen($para['username']) > 20) {
+        if (isset($para['username']) && $para['username'] && $para['username'] != '用户名') {
+            if (mb_strlen($para['username']) > 20) {
                 $this->assign('data', []);
                 return;
             }
@@ -421,7 +421,7 @@ class ReportManage extends Controller
                     break;
                 default:
                     //所有人
-                    $userBaseSql->where(function($query) use ($uid, $pwhere) {
+                    $userBaseSql->where(function ($query) use ($uid, $pwhere) {
                         $query->where(/*'parents', 'like', "%$uid%"*/ $pwhere)->whereOr('uid', '=', $uid);
                     });
                     break;
@@ -430,7 +430,7 @@ class ReportManage extends Controller
         $userList = $userBaseSql->select();
         $userData = [];
         $userStr = "";
-        foreach($userList as $user) {
+        foreach ($userList as $user) {
             $userStr = $userStr . $user['uid'] . ',';
             $userData[$user['uid']] = $user;
         }
@@ -439,11 +439,11 @@ class ReportManage extends Controller
 
         // 时间限制
         // 时间限制
-        if(!empty($para['days']) && !empty($para['days2'])) {
+        if (!empty($para['days']) && !empty($para['days2'])) {
             $where['actionTime'] = ['between', [strtotime($para['days'] . '00:00:00'), strtotime($para['days2'] . " 23:59:59")]];
-        } elseif(!empty($para['days'])) {
+        } elseif (!empty($para['days'])) {
             $where['actionTime'] = ['egt', strtotime($para['days'])];
-        } elseif(!empty($para['days2'])) {
+        } elseif (!empty($para['days2'])) {
             $where['actionTime'] = ['elt', strtotime($para['days2'])];
         } else {
             $where['actionTime'] = ['between', [strtotime(date("Y-m-d")), time()]];
@@ -464,7 +464,7 @@ class ReportManage extends Controller
             ->order('username asc')
             ->paginate($pageSize, false, ['query' => $para]);
         $total = $cashList->total();
-        foreach($cashList as $key => $cash) {
+        foreach ($cashList as $key => $cash) {
             $cashList[$key] = array_merge($cash, $userData[$cash['uid']]);
         }
 //var_dump(Db::table('gygy_member_recharge')->getLastSql());exit;
@@ -482,13 +482,13 @@ class ReportManage extends Controller
     {
         //获取提现时间
         $days = [];
-        for($idx = 0; $idx < 5; $idx++) {
+        for ($idx = 0; $idx < 5; $idx++) {
             $cur_day = strtotime(date('Y-m-d', time()));
             $days[$idx] = date("Y-m-d", $cur_day - (86400 * $idx));
         }
 
         $para = $request->get();
-        if(!isset($para['isquery'])) {
+        if (!isset($para['isquery'])) {
             $this->assign('bankData', []);
             $this->assign('data', []);
             $this->assign('days', $days);
@@ -504,8 +504,8 @@ class ReportManage extends Controller
         $pwhere['isDelete'] = 0;
         // 用户名限制
         $userBaseSql = Db::table('gygy_members')->field('uid,username');
-        if(isset($para['username']) && $para['username'] && $para['username'] != '用户名') {
-            if(mb_strlen($para['username']) > 20) {
+        if (isset($para['username']) && $para['username'] && $para['username'] != '用户名') {
+            if (mb_strlen($para['username']) > 20) {
                 $this->assign('data', []);
                 return;
             }
@@ -533,7 +533,7 @@ class ReportManage extends Controller
                     break;
                 default:
                     //所有人
-                    $userBaseSql->where(function($query) use ($uid, $pwhere) {
+                    $userBaseSql->where(function ($query) use ($uid, $pwhere) {
                         $query->where(/*'parents', 'like', "%$uid%"*/ $pwhere)->whereOr('uid', '=', $uid);
                     });
                     break;
@@ -543,7 +543,7 @@ class ReportManage extends Controller
         $userList = $userBaseSql->select();
         $userData = [];
         $userStr = '';
-        foreach($userList as $user) {
+        foreach ($userList as $user) {
             $userStr = $userStr . $user['uid'] . ',';
             $userData[$user['uid']] = $user;
         }
@@ -553,11 +553,11 @@ class ReportManage extends Controller
         ];
 
         // 时间限制
-        if(!empty($para['days']) && !empty($para['days2'])) {
+        if (!empty($para['days']) && !empty($para['days2'])) {
             $where['actionTime'] = ['between', [strtotime($para['days']), strtotime($para['days2'])]];
-        } elseif(!empty($para['days'])) {
+        } elseif (!empty($para['days'])) {
             $where['actionTime'] = ['egt', strtotime($para['days'])];
-        } elseif(!empty($para['days2'])) {
+        } elseif (!empty($para['days2'])) {
             $where['actionTime'] = ['elt', strtotime($para['days2'])];
         } else {
             $where['actionTime'] = ['between', [strtotime(date("Y-m-d")), time()]];
@@ -578,7 +578,7 @@ class ReportManage extends Controller
 //        var_dump(Db::table('gygy_member_cash')->getLastSql());exit;
         $bankList = Db::table('gygy_bank_list')->field('id,name')->where(['isDelete' => 0])->order('id')->select();
         $bankData = [];
-        foreach($bankList as $bank) {
+        foreach ($bankList as $bank) {
             $bankData[$bank['id']] = $bank;
         }
         $this->assign('bankData', $bankData);
@@ -596,14 +596,14 @@ class ReportManage extends Controller
     {
         //获取查询时间
         $days = [];
-        for($idx = 1; $idx < 35; $idx++) {
+        for ($idx = 1; $idx < 35; $idx++) {
             $cur_day = strtotime(date('Y-m-d', time()));
             $days[$idx] = date("Y-m-d", $cur_day - (86400 * $idx));
         }
 
 
         $para = $request->get();
-        if(!isset($para['isquery'])) {
+        if (!isset($para['isquery'])) {
             $all['coin'] = 0.00;
             $all['rechargeAmount'] = 0.00;
             $all['cashAmount'] = 0.00;
@@ -621,17 +621,17 @@ class ReportManage extends Controller
         }
         $pageSize = isset($para['PageSize']) ? $para['PageSize'] : 20;
         $uid = session('userData.uid');
-        if(isset($para['date2'])) {
+        if (isset($para['date2'])) {
             $toTime = strtotime($para['date2']);
         } else {
             $toTime = strtotime(date('Ymd', time()));
         }
-        if(isset($para['date1'])) {
+        if (isset($para['date1'])) {
             $fromTime = strtotime($para['date1']);
         } else {
             $fromTime = strtotime(date('Ymd', time()));
         }
-        if(isset($para['date0']) && $para['date0'] == 1) {
+        if (isset($para['date0']) && $para['date0'] == 1) {
             $fromTime = strtotime(date('Ymd', time()));
             $toTime = strtotime(date('Ymd', time()));
         }
@@ -703,7 +703,7 @@ class ReportManage extends Controller
         $all['brokerageAmount'] = 0.00;
         $all['zyk'] = 0.00;
         $myRecord = [];
-        foreach($data as $item => $sub) {
+        foreach ($data as $item => $sub) {
             $all['coin'] += $sub['coin'];
             $all['rechargeAmount'] += $sub['rechargeAmount'];
             $all['cashAmount'] += $sub['cashAmount'];
