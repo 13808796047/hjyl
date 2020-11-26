@@ -73,14 +73,15 @@
           <td>{$vo.amount}</td>
           <td>{$vo.rechargeAmount}</td>
           <td>
-            {switch name="$vo.state" }
-            {case value="0" break="1"}用户申请{/case}
-            {case value="1" break="1"}成功到账{/case}
-            {case value="2" break="1"}成功到账{/case}
-            {case value="9" break="1"}成功到账{/case}
-            {case value="11" break="1"}入账成功{/case}
-            {default /}充值失败
-            {/switch}
+            {$vo.state==11?'入账成功':''}
+            <!--            {switch name="$vo.state" }-->
+            <!--            {case value="0" break="1"}用户申请{/case}-->
+            <!--            {case value="1" break="1"}成功到账{/case}-->
+            <!--            {case value="2" break="1"}成功到账{/case}-->
+            <!--            {case value="9" break="1"}成功到账{/case}-->
+            <!--            {case value="11" break="1"}入账成功{/case}-->
+            <!--            {default /}充值失败-->
+            <!--            {/switch}-->
           </td>
           <td>{$vo.info}</td>
         </tr>
