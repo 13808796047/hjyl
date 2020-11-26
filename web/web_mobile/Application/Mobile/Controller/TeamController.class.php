@@ -55,17 +55,19 @@ class TeamController extends HomeController
                 $where['actionTime'] = ['between', [$GLOBALS['fromTime'], $GLOBALS['toTime']]];
             }
         }
+        isset($para['id']) ? $user = M('members')->get($para['id']) : $user = $this->user;
+        $builder = M('members')->where('parentId=' . $user['uid']);
         if($para['username'] && $para['username'] != '用户名') {
             // 按用户名查找时
             // 只要符合用户名且是自己所有下级的都可查询
             // 用户名用模糊方式查询
             $where['username'] = ['like', "%" . I('username') . "%"];
 //            $where['parents'] = ['like', "%," . $this->user['uid'] . ",%"];
+            $builder->where($where);
         }
 
-        isset($para['id']) ? $user = M('members')->get($para['id']) : $user = $this->user;
 
-        $childs = M('members')->where('parentId=' . $user['uid'])->where($where)->select();
+        $childs = $builder->select();
 
         $data = [];
         foreach($childs as $key => $value) {
