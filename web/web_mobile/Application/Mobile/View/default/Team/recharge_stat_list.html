@@ -8,7 +8,7 @@
                 </p>
                 <p>
                     用户名：<a
-                        href="{:U('team/searchstat',['uid'=>$vo['uid']])}">{$vo.username}</a>
+                        href="{:U('team/searchstat',['uid'=>$vo['uid'],'fromTime'=>$GLOBALS['fromTime'],'toTime'=>$GLOBALS['toTime']])}">{$vo.username}</a>
                 </p>
                 <p>
                     充值：
