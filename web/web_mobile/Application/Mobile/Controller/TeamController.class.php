@@ -36,7 +36,6 @@ class TeamController extends HomeController
     public function searchRechargeStat()
     {
         $para = I('get.');
-        dump($para);
         if($para['fromTime'] && $para['toTime']) {
             $where['actionTime'] = ['between', [strtotime($para['fromTime']), strtotime($para['toTime'])]];
         } elseif($para['fromTime']) {
@@ -48,19 +47,6 @@ class TeamController extends HomeController
                 $where['actionTime'] = ['between', [$GLOBALS['fromTime'], $GLOBALS['toTime']]];
             }
         }
-        dump($where);
-//        // 时间限制
-//        if($para['fromTime'] && $para['toTime']) {
-//            $where['actionTime'] = ['between', [strtotime($para['fromTime']), strtotime($para['toTime'])]];
-//        } elseif($para['fromTime']) {
-//            $where['actionTime'] = ['egt', strtotime($para['fromTime'])];
-//        } elseif($para['toTime']) {
-//            $where['actionTime'] = ['elt', strtotime($para['toTime'])];
-//        } else {
-//            if($GLOBALS['fromTime'] && $GLOBALS['toTime']) {
-//                $where['actionTime'] = ['between', [$GLOBALS['fromTime'], $GLOBALS['toTime']]];
-//            }
-//        }
 
 
         isset($para['id']) ? $user = M('members')->get($para['id']) : $user = $this->user;
