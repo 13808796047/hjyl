@@ -44,7 +44,6 @@ class TeamController extends HomeController
     public function searchRecStat()
     {
         $para = I('get.');
-        dump($para);
         if ($para['fromTime'] && $para['toTime']) {
             $where['actionTime'] = ['between', [strtotime($para['fromTime']), strtotime($para['toTime'])]];
         } elseif ($para['fromTime']) {
