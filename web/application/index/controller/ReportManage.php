@@ -210,7 +210,7 @@ class ReportManage extends Controller
             ->field('id,uid,actionTime,amount,account,username,state')
             ->where($where)
             ->order('username asc')
-            ->paginate($pageSize, false, ['query' => $para]);
+            ->sum('amount');
         $total = $rechargeList->total();
         $data = [];
         dump($rechargeList);
