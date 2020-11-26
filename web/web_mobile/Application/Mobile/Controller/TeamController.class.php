@@ -51,7 +51,7 @@ class TeamController extends HomeController
 
         isset($para['id']) ? $user = M('members')->get($para['id']) : $user = $this->user;
 
-        $childs = M('members')->where(['parentId' => $user['uid']])->select();
+        $childs = M('members')->where('parentId=' . $user['uid'])->select();
 
         $data = [];
         foreach($childs as $key => $value) {
