@@ -172,8 +172,14 @@ class ReportManage extends Controller
                 'username' => $value->username,
                 'type' => $value->type,
                 'coin' => $value->coin,
-                'totalRecharge' => MemberRecharge::where('uid', 'in', $cuids)->where('state', 11)->where('actionTime', 'between', [$start, $end])->sum('amount'),
-                'totalCash' => MemberCash::where('uid', 'in', $cuids)->where('actionTime', 'between', [$start, $end])->sum('amount'),
+                'totalRecharge' => MemberRecharge::where('uid', 'in', $cuids)
+                    ->where('state', 11)
+                    ->where('actionTime', 'between', [$start, $end])
+                    ->sum('amount'),
+                'totalCash' => MemberCash::where('uid', 'in', $cuids)
+                    ->where('state', 4)
+                    ->where('actionTime', 'between', [$start, $end])
+                    ->sum('amount'),
             ];
         }
         $this->assign('uid', $uid);
