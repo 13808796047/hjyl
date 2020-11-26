@@ -68,7 +68,6 @@ class TeamController extends HomeController
 
 
         $childs = $builder->where($where)->select();
-        dump($childs);
         $data = [];
         foreach ($childs as $key => $value) {
             $cuids = M('members')->where("FIND_IN_SET({$value['uid']},parents)")->getField('uid', true);
