@@ -122,7 +122,7 @@ class ReportManage extends Controller
     {
         //获取查询时间
         $days = [];
-        for($idx = 1; $idx < 32; $idx++) {
+        for($idx = 0; $idx < 32; $idx++) {
             $cur_day = strtotime(date('Y-m-d', time()));
             $days[$idx] = date("Y-m-d", $cur_day - (86400 * $idx));
         }
