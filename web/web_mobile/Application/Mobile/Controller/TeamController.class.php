@@ -32,6 +32,7 @@ class TeamController extends HomeController
             $this->display('Team/recharge_stat');
         } else {
             dump(222);
+            die;
             $this->display('Team/recharge_stat_list');
         }
 
