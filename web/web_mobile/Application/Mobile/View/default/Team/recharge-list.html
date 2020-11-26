@@ -19,7 +19,7 @@
 					充值银行：<?=$bankData[$vo['mBankId']]['name']?>
 				</p>
 				<p>
-					状态：<?=$this->iff($vo['state'], '充值成功', '<span style="color:#653809">正在处理</span>')?>
+					状态：<?=$this->iff($vo['state']==11, '入账成功', '<span style="color:#653809">正在处理</span>')?>
 				</p>
 				<p>
 					备注：{$vo.info}

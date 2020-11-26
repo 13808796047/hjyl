@@ -1053,7 +1053,13 @@ class TeamController extends HomeController
         }
 
         $where['uid'] = ['in', $userStr];
-        $cashList = M('member_recharge')->field('id,uid,username,rechargeId,amount,rechargeAmount,mBankId,state,info,actionTime')->where($where)->order('id desc')->select();
+        $condition['state'] = 11;
+        $cashList = M('member_recharge')
+            ->field('id,uid,username,rechargeId,amount,rechargeAmount,mBankId,state,info,actionTime')
+            ->where($where)
+            ->where($condition)
+            ->order('id desc')
+            ->select();
 
         $i = 0;
         foreach($cashList as $cash) {
