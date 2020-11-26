@@ -36,7 +36,6 @@ class TeamController extends HomeController
     public function searchRechargeStat()
     {
         $para = I('get.');
-        dump($para);
         if($para['fromTime'] && $para['toTime']) {
             $where['actionTime'] = ['between', [strtotime($para['fromTime']), strtotime($para['toTime'])]];
         } elseif($para['fromTime']) {
@@ -67,6 +66,7 @@ class TeamController extends HomeController
                 'totalCash' => M('member_cash')->where($map)->where($where)->sum('amount'),
             ];
         }
+        dump($data);
         $this->assign('data', $data);
     }
 
