@@ -10,7 +10,12 @@
           用户名：<a href="{:U('team/rechargeStat?id='.$vo['uid'])}">{$vo.username}</a>
         </p>
         <p>
-          充值：<?=$this->iff($vo.totalRecharge, $vo.totalRecharge, 0)?>
+          充值：
+          <empty name="vo.totalRecharge">
+            name为空
+            <else/>
+            name不为空
+          </empty>
         </p>
         <p>
           提现：<?=$this->iff($vo.totalCash, $vo.totalCash, 0)?>
