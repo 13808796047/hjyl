@@ -26,7 +26,7 @@ class TeamController extends HomeController
 
     public function rechargestat()
     {
-        $this->searchRechargeStat();
+        $this->searchRechargestat();
         if(!I('get.')) {
             $this->display('Team/recharge_stat');
         } else {
@@ -36,7 +36,13 @@ class TeamController extends HomeController
 
     }
 
-    public function searchRechargeStat()
+    public final function searchRechargeStat()
+    {
+        $this->searchRecStat();
+        $this->display('Team/recharge-list');
+    }
+
+    public function searchRecStat()
     {
         $para = I('get.');
         if($para['fromTime'] && $para['toTime']) {
