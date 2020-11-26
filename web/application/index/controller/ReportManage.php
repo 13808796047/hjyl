@@ -159,60 +159,7 @@ class ReportManage extends Controller
             $start = strtotime(date('Y-m-d 00:00:00', time()));
             $end = strtotime(date('Y-m-d 23:59:59', time()));
         }
-//        // 时间限制
-//        if(!empty($para['days']) && !empty($para['days2'])) {
-//            $where['actionTime'] = ['between', [strtotime($para['days']), strtotime($para['days2'] . " 23:59:59")]];
-//        } elseif(!empty($para['days'])) {
-//            $where['actionTime'] = ['egt', strtotime($para['days'])];
-//        } elseif(!empty($para['days2'])) {
-//            $where['actionTime'] = ['elt', strtotime($para['days2'] . " 23:59:59")];
-//        } else {
-//            $where['actionTime'] = ['between', [strtotime(date("Y-m-d")), time()]];
-//        }
 
-
-//        dump($childs->select());
-//        $data = $childs->select()->each(function($value) use ($cuids) {
-//            return [
-//                'uid' => $value->uid,
-//                'username' => $value->username,
-//                'type' => $value->type,
-//                'coin' => $value->coin,
-//                'totalRecharge' => MemberRecharge::where('uid', 'in', $cuids)->sum('amount'),
-//                'totalCash' => MemberCash::where('uid', 'in', $cuids)->sum('amount'),
-//            ];
-//        });
-//        $userList = $builder->select();
-//        $userData = [];
-//        $userStr = '';
-//        $data = [];
-//        foreach ($userList as $user) {
-//            $userStr = $userStr . $user['uid'] . ',';
-//            $userData[$user['uid']] = $user;
-//            $where = [
-//                'isDelete' => 0
-//            ];
-//            $where['uid'] = ['in', $userStr];
-//            $rechargeList = Db::table('gygy_member_recharge')
-//                ->field('id,uid,actionTime,amount,account,username,state')
-//                ->where($where)
-//                ->order('username asc')
-//                ->sum('amount');
-//        }
-
-
-        // 时间限制
-//        if (!empty($para['days']) && !empty($para['days2'])) {
-//            $where['actionTime'] = ['between', [strtotime($para['days']), strtotime($para['days2'])]];
-//        } elseif (!empty($para['days'])) {
-//            $where['actionTime'] = ['egt', strtotime($para['days'])];
-//        } elseif (!empty($para['days2'])) {
-//            $where['actionTime'] = ['elt', strtotime($para['days2'])];
-//        } else {
-//            $where['actionTime'] = ['between', [strtotime(date("Y-m-d")), time()]];
-//        }
-
-//        $total = $rechargeList->total();
         $data = [];
         foreach ($childs as $key => $value) {
             $cuids = Members::where("FIND_IN_SET({$value->uid},parents)")->column('uid');
