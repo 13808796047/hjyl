@@ -58,7 +58,6 @@ class TeamController extends HomeController
         }
 
         isset($para['uid']) ? $uid = $para['uid'] : $uid = $this->user['uid'];
-        dump($uid);
         $builder = M('members')->where('parentId=' . $uid);
         if ($para['username'] && $para['username'] != '用户名') {
             // 按用户名查找时
