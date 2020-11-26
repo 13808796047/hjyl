@@ -368,7 +368,7 @@ class ReportManage extends Controller
 
     public function getRechargeList(Request $request)
     {
-        //获取充值时间
+        //获取提现时间
         $days = [];
         for($idx = 0; $idx < 5; $idx++) {
             $cur_day = strtotime(date('Y-m-d', time()));
@@ -438,12 +438,13 @@ class ReportManage extends Controller
         $where = [];
 
         // 时间限制
+        // 时间限制
         if(!empty($para['days']) && !empty($para['days2'])) {
-            $where['actionTime'] = ['between', [strtotime($para['days']), strtotime($para['days2'] . " 23:59:59")]];
+            $where['actionTime'] = ['between', [strtotime($para['days']), strtotime($para['days2'])]];
         } elseif(!empty($para['days'])) {
             $where['actionTime'] = ['egt', strtotime($para['days'])];
         } elseif(!empty($para['days2'])) {
-            $where['actionTime'] = ['elt', strtotime($para['days2'] . " 23:59:59")];
+            $where['actionTime'] = ['elt', strtotime($para['days2'])];
         } else {
             $where['actionTime'] = ['between', [strtotime(date("Y-m-d")), time()]];
         }
@@ -452,6 +453,7 @@ class ReportManage extends Controller
         $cashList = Db::table('gygy_member_recharge')
             ->field('id,uid,username,rechargeId,amount,rechargeAmount,mBankId,state,info,actionTime')
             ->where($where)
+            ->where('state', 11)
             ->order('username asc')
             ->paginate($pageSize, false, ['query' => $para]);
         $total = $cashList->total();
