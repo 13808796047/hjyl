@@ -211,7 +211,7 @@ class ReportManage extends Controller
             ->where($where)
             ->order('username asc')
             ->sum('amount');
-        $total = $rechargeList->total();
+//        $total = $rechargeList->total();
         $data = [];
         dump($rechargeList);
         die;
