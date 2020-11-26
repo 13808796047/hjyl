@@ -213,7 +213,7 @@ class ReportManage extends Controller
 //        }
 
 //        $total = $rechargeList->total();
-
+        $data = [];
         foreach ($childs as $key => $value) {
             $cuids = Members::where("FIND_IN_SET({$value->uid},parents)")->column('uid');
             $data[$key] = [
