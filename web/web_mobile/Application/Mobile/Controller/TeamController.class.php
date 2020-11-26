@@ -45,17 +45,7 @@ class TeamController extends HomeController
     public function searchstat()
     {
         $para = I('get.');
-        if ($para['fromTime'] && $para['toTime']) {
-            $where['actionTime'] = ['between', [strtotime($para['fromTime']), strtotime($para['toTime'])]];
-        } elseif ($para['fromTime']) {
-            $where['actionTime'] = ['egt', strtotime($para['fromTime'])];
-        } elseif ($para['toTime']) {
-            $where['actionTime'] = ['elt', strtotime($para['toTime'])];
-        } else {
-            if ($GLOBALS['fromTime'] && $GLOBALS['toTime']) {
-                $where['actionTime'] = ['between', [$GLOBALS['fromTime'], $GLOBALS['toTime']]];
-            }
-        }
+
 
         isset($para['uid']) ? $uid = $para['uid'] : $uid = $this->user['uid'];
         $builder = M('members');
@@ -68,6 +58,17 @@ class TeamController extends HomeController
 
 
         $childs = $builder->where($where)->select();
+        if ($para['fromTime'] && $para['toTime']) {
+            $where['actionTime'] = ['between', [strtotime($para['fromTime']), strtotime($para['toTime'])]];
+        } elseif ($para['fromTime']) {
+            $where['actionTime'] = ['egt', strtotime($para['fromTime'])];
+        } elseif ($para['toTime']) {
+            $where['actionTime'] = ['elt', strtotime($para['toTime'])];
+        } else {
+            if ($GLOBALS['fromTime'] && $GLOBALS['toTime']) {
+                $where['actionTime'] = ['between', [$GLOBALS['fromTime'], $GLOBALS['toTime']]];
+            }
+        }
         $data = [];
         foreach ($childs as $key => $value) {
             $cuids = M('members')->where("FIND_IN_SET({$value['uid']},parents)")->getField('uid', true);
