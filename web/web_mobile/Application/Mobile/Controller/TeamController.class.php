@@ -60,7 +60,6 @@ class TeamController extends HomeController
         isset($para['uid']) ? $uid = $para['uid'] : $uid = $this->user['uid'];
         $builder = M('members');
         if (isset($_GET['username']) && $_GET['username'] != '') {
-            dump($_GET['username']);
             $where['username'] = ['like', strtolower(trim($_GET['username'])) . '%'];
             $where[] = ['exp', 'FIND_IN_SET(' . $uid . ',parents)'];
         } else {
@@ -69,7 +68,7 @@ class TeamController extends HomeController
 
 
         $childs = $builder->where($where)->select();
-
+        dump($childs);
         $data = [];
         foreach ($childs as $key => $value) {
             $cuids = M('members')->where("FIND_IN_SET({$value['uid']},parents)")->getField('uid', true);
