@@ -182,21 +182,12 @@
       }
 
       var game = {
-          type: < ? = json_encode($type) ?
-      >,
-      played: <
-          ? = json_encode($played) ?
-      >,
-      groupId: <
-          ? = json_encode($groupId) ?
-      >
+          type:<? = json_encode($type) ?>,
+      played: <? = json_encode($played) ?>,
+      groupId: <? = json_encode($groupId) ?>
       },
-      user = "<?=$_SESSION['user']['username']?>",
-          aflag =
-      <
-          ? = json_encode($$_SESSION['user']['admin'] == 1) ?
-      >
-      ;
+      user = "<?=$_SESSION['user']['username']?>", aflag =
+      <?=json_encode($$_SESSION['user']['admin'] == 1) ?>;
   </script>
   <script type="text/javascript" src="__JS__/game.js?v=g5.0&time=<?=time()?>"></script>
   <script type="text/javascript" src="__JS__/function.js?v=f5.0&time=<?=time()?>"></script>
