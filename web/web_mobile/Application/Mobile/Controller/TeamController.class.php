@@ -431,15 +431,15 @@ class TeamController extends HomeController
 
     public final function memberSearch()
     {
-        /*if(I('username') && I('username')!='用户名'){
+        if (I('username') && I('username') != '用户名') {
             // 按用户名查找时
             // 只要符合用户名且是自己所有下级的都可查询
             // 用户名用模糊方式查询
-            $where['username'] = array('like',"%".I('username')."%");
-            $where['parents'] = array('like',"%,".$this->user['uid'].",%");
+            $where['username'] = array('like', "%" . I('username') . "%");
+            $where['parents'] = array('like', "%," . $this->user['uid'] . ",%");
 
-        }else{
-            switch(I('utype')){
+        } else {
+            switch (I('utype')) {
                 case 1:
                     // 我自己
                     $where['uid'] = $this->user['uid'];
@@ -447,23 +447,23 @@ class TeamController extends HomeController
                 case 2:
                     // 直属下级
                     $uid = $this->user['uid'];
-                    if(I('uid')) {
+                    if (I('uid')) {
                         $uid = I('uid');
                     }
                     $where['parentId'] = $uid;
                     break;
                 case 3:
                     // 所有下级
-                    $where['parents'] = array('like',"%".$this->user['uid'].",%");
+                    $where['parents'] = array('like', "%" . $this->user['uid'] . ",%");
                     break;
                 default:
                     //所有人
-                    $where['parents'] = array('like',"%,".$this->user['uid'].",%");
+                    $where['parents'] = array('like', "%," . $this->user['uid'] . ",%");
                     $where['uid'] = $this->user['uid'];
                     $where['_logic'] = 'or';
                     break;
             }
-        }*/
+        }
 
         $uid = $this->user['uid'];
         if (I('uid')) {
