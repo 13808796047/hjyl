@@ -142,7 +142,8 @@
       $(function () {
           //开奖倒计时
 		  setTimeout(gameKanJiangDataC, 1000, <?=$diffTime ?>);
-      <?php if(!$kjHao) {?> loadKjData();<?php}?>});
+      <?php if(!$kjHao){ ?>loadKjData();<?php }?>
+});
 
       function showGroup() {
           $('#played').css({
