@@ -283,7 +283,8 @@
       </tr>
       <tr>
         <td>
-          <button id='form-submit' {$bank?'':disabled} class="btn btn-info btn-block">确定</button>
+          <button id='form-submit' {$bank?
+          '':disabled} class="btn btn-info btn-block">确定</button>
         </td>
         <td></td>
       </tr>
@@ -395,6 +396,14 @@
                         });
 
                         timeCountDown(data.data, $('#form-submit'))
+                    }
+                    if (data.code == 3) {
+                        swal({
+                            title: "提示!",
+                            text: data.msg,
+                            icon: "error",
+                            button: "确定",
+                        });
                     }
                 },
 
