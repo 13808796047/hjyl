@@ -64,8 +64,8 @@ class Recharge extends Controller
     {
         $this->user = Session::get('userData');
         $count = MemberRecharge::where(['uid' => $this->user->uid, 'state' => 10])->order('id desc')->limit(5)->count();
-        $fromTime = strtotime(date('Y-m-d ', $this->time) . $this->settings['cashFromTime'] . ':00');
-        $toTime = strtotime(date('Y-m-d ', $this->time) . $this->settings['cashToTime'] . ':00');
+        $fromTime = strtotime(date('Y-m-d ', $this->time) . $this->settings['rechargeFromTime'] . ':00');
+        $toTime = strtotime(date('Y-m-d ', $this->time) . $this->settings['rechargeToTime'] . ':00');
         //if($toTime<$baseTime) $toTime.=24*3600;
         if(($fromTime > $toTime && $this->time < $fromTime && $this->time > $toTime)
             || ($fromTime < $toTime && ($this->time < $fromTime || $this->time > $toTime))
