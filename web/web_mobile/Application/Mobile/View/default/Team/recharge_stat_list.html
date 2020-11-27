@@ -1,42 +1,43 @@
 <ul class="w-goodsList w-goodsList-l m-user-goodsList" data-pro="list">
-  <php>foreach($data as $vo){</php>
-  <li id="pro-view-8" class="w-goodsList-item">
-    <div class="w-goods w-goods-l w-goods-ing m-user-goods">
-      <div class="w-goods-info">
-        <p>
-          类型： {$vo['type']?'代理':'会员'}
-        </p>
-        <p>
-          用户名：<a href="{:U('team/rechargeStatList',['uid'=>$vo['uid']])}">{$vo.username}</a>
-        </p>
-        <p>
-          充值：
-          <empty name="vo.totalRecharge">
-            0
-            <else/>
-            {$vo.totalRecharge}
-          </empty>
-        </p>
-        <p>
-          提现：
-          <empty name="vo.totalCash">
-            0
-            <else/>
-            {$vo.totalCash}
-          </empty>
-        </p>
-        <p>
-          余额：{$vo.coin}
-        </p>
-        <!--                <div class="m-user-goods-my">-->
-        <!--                    <a class="link" href="javascript:void(0);" data-pro="mycode" data-data="{$vo.actionData}" url="{:U('record/betInfo?id='.$vo['id'])}">查看详情</a>-->
-        <!--                </div>-->
-      </div>
-    </div>
-  </li>
-  <php>} if(!$data) {</php>
-  <div style="text-align:center">当前条件下没有记录，请更改条件后搜索</div>
-  <php>}</php>
+    <php>foreach($data as $vo){</php>
+    <li id="pro-view-8" class="w-goodsList-item">
+        <div class="w-goods w-goods-l w-goods-ing m-user-goods">
+            <div class="w-goods-info">
+                <p>
+                    类型： {$vo['type']?'代理':'会员'}
+                </p>
+                <p>
+                    用户名：<a
+                        href="{:U('team/searchstat',['uid'=>$vo['uid'],'fromTime'=>$GLOBALS['fromTime'],'toTime'=>$GLOBALS['toTime']])}">{$vo.username}</a>
+                </p>
+                <p>
+                    充值：
+                    <empty name="vo.totalRecharge">
+                        0
+                        <else/>
+                        {$vo.totalRecharge}
+                    </empty>
+                </p>
+                <p>
+                    提现：
+                    <empty name="vo.totalCash">
+                        0
+                        <else/>
+                        {$vo.totalCash}
+                    </empty>
+                </p>
+                <p>
+                    余额：{$vo.coin}
+                </p>
+                <!--                <div class="m-user-goods-my">-->
+                <!--                    <a class="link" href="javascript:void(0);" data-pro="mycode" data-data="{$vo.actionData}" url="{:U('record/betInfo?id='.$vo['id'])}">查看详情</a>-->
+                <!--                </div>-->
+            </div>
+        </div>
+    </li>
+    <php>} if(!$data) {</php>
+    <div style="text-align:center">当前条件下没有记录，请更改条件后搜索</div>
+    <php>}</php>
 </ul>
 <!--<div class="page">-->
 <!--    {$_page}-->
