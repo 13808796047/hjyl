@@ -70,7 +70,7 @@ class Recharge extends Controller
         if(($fromTime > $toTime && $this->time < $fromTime && $this->time > $toTime)
             || ($fromTime < $toTime && ($this->time < $fromTime || $this->time > $toTime))
         ) {
-            return json(["code" => 3, "msg" => "提现时间：从" . $this->settings['rechargeFromTime'] . "到" . $this->settings['rechargeToTime'], "data" => '']);
+            return json(["code" => 3, "msg" => "充值时间：从" . $this->settings['rechargeFromTime'] . "到" . $this->settings['rechargeToTime'], "data" => '']);
 //            $this->error("提现时间：从" . $this->settings['rechargeFromTime'] . "到" . $this->settings['rechargeToTime']);
         }
         if($count > 5) {
