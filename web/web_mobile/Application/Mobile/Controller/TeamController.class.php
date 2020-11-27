@@ -464,7 +464,7 @@ class TeamController extends HomeController
                     break;
             }
         }
-
+        dump($where);
 //        $uid = $this->user['uid'];
 //        if (I('uid')) {
 //            $uid = I('uid');
