@@ -469,14 +469,16 @@ class TeamController extends HomeController
 //            $where['parents'] = ['like', "%," . $user_id . ",%"];
             $where['username'] = ['like', strtolower(trim($_GET['username'])) . '%'];
             $where[] = ['exp', 'FIND_IN_SET(' . $user_id . ',parents)'];
+
         } else {
             $where['parentId'] = $user_id;
         }
 
 //        $uid = $user_id ;
-        $where['uid'] = $user_id;
-        $where['_logic'] = 'or';
-        $userList = M('members')->where($where)
+        $map['_complex'] = $where;
+        $map['uid'] = $user_id;
+        $map['_logic'] = 'or';
+        $userList = M('members')->where($map)
             ->order('username')->select();
         $t = [];
         $k = 0;
