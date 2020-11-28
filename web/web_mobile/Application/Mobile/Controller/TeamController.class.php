@@ -466,7 +466,7 @@ class TeamController extends HomeController
             // 用户名用模糊方式查询
             $where['parents'] = ['like', "%," . $user_id . ",%"];
             $where['username'] = strtolower(trim(I('username')));
-
+            $where['_logic'] = 'and';
 //            $where['parents'] = ['like', "%," . $user_id . ",%"];
 
         } else {
