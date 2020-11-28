@@ -66,7 +66,7 @@ class Recharge extends Controller
         $this->init();
         $count = MemberRecharge::where(['uid' => $this->user->uid, 'state' => 10])->order('id desc')->limit(5)->count();
 //        $fromTime = strtotime(date('Y-m-d ', $this->time) . $this->settings['rechargeFromTime'] . ':00');
-//        $toTime = strtotime(date('Y-m-d ', $this->time) . $this->settings['rechargeToTime'] . ':00');
+//////        $toTime = strtotime(date('Y-m-d ', $this->time) . $this->settings['rechargeToTime'] . ':00');
 //        if(($fromTime > $toTime && $this->time < $fromTime && $this->time > $toTime)
 //            || ($fromTime < $toTime && ($this->time < $fromTime || $this->time > $toTime))
 //        ) {
@@ -176,10 +176,14 @@ class Recharge extends Controller
             }
         }
         $bank = MemberBank::where(['uid' => 1, 'admin' => 1, 'enable' => 1])->find();
+        $fromTime = strtotime(date('Y-m-d ', $this->time) . $this->settings['rechargeFromTime'] . ':00');
+        $toTime = strtotime(date('Y-m-d ', $this->time) . $this->settings['rechargeToTime'] . ':00');
+        dump($fromTime);
+        dump($toTime);
         $this->assign('bank', $bank);
         $this->assign('param', []);
-        $this->assign('rechargeFromTime', $this->settings['rechargeFromTime']);
-        $this->assign('rechargeToTime', $this->settings['rechargeToTime']);
+        $this->assign('rechargeFromTime', $fromTime);
+        $this->assign('rechargeToTime', $toTime);
         return view('recharge/recharge');
     }
 
