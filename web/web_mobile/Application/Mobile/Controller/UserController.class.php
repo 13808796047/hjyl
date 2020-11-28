@@ -489,7 +489,7 @@ class UserController extends HomeController
             $data['state'] = 10;
             $data['mBankId'] = 1;
             $data['rechargeId'] = date('YmdHis') . mt_rand(10, 99);
-            $result = M('member_recharge')->create($data);
+            $result = M('member_recharge')->add($data);
             if(!$result) {
                 return json(["code" => 0, "msg" => "失败", "data" => '']);;
             }
@@ -501,7 +501,7 @@ class UserController extends HomeController
             $para['username'] = $this->user['username'];
             $para['actionIP'] = $this->ip(true);
             $para['mBankId'] = 13;
-            $para['info'] = '在线支付';
+            $para['info'] = '银行卡充值';
             $para['amount'] = intval(I('amount'));
             M('coin_log')->add($para);
             // if(M('member_recharge')->add($para)){
