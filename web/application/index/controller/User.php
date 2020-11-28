@@ -108,7 +108,7 @@ class User extends Controller
         $find = Members::get($id)->getData();
         if ($find) {
             $bread[] = $find;
-            $this->breadCrumbs($find['pid'], $bread);
+            $this->breadCrumbs($find['parentId'], $bread);
         }
         return $bread;
     }
