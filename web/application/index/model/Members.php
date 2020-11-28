@@ -66,7 +66,7 @@ class Members extends Model
     {
         return Members::getQuery()
             // 使用上面的访问器获取所有祖先类目 ID
-            ->whereIn('id', $this->parents)
+            ->whereIn('uid', $this->parents)
             ->select();
     }
 
