@@ -93,10 +93,11 @@
         <div class="list">
             <form action="" method="get" class="form">
                 <div class="intro_content">
-                    {volist name="arr" id="vo"}
+                    {foreach $arr as $key=>$value}
+
                     &nbsp;&nbsp;&nbsp;&nbsp;当前用户位置： &nbsp;&nbsp;&nbsp;&nbsp;<a
-                        href="/user/user_list.html?frame=show&uid={$vo.key}">{$vo.value}</a>
-                    {/volist}
+                        href="/user/user_list.html?frame=show&uid={$key}">{$value}</a>
+                    {/foreach}
                     <!--          &nbsp;&nbsp;&nbsp;&nbsp;当前用户位置： &nbsp;&nbsp;&nbsp;&nbsp;<a href="/user/user_list.html?frame=show&uid={$uid}"></a>-->
                 </div>
                 <table id="userlistDL">
