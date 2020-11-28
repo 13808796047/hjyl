@@ -432,7 +432,7 @@ class TeamController extends HomeController
     public final function memberSearch()
     {
         $uid = I('uid');
-        !isset($uid) ? $user_id = $uid : $user_id = $this->user['uid'];
+        !empty($uid) ? $user_id = $uid : $user_id = $this->user['uid'];
 //        $where['parentId'] = $user_id;
 //        $where['uid'] = $user_id;
 //        $where['_logic'] = 'OR';
@@ -474,7 +474,6 @@ class TeamController extends HomeController
 
 
 //        $uid = $user_id ;
-        dump($where);
         $where['uid'] = $user_id;
         $where['_logic'] = 'or';
         $userList = M('members')->where($where)
