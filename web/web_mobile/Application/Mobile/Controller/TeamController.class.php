@@ -77,7 +77,6 @@ class TeamController extends HomeController
         $map['_logic'] = 'or';
         $userList = M('members')->where($map)
             ->order('username')->select();
-        dump($userList);
         $t = [];
         $k = 0;
         foreach($userList as $key => $value) {
