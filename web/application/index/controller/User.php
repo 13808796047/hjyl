@@ -103,7 +103,7 @@ class User extends Controller
         return view('user/index');
     }
 
-    public function getTree($id)
+    public function get_category_by_category_id($id)
     {
         $cur_member = Members::get($uid)->getData();
         return $cur_member;
