@@ -433,40 +433,43 @@ class TeamController extends HomeController
     {
         $uid = I('uid');
         !isset($uid) ? $user_id = $uid : $user_id = $this->user['uid'];
-        $where['parentId'] = $user_id;
-        $where['uid'] = $user_id;
-        $where['_logic'] = 'OR';
-        if(I('utype')) {
-            switch (I('utype')) {
-                case 1:
-                    // 我自己
-                    $where['uid'] = $user_id;
-                    break;
-                case 2:
-                    // 直属下级
-//                    $uid = $user_id ;
-
-                    $where['parentId'] = $user_id;
-                    break;
-                case 3:
-                    // 所有下级
-                    $where['parents'] = ['like', "%" . $user_id . ",%"];
-                    break;
-                default:
-                    //所有人
-                    $where['parents'] = ['like', "%," . $user_id . ",%"];
-                    $where['uid'] = $user_id;
-                    $where['_logic'] = 'or';
-                    break;
-            }
-        }
+//        $where['parentId'] = $user_id;
+//        $where['uid'] = $user_id;
+//        $where['_logic'] = 'OR';
+//        if(I('utype')) {
+//            switch (I('utype')) {
+//                case 1:
+//                    // 我自己
+//                    $where['uid'] = $user_id;
+//                    break;
+//                case 2:
+//                    // 直属下级
+////                    $uid = $user_id ;
+//
+//                    $where['parentId'] = $user_id;
+//                    break;
+//                case 3:
+//                    // 所有下级
+//                    $where['parents'] = ['like', "%" . $user_id . ",%"];
+//                    break;
+//                default:
+//                    //所有人
+//                    $where['parents'] = ['like', "%," . $user_id . ",%"];
+//                    $where['uid'] = $user_id;
+//                    $where['_logic'] = 'or';
+//                    break;
+//            }
+//        }
         if(I('username') && I('username') != '用户名') {
             // 按用户名查找时
             // 只要符合用户名且是自己所有下级的都可查询
             // 用户名用模糊方式查询
-            $where['username'] = ['like', "%" . I('username') . "%"];
+            $where['username'] = ['like', strtolower(trim($_GET['username'])) . '%'];
+            $where[] = ['exp', 'FIND_IN_SET(' . $uid . ',parents)'];
 //            $where['parents'] = ['like', "%," . $user_id . ",%"];
 
+        }else{
+            $where['parentId'] = $uid;
         }
 
 //        dump($where);
