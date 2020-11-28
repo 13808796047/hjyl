@@ -105,7 +105,7 @@ class User extends Controller
 
     public function breadCrumbs($id = 0, &$bread = array())
     {
-        $find = Members::get($uid)->getData();
+        $find = Members::get($id)->getData();
         if ($find) {
             $bread[] = $find;
             $this->breadCrumbs($find['pid'], $bread);
