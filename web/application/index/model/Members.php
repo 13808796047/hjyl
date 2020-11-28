@@ -72,7 +72,7 @@ class Members extends Model
     public function getFullNameAttr()
     {
         return $this->ancestors  // 获取所有祖先类目
-        ->column('username'); // 取出所有祖先类目的 name 字段作为一个数组
+        ->column('uid', 'username'); // 取出所有祖先类目的 name 字段作为一个数组
 //        ->push($this->name) // 将当前类目的 name 字段值加到数组的末尾
 //        ->implode(' - '); // 用 - 符号将数组的值组装成一个字符串
     }
