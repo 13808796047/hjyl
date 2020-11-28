@@ -58,15 +58,14 @@ class Members extends Model
         // trim($str, '-') 将字符串两端的 - 符号去除
         // explode() 将字符串以 - 为分隔切割为数组
         // 最后 array_filter 将数组中的空值移除
-        return array_filter(explode('-', trim($this->parents, ',')));
+        return array_filter(explode(',', trim($this->parents, ',')));
     }
 
     // 定义一个访问器，获取所有祖先类目并按层级排序
     public function getAncestorsAttr()
     {
-        return Members::getQuery()
-            // 使用上面的访问器获取所有祖先类目 ID
-            ->where('uid', 'in', $this->path_ids);
+        return Members::where('uid', 'in', $this->path_ids);
+        // 使用上面的访问器获取所有祖先类目 ID
     }
 
     // 定义一个访问器，获取以 - 为分隔的所有祖先类目名称以及当前类目的名称
