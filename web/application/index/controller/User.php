@@ -127,10 +127,10 @@ class User extends Controller
             $uid = $_GET['uid'];
 
             $cur_member = Members::get($uid)->getData();
-            array_push($arr, [$cur_member['uid'] => $cur_member['username']]);
-//            if (!array_key_exists($cur_member['uid'], $arr)) {
-//
-//            }
+
+            if (!array_key_exists($cur_member['uid'], $arr)) {
+                array_merge($arr, [$cur_member['uid'] => $cur_member['username']]);
+            }
             dump($arr);
         } else {
             if (isset($_GET['bank_min'])) {
