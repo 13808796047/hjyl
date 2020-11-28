@@ -466,10 +466,10 @@ class TeamController extends HomeController
 //        $uid = $this->user['uid'];
         if(I('uid')) {
             $uid = I('uid');
+            $where['parentId'] = $uid;
+            $where['uid'] = $uid;
+            $where['_logic'] = 'OR';
         }
-        $where['parentId'] = $uid;
-        $where['uid'] = $uid;
-        $where['_logic'] = 'OR';
         $userList = M('members')->where($where)
             ->order('username')->select();
         $t = [];
