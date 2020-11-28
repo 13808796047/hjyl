@@ -116,19 +116,21 @@ class User extends Controller
     public function getUser_list()
     {
         $user = Session::get('userData');
-        $here = $user['username'];
         $uid = $user['uid'];
         $where = [];
+        $arr = [
+            $uid => $user['username']
+        ];
         if (!empty($_GET['uid'])) {
 //            $cur_member = Members::get($_GET['uid'])->getData();
 //
             $uid = $_GET['uid'];
             $result = $this->breadCrumbs($uid);
-//            $cur_member = Members::get($uid)->getData();
-//            $url = $cur_member ? $cur_member['username'] : "";;
-
-
-            dump($result);
+            $cur_member = Members::get($uid)->getData();
+            if (!array_key_exists($cur_member['uid'], $fruit)) {
+                array_push($arr, [$cur_member['uid'] => $cur_member['username']]);
+            }
+            dump($arr);
         } else {
             if (isset($_GET['bank_min'])) {
                 $where['coin'] = ['>=', $_GET['bank_min']];
