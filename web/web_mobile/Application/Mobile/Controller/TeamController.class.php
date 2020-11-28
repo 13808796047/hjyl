@@ -431,45 +431,49 @@ class TeamController extends HomeController
 
     public final function memberSearch()
     {
+        $uid = I('uid');
+        $user_id = isset($uid) ? $uid : $this->user['uid'];
         if(I('username') && I('username') != '用户名') {
             // 按用户名查找时
             // 只要符合用户名且是自己所有下级的都可查询
             // 用户名用模糊方式查询
             $where['username'] = ['like', "%" . I('username') . "%"];
-            $where['parents'] = ['like', "%," . $this->user['uid'] . ",%"];
+            $where['parents'] = ['like', "%," . $user_id . ",%"];
+
+        }
+        if(I('utype')) {
             switch (I('utype')) {
                 case 1:
                     // 我自己
-                    $where['uid'] = $this->user['uid'];
+                    $where['uid'] = $user_id;
                     break;
                 case 2:
                     // 直属下级
-                    $uid = $this->user['uid'];
-                    if(I('uid')) {
-                        $uid = I('uid');
-                    }
-                    $where['parentId'] = $uid;
+//                    $uid = $user_id ;
+              
+                    $where['parentId'] = $user_id;
                     break;
                 case 3:
                     // 所有下级
-                    $where['parents'] = ['like', "%" . $this->user['uid'] . ",%"];
+                    $where['parents'] = ['like', "%" . $user_id . ",%"];
                     break;
                 default:
                     //所有人
-                    $where['parents'] = ['like', "%," . $this->user['uid'] . ",%"];
-                    $where['uid'] = $this->user['uid'];
+                    $where['parents'] = ['like', "%," . $user_id . ",%"];
+                    $where['uid'] = $user_id;
                     $where['_logic'] = 'or';
                     break;
             }
         }
         dump($where);
-//        $uid = $this->user['uid'];
-        if(I('uid')) {
-            $uid = I('uid');
-            $where['parentId'] = $uid;
-            $where['uid'] = $uid;
+//        $uid = $user_id ;
+        if(I('child')) {
+
+            $where['parentId'] = $user_id;
+            $where['uid'] = $user_id;
             $where['_logic'] = 'OR';
         }
+
         $userList = M('members')->where($where)
             ->order('username')->select();
         $t = [];
