@@ -355,76 +355,77 @@
 <script>
     $(function () {
         var intDiff = parseInt(0); //倒计时总秒数量
-        var from =
-            $('#form-submit').click(function () {
+        var from = '{$rechargeFromTime}';
+        var to = '{$rechargeToTime}';
+        $('#form-submit').click(function () {
 
-                swal({
-                    title: "确认提交吗?",
-                    text: '充值时间 "{$rechargeFromTime}" 到 "$rechargeToTime"',
-                    icon: "warning",
-                    buttons: true,
-                    dangerMode: true,
-                })
-                    .then((willDelete) => {
-                        if (willDelete) {
-                            $.ajax({
-                                type: "POST",
-                                url: "/user/recharge",
-                                data: {
-                                    amount: $('#amount').val()
-                                },
-
-                                success: function (data) {
-                                    if (data.code == 1) {
-                                        swal({
-                                            title: "提示!",
-                                            text: data.msg,
-                                            icon: "success",
-                                            button: "确定",
-                                        });
-
-                                        timeCountDown(data.data, $('#form-submit'))
-                                    }
-                                    if (data.code == 2) {
-                                        swal({
-                                            title: "提示!",
-                                            text: data.msg,
-                                            icon: "error",
-                                            button: "确定",
-                                        });
-
-                                        timeCountDown(data.data, $('#form-submit'))
-                                    }
-                                    // if (data.code == 3) {
-                                    //     swal({
-                                    //         title: "提示!",
-                                    //         text: data.msg,
-                                    //         icon: "error",
-                                    //         button: "确定",
-                                    //     });
-                                    // }
-                                },
-
-                            });
-                        } else {
-
-                        }
-                    });
-                if (!$('#amount').val()) {
-                    swal("金额不能为空");
-                    return;
-                }
-                if ($('#amount').val() == 0) {
-                    swal({
-                        title: "提示!",
-                        text: '金额不能为0元',
-                        icon: "error",
-                        button: "确定",
-                    });
-                    return;
-                }
-
+            swal({
+                title: "确认提交吗?",
+                text: '充值时间 ' + from + ' 到 ' + to,
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
             })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        $.ajax({
+                            type: "POST",
+                            url: "/user/recharge",
+                            data: {
+                                amount: $('#amount').val()
+                            },
+
+                            success: function (data) {
+                                if (data.code == 1) {
+                                    swal({
+                                        title: "提示!",
+                                        text: data.msg,
+                                        icon: "success",
+                                        button: "确定",
+                                    });
+
+                                    timeCountDown(data.data, $('#form-submit'))
+                                }
+                                if (data.code == 2) {
+                                    swal({
+                                        title: "提示!",
+                                        text: data.msg,
+                                        icon: "error",
+                                        button: "确定",
+                                    });
+
+                                    timeCountDown(data.data, $('#form-submit'))
+                                }
+                                // if (data.code == 3) {
+                                //     swal({
+                                //         title: "提示!",
+                                //         text: data.msg,
+                                //         icon: "error",
+                                //         button: "确定",
+                                //     });
+                                // }
+                            },
+
+                        });
+                    } else {
+
+                    }
+                });
+            if (!$('#amount').val()) {
+                swal("金额不能为空");
+                return;
+            }
+            if ($('#amount').val() == 0) {
+                swal({
+                    title: "提示!",
+                    text: '金额不能为0元',
+                    icon: "error",
+                    button: "确定",
+                });
+                return;
+            }
+
+        })
         //时间倒计时
 
         // 倒计时intDiff倒计时总秒数
