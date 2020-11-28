@@ -63,7 +63,7 @@ class Recharge extends Controller
     public function store()
     {
         $this->user = Session::get('userData');
-        $this->init();
+
         $count = MemberRecharge::where(['uid' => $this->user->uid, 'state' => 10])->order('id desc')->limit(5)->count();
 //        $fromTime = strtotime(date('Y-m-d ', $this->time) . $this->settings['rechargeFromTime'] . ':00');
 //////        $toTime = strtotime(date('Y-m-d ', $this->time) . $this->settings['rechargeToTime'] . ':00');
@@ -176,6 +176,7 @@ class Recharge extends Controller
             }
         }
         $bank = MemberBank::where(['uid' => 1, 'admin' => 1, 'enable' => 1])->find();
+        $this->init();
         $fromTime = $this->settings['rechargeFromTime'];
         $toTime = $this->settings['rechargeToTime'];
         dump($fromTime);
