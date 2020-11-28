@@ -475,7 +475,8 @@ class TeamController extends HomeController
 
 //        $uid = $user_id ;
 
-        $where['uid'] = ['or', $user_id];
+        $where['uid'] = $user_id;
+        $where['_logic'] = 'or';
         $userList = M('members')->where($where)
             ->order('username')->select();
         $t = [];
