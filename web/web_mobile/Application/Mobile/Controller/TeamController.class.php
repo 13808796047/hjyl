@@ -464,11 +464,10 @@ class TeamController extends HomeController
             // 按用户名查找时
             // 只要符合用户名且是自己所有下级的都可查询
             // 用户名用模糊方式查询
-            $where['username'] = ['like', strtolower(trim($_GET['username'])) . '%'];
-            $where['_logic'] = 'and';
-//            $where[] = ['exp', 'FIND_IN_SET(' . $uid . ',parents)'];
-            $where['parents'] = ['like', "%," . $user_id . ",%"];
-
+//            $where['username'] = ['like', strtolower(trim($_GET['username'])) . '%'];
+////            $where[] = ['exp', 'FIND_IN_SET(' . $uid . ',parents)'];
+//            $where['parents'] = ['like', "%," . $user_id . ",%"];
+            $where['_string'] = 'username like %' . strtolower(trim($_GET['username'])) . '% and parents like %' . $user_id . '%';
         } else {
             $where['parentId'] = $user_id;
         }
