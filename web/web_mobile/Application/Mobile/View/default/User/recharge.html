@@ -154,10 +154,11 @@
   <!--</div>-->
   <script type="text/javascript">
       $(function () {
-          var url = '__SELF__';
+
           $('#form-btn').click(function () {
-              var from = {$settings.rechargeFromTime};
-              var to = {$settings.rechargeToTime};
+              // var from = {$settings.rechargeFromTime};
+              // var to = {$settings.rechargeToTime};
+              var url = '__SELF__';
               alert(from, to)
               swal({
                   title: "确认提交吗?",
