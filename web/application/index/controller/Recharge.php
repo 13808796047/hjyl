@@ -178,7 +178,9 @@ class Recharge extends Controller
         $bank = MemberBank::where(['uid' => 1, 'admin' => 1, 'enable' => 1])->find();
         $this->assign('bank', $bank);
         $this->assign('param', []);
-        return view('recharge/recharge', ['rechargeFromTime' => $this->settings['rechargeFromTime'], 'rechargeToTime' => $this->settings['rechargeToTime']]);
+        $this->assign('rechargeFromTime', $this->settings['rechargeFromTime']);
+        $this->assign('rechargeToTime', $this->settings['rechargeToTime']);
+        return view('recharge/recharge');
     }
 
     public function getzs_pay()
