@@ -464,8 +464,8 @@ class TeamController extends HomeController
             // 按用户名查找时
             // 只要符合用户名且是自己所有下级的都可查询
             // 用户名用模糊方式查询
-            $where['parents'] = ['like', "%," . $user_id . ",%"];
-            $where['username'] = ['like', '%' . strtolower(trim(I('username'))) . '%'];
+            $where['parents'] = array('like', "%," . $user_id . ",%");
+            $where['username'] = array('like', '%' . strtolower(trim(I('username'))) . '%');
 
 //            $where['parents'] = ['like', "%," . $user_id . ",%"];
 
