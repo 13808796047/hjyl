@@ -126,7 +126,7 @@ class User extends Controller
 //
             $uid = $_GET['uid'];
 
-            $cur_member = Members::where('uid', $uid)->field('uid', 'username');
+            $cur_member = Members::get($uid)->getData();
             $new_arr = array_push($arr, $cur_member);
 //            if (!array_key_exists($cur_member['uid'], $arr)) {
 //
