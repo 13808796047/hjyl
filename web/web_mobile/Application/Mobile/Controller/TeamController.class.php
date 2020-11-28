@@ -60,19 +60,19 @@ class TeamController extends HomeController
 
         $map['_complex'] = $where;
 //        $childs = $builder->where($where)->select();
-//        if($para['fromTime'] && $para['toTime']) {
-//            $where['actionTime'] = ['between', [strtotime($para['fromTime']), strtotime($para['toTime'])]];
-//        } elseif($para['fromTime']) {
-//            $where['actionTime'] = ['egt', strtotime($para['fromTime'])];
-//        } elseif($para['toTime']) {
-//            $where['actionTime'] = ['elt', strtotime($para['toTime'])];
-//        } else {
-//            if($GLOBALS['fromTime'] && $GLOBALS['toTime']) {
-//                $where['actionTime'] = ['between', [$GLOBALS['fromTime'], $GLOBALS['toTime']]];
-//            }
-//        }
+        if($para['fromTime'] && $para['toTime']) {
+            $time['actionTime'] = ['between', [strtotime($para['fromTime']), strtotime($para['toTime'])]];
+        } elseif($para['fromTime']) {
+            $time['actionTime'] = ['egt', strtotime($para['fromTime'])];
+        } elseif($para['toTime']) {
+            $time['actionTime'] = ['elt', strtotime($para['toTime'])];
+        } else {
+            if($GLOBALS['fromTime'] && $GLOBALS['toTime']) {
+                $time['actionTime'] = ['between', [$GLOBALS['fromTime'], $GLOBALS['toTime']]];
+            }
+        }
 
-        $map['_complex'] = $where;
+//        $map['_complex'] = $where;
         $map['uid'] = $uid;
         $map['_logic'] = 'or';
         $userList = M('members')->where($map)
@@ -80,8 +80,8 @@ class TeamController extends HomeController
         $t = [];
         $k = 0;
         foreach($userList as $key => $value) {
-            $t[$key]['totalRecharge'] = M('member_recharge')->where($map)->where('state=11')->sum('amount');
-            $t[$key]['totalCash'] = M('member_cash')->where($map)->where('state=4')->sum('amount');
+            $t[$key]['totalRecharge'] = M('member_recharge')->where($map)->where('state=11')->where($time)->sum('amount');
+            $t[$key]['totalCash'] = M('member_cash')->where($map)->where('state=4')->where($time)->sum('amount');
             if($value['uid'] == $uid) {
                 $t = $value;
                 $k = $key;
