@@ -457,7 +457,8 @@ class UserController extends HomeController
 
         if(IS_POST) {
             if(I('amount') <= 0)
-                $this->error('充值金额必须大于0');
+           
+                $this->ajaxReturn(['code' => 3, 'msg' => '充值金额必须大于0', 'data' => ''], 'json');
             if(!I('bankName') && !I('bankAccount')) {
                 $this->ajaxReturn(['code' => 3, 'msg' => '后台未设置银行卡', 'data' => ''], 'json');
             }
