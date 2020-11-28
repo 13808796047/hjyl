@@ -472,10 +472,10 @@ class TeamController extends HomeController
             $where['parentId'] = $user_id;
         }
 
-     
+
 //        $uid = $user_id ;
 
-
+        $where['uid'] = ['or', $user_id];
         $userList = M('members')->where($where)
             ->order('username')->select();
         $t = [];
