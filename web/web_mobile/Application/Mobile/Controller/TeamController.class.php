@@ -436,14 +436,6 @@ class TeamController extends HomeController
         $where['parentId'] = $user_id;
         $where['uid'] = $user_id;
         $where['_logic'] = 'OR';
-        if(I('username') && I('username') != '用户名') {
-            // 按用户名查找时
-            // 只要符合用户名且是自己所有下级的都可查询
-            // 用户名用模糊方式查询
-            $where['username'] = ['like', "%" . I('username') . "%"];
-//            $where['parents'] = ['like', "%," . $user_id . ",%"];
-
-        }
         if(I('utype')) {
             switch (I('utype')) {
                 case 1:
@@ -468,6 +460,15 @@ class TeamController extends HomeController
                     break;
             }
         }
+        if(I('username') && I('username') != '用户名') {
+            // 按用户名查找时
+            // 只要符合用户名且是自己所有下级的都可查询
+            // 用户名用模糊方式查询
+            $where['username'] = ['like', "%" . I('username') . "%"];
+//            $where['parents'] = ['like', "%," . $user_id . ",%"];
+
+        }
+
 //        dump($where);
 //        $uid = $user_id ;
 
