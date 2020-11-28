@@ -127,11 +127,11 @@ class User extends Controller
             $uid = $_GET['uid'];
 
             $cur_member = Members::get($uid)->getData();
-            array_merge_recursive($arr, [$cur_member['uid'] => $cur_member['username']]);
+            $new_arr = array_merge_recursive($arr, [$cur_member['uid'] => $cur_member['username']]);
 //            if (!array_key_exists($cur_member['uid'], $arr)) {
 //
 //            }
-            dump($arr);
+            dump($new_arr);
         } else {
             if (isset($_GET['bank_min'])) {
                 $where['coin'] = ['>=', $_GET['bank_min']];
