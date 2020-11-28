@@ -7,6 +7,7 @@
   <link rel="stylesheet" type="text/css" href="__CSS__/user.css">
 </block>
 <block name="script">
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
   <script>
       $(function () {
           $("a[data-pro='ok']").click(function (event) {
@@ -153,59 +154,115 @@
   <!--</div>-->
   <script type="text/javascript">
       $(function () {
+          var url = '__SELF__';
           $('#form-btn').click(function () {
-              var min = '{$settings.rechargeFromTime}';
-              var max = '{$settings.rechargeToTime}';
-              showDialog('充值时间' + min + '到' + max);
+              var from = {$settings.rechargeFromTime};
+              var to = {$settings.rechargeToTime};
+              swal({
+                  title: "确认提交吗?",
+                  text: '充值时间 ' + from + ' 到 ' + to,
+                  icon: "warning",
+                  buttons: true,
+                  dangerMode: true,
+              })
+                  .then((willDelete) => {
+                      if (willDelete) {
+                          $.ajax({
+                              type: "POST",
+                              url: url,
+                              data: {
+                                  amount: $('#amount').val(),
+                                  bankName: $('input[name=bank_name]').val(),
+                                  bankAccount: $('input[name=bank_account]').val()
+                              },
+
+                              success: function (data) {
+                                  if (data.code == 1) {
+                                      swal({
+                                          title: "提示!",
+                                          text: data.msg,
+                                          icon: "success",
+                                          button: "确定",
+                                      });
+
+                                      timeCountDown(result.data, $('#form-btn'))
+                                  }
+                                  if (data.code == 2) {
+                                      swal({
+                                          title: "提示!",
+                                          text: data.msg,
+                                          icon: "error",
+                                          button: "确定",
+                                      });
+
+                                      timeCountDown(result.data, $('#form-btn'))
+                                  }
+                                  // if (data.code == 3) {
+                                  //     swal({
+                                  //         title: "提示!",
+                                  //         text: data.msg,
+                                  //         icon: "error",
+                                  //         button: "确定",
+                                  //     });
+                                  // }
+                              },
+
+                          });
+                      } else {
+
+                      }
+                  });
+
+
               // var amount = parseFloat($('#amt').val());
               // if(isNaN(amount) || amount<min || amount>max){
               // 	showDialog('充值金额必须在' + min + '元和' + max + '元之间');
               // 	return false;
               // }
 
-              var url = '__SELF__';
-              $.ajax({
-                  type: "POST",
-                  url: url,
-                  data: {
-                      amount: $('#amt').val(),
-                      bankName: $('input[name=bank_name]').val(),
-                      bankAccount: $('input[name=bank_account]').val()
-                  },
-                  success: function (result) {
-                      // if (result.code == 1) {
-                      //     alert(result.msg);
-                      //     timeCountDown(result.data, $('#form-btn'))
-                      // }
-                      // if (result.code == 2) {
-                      //     alert(result.msg);
-                      //
-                      //     timeCountDown(result.data, $('#form-btn'))
-                      // }
-                      switch (result.code) {
-                          case 1:
-                              showDialog(result.msg);
-                              timeCountDown(result.data, $('#form-btn'))
-                              break;
-                          case 2:
-                              showDialog(result.msg);
-                              timeCountDown(result.data, $('#form-btn'))
-                              break;
-                          default:
-                              showDialog(result.msg);
-                      }
-                      // if (result.code == 3) {
-                      //     showDialog(result.msg);
-                      //     $('#form-btn').css('background', '#999')
-                      // }
-                      // $('#p2_Order').val(result.rechargeId);
-                      // $('#p3_Amt').val(amount);
-                      // //$('#MerOrder').submit();
-                      // $('#postbtn').click();
-                  }
-              });
+              // var url = '__SELF__';
+              // $.ajax({
+              //     type: "POST",
+              //     url: url,
+              //     data: {
+              //         amount: $('#amt').val(),
+              //         bankName: $('input[name=bank_name]').val(),
+              //         bankAccount: $('input[name=bank_account]').val()
+              //     },
+              //     success: function (result) {
+              //         // if (result.code == 1) {
+              //         //     alert(result.msg);
+              //         //     timeCountDown(result.data, $('#form-btn'))
+              //         // }
+              //         // if (result.code == 2) {
+              //         //     alert(result.msg);
+              //         //
+              //         //     timeCountDown(result.data, $('#form-btn'))
+              //         // }
+              //         switch (result.code) {
+              //             case 1:
+              //                 showDialog(result.msg);
+              //                 timeCountDown(result.data, $('#form-btn'))
+              //                 break;
+              //             case 2:
+              //                 showDialog(result.msg);
+              //                 timeCountDown(result.data, $('#form-btn'))
+              //                 break;
+              //             default:
+              //                 showDialog(result.msg);
+              //         }
+              //         // if (result.code == 3) {
+              //         //     showDialog(result.msg);
+              //         //     $('#form-btn').css('background', '#999')
+              //         // }
+              //         // $('#p2_Order').val(result.rechargeId);
+              //         // $('#p3_Amt').val(amount);
+              //         // //$('#MerOrder').submit();
+              //         // $('#postbtn').click();
+              //     }
+              // });
           })
-      })
+      });
 
       function change(me) {
           if (me.value == '在线充值')
