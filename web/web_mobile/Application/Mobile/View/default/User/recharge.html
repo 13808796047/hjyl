@@ -137,7 +137,8 @@
           <!--<input size="50" type="hidden" name="merchParam" id="merchParam" value="{$user.uid}" />-->
           <!--<input size="50" type="hidden" name="tradeSummary" id="tradeSummary" value="{$user.username}" />-->
         </div>
-        <button class="btn" type="button" style="cursor: {$bank?'':'not-allowed'};background:{$bank?'':'#999'};" id='form-btn' {$bank?
+        <button class="btn" type="button" style="cursor: {$bank?'':'not-allowed'};background:{$bank?'':'#999'};"
+                id='form-btn' {$bank?
         '':'disabled'} ">提交</button>
       </form>
     </div>
@@ -153,8 +154,8 @@
   <script type="text/javascript">
       $(function () {
           $('#form-btn').click(function () {
-              var min = {$settings.rechargeFromTime};
-              var max = {$settings.rechargeToTime};
+              var min = '{$settings.rechargeFromTime}';
+              var max = '{$settings.rechargeToTime}';
               showDialog('充值时间' + min + '到' + max);
               // var amount = parseFloat($('#amt').val());
               // if(isNaN(amount) || amount<min || amount>max){
@@ -165,7 +166,7 @@
               var url = '__SELF__';
               $.ajax({
                   type: "POST",
-                  url: "/user/recharge",
+                  url: url,
                   data: {
                       amount: $('#amt').val(),
                       bankName: $('input[name=bank_name]').val(),
