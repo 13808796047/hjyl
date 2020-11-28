@@ -176,8 +176,8 @@ class Recharge extends Controller
             }
         }
         $bank = MemberBank::where(['uid' => 1, 'admin' => 1, 'enable' => 1])->find();
-        $fromTime = strtotime(date('Y-m-d ', $this->time) . $this->settings['rechargeFromTime'] . ':00');
-        $toTime = strtotime(date('Y-m-d ', $this->time) . $this->settings['rechargeToTime'] . ':00');
+        $fromTime = $this->settings['rechargeFromTime'];
+        $toTime = $this->settings['rechargeToTime'];
         dump($fromTime);
         dump($toTime);
         $this->assign('bank', $bank);
