@@ -473,6 +473,7 @@ class TeamController extends HomeController
         }
 
         dump($where);
+        die;
 //        $uid = $user_id ;
 
 
