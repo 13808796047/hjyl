@@ -160,8 +160,9 @@
 
       function fukuan(me) {
 
-          // var min = {$settings.recharge};
-          // var max = {$settings.rechargeMax1};
+          var min = {$settings.rechargeFromTime};
+          var max = {$settings.rechargeToTime};
+          showDialog('充值时间' + min + '到' + max);
           // var amount = parseFloat($('#amt').val());
           // if(isNaN(amount) || amount<min || amount>max){
           // 	showDialog('充值金额必须在' + min + '元和' + max + '元之间');
