@@ -73,15 +73,15 @@ class User extends Controller
         $stauts = Params::getParams('kefuStatus')['kefuStatus'];
 
         View::share(['kefu' => $kefu, 'status' => $stauts]);
-        if(empty(Session::get('userData'))) {
+        if (empty(Session::get('userData'))) {
             return view('index/login');
         } else {
             $this->assign('play_lists', (new Game())->play_list);
             $this->user = Session::get('userData');
         }
-        if(!$this->settings) {
-            if($data = Params::select()) {
-                foreach($data as $var) {
+        if (!$this->settings) {
+            if ($data = Params::select()) {
+                foreach ($data as $var) {
                     $this->settings[$var['name']] = $var['value'];
                 }
             }
@@ -103,26 +103,46 @@ class User extends Controller
         return view('user/index');
     }
 
+    public function getTree($id)
+    {
+        $cur_member = Members::get($uid)->getData();
+        return $cur_member;
+    }
+
     public function getUser_list()
     {
         $user = Session::get('userData');
-        $username = $user['username'];
+        $here = $user['username'];
         $uid = $user['uid'];
         $where = [];
-        if(!empty($_GET['uid'])) {
-            $cur_member = Members::get($_GET['uid'])->getData();
-            $username = $cur_member ? $cur_member['username'] : "";
+        if (!empty($_GET['uid'])) {
+//            $cur_member = Members::get($_GET['uid'])->getData();
+//
             $uid = $_GET['uid'];
+
+            $cur_member = Members::get($uid)->getData();
+            $url = $cur_member ? $cur_member['username'] : "";;
+
+            $category_url = [];//定义一个数组
+
+            while ($uid) {//如果存在上级分类，则逐步向上获取上级分类的信息
+                $info = $this->get_category_by_category_id($cur_member['parentId']);//上级分类信息
+                $category_url[] = $info['category_name'];//上级分类名称
+            }
+
+            krsort($category_url);//排序
+            $url = implode(">", $category_url);
+            dump($url);
         } else {
-            if(isset($_GET['bank_min'])) {
+            if (isset($_GET['bank_min'])) {
                 $where['coin'] = ['>=', $_GET['bank_min']];
             }
-            if(isset($_GET['bank_max']) && intval($_GET['bank_max']) > 0) {
+            if (isset($_GET['bank_max']) && intval($_GET['bank_max']) > 0) {
                 $where['coin'] = ['<=', intval($_GET['bank_max'])];
             }
         }
         $pageSize = isset($_GET['pageSize']) ? $_GET['pageSize'] : 10;
-        if(isset($_GET['username']) && $_GET['username'] != '') {
+        if (isset($_GET['username']) && $_GET['username'] != '') {
             $where['username'] = ['like', strtolower(trim($_GET['username'])) . '%'];
             $where[] = ['exp', 'FIND_IN_SET(' . $uid . ',parents)'];
         } else {
@@ -146,14 +166,14 @@ class User extends Controller
         $kk = 100;
 //        dump($list->toArray());
         $list = $list->toArray()['data'];
-        foreach($list as $key => $sub) {
+        foreach ($list as $key => $sub) {
             $list[$key]['type'] = $sub['type'] = $sub['type'] == 0 ? "会员" : "代理";
-            if($sub['uid'] == $uid) {
+            if ($sub['uid'] == $uid) {
                 $first = $sub;
                 $kk = $key;
             }
         }
-        if(!empty($first)) {
+        if (!empty($first)) {
             unset($list[$kk]);
             array_unshift($list, $first);
         }
@@ -169,8 +189,8 @@ class User extends Controller
         $this->assign('login_uid', $user['uid']);
         $fandian = floatval($member['fanDian']);
         $fdhtml = "<option value=''>请选择返点</option><option value=$fandian>0</option>";
-        for($idx = 0.1; $idx < $fandian; $idx = $idx + 0.1) {
-            if($fandian == $idx) {
+        for ($idx = 0.1; $idx < $fandian; $idx = $idx + 0.1) {
+            if ($fandian == $idx) {
                 continue;
             }
             $fdhtml .= "<option value=$idx>" . number_format($idx, 1) . "</option>";
@@ -183,11 +203,11 @@ class User extends Controller
     {
         $member = [];
         $team_coin = 0;
-        if(isset($_GET['uid'])) {
+        if (isset($_GET['uid'])) {
             $member = Members::where(['uid' => $_GET['uid']])->find();
-            if($member) {
+            if ($member) {
                 $list = Members::where('FIND_IN_SET(' . $member['uid'] . ',parents)')->select();
-                foreach($list as $item => $sub) {
+                foreach ($list as $item => $sub) {
                     $team_coin = $team_coin + $sub['coin'];
                 }
             }
@@ -201,11 +221,11 @@ class User extends Controller
     {
         $member = [];
         $team_coin = 0;
-        if(isset($_GET['uid'])) {
+        if (isset($_GET['uid'])) {
             $member = Members::where(['uid' => $_GET['uid']])->find();
-            if($member) {
+            if ($member) {
                 $list = Members::where('FIND_IN_SET(' . $member['uid'] . ',parents)')->select();
-                foreach($list as $item => $sub) {
+                foreach ($list as $item => $sub) {
                     $team_coin = $team_coin + $sub['coin'];
                 }
             }
@@ -220,13 +240,13 @@ class User extends Controller
         $member = [];
         $username = "";
         $cur_username = "";
-        if(isset($_GET['uid'])) {
+        if (isset($_GET['uid'])) {
             $member = Members::where(['uid' => $_GET['uid']])->find();
-            if($member) {
+            if ($member) {
                 $cur_username = $member['username'];
             }
         }
-        if(isset($_GET['username'])) {
+        if (isset($_GET['username'])) {
             $username = $_GET['username'];
             $member = Members::where(['username' => $username])->find();
             $cur_username = $username;
@@ -238,39 +258,39 @@ class User extends Controller
         $include = isset($_GET['include']) ? $_GET['include'] : "";//包含下级
         //获取投注时间
         $days = [];
-        for($idx = 0; $idx < 5; $idx++) {
+        for ($idx = 0; $idx < 5; $idx++) {
             $cur_day = strtotime(date('Y-m-d', time()));
             $days[$idx] = date("Y-m-d", $cur_day - (86400 * $idx));
         }
         $uid = $member ? $member['uid'] : "";
-        if(!empty($include) && $uid) {
+        if (!empty($include) && $uid) {
             $where['uid'] = ['like', '%' . $uid . '%'];
         } else {
             $where['uid'] = $uid;
         }
         $where['actionTime'] = ['between time', [$p_days, $p_days]];
-        if(!empty($lotteryid)) {
+        if (!empty($lotteryid)) {
             $where['type'] = $lotteryid;
         }
-        if(!empty($methodid)) {
+        if (!empty($methodid)) {
             $where['playedId'] = $methodid;
         }
-        if(!empty($issue)) {
+        if (!empty($issue)) {
             $where['actionNo'] = $issue;
         }
         $pageSize = 20;
         $bets = Bets::where($where)->paginate($pageSize, false, ['query' => $_GET]);
-        foreach($bets as $idx => $sub) {
+        foreach ($bets as $idx => $sub) {
             $bets[$idx]['type'] = $this->getGameType($sub['type']);
             $bets[$idx]['playedId'] = $this->getPayType($sub['playedId']);
             $bets[$idx]['mode'] = $this->mode($sub['mode']);
             $bets[$idx]['lotteryNo'] = $sub['lotteryNo'] ? $sub['lotteryNo'] : "---";
             $bets[$idx]['zj_money'] = $sub['lotteryNo'] ? number_format($sub['bonus'], 2) : '0.00';
-            if($sub['isDelete'] == 1) {
+            if ($sub['isDelete'] == 1) {
                 $bets[$idx]['status_name'] = "已撤单";
-            } elseif(!$sub['lotteryNo']) {
+            } elseif (!$sub['lotteryNo']) {
                 $bets[$idx]['status_name'] = "未开奖";
-            } elseif($sub['zjCount']) {
+            } elseif ($sub['zjCount']) {
                 $bets[$idx]['status_name'] = "已中奖";
             } else {
                 $bets[$idx]['status_name'] = "未中奖";
@@ -308,24 +328,24 @@ class User extends Controller
         $login_user = $model_u->where(['uid' => $user['uid']])->find();
         $fandian = $login_user ? $login_user['fanDian'] : 0;
         $option = "<option value='$fandian'>0</option>";
-        for($idx = 0.1; $idx <= $fandian; $idx += 0.1) {
+        for ($idx = 0.1; $idx <= $fandian; $idx += 0.1) {
             $bldw = round($fandian - $idx, 1);//自身保留点位
             $idx = number_format($idx, 1);
             $option .= "<option value='$bldw'>$idx</option>";
         }
         $this->assign('option', $option);
-        if(!empty($_POST)) {
+        if (!empty($_POST)) {
             $conf = new Members();
-            if(!preg_match("/^[0-9a-zA-Z]{6,11}$/", $_POST['username'])) {
+            if (!preg_match("/^[0-9a-zA-Z]{6,11}$/", $_POST['username'])) {
                 $this->error('用户名只能由英文和数字组成，长度6-11个字符');
             }
             $m = $conf::where(['username' => $_POST['username']])->find();
-            if(!empty($m)) {
+            if (!empty($m)) {
                 $this->error('用户已经存在');
             }
             $password = think_ucenter_md5($_POST['userpass'], UC_AUTH_KEY);
-            if($_POST['point'] > $fandian) $this->error('返点设置有误！');
-            if($_POST['usertype'] == 0) $_POST['point'] = 0;
+            if ($_POST['point'] > $fandian) $this->error('返点设置有误！');
+            if ($_POST['usertype'] == 0) $_POST['point'] = 0;
             $data = [
                 'type' => $_POST['usertype'],
                 'password' => $password,
@@ -339,7 +359,7 @@ class User extends Controller
                 'parents' => 0,
             ];
             $conf::insert($data);
-            if($lastid = $conf->getLastInsID()) {
+            if ($lastid = $conf->getLastInsID()) {
                 $data2['parentId'] = $user['uid'];
                 $data2['parents'] = $user['parents'] . ',' . $lastid;
                 $conf->where(['uid' => $lastid])->update($data2);
@@ -378,12 +398,12 @@ class User extends Controller
         $where = ['uid' => $user['uid']];
         $member = Members::where($where)->find();
         $this->assign('is_test', $user ? $user['is_test'] : 1);
-        if(!$member) {
+        if (!$member) {
             $this->error('回话过期');
         }
-        if(!empty($_GET)) {
+        if (!empty($_GET)) {
             $secpass = $_GET['secpass'];
-            if($member['coinPassword'] != think_ucenter_md5($secpass, UC_AUTH_KEY)) {
+            if ($member['coinPassword'] != think_ucenter_md5($secpass, UC_AUTH_KEY)) {
                 $this->error('资金密码不正确');
             } else {
                 $this->assign('list', $this->bankList());
@@ -397,7 +417,7 @@ class User extends Controller
     {
         $user = Session::get('userData');
         $list = MemberBank::where(['uid' => $user['uid']])->where('enable', 1)->order('id desc')->select();
-        foreach($list as $key => $item) {
+        foreach ($list as $key => $item) {
             $list[$key]['account'] = '***************' . substr($item['account'], strlen($item['account']) - 4, 4);
         }
         return $list;
@@ -408,7 +428,7 @@ class User extends Controller
         $this->assign('list', $this->bankList());
         $user = Session::get('userData');
         $uid = $user['uid'];
-        if(!empty($_GET['account_name'])) {
+        if (!empty($_GET['account_name'])) {
             $account_name = $_GET['account_name'];
             $bankId = $_GET['bankId'];
             $account = trim($_GET['account']);
@@ -417,17 +437,17 @@ class User extends Controller
             /*if (count($mbank) > 0 && $account_name != $mbank[0]['username']) {
                 $this->error('绑定的新银行持卡人必须跟之前绑定的一致');
             }*/
-            if(!$account_name || !$account) {
+            if (!$account_name || !$account) {
                 $this->error('卡号信息有误');
-            } elseif(count($mbank) >= 5) {
+            } elseif (count($mbank) >= 5) {
                 $this->error('最多绑定5个银行卡');
             } else {
                 $bank = BankList::where(['id' => $bankId])->find();
-                if(!$bank) {
+                if (!$bank) {
                     $this->error('银行信息有误');
                 }
                 $has_bank = MemberBank::where(['account' => $account])->find();
-                if($has_bank) {
+                if ($has_bank) {
                     $this->error('该银行已经存在');
                 }
                 $data = [
@@ -449,26 +469,26 @@ class User extends Controller
 
     public function getUser_changeloginpass()
     {
-        if(!empty($_POST)) {
+        if (!empty($_POST)) {
             $changetype = $_POST['changetype'];
             $user = Session::get('userData');
             $where = ['uid' => $user['uid']];
             $member = Members::where($where)->find();
-            if(!$member) {
+            if (!$member) {
                 $this->error('回话过期');
             }
             $oldpass = think_ucenter_md5($_POST['oldpass'], UC_AUTH_KEY);
             $newpass = think_ucenter_md5($_POST['newpass'], UC_AUTH_KEY);
-            if($changetype == 'loginpass') {
-                if(($member['password'] == $oldpass) || $oldpass == "") {
+            if ($changetype == 'loginpass') {
+                if (($member['password'] == $oldpass) || $oldpass == "") {
                     Members::where($where)->update([
                         'password' => $newpass
                     ]);
                 } else {
                     $this->error('旧密码不正确');
                 }
-            } elseif($changetype == 'secpass') {
-                if($member['coinPassword'] == $oldpass || $oldpass == "") {
+            } elseif ($changetype == 'secpass') {
+                if ($member['coinPassword'] == $oldpass || $oldpass == "") {
                     Members::where($where)->update([
                         'coinPassword' => $newpass
                     ]);
@@ -504,7 +524,7 @@ class User extends Controller
         $member = Members::where(['uid' => $user['uid']])->find();
         $nickname = $member ? $member['nickname'] : "";
         $this->assign('nickname', $nickname);
-        if(!empty($_POST['nickname'])) {
+        if (!empty($_POST['nickname'])) {
             Members::where(['uid' => $user['uid']])->update([
                 'nickname' => $_POST['nickname']
             ]);
@@ -550,23 +570,23 @@ class User extends Controller
         $today_bets = 0;
         $online = 0;
         $member = Members::where(['uid' => $user['uid']])->find();
-        if($member) {
+        if ($member) {
             $where[] = ['exp', 'FIND_IN_SET(' . $member['uid'] . ',parents)'];
             $where['isDelete'] = 0;
             $list = Members::where($where)->field('uid,coin,regTime')->select();
-            foreach($list as $item => $sub) {
+            foreach ($list as $item => $sub) {
                 $team_coin = $team_coin + $sub['coin'];
-                if(strtotime(date('Y-m-d', $sub['regTime'])) == strtotime(date('Y-m-d', time()))) {
+                if (strtotime(date('Y-m-d', $sub['regTime'])) == strtotime(date('Y-m-d', time()))) {
                     $today_add++;
                 }
             }
             $team_man = count($list);
             $logins = MemberSession::where(['accessTime' => ['gt', time() - 900], 'isOnLine' => 1])->field('uid')->order('id')->select();
-            foreach($logins as $l) {
+            foreach ($logins as $l) {
                 $logins2[$l['uid']] = $l;
             }
-            foreach($list as $child) {
-                if(isset($logins2[$child['uid']])) {
+            foreach ($list as $child) {
+                if (isset($logins2[$child['uid']])) {
                     $online++;
                 }
             }
@@ -582,7 +602,7 @@ class User extends Controller
     public function getGameType($id)
     {
         $type = Type::where(['id' => $id])->find();
-        if($type) {
+        if ($type) {
             return $type['title'];
         } else {
             return "";
@@ -592,7 +612,7 @@ class User extends Controller
     public function getPayType($id)
     {
         $info = Played::where(['id' => $id])->find();
-        if($info) {
+        if ($info) {
             return $info['name'];
         } else {
             return "";
@@ -615,11 +635,11 @@ class User extends Controller
         $type = Type::where(['isDelete' => 0])->order('sort')->select();
         $playeds = Played::where(['enable' => 1])->order('sort')->select();
         $data = [];
-        if($playeds) {
-            foreach($type as $item) {
-                foreach($playeds as $var) {
+        if ($playeds) {
+            foreach ($type as $item) {
+                foreach ($playeds as $var) {
                     $cur_play = ['lotteryid' => $var['type'], 'methodid' => $var['id'], 'methodname' => $var['name']];
-                    if($item['type'] == $var['type']) {
+                    if ($item['type'] == $var['type']) {
                         $data[$item['id']][$var['id']] = $cur_play;
                     }
                 }
@@ -636,21 +656,21 @@ class User extends Controller
         $type = Type::where(['isDelete' => 0])->order('sort')->select();
         $date_time = DataTime::order('actionTime')->select();
         $return = [];
-        foreach($date_time as $item) {
+        foreach ($date_time as $item) {
             $return[$item['type']][$item['id']] = $item;
         }
-        foreach($type as $item) {
+        foreach ($type as $item) {
             $fun = $item['onGetNoed'];
-            if(isset($return[$item['id']])) {
+            if (isset($return[$item['id']])) {
                 $cur_no_arr = $return[$item['id']];
                 $idx = 0;
-                foreach($cur_no_arr as $sub_key => $sub_item) {
+                foreach ($cur_no_arr as $sub_key => $sub_item) {
                     $me->type = $sub_item['type'];
                     $actionNo = $sub_item['actionNo'];
                     $actionTime = $sub_item['actionNo'];
 //                    $kjTime = $me->getTypeFtime($me->type);
 //                    $atime  = date('H:i:s', $time + $kjTime);
-                    if(method_exists($me, $fun)) {
+                    if (method_exists($me, $fun)) {
                         $me->$fun($actionNo, $actionTime, $time, $item['data_ftime']);
                         $data[$item['id']][$idx] = [
                             'issue' => $actionNo,
@@ -689,21 +709,21 @@ class User extends Controller
         //     $this->error('充值网络异常，请稍后再试！');
         // }
         $this->user = Session::get('userData');
-        if($this->user['uid'] == $_POST['touid']) {
+        if ($this->user['uid'] == $_POST['touid']) {
             $this->error('不能给自己充值');
         }
-        if(empty($_POST['money']) || intval($_POST['money']) < 1) {
+        if (empty($_POST['money']) || intval($_POST['money']) < 1) {
             $this->error('充值金额必须大于0');
         }
-        if(empty($_POST['zjmm'])) {
+        if (empty($_POST['zjmm'])) {
             $this->error('资金密码不能为空');
         }
-        if($this->user['is_test'] != 1) {
-            if(empty($_POST['bankno'])) {
+        if ($this->user['is_test'] != 1) {
+            if (empty($_POST['bankno'])) {
                 $this->error('验证银行卡号不能为空！');
             }
             $banks = MemberBank::where(['uid' => $this->user['uid'], 'enable' => 1, 'account' => $_POST['bankno']])->count();
-            if($banks == 0) {
+            if ($banks == 0) {
                 $this->error('验证银行卡号不正确！');
             }
         }
@@ -711,11 +731,11 @@ class User extends Controller
         $money = $_POST['money'];
         $zjmm = $_POST['zjmm'];
         //转账次数限制
-        if(!$this->zzcs()) {
+        if (!$this->zzcs()) {
             $this->error("每天只能转账一次");
         }
         //转账限制
-        if(!$this->zzxz()) {
+        if (!$this->zzxz()) {
             $this->error("投注金额必须超过充值金额的30");
         }
 
@@ -723,19 +743,19 @@ class User extends Controller
         $db->startTrans();
         $me = Members::where(['uid' => $this->user['uid']])->lock(true)->find();
         $menewmoney = $me['coin'] - $money;
-        if($menewmoney < 0) {
+        if ($menewmoney < 0) {
             $db->rollback();
             $this->error('余额不足，请先充值余额');
             exit();
         }
-        if(empty($me['coinPassword']) || ($me['coinPassword'] != think_ucenter_md5($zjmm, UC_AUTH_KEY))) {
+        if (empty($me['coinPassword']) || ($me['coinPassword'] != think_ucenter_md5($zjmm, UC_AUTH_KEY))) {
             $db->rollback();
             $this->error('资金密码未设置或不正确');
             exit();
         }
         $user = Members::where(['uid' => $touid])->find();
         $p_arr = explode(',', $user['parents']);
-        if(!in_array($this->user['uid'], $p_arr)) {
+        if (!in_array($this->user['uid'], $p_arr)) {
             $db->rollback();
             $this->error('不是你的直属下级，不可以充值');
             exit();
@@ -756,7 +776,7 @@ class User extends Controller
         ]);
         Members::where('uid', $this->user['uid'])->setInc('scoreTotal', $money);
 
-        if($isSuc1 == true) {
+        if ($isSuc1 == true) {
             $isSuc2 = $comm->addCoin([
                 'uid' => $user['uid'],
                 'coin' => $money,
@@ -786,14 +806,14 @@ class User extends Controller
             'flag' => 1//上级给下级充值
         ];
         $rech = MemberRecharge::insert($rechage);
-        if(!$rech) {
+        if (!$rech) {
             Log::record('给下级充值资金失败');
             $db->rollback();
             $this->error('操作失败');
         }
-        if($isSuc2 == true) {
+        if ($isSuc2 == true) {
             $me = Members::where(['uid' => $this->user['uid']])->find();
-            if($me['coin'] < 1) {
+            if ($me['coin'] < 1) {
                 $db->rollback();
                 $this->error('余额不足，请先充值余额');
                 exit();
@@ -810,7 +830,7 @@ class User extends Controller
     final private function getRechId()
     {
         $rechargeId = $this->guid();
-        if(MemberRecharge::where(['rechargeId' => $rechargeId])->find()) {
+        if (MemberRecharge::where(['rechargeId' => $rechargeId])->find()) {
             $this->getRechId();
         } else {
             return $rechargeId;
@@ -831,20 +851,20 @@ class User extends Controller
     //充值限制
     public function zzxz()
     {
-        if($this->user['type'] == 1) {
+        if ($this->user['type'] == 1) {
             return true;
         }
         //充值金额
         $gRs = MemberRecharge::where(['uid' => $this->user['uid'], 'state' => ['in', '1,2,9'], 'isDelete' => 0])->field('sum(case when rechargeAmount>0 then rechargeAmount else amount end) as rechargeAmount')->find();
         //投注金额
         $bet = Bets::where(['uid' => $this->user['uid'], 'isDelete' => 0, 'lotteryNo' => ['neq', '']])->field('sum(mode*beiShu*actionNum) as betAmout')->find();
-        if(!empty($gRs) && !empty($bet)) {
+        if (!empty($gRs) && !empty($bet)) {
             return false;
         } else {
             $betAmout = $bet['betAmout'];
             $rechargeAmount = $gRs["rechargeAmount"];
             $bfb = round($betAmout / $rechargeAmount, 2) * 100;
-            if($bfb >= 30) {
+            if ($bfb >= 30) {
                 return true;
             } else {
                 return false;
@@ -856,7 +876,7 @@ class User extends Controller
     public function zzcs()
     {
         //代理商不限制
-        if($this->user['type'] == 1) {
+        if ($this->user['type'] == 1) {
             return true;
         }
         $map = [
@@ -866,7 +886,7 @@ class User extends Controller
         $m = CoinLog::where($map)
             ->order('actionTime desc')
             ->find();
-        if(empty($m)) {
+        if (empty($m)) {
             return true;
         }
         return false;
@@ -878,24 +898,24 @@ class User extends Controller
         $username = $user['username'];
         $uid = $user['uid'];
         $where = [];
-        if(!empty($_GET['uid'])) {
+        if (!empty($_GET['uid'])) {
             $cur_member = Members::get($_GET['uid'])->getData();
             $username = $cur_member ? $cur_member['username'] : "";
             $uid = $_GET['uid'];
         } else {
-            if(isset($_GET['username'])) {
+            if (isset($_GET['username'])) {
                 $where['username'] = $_GET['username'];
             }
-            if(isset($_GET['bank_min'])) {
+            if (isset($_GET['bank_min'])) {
                 $where['coin'] = ['>=', $_GET['bank_min']];
             }
-            if(isset($_GET['bank_max']) && intval($_GET['bank_max']) > 0) {
+            if (isset($_GET['bank_max']) && intval($_GET['bank_max']) > 0) {
                 $where['coin'] = ['<=', $_GET['bank_max']];
             }
         }
         $pageSize = isset($_GET['pageSize']) ? $_GET['pageSize'] : 10;
         $where['parentId'] = $uid;
-        if(isset($_GET['username'])) {
+        if (isset($_GET['username'])) {
             $config = [
                 'query' => [
                     'username' => $_GET['username'],
@@ -923,29 +943,29 @@ class User extends Controller
         $this->assign('total', $total);
         $this->assign('currentPage', $currentPage);
         $this->assign('totalPage', ceil($total / $pageSize));
-        foreach($list as $key => $sub) {
+        foreach ($list as $key => $sub) {
             $list[$key]['rgz_at'] = $sub['rgz_at'] ? date('Y-m-d', $sub['rgz_at']) : "";
         }
         $rgz_option = [];
         $rgz_biaozhun = [];
         $cnt = $user['ri_gong_zi'] / 10;
         $ri_gong_zi = $user['ri_gong_zi'];
-        for($idx = $cnt; $idx >= 0; $idx--) {
+        for ($idx = $cnt; $idx >= 0; $idx--) {
             $cur_v = $ri_gong_zi - ($idx * 10);
-            if($cur_v > 10) {
+            if ($cur_v > 10) {
                 $rgz_option[$cur_v] = $cur_v;
             }
         }
-        for($idx = 0; $idx <= $cnt; $idx++) {
+        for ($idx = 0; $idx <= $cnt; $idx++) {
             $cur_v = $ri_gong_zi - ($idx * 10);
-            if($cur_v >= 120) {
+            if ($cur_v >= 120) {
                 $rgz_biaozhun[] = [
                     'title' => ($cur_v == 120 ? '1万10-' . $cur_v . '元' : '1万' . $cur_v . '元'),
                     'renshu' => $cur_v == 200 ? "288人以上" : pow(2, ($cur_v - 120) / 10) . '人以上'
                 ];
             }
         }
-        if($ri_gong_zi < 120) {
+        if ($ri_gong_zi < 120) {
             $rgz_biaozhun[] = [
                 'title' => '1万10-' . $ri_gong_zi,
                 'renshu' => '1人以上'
@@ -964,16 +984,16 @@ class User extends Controller
     public function postShezhirgz()
     {
         $this->user = Session::get('userData');
-        if($this->user['uid'] == $_POST['touid']) {
+        if ($this->user['uid'] == $_POST['touid']) {
             $this->error('不能给自己设置');
         }
-        if(empty($_POST['money'])) {
+        if (empty($_POST['money'])) {
             $this->error('请选择日工资');
         }
         $ceng = substr_count($this->user['parents'], ',');
-        if($ceng <= 3) {
+        if ($ceng <= 3) {
             $subrgzcnt = Members::where('parentId', $this->user['uid'])->where('uid', '<>', $_POST['touid'])->where('ri_gong_zi', '>', 0)->count();
-            if($subrgzcnt >= 20 && $ceng >= 2) {
+            if ($subrgzcnt >= 20 && $ceng >= 2) {
                 $this->error('最多只可以给20个直属下级设置日工资');
             }
         } else {
@@ -991,7 +1011,7 @@ class User extends Controller
             '2' => '未领取',
             '3' => '已领取',
         ];
-        foreach($data as $key => $item) {
+        foreach ($data as $key => $item) {
             $data[$key]['zt'] = $zt[$item['zt']];
         }
         $this->assign('data', $data);
@@ -1005,7 +1025,7 @@ class User extends Controller
         $login_member = Members::where(['uid' => $user['uid']])->find();
         $member = Members::where(['parentId' => $touid])->field('max(fanDian) as fanDian')->find();
         $fandian = $login_member['fanDian'] - $_POST['fandian'];
-        if($fandian >= 0 && $fandian >= $member['fanDian']) {
+        if ($fandian >= 0 && $fandian >= $member['fanDian']) {
             Members::where(['uid' => $touid])->update(['fanDian' => $fandian]);
         } else {
             $this->error('设置返点超出范围');
