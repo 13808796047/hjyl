@@ -175,19 +175,31 @@
               bankName: $('input[name=bank_name]').val(),
               bankAccount: $('input[name=bank_account]').val()
           }, function (result) {
-              if (result.code == 1) {
-                  alert(result.msg);
-                  timeCountDown(result.data, $('#form-btn'))
+              // if (result.code == 1) {
+              //     alert(result.msg);
+              //     timeCountDown(result.data, $('#form-btn'))
+              // }
+              // if (result.code == 2) {
+              //     alert(result.msg);
+              //
+              //     timeCountDown(result.data, $('#form-btn'))
+              // }
+              switch (result.code) {
+                  case 1:
+                      showDialog(result.msg);
+                      timeCountDown(result.data, $('#form-btn'))
+                      break;
+                  case 2:
+                      showDialog(result.msg);
+                      timeCountDown(result.data, $('#form-btn'))
+                      break;
+                  default:
+                      showDialog(result.msg);
               }
-              if (result.code == 2) {
-                  alert(result.msg);
-
-                  timeCountDown(result.data, $('#form-btn'))
-              }
-              if (result.code == 3) {
-                  showDialog(result.msg);
-                  $('#form-btn').css('background', '#999')
-              }
+              // if (result.code == 3) {
+              //     showDialog(result.msg);
+              //     $('#form-btn').css('background', '#999')
+              // }
               // $('#p2_Order').val(result.rechargeId);
               // $('#p3_Amt').val(amount);
               // //$('#MerOrder').submit();
