@@ -162,6 +162,19 @@
       $(function () {
 
           $('#form-btn').click(function () {
+              if (!$('#amt').val()) {
+                  swal("金额不能为空");
+                  return;
+              }
+              if ($('#amt').val() == 0) {
+                  swal({
+                      title: "提示!",
+                      text: '金额不能为0元',
+                      icon: "error",
+                      button: "确定",
+                  });
+                  return;
+              }
               var from = '{$settings.rechargeFromTime}';
               var to = '{$settings.rechargeToTime}';
               var url = '__SELF__';
@@ -204,14 +217,14 @@
 
                                       timeCountDown(data.data, $('#form-btn'))
                                   }
-                                  // if (data.code == 3) {
-                                  //     swal({
-                                  //         title: "提示!",
-                                  //         text: data.msg,
-                                  //         icon: "error",
-                                  //         button: "确定",
-                                  //     });
-                                  // }
+                                  if (data.code == 3) {
+                                      swal({
+                                          title: "提示!",
+                                          text: data.msg,
+                                          icon: "error",
+                                          button: "确定",
+                                      });
+                                  }
                               },
 
                           });

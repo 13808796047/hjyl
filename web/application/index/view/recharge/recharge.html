@@ -361,7 +361,19 @@
         var from = '{$rechargeFromTime}';
         var to = '{$rechargeToTime}';
         $('#form-submit').click(function () {
-
+            if (!$('#amount').val()) {
+                swal("金额不能为空");
+                return;
+            }
+            if ($('#amount').val() == 0) {
+                swal({
+                    title: "提示!",
+                    text: '金额不能为0元',
+                    icon: "error",
+                    button: "确定",
+                });
+                return;
+            }
             swal({
                 title: "确认提交吗?",
                 text: '充值时间 ' + from + ' 到 ' + to,
@@ -414,19 +426,7 @@
 
                     }
                 });
-            if (!$('#amount').val()) {
-                swal("金额不能为空");
-                return;
-            }
-            if ($('#amount').val() == 0) {
-                swal({
-                    title: "提示!",
-                    text: '金额不能为0元',
-                    icon: "error",
-                    button: "确定",
-                });
-                return;
-            }
+
 
         })
         //时间倒计时
