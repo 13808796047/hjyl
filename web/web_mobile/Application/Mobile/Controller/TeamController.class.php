@@ -433,6 +433,7 @@ class TeamController extends HomeController
     {
         $uid = I('uid');
         isset($uid) ? $user_id = $uid : $user_id = $this->user['uid'];
+        dump($uid);
         $where['parentId'] = $user_id;
         $where['uid'] = $user_id;
         $where['_logic'] = 'OR';
