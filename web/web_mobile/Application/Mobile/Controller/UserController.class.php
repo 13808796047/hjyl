@@ -520,7 +520,8 @@ class UserController extends HomeController
 
             $bankName = M('bank_list')->where('id=' . $bank['bankId'])->find();
             // var_dump($bankName);
-            // $this->getSystemSettings();
+            $this->getSystemSettings();
+            $this->assign('settings', $this->settings);
             $this->assign('bankName', $bankName);
             $this->assign('bank', $bank);
             $this->display();
