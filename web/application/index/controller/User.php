@@ -127,7 +127,7 @@ class User extends Controller
 
             while ($uid) {//如果存在上级分类，则逐步向上获取上级分类的信息
                 $info = $this->get_category_by_category_id($cur_member['parentId']);//上级分类信息
-                $category_url[] = $info['category_name'];//上级分类名称
+                $category_url[] = $info['username'];//上级分类名称
             }
 
             krsort($category_url);//排序
