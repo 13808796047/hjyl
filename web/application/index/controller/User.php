@@ -131,7 +131,7 @@ class User extends Controller
 //            if (!array_key_exists($cur_member['uid'], $arr)) {
 //
 //            }
-            dump($new_arr);
+            dump($arr);
         } else {
             if (isset($_GET['bank_min'])) {
                 $where['coin'] = ['>=', $_GET['bank_min']];
