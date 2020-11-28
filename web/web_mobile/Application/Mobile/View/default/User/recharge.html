@@ -136,7 +136,8 @@
           <!--<input size="50" type="hidden" name="merchParam" id="merchParam" value="{$user.uid}" />-->
           <!--<input size="50" type="hidden" name="tradeSummary" id="tradeSummary" value="{$user.username}" />-->
         </div>
-        <button class="btn" style="cursor: {$bank?'':'not-allowed'};" id='form-btn' {$bank?'':'disabled'} onclick="return fukuan(this);">提交</button>
+        <button class="btn" style="cursor: {$bank?'':'not-allowed'};" id='form-btn' {$bank?
+        '':'disabled'} onclick="return fukuan(this);">提交</button>
       </form>
     </div>
   </div>
@@ -158,13 +159,13 @@
 
       function fukuan(me) {
 
-          // var min = {$settings.rechargeMin1};
+          // var min = {$settings.recharge};
           // var max = {$settings.rechargeMax1};
           // var amount = parseFloat($('#amt').val());
-				// if(isNaN(amount) || amount<min || amount>max){
-				// 	showDialog('充值金额必须在' + min + '元和' + max + '元之间');
-				// 	return false;
-				// }
+          // if(isNaN(amount) || amount<min || amount>max){
+          // 	showDialog('充值金额必须在' + min + '元和' + max + '元之间');
+          // 	return false;
+          // }
 
           var url = '__SELF__';
           $.post(url, {
@@ -178,6 +179,10 @@
                   alert(result.msg);
 
                   timeCountDown(result.data, $('#form-btn'))
+              }
+              if (result.code == 3) {
+                  showDialog(result.msg);
+                  $('#form-btn').css('background', '#999')
               }
               // $('#p2_Order').val(result.rechargeId);
               // $('#p3_Amt').val(amount);

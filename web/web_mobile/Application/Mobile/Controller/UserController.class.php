@@ -514,11 +514,14 @@ class UserController extends HomeController
 
         } else {
             $bank = M('member_bank')->where(['uid' => 1, 'admin' => 1, 'enable' => 1])->find();
+            if(!$bank) {
+                $this->ajaxReturn(['code' => 3, 'msg' => '后台未设置银行卡', 'data' => ''], 'json');
+            }
             $bankName = M('bank_list')->where('id=' . $bank['bankId'])->find();
             // var_dump($bankName);
             // $this->getSystemSettings();
             $this->assign('bankName', $bankName);
-//            $this->assign('bank', $bank);
+            $this->assign('bank', $bank);
             $this->display();
         }
 
