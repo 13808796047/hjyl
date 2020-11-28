@@ -93,6 +93,10 @@
         <div class="list">
             <form action="" method="get" class="form">
                 <div class="intro_content">
+                    {volist name="arr" id="vo"}
+                    &nbsp;&nbsp;&nbsp;&nbsp;当前用户位置： &nbsp;&nbsp;&nbsp;&nbsp;<a
+                        href="/user/user_list.html?frame=show&uid={$vo.key}">{$vo.value}</a>
+                    {/volist}
                     <!--          &nbsp;&nbsp;&nbsp;&nbsp;当前用户位置： &nbsp;&nbsp;&nbsp;&nbsp;<a href="/user/user_list.html?frame=show&uid={$uid}"></a>-->
                 </div>
                 <table id="userlistDL">

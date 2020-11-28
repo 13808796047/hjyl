@@ -123,7 +123,7 @@ class User extends Controller
             $uid = $_GET['uid'];
 
             $cur_member = Members::get($uid);
-            dump($cur_member->full_name);
+            $arr = $cur_member->full_name;
         } else {
             if (isset($_GET['bank_min'])) {
                 $where['coin'] = ['>=', $_GET['bank_min']];
@@ -172,7 +172,7 @@ class User extends Controller
         $this->assign('data_list', $list);
 
         $member = Members::get($uid)->getData();
-//        $this->assign('username', $username);
+        $this->assign('arr', $arr);
         $this->assign('userType', $user['type']);
         $this->assign('userCoin', $user['coin']);
         $this->assign('uid', $uid);
