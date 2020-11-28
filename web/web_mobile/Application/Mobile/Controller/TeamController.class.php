@@ -50,7 +50,7 @@ class TeamController extends HomeController
 
 
         isset($para['uid']) ? $uid = $para['uid'] : $uid = $this->user['uid'];
-        $builder = M('members');
+//        $builder = M('members');
         if(isset($_GET['username']) && $_GET['username'] != '') {
             $where['username'] = ['like', strtolower(trim($_GET['username'])) . '%'];
             $where[] = ['exp', 'FIND_IN_SET(' . $uid . ',parents)'];
@@ -77,6 +77,7 @@ class TeamController extends HomeController
         $map['_logic'] = 'or';
         $userList = M('members')->where($map)
             ->order('username')->select();
+        dump($userList);
         $t = [];
         $k = 0;
         foreach($userList as $key => $value) {
