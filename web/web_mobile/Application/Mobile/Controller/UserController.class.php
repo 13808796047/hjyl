@@ -521,7 +521,7 @@ class UserController extends HomeController
             // var_dump($bankName);
             // $this->getSystemSettings();
             $this->assign('bankName', $bankName);
-            $this->assign('bank', $bank);
+//            $this->assign('bank', $bank);
             $this->display();
         }
 
