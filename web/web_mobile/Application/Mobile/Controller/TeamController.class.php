@@ -56,33 +56,55 @@ class TeamController extends HomeController
             $where['parentId'] = $uid;
         }
 
+        $map['_complex'] = $where;
+//        $childs = $builder->where($where)->select();
+//        if($para['fromTime'] && $para['toTime']) {
+//            $where['actionTime'] = ['between', [strtotime($para['fromTime']), strtotime($para['toTime'])]];
+//        } elseif($para['fromTime']) {
+//            $where['actionTime'] = ['egt', strtotime($para['fromTime'])];
+//        } elseif($para['toTime']) {
+//            $where['actionTime'] = ['elt', strtotime($para['toTime'])];
+//        } else {
+//            if($GLOBALS['fromTime'] && $GLOBALS['toTime']) {
+//                $where['actionTime'] = ['between', [$GLOBALS['fromTime'], $GLOBALS['toTime']]];
+//            }
+//        }
 
-        $childs = $builder->where($where)->select();
-        if($para['fromTime'] && $para['toTime']) {
-            $where['actionTime'] = ['between', [strtotime($para['fromTime']), strtotime($para['toTime'])]];
-        } elseif($para['fromTime']) {
-            $where['actionTime'] = ['egt', strtotime($para['fromTime'])];
-        } elseif($para['toTime']) {
-            $where['actionTime'] = ['elt', strtotime($para['toTime'])];
-        } else {
-            if($GLOBALS['fromTime'] && $GLOBALS['toTime']) {
-                $where['actionTime'] = ['between', [$GLOBALS['fromTime'], $GLOBALS['toTime']]];
+        $map['_complex'] = $where;
+        $map['uid'] = $uid;
+        $map['_logic'] = 'or';
+        $userList = M('members')->where($map)
+            ->order('username')->select();
+        $t = [];
+        $k = 0;
+        foreach($userList as $key => $value) {
+            $t[$key]['totalRecharge'] = M('member_recharge')->where($map)->where('state=11')->sum('amount');
+            $t[$key]['totalCash'] = M('member_cash')->where($map)->where('state=4')->sum('amount');
+            if($value['uid'] == $uid) {
+                $t = $value;
+                $k = $key;
             }
         }
-        $data = [];
-        foreach($childs as $key => $value) {
-            $cuids = M('members')->where("FIND_IN_SET({$value['uid']},parents)")->getField('uid', true);
-            $map['uid'] = ['in', $cuids];
-            $data[$key] = [
-                'uid' => $value['uid'],
-                'username' => $value['username'],
-                'type' => $value['type'],
-                'coin' => $value['coin'],
-                'totalRecharge' => M('member_recharge')->where($map)->where($where)->sum('amount'),
-                'totalCash' => M('member_cash')->where($map)->where($where)->sum('amount'),
-            ];
+        if(!empty($t)) {
+            unset($userList[$k]);
+            array_unshift($userList, $t);
         }
-        $this->assign('data', $data);
+        $this->recordList($userList, 20);
+//        $this->assign('user', $this->user);
+//        $data = [];
+//        foreach($childs as $key => $value) {
+//            $cuids = M('members')->where("FIND_IN_SET({$value['uid']},parents)")->getField('uid', true);
+//            $map['uid'] = ['in', $cuids];
+//            $data[$key] = [
+//                'uid' => $value['uid'],
+//                'username' => $value['username'],
+//                'type' => $value['type'],
+//                'coin' => $value['coin'],
+//                'totalRecharge' => M('member_recharge')->where($map)->where($where)->sum('amount'),
+//                'totalCash' => M('member_cash')->where($map)->where($where)->sum('amount'),
+//            ];
+//        }
+//        $this->assign('data', $data);
         $this->display('Team/recharge_stat');
     }
 
