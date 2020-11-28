@@ -179,8 +179,6 @@ class Recharge extends Controller
         $this->init();
         $fromTime = $this->settings['rechargeFromTime'];
         $toTime = $this->settings['rechargeToTime'];
-        dump($fromTime);
-        dump($toTime);
         $this->assign('bank', $bank);
         $this->assign('param', []);
         $this->assign('rechargeFromTime', $fromTime);
