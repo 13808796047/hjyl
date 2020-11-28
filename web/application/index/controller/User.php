@@ -105,7 +105,7 @@ class User extends Controller
 
     public function get_category_by_category_id($id)
     {
-        $cur_member = Members::get($uid)->getData();
+        $cur_member = Members::get($id)->getData();
         return $cur_member;
     }
 
