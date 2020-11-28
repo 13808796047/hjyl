@@ -123,7 +123,7 @@ class User extends Controller
             $uid = $_GET['uid'];
 
             $cur_member = Members::get($uid);
-            dump($cur_member->fullName());
+            dump($cur_member->fullName);
         } else {
             if (isset($_GET['bank_min'])) {
                 $where['coin'] = ['>=', $_GET['bank_min']];
