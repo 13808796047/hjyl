@@ -94,11 +94,10 @@
             <form action="" method="get" class="form">
                 <div class="intro_content">
                     {foreach $arr as $key=>$value}
-                    {eq name="key" value="$Think.session.user_id"}
-
-                    {else/}
+                    {if condition="$Think.session.user_id neq $key"}ThinkPHP
                     >>>
-                    {/eq}
+                    {else /}
+                    {/if}
                     <a href="/user/user_list.html?frame=show&uid={$key}">{$value}</a>
                     {/foreach}
                     <!--          &nbsp;&nbsp;&nbsp;&nbsp;当前用户位置： &nbsp;&nbsp;&nbsp;&nbsp;<a href="/user/user_list.html?frame=show&uid={$uid}"></a>-->
