@@ -67,7 +67,7 @@ class Members extends Model
         return Members::getQuery()
             // 使用上面的访问器获取所有祖先类目 ID
             ->whereIn('id', $this->parents)
-            ->get();
+            ->select();
     }
 
     // 定义一个访问器，获取以 - 为分隔的所有祖先类目名称以及当前类目的名称
