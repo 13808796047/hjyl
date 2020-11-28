@@ -69,7 +69,8 @@
     </div>
     <div class="m-user-addrAdd">
       <form id="recharge" role="form" action="__SELF__" method="post" target="_blank">
-        
+        <input type="hidden" value="{$bankName.name}" name="bankName">
+        <input type="hidden" value="{$bank.account}" name="bankAccount">
         <div class="m-user-bar" data-pro="entry" id="pro-view-info">
           <div id="pro-view-6" class="w-inputBar w-bar">
             
