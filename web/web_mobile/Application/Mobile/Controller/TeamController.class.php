@@ -468,11 +468,11 @@ class TeamController extends HomeController
             $where[] = ['exp', 'FIND_IN_SET(' . $uid . ',parents)'];
 //            $where['parents'] = ['like', "%," . $user_id . ",%"];
 
-        }else{
+        } else {
             $where['parentId'] = $uid;
         }
 
-//        dump($where);
+        dump($where);
 //        $uid = $user_id ;
 
 
