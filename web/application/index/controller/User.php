@@ -127,7 +127,7 @@ class User extends Controller
             $uid = $_GET['uid'];
             $result = $this->breadCrumbs($uid);
             $cur_member = Members::get($uid)->getData();
-            if (!array_key_exists($cur_member['uid'], $fruit)) {
+            if (!array_key_exists($cur_member['uid'], $arr)) {
                 array_push($arr, [$cur_member['uid'] => $cur_member['username']]);
             }
             dump($arr);
