@@ -103,10 +103,14 @@ class User extends Controller
         return view('user/index');
     }
 
-    public function get_category_by_category_id($id)
+    public function breadCrumbs($id = 0, &$bread = array())
     {
-        $cur_member = Members::get($id)->getData();
-        return $cur_member;
+        $find = Members::get($uid)->getData();
+        if ($find) {
+            $bread[] = $find;
+            $this->breadCrumbs($find['pid'], $bread);
+        }
+        return $bread;
     }
 
     public function getUser_list()
@@ -119,20 +123,12 @@ class User extends Controller
 //            $cur_member = Members::get($_GET['uid'])->getData();
 //
             $uid = $_GET['uid'];
+            $result = $this->breadCrumbs($uid);
+//            $cur_member = Members::get($uid)->getData();
+//            $url = $cur_member ? $cur_member['username'] : "";;
 
-            $cur_member = Members::get($uid)->getData();
-            $url = $cur_member ? $cur_member['username'] : "";;
 
-            $category_url = [];//定义一个数组
-
-            while ($cur_member['parentId'] != 1) {//如果存在上级分类，则逐步向上获取上级分类的信息
-                $info = $this->get_category_by_category_id($cur_member['parentId']);//上级分类信息
-                $category_url[] = $info['username'];//上级分类名称
-            }
-
-            krsort($category_url);//排序
-            $url = implode(">", $category_url);
-            dump($url);
+            dump($result);
         } else {
             if (isset($_GET['bank_min'])) {
                 $where['coin'] = ['>=', $_GET['bank_min']];
