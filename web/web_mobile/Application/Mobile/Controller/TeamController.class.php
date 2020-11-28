@@ -27,6 +27,7 @@ class TeamController extends HomeController
     public function rechargestat()
     {
         $this->searchRechargestat();
+
         $this->display('Team/recharge_stat');
 
 //        if (!I('get.')) {
@@ -106,7 +107,7 @@ class TeamController extends HomeController
 //            ];
 //        }
 //        $this->assign('data', $data);
-        $this->display('Team/recharge_stat');
+//        $this->display('Team/recharge_stat');
     }
 
     /*游戏记录*/
