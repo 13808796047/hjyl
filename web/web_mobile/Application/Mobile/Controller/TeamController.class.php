@@ -433,7 +433,6 @@ class TeamController extends HomeController
     {
         $uid = I('uid');
         !isset($uid) ? $user_id = $uid : $user_id = $this->user['uid'];
-        dump($user_id);
         $where['parentId'] = $user_id;
         $where['uid'] = $user_id;
         $where['_logic'] = 'OR';
@@ -442,7 +441,7 @@ class TeamController extends HomeController
             // 只要符合用户名且是自己所有下级的都可查询
             // 用户名用模糊方式查询
             $where['username'] = ['like', "%" . I('username') . "%"];
-            $where['parents'] = ['like', "%," . $user_id . ",%"];
+//            $where['parents'] = ['like', "%," . $user_id . ",%"];
 
         }
         if(I('utype')) {
