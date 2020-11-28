@@ -1,44 +1,111 @@
-<ul class="w-goodsList w-goodsList-l m-user-goodsList" data-pro="list">
-    <php>foreach($data as $vo){</php>
-    <li id="pro-view-8" class="w-goodsList-item">
-        <div class="w-goods w-goods-l w-goods-ing m-user-goods">
-            <div class="w-goods-info">
-                <p>
-                    类型： {$vo['type']?'代理':'会员'}
-                </p>
-                <p>
-                    用户名：<a
-                        href="{:U('team/searchstat',['uid'=>$vo['uid'],'fromTime'=>$GLOBALS['fromTime'],'toTime'=>$GLOBALS['toTime']])}">{$vo.username}</a>
-                </p>
-                <p>
-                    充值：
-                    <empty name="vo.totalRecharge">
-                        0
-                        <else/>
-                        {$vo.totalRecharge}
-                    </empty>
-                </p>
-                <p>
-                    提现：
-                    <empty name="vo.totalCash">
-                        0
-                        <else/>
-                        {$vo.totalCash}
-                    </empty>
-                </p>
-                <p>
-                    余额：{$vo.coin}
-                </p>
-                <!--                <div class="m-user-goods-my">-->
-                <!--                    <a class="link" href="javascript:void(0);" data-pro="mycode" data-data="{$vo.actionData}" url="{:U('record/betInfo?id='.$vo['id'])}">查看详情</a>-->
-                <!--                </div>-->
-            </div>
-        </div>
-    </li>
-    <php>} if(!$data) {</php>
-    <div style="text-align:center">当前条件下没有记录，请更改条件后搜索</div>
-    <php>}</php>
-</ul>
+<!--<ul class="w-goodsList w-goodsList-l m-user-goodsList" data-pro="list">-->
+<!--    <php>foreach($data as $vo){</php>-->
+<!--    <li id="pro-view-8" class="w-goodsList-item">-->
+<!--        <div class="w-goods w-goods-l w-goods-ing m-user-goods">-->
+<!--            <div class="w-goods-info">-->
+<!--                <p>-->
+<!--                    类型： {$vo['type']?'代理':'会员'}-->
+<!--                </p>-->
+<!--                <p>-->
+<!--                    用户名：<a-->
+<!--                        href="{:U('team/searchstat',['uid'=>$vo['uid'],'fromTime'=>$GLOBALS['fromTime'],'toTime'=>$GLOBALS['toTime']])}">{$vo.username}</a>-->
+<!--                </p>-->
+<!--                <p>-->
+<!--                    充值：-->
+<!--                    <empty name="vo.totalRecharge">-->
+<!--                        0-->
+<!--                        <else/>-->
+<!--                        {$vo.totalRecharge}-->
+<!--                    </empty>-->
+<!--                </p>-->
+<!--                <p>-->
+<!--                    提现：-->
+<!--                    <empty name="vo.totalCash">-->
+<!--                        0-->
+<!--                        <else/>-->
+<!--                        {$vo.totalCash}-->
+<!--                    </empty>-->
+<!--                </p>-->
+<!--                <p>-->
+<!--                    余额：{$vo.coin}-->
+<!--                </p>-->
+<!--                &lt;!&ndash;                <div class="m-user-goods-my">&ndash;&gt;-->
+<!--                &lt;!&ndash;                    <a class="link" href="javascript:void(0);" data-pro="mycode" data-data="{$vo.actionData}" url="{:U('record/betInfo?id='.$vo['id'])}">查看详情</a>&ndash;&gt;-->
+<!--                &lt;!&ndash;                </div>&ndash;&gt;-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </li>-->
+<!--    <php>} if(!$data) {</php>-->
+<!--    <div style="text-align:center">当前条件下没有记录，请更改条件后搜索</div>-->
+<!--    <php>}</php>-->
+<!--</ul>-->
 <!--<div class="page">-->
 <!--    {$_page}-->
 <!--</div>-->
+<div class="w-goods w-goods-l w-goods-ing m-user-goods" style="background: #5e6171!important;color: white">
+  <div class="w-goods-info">
+    <table id="mainTable" class="fixmargin bottom attached ui small unstackable very compact celled table"
+           style="border: 0px;">
+      <thead>
+      <tr class="colortr">
+        <th style="background:#04564f!important;color:#fff!important;text-align:left!important;border-radius:0!important">
+          类型
+        </th>
+        <th style="width: 28%;background:#04564f!important;color:#fff!important;text-align:left!important;border-radius:0!important">
+          用户名
+        </th>
+        <th style="width: 32%;background:#04564f!important;color:#fff!important;text-align:left!important;border-radius:0!important">
+          充值
+        </th>
+        <th style="width: 32%;background:#04564f!important;color:#fff!important;text-align:left!important;border-radius:0!important">
+          提现
+        </th>
+        <th style="width: 32%;background:#04564f!important;color:#fff!important;text-align:left!important;border-radius:0!important">
+          余额
+        </th>
+      </tr>
+      </thead>
+      <tbody style="background:#617177;color:#fff;">
+      <php>if (!empty($data)){</php>
+      <php>foreach ($data as $vo){</php>
+      <tr class="colortr">
+        <td>
+          {$vo['type']?'代理':'会员'}
+        </td>
+        <td>
+          <a href="{:U('team/member',['uid'=>$vo['uid']])}" style="color: #eeeeee">{$vo.username}</a>
+        </td>
+        <td>
+          <empty name="vo.totalRecharge">
+            0
+            <else/>
+            {$vo.totalRecharge}
+          </empty>
+        </td>
+        <td>
+          <empty name="vo.totalCash">
+            0
+            <else/>
+            {$vo.totalCash}
+          </empty>
+        </td>
+        <td>
+          {$vo.coin}
+        </td>
+      </tr>
+      <php>}</php>
+      <php>} else {</php>
+      <tr>
+        <td colspan="4" align="center">
+          当前条件下没有记录，请更改条件后搜索
+        </td>
+      </tr>
+      <php>}</php>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="page">
+  {$_page}
+</div>
