@@ -433,6 +433,9 @@ class TeamController extends HomeController
     {
         $uid = I('uid');
         $user_id = isset($uid) ? $uid : $this->user['uid'];
+        $where['parentId'] = $user_id;
+        $where['uid'] = $user_id;
+        $where['_logic'] = 'OR';
         if(I('username') && I('username') != '用户名') {
             // 按用户名查找时
             // 只要符合用户名且是自己所有下级的都可查询
@@ -450,7 +453,7 @@ class TeamController extends HomeController
                 case 2:
                     // 直属下级
 //                    $uid = $user_id ;
-              
+
                     $where['parentId'] = $user_id;
                     break;
                 case 3:
@@ -467,12 +470,7 @@ class TeamController extends HomeController
         }
         dump($where);
 //        $uid = $user_id ;
-        if(I('child')) {
 
-            $where['parentId'] = $user_id;
-            $where['uid'] = $user_id;
-            $where['_logic'] = 'OR';
-        }
 
         $userList = M('members')->where($where)
             ->order('username')->select();
