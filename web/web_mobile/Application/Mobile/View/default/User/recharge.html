@@ -136,7 +136,7 @@
           <!--<input size="50" type="hidden" name="merchParam" id="merchParam" value="{$user.uid}" />-->
           <!--<input size="50" type="hidden" name="tradeSummary" id="tradeSummary" value="{$user.username}" />-->
         </div>
-        <button id='form-btn' {$bank?'':'disabled'} onclick="return fukuan(this);">提交</button>
+        <button class="btn" style="cursor: {$bank?'':'not-allowed'}" id='form-btn' {$bank?'':'disabled'} onclick="return fukuan(this);">提交</button>
       </form>
     </div>
   </div>
@@ -161,10 +161,10 @@
           // var min = {$settings.rechargeMin1};
           // var max = {$settings.rechargeMax1};
           // var amount = parseFloat($('#amt').val());
-          // if(isNaN(amount) || amount<min || amount>max){
-          // 	showDialog('充值金额必须在' + min + '元和' + max + '元之间');
-          // 	return false;
-          // }
+				// if(isNaN(amount) || amount<min || amount>max){
+				// 	showDialog('充值金额必须在' + min + '元和' + max + '元之间');
+				// 	return false;
+				// }
 
           var url = '__SELF__';
           $.post(url, {
