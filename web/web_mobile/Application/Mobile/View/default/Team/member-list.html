@@ -27,7 +27,7 @@
       <php>foreach ($data as $vo){</php>
       <tr class="colortr">
         <td>
-          <a href="{:U('team/member',['uid'=>$vo['uid'],'action'=>'child'])}" style="color: #eeeeee">{$vo.username}</a>
+          <a href="{:U('team/member',['uid'=>$vo['uid'])}" style="color: #eeeeee">{$vo.username}</a>
         </td>
         <td><?=date('Y-m-d',$vo['regTime'])?></td>
         <td>{$vo.coin}</td>
