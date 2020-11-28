@@ -103,14 +103,10 @@ class User extends Controller
         return view('user/index');
     }
 
-    public function breadCrumbs($id = 0, &$bread = array())
+    public function breadCrumbs($arr)
     {
-        $find = Members::get($id)->getData();
-        if ($find) {
-            $bread[] = $find;
-            $this->breadCrumbs($find['parentId'], $bread);
-        }
-        return $bread;
+        array_push($arr, $cur_member);
+        return $arr;
     }
 
     public function getUser_list()
@@ -127,11 +123,7 @@ class User extends Controller
             $uid = $_GET['uid'];
 
             $cur_member = Members::get($uid)->getData();
-            $new_arr = array_push($arr, $cur_member);
-//            if (!array_key_exists($cur_member['uid'], $arr)) {
-//
-//            }
-            dump($arr);
+            dump($cur_member->getFullName());
         } else {
             if (isset($_GET['bank_min'])) {
                 $where['coin'] = ['>=', $_GET['bank_min']];
