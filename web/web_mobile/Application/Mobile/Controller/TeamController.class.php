@@ -482,7 +482,7 @@ class TeamController extends HomeController
         $t = [];
         $k = 0;
         foreach($userList as $key => $value) {
-            if($value['uid'] == $uid) {
+            if($value['uid'] == $user_id) {
                 $t = $value;
                 $k = $key;
             }
