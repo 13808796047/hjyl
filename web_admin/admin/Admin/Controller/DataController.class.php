@@ -99,7 +99,7 @@ class DataController extends AdminController
 
             $builder = $Model->where(['type' => $type]);
             if (I('status')) {
-                $builder->where('data is null');
+                $builder->where(['data' => '']);
             }
             $map['number'] = array('like', '%' . $num . '%');
             $list = $builder
