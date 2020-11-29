@@ -75,7 +75,7 @@ class DataController extends AdminController
                 ->where('a.data is not null')->order('a.number desc')
                 ->limit(20)->field('a.type,a.number,a.time,a.data,b.actionNo,b.actionTime')
                 ->select();
-
+            dump($list[0]);
 //            $list = $Model              // M('third_order');
 //
 //            ->alias('t')                        // 别名
@@ -166,7 +166,6 @@ class DataController extends AdminController
                     $number = 10000 + $var['actionNo'];
                     $number = date('Ymd-', $date) . substr($number, 1);
                     $data = M('data')->where(array('type' => $type, 'number' => $number))->find();
-                    dump($data);
 
                 } else {
                     //$data=$this->getRow($sql . 'time='. strtotime($dateString . $var['actionTime']));
