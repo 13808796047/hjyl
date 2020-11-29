@@ -67,7 +67,11 @@ class DataController extends AdminController
             } else {
                 $listRows = C('LIST_ROWS') > 0 ? C('LIST_ROWS') : 10;
             }
-            $list = $Model->where(array('type' => intval($type)))->order('actionNo desc')->select();
+//            $list = $Model->where(array('type' => intval($type)))->order('actionNo desc')->select();
+            $where['data'] = array('exp', 'not null');
+            $list = $Model->join('__DATA__ ON __DATATIME__.type = __DATA__.type', 'RIGHT')->order('__DATA__.id desc')->limit(20)->select();
+            dump($list);
+            exit;
             $min = 0;
             foreach ($list as $var) {
                 if ($type == 1) {
