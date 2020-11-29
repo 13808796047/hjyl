@@ -36,7 +36,7 @@ class DataController extends AdminController
         } else {
             $date = strtotime('00:00');
         }
-
+        dump($date);
         $this->assign('date', $date);
 
         $types = M('type')->where(array('enable' => 1))->select();
