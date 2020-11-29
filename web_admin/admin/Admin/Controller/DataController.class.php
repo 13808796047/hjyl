@@ -76,12 +76,12 @@ class DataController extends AdminController
 
 //            ->field('t.*,o.order_id as ccsid')  // 要查的字段
 
-            ->join('left join gygy_data as o on t.type = o.type  and t.type = ' . $type)
+            ->join('left join gygy_data as o on t.type = o.type')
 
                 //关联表（左链接  order表 as o 别名  on关系 t.xx = o.xxx          and  t.xxx  =  o.xxx  ）
 
 //                ->where(['b.data', ['exp', 'is not null']])                       // 条件
-
+                ->where(['type' => $type])
                 ->order('o.id desc')         // 排序
 
                 ->limit(20)  // 取几条
