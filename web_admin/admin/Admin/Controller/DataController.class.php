@@ -130,7 +130,7 @@ class DataController extends AdminController
 
                 } else if ($type == 38 || $type == 39 || $type == 45 || $type == 43) {
                     // 30秒11选5
-                    $number = 100 + $var['actionNo'];
+                    $number = 10000 + $var['actionNo'];
                     $number = date('Ymd-', $date) . substr($number, 1);
                     $data = M('data')->where(array('type' => $type, 'number' => $number))->find();
 
