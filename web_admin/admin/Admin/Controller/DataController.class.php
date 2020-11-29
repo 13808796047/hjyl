@@ -155,8 +155,8 @@ class DataController extends AdminController
 
                 $kjData[$i] = $var;
                 $kjData[$i]['actionNo'] = $var['number'];
-//                $kjData[$i]['actionTime'] = date('Y-m-d ', $date) . $kjData[$i]['actionTime'];
-                $kjData[$i]['actionTime'] = $var['time'] ? date('Y-m-d H:i:s', $var['time']) : '--';
+                $kjData[$i]['actionTime'] = date('Y-m-d ', $date) . $kjData[$i]['actionTime'];
+//                $kjData[$i]['actionTime'] = $var['time'] ? date('Y-m-d H:i:s', $var['time']) : '--';
                 $kjData[$i]['betAmount'] = $bet[0]['betAmount'];
                 $kjData[$i]['zjAmount'] = $bet[0]['zjAmount'];
                 $kjData[$i]['fanDianAmount'] = $bet[0]['fanDianAmount'];
