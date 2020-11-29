@@ -17,6 +17,17 @@
     <form action="{:U('index')}" method="post">
         <div class="search-form fr cf">
             <div class="sleft">
+                <select name="status" id="">
+                    <option value="">
+                        选择
+                    </option>
+                    <option value="1">
+                        漏开奖
+                    </option>
+                </select>
+                <!-- <a class="sch-btn" href="javascript:;" id="search" url="{:U('index')}"><i class="btn-search"></i></a> -->
+            </div>
+            <div class="sleft">
                 <input type="hidden" name='type' value='{$type}'>
                 期号：
                 <input type="text" name="number" class="search-input" value="{:I('number')}" placeholder="请输入期号">

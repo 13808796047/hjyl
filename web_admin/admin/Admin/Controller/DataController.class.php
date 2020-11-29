@@ -36,6 +36,7 @@ class DataController extends AdminController
         } else {
             $date = strtotime('00:00');
         }
+
         $this->assign('date', $date);
 
         $types = M('type')->where(array('enable' => 1))->select();
@@ -68,8 +69,13 @@ class DataController extends AdminController
                 $listRows = C('LIST_ROWS') > 0 ? C('LIST_ROWS') : 10;
             }
 //            $list = $Model->where(array('type' => intval($type)))->order('actionNo desc')->select();
-            $where['data'] = array('exp', 'not null');
-            $list = $Model->where(['type' => $type])->order('id desc')->limit(20)->select();
+
+
+            $builder = $Model->where(['type' => $type]);
+            if (I('status')) {
+                $builder->where(['data', 'null']);
+            }
+            $list = $builder->order('id desc')->limit(20)->select();
             foreach ($list as $var) {
 //                if ($type == 1) {
 //                    // 重庆彩特殊处理
