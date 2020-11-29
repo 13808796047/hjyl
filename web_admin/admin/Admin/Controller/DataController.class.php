@@ -162,8 +162,6 @@ class DataController extends AdminController
             $total = $Model->where(array('type' => intval($type)))->order('actionNo')->count();
             $page = new \COM\Page($total, $listRows, $request);
             $p = $page->show();
-            dump($kjData);
-            exit;
             $this->assign('_list', $kjData);
             $this->assign('_page', $p ? $p : '');
         }
