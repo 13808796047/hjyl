@@ -71,8 +71,7 @@ class DataController extends AdminController
 //            $map['refund_id'] = array('exp', 'is null');
 //            $list = $Model->where(array('type' => intval($type)))->order('actionNo desc')->page($pageIndex, $listRows)->select();
             $list = $Model->alias('a')->join('gygy_data_time b on a.type = b.type', 'left')->where('a.data is not null')->order('a.number desc')->limit(20)->select();
-            dump($list[0]);
-            die;
+
 //            $list = $Model              // M('third_order');
 //
 //            ->alias('t')                        // 别名
