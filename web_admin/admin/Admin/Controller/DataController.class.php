@@ -69,27 +69,26 @@ class DataController extends AdminController
                 $listRows = C('LIST_ROWS') > 0 ? C('LIST_ROWS') : 10;
             }
 //            $map['refund_id'] = array('exp', 'is null');
-//            $list = $Model->where(array('type' => intval($type)))->order('actionNo desc')->page($pageIndex, $listRows)->select();
-            $list = $Model              // M('third_order');
-
-            ->alias('t')                        // 别名
-
-//            ->field('t.*,o.order_id as ccsid')  // 要查的字段
-
-            ->join('left join gygy_data as o on t.type = o.type')
-
-                //关联表（左链接  order表 as o 别名  on关系 t.xx = o.xxx          and  t.xxx  =  o.xxx  ）
-
-                ->where('b.data is not null')                       // 条件
-//                ->where(['o.type' => $type])
-                ->order('o.id desc')         // 排序
-
-                ->limit(20)  // 取几条
-
-                ->select();
+            $list = $Model->where(array('type' => intval($type)))->order('actionNo desc')->page($pageIndex, $listRows)->select();
+//            $list = $Model              // M('third_order');
+//
+//            ->alias('t')                        // 别名
+//
+////            ->field('t.*,o.order_id as ccsid')  // 要查的字段
+//
+//            ->join('left join gygy_data as o on t.type = o.type')
+//
+//                //关联表（左链接  order表 as o 别名  on关系 t.xx = o.xxx          and  t.xxx  =  o.xxx  ）
+//
+//                ->where('b.data is not null')                       // 条件
+////                ->where(['o.type' => $type])
+//                ->order('o.id desc')         // 排序
+//
+//                ->limit(20)  // 取几条
+//
+//                ->select();
 //            $list = $Model->alias('a')->where(['type', $type])->join('LEFT JOIN gygy_data b ON a.type=b.type')->where(['b.data', ['exp','is not null']])->order('b.id desc')->limit(20)->select();
-            dump($list);
-            die;
+
 //            $builder = $Model->where(['type' => $type, 'number' => $date]);
 //            if (I('status')) {
 //                $builder->where(['data', 'null']);
