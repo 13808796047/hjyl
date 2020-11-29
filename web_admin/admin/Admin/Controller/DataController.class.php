@@ -73,7 +73,7 @@ class DataController extends AdminController
             $list = $Model
                 ->where(['type' => $type])
                 ->where('data is not null')
-                ->order('a.number desc')
+                ->order('number desc')
                 ->limit(20)
                 ->select();
             dump($list[0]);
