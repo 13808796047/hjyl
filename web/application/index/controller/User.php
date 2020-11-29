@@ -120,7 +120,7 @@ class User extends Controller
 //
             $uid = $_GET['uid'];
 
-            $cur_member = Members::with('parent')->get($uid);
+            $cur_member = Members::with('parent')->where('uid', $uid)->find();
             $arr = $cur_member;
 //            $cur_member->parent();
 //            $arr = $cur_member->full_name;
