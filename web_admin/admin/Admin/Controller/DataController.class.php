@@ -68,9 +68,11 @@ class DataController extends AdminController
             } else {
                 $listRows = C('LIST_ROWS') > 0 ? C('LIST_ROWS') : 10;
             }
-            $list = $Model->where(array('type' => intval($type)))->order('actionNo desc')->page($pageIndex, $listRows)->select();
+//            $list = $Model->where(array('type' => intval($type)))->order('actionNo desc')->page($pageIndex, $listRows)->select();
 
-
+            $list = $model->alias('a')->where(['type', $type])->join(' LEFT JOIN gygy_data b on a.type=b.type where b.data is not null order by id limt 10')->select();
+            dump($list);
+            die;
 //            $builder = $Model->where(['type' => $type, 'number' => $date]);
 //            if (I('status')) {
 //                $builder->where(['data', 'null']);
