@@ -68,9 +68,9 @@ class DataController extends AdminController
             } else {
                 $listRows = C('LIST_ROWS') > 0 ? C('LIST_ROWS') : 10;
             }
-            $map['refund_id'] = array('exp', 'is null')
+//            $map['refund_id'] = array('exp', 'is null');
 //            $list = $Model->where(array('type' => intval($type)))->order('actionNo desc')->page($pageIndex, $listRows)->select();
-            $lists = $Model              // M('third_order');
+            $list = $Model              // M('third_order');
 
             ->alias('t')                        // 别名
 
@@ -80,7 +80,7 @@ class DataController extends AdminController
 
                 //关联表（左链接  order表 as o 别名  on关系 t.xx = o.xxx          and  t.xxx  =  o.xxx  ）
 
-                ->where($map)                       // 条件
+                ->where(['b.data', ['exp', 'is not null']])                       // 条件
 
                 ->order('o.id desc')         // 排序
 
