@@ -93,14 +93,12 @@
         <div class="list">
             <form action="" method="get" class="form">
                 <div class="intro_content">
-                    {foreach $arr as $key=>$value}
-                    {if condition="$Think.session.uid == $key"}
-
+                    {if condition="$arr.parent"}
+                    <a href="/user/user_list.html?frame=show&uid={$arr.parent.uid}">{$arr.parent.username}</a>
                     {else /}
-                    >>>
+                    > <a href="/user/user_list.html?frame=show&uid={$arr.uid}">{$arr.username}</a>
                     {/if}
-                    <a href="/user/user_list.html?frame=show&uid={$key}">{$value}</a>
-                    {/foreach}
+
                     <!--          &nbsp;&nbsp;&nbsp;&nbsp;当前用户位置： &nbsp;&nbsp;&nbsp;&nbsp;<a href="/user/user_list.html?frame=show&uid={$uid}"></a>-->
                 </div>
                 <table id="userlistDL">

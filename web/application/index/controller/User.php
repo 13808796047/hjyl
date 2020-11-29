@@ -114,16 +114,15 @@ class User extends Controller
         $user = Session::get('userData');
         $uid = $user['uid'];
         $where = [];
-        $arr = [
-            $uid => $user['username']
-        ];
+        $arr = $user;
         if (!empty($_GET['uid'])) {
 //            $cur_member = Members::get($_GET['uid'])->getData();
 //
             $uid = $_GET['uid'];
 
-            $cur_member = Members::get($uid);
-
+            $cur_member = Members::with('parent')->get($uid);
+            $arr = $cur_member;
+//            $cur_member->parent();
 //            $arr = $cur_member->full_name;
 //            unset($arr[1]);
         } else {
