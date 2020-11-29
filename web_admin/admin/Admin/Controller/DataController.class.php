@@ -172,9 +172,9 @@ class DataController extends AdminController
                 $bet = M('bets')->field('sum(mode * beiShu * actionNum) betAmount,sum(bonus) zjAmount, sum(fanDianAmount) fanDianAmount')->where(array('type' => $type, 'isDelete' => 0, 'actionNo' => $var['number']))->select();
 
                 $kjData[$i] = $var;
-//                $kjData[$i]['actionNo'] = $var['number'];
+                $kjData[$i]['actionNo'] = $var['number'];
 
-                $kjData[$i]['actionNo'] = date('Y-m-d ', $date) . $kjData[$i]['actionTime'];
+//                $kjData[$i]['actionNo'] = date('Y-m-d ', $date) . $kjData[$i]['actionTime'];
                 $kjData[$i]['actionTime'] = $var['time'] ? date('Y-m-d H:i:s', $var['time']) : '--';
                 $kjData[$i]['betAmount'] = $bet[0]['betAmount'];
                 $kjData[$i]['zjAmount'] = $bet[0]['zjAmount'];
@@ -193,9 +193,9 @@ class DataController extends AdminController
             $request = (array)I('request.');
             $total = $Model->where(array('type' => intval($type)))->order('actionNo')->count();
             $page = new \COM\Page($total, $listRows, $request);
-            $p = $page->show();
+//            $p = $page->show();
             $this->assign('_list', $kjData);
-            $this->assign('_page', $p ? $p : '');
+//            $this->assign('_page', $p ? $p : '');
         }
 
         $this->meta_title = '开奖数据';
