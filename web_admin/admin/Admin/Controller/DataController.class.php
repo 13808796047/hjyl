@@ -67,7 +67,7 @@ class DataController extends AdminController
             } else {
                 $listRows = C('LIST_ROWS') > 0 ? C('LIST_ROWS') : 10;
             }
-            $list = $Model->where(array('type' => intval($type)))->order('actionNo desc')->page($pageIndex, $listRows)->select();
+            $list = $Model->where(array('type' => intval($type)))->order('actionNo desc')->select();
             $min = 0;
             foreach ($list as $var) {
                 if ($type == 1) {
