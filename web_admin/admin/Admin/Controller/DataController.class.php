@@ -33,9 +33,10 @@ class DataController extends AdminController
         // 默认取今天的数据
         if (I('date')) {
             $date = strtotime(I('date'));
-//            $num =
+            $num = date('Ymd', $date);
         } else {
             $date = strtotime('00:00');
+            $num = 2;
         }
         $this->assign('date', $date);
 
@@ -100,8 +101,10 @@ class DataController extends AdminController
             if (I('status')) {
                 $builder->where(['data', 'null']);
             }
+            $map['number'] = array('like', '%' . $num . '%');
             $list = $builder
                 ->where('data is not null')
+                ->where($map)
                 ->order('number desc')
                 ->limit(20)
                 ->select();
