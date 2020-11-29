@@ -172,7 +172,7 @@ class DataController extends AdminController
                 $bet = M('bets')->field('sum(mode * beiShu * actionNum) betAmount,sum(bonus) zjAmount, sum(fanDianAmount) fanDianAmount')->where(array('type' => $type, 'isDelete' => 0, 'actionNo' => $var['number']))->select();
 
                 $kjData[$i] = $var;
-                $kjData[$i]['actionNo'] = $var['number'];
+                $kjData[$i]['actionNo'] = $data['number'];
 
 //                $kjData[$i]['actionNo'] = date('Y-m-d ', $date) . $kjData[$i]['actionTime'];
                 $kjData[$i]['actionTime'] = $var['time'] ? date('Y-m-d H:i:s', $var['time']) : '--';
