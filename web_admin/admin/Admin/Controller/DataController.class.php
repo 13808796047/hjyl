@@ -33,6 +33,7 @@ class DataController extends AdminController
         // 默认取今天的数据
         if (I('date')) {
             $date = strtotime(I('date'));
+//            $num =
         } else {
             $date = strtotime('00:00');
         }
@@ -70,12 +71,12 @@ class DataController extends AdminController
             }
 //            $map['refund_id'] = array('exp', 'is null');
 //            $list = $Model->where(array('type' => intval($type)))->order('actionNo desc')->page($pageIndex, $listRows)->select();
-            $list = $Model
-                ->where(['type' => $type])
-                ->where('data is not null')
-                ->order('number desc')
-                ->limit(20)
-                ->select();
+//            $list = $Model
+//                ->where(['type' => $type])
+//                ->where('data is not null')
+//                ->order('number desc')
+//                ->limit(20)
+//                ->select();
 //            $list = $Model              // M('third_order');
 //
 //            ->alias('t')                        // 别名
@@ -95,11 +96,15 @@ class DataController extends AdminController
 //                ->select();
 //            $list = $Model->alias('a')->where(['type', $type])->join('LEFT JOIN gygy_data b ON a.type=b.type')->where(['b.data', ['exp','is not null']])->order('b.id desc')->limit(20)->select();
 
-//            $builder = $Model->where(['type' => $type, 'number' => $date]);
-//            if (I('status')) {
-//                $builder->where(['data', 'null']);
-//            }
-//            $list = $builder->order('id desc')->limit(20)->select();
+            $builder = $Model->where(['type' => $type]);
+            if (I('status')) {
+                $builder->where(['data', 'null']);
+            }
+            $list = $builder
+                ->where('data is not null')
+                ->order('number desc')
+                ->limit(20)
+                ->select();
             foreach ($list as $var) {
 //                if ($type == 1) {
 //                    // 重庆彩特殊处理
@@ -195,11 +200,13 @@ class DataController extends AdminController
 //            dump($kjData);
 //            dump($min);
 //            dump(array_slice($kjData, $min, 20));
+
             $request = (array)I('request.');
             $total = $Model->where(array('type' => intval($type)))->order('actionNo')->count();
             $page = new \COM\Page($total, $listRows, $request);
 //            $p = $page->show();
             $this->assign('_list', $kjData);
+            $this->assign('status', I('status'));
 //            $this->assign('_page', $p ? $p : '');
         }
 
