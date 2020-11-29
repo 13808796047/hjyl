@@ -80,8 +80,8 @@ class DataController extends AdminController
 
                 //关联表（左链接  order表 as o 别名  on关系 t.xx = o.xxx          and  t.xxx  =  o.xxx  ）
 
-//                ->where(['b.data', ['exp', 'is not null']])                       // 条件
-                ->where(['o.type' => $type])
+                ->where(['b.data', ['exp', 'not null']])                       // 条件
+//                ->where(['o.type' => $type])
                 ->order('o.id desc')         // 排序
 
                 ->limit(20)  // 取几条
