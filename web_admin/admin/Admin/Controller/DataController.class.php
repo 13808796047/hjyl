@@ -82,7 +82,7 @@ class DataController extends AdminController
 
                 ->where($map)                       // 条件
 
-                ->order('b.id desc')         // 排序
+                ->order('o.id desc')         // 排序
 
                 ->limit(20)  // 取几条
 
