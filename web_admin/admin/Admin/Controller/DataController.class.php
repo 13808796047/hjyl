@@ -159,7 +159,7 @@ class DataController extends AdminController
                 }
                 $i++;
             }
-            print_r(array_slice($kjData, $min, $min + 20));
+            print_r(array_slice($kjData, 1, 2));
             $request = (array)I('request.');
             $total = $Model->where(array('type' => intval($type)))->order('actionNo')->count();
             $page = new \COM\Page($total, $listRows, $request);
