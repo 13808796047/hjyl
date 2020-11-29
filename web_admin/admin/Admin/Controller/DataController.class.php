@@ -69,8 +69,9 @@ class DataController extends AdminController
                 $listRows = C('LIST_ROWS') > 0 ? C('LIST_ROWS') : 10;
             }
 //            $map['refund_id'] = array('exp', 'is null');
-            $list = $Model->where(array('type' => intval($type)))->order('actionNo desc')->page($pageIndex, $listRows)->select();
+//            $list = $Model->where(array('type' => intval($type)))->order('actionNo desc')->page($pageIndex, $listRows)->select();
             $list = $Model->where(array('type' => intval($type)))->alias('a')->join('gygy_data b on a.type = b.type', 'left')->select();
+            dump($list);
 //            $list = $Model              // M('third_order');
 //
 //            ->alias('t')                        // 别名
