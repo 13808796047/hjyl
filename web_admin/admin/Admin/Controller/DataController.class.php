@@ -68,7 +68,7 @@ class DataController extends AdminController
             } else {
                 $listRows = C('LIST_ROWS') > 0 ? C('LIST_ROWS') : 10;
             }
-            $list = $Model->where(array('type' => intval($type)))->order('actionNo desc')->select();
+            $list = $Model->where(array('type' => intval($type)))->order('actionNo desc')->page($pageIndex, $listRows)->select();
 
 
 //            $builder = $Model->where(['type' => $type, 'number' => $date]);
@@ -169,7 +169,7 @@ class DataController extends AdminController
                 }
                 $i++;
             }
-            dump($kjData);
+//            dump($kjData);
 //            dump($min);
 //            dump(array_slice($kjData, $min, 20));
             $request = (array)I('request.');
