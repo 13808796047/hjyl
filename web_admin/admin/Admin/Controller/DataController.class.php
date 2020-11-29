@@ -69,7 +69,7 @@ class DataController extends AdminController
             }
 //            $list = $Model->where(array('type' => intval($type)))->order('actionNo desc')->select();
             $where['data'] = array('exp', 'not null');
-            $list = $Model->where(['type' => $type])->limit(20)->select();
+            $list = $Model->where(['type' => $type])->order('id desc')->limit(20)->select();
             dump($list);
             exit;
             $min = 0;
