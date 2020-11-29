@@ -67,7 +67,7 @@ class DataController extends AdminController
             } else {
                 $listRows = C('LIST_ROWS') > 0 ? C('LIST_ROWS') : 10;
             }
-            $list = $Model->where(array('type' => intval($type)))->order('actionNo desc')->page($pageIndex, $listRows)->limit(20)->select();
+            $list = $Model->where(array('type' => intval($type)))->order('actionNo desc')->page($pageIndex, $listRows)->select();
             foreach ($list as $var) {
                 if ($type == 1) {
                     // 重庆彩特殊处理
@@ -130,7 +130,7 @@ class DataController extends AdminController
 
                 } else if ($type == 38 || $type == 39 || $type == 45 || $type == 43) {
                     // 30秒11选5
-                    $number = 10000 + $var['actionNo'];
+                    $number = 100 + $var['actionNo'];
                     $number = date('Ymd-', $date) . substr($number, 1);
                     $data = M('data')->where(array('type' => $type, 'number' => $number))->find();
 
