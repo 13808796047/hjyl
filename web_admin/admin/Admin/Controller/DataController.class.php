@@ -61,7 +61,7 @@ class DataController extends AdminController
 
             $this->assign('_list', $kjData);
         } else {
-            $Model = M('data_time');
+            $Model = M('data');
             $pageIndex = I('p') > 0 ? I('p') : 1;
             if (isset($request['r'])) {
                 $listRows = (int)I('r');
@@ -70,7 +70,7 @@ class DataController extends AdminController
             }
 //            $map['refund_id'] = array('exp', 'is null');
 //            $list = $Model->where(array('type' => intval($type)))->order('actionNo desc')->page($pageIndex, $listRows)->select();
-            $list = $Model->alias('a')->join('gygy_data b on a.type = b.type', 'left')->where('b.data is not null')->order('b.number desc')->limit(20)->select();
+            $list = $Model->alias('a')->join('gygy_data_time b on a.type = b.type', 'left')->where('a.data is not null')->order('a.number desc')->limit(20)->select();
             dump($list[0]);
             die;
 //            $list = $Model              // M('third_order');
