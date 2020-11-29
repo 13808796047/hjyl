@@ -75,6 +75,7 @@ class DataController extends AdminController
                     if ($var['actionNo'] == 120) {
                         $number = date('Ymd-', strtotime(date('Y-m-d', $date))) . substr($number, 1);
                     } else {
+                        //当前期时间组成期号
                         $number = date('Ymd-', $date) . substr($number, 1);
 
                     }
@@ -150,17 +151,19 @@ class DataController extends AdminController
                 $kjData[$i]['zjAmount'] = $bet[0]['zjAmount'];
                 $kjData[$i]['fanDianAmount'] = $bet[0]['fanDianAmount'];
 
-                if (isset($data['data']))
+                if (isset($data['data'])) {
                     $kjData[$i]['data'] = $data['data'];
-                else
+                } else {
                     $kjData[$i]['data'] = '--';
+                }
                 $i++;
             }
-
             $request = (array)I('request.');
             $total = $Model->where(array('type' => intval($type)))->order('actionNo')->count();
             $page = new \COM\Page($total, $listRows, $request);
             $p = $page->show();
+            dump($kjData);
+            exit;
             $this->assign('_list', $kjData);
             $this->assign('_page', $p ? $p : '');
         }
@@ -170,7 +173,9 @@ class DataController extends AdminController
     }
 
     //添加开奖号码
-    public final function add()
+    public
+
+    final function add()
     {
         if (IS_POST) {
             $para = $_POST;
