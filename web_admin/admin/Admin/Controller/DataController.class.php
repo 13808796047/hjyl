@@ -60,7 +60,7 @@ class DataController extends AdminController
 
             $this->assign('_list', $kjData);
         } else {
-            $Model = M('data_time');
+            $Model = M('data');
             $pageIndex = I('p') > 0 ? I('p') : 1;
             if (isset($request['r'])) {
                 $listRows = (int)I('r');
@@ -69,7 +69,7 @@ class DataController extends AdminController
             }
 //            $list = $Model->where(array('type' => intval($type)))->order('actionNo desc')->select();
             $where['data'] = array('exp', 'not null');
-            $list = $Model->join('__DATA__ ON __DATATIME__.type = __DATA__.type', 'RIGHT')->order('__DATA__.id desc')->limit(20)->select();
+            $list = $Model->where(['type' => $type])->limit(20)->select();
             dump($list);
             exit;
             $min = 0;
