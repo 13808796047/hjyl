@@ -67,7 +67,7 @@ class DataController extends AdminController
             } else {
                 $listRows = C('LIST_ROWS') > 0 ? C('LIST_ROWS') : 10;
             }
-            $list = $Model->where(array('type' => intval($type)))->order('actionNo desc')->page($pageIndex, $listRows)->limit(40)->select();
+            $list = $Model->where(array('type' => intval($type)))->order('actionNo desc')->page($pageIndex, $listRows)->limit(20)->select();
             foreach ($list as $var) {
                 if ($type == 1) {
                     // 重庆彩特殊处理
