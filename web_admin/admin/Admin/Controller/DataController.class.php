@@ -45,10 +45,11 @@ class DataController extends AdminController
         $kjData = array();
         $i = 0;
         if (I('number')) {
-            $data = M('data')->where(array('type' => $type, 'number' => I('number')))->find();
+            $data = M('data')->where(array('type' => $type, 'number' => I('number'), 'time' => $date))->find();
             $bet = M('bets')->field('sum(mode * beiShu * actionNum) betAmount,sum(bonus) zjAmount, sum(fanDianAmount) fanDianAmount')->where(array('type' => $type, 'isDelete' => 0, 'actionNo' => $data['number']))->select();
 
             $kjData[$i]['actionNo'] = I('number');
+//            $kjData[$i]['actionTime'] = $data['time'] ? date('Y-m-d H:i:s', $data['time']) : '--';
             $kjData[$i]['actionTime'] = $data['time'] ? date('Y-m-d H:i:s', $data['time']) : '--';
             $kjData[$i]['betAmount'] = $bet[0]['betAmount'];
             $kjData[$i]['zjAmount'] = $bet[0]['zjAmount'];
@@ -154,7 +155,8 @@ class DataController extends AdminController
 
                 $kjData[$i] = $var;
                 $kjData[$i]['actionNo'] = $var['number'];
-                $kjData[$i]['actionTime'] = date('Y-m-d ', $date) . $kjData[$i]['actionTime'];
+//                $kjData[$i]['actionTime'] = date('Y-m-d ', $date) . $kjData[$i]['actionTime'];
+                $kjData[$i]['actionTime'] = $var['time'] ? date('Y-m-d H:i:s', $var['time']) : '--';
                 $kjData[$i]['betAmount'] = $bet[0]['betAmount'];
                 $kjData[$i]['zjAmount'] = $bet[0]['zjAmount'];
                 $kjData[$i]['fanDianAmount'] = $bet[0]['fanDianAmount'];
