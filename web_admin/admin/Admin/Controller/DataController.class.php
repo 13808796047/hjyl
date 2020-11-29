@@ -154,7 +154,7 @@ class DataController extends AdminController
 
                 if (isset($data['data'])) {
                     $kjData[$i]['data'] = $data['data'];
-                    $min = $var['id'] - 10;
+                    dump($var['id']);
                 } else {
                     $kjData[$i]['data'] = '--';
                 }
