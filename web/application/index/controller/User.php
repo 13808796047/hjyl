@@ -173,7 +173,6 @@ class User extends Controller
         $this->assign('data_list', $list);
 
         $member = Members::get($uid)->getData();
-        dump($arr);
         $this->assign('arr', $arr);
         $this->assign('userType', $user['type']);
         $this->assign('userCoin', $user['coin']);
