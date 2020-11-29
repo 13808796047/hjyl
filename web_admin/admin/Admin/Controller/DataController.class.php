@@ -102,6 +102,7 @@ class DataController extends AdminController
                 $builder->where(['data', 'null']);
             }
             $map['number'] = array('like', '%' . $num . '%');
+            dump($map);
             $list = $builder
                 ->where('data is not null')
                 ->where($map)
