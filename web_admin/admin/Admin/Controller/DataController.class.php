@@ -68,6 +68,7 @@ class DataController extends AdminController
                 $listRows = C('LIST_ROWS') > 0 ? C('LIST_ROWS') : 10;
             }
             $list = $Model->where(array('type' => intval($type)))->order('actionNo desc')->page($pageIndex, $listRows)->select();
+            $min = 0;
             foreach ($list as $var) {
                 if ($type == 1) {
                     // 重庆彩特殊处理
@@ -159,7 +160,7 @@ class DataController extends AdminController
                 }
                 $i++;
             }
-            print_r(array_slice($kjData, 1, 2));
+            dump(array_slice($kjData, $min, 20));
             $request = (array)I('request.');
             $total = $Model->where(array('type' => intval($type)))->order('actionNo')->count();
             $page = new \COM\Page($total, $listRows, $request);
