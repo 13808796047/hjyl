@@ -166,6 +166,7 @@ class DataController extends AdminController
 //                }
                 $i++;
             }
+            dump($kjData);
 //            dump($min);
 //            dump(array_slice($kjData, $min, 20));
             $request = (array)I('request.');
