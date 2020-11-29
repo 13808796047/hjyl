@@ -144,7 +144,7 @@ class DataController extends AdminController
 //                    $data = M('data')->where(array('type' => $type, 'number' => $number))->find();
 //                }
 
-                $bet = M('bets')->field('sum(mode * beiShu * actionNum) betAmount,sum(bonus) zjAmount, sum(fanDianAmount) fanDianAmount')->where(array('type' => $type, 'isDelete' => 0, 'actionNo' => $data['number']))->select();
+                $bet = M('bets')->field('sum(mode * beiShu * actionNum) betAmount,sum(bonus) zjAmount, sum(fanDianAmount) fanDianAmount')->where(array('type' => $type, 'isDelete' => 0, 'actionNo' => $var['number']))->select();
 
                 $kjData[$i] = $var;
 //                $kjData[$i]['actionNo'] = $number;
