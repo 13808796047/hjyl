@@ -64,7 +64,7 @@
             <tbody>
             <volist name="_list" id="config">
                 <tr>
-                    <td>{$config.number}</td>
+                    <td>{$config.actionNo}</td>
                     <td>{$config.actionTime}<input type="hidden" name="id" value="{$config.id}"></td>
                     <td>{$config.data}</td>
                     <td><?=$this->iff($config['data']!='--', '<font color="red">已开奖</font>', '未开奖')?></td>

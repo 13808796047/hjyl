@@ -58,7 +58,7 @@ class DataController extends AdminController
                 $kjData[$i]['data'] = $data['data'];
             else
                 $kjData[$i]['data'] = '--';
-            dump($kjData);
+
             $this->assign('_list', $kjData);
         } else {
             $Model = M('data');
