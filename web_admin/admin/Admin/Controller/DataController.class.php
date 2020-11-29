@@ -71,6 +71,8 @@ class DataController extends AdminController
 //            $map['refund_id'] = array('exp', 'is null');
 //            $list = $Model->where(array('type' => intval($type)))->order('actionNo desc')->page($pageIndex, $listRows)->select();
             $list = $Model
+                ->where(['type' => $type])
+                ->where('data is not null')
                 ->order('a.number desc')
                 ->limit(20)
                 ->select();
