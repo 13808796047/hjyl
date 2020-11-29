@@ -162,6 +162,7 @@ class DataController extends AdminController
                     $number = 10000 + $var['actionNo'];
                     $number = date('Ymd-', $date) . substr($number, 1);
                     $data = M('data')->where(array('type' => $type, 'number' => $number))->find();
+                    dump($data);
 
                 } else {
                     //$data=$this->getRow($sql . 'time='. strtotime($dateString . $var['actionTime']));
