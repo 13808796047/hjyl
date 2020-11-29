@@ -165,7 +165,6 @@ class DataController extends AdminController
                     $kjData[$i]['data'] = $data['data'];
                 } else {
                     $kjData[$i]['data'] = '--';
-                    unset($kjData[$i]);
                 }
                 $i++;
             }
