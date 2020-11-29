@@ -76,8 +76,6 @@ class DataController extends AdminController
                 ->order('number desc')
                 ->limit(20)
                 ->select();
-            dump($list[0]);
-            die;
 //            $list = $Model              // M('third_order');
 //
 //            ->alias('t')                        // 别名
