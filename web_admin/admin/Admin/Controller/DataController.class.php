@@ -100,7 +100,7 @@ class DataController extends AdminController
 //                $builder->where(['data', 'null']);
 //            }
 //            $list = $builder->order('id desc')->limit(20)->select();
-//            foreach ($list as $var) {
+            foreach ($list as $var) {
 //                if ($type == 1) {
 //                    // 重庆彩特殊处理
 //                    $number = 1000 + $var['actionNo'];
@@ -190,8 +190,8 @@ class DataController extends AdminController
 //                } else {
 //                    $kjData[$i]['data'] = '--';
 //                }
-//                $i++;
-//            }
+                $i++;
+            }
 //            dump($kjData);
 //            dump($min);
 //            dump(array_slice($kjData, $min, 20));
