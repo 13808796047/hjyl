@@ -72,7 +72,7 @@ class DataController extends AdminController
 //            $list = $Model->where(array('type' => intval($type)))->order('actionNo desc')->select();
 
 
-            $builder = $Model->where(['type' => $type]);
+            $builder = $Model->where(['type' => $type, 'time' => $date]);
             if (I('status')) {
                 $builder->where(['data', 'null']);
             }
