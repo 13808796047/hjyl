@@ -70,82 +70,79 @@ class DataController extends AdminController
 //            $list = $Model->where(array('type' => intval($type)))->order('actionNo desc')->select();
             $where['data'] = array('exp', 'not null');
             $list = $Model->where(['type' => $type])->order('id desc')->limit(20)->select();
-            dump($list);
-            exit;
-            $min = 0;
             foreach ($list as $var) {
-                if ($type == 1) {
-                    // 重庆彩特殊处理
-                    $number = 1000 + $var['actionNo'];
-                    if ($var['actionNo'] == 120) {
-                        $number = date('Ymd-', strtotime(date('Y-m-d', $date))) . substr($number, 1);
-                    } else {
-                        //当前期时间组成期号
-                        $number = date('Ymd-', $date) . substr($number, 1);
-
-                    }
-                    $data = M('data')->where(array('type' => $type, 'number' => $number))->find();
-                } else if ($type == 34) {
-                    // 新疆彩特殊处理
-                    $number = 1000 + $var['actionNo'];
-                    if ($var['actionNo'] > 719) {
-                        $number = date('Ymd-', strtotime(date('Y-m-d', $date - 1 * 24 * 60 * 60))) . substr($number, 1);
-                    } else {
-                        $number = date('Ymd-', $date) . substr($number, 1);
-                    }
-                    $data = M('data')->where(array('type' => $type, 'number' => $number))->find();
-
-                } else if ($type == 12) {
-                    // 新疆彩特殊处理
-                    $number = 100 + $var['actionNo'];
-                    if ($var['actionNo'] > 83) {
-                        $number = date('Ymd-', strtotime(date('Y-m-d', $date - 1 * 24 * 60 * 60))) . substr($number, 1);
-                    } else {
-                        $number = date('Ymd-', $date) . substr($number, 1);
-                    }
-                    $data = M('data')->where(array('type' => $type, 'number' => $number))->find();
-
-                } else if ($type == 9 || $type == 10) {
-                    // 福彩3D
-                    $number = date('Yz', $date) - 7;
-                    $number = substr($number, 0, 4) . substr(substr($number, 4) + 1000, 1);
-
-                    $data = M('data')->where(array('type' => $type, 'number' => $number))->find();
-
-                } else if ($type == 20) {
-                    // PK10
-                    $number = 179 * (strtotime(date('Y-m-d', $date)) - strtotime('2007-11-11')) / 3600 / 24 + $var['actionNo'] - 3793 - 1253;
-                    $data = M('data')->where(array('type' => $type, 'number' => $number))->find();
-
-                } else if ($type == 24) {
-                    // 快8
-                    $number = 179 * (strtotime(date('Y-m-d', $date)) - strtotime('2004-09-19')) / 3600 / 24 + $var['actionNo'] - 77;;
-                    $data = M('data')->where(array('type' => $type, 'number' => $number))->find();
-
-                } else if ($type == 11) {
-                    // 时时乐
-                    $number = 100 + $var['actionNo'];
-                    $number = date('Ymd-', $date) . substr($number, 1);
-                    $data = M('data')->where(array('type' => $type, 'number' => $number))->find();
-
-                } else if ($type == 36 || $type == 5 || $type == 46) {
-                    // 时时乐
-                    $number = 10000 + $var['actionNo'];
-                    $number = date('Ymd-', $date) . substr($number, 1);
-                    $data = M('data')->where(array('type' => $type, 'number' => $number))->find();
-
-                } else if ($type == 38 || $type == 39 || $type == 45 || $type == 43) {
-                    // 30秒11选5
-                    $number = 10000 + $var['actionNo'];
-                    $number = date('Ymd-', $date) . substr($number, 1);
-                    $data = M('data')->where(array('type' => $type, 'number' => $number))->find();
-
-                } else {
-                    //$data=$this->getRow($sql . 'time='. strtotime($dateString . $var['actionTime']));
-                    $number = 1000 + $var['actionNo'];
-                    $number = date('Ymd-', $date) . substr($number, 1);
-                    $data = M('data')->where(array('type' => $type, 'number' => $number))->find();
-                }
+//                if ($type == 1) {
+//                    // 重庆彩特殊处理
+//                    $number = 1000 + $var['actionNo'];
+//                    if ($var['actionNo'] == 120) {
+//                        $number = date('Ymd-', strtotime(date('Y-m-d', $date))) . substr($number, 1);
+//                    } else {
+//                        //当前期时间组成期号
+//                        $number = date('Ymd-', $date) . substr($number, 1);
+//
+//                    }
+//                    $data = M('data')->where(array('type' => $type, 'number' => $number))->find();
+//                } else if ($type == 34) {
+//                    // 新疆彩特殊处理
+//                    $number = 1000 + $var['actionNo'];
+//                    if ($var['actionNo'] > 719) {
+//                        $number = date('Ymd-', strtotime(date('Y-m-d', $date - 1 * 24 * 60 * 60))) . substr($number, 1);
+//                    } else {
+//                        $number = date('Ymd-', $date) . substr($number, 1);
+//                    }
+//                    $data = M('data')->where(array('type' => $type, 'number' => $number))->find();
+//
+//                } else if ($type == 12) {
+//                    // 新疆彩特殊处理
+//                    $number = 100 + $var['actionNo'];
+//                    if ($var['actionNo'] > 83) {
+//                        $number = date('Ymd-', strtotime(date('Y-m-d', $date - 1 * 24 * 60 * 60))) . substr($number, 1);
+//                    } else {
+//                        $number = date('Ymd-', $date) . substr($number, 1);
+//                    }
+//                    $data = M('data')->where(array('type' => $type, 'number' => $number))->find();
+//
+//                } else if ($type == 9 || $type == 10) {
+//                    // 福彩3D
+//                    $number = date('Yz', $date) - 7;
+//                    $number = substr($number, 0, 4) . substr(substr($number, 4) + 1000, 1);
+//
+//                    $data = M('data')->where(array('type' => $type, 'number' => $number))->find();
+//
+//                } else if ($type == 20) {
+//                    // PK10
+//                    $number = 179 * (strtotime(date('Y-m-d', $date)) - strtotime('2007-11-11')) / 3600 / 24 + $var['actionNo'] - 3793 - 1253;
+//                    $data = M('data')->where(array('type' => $type, 'number' => $number))->find();
+//
+//                } else if ($type == 24) {
+//                    // 快8
+//                    $number = 179 * (strtotime(date('Y-m-d', $date)) - strtotime('2004-09-19')) / 3600 / 24 + $var['actionNo'] - 77;;
+//                    $data = M('data')->where(array('type' => $type, 'number' => $number))->find();
+//
+//                } else if ($type == 11) {
+//                    // 时时乐
+//                    $number = 100 + $var['actionNo'];
+//                    $number = date('Ymd-', $date) . substr($number, 1);
+//                    $data = M('data')->where(array('type' => $type, 'number' => $number))->find();
+//
+//                } else if ($type == 36 || $type == 5 || $type == 46) {
+//                    // 时时乐
+//                    $number = 10000 + $var['actionNo'];
+//                    $number = date('Ymd-', $date) . substr($number, 1);
+//                    $data = M('data')->where(array('type' => $type, 'number' => $number))->find();
+//
+//                } else if ($type == 38 || $type == 39 || $type == 45 || $type == 43) {
+//                    // 30秒11选5
+//                    $number = 10000 + $var['actionNo'];
+//                    $number = date('Ymd-', $date) . substr($number, 1);
+//                    $data = M('data')->where(array('type' => $type, 'number' => $number))->find();
+//
+//                } else {
+//                    //$data=$this->getRow($sql . 'time='. strtotime($dateString . $var['actionTime']));
+//                    $number = 1000 + $var['actionNo'];
+//                    $number = date('Ymd-', $date) . substr($number, 1);
+//                    $data = M('data')->where(array('type' => $type, 'number' => $number))->find();
+//                }
 
                 $bet = M('bets')->field('sum(mode * beiShu * actionNum) betAmount,sum(bonus) zjAmount, sum(fanDianAmount) fanDianAmount')->where(array('type' => $type, 'isDelete' => 0, 'actionNo' => $data['number']))->select();
 
@@ -156,12 +153,12 @@ class DataController extends AdminController
                 $kjData[$i]['zjAmount'] = $bet[0]['zjAmount'];
                 $kjData[$i]['fanDianAmount'] = $bet[0]['fanDianAmount'];
 
-                if (isset($data['data'])) {
-                    $kjData[$i]['data'] = $data['data'];
-                } else {
-                    $kjData[$i]['data'] = '--';
-                }
-                $i++;
+//                if (isset($data['data'])) {
+//                    $kjData[$i]['data'] = $data['data'];
+//                } else {
+//                    $kjData[$i]['data'] = '--';
+//                }
+//                $i++;
             }
 //            dump($min);
 //            dump(array_slice($kjData, $min, 20));
