@@ -36,7 +36,6 @@ class DataController extends AdminController
         } else {
             $date = strtotime('00:00');
         }
-        dump($date);
         $this->assign('date', $date);
 
         $types = M('type')->where(array('enable' => 1))->select();
@@ -62,7 +61,7 @@ class DataController extends AdminController
 
             $this->assign('_list', $kjData);
         } else {
-            $Model = M('data');
+            $Model = M('data_time');
             $pageIndex = I('p') > 0 ? I('p') : 1;
             if (isset($request['r'])) {
                 $listRows = (int)I('r');
