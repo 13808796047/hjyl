@@ -123,8 +123,9 @@ class User extends Controller
             $uid = $_GET['uid'];
 
             $cur_member = Members::get($uid);
-            $arr = $cur_member->full_name;
-            unset($arr[1]);
+
+//            $arr = $cur_member->full_name;
+//            unset($arr[1]);
         } else {
             if (isset($_GET['bank_min'])) {
                 $where['coin'] = ['>=', $_GET['bank_min']];
