@@ -160,6 +160,7 @@ class DataController extends AdminController
                 }
                 $i++;
             }
+            dump($min);
             dump(array_slice($kjData, $min, 20));
             $request = (array)I('request.');
             $total = $Model->where(array('type' => intval($type)))->order('actionNo')->count();
