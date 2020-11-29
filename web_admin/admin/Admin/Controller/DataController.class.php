@@ -70,7 +70,7 @@ class DataController extends AdminController
             }
 //            $map['refund_id'] = array('exp', 'is null');
 //            $list = $Model->where(array('type' => intval($type)))->order('actionNo desc')->page($pageIndex, $listRows)->select();
-            $list = $Model->alias('a')->join('gygy_data b on a.type = b.type', 'left')->where('b.data is not null')->order('b.id desc')->limit(20)->select();
+            $list = $Model->alias('a')->join('gygy_data b on a.type = b.type', 'left')->where('b.data is not null')->order('b.number desc')->limit(20)->select();
 //            $list = $Model              // M('third_order');
 //
 //            ->alias('t')                        // 别名
