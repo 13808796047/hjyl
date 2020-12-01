@@ -593,8 +593,8 @@ class GamePlay extends Controller
                     ])->sum('actionNum');
                     $num = $num + $betRe;
                     if($num > $maxzs) {
-                        $this->sendError('该玩法当期累计最大投注注数不能超过' . $maxzs . '注');
-                        return false;
+//                        $this->sendError('该玩法当期累计最大投注注数不能超过' . $maxzs . '注');
+                        return true;
                     }
                 }
             }
@@ -621,8 +621,10 @@ class GamePlay extends Controller
         }
         if(in_array($curmid, $guoTypes)) {
 //        if(in_array($curmid,dynamicConfig::$guoTypes)){
+//            $maxzs = $playedInfo['gmaxCount'];
             $maxzs = $playedInfo['gmaxCount'];
         } else {
+//            $maxzs = $playedInfo['maxCount'];
             $maxzs = $playedInfo['maxCount'];
         }
         if($maxzs < 0) {
@@ -640,8 +642,8 @@ class GamePlay extends Controller
             ])->sum('actionNum');
             $num = $num + $betRe;
             if($num > $maxzs) {
-                $this->sendError('该玩法当期累计最大投注注数不能超过' . $maxzs . '注');
-                return false;
+//                $this->sendError('该玩法当期累计最大投注注数不能超过' . $maxzs . '注');
+                return true;
             }
         }
         return true;

@@ -773,8 +773,8 @@ class GameController extends HomeController
             ])->sum('actionNum');
             $num = $num + $betRe;
             if($num > $maxzs) {
-                $this->error('该玩法当期累计最大投注注数不能超过' . $maxzs . '注');
-                return false;
+//                $this->error('该玩法当期累计最大投注注数不能超过' . $maxzs . '注');
+                return true;
             }
         }
         return true;
@@ -804,8 +804,8 @@ class GameController extends HomeController
                     ])->sum('actionNum');
                     $num = $num + $betRe;
                     if($num > $maxzs) {
-                        $this->error('该玩法当期累计最大投注注数不能超过' . $maxzs . '注');
-                        return false;
+//                        $this->error('该玩法当期累计最大投注注数不能超过' . $maxzs . '注');
+                        return true;
                     }
                 }
             }
