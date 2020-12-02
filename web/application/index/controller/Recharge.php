@@ -404,16 +404,17 @@ class Recharge extends Controller
             if($betAmount < ($rechargeTotal * 0.25)) {
                 $this->error('未达到投注量无法提现');
             }
-        } else {
-            //如果是代理号 没有充值过 可以提现流水
-            if($user['type'] != 1) {
-                /* $coin_log = M('coin_log')->where(array('uid' => $this->user['uid'], 'liqType' => 201))->find();
-                 if(empty($coin_log)){
-                     $this->error('还未充值，不能提现');
-                 }*/
-                $this->error('还未充值，不能提现');
-            }
         }
+//        else {
+//            //如果是代理号 没有充值过 可以提现流水
+//            if($user['type'] != 1) {
+//                /* $coin_log = M('coin_log')->where(array('uid' => $this->user['uid'], 'liqType' => 201))->find();
+//                 if(empty($coin_log)){
+//                     $this->error('还未充值，不能提现');
+//                 }*/
+//                $this->error('还未充值，不能提现');
+//            }
+//        }
         // }
         $para['username'] = $bank['username'];
         $para['account'] = $bank['account'];
