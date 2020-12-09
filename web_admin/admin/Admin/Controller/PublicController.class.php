@@ -27,7 +27,7 @@ class PublicController extends \Think\Controller {
             }
 
             if(!$username){
-				$this->error('用户名不能为空');
+				$this->error('用户名不能为空。');
 			}elseif (mb_strlen($username) > 20){
                 $this->error('用户名超长');
             }
