@@ -28,7 +28,7 @@ class Login extends Controller
     public function postLogin(Request $request)
     {
         $rules = [
-            'username|用户名'  => 'require|max:25',
+//            'username|用户名'  => 'require|max:25',
             'loginpass|密码'   => 'require',
             'validcode|验证码'   => 'require|captcha',
         ];
