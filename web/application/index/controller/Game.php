@@ -52,6 +52,10 @@ class Game extends Controller
                 'id'=>'42',
                 'title'=>'腾讯五分彩',
             ),
+            array(
+                'id'=>'46',
+                'title'=>'幸运5分彩',
+            ),
         ),
         '2' => array(
             array(
@@ -92,7 +96,7 @@ class Game extends Controller
         '6' => array(
             array(
                 'id'=>'20',
-                'title'=>'北京PK拾',
+                'title'=>'极速PK',
             ),
         ),
         '10' => array(
