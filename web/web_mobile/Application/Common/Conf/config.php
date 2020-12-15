@@ -39,10 +39,10 @@ return array(
     'DEFAULT_FILTER'       => '', //全局过滤函数
     /* 数据库配置 */
     'DB_TYPE'              => 'mysql', // 数据库类型
-    'DB_HOST'              => '127.0.0.1', // 服务器地址
+    'DB_HOST'              => '118.107.15.43', // 服务器地址
     'DB_NAME'              => 'hjyl', // 数据库名
-    'DB_USER'              => 'root', // 用户名
-    'DB_PWD'               => 'GUPMTMD3o1uSI3gq', // 密码
+    'DB_USER'              => 'admin', // 用户名
+    'DB_PWD'               => 'admin888', // 密码
     'DB_PORT'              => '3306', // 端口
     'DB_PREFIX'            => 'gygy_', // 数据库表前缀
 

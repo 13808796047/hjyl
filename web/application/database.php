@@ -17,9 +17,9 @@ return [
     // 数据库名
     'database'        => 'hjyl',
     // 用户名
-    'username'        => 'root',//,hj_root,hj_root,hj_root',
+    'username'        => 'admin',//,hj_root,hj_root,hj_root',
     // 密码
-    'password'        => 'GUPMTMD3o1uSI3gq',//,Hj256root,Hj256root,Hj256root',
+    'password'        => 'admin888',//,Hj256root,Hj256root,Hj256root',
     // 端口
     'hostport'        => '3306',
     // 连接dsn
