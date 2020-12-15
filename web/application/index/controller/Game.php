@@ -53,7 +53,7 @@ class Game extends Controller
                 'title'=>'腾讯五分彩',
             ),
             array(
-                'id'=>'46',
+                'id'=>'47',
                 'title'=>'幸运5分彩',
             ),
         ),
