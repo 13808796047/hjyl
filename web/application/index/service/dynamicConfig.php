@@ -37,6 +37,7 @@ class dynamicConfig
 
     public static function gameNumbers($play_type,$num=10)
     {
+        dump($play_type);
         $numbers = array();
         try{
             $type = Type::where(array('id'=>$play_type))->find(); // 查询type
@@ -87,7 +88,6 @@ class dynamicConfig
             Log::error($e->getFile().' L:'.$e->getLine().' msg:'.$e->getMessage());
             return $numbers;
         }
-        dump($numbers);
         return $numbers;
     }
 
