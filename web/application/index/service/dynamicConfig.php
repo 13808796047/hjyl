@@ -45,7 +45,7 @@ class dynamicConfig
             }
             $me = new Common();
             $fun = $type['onGetNoed'];
-            if($play_type == 9 || $play_type == 10||$play_type==20){
+            if($play_type == 9 || $play_type == 10){
 
                 if (method_exists($me, $fun)) {
                     $actionNo = '';

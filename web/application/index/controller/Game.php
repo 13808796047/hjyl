@@ -169,6 +169,7 @@ class Game extends Controller
                 $cur_play_name = $value['title'];
             }
         }
+        dump($dynamicConfig);
         $this->assign('dynamicConfig',json_encode($dynamicConfig));
         $this->assign('gameConfigData',$gameConfigData);
         $this->assign('jsPrizePoint',json_encode(dynamicConfig::getCurUserPoint($curmid)));
