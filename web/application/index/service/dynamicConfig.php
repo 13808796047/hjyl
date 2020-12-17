@@ -39,7 +39,7 @@ class dynamicConfig
     {
         $numbers = array();
         try{
-            $type = Type::where(array('id'=>$play_type))->find();
+            $type = Type::where(array('id'=>$play_type))->find(); // 查询type
             if(empty($type)){
                 return $numbers;
             }
@@ -87,7 +87,7 @@ class dynamicConfig
             Log::error($e->getFile().' L:'.$e->getLine().' msg:'.$e->getMessage());
             return $numbers;
         }
-
+        dump($numbers);
         return $numbers;
     }
 
