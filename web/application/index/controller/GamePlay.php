@@ -72,6 +72,7 @@ class GamePlay extends Controller
         '34' => 6,
         '44' => 6,
         '45' => 6,
+        '47' => 6,
         '9' => 7200,
         '10' => 7200,
     ];
@@ -79,7 +80,7 @@ class GamePlay extends Controller
     protected $liqType = 101;
     protected $liqInfo = '投注！';
     private $stopCode = [
-        17, 20, 23, 60, 198, 200, 202, 272
+        17, 23, 60, 198, 200, 202, 272
     ];
     protected $gc_id = [1, 43, 16, 44, 6, 9, 10, 20];
     protected $zhushu_curmids = [
@@ -87,7 +88,7 @@ class GamePlay extends Controller
 //        1
     ];
     protected $zhushu_playeds = [
-        45, 46, 47, 48, 49, 50, 51, 52, 152, 56, 53, 54,
+        45, 46, 47, 48, 49, 50, 51, 52, 152, 56, 53, 54, 20,
         1, 7, 13, 274, 11, 275, 270, 276, 28, 26, 34, 32, 30, 36, 15, 9, 253, 254, 255, 256, 257, 258, 278, 279, 280, 281, 3
     ];
     protected $maxzs = 0;
