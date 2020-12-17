@@ -147,13 +147,14 @@ class Game extends Controller
     {
         $curmid = $request->param('curmid','36');
         $type_info = Type::getType($curmid);
-       
+       dump($type_info);
 
         $lottery = [
             'lotterycnname' => $type_info?$type_info['title']:"",
             'lotteryid' => $type_info?$type_info['type']:"1",
             'curmid' => $curmid,
         ];
+
         $this->assign('lottery',$lottery);
         $this->assign('multilingual',_loadGameConfigByJson('multilingual'));
 
