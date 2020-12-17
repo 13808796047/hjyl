@@ -147,7 +147,6 @@ class Game extends Controller
     {
         $curmid = $request->param('curmid','36');
         $type_info = Type::getType($curmid);
-       dump($type_info);
 
         $lottery = [
             'lotterycnname' => $type_info?$type_info['title']:"",
