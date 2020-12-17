@@ -244,6 +244,7 @@ class dynamicConfig
     public static function config($type=36)
     {
         $next_numbers = self::gameNumbers($type,120);
+        dump($next_numbers);
         $next_codes = "";
         $next_time = "";
         $gamenumbers = array();
