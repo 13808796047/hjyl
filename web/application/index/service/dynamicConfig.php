@@ -60,7 +60,6 @@ class dynamicConfig
                 }
             }else{
                 $date_time = DataTime::where(array('type'=>$play_type,'actionTime'=>array('gt',date('H:i:s',time()))))->order('actionTime')->select();
-                dump($date_time);
                 $today_f = date('Ymd',time());
                 $today = date('Y-m-d',time());
                 $time = strtotime($today_f);
