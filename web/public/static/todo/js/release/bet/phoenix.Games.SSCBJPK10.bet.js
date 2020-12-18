@@ -46,7 +46,7 @@
                     function (t, n) {
                         if ("undefined" != typeof n.balance && $("#J-balance-value").html(n.balance), n.lastballs) {
                             var r = n.lastballs.split(",");
-                            console.log(n.number)
+                            console.log('第几期->>', n.number)
                             $("#J-lotter-info-number").text(n.number),
                                 $("#J-lotter-info-lastnumber").text(n.lastnumber),
                                 $("#J-lottery-info-balls").find("em").each(function (e) {
