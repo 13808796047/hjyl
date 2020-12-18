@@ -53,6 +53,7 @@
                                     this.innerHTML = r[e]
                                 }),
                                 e.getCurrentGame().showLotteryDescription(n.lastballsTrans),
+                                console.log('pk')
                                 e.getCurrentGame().startGetBetBall(),
                                 i.setStartTime(new Date(n.nowtime)),
                                 i.setEndTime(new Date(n.nowstoptime)),
