@@ -157,7 +157,7 @@ class dynamicConfig
             return self::sdp3TypeDesc($lastballs);
         }
         if($lastballs && $type == 6) {
-            return self::sdp3TypeDesc($lastballs);
+            return [];
         }
         return isset($trans[$type]) ? $trans[$type] : [];
     }
