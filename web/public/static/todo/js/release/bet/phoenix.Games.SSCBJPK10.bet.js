@@ -9,6 +9,7 @@
             phoenix.Games.SSCBJPK10.Message.getInstance(),
             phoenix.GamePlan.getInstance();
         var t = function (t) {
+            console.log('dfsafads', t)
             var n = new phoenix.flipTimer($(".flipTimer")),
                 r = !0,
                 a = !0,
@@ -54,7 +55,7 @@
                                 }),
                                 e.getCurrentGame().showLotteryDescription(n.lastballsTrans),
                                 console.log('pk')
-                                e.getCurrentGame().startGetBetBall(),
+                            e.getCurrentGame().startGetBetBall(),
                                 i.setStartTime(new Date(n.nowtime)),
                                 i.setEndTime(new Date(n.nowstoptime)),
                                 i.continueCount()
