@@ -32,7 +32,6 @@
                         }
                     }
                 });
-            console.log('什么玩意', n)
             e.getCurrentGame().addEvent("afterSwitchGameMethod",
                 function () {
                     a ? (phoenix.Games.SSCBJPK10.getInstance().removeFakeBallDom(), a = !1, o.historyBall && setTimeout(function () {

@@ -7,6 +7,7 @@
  */
 
 namespace app\index\service;
+
 use app\common\Common;
 use app\index\model\Data;
 use app\index\model\DataTime;
@@ -26,8 +27,9 @@ class dynamicConfig
     public static $tracemaxtimes = 120;
 
     public static $guoTypes = [
-        1,16,44,6,9,10,20,43
+        1, 16, 44, 6, 9, 10, 20, 43
     ];
+
     // 当前期号
     public static function numbers()
     {
@@ -35,56 +37,63 @@ class dynamicConfig
         return $number;
     }
 
-    public static function gameNumbers($play_type,$num=10)
+    public static function gameNumbers($play_type, $num = 10)
     {
-        $numbers = array();
-        try{
-            $type = Type::where(array('id'=>$play_type))->find(); // 查询type
-            if(empty($type)){
+        $numbers = [];
+        try {
+            $type = Type::where(['id' => $play_type])->find(); // 查询type
+            if(empty($type)) {
                 return $numbers;
             }
             $me = new Common();
             $fun = $type['onGetNoed'];
-            if($play_type == 9 || $play_type == 10){
+            if($play_type == 9 || $play_type == 10) {
 
-                if (method_exists($me, $fun)) {
+                if(method_exists($me, $fun)) {
                     $actionNo = '';
                     $time = '';
                     $me->$fun($actionNo, $time);
-                    $cur_numbers = array(
+                    $cur_numbers = [
                         'number' => $actionNo,//20170909-1306
                         'issueCode' => str_replace('-', '10', $actionNo),//20170909101306
                         'time' => $time,//2017-09-09 12:54:25
-                    );
+                    ];
                     array_push($numbers, $cur_numbers);
                 }
-            }else{
-                $date_time = DataTime::where(array('type'=>$play_type,'actionTime'=>array('gt',date('H:i:s',time()))))->order('actionTime')->select();
-                $today_f = date('Ymd',time());
-                $today = date('Y-m-d',time());
+            } else {
+                // 大于当前时间的 date_time
+                $date_time = DataTime::where(['type' => $play_type, 'actionTime' => ['gt', date('H:i:s', time())]])->order('actionTime')->select();
+                //20201218
+                $today_f = date('Ymd', time());
+                //2020-12-18
+                $today = date('Y-m-d', time());
                 $time = strtotime($today_f);
                 $idx = 0;
-                foreach ($date_time as $item) {
+                foreach($date_time as $item) {
                     $actionNo = $item['actionNo'];
                     $actionTime = $item['actionTime'];
-                    if (method_exists($me, $fun)) {
+                    if(method_exists($me, $fun)) {
                         $idx++;
-                        if($idx>$num){
+                        // 取9个
+                        if($idx > $num) {
                             break;
                         }
-                        $me->$fun($actionNo, $actionTime,$time, $type['data_ftime']);
-                        $cur_numbers = array(
+                        // 执行方法
+                        $me->$fun($actionNo, $actionTime, $time, $type['data_ftime']);
+                        // 当前numbers
+                        $cur_numbers = [
                             'number' => $actionNo,//20170909-1306
-                            'issueCode' => str_replace('-','10',$actionNo),//20170909101306
-                            'time' => $today .' '. $item['actionTime'],//2017-09-09 12:54:25
-                        );
-                        array_push($numbers,$cur_numbers);
+                            'issueCode' => str_replace('-', '10', $actionNo),//20170909101306
+                            'time' => $today . ' ' . $item['actionTime'],//2017-09-09 12:54:25
+                        ];
+                        // 合并
+                        array_push($numbers, $cur_numbers);
                     }
                 }
             }
-        }catch (\Exception $e){
+        } catch (\Exception $e) {
 //            return $e->getMessage();
-            Log::error($e->getFile().' L:'.$e->getLine().' msg:'.$e->getMessage());
+            Log::error($e->getFile() . ' L:' . $e->getLine() . ' msg:' . $e->getMessage());
             return $numbers;
         }
         return $numbers;
@@ -93,7 +102,7 @@ class dynamicConfig
     public static function issueCode($number)
     {
 //        $number = "20170909-1606";
-        $issueCode = str_replace('-','10',$number);
+        $issueCode = str_replace('-', '10', $number);
         return $issueCode;
     }
 
@@ -125,7 +134,7 @@ class dynamicConfig
         return $history;
     }
 
-    public static function lastballsTrans($type,$lastballs='')
+    public static function lastballsTrans($type, $lastballs = '')
     {
         $type = Type::getType($type)['type'];
         $trans = [
@@ -138,86 +147,89 @@ class dynamicConfig
             '3' => ["组选：组六", "和值：15"],
             '6' => ["单双：5单5双", "中位：03"],
         ];
-        if($lastballs&&$type==1){
+        if($lastballs && $type == 1) {
             return self::sscTypeDesc($lastballs);
         }
-        if($lastballs&&$type==2){
+        if($lastballs && $type == 2) {
             return self::syxwTypeDesc($lastballs);
         }
-        if($lastballs&&$type==3){
+        if($lastballs && $type == 3) {
             return self::sdp3TypeDesc($lastballs);
         }
-        if($lastballs&&$type==6){
-            return array();
+        if($lastballs && $type == 6) {
+            return [];
         }
         return isset($trans[$type]) ? $trans[$type] : [];
     }
 
-    public static function sscTypeDesc($lastballs){
+    public static function sscTypeDesc($lastballs)
+    {
         //前三
-        $str = substr($lastballs,0,5);
-        $str_arr = explode(',',$str);
-        $cur_arr = array();
-        $trans = array();
-        foreach ($str_arr as $item) {
+        $str = substr($lastballs, 0, 5);
+        $str_arr = explode(',', $str);
+        $cur_arr = [];
+        $trans = [];
+        foreach($str_arr as $item) {
             $cur_arr[$item] = $item;
-            $trans[0] = "前三：".(count($cur_arr)==2?"组三":(count($cur_arr)==3?"组六":(count($cur_arr)==1?"豹子":"-")));
+            $trans[0] = "前三：" . (count($cur_arr) == 2 ? "组三" : (count($cur_arr) == 3 ? "组六" : (count($cur_arr) == 1 ? "豹子" : "-")));
         }
         //中三
-        $str = substr($lastballs,2,5);
-        $str_arr = explode(',',$str);
-        $cur_arr = array();
-        foreach ($str_arr as $item) {
+        $str = substr($lastballs, 2, 5);
+        $str_arr = explode(',', $str);
+        $cur_arr = [];
+        foreach($str_arr as $item) {
             $cur_arr[$item] = $item;
-            $trans[1] = "中三：".(count($cur_arr)==2?"组三":(count($cur_arr)==3?"组六":(count($cur_arr)==1?"豹子":"-")));
+            $trans[1] = "中三：" . (count($cur_arr) == 2 ? "组三" : (count($cur_arr) == 3 ? "组六" : (count($cur_arr) == 1 ? "豹子" : "-")));
         }
         //后三
-        $str = substr($lastballs,4,5);
-        $str_arr = explode(',',$str);
-        $cur_arr = array();
-        foreach ($str_arr as $item) {
+        $str = substr($lastballs, 4, 5);
+        $str_arr = explode(',', $str);
+        $cur_arr = [];
+        foreach($str_arr as $item) {
             $cur_arr[$item] = $item;
-            $trans[2] = "后三：".(count($cur_arr)==2?"组三":(count($cur_arr)==3?"组六":(count($cur_arr)==1?"豹子":"-")));
+            $trans[2] = "后三：" . (count($cur_arr) == 2 ? "组三" : (count($cur_arr) == 3 ? "组六" : (count($cur_arr) == 1 ? "豹子" : "-")));
         }
         return $trans;
     }
 
-    public static function syxwTypeDesc($lastballs){
+    public static function syxwTypeDesc($lastballs)
+    {
         //单双
-        $str_arr = explode(',',$lastballs);
-        $trans = array();
+        $str_arr = explode(',', $lastballs);
+        $trans = [];
         $idx = 0;
         $ds = 0;
         $ss = 0;
         sort($str_arr);
-        foreach ($str_arr as $item) {
-            if($item%2==0){
+        foreach($str_arr as $item) {
+            if($item % 2 == 0) {
                 $ss++;
-            }else{
+            } else {
                 $ds++;
             }
-            $trans[0] = "单双：".$ds."单".$ss."双";
-            if($idx==2){
+            $trans[0] = "单双：" . $ds . "单" . $ss . "双";
+            if($idx == 2) {
                 //中位
-                $trans[1] = "中位：".$item;
+                $trans[1] = "中位：" . $item;
             }
             $idx++;
         }
         return $trans;
     }
 
-    public static function sdp3TypeDesc($lastballs){
-        $str_arr = explode(',',$lastballs);
-        $trans = array();
-        $cur_arr = array();
+    public static function sdp3TypeDesc($lastballs)
+    {
+        $str_arr = explode(',', $lastballs);
+        $trans = [];
+        $cur_arr = [];
         $hz = 0;
-        foreach ($str_arr as $item) {
+        foreach($str_arr as $item) {
             $cur_arr[$item] = $item;
 //            $trans[0] = "组选：".(count($cur_arr)==2?"组三":(count($cur_arr)==3?"组六":(count($cur_arr)==1?"豹子":"-")));
             $hz += $item;
         }
-        $trans[] = "组选：".(count($cur_arr)==2?"组三":(count($cur_arr)==3?"组六":(count($cur_arr)==1?"豹子":"-")));
-        $trans[] = '和值：'.$hz;
+        $trans[] = "组选：" . (count($cur_arr) == 2 ? "组三" : (count($cur_arr) == 3 ? "组六" : (count($cur_arr) == 1 ? "豹子" : "-")));
+        $trans[] = '和值：' . $hz;
         return $trans;
     }
 
@@ -241,13 +253,13 @@ class dynamicConfig
         return $number;
     }*/
 
-    public static function config($type=36)
+    public static function config($type = 36)
     {
-        $next_numbers = self::gameNumbers($type,120);
+        $next_numbers = self::gameNumbers($type, 120);
         $next_codes = "";
         $next_time = "";
-        $gamenumbers = array();
-        if(isset($next_numbers[0])){
+        $gamenumbers = [];
+        if(isset($next_numbers[0])) {
             $next_codes = $next_numbers[0]['number'];
             $next_time = $next_numbers[0]['time'];
             unset($next_numbers[0]);
@@ -257,8 +269,8 @@ class dynamicConfig
         $data['isstop'] = self::isStop();
         $data['number'] = $next_codes;//即将开奖期
         $data['issueCode'] = self::issueCode($data['number']);
-        $data['nowtime'] = date('Y/m/d H:i:s',time());//当前时间
-        $data['nowstoptime'] = date('Y/m/d H:i:s',strtotime($next_time));//即将开奖时间
+        $data['nowtime'] = date('Y/m/d H:i:s', time());//当前时间
+        $data['nowstoptime'] = date('Y/m/d H:i:s', strtotime($next_time));//即将开奖时间
         /*$data['resulttime'] = "2017/09/09 12:53:55";
         $data['nowtime'] = "2017/09/09 12:53:55";
         $data['nowstoptime'] = "2017/09/09 12:53:55";*/
@@ -267,12 +279,12 @@ class dynamicConfig
         $data['lastnumber'] = empty($historyBall[0]['number']) ? '' : $historyBall[0]['number'];//上期开奖期号
         $data['lastballs'] = !isset($historyBall[0]['data']) ? '' : $historyBall[0]['data'];//上期开奖时间
         $data['resulttime'] = empty($historyBall[0]['datetime']) ? '' : $historyBall[0]['datetime'];//上期开奖号码
-        if (count($historyBall) > 0){
+        if(count($historyBall) > 0) {
             unset($historyBall[0]);
             $data['historyBall'] = $historyBall;
         }
 
-        $data['lastballsTrans'] = self::lastballsTrans($type,$data['lastballs']);
+        $data['lastballsTrans'] = self::lastballsTrans($type, $data['lastballs']);
         $data['tracemaxtimes'] = self::$tracemaxtimes;
         $data['gamenumbers'] = $gamenumbers;//未来开奖
         $data['ballInfo'] = null;
@@ -282,55 +294,56 @@ class dynamicConfig
         return $return;
     }
 
-    public static function getCurUserPoint($typeId){
-        $type = Type::where(array('id'=>$typeId))->find();
-        if(empty($type)){
-            return array();
-        }else{
+    public static function getCurUserPoint($typeId)
+    {
+        $type = Type::where(['id' => $typeId])->find();
+        if(empty($type)) {
+            return [];
+        } else {
             $user = Session::get('userData');
-            if(empty($user)){
+            if(empty($user)) {
                 Log::record('没有登录');
-                return array();
+                return [];
             }
-            $point_arr = array();
+            $point_arr = [];
             $fanDianMax = Params::getParams('fanDianMax')['fanDianMax'];
-            $played = Played::where(array('type'=>$type['type']))->select();
-            foreach ($played as $item) {
-                if($type['is_official'] == 1){
+            $played = Played::where(['type' => $type['type']])->select();
+            foreach($played as $item) {
+                if($type['is_official'] == 1) {
                     $prop = $item['guo_prop'];
                     $propBase = $item['guo_prop_base'];
-                }else{
+                } else {
                     $prop = $item['bonusProp'];
                     $propBase = $item['bonusPropBase'];
                 }
-                if($prop <= $propBase){
-                    $point_arr[$item['id']] = array(
-                        "hprize"=> number_format($prop, 2, '.', ''),
+                if($prop <= $propBase) {
+                    $point_arr[$item['id']] = [
+                        "hprize" => number_format($prop, 2, '.', ''),
 //                    "hprize"=> ($item['bonusProp']-$item['bonusPropBase'])/$fanDianMax*$user['fanDian'] + $item['bonusPropBase'],
-                        "prize"=> number_format($propBase,2,'.',''),
-                        "point"=>0
-                    );
-                }else{
-                    $point_arr[$item['id']] = array(
-                        "hprize"=> number_format(($prop-$propBase)/$fanDianMax*$user['fanDian'] + $propBase, 2, '.', ''),
+                        "prize" => number_format($propBase, 2, '.', ''),
+                        "point" => 0
+                    ];
+                } else {
+                    $point_arr[$item['id']] = [
+                        "hprize" => number_format(($prop - $propBase) / $fanDianMax * $user['fanDian'] + $propBase, 2, '.', ''),
 //                    "hprize"=> ($item['bonusProp']-$item['bonusPropBase'])/$fanDianMax*$user['fanDian'] + $item['bonusPropBase'],
-                        "prize"=> number_format($propBase,2,'.',''),
-                        "point"=>$user['fanDian']
-                    );
+                        "prize" => number_format($propBase, 2, '.', ''),
+                        "point" => $user['fanDian']
+                    ];
                 }
-              /*  if($user['fanDian'] > 0){
-                    $point_arr[$item['id']] = array(
-                        "hprize"=>$item['bonusProp'],
-                        "prize"=>$item['bonusPropBase'],
-                        "point"=>$user['fanDian']
-                    );
-                }else{
-                    $point_arr[$item['id']] = array(
-                        "hprize"=>$item['bonusPropBase'],
-                        "prize"=>$item['bonusPropBase'],
-                        "point"=>$user['fanDian']
-                    );
-                }*/
+                /*  if($user['fanDian'] > 0){
+                      $point_arr[$item['id']] = array(
+                          "hprize"=>$item['bonusProp'],
+                          "prize"=>$item['bonusPropBase'],
+                          "point"=>$user['fanDian']
+                      );
+                  }else{
+                      $point_arr[$item['id']] = array(
+                          "hprize"=>$item['bonusPropBase'],
+                          "prize"=>$item['bonusPropBase'],
+                          "point"=>$user['fanDian']
+                      );
+                  }*/
             }
             return $point_arr;
         }
