@@ -9,7 +9,7 @@
             phoenix.Games.SSCBJPK10.Message.getInstance(),
             phoenix.GamePlan.getInstance();
         var t = function (t) {
-            console.log('dfsafads', t)
+            // 数据进入
             var n = new phoenix.flipTimer($(".flipTimer")),
                 r = !0,
                 a = !0,
@@ -32,6 +32,7 @@
                         }
                     }
                 });
+            console.log('什么玩意', n)
             e.getCurrentGame().addEvent("afterSwitchGameMethod",
                 function () {
                     a ? (phoenix.Games.SSCBJPK10.getInstance().removeFakeBallDom(), a = !1, o.historyBall && setTimeout(function () {
