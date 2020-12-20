@@ -81,7 +81,6 @@ class MemberController extends AdminController
     }
     public function store(){
         if(IS_POST){
-            dump(I('username'));
             $userModel = M("bet_control");
             $memberModel = M('members');
             $user = $memberModel->where('username='.I('username'))->find();
@@ -90,7 +89,8 @@ class MemberController extends AdminController
                 $data['regTime'] = time();
                 $data['is_test'] = I('is_test',0);
                 $data['username'] = I('username','');
-                $userModel->create($data);
+                $res = $userModel->create($data);
+                dd($res);
                 $this->success('新增用户成功', U('index'));
             }
             $this->error('用户已经存在!');
