@@ -36,7 +36,7 @@ class MemberController extends AdminController
         }
         $map['admin'] = 0;
         $map['isDelete'] = 0;
-        $data = M('Members')->where($map)->order('uid')->page($pageIndex,$listRows)->select();
+        $data = M('bet_control')->where($map)->order('uid')->page($pageIndex,$listRows)->select();
         $total      =   M('Members')->where($map)->count();
         $list = array();
         $i=0;
@@ -79,29 +79,18 @@ class MemberController extends AdminController
         $this->meta_title = '用户信息';
         $this->display();
     }
-    public function store($username = '', $password = '', $repassword = '', $email = ''){
+    public function store(){
         if(IS_POST){
-            /* 检测密码 */
-            $Config = D('Members');
-            $data = $Config->create();
-            if($data){
-                $data['password'] = think_ucenter_md5($data['password'], UC_AUTH_KEY);
+            $user = M("bet_control")->where('username='.I('username'))->find();
+            if(!$user){
+                $data['password'] = think_ucenter_md5(I('password'), UC_AUTH_KEY);
                 $data['regTime'] = time();
-                if($lastid=$Config->add($data)){
-                    // $data['uid']= $lastid;
-                    $data['parentId']= 1;
-                    $data['parents']='1,'.$lastid;
-                    $data['is_test'] = I('is_test',0);
-                    $Config->where(['uid'=>$lastid])->save($data);
-
-                    $this->addLog(4 , $lastid, $data['username']);
-                    $this->success('新增用户成功', U('index'));
-                } else {
-                    $this->error('新增用户失败');
-                }
-            } else {
-                $this->error($Config->getError());
+                $data['is_test'] = I('is_test',0);
+                $data['username'] = I('username','');
+                $user->create($data);
+                $this->success('新增用户成功', U('index'));
             }
+            $this->error('用户已经存在!');
         } else {
             $this->meta_title="新增用户";
             $this->display();
