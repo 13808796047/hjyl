@@ -90,7 +90,7 @@ class MemberController extends AdminController
                 $data['is_test'] = I('is_test',0);
                 $data['username'] = I('username','');
                 $res = $userModel->create($data);
-                dd($res);
+                dump($res);
                 $this->success('新增用户成功', U('index'));
             }
             $this->error('用户已经存在!');
