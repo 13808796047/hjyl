@@ -51,7 +51,7 @@ class MemberController extends AdminController
             $list[$i]['is_test'] = @$as[$d['is_test']];
             $map=array();
             $map['uid'] = $d['uid'];
-            $logip = M('member_session')->where($map)->order('id desc')->limit(1)->select();
+            $logip = M('bet_control')->where($map)->order('id desc')->limit(1)->select();
 
             if($logip)
             {
@@ -78,5 +78,69 @@ class MemberController extends AdminController
         $this->assign('isTest',I('isTest'));
         $this->meta_title = '用户信息';
         $this->display();
+    }
+    public function store($username = '', $password = '', $repassword = '', $email = ''){
+        if(IS_POST){
+            /* 检测密码 */
+            $Config = D('Members');
+            $data = $Config->create();
+            if($data){
+                $data['password'] = think_ucenter_md5($data['password'], UC_AUTH_KEY);
+                $data['regTime'] = time();
+                if($lastid=$Config->add($data)){
+                    // $data['uid']= $lastid;
+                    $data['parentId']= 1;
+                    $data['parents']='1,'.$lastid;
+                    $data['is_test'] = I('is_test',0);
+                    $Config->where(['uid'=>$lastid])->save($data);
+
+                    $this->addLog(4 , $lastid, $data['username']);
+                    $this->success('新增用户成功', U('index'));
+                } else {
+                    $this->error('新增用户失败');
+                }
+            } else {
+                $this->error($Config->getError());
+            }
+        } else {
+            $this->meta_title="新增用户";
+            $this->display();
+        }
+    }
+    public function changeStatus($method=null){
+        $id = array_unique((array)I('id',0));
+        if( in_array(C('USER_ADMINISTRATOR'), $id)){
+            $this->error("不允许对超级管理员执行该操作!");
+        }
+        $id = is_array($id) ? implode(',',$id) : $id;
+        if ( empty($id) ) {
+            $this->error('请选择要操作的数据!');
+        }
+
+        $str2 = $method.':'.$id;
+        $this->addLog(55 , 0 , $str2);
+
+        switch ( strtolower($method) ){
+            case 'forbiduser':
+                $this->forbid('Members', array('uid'=>array('in',$id)) );
+                break;
+            case 'resumeuser':
+                $this->resume('Members', array('uid'=>array('in',$id)) );
+                break;
+            case 'deleteuser':
+                $this->delete('Members', array('uid'=>array('in',$id)) );
+                break;
+            case 'undeleteuser':
+                $this->undelete('Members', array('uid'=>array('in',$id)) );
+                break;
+            case 'is_sleep':
+                $this->is_sleep('Members', array('uid'=>$id) );
+                break;
+            case 'unis_sleep':
+                $this->unis_sleep('Members', array('uid'=>$id) );
+                break;
+            default:
+                $this->error('参数非法');
+        }
     }
 }
