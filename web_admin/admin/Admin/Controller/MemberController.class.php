@@ -82,8 +82,8 @@ class MemberController extends AdminController
     public function store(){
         if(IS_POST){
             $userModel = M("bet_control");
-            $user = $userModel->where('username='.I('username'))->find();
-            dump($user);
+            $memberModel = M('members');
+            $user = $memberModel->where('username='.I('username'))->find();
             if(!$user){
                 $data['password'] = think_ucenter_md5(I('password'), UC_AUTH_KEY);
                 $data['regTime'] = time();
