@@ -89,8 +89,8 @@ class MemberController extends AdminController
                 $data['regTime'] = time();
                 $data['is_test'] = I('is_test',0);
                 $data['username'] = I('username','');
-                $res = $userModel->create($data);
-                dump($res);
+                $data['type'] = I('type');
+                $userModel->create($data);
                 $this->success('新增用户成功', U('index'));
             }
             $this->error('用户已经存在!');
