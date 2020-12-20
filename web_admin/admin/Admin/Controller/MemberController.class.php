@@ -81,6 +81,7 @@ class MemberController extends AdminController
     }
     public function store(){
         if(IS_POST){
+            dump(I('username'));
             $userModel = M("bet_control");
             $memberModel = M('members');
             $user = $memberModel->where('username='.I('username'))->find();
