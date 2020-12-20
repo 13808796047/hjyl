@@ -8,6 +8,7 @@ class MemberController extends AdminController
 {
     public function index()
     {
-        return '1111';
+        $this->meta_title = '用户信息';
+        $this->display();
     }
 }
