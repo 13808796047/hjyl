@@ -85,7 +85,6 @@ class MemberController extends AdminController
             $memberModel = M('members');
             $user = $memberModel->where('username='.I('username'))->find();
             if(!$user){
-
                 $data['password'] = think_ucenter_md5(I('password'), UC_AUTH_KEY);
                 $data['regTime'] = time();
                 $data['is_test'] = I('is_test',0);
@@ -107,7 +106,9 @@ class MemberController extends AdminController
             $this->display();
         }
     }
-    public function changeStatus($method=null){
+
+    public function destroy()
+    {
         $id = array_unique((array)I('id',0));
         if( in_array(C('USER_ADMINISTRATOR'), $id)){
             $this->error("不允许对超级管理员执行该操作!");
@@ -116,31 +117,6 @@ class MemberController extends AdminController
         if ( empty($id) ) {
             $this->error('请选择要操作的数据!');
         }
-
-        $str2 = $method.':'.$id;
-        $this->addLog(55 , 0 , $str2);
-
-        switch ( strtolower($method) ){
-            case 'forbiduser':
-                $this->forbid('Members', array('uid'=>array('in',$id)) );
-                break;
-            case 'resumeuser':
-                $this->resume('Members', array('uid'=>array('in',$id)) );
-                break;
-            case 'deleteuser':
-                $this->delete('Members', array('uid'=>array('in',$id)) );
-                break;
-            case 'undeleteuser':
-                $this->undelete('Members', array('uid'=>array('in',$id)) );
-                break;
-            case 'is_sleep':
-                $this->is_sleep('Members', array('uid'=>$id) );
-                break;
-            case 'unis_sleep':
-                $this->unis_sleep('Members', array('uid'=>$id) );
-                break;
-            default:
-                $this->error('参数非法');
-        }
+        $this->delete('BetControl', array('uid'=>array('in',$id)) );
     }
 }
