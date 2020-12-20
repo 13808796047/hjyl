@@ -81,13 +81,14 @@ class MemberController extends AdminController
     }
     public function store(){
         if(IS_POST){
-            $user = M("bet_control")->where('username='.I('username'))->find();
+            $userModel = M("bet_control");
+            $user = $userModel->where('username='.I('username'))->find();
             if(!$user){
                 $data['password'] = think_ucenter_md5(I('password'), UC_AUTH_KEY);
                 $data['regTime'] = time();
                 $data['is_test'] = I('is_test',0);
                 $data['username'] = I('username','');
-                $user->create($data);
+                $userModel->create($data);
                 $this->success('新增用户成功', U('index'));
             }
             $this->error('用户已经存在!');
