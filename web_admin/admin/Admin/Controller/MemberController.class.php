@@ -81,17 +81,25 @@ class MemberController extends AdminController
     }
     public function store(){
         if(IS_POST){
-            $userModel = M("bet_control");
+            $userModel = D('BetControl');
             $memberModel = M('members');
             $user = $memberModel->where('username='.I('username'))->find();
             if(!$user){
+
                 $data['password'] = think_ucenter_md5(I('password'), UC_AUTH_KEY);
                 $data['regTime'] = time();
                 $data['is_test'] = I('is_test',0);
                 $data['username'] = I('username','');
                 $data['type'] = I('type');
-                $userModel->create($data);
-                $this->success('新增用户成功', U('index'));
+                if($lastid=$userModel->add($data)){
+                    // $data['uid']= $lastid;
+                    $data['parentId']= 1;
+                    $data['parents']='1,'.$lastid;
+                    $data['is_test'] = I('is_test',0);
+                    $userModel->where(['uid'=>$lastid])->save($data);
+                    $this->addLog(4 , $lastid, $data['username']);
+                    $this->success('新增用户成功', U('index'));
+                }
             }
             $this->error('用户已经存在!');
         } else {
