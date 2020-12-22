@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<!-- saved from url=(0094)https://3niu18.com/default_index.shtml?controller=help&action=noticelist&type=noticelistsingle -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+
+    <script src="./jquery-1.9.1.min.js"></script>
+    <style>
+        .latest_news_inner {
+            background: #f7f9fa;
+            height: 100%;
+            font-size: 14px;
+            color: #333;
+            font-family: "微软雅黑" , Arial , "Microsoft Sans Serif" ,  "宋体";
+        }
+
+
+        .latestpage{
+            width: 100%;
+            text-align: center;
+            margin-top: 15px;
+            margin-bottom: 15px;
+            display: inline-block;
+        }
+        .latest_left{
+            width: 360px;
+            float: left;
+        }
+        .latest_left>ul{
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+        .latest_left>ul>li{
+            width: 100%;
+            box-sizing: border-box;
+            padding: 10px;
+            color:#333;
+            float: left;
+            border-bottom: 1px solid #e3e4e5;
+            cursor: pointer;
+        }
+        .latest_left>ul>li:hover{
+            background-color: #dbd0c8;
+        }
+        .latest_left>ul>li.target{
+            background-color: #2b2824;
+
+        }
+        .latest_left>ul>li.target{
+
+            color:#fff;
+        }
+        .latestname{
+            float: left;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            width: 230px;
+        }
+        .latestdata{
+            float: right;
+        }
+        .latest_right{
+            width: 590px;
+            float: right;
+            height: 100%;
+
+            color:#6b6b6b;
+        }
+        .latest_right_name{
+            width: 100%;
+            padding: 12px;
+            border-bottom: 1px solid #e3e4e5;
+            text-align: center;
+            display: inline-block;
+        }
+        .latest_right_content{
+            height: 450px;
+            width: 100%;
+            overflow-y: scroll;
+            overflow-x: hidden;
+            display: inline-block;
+        }
+
+
+        .latest_news_content {
+            width: 100%;
+            display: inline-block;
+            height: 500px;
+        }
+        :root *> .latest_news_content * {
+            max-width: 100% !important;
+        }
+        .latest_news_content a {
+            color: #333333;
+        }
+
+
+        .user-content-block-styleh{
+            margin-top: 10px;
+            padding: 10px;
+            line-height: 19px;
+
+        }
+        .announcement-detail-page-subject{
+            font-weight: bold;
+        }
+        .announcement-detail-page-signed{
+            text-align: right;
+            margin-top: 10px;
+        }
+        a{
+            text-decoration: none;
+        }
+
+    </style>
+    <script type="text/javascript">
+        function loaddetail(aobj,url) {
+            $.ajax({
+                type : 'POST',
+                url  : url,
+                data : {},
+                timeout : 10000
+            }).done(function (data) {
+
+                $("#msgdetailcontent").empty().html(data);
+                $(aobj).addClass("target")
+                $omc=$(aobj).siblings()
+                $omc.removeClass("target")
+
+
+            }).fail(function () {
+                return false;
+            });
+            return false;
+        }
+        $(function () {
+            $(".latest_left>ul>li:first-child").click()
+        });
+    </script>
+</head>
+
+<body>
+<div class="latest_news_inner">
+
+    <div class="latest_news_content">
+
+
+        <div class="latest_left">
+
+
+            <ul>
+
+
+
+
+
+                                                <li class="target" onclick="loaddetail(this,&#39;./?controller=help&amp;action=noticelist&amp;type=noticedetailsingle&amp;nid=767&#39;);"><div class="latestname">香港六合彩上市公告</div><div class="latestdata">2020-11-20</div></li>
+                                                                <li onclick="loaddetail(this,&#39;./?controller=help&amp;action=noticelist&amp;type=noticedetailsingle&amp;nid=780&#39;);"><div class="latestname">沙巴体育维护公告</div><div class="latestdata">2020-12-14</div></li>
+                                                                <li onclick="loaddetail(this,&#39;./?controller=help&amp;action=noticelist&amp;type=noticedetailsingle&amp;nid=779&#39;);"><div class="latestname">银行维护公告</div><div class="latestdata">2020-12-13</div></li>
+                                                                <li onclick="loaddetail(this,&#39;./?controller=help&amp;action=noticelist&amp;type=noticedetailsingle&amp;nid=778&#39;);"><div class="latestname">平台维护升级通知</div><div class="latestdata">2020-12-07</div></li>
+                                                                <li onclick="loaddetail(this,&#39;./?controller=help&amp;action=noticelist&amp;type=noticedetailsingle&amp;nid=777&#39;);"><div class="latestname">银行维护公告</div><div class="latestdata">2020-12-06</div></li>
+                                                                <li onclick="loaddetail(this,&#39;./?controller=help&amp;action=noticelist&amp;type=noticedetailsingle&amp;nid=776&#39;);"><div class="latestname">浦发银行维护公告</div><div class="latestdata">2020-12-05</div></li>
+                                                                <li onclick="loaddetail(this,&#39;./?controller=help&amp;action=noticelist&amp;type=noticedetailsingle&amp;nid=774&#39;);"><div class="latestname">福彩、体彩 单挑限制公告</div><div class="latestdata">2020-12-04</div></li>
+                                                                <li onclick="loaddetail(this,&#39;./?controller=help&amp;action=noticelist&amp;type=noticedetailsingle&amp;nid=775&#39;);"><div class="latestname">银行维护公告</div><div class="latestdata">2020-12-04</div></li>
+                                                                <li onclick="loaddetail(this,&#39;./?controller=help&amp;action=noticelist&amp;type=noticedetailsingle&amp;nid=772&#39;);"><div class="latestname">光大银行维护公告</div><div class="latestdata">2020-12-03</div></li>
+                                                                <li onclick="loaddetail(this,&#39;./?controller=help&amp;action=noticelist&amp;type=noticedetailsingle&amp;nid=771&#39;);"><div class="latestname">农业银行维护公告</div><div class="latestdata">2020-11-29</div></li>
+                                
+
+
+
+
+
+
+
+            </ul>
+
+
+            <div class="latestpage">
+                第1/44页
+                  <strong>1</strong>
+<a href="https://3niu18.com/?controller=help&amp;action=noticelist&amp;type=noticelistsingle&amp;p=2&amp;pn=10">2</a>
+<a href="https://3niu18.com/?controller=help&amp;action=noticelist&amp;type=noticelistsingle&amp;p=3&amp;pn=10">3</a>
+<a href="https://3niu18.com/?controller=help&amp;action=noticelist&amp;type=noticelistsingle&amp;p=4&amp;pn=10">4</a>
+<a href="https://3niu18.com/?controller=help&amp;action=noticelist&amp;type=noticelistsingle&amp;p=5&amp;pn=10">5</a>
+<a href="https://3niu18.com/?controller=help&amp;action=noticelist&amp;type=noticelistsingle&amp;p=6&amp;pn=10">6</a>
+<a href="https://3niu18.com/?controller=help&amp;action=noticelist&amp;type=noticelistsingle&amp;p=7&amp;pn=10">7</a>
+<a href="https://3niu18.com/?controller=help&amp;action=noticelist&amp;type=noticelistsingle&amp;p=8&amp;pn=10">8</a>
+<a href="https://3niu18.com/?controller=help&amp;action=noticelist&amp;type=noticelistsingle&amp;p=9&amp;pn=10">9</a>
+<a href="https://3niu18.com/?controller=help&amp;action=noticelist&amp;type=noticelistsingle&amp;p=10&amp;pn=10">10</a>
+ <a href="https://3niu18.com/?controller=help&amp;action=noticelist&amp;type=noticelistsingle&amp;p=2&amp;pn=10">下页</a> <a href="https://3niu18.com/?controller=help&amp;action=noticelist&amp;type=noticelistsingle&amp;p=44&amp;pn=10">尾页</a> 
+
+            </div>
+
+
+        </div>
+
+
+        <div class="latest_right">
+
+
+            <div class="latest_right_content" id="msgdetailcontent"><div class="latest_right_name">香港六合彩上市公告</div>
+<div class="user-content-block-styleh ">
+
+    <div class="announcement-detail-page-content"><p>&nbsp;尊贵的彩民您好：<br>
+<br>
+因应广大玩家的热情<br>
+<br>
+平台正式推出「香港六合彩」<br>
+<br>
+感谢各位一直以来的支持与爱戴<br>
+<br>
+欢迎参与最新游戏，祝您游戏愉快</p>
+<p>&nbsp;</p>
+<p>三牛娱乐平台<br>
+&nbsp;</p></div>
+    <div class="announcement-detail-page-signed">
+        <div>三牛娱乐</div>
+        <div>
+                        2020-11-20 10:08:06                    </div>
+    </div>
+    <div class="announcement-detail-page-alter"></div>
+</div></div>
+
+
+        </div>
+
+    </div>
+</div>
+
+
+</body></html>

@@ -1,0 +1,107 @@
+body {
+    margin: 0;
+    padding: 0;
+    font: 12px 'Microsoft Yahei', 'Microsoft JhengHei', tahoma, Srial, helvetica, sans-serif;
+}
+
+img {
+    border: none;
+}
+
+.main-section {
+    margin: 15px auto;
+    position: relative;
+    max-width: 1150px;
+    min-width: 980px;
+    background-color: #fff;
+    min-height: calc(100% - 206px);
+}
+
+.main-section:after {
+    clear: both;
+    content: "";
+    display: block;
+    height: 0;
+    visibility: hidden;
+}
+
+.section {
+    position: relative;
+}
+
+.left-aside {
+    float: left;
+    width: 17%;
+    height: 685px;
+    /*background: rgb(242, 242, 242);
+    background: rgba(242, 242, 242, 0.9);*/
+    background-color: #fff;
+    background-repeat: no-repeat;
+    color: #fff;
+}
+
+.left-aside .header {
+    line-height: 24px;
+    padding: 13px;
+    /*border-bottom: 1px solid #242430;*/
+    font-weight: 700;
+    font-size: 16px;
+    background: #D8D1B8;
+}
+
+.left-aside .header .control-icon {
+    display: inline;
+    padding: 3px 12px;
+    background: url(../images/matt/controls.png);
+    background-repeat: no-repeat;
+    margin-right: 13px;
+}
+
+.left-aside .content {
+    padding-top: 6px;
+    padding-bottom: 6px;
+    font-size: 14px;
+}
+
+.left-aside .content .row {
+    line-height: 34px;
+    padding-left: 15px;
+    cursor: pointer;
+}
+
+.left-aside .content .row:hover, .left-aside .content .active {
+    background: #ECE9E5;
+}
+
+.left-aside .content .row a {
+    color: #4c4c4c;
+    display: inline-block;
+    width: 100%;
+}
+
+.left-aside .content .row a span {
+    display: inline-block;
+    width: 80%;
+    line-height: 1.7em;
+    margin: 7px 0;
+}
+
+.left-aside .content .row .arrow-right {
+    display: inline;
+    vertical-align: top;
+    padding: 0 7px;
+    background: url(../images/matt/arrow-right.png);
+    background-repeat: no-repeat;
+    margin-right: 10px;
+    position: relative;
+    top: 7px;
+}
+
+.right-aside {
+    float: left;
+    width: 83%;
+    min-height: 685px;
+    background: #fff;
+    border-left: 1px solid #c8c8c8;
+    box-sizing: border-box;
+}
