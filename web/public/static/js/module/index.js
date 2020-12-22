@@ -63,7 +63,7 @@
                 o.preventDefault(),
                     s(),
                 n() || (a = $.trim($("#J-verification").val()), $rq_post = {},
-                    $rq_post.flag = "login", $rq_post.username = $.trim($("#J-user-name").val()), $rq_post.loginpass = $("#J-user-password").val(), $rq_post.validcode = a, $rq_post.pinf = $pcinfoid, $rq_post.Submit = "json", window.appData && ($rq_post.clientVersion = appData.clientVersion, $rq_post.SetupLocationPath = appData.SetupLocationPath),
+                    $rq_post.flag = "login", $rq_post.username = $.trim($("#J-user-name").val()), $rq_post.loginpass = $("#J-user-password").val(), $rq_post.validcode = a,  $rq_post.Submit = "json",
                     $.ajax({
                         url: "/index.php/login/login",
                         type: "POST",
