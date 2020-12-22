@@ -68,7 +68,7 @@
 <!--    </script>&ndash;&gt;-->
 <!--    &lt;!&ndash;End of Zendesk Chat Script&ndash;&gt;-->
 <!--    &lt;!&ndash;//foot//&ndash;&gt;-->
-<!--    {include file="footer" /}
+<!--    {include file="footer" /}-->
 <html>
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -455,977 +455,427 @@
     background: #869791
   }</style>
   <style class="darkreader darkreader--sync" media="screen"></style>
- <link rel="stylesheet" href="https://n7ws.jnfzdz.cn/sy2/css/logreg.css"> -->
-<link rel="stylesheet" href="__CSS__/login/auth.css">
-<style class="darkreader darkreader--cors" media="screen">html, body {
-  height: 100%;
-}
-
-input, select, button {
-  background: none;
-  border: none;
-  font: 14px 'Microsoft Yahei', 'Microsoft JhengHei', tahoma, Srial, helvetica, sans-serif;
-}
-
-img {
-  border: none;
-}
-
-body {
-  background: url("__IMG__/login/bg.png") center bottom no-repeat fixed #052730;
-  background-size: cover;
-  margin: 0;
-  padding: 0;
-  font: 12px 'Microsoft Yahei', 'Microsoft JhengHei', tahoma, Srial, helvetica, sans-serif;
-}
-
-#wrap {
-  height: 100%;
-}
-
-#login {
-  min-height: 650px;
-  height: 100%;
-  position: relative;
-}
-
-.no-display {
-  display: none;
-}
-
-
-#notice-mask {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  z-index: 999;
-  background: rgba(0, 0, 0, 0.7);
-  top: 0;
-  left: 0;
-}
-
-#notice-mask .btn {
-  margin: auto;
-  vertical-align: middle;
-  background: #ff8830;
-  color: #fff;
-  cursor: pointer;
-  font-size: 14px;
-  height: 30px;
-  text-shadow: 2px 2px 0 rgba(0, 0, 0, .23);
-  width: 70px;
-  font-weight: normal;
-  line-height: 24px;
-}
-
-.pop {
-  width: 488px;
-  padding: 10px;
-  border: 1px solid #CACACA;
-  background-color: #f7f7f7;
-  text-align: center;
-  word-wrap: break-word;
-  border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-}
-
-.pop .hd {
-  height: 28px;
-  line-height: 18px;
-  border-bottom: 1px solid #EFEFEF;
-  font-size: 14px;
-  font-weight: 700;
-  text-align: left;
-  color: #555;
-}
-
-.pop .hd-info {
-  margin-left: 10px;
-  font-size: 12px;
-  font-weight: 100;
-}
-
-.pop .close {
-  float: right;
-  width: 15px;
-  height: 14px;
-  background-position: -240px -20px;
-  cursor: pointer;
-}
-
-.pop .close:hover {
-  height: 15px;
-  background-position: -240px 0;
-}
-
-.pop .bd {
-  padding: 10px;
-  text-align: left;
-  color: #555;
-}
-
-.pop-title {
-  padding: 5px;
-  text-align: center;
-  font-size: 14px;
-}
-
-.pop-btn {
-  padding-top: 20px;
-  text-align: center;
-}
-
-.pop-btn .btn {
-  margin: 0 10px;
-}
-
-.pop .input {
-  width: 160px;
-}
-
-.pop .ui-select {
-  width: 170px;
-}
-
-.pop-error, .pop-success {
-  text-align: center;
-}
-
-.pop .ico-success, .pop .ico-error {
-  display: inline-block;
-  *display: inline;
-  *zoom: 1;
-  width: 24px;
-  height: 24px;
-  margin-right: 5px;
-  vertical-align: middle;
-}
-
-.pop .ico-success {
-  background-position: -120px -80px;
-}
-
-.pop .ico-error {
-  background-position: -150px -80px;
-}
-
-.pop-text {
-  display: inline-block;
-  *display: inline;
-  *zoom: 1;
-  vertical-align: middle;
-  text-align: left;
-  line-height: 24px;
-  font-size: 14px;
-  overflow: hidden;
-}
-
-.pop .bd .ico-success, .pop .bd .ico-error, .pop .bd .ico-waring {
-  display: inline-block;
-  *display: inline;
-  *zoom: 1;
-  vertical-align: middle;
-  width: 30px;
-  height: 30px;
-  margin-right: 10px;
-}
-
-.pop .bd .ico-success {
-  background-position: 0 -80px;
-}
-
-.pop .bd .ico-error {
-  background-position: -40px -80px;
-}
-
-.pop .bd .ico-waring {
-  background-position: -80px -80px;
-}
-
-.pop .ico-success, .pop .ico-error, .pop .ico-waring {
-  display: inline-block;
-  vertical-align: middle;
-  width: 30px;
-  height: 30px;
-  margin-right: 10px;
-}
-
-.pop .ico-success {
-  background-position: 0 -80px;
-}
-
-.pop .ico-error {
-  background-position: -40px -80px;
-}
-
-.pop .ico-waring {
-  background-position: -80px -80px;
-}
-
-.pop .text-title {
-  padding: 0 10px 10px;
-  font-size: 14px;
-}
-
-.pop .radio-list {
-  font-size: 14px;
-}
-
-.pop .radio-list .label {
-  padding: 0 10px;
-}
-
-.pop .text-note {
-  padding-top: 5px;
-  color: #888;
-  text-align: center;
-}
-
-.pop .lottery-list {
-  border-top: 1px solid #EFEFEF;
-}
-
-.pop .lottery-list dt {
-  padding: 10px;
-  text-align: left;
-}
-
-.pop .lottery-list dd {
-  display: inline-block;
-  *display: inline;
-  width: 128px;
-  padding: 0 20px;
-  vertical-align: middle;
-}
-
-.pop .lottery-list dd .pic {
-  display: inline-block;
-  width: 128px;
-  height: 80px;
-  background-position: center center;
-  background-repeat: no-repeat;
-}
-
-.pop .lottery-numbers {
-  padding: 0 30px 20px;
-  font-size: 14px;
-}
-
-.pop .lottery-numbers .content {
-  overflow: hidden;
-  padding-top: 20px;
-  text-align: right;
-}
-
-.pop .lottery-numbers .content em {
-  float: left;
-  width: 35px;
-  height: 35px;
-  line-height: 34px;
-  text-align: center;
-  margin-right: 10px;
-  background-color: #03A284;
-  font-size: 18px;
-  color: #FFF;
-  border-radius: 50%;
-}
-
-.pop .lottery-numbers .content a {
-  line-height: 34px;
-}
-
-.pop-text {
-  max-width: 300px;
-  _width: 300px;
-  font-weight: 100;
-}
-
-.pop-text strong {
-  font-weight: 700;
-}
-
-.pop .ui-form {
-  font-size: 14px;
-}
-
-.pop .ui-form li {
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
-
-.pop .ui-form .textarea {
-  width: 320px;
-  height: 84px;
-  overflow-y: auto;
-}
-
-.pop .ui-label {
-  width: auto;
-}
-
-.pop .title {
-  color: #555;
-}
-
-.btn {
-  margin: 0 16px 0 105px;
-  vertical-align: middle;
-  background: #eb7d3a;
-  color: #fff;
-  cursor: pointer;
-  font-size: 22px;
-  height: 45px;
-  text-shadow: 2px 2px 0 rgba(0, 0, 0, .23);
-  width: 145px;
-}
-
-.alert i, .alert-mini i, .pop i, .pop .close, .notice .close, .notice .ico-warning, .ui-check i, .prompt dt i {
-  background-image: url("https://n7ws.jnfzdz.cn/sy2/todo/images/common/ui-alert.png");
-  background-repeat: no-repeat;
-}
-
-.pop .bd .ico-waring {
-  background-position: -80px -80px;
-}
-
-.pop .bd .ico-success, .pop .bd .ico-error, .pop .bd .ico-waring {
-  display: inline-block;
-  vertical-align: middle;
-  width: 30px;
-  height: 30px;
-  margin-right: 10px;
-}
-
-.text-center {
-  text-align: center !important;
-}
-
-.pop h4 {
-  margin: 0;
-}
-
-
-* {
-  box-sizing: border-box;
-}
-
-._rows:before, ._rows:after {
-  content: "";
-  display: block;
-  clear: both;
-}
-
-._rows > * {
-  position: relative;
-  float: left;
-}
-
-.fixed-full {
-  position: fixed;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  right: 0;
-}
-
-.fixed-5 {
-  position: fixed;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.btn-download {
-  display: inline-block;
-  text-decoration: none;
-  width: 140px;
-  padding: 12px 12px;
-  line-height: 1;
-  background-color: #A48549;
-  border: none;
-  opacity: 0.9;
-  color: #fff;
-  cursor: pointer;
-  font-size: 16px;
-  border-radius: 50px;
-  text-align: center;
-}
-
-.btn-download:hover {
-  opacity: 1;
-}
-
-
-.loginaclogo {
-  margin-left: 20px;
-  width: 55px;
-}
-
-.newbiglogo {
-  width: 100%;
-  text-align: center;
-  position: relative;
-  margin-bottom: 20px;
-}
-
-.newbiglogo > * {
-  display: inline-block;
-}
-
-
-.card_zone {
-  height: 480px;
-}
-
-.card_zone > .card_zone__left {
-  width: 480px;
-  height: 100%;
-  margin-right: 10px;
-}
-
-.card_zone > .card_zone__right {
-  width: 760px;
-  height: 100%;
-}
-
-
-.card {
-  border-radius: 16px;
-  background-color: white;
-  height: 100%;
-}
-
-.card > .card-head {
-  position: relative;
-  border-radius: 16px 16px 0 0;
-  border-bottom: 2px solid #FCD381;
-  color: #5E4822;
-  font-size: 20px;
-  padding: 24px 16px;
-  background: #EBCC9D;
-  background: linear-gradient(#EBCC9D, #B88D5A);
-  background: -webkit-linear-gradient(#EBCC9D, #B88D5A);
-  background: -o-linear-gradient(#EBCC9D, #B88D5A);
-  background: -moz-linear-gradient(#EBCC9D, #B88D5A);
-}
-
-.card > .card-head > .head-title {
-  color: #5E4822;
-  font-size: 20px;
-  text-align: center;
-  padding: 0 50px;
-  text-shadow: 0px 1px #ffffff;
-  font-weight: bold;
-}
-
-.card > .card-head > .head-menu {
-  position: absolute;
-  right: 16px;
-  top: 50%;
-  transform: translate(0, -50%);
-  font-size: 14px;
-  cursor: pointer;
-}
-
-.card > .card-body {
-  position: relative;
-  padding: 16px;
-  border-radius: 16px;
-  background-color: white;
-}
-
-.card > .card-head + .card-body {
-  border-radius: 0 0 16px 16px;
-}
-
-.card_2 {
-  position: relative;
-  display: block;
-  border-radius: 16px;
-  background-color: #F3F0F1;
-  height: 100%;
-  padding: 24px 16px;
-}
-
-.card_2.bright {
-  background-image: linear-gradient(135deg, #ffffff 0%, #E5E5E5 100%);
-  border: 1px solid #F8F8F8;
-}
-
-
-.qrcode_btn {
-  display: block;
-  width: 50px;
-  height: 50px;
-  background: url("https://n7ws.jnfzdz.cn/sy2/images/3new/login/icon-qrcode.png") no-repeat;
-  background-size: contain;
-}
-
-.qrcode_float {
-  padding: 13px 20px;
-  position: absolute;
-  background: #fff;
-  border-radius: 10px;
-  top: -70px;
-  width: 96px;
-  right: -30px;
-  display: none;
-}
-
-.qrcode_float:after {
-  content: '';
-  width: 0;
-  height: 0;
-  border: 10px solid transparent;
-  border-top: 20px solid #fff;
-  position: absolute;
-  bottom: -20px;
-  left: 41%;
-}
-
-.qrcode_btn:hover {
-  display: block;
-  width: 50px;
-  height: 50px;
-  background-image: url("https://n7ws.jnfzdz.cn/sy2/images/3new/login/icon-qrcode--hover.png");
-}
-
-.qrcode_btn:hover .qrcode_float {
-  display: block;
-}
-
-#J-login-form {
-  display: block;
-}
-
-.loginInputClass {
-  position: relative;
-  background-color: white;
-  border: 1px solid #ECE9E4;
-  border-radius: 50px;
-  margin-bottom: 20px;
-}
-
-.loginInputClass > .tip {
-  position: absolute;
-  top: 0px;
-  left: 101%;
-  width: 220px;
-  line-height: 20px;
-  display: none;
-  background: #446ea6;
-  color: #fff;
-  text-align: center;
-  z-index: 12;
-  padding: 8px 10px;
-}
-
-.loginInputClass.err > .tip {
-  background: #cd4444;
-}
-
-.loginInputClass > input {
-  width: 100%;
-  line-height: 48px;
-  height: 50px;
-  padding-left: 55px;
-  border-radius: 50px;
-}
-
-.loginInputClass > .icon1 {
-  position: absolute;
-  z-index: 1;
-  top: 50%;
-  left: 15px;
-  transform: translate(0, -50%);
-  width: 28px;
-  height: 28px;
-  background: url("https://n7ws.jnfzdz.cn/sy2/images/3new/login/icon-user.png") no-repeat center center;
-  background-size: contain;
-}
-
-.loginInputClass > .icon2 {
-  position: absolute;
-  z-index: 1;
-  top: 50%;
-  left: 15px;
-  transform: translate(0, -50%);
-  width: 28px;
-  height: 28px;
-  background: url("https://n7ws.jnfzdz.cn/sy2/images/3new/login/icon-password.png") no-repeat center center;
-  background-size: contain;
-}
-
-.loginInputClass > .icon3 {
-  position: absolute;
-  z-index: 1;
-  top: 50%;
-  left: 15px;
-  transform: translate(0, -50%);
-  width: 28px;
-  height: 28px;
-  background: url("https://n7ws.jnfzdz.cn/sy2/images/3new/login/icon-sercurity.png") no-repeat center center;
-  background-size: contain;
-}
-
-.login-status-block {
-  position: relative;
-  height: 30px;
-}
-
-.login-status {
-  line-height: 30px;
-  font-size: 14px;
-  font-weight: bold;
-  margin: 0;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  text-align: center;
-  width: 100%;
-  color: #505050;
-}
-
-#J-form-submit {
-  width: 100%;
-  background-color: #FDDF9C;
-  opacity: 0.9;
-  background-image: linear-gradient(to bottom, #FEEBB7 0%, #FCD280 100%);
-  color: #463611;
-  cursor: pointer;
-  font-size: 18px;
-  height: 55px;
-  border-radius: 50px;
-  text-align: center;
-  font-weight: bold;
-}
-
-#J-form-submit:hover {
-  opacity: 1;
-}
-
-#account_reg_card .loginInputClass {
-  margin-bottom: 15px;
-}
-
-
-.acclogin_btn {
-  border: none;
-  border-radius: 50px;
-  background-color: #fff;
-  color: #A48549;
-  cursor: pointer;
-  line-height: 1.2;
-  padding: 4px 12px;
-  text-decoration: none;
-}
-
-.acclogin_btn > * {
-  display: inline-block;
-  vertical-align: middle;
-}
-
-.qrcode_text1 {
-  color: #AA934C;
-  font-size: 22px;
-  text-align: center;
-  margin: 15px 0;
-}
-
-#wx_login {
-  text-align: center;
-}
-
-.qrcode_text2 {
-  color: #505050;
-  font-size: 16px;
-  text-align: center;
-  margin: 8px 0;
-}
-
-
-#validate-block {
-  display: inline-block;
-  position: absolute;
-  top: 50%;
-  right: 20px;
-  transform: translate(0, -50%);
-  cursor: pointer;
-}
-
-#validate {
-  display: block;
-  background: rgba(0, 0, 0, 0.7);
-}
-
-#validate-mask {
-  display: none;
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.7);
-  z-index: 999;
-}
-
-#validate-mask > img {
-  position: absolute;
-  right: -35px;
-  top: 1px;
-  user-select: none;
-}
-
-
-.feature_block {
-  height: 170px;
-  margin-top: 15px;
-  margin-left: -7.5px;
-  margin-right: -7.5px;
-}
-
-.feature_block > * {
-  width: 25%;
-  height: 100%;
-  padding-left: 7.5px;
-  padding-right: 7.5px;
-}
-
-.feature_block__icon {
-  position: absolute;
-  left: 50%;
-  top: 40%;
-  transform: translate(-50%, -50%);
-}
-
-.feature_block__text {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 27%;
-  transform: translate(0, 50%);
-  font-size: 18px;
-  text-align: center;
-  letter-spacing: 1px;
-  color: #505050;
-}
-
-
-.setLoginBanner {
-  position: relative;
-}
-
-.loginowl {
-  position: relative;
-  height: 260px;
-  border-radius: 12px;
-  overflow: hidden;
-}
-
-.loginowl .item {
-  width: 100%;
-  height: 260px;
-}
-
-.loginowl .full-bg {
-  position: relative;
-  display: block;
-  width: 100%;
-  height: 100%;
-  background: no-repeat center center;
-  background-size: cover;
-}
-
-.login_owlIcon {
-  width: 50px;
-  height: 50px;
-  background-image: url("__IMG__/login/allicon.png");
-  top: 0;
-  bottom: 0;
-  margin: auto;
-  z-index: 10;
-  cursor: pointer;
-}
-
-.login_owlright {
-  position: absolute;
-  right: 5px;
-  background-position: -313px -658px;
-}
-
-.login_owlleft {
-  position: absolute;
-  left: 5px;
-  background-position: -313px -711px;
-}
-
-
-.brower_summary {
-  padding: 20px 0;
-}
-
-.brower_summary img {
-  padding-right: 15px;
-}
-
-.brower_summary > .text {
-  color: #979797;
-  line-height: 30px;
-  height: 30px;
-}
-
-
-.footer {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 30px 0;
-}
-
-.footer > .footer__left {
-  float: left;
-  color: #463611;
-}
-
-.footer > .footer__right {
-  float: right;
-}
-
-@media screen and (max-height: 800px) {
-  .footer {
-    position: relative;
+  <link rel="stylesheet" href="https://n7ws.jnfzdz.cn/sy2/css/logreg.css">
+  -->
+  <link rel="stylesheet" href="__CSS__/login/auth.css">
+  <style class="darkreader darkreader--cors" media="screen">html, body {
+    height: 100%;
   }
-}
-
-
-.modal {
-  position: fixed;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  background-color: rgba(0, 0, 0, 0.5);
-  z-index: 99999;
-}
-
-.modal-popup {
-  position: absolute;
-  width: 520px;
-  height: 490px;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  margin: auto;
-}
-
-.modal-open {
-  overflow: hidden;
-}
-
-.modal-close {
-  position: absolute;
-  top: 0;
-  right: 0;
-  padding: 16px;
-  cursor: pointer;
-}
-
-.modal-close::before {
-  content: "✖";
-  color: #999999;
-  font-size: 26px;
-  line-height: 1;
-}
-
-
-#client_m .title {
-  font-size: 22px;
-  color: #AB944C;
-  text-align: center;
-  margin-top: 30px;
-}
-
-#client_m .content {
-  color: #AB944C;
-  margin: 30px auto 10px auto;
-  font-size: 16px;
-}
-
-#client_m .content_block {
-  width: 50%;
-  text-align: center;
-  color: #505050;
-}
-
-#client_m .content_block > * {
-  margin-bottom: 15px
-}
-
-
-#client_pc > .modal-popup {
-  max-width: 400px;
-}
-
-#client_pc .title {
-  font-size: 22px;
-  color: #AB944C;
-  text-align: center;
-  margin-top: 30px;
-}
-
-#client_pc .content {
-  color: #AB944C;
-  margin: 30px auto 10px auto;
-  font-size: 16px;
-}
-
-#client_pc .content_block {
-  width: 50%;
-  text-align: center;
-  color: #505050;
-}
-
-#client_pc .content_block > * {
-  margin-bottom: 15px;
-}
-
-.newloginDev {
-  width: 1250px;
-  height: 100%;
-  position: relative;
-  margin: auto;
-  padding-top: 10vh;
-}</style>
-<style class="darkreader darkreader--sync" media="screen"></style>
-<!--  <link rel="shortcut icon" href="https://n7ws.jnfzdz.cn/favicon_login.ico">-->
-<!--  <script async="" charset="utf-8" src="./三牛娱乐平台_files/saved_resource" type="text/javascript"></script>-->
-<!--  <script src="./三牛娱乐平台_files/wxLogin.js"></script>-->
-<meta name="darkreader" content="960caa95a051cf3896f331ff6d706f8f">
-<style class="darkreader darkreader--override" media="screen">.vimvixen-hint {
-  background-color: #7b5300 !important;
-  border-color: #d8b013 !important;
-  color: #f3e8c8 !important;
-}
-
-::placeholder {
-  opacity: 0.5 !important;
-}</style>
-
-<!--  <script type="text/javascript">-->
-<!--      document.cookie = "state=show;";-->
-<!--      var wechatType = "";-->
-<!--  </script>-->
-<style>
   
+  input, select, button {
+    background: none;
+    border: none;
+    font: 14px 'Microsoft Yahei', 'Microsoft JhengHei', tahoma, Srial, helvetica, sans-serif;
+  }
   
-  .newloginDev {
-    width: 1250px;
+  img {
+    border: none;
+  }
+  
+  body {
+    background: url("__IMG__/login/bg.png") center bottom no-repeat fixed #052730;
+    background-size: cover;
+    margin: 0;
+    padding: 0;
+    font: 12px 'Microsoft Yahei', 'Microsoft JhengHei', tahoma, Srial, helvetica, sans-serif;
+  }
+  
+  #wrap {
+    height: 100%;
+  }
+  
+  #login {
+    min-height: 650px;
     height: 100%;
     position: relative;
+  }
+  
+  .no-display {
+    display: none;
+  }
+  
+  
+  #notice-mask {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 999;
+    background: rgba(0, 0, 0, 0.7);
+    top: 0;
+    left: 0;
+  }
+  
+  #notice-mask .btn {
     margin: auto;
-    padding-top: 10vh;
+    vertical-align: middle;
+    background: #ff8830;
+    color: #fff;
+    cursor: pointer;
+    font-size: 14px;
+    height: 30px;
+    text-shadow: 2px 2px 0 rgba(0, 0, 0, .23);
+    width: 70px;
+    font-weight: normal;
+    line-height: 24px;
+  }
+  
+  .pop {
+    width: 488px;
+    padding: 10px;
+    border: 1px solid #CACACA;
+    background-color: #f7f7f7;
+    text-align: center;
+    word-wrap: break-word;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  }
+  
+  .pop .hd {
+    height: 28px;
+    line-height: 18px;
+    border-bottom: 1px solid #EFEFEF;
+    font-size: 14px;
+    font-weight: 700;
+    text-align: left;
+    color: #555;
+  }
+  
+  .pop .hd-info {
+    margin-left: 10px;
+    font-size: 12px;
+    font-weight: 100;
+  }
+  
+  .pop .close {
+    float: right;
+    width: 15px;
+    height: 14px;
+    background-position: -240px -20px;
+    cursor: pointer;
+  }
+  
+  .pop .close:hover {
+    height: 15px;
+    background-position: -240px 0;
+  }
+  
+  .pop .bd {
+    padding: 10px;
+    text-align: left;
+    color: #555;
+  }
+  
+  .pop-title {
+    padding: 5px;
+    text-align: center;
+    font-size: 14px;
+  }
+  
+  .pop-btn {
+    padding-top: 20px;
+    text-align: center;
+  }
+  
+  .pop-btn .btn {
+    margin: 0 10px;
+  }
+  
+  .pop .input {
+    width: 160px;
+  }
+  
+  .pop .ui-select {
+    width: 170px;
+  }
+  
+  .pop-error, .pop-success {
+    text-align: center;
+  }
+  
+  .pop .ico-success, .pop .ico-error {
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+    width: 24px;
+    height: 24px;
+    margin-right: 5px;
+    vertical-align: middle;
+  }
+  
+  .pop .ico-success {
+    background-position: -120px -80px;
+  }
+  
+  .pop .ico-error {
+    background-position: -150px -80px;
+  }
+  
+  .pop-text {
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+    vertical-align: middle;
+    text-align: left;
+    line-height: 24px;
+    font-size: 14px;
+    overflow: hidden;
+  }
+  
+  .pop .bd .ico-success, .pop .bd .ico-error, .pop .bd .ico-waring {
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+    vertical-align: middle;
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+  }
+  
+  .pop .bd .ico-success {
+    background-position: 0 -80px;
+  }
+  
+  .pop .bd .ico-error {
+    background-position: -40px -80px;
+  }
+  
+  .pop .bd .ico-waring {
+    background-position: -80px -80px;
+  }
+  
+  .pop .ico-success, .pop .ico-error, .pop .ico-waring {
+    display: inline-block;
+    vertical-align: middle;
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+  }
+  
+  .pop .ico-success {
+    background-position: 0 -80px;
+  }
+  
+  .pop .ico-error {
+    background-position: -40px -80px;
+  }
+  
+  .pop .ico-waring {
+    background-position: -80px -80px;
+  }
+  
+  .pop .text-title {
+    padding: 0 10px 10px;
+    font-size: 14px;
+  }
+  
+  .pop .radio-list {
+    font-size: 14px;
+  }
+  
+  .pop .radio-list .label {
+    padding: 0 10px;
+  }
+  
+  .pop .text-note {
+    padding-top: 5px;
+    color: #888;
+    text-align: center;
+  }
+  
+  .pop .lottery-list {
+    border-top: 1px solid #EFEFEF;
+  }
+  
+  .pop .lottery-list dt {
+    padding: 10px;
+    text-align: left;
+  }
+  
+  .pop .lottery-list dd {
+    display: inline-block;
+    *display: inline;
+    width: 128px;
+    padding: 0 20px;
+    vertical-align: middle;
+  }
+  
+  .pop .lottery-list dd .pic {
+    display: inline-block;
+    width: 128px;
+    height: 80px;
+    background-position: center center;
+    background-repeat: no-repeat;
+  }
+  
+  .pop .lottery-numbers {
+    padding: 0 30px 20px;
+    font-size: 14px;
+  }
+  
+  .pop .lottery-numbers .content {
+    overflow: hidden;
+    padding-top: 20px;
+    text-align: right;
+  }
+  
+  .pop .lottery-numbers .content em {
+    float: left;
+    width: 35px;
+    height: 35px;
+    line-height: 34px;
+    text-align: center;
+    margin-right: 10px;
+    background-color: #03A284;
+    font-size: 18px;
+    color: #FFF;
+    border-radius: 50%;
+  }
+  
+  .pop .lottery-numbers .content a {
+    line-height: 34px;
+  }
+  
+  .pop-text {
+    max-width: 300px;
+    _width: 300px;
+    font-weight: 100;
+  }
+  
+  .pop-text strong {
+    font-weight: 700;
+  }
+  
+  .pop .ui-form {
+    font-size: 14px;
+  }
+  
+  .pop .ui-form li {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .pop .ui-form .textarea {
+    width: 320px;
+    height: 84px;
+    overflow-y: auto;
+  }
+  
+  .pop .ui-label {
+    width: auto;
+  }
+  
+  .pop .title {
+    color: #555;
+  }
+  
+  .btn {
+    margin: 0 16px 0 105px;
+    vertical-align: middle;
+    background: #eb7d3a;
+    color: #fff;
+    cursor: pointer;
+    font-size: 22px;
+    height: 45px;
+    text-shadow: 2px 2px 0 rgba(0, 0, 0, .23);
+    width: 145px;
+  }
+  
+  .alert i, .alert-mini i, .pop i, .pop .close, .notice .close, .notice .ico-warning, .ui-check i, .prompt dt i {
+    background-image: url("https://n7ws.jnfzdz.cn/sy2/todo/images/common/ui-alert.png");
+    background-repeat: no-repeat;
+  }
+  
+  .pop .bd .ico-waring {
+    background-position: -80px -80px;
+  }
+  
+  .pop .bd .ico-success, .pop .bd .ico-error, .pop .bd .ico-waring {
+    display: inline-block;
+    vertical-align: middle;
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+  }
+  
+  .text-center {
+    text-align: center !important;
+  }
+  
+  .pop h4 {
+    margin: 0;
+  }
+  
+  
+  * {
+    box-sizing: border-box;
+  }
+  
+  ._rows:before, ._rows:after {
+    content: "";
+    display: block;
+    clear: both;
+  }
+  
+  ._rows > * {
+    position: relative;
+    float: left;
+  }
+  
+  .fixed-full {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+  }
+  
+  .fixed-5 {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  .btn-download {
+    display: inline-block;
+    text-decoration: none;
+    width: 140px;
+    padding: 12px 12px;
+    line-height: 1;
+    background-color: #A48549;
+    border: none;
+    opacity: 0.9;
+    color: #fff;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 50px;
+    text-align: center;
+  }
+  
+  .btn-download:hover {
+    opacity: 1;
+  }
+  
+  
+  .loginaclogo {
+    margin-left: 20px;
+    width: 55px;
+  }
+  
+  .newbiglogo {
+    width: 100%;
+    text-align: center;
+    position: relative;
+    margin-bottom: 20px;
+  }
+  
+  .newbiglogo > * {
+    display: inline-block;
+  }
+  
+  
+  .card_zone {
+    height: 480px;
   }
   
   .card_zone > .card_zone__left {
@@ -1438,14 +888,565 @@ body {
     width: 760px;
     height: 100%;
   }
-
-
-</style>
-<!--  <style class="darkreader darkreader&#45;&#45;sync" media="screen"></style>-->
-<!--  <script type="text/javascript" src="./三牛娱乐平台_files/w"></script>-->
-<!--  <style media="print" class="jx_ui_StyleSheet" __jx__id="___$_2" type="text/css">.zopim {-->
-<!--    display: none !important-->
-<!--  }</style>-->
+  
+  
+  .card {
+    border-radius: 16px;
+    background-color: white;
+    height: 100%;
+  }
+  
+  .card > .card-head {
+    position: relative;
+    border-radius: 16px 16px 0 0;
+    border-bottom: 2px solid #FCD381;
+    color: #5E4822;
+    font-size: 20px;
+    padding: 24px 16px;
+    background: #EBCC9D;
+    background: linear-gradient(#EBCC9D, #B88D5A);
+    background: -webkit-linear-gradient(#EBCC9D, #B88D5A);
+    background: -o-linear-gradient(#EBCC9D, #B88D5A);
+    background: -moz-linear-gradient(#EBCC9D, #B88D5A);
+  }
+  
+  .card > .card-head > .head-title {
+    color: #5E4822;
+    font-size: 20px;
+    text-align: center;
+    padding: 0 50px;
+    text-shadow: 0px 1px #ffffff;
+    font-weight: bold;
+  }
+  
+  .card > .card-head > .head-menu {
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translate(0, -50%);
+    font-size: 14px;
+    cursor: pointer;
+  }
+  
+  .card > .card-body {
+    position: relative;
+    padding: 16px;
+    border-radius: 16px;
+    background-color: white;
+  }
+  
+  .card > .card-head + .card-body {
+    border-radius: 0 0 16px 16px;
+  }
+  
+  .card_2 {
+    position: relative;
+    display: block;
+    border-radius: 16px;
+    background-color: #F3F0F1;
+    height: 100%;
+    padding: 24px 16px;
+  }
+  
+  .card_2.bright {
+    background-image: linear-gradient(135deg, #ffffff 0%, #E5E5E5 100%);
+    border: 1px solid #F8F8F8;
+  }
+  
+  
+  .qrcode_btn {
+    display: block;
+    width: 50px;
+    height: 50px;
+    background: url("https://n7ws.jnfzdz.cn/sy2/images/3new/login/icon-qrcode.png") no-repeat;
+    background-size: contain;
+  }
+  
+  .qrcode_float {
+    padding: 13px 20px;
+    position: absolute;
+    background: #fff;
+    border-radius: 10px;
+    top: -70px;
+    width: 96px;
+    right: -30px;
+    display: none;
+  }
+  
+  .qrcode_float:after {
+    content: '';
+    width: 0;
+    height: 0;
+    border: 10px solid transparent;
+    border-top: 20px solid #fff;
+    position: absolute;
+    bottom: -20px;
+    left: 41%;
+  }
+  
+  .qrcode_btn:hover {
+    display: block;
+    width: 50px;
+    height: 50px;
+    background-image: url("https://n7ws.jnfzdz.cn/sy2/images/3new/login/icon-qrcode--hover.png");
+  }
+  
+  .qrcode_btn:hover .qrcode_float {
+    display: block;
+  }
+  
+  #J-login-form {
+    display: block;
+  }
+  
+  .loginInputClass {
+    position: relative;
+    background-color: white;
+    border: 1px solid #ECE9E4;
+    border-radius: 50px;
+    margin-bottom: 20px;
+  }
+  
+  .loginInputClass > .tip {
+    position: absolute;
+    top: 0px;
+    left: 101%;
+    width: 220px;
+    line-height: 20px;
+    display: none;
+    background: #446ea6;
+    color: #fff;
+    text-align: center;
+    z-index: 12;
+    padding: 8px 10px;
+  }
+  
+  .loginInputClass.err > .tip {
+    background: #cd4444;
+  }
+  
+  .loginInputClass > input {
+    width: 100%;
+    line-height: 48px;
+    height: 50px;
+    padding-left: 55px;
+    border-radius: 50px;
+  }
+  
+  .loginInputClass > .icon1 {
+    position: absolute;
+    z-index: 1;
+    top: 50%;
+    left: 15px;
+    transform: translate(0, -50%);
+    width: 28px;
+    height: 28px;
+    background: url("https://n7ws.jnfzdz.cn/sy2/images/3new/login/icon-user.png") no-repeat center center;
+    background-size: contain;
+  }
+  
+  .loginInputClass > .icon2 {
+    position: absolute;
+    z-index: 1;
+    top: 50%;
+    left: 15px;
+    transform: translate(0, -50%);
+    width: 28px;
+    height: 28px;
+    background: url("https://n7ws.jnfzdz.cn/sy2/images/3new/login/icon-password.png") no-repeat center center;
+    background-size: contain;
+  }
+  
+  .loginInputClass > .icon3 {
+    position: absolute;
+    z-index: 1;
+    top: 50%;
+    left: 15px;
+    transform: translate(0, -50%);
+    width: 28px;
+    height: 28px;
+    background: url("https://n7ws.jnfzdz.cn/sy2/images/3new/login/icon-sercurity.png") no-repeat center center;
+    background-size: contain;
+  }
+  
+  .login-status-block {
+    position: relative;
+    height: 30px;
+  }
+  
+  .login-status {
+    line-height: 30px;
+    font-size: 14px;
+    font-weight: bold;
+    margin: 0;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    text-align: center;
+    width: 100%;
+    color: #505050;
+  }
+  
+  #J-form-submit {
+    width: 100%;
+    background-color: #FDDF9C;
+    opacity: 0.9;
+    background-image: linear-gradient(to bottom, #FEEBB7 0%, #FCD280 100%);
+    color: #463611;
+    cursor: pointer;
+    font-size: 18px;
+    height: 55px;
+    border-radius: 50px;
+    text-align: center;
+    font-weight: bold;
+  }
+  
+  #J-form-submit:hover {
+    opacity: 1;
+  }
+  
+  #account_reg_card .loginInputClass {
+    margin-bottom: 15px;
+  }
+  
+  
+  .acclogin_btn {
+    border: none;
+    border-radius: 50px;
+    background-color: #fff;
+    color: #A48549;
+    cursor: pointer;
+    line-height: 1.2;
+    padding: 4px 12px;
+    text-decoration: none;
+  }
+  
+  .acclogin_btn > * {
+    display: inline-block;
+    vertical-align: middle;
+  }
+  
+  .qrcode_text1 {
+    color: #AA934C;
+    font-size: 22px;
+    text-align: center;
+    margin: 15px 0;
+  }
+  
+  #wx_login {
+    text-align: center;
+  }
+  
+  .qrcode_text2 {
+    color: #505050;
+    font-size: 16px;
+    text-align: center;
+    margin: 8px 0;
+  }
+  
+  
+  #validate-block {
+    display: inline-block;
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translate(0, -50%);
+    cursor: pointer;
+  }
+  
+  #validate {
+    display: block;
+    background: rgba(0, 0, 0, 0.7);
+  }
+  
+  #validate-mask {
+    display: none;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 999;
+  }
+  
+  #validate-mask > img {
+    position: absolute;
+    right: -35px;
+    top: 1px;
+    user-select: none;
+  }
+  
+  
+  .feature_block {
+    height: 170px;
+    margin-top: 15px;
+    margin-left: -7.5px;
+    margin-right: -7.5px;
+  }
+  
+  .feature_block > * {
+    width: 25%;
+    height: 100%;
+    padding-left: 7.5px;
+    padding-right: 7.5px;
+  }
+  
+  .feature_block__icon {
+    position: absolute;
+    left: 50%;
+    top: 40%;
+    transform: translate(-50%, -50%);
+  }
+  
+  .feature_block__text {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 27%;
+    transform: translate(0, 50%);
+    font-size: 18px;
+    text-align: center;
+    letter-spacing: 1px;
+    color: #505050;
+  }
+  
+  
+  .setLoginBanner {
+    position: relative;
+  }
+  
+  .loginowl {
+    position: relative;
+    height: 260px;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  
+  .loginowl .item {
+    width: 100%;
+    height: 260px;
+  }
+  
+  .loginowl .full-bg {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: no-repeat center center;
+    background-size: cover;
+  }
+  
+  .login_owlIcon {
+    width: 50px;
+    height: 50px;
+    background-image: url("__IMG__/login/allicon.png");
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    z-index: 10;
+    cursor: pointer;
+  }
+  
+  .login_owlright {
+    position: absolute;
+    right: 5px;
+    background-position: -313px -658px;
+  }
+  
+  .login_owlleft {
+    position: absolute;
+    left: 5px;
+    background-position: -313px -711px;
+  }
+  
+  
+  .brower_summary {
+    padding: 20px 0;
+  }
+  
+  .brower_summary img {
+    padding-right: 15px;
+  }
+  
+  .brower_summary > .text {
+    color: #979797;
+    line-height: 30px;
+    height: 30px;
+  }
+  
+  
+  .footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 30px 0;
+  }
+  
+  .footer > .footer__left {
+    float: left;
+    color: #463611;
+  }
+  
+  .footer > .footer__right {
+    float: right;
+  }
+  
+  @media screen and (max-height: 800px) {
+    .footer {
+      position: relative;
+    }
+  }
+  
+  
+  .modal {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 99999;
+  }
+  
+  .modal-popup {
+    position: absolute;
+    width: 520px;
+    height: 490px;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+  }
+  
+  .modal-open {
+    overflow: hidden;
+  }
+  
+  .modal-close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 16px;
+    cursor: pointer;
+  }
+  
+  .modal-close::before {
+    content: "✖";
+    color: #999999;
+    font-size: 26px;
+    line-height: 1;
+  }
+  
+  
+  #client_m .title {
+    font-size: 22px;
+    color: #AB944C;
+    text-align: center;
+    margin-top: 30px;
+  }
+  
+  #client_m .content {
+    color: #AB944C;
+    margin: 30px auto 10px auto;
+    font-size: 16px;
+  }
+  
+  #client_m .content_block {
+    width: 50%;
+    text-align: center;
+    color: #505050;
+  }
+  
+  #client_m .content_block > * {
+    margin-bottom: 15px
+  }
+  
+  
+  #client_pc > .modal-popup {
+    max-width: 400px;
+  }
+  
+  #client_pc .title {
+    font-size: 22px;
+    color: #AB944C;
+    text-align: center;
+    margin-top: 30px;
+  }
+  
+  #client_pc .content {
+    color: #AB944C;
+    margin: 30px auto 10px auto;
+    font-size: 16px;
+  }
+  
+  #client_pc .content_block {
+    width: 50%;
+    text-align: center;
+    color: #505050;
+  }
+  
+  #client_pc .content_block > * {
+    margin-bottom: 15px;
+  }
+  
+  .newloginDev {
+    width: 1250px;
+    height: 100%;
+    position: relative;
+    margin: auto;
+    padding-top: 10vh;
+  }</style>
+  <style class="darkreader darkreader--sync" media="screen"></style>
+  <!--  <link rel="shortcut icon" href="https://n7ws.jnfzdz.cn/favicon_login.ico">-->
+  <!--  <script async="" charset="utf-8" src="./三牛娱乐平台_files/saved_resource" type="text/javascript"></script>-->
+  <!--  <script src="./三牛娱乐平台_files/wxLogin.js"></script>-->
+  <meta name="darkreader" content="960caa95a051cf3896f331ff6d706f8f">
+  <style class="darkreader darkreader--override" media="screen">.vimvixen-hint {
+    background-color: #7b5300 !important;
+    border-color: #d8b013 !important;
+    color: #f3e8c8 !important;
+  }
+  
+  ::placeholder {
+    opacity: 0.5 !important;
+  }</style>
+  
+  <!--  <script type="text/javascript">-->
+  <!--      document.cookie = "state=show;";-->
+  <!--      var wechatType = "";-->
+  <!--  </script>-->
+  <style>
+    
+    
+    .newloginDev {
+      width: 1250px;
+      height: 100%;
+      position: relative;
+      margin: auto;
+      padding-top: 10vh;
+    }
+    
+    .card_zone > .card_zone__left {
+      width: 480px;
+      height: 100%;
+      margin-right: 10px;
+    }
+    
+    .card_zone > .card_zone__right {
+      width: 760px;
+      height: 100%;
+    }
+  
+  
+  </style>
+  <!--  <style class="darkreader darkreader&#45;&#45;sync" media="screen"></style>-->
+  <!--  <script type="text/javascript" src="./三牛娱乐平台_files/w"></script>-->
+  <!--  <style media="print" class="jx_ui_StyleSheet" __jx__id="___$_2" type="text/css">.zopim {-->
+  <!--    display: none !important-->
+  <!--  }</style>-->
 </head>
 <body id="lan">
 <!--<div class="zopim" __jx__id="___$_21 ___$_21"-->
@@ -1476,7 +1477,7 @@ body {
     
     <div class="newloginDev">
       <div class="newbiglogo">
-        <img src="./三牛娱乐平台_files/logo.png">
+        <img src="__CSS__/login/logo.png">
       </div>
       
       <div class="card_zone _rows">
