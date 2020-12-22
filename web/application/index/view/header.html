@@ -1,231 +1,542 @@
-<!DOCTYPE html>
 <html>
-
 <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <meta name="format-detection" content="telephone=no, email=no, adress=no">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title>皇家娱乐平台</title>
-    <!--[endif]   -->
+    <link rel="stylesheet" href="__CSS__/index/jquery-ui.min.min.css">
 
-    <!-- 工具类 -->
-    <script type="text/javascript" src="__JS__/util/util.js"></script>
-    <script type="text/javascript" src="__JS__/main.min.js"></script>
-    <!-- -->
-    <link rel="stylesheet" href="__CSS__/themes/base/jquery-ui.min.css" />
-    <link rel="stylesheet" href="__CSS__/util.min.css" />
-    <link rel="stylesheet" href="__CSS__/default.min.css" />
-    <link rel="stylesheet" href="__CSS__/openintro.min.css" />
-    <script type="text/javascript" src="__JS__/jquery-1.9.1.js"></script>
-    <script type="text/javascript" src="__JS__/ui/jquery-ui.min.js"></script>
-    <script type="text/javascript" src="__JS__/util/localstorage.js"></script>
-    <script type="text/javascript" src="__JS__/module/main.js"></script>
-    <link rel="stylesheet" href="__CSS__/iconfont/font-awesome.css" />
-    <!--[if IE 7] -->
-    <link rel="stylesheet" href="__CSS__/iconfont/font-awesome-ie7.css" />
+    <link rel="stylesheet" href="__CSS__/index/util.css">
+    <link rel="stylesheet" href="__CSS__/index/default.css">
+    <link rel="stylesheet" href="__CSS__/index/openintro.css">
+    <script src="__JS__/index/jquery-1.9.1.min.js"></script>
+    <script src="__JS__/index/jquery-ui.min.js"></script>
+    <script src="__JS__/index/localstorage.js"></script>
+    <script src="__JS__/index/main.js"></script>
+    <script src="__JS__/index/header.js"></script>
 </head>
+
 <body id="lan">
 <div id="wrap">
-    <!-- dice -->
-    <div id="toolbar">
-        <div class="index">
-            <a href="/"></a><span>返回首页</span></div>
-        <div class="faq">
-            <a href="{:url('/help_center/index',['tag'=>'cjwt'])}"></a><span>常见问题</span></div>
-
-        <!--&lt;!&ndash;[if gte IE 9 | !IE ]>&lt;!&ndash;dash;&gt;
-            &lt;!&ndash;<script type="text/javascript" src="__JS__/clipboard.min.js"></script>&ndash;&gt;
-            <script type="text/javascript" src="https://rysslyun.b0.upaiyun.com/sy2/js/clipboard.min.js"></script>
-            <script>
-                var clients = ['click-to-copy0','click-to-copy1','click-to-copy2','click-to-copy3','click-to-copy4','click-to-copy5'];
-                var selector = [];
-                var clipboard = new Clipboard('i[id^="click-to-copy"]');
-                clipboard.on('success', function(e) {
-                    sAlert("复制到剪贴板：" + e.text)
-                    e.clearSelection();
-                });
-
-                clipboard.on('error', function(e) {
-                    console.error('Action:', e.action);
-                    console.error('Trigger:', e.trigger);
-                });
-            </script>
-            &lt;!&ndash;<![endif]&ndash;&gt;
-            &lt;!&ndash;[if lt IE 9]>
-            <script>
-                $('i[id^="click-to-copy"]').click(function(){
-                    sAlert("抱歉，您所使用的浏览器无法完成此操作。请手动添加");
-                });
-            </script>
-            <![endif]&ndash;&gt;
-
-        </div>-->
-        <!-- screen -->
-    </div>
-    <!-- toolbar -->
     <div id="header">
-            <div class="clear" id="nav">
-            <div id="logo">
-                <a href="/"></a>
-            </div>
-            <!-- logo -->
-            <div class="header-dropdown" id="all-games">
-                <span>全部游戏</span>
-                <div class="dropdown-box">
-                    <div class="dropdown-box-inner clear">
-                        <div class="all-games1">
-                            {volist name="play_lists['1']" id="vo"}
-                            <a href="/newgame_play.html?curmid={$vo.id}">{$vo.title}</a>
-                            <!--<a href="./newgame_play.html?curmid=5">一分时时彩</a>
-                            <a href="./newgame_play.html?curmid=34">两分时时彩</a>
-                            <a href="./newgame_play.html?curmid=14">腾讯时时彩</a>
-                            <a href="./newgame_play.html?curmid=1">  重庆时时彩</a>-->
-                            {/volist}
-                        </div>
-                        <!-- all-games1 -->
-                        <div class="all-games2">
-                            {volist name="play_lists['2']" id="vo"}
-                                <a href="/newgame_play.html?curmid={$vo.id}">{$vo.title}</a>
-                            {/volist}
-                            <!--<a href="./newgame_play.html?curmid=38">秒秒11选5</a>
-                            <a href="./newgame_play.html?curmid=39">一分11选5</a>-->
-                            <!--<a href="./newgame_play.html?curmid=2726">两分11选5</a>
-                            <a href="./newgame_play.html?curmid=4655">五分11选5</a>
-                            <a href="./newgame_play.html?curmid=174"> 山东11选5</a>-->
-                            <!--<a href="./newgame_play.html?curmid=16"> 江西11选5</a>
-                            <a href="./newgame_play.html?curmid=6"> 广东11选5</a>-->
-                        </div>
-                        <!-- all-games2 -->
-                        <div class="all-games3">
-                            {volist name="play_lists['3']" id="vo"}
-                            <a href="/newgame_play.html?curmid={$vo.id}">{$vo.title}</a>
-                            {/volist}
-                            <!--<a href="./newgame_play.html?curmid=2872">极速3D</a>-->
-                            <!--<a href="./newgame_play.html?curmid=9"> 福彩3D</a>-->
-                            <!--<a href="./newgame_play.html?curmid=615"> 体彩P3</a>-->
+        <div class="clear" id="nav">
 
-                            <!-- <a href="#" onclick="sAlert('敬请期待')">福彩3D</a> -->
-                            <!-- <a href="#" onclick="sAlert('敬请期待')">体彩P3</a> -->
-                            <!--<a href="./game_play.html?curmid=341">北京快乐8</a>-->
-                        </div>
-                        <!-- all-games3 -->
-                        <div class="all-games4">
-                            {volist name="play_lists['6']" id="vo"}
-                            <a href="/newgame_play.html?curmid={$vo.id}">{$vo.title}</a>
-                            {/volist}
-                        </div><!-- all-games4 -->
-                        <div class="all-games5">
-                            <a href="/newgame_play.html?curmid=46">皇家龙凤</a>
-                        </div><!-- all-games5 -->
-                    </div>
-                    <!-- dropdown-box-inner -->
-                </div>
-                <!-- dropdown-box -->
+            <div class="headerleft">
+                <div class="headerdate">2020-12-22 (二) 21:17:08</div>
             </div>
-            <!-- all-games -->
+
             <div class="clear" id="navbar">
                 <ul>
-                    <li id="userbar"><a href="/user/index" style="color:#666">
-                        {:session('userData.username')}</a></li>
                     <li class="balance">
-                        <span class="J-balance-show">{:session('userData.coin')}</span>
-                        <a class="refresh"><i class="icon-refresh"></i></a>
-                        <span class="J-balance-star toggle">*****</span>
-                    </li>
-                    <li class="hideAmtli">
-                        <img class="hideAmt" src="/static/images/matt/eye-open-black.png">
+                        <div class="th11gb">
+                            <div class="th11g_balanceDiv" id="usericon"><span><a
+                                    href="/user/index"
+                                    one-link-mark="yes"> {:session('userData.username')}</a>&nbsp;&nbsp;&nbsp;</span>
+                            </div>
+                            <div class="th11g_balanceDiv" id="uAmount">
+                                <span>余额：</span>
+                                <span class="J-balance-show">{:session('userData.coin')}</span>
+                            </div>
+                            <div class="th11g_balanceDivre">
+                                <a class="refresh" one-link-mark="yes"><i class="icon-refresh"
+                                                                          style="background-image: url(&quot;https://n7ws.jnfzdz.cn/sy2/images/3new/allicon.png&quot;);"></i></a>
+                                <span class="J-balance-star toggle" style="display: none;">*****</span>
+                            </div>
+                            <div class="hideAmtli hideAmt"
+                                 src="https://n7ws.jnfzdz.cn/sy2/images/matt/eye-open-white.png"
+                                 style="background-image: url(&quot;https://n7ws.jnfzdz.cn/sy2/images/3new/allicon.png&quot;);"></div>
+                            <!--samuel TGG新增 暫關-->
+                            <a class="meg" href="https://3niu18.com/user_main.shtml?tag=messages"
+                               one-link-mark="yes">
+                                <div class="icon-mail "
+                                     style="background-image: url(&quot;https://n7ws.jnfzdz.cn/sy2/images/3new/allicon.png&quot;);"></div>
+                            </a>
+                        </div>
                     </li>
                 </ul>
+
+
                 <div id="settings">
-                    <div>
-                        <a href="/recharge/index?tag=cz">
-                            充值                                </a>
-                    </div>
-                    <div>
-                        <a href="/recharge/index">
-                            提现                                </a>
-                    </div>
-                    <!--<div class="header-dropdown" id="language">
-                        <a href="#">
-                            语言                                </a>
-                        <div class="dropdown-box">
-                            <div class="dropdown-box-inner clear">
-                                <a href="./default_chamgelang.html?code=1">中文</a>
-                                <a href="./default_chamgelang.html?code=2">English</a>
-                                <a href="./default_chamgelang.html?code=3">Tiếng Việt</a>
-                            </div>
-                            &lt;!&ndash; dropdown-box-inner &ndash;&gt;
-                        </div>
-                        &lt;!&ndash; dropdown-box &ndash;&gt;
-                    </div>-->
-                    <div class="logout">
-                        <a href="{:url('//login/logout')}" title="登出"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 退出</a>
-                    </div>
+
+                    <a href="/recharge/index?tag=cz" class="headerSpecial hs1"
+                       one-link-mark="yes">
+                        <i class=""
+                           style="background-image: url(&quot;https://n7ws.jnfzdz.cn/sy2/images/3new/allicon.png&quot;);"></i>充值
+                    </a>
+                    <a href="/recharge/index" class="headerSpecial hs2"
+                       one-link-mark="yes">
+                        <i class=""
+                           style="background-image: url(&quot;https://n7ws.jnfzdz.cn/sy2/images/3new/allicon.png&quot;);"></i>提现
+                    </a>
+                    <a href="{:url('//login/logout')}" class="headerSpecial hs3" one-link-mark="yes">
+                        <i class="icon-signout"
+                           style="background-image: url(&quot;https://n7ws.jnfzdz.cn/sy2/images/3new/allicon.png&quot;);"></i>登出
+                    </a>
+
+                    <!-- <a href="?controller=newspage&action=newsmain&flag=newslist&p=1&pn=10">
+                        <i class="icon-msg"></i>信息中心
+                    </a>
+
+                    <a href="/help_main.shtml?tag=cjwt">
+                        <i class="icon-qa"></i>帮助中心
+                    </a> -->
+
                 </div>
-                <!-- settings -->
-            </div>
-            <!-- navbar -->
-        </div>
-        <!-- nav -->
-    </div>
-    <!-- header -->
+            </div><!-- navbar -->
+
+
+        </div><!-- nav -->
+    </div><!-- header -->
     <div id="menu-container">
         <div class="clear" id="menu">
-            <ul class="left">
-                <li ><a href="/">首页</a></li>
-                <li ><a href="/newgame_play.html?curmid=36">时时彩</a></li>
-                <li ><a href="/newgame_play.html?curmid=6">11选5</a></li>
-                 <li ><a href="/newgame_play.html?curmid=45">3D/P3</a></li>
-                <li ><a href="/newgame_play.html?curmid=20">极速pk</a></li>
-                <!--<li ><a href="./newgame_play.html?curmid=4346">越南彩</a></li>-->
-                <li><a href="/newgame_play.html?curmid=46">皇家小游戏</a></li>
-            </ul>
-            <ul class="right">
-                <li><a class="highlight" href="{:url('/activity/index')}">活动</a></li>
-                <li><a href="{:url('/game_record/index')}">游戏记录</a></li>
-                <li><a href="/user/index">账户中心</a></li>
-                <li><a href="{:url('/report_manage/index')}">报表管理</a></li>
-                <li><a href="{:url('/help_center/index',['tag'=>'cjwt'])}">帮助中心</a></li>
-                <li><a href="/user/index?tag=messages">消息</a>
-                </li>
-<!--        		{if condition="$status eq 1"}-->
-<!--<li><a href='{$kefu}' >客服</a></li> -->
-<!--{/if}-->
-              
-                
-            </ul>
+
+            <div class="left">
+
+                <div class="menulogo">
+                    <img src="__IMG__/index/empty.png" width="100%" height="100%">
+                    <a class="logolink" href="/" one-link-mark="yes">皇家娱乐</a>
+                </div>
+
+                <div class="menuleft menutypeClass">
+
+                    <div class="menuIndex floatTab">
+                        <a class="menuTag cBrown" href="/" one-link-mark="yes"><span>网站首页</span></a></div>
+                    <div class="menuLottery ">
+                        <a class="menuTag" href="javascript:void(0)" one-link-mark="yes"><span>彩票游戏</span></a>
+                        <div class="newmenucontainer" style="width: 998px;">
+                            <!--<div class="newmenuhandle"><div class="newmenuhandleinside menuhand"></div></div>-->
+                            <!--                            <div class="harea pd14">-->
+                            <!--                                <h1>棋牌</h1>-->
+                            <!--                                <ul>-->
+                            <!--                                    <li>-->
+                            <!--                                        <a href="https://3niu18.com/newgame_play.shtml?curmid=7644"-->
+                            <!--                                           one-link-mark="yes">-->
+                            <!--                                            决战梭哈 </a>-->
+                            <!--                                    </li>-->
+                            <!--                                    <li>-->
+                            <!--                                        <a href="https://3niu18.com/newgame_play.shtml?curmid=7649"-->
+                            <!--                                           one-link-mark="yes">-->
+                            <!--                                            百家乐 </a>-->
+                            <!--                                    </li>-->
+                            <!--                                    <li>-->
+                            <!--                                        <a href="https://3niu18.com/newgame_play.shtml?curmid=7671"-->
+                            <!--                                           one-link-mark="yes">-->
+                            <!--                                            百人牛牛 </a>-->
+                            <!--                                    </li>-->
+                            <!--                                    <li>-->
+                            <!--                                        <a href="https://3niu18.com/newgame_play.shtml?curmid=7452"-->
+                            <!--                                           one-link-mark="yes">-->
+                            <!--                                            万人牛牛 </a>-->
+                            <!--                                    </li>-->
+                            <!--                                    <li>-->
+                            <!--                                        <a href="https://3niu18.com/newgame_play.shtml?curmid=10221"-->
+                            <!--                                           one-link-mark="yes">-->
+                            <!--                                            射龙门 </a>-->
+                            <!--                                    </li>-->
+                            <!--                                </ul>-->
+                            <!--                            </div>-->
+                            <!--                            <div class="harea pd14">-->
+                            <!--                                <h1>HL快乐彩系列</h1>-->
+                            <!--                                <ul>-->
+                            <!--                                    <li>-->
+                            <!--                                        <a href="https://3niu18.com/newgame_play.shtml?curmid=5272"-->
+                            <!--                                           one-link-mark="yes">-->
+                            <!--                                            HL40秒时时彩 <span class="hotIcon"></span>-->
+                            <!--                                        </a>-->
+                            <!--                                    </li>-->
+                            <!--                                    <li>-->
+                            <!--                                        <a href="https://3niu18.com/newgame_play.shtml?curmid=5104"-->
+                            <!--                                           one-link-mark="yes">-->
+                            <!--                                            HL一分时时彩 </a>-->
+                            <!--                                    </li>-->
+                            <!--                                    <li>-->
+                            <!--                                        <a href="https://3niu18.com/newgame_play.shtml?curmid=5372"-->
+                            <!--                                           one-link-mark="yes">-->
+                            <!--                                            HL1.5分时时彩 <span class="hotIcon"></span>-->
+                            <!--                                        </a>-->
+                            <!--                                    </li>-->
+                            <!--                                    <li>-->
+                            <!--                                        <a href="https://3niu18.com/newgame_play.shtml?curmid=4600"-->
+                            <!--                                           one-link-mark="yes">-->
+                            <!--                                            HL40秒11选5 <span class="hotIcon"></span>-->
+                            <!--                                        </a>-->
+                            <!--                                    </li>-->
+                            <!--                                    <li>-->
+                            <!--                                        <a href="https://3niu18.com/newgame_play.shtml?curmid=5227"-->
+                            <!--                                           one-link-mark="yes">-->
+                            <!--                                            HL一分11选5 </a>-->
+                            <!--                                    </li>-->
+                            <!--                                    <li>-->
+                            <!--                                        <a href="https://3niu18.com/newgame_play.shtml?curmid=5472"-->
+                            <!--                                           one-link-mark="yes">-->
+                            <!--                                            HL1.5分11选5 <span class="hotIcon"></span>-->
+                            <!--                                        </a>-->
+                            <!--                                    </li>-->
+                            <!--                                    <li>-->
+                            <!--                                        <a href="https://3niu18.com/newgame_play.shtml?curmid=5204"-->
+                            <!--                                           one-link-mark="yes">-->
+                            <!--                                            HL一分3D彩 </a>-->
+                            <!--                                    </li>-->
+                            <!--                                </ul>-->
+                            <!--                            </div>-->
+                            <div class="harea pd14">
+                                <h1>时时彩</h1>
+                                <ul>
+                                    <li>
+                                        <a href="/newgame_play.html?curmid=36"
+                                           one-link-mark="yes">
+                                            秒秒时时彩 </a>
+                                    </li>
+                                    <li>
+                                        <a href="/newgame_play.html?curmid=5"
+                                           one-link-mark="yes">
+                                            一分时时彩 </a>
+                                    </li>
+                                    <li>
+                                        <a href="/newgame_play.html?curmid=45"
+                                           one-link-mark="yes">
+                                            河内一分彩 <span class="newmenuIcon22"></span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="/newgame_play.html?curmid=44"
+                                           one-link-mark="yes">
+                                            河内五分彩 <span class="hotIcon"></span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="/newgame_play.html?curmid=43"
+                                           one-link-mark="yes">
+                                            腾讯分分彩 </a>
+                                    </li>
+                                    <li>
+                                        <a href="/newgame_play.html?curmid=42"
+                                           one-link-mark="yes">
+                                            腾讯五分彩 </a>
+                                    </li>
+                                    <li>
+                                        <a href="/newgame_play.html?curmid=47"
+                                           one-link-mark="yes">
+                                            幸运5分彩 </a>
+                                    </li>
+                                    <!--                                    <li>-->
+                                    <!--                                        <a href="https://3niu18.com/newgame_play.shtml?curmid=8131"-->
+                                    <!--                                           one-link-mark="yes">-->
+                                    <!--                                            河内五分彩 </a>-->
+                                    <!--                                    </li>-->
+                                </ul>
+                                <!--                                <ul>-->
+                                <!--                                    <li>-->
+                                <!--                                        <a href="https://3niu18.com/newgame_play.shtml?curmid=8219"-->
+                                <!--                                           one-link-mark="yes">-->
+                                <!--                                            腾讯分分彩(奇趣) </a>-->
+                                <!--                                    </li>-->
+                                <!--                                    <li>-->
+                                <!--                                        <a href="https://3niu18.com/newgame_play.shtml?curmid=8307"-->
+                                <!--                                           one-link-mark="yes">-->
+                                <!--                                            腾讯五分彩(奇趣) </a>-->
+                                <!--                                    </li>-->
+                                <!--                                    <li>-->
+                                <!--                                        <a href="https://3niu18.com/newgame_play.shtml?curmid=8395"-->
+                                <!--                                           one-link-mark="yes">-->
+                                <!--                                            腾讯十分彩(奇趣) </a>-->
+                                <!--                                    </li>-->
+                                <!--                                </ul>-->
+                            </div>
+                            <div class="harea pd14">
+                                <h1>11选5</h1>
+                                <ul>
+                                    <li>
+                                        <a href="/newgame_play.html?curmid=38"
+                                           one-link-mark="yes">
+                                            秒秒11选5 </a>
+                                    </li>
+                                    <li>
+                                        <a href="/newgame_play.html?curmid=39"
+                                           one-link-mark="yes">
+                                            一分11选5 </a>
+                                    </li>
+                                    <li>
+                                        <a href="/newgame_play.html?curmid=44"
+                                           one-link-mark="yes">
+                                            山东11选5 </a>
+                                    </li>
+                                    <li>
+                                        <a href="/newgame_play.html?curmid=16"
+                                           one-link-mark="yes">
+                                            江西11选5 </a>
+                                    </li>
+                                    <li>
+                                        <a href="/newgame_play.html?curmid=6"
+                                           one-link-mark="yes">
+                                            广东11选5 </a>
+                                    </li>
+                                    <!--                                    <li>-->
+                                    <!--                                        <a href="https://3niu18.com/newgame_play.shtml?curmid=7691"-->
+                                    <!--                                           one-link-mark="yes">-->
+                                    <!--                                            上海11选5 <span class="newmenuIcon22"></span>-->
+                                    <!--                                        </a>-->
+                                    <!--                                    </li>-->
+                                    <!--                                    <li>-->
+                                    <!--                                        <a href="https://3niu18.com/newgame_play.shtml?curmid=7735"-->
+                                    <!--                                           one-link-mark="yes">-->
+                                    <!--                                            安徽11选5 <span class="newmenuIcon22"></span>-->
+                                    <!--                                        </a>-->
+                                    <!--                                    </li>-->
+                                </ul>
+                                <!--                                <ul>-->
+                                <!--                                    <li>-->
+                                <!--                                        <a href="https://3niu18.com/newgame_play.shtml?curmid=7779"-->
+                                <!--                                           one-link-mark="yes">-->
+                                <!--                                            江苏11选5 <span class="newmenuIcon22"></span>-->
+                                <!--                                        </a>-->
+                                <!--                                    </li>-->
+                                <!--                                    <li>-->
+                                <!--                                        <a href="https://3niu18.com/newgame_play.shtml?curmid=7955"-->
+                                <!--                                           one-link-mark="yes">-->
+                                <!--                                            陕西11选5 <span class="newmenuIcon22"></span>-->
+                                <!--                                        </a>-->
+                                <!--                                    </li>-->
+                                <!--                                    <li>-->
+                                <!--                                        <a href="https://3niu18.com/newgame_play.shtml?curmid=7999"-->
+                                <!--                                           one-link-mark="yes">-->
+                                <!--                                            山西11选5 <span class="newmenuIcon22"></span>-->
+                                <!--                                        </a>-->
+                                <!--                                    </li>-->
+                                <!--                                </ul>-->
+                            </div>
+                            <!--                            <div class="harea pd14">-->
+                            <!--                                <h1>快三</h1>-->
+                            <!--                                <ul>-->
+                            <!--                                    <li>-->
+                            <!--                                        <a href="https://3niu18.com/newgame_play.shtml?curmid=9097"-->
+                            <!--                                           one-link-mark="yes">-->
+                            <!--                                            秒秒快三 <span class="newmenuIcon22"></span>-->
+                            <!--                                        </a>-->
+                            <!--                                    </li>-->
+                            <!--                                    <li>-->
+                            <!--                                        <a href="https://3niu18.com/newgame_play.shtml?curmid=7281"-->
+                            <!--                                           one-link-mark="yes">-->
+                            <!--                                            江苏快三 </a>-->
+                            <!--                                    </li>-->
+                            <!--                                    <li>-->
+                            <!--                                        <a href="https://3niu18.com/newgame_play.shtml?curmid=7320"-->
+                            <!--                                           one-link-mark="yes">-->
+                            <!--                                            安徽快三 </a>-->
+                            <!--                                    </li>-->
+                            <!--                                </ul>-->
+                            <!--                            </div>-->
+                            <div class="harea pd14">
+                                <h1>3D/P3/PK10</h1>
+                                <ul>
+                                    <!--                                    <li>-->
+                                    <!--                                        <a href="https://3niu18.com/newgame_play.shtml?curmid=2872"-->
+                                    <!--                                           one-link-mark="yes">-->
+                                    <!--                                            极速3D </a>-->
+                                    <!--                                    </li>-->
+                                    <!--                                    <li>-->
+                                    <!--                                        <a href="https://3niu18.com/newgame_play.shtml?curmid=614"-->
+                                    <!--                                           one-link-mark="yes">-->
+                                    <!--                                            福彩3D </a>-->
+                                    <!--                                    </li>-->
+                                    <!--                                    <li>-->
+                                    <!--                                        <a href="https://3niu18.com/newgame_play.shtml?curmid=615"-->
+                                    <!--                                           one-link-mark="yes">-->
+                                    <!--                                            体彩P3 </a>-->
+                                    <!--                                    </li>-->
+                                    <li>
+                                        <a href="/newgame_play.html?curmid=20"
+                                           one-link-mark="yes">
+                                            极速PK10 </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="harea pd14">
+                                <h1>皇家小游戏</h1>
+                                <ul>
+                                    <li>
+                                        <a href="/newgame_play.html?curmid=46"
+                                           one-link-mark="yes">
+                                            皇家龙凤 <span class="newmenuIcon22"></span>
+                                        </a>
+                                    </li>
+                                    <!--                                    <li>-->
+                                    <!--                                        <a href="https://3niu18.com/newgame_play.shtml?curmid=10227"-->
+                                    <!--                                           one-link-mark="yes">-->
+                                    <!--                                            香港六合彩 <span class="newmenuIcon22"></span>-->
+                                    <!--                                        </a>-->
+                                    <!--                                    </li>-->
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="right">
+                    <a href="https://3niu18.com/gameinfo_main.shtml" one-link-mark="yes"><i class="icon-rec"
+                                                                                            style="background-image: url(&quot;https://n7ws.jnfzdz.cn/sy2/images/3new/allicon.png&quot;);"></i>游戏记录</a>
+                    <a class=" " href="https://3niu18.com/user_main.shtml" one-link-mark="yes"><i
+                            class="icon-account"
+                            style="background-image: url(&quot;https://n7ws.jnfzdz.cn/sy2/images/3new/allicon.png&quot;);"></i>帐户中心</a>
+                    <a class=" " href="https://3niu18.com/report_main.shtml" one-link-mark="yes"><i
+                            class="icon-report"
+                            style="background-image: url(&quot;https://n7ws.jnfzdz.cn/sy2/images/3new/allicon.png&quot;);"></i>报表管理</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div><!-- menu -->
+
+
+<div class="jumppopmessage">
+
+
+    <div class="popinside">
+
+        <div class="poptitle">
+
+            <span class="finishtitle">讯息</span>
+            <div class="popclosebtn"><a href="javascript:closepop()" one-link-mark="yes"><img
+                    src="./三牛娱乐平台_files/empty(1).png" width="100%" height="100%"></a></div>
+
         </div>
 
+
+        <div class="popbody" style="height:230px;">
+
+            <table width="100%" border="0" cellspacing="0" cellpadding="0" height="100%">
+                <tbody>
+                <tr>
+                    <td valign="middle" height="100%">
+
+                        <div class="finishmessage"></div>
+                        <div class="popbtnClassfinish"><a href="javascript:closepop()" one-link-mark="yes">關閉</a>
+                        </div>
+
+                    </td>
+                </tr>
+
+                </tbody>
+            </table>
+
+
+        </div>
+
+
     </div>
-    <!--
-<script language="javascript" src="https://uapi.pop800.com/800.js?n=986285&s=01&p=l&l=cn&c=223d7bee37453c49"></script>
-<div style="display:none;">< a href=" ">POP800在线客服系统</ a></div>
--->
-<!-- Start of LiveChat (www.livechatinc.com) code -->
-<script>
-    window.__lc = window.__lc || {};
-    window.__lc.license = 12417642;
-    ;(function(n,t,c){function i(n){return e._h?e._h.apply(null,n):e._q.push(n)}var e={_q:[],_h:null,_v:"2.0",on:function(){i(["on",c.call(arguments)])},once:function(){i(["once",c.call(arguments)])},off:function(){i(["off",c.call(arguments)])},get:function(){if(!e._h)throw new Error("[LiveChatWidget] You can't use getters before load.");return i(["get",c.call(arguments)])},call:function(){i(["call",c.call(arguments)])},init:function(){var n=t.createElement("script");n.async=!0,n.type="text/javascript",n.src="https://cdn.livechatinc.com/tracking.js",t.head.appendChild(n)}};!n.__lc.asyncInit&&e.init(),n.LiveChatWidget=n.LiveChatWidget||e}(window,document,[].slice))
-</script>
-<noscript><a href="https://www.livechatinc.com/chat-with/12417642/" rel="nofollow">Chat with us</a>, powered by <a href="https://www.livechatinc.com/?welcome" rel="noopener nofollow" target="_blank">LiveChat</a></noscript>
-<!-- End of LiveChat code -->
 
 
+</div>
 
-    <script>
-        $(function () {
-            $(document).on('click', '.refresh', function () {
-                //自动刷新
-                $.ajax({
-                    url: '/newgame_play.html?tag=getuserbalance',
-                    dataType: 'json',
-                    method: 'GET',
-                    success: function (r) {
-                        if (Number(r['isSuccess']) == 1) {
-                            $('.J-balance-show').text(r['availablebalance']);
-                        }
-                    }
-                });
-            })
+
+<script type="text/javascript">
+
+
+    function SetHome2(mc, url) {
+        //location.href=url
+        window.open(url)
+    }
+
+
+    $(function () {
+        $('.gameTab li').mouseenter(function (i) {
+            $('.gameTab li').removeClass('act_li');
+            $(this).addClass('act_li');
+            console.log($(this).index())
+            $('.gameboxs').hide()
+            $('.gameboxs').eq($(this).index()).show();
         })
-    </script>
+
+
+        getnowtime()
+        var addw = 78;
+        var isIE = window.ActiveXObject || "ActiveXObject" in window
+        if (isIE) {
+            $(".harea ul").css("width", "100px")
+            $(".harea ul").eq(1).css("width", "115px")
+            $(".harea ul").eq(2).css("width", "100px")
+            $(".harea ul").eq(3).css("width", "125px")
+            $(".harea ul").eq(4).css("width", "100px")
+            $(".harea ul").eq(6).css("width", "80px")
+            $(".harea ul").eq(7).css("width", "50px")
+            $(".harea ul").eq(8).css("width", "70px")
+
+            // $(".harea ul li").css("width","auto")
+            $(".harea ul li").css("white-space", "nowrap")
+            $.each($(".harea ul li"), function (index, value) {
+                var str = $(this).find('a').text().trim()
+                if (str.length >= 14) {
+                    $(this).parent().css("width", "240px")
+                }
+            })
+            addw = 50
+            $('.gamechoise-info-rowb input[type=checkbox]').css('visibility', 'visible')
+        }//isIE end
+
+
+        $('.menuLottery .newmenucontainer').addClass("shows")
+        var totalw = 0
+        $.each($('.menuLottery .newmenucontainer').find(".harea"), function (index, value) {
+            totalw += $(this).width() + 10;
+        })
+        $('.menuLottery .newmenucontainer').css("width", totalw + addw)
+        $('.menuLottery .newmenucontainer').removeClass("shows")
+
+
+        //工具列隱展開
+        $("#toolbar_switch").bind('click', function () {
+            if ($("#toolbar").hasClass("hide")) {
+                $("#toolbar").removeClass('hide');
+                $("#toolbar_switch").text("隐藏").removeClass('deg225');
+            } else {
+                $("#toolbar").addClass('hide');
+                $("#toolbar_switch").text("展开").addClass('deg225');
+            }
+        });
+    })
+
+    function getnowtime() {
+        var Today = new Date();
+        var day_list = ['日', '一', '二', '三', '四', '五', '六'];
+
+        var day = Today.getDay();
+        var h = (Today.getHours() < 10 ? '0' : '') + Today.getHours();
+        var m = (Today.getMinutes() < 10 ? '0' : '') + Today.getMinutes();
+        var s = (Today.getSeconds() < 10 ? '0' : '') + Today.getSeconds();
+
+        var mm = (Today.getMonth() + 1 < 10 ? '0' : '') + (Today.getMonth() + 1);
+        var dd = (Today.getDate() < 10 ? '0' : '') + Today.getDate();
+
+        $(".headerdate").html(Today.getFullYear() + "-" + mm + "-" + dd + " (" + day_list[day] + ") " + h + ':' + m + ':' + s)
+        setTimeout('getnowtime()', 1000);
+    }
+
+
+    function iam_waiting_for_you() {
+        showMessage("近期上线，敬请期待\n")
+    }
+
+    function wait_for_fixing(num) {
+        if (num == 1) {
+            showMessage("KY棋牌游戏维护中\n")
+        } else {
+            showMessage("维护中，请稍后\n")
+        }
+
+    }
+
+    function closepop() {
+
+        $(".jumppopmessage").hide()
+
+    }
+
+    function showMessage(str) {
+
+        $(".jumppopmessage").show()
+        $(".finishmessage").html(str)
+
+    }
+
+
+</script>
