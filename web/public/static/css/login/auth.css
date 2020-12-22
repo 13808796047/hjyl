@@ -2,7 +2,7 @@
 html, body { height: 100%;}
 input, select, button { background: none; border: none; font: 14px 'Microsoft Yahei', 'Microsoft JhengHei', tahoma, Srial, helvetica, sans-serif;}
 img { border: none;}
-body { background: url( /sy2/images/3new/login/bg.png ) center bottom no-repeat fixed #052730; background-size: cover; margin: 0; padding: 0; font: 12px 'Microsoft Yahei','Microsoft JhengHei',tahoma, Srial, helvetica, sans-serif;}
+body { background: url( __IMG__/login/bg.png ) center bottom no-repeat fixed #052730; background-size: cover; margin: 0; padding: 0; font: 12px 'Microsoft Yahei','Microsoft JhengHei',tahoma, Srial, helvetica, sans-serif;}
 #wrap { height: 100%; }
 #login { min-height: 650px; height: 100%; position: relative;}
 .no-display { display: none;}
