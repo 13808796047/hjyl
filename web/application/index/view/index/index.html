@@ -490,7 +490,9 @@
     });
 </script>
 <script type="text/javascript">
-    console.log('p==7');
+    $(function () {
+        jQuery("#qoo").slide({mainCell: ".bonus-message", autoPlay: true, effect: "topMarquee", vis: 5, interTime: 50});
+    });
 
     //呼叫客戶端內的瀏覽器,另開網頁視窗
     function ShowVideo(name) {
