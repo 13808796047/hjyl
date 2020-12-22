@@ -1,7 +1,6 @@
 {include file="header" /}
 
 <link rel="stylesheet" href="__CSS__/index/index.css">
-<link rel="stylesheet" href="__CSS__/index.min.css">
 <link rel="stylesheet" href="__CSS__/index/owl.carousel.css">
 <link rel="stylesheet" href="__CSS__/index/owl.theme.default.min.css">
 <script src="__JS__/index/TweenMax.min.js"></script>
@@ -15,6 +14,55 @@
 <!-- <![endif]-->
 
 <style>
+    #news-and-events ul li {
+        font-size: 14px;
+        line-height: 30px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        padding: 0 0 0 3%;
+        position: relative;
+        width: 97%
+    }
+
+    #news-and-events ul li + li {
+        border-top: 1px solid #e0e0e0
+    }
+
+    #news-and-events ul li:after, #news-and-events ul li:before {
+        border-style: solid;
+        border-width: 5px 0 5px 5px;
+        border-color: transparent transparent transparent #a1a1a1;
+        position: absolute;
+        content: "";
+        left: 0;
+        top: 10px
+    }
+
+    #news-and-events ul li:after {
+        border-color: transparent transparent transparent #eee;
+        position: absolute;
+        left: -2px
+    }
+
+    #news-and-events .news {
+        margin-left: 20px
+    }
+
+    #news-and-events .news li a {
+        color: #000;
+        font-size: 18px
+    }
+
+    #news-and-events .news li + li a {
+        color: #6e6e6e;
+        font-size: 14px
+    }
+
+    #news-and-events .news li a:hover {
+        color: #d34a71
+    }
+
     .bgtitle, .setContent {
         display: none;
     }
