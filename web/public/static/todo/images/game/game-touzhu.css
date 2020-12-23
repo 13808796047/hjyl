@@ -1531,7 +1531,9 @@ body {
 .ball-title strong {
     display: block;
     padding-bottom: 5px;
-    font-weight: 400
+    font-weight: 400;
+    color: #c09764;
+
 }
 
 .ball-title span {
