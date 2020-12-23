@@ -1567,7 +1567,7 @@ body {
     font-size: 23px;
     text-align: center;
     line-height: 40px;
-    border-radius:% 50;
+    border-radius: 50%;
     text-indent: 2px;
     background: #ffffff;
     background: -webkit-linear-gradient(#ffffff 0%, #f2f2f2 100%);
