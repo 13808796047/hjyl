@@ -1,3 +1,103 @@
+<div id="header" style="background-color: #272630;">
+    <div class="clear" id="nav">
+        <div id="logo"><a href="/"></a></div><!-- logo -->
+        <div class="header-dropdown" id="all-games">
+            <span>全部游戏</span>
+            <div class="dropdown-box">
+                <div class="dropdown-box-inner clear">
+                    <div class="all-games1">
+                        {volist name="play_lists['1']" id="vo"}
+                        <a href="./newgame_play.html?curmid={$vo.id}">{$vo.title}</a>
+                        <!--<a href="./newgame_play.html?curmid=5">一分时时彩</a>
+                        <a href="./newgame_play.html?curmid=34">两分时时彩</a>
+                        <a href="./newgame_play.html?curmid=14">腾讯时时彩</a>
+                        <a href="./newgame_play.html?curmid=1">  重庆时时彩</a>-->
+                        {/volist}
+                    </div>
+                    <!-- all-games1 -->
+                    <div class="all-games2">
+                        {volist name="play_lists['2']" id="vo"}
+                        <a href="./newgame_play.html?curmid={$vo.id}">{$vo.title}</a>
+                        {/volist}
+                        <!--<a href="./newgame_play.html?curmid=38">秒秒11选5</a>
+                        <a href="./newgame_play.html?curmid=39">一分11选5</a>-->
+                        <!--<a href="./newgame_play.html?curmid=2726">两分11选5</a>
+                        <a href="./newgame_play.html?curmid=4655">五分11选5</a>
+                        <a href="./newgame_play.html?curmid=174"> 山东11选5</a>-->
+                        <!--<a href="./newgame_play.html?curmid=16"> 江西11选5</a>
+                        <a href="./newgame_play.html?curmid=6"> 广东11选5</a>-->
+                    </div>
+                    <!-- all-games2 -->
+                    <div class="all-games3">
+                        {volist name="play_lists['3']" id="vo"}
+                        <a href="./newgame_play.html?curmid={$vo.id}">{$vo.title}</a>
+                        {/volist}
+                        <!--<a href="./newgame_play.html?curmid=2872">极速3D</a>-->
+                        <!--<a href="./newgame_play.html?curmid=9"> 福彩3D</a>-->
+                        <!--<a href="./newgame_play.html?curmid=615"> 体彩P3</a>-->
+
+                        <!-- <a href="#" onclick="sAlert('敬请期待')">福彩3D</a> -->
+                        <!-- <a href="#" onclick="sAlert('敬请期待')">体彩P3</a> -->
+                        <!--<a href="./game_play.html?curmid=341">北京快乐8</a>-->
+                    </div>
+                    <!-- all-games3 -->
+                    <div class="all-games4">
+                        {volist name="play_lists['6']" id="vo"}
+                        <a href="./newgame_play.html?curmid={$vo.id}">{$vo.title}</a>
+                        {/volist}
+                    </div><!-- all-games4 -->
+                    <div class="all-games5">
+                        <a href="./newgame_play.html?curmid=46">皇家龙凤</a>
+                    </div><!-- all-games5 -->
+                </div>
+                <!-- dropdown-box-inner -->
+            </div>
+            <!-- dropdown-box -->
+        </div><!-- all-games -->
+        <!--<div id="toogle_bell" class="bell_on"></div>--><!-- toogle_bell -->
+        <div class="clear" id="navbar">
+            <ul>
+                <li id="userbar"><a href="user/index" style="color:#666">{:session('userData.username')}</a></li>
+
+                <li class="balance">
+                    <span class="J-balance-show">{:session('userData.coin')}</span>
+                    <a class="refresh"><i class="icon-refresh"></i></a>
+                    <span class="J-balance-star toggle">*****</span>
+                </li>
+                <li class="hideAmtli">
+                    <img class="hideAmt" src="__STATIC__/images/matt/eye-open-black.png">
+                </li>
+            </ul>
+            <div id="settings">
+
+                <div>
+                    <a href="recharge/index?tag=cz">
+                        充值                            </a>
+                </div>
+                <div>
+                    <a href="recharge/index">
+                        提现                            </a>
+                </div>
+                <!--<div class="header-dropdown" id="language">
+                    <a href="#">
+                        语言                            </a>
+                    <div class="dropdown-box">
+                        <div class="dropdown-box-inner clear">
+                            <a href="./default_chamgelang.html?code=1">中文</a>
+                            <a href="./default_chamgelang.html?code=2">English</a>
+                            <a href="./default_chamgelang.html?code=3">Tiếng Việt</a>
+                        </div>
+                    </div>
+                </div>-->
+
+                <div class="logout">
+                    <a href="login/logout.html" title="登出"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 退出</a>
+                </div>
+            </div>
+            <!-- settings -->
+        </div><!-- navbar -->
+    </div><!-- nav -->
+</div><!-- header -->
 {include file="header" /}
 <link rel="stylesheet" href="__STATIC__/todo/images/common/base.css" />
 <link rel="stylesheet" href="__STATIC__/css/util.min.css" />
