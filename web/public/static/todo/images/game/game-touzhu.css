@@ -2099,6 +2099,9 @@ body[id^=lan_] .base-parameter .info {
     cursor: pointer;
     background-repeat: no-repeat;
 }
+.icon-lock {
+    background-position: -34px -158px;
+}
 .choose-bet em {
     padding: 0 6px
 }
