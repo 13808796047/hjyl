@@ -1873,7 +1873,20 @@ body {
 }
 
 .choose-model .num-mins {
-    border-right: none
+    background-position: -130px -28px;
+    border-right: none;
+}
+
+.choose-model i, .choose-multiple i {
+    display: inline-block;
+    width: 26px !important;
+    height: 26px;
+    line-height: 26px;
+    vertical-align: middle;
+    cursor: pointer;
+    background: url(./allicon.png) no-repeat;
+    filter: none;
+    border: none;
 }
 
 .choose-model .text,
