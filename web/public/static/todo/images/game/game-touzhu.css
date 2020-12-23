@@ -1519,7 +1519,7 @@ body {
     vertical-align: middle;
     border-radius: 30px;
     box-shadow: 0 1px 0 rgba(255, 255, 255, .3);
-    background: #387e79
+    background: #c39763
 }
 
 .ball-title strong {
@@ -1560,10 +1560,10 @@ body {
     border-radius: 37px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, .6);
     box-shadow: none \9;
-    background: #fefefe;
-    background: -moz-linear-gradient(top, rgba(254, 254, 254, 1) 0, rgba(235, 235, 235, 1) 100%);
-    background: -webkit-linear-gradient(top, rgba(254, 254, 254, 1) 0, rgba(235, 235, 235, 1) 100%);
-    background: linear-gradient(to bottom, rgba(254, 254, 254, 1) 0, rgba(235, 235, 235, 1) 100%)
+    background: -webkit-linear-gradient(#ebce9d 0, #b98d59 60%, #ebce9d 150%);
+    background: -moz-linear-gradient(#ebce9d 0, #b98d59 60%, #ebce9d 150%);
+    background: -o-linear-gradient(#ebce9d 0, #b98d59 60%, #ebce9d 150%);
+    background: linear-gradient(#ebce9d 0, #b98d59 60%, #ebce9d 150%);
 }
 
 .ball-number-current {
