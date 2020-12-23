@@ -285,19 +285,19 @@ body {
     color: #333
 }
 
-/* .header .g_33 {
+.header .g_33 {
     width: 980px;
     position: relative;
     height: 120px;
     background: 0 0
-} */
-.header .g_33 {
+}
+/* .header .g_33 {
     width: 1060px;
     position: relative;
     height: 108px;
     background: url(../../images/game/test.jpg) no-repeat;
     background-size: 100% 100%;
-}
+} */
 
 #J-balls-fake {
     width: 930px;
