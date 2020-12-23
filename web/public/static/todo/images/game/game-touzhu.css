@@ -511,13 +511,14 @@ body {
 }
 
 .deadline {
-    float: left;
-    height: 100%;
-    margin: 0 0 0 5px;
-    padding: 0 20px;
-    color: #11396f;
-    position: relative;
     /* width: 190px */
+        width: auto;
+        /* min-width: 330px; */
+        float: left;
+        color: #11396f;
+        padding: 0 20px;
+        height: 99px;
+        position: relative;
 }
 
 .clock-area {
