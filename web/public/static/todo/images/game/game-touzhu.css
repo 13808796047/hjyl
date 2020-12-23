@@ -2051,6 +2051,13 @@ body[id^=lan_] .base-parameter .info {
     width: 64px
 }
 
+.bet-statistics > div {
+    /* float: left; */
+    vertical-align: middle;
+    color: #282828;
+    display: inline-block;
+}
+
 .choose-bet {
     float: left;
     line-height: 40px;
