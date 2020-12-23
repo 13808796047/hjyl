@@ -1046,11 +1046,17 @@ body {
     color: #595959;
 }
 
-.play-select-content dd.current,
-.play-select-content dd:hover {
+.play-select-content dd.current {
     background-color: #c09764;
     /* border: 1px solid #c39763; */
     color: #fff;
+}
+
+.play-select-content dd, .play-select-content dd:hover {
+    height: 25px;
+    line-height: 25px;
+    cursor: pointer;
+    text-align: center;
 }
 
 #lan_en .play-select-title .superior,
