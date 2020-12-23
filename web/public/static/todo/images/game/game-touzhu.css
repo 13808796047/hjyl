@@ -2135,6 +2135,10 @@ body[id^=lan_] .base-parameter .info {
     text-align: center;
 }
 
+.choose-model .icon-chevron-down {
+    background-position: -187px -28px;
+}
+
 .choose-model .num-mins {
     background-position: -130px -28px;
     border-right: none;
