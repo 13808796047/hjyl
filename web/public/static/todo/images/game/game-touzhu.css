@@ -1485,21 +1485,7 @@ body {
 
 .ball-title,
 .ball-title strong {
-    width: 50px;
-    height: 50px;
-    border-radius: 30px;
-    font-size: 29px;
-    line-height: 50px;
-    color: #fff;
-    display: inline-block;
-    margin-right: 5px;
-    font-family: arial;
-    font-weight: 700;
-    background: #ebce9d;
-    background: -webkit-linear-gradient(#ebce9d 0, #b98d59 60%, #ebce9d 150%);
-    background: -moz-linear-gradient(#ebce9d 0, #b98d59 60%, #ebce9d 150%);
-    background: -o-linear-gradient(#ebce9d 0, #b98d59 60%, #ebce9d 150%);
-    background: linear-gradient(#ebce9d 0, #b98d59 60%, #ebce9d 150%);
+
     font-size: 16px;
     color: #fff;
     text-align: center
