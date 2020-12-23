@@ -542,6 +542,7 @@ body {
 }
 
 .deadline-text {
+    float: left;
     display: block;
     padding-top: 45px;
     text-align: center;
