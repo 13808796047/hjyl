@@ -1550,10 +1550,10 @@ body {
 
 .ball-content li {
     float: left;
-    padding: 0 3px;
-    margin: 2px 0 3px;
+    margin-left: 16px;
     text-align: center;
-    vertical-align: middle
+    vertical-align: middle;
+    margin-bottom: 15px;
 }
 
 .ball-number {
