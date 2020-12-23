@@ -2123,6 +2123,17 @@ body[id^=lan_] .base-parameter .info {
     border: none;
 }
 
+.choose-model i, .choose-multiple i {
+    display: inline-block;
+    width: 25px;
+
+    line-height: 24px;
+    margin-left: -1px;
+    border: 1px solid #CECECE;
+    vertical-align: middle;
+    cursor: pointer;
+    text-align: center;
+}
 
 .choose-model .num-mins {
     background-position: -130px -28px;
