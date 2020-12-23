@@ -2068,6 +2068,10 @@ body[id^=lan_] .base-parameter .info {
     float: left;
 }
 
+.bet-statistics > div:last-child {
+    float: right;
+}
+
 .choose-bet em {
     padding: 0 6px
 }
