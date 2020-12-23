@@ -3168,6 +3168,7 @@ body[id^=lan_] .base-parameter .info {
 
 .lottery-details td {
     height: 23px;
+    font-size: 12px;
     padding: 3px 0;
     color: #fff;
     line-height: 23px;
