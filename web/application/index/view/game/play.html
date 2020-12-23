@@ -60,337 +60,106 @@
     <div class="index"><a href="/"></a><span>返回首页</span></div>
     <div class="faq"><a href="/"></a><span>常见问题</span></div>
 </div><!-- toolbar -->
-<!--顶部-->
- <div id="wrap">
-      <div id="header">
-        <div class="clear" id="nav">
-          <div class="headerleft">
-            <div class="headerdate">2020-12-22 (二) 21:17:08</div>
-          </div>
+<div id="header" style="background-color: #272630;">
+    <div class="clear" id="nav">
+        <div id="logo"><a href="/"></a></div><!-- logo -->
+        <div class="header-dropdown" id="all-games">
+            <span>全部游戏</span>
+            <div class="dropdown-box">
+                <div class="dropdown-box-inner clear">
+                    <div class="all-games1">
+                        {volist name="play_lists['1']" id="vo"}
+                        <a href="./newgame_play.html?curmid={$vo.id}">{$vo.title}</a>
+                        <!--<a href="./newgame_play.html?curmid=5">一分时时彩</a>
+                        <a href="./newgame_play.html?curmid=34">两分时时彩</a>
+                        <a href="./newgame_play.html?curmid=14">腾讯时时彩</a>
+                        <a href="./newgame_play.html?curmid=1">  重庆时时彩</a>-->
+                        {/volist}
+                    </div>
+                    <!-- all-games1 -->
+                    <div class="all-games2">
+                        {volist name="play_lists['2']" id="vo"}
+                        <a href="./newgame_play.html?curmid={$vo.id}">{$vo.title}</a>
+                        {/volist}
+                        <!--<a href="./newgame_play.html?curmid=38">秒秒11选5</a>
+                        <a href="./newgame_play.html?curmid=39">一分11选5</a>-->
+                        <!--<a href="./newgame_play.html?curmid=2726">两分11选5</a>
+                        <a href="./newgame_play.html?curmid=4655">五分11选5</a>
+                        <a href="./newgame_play.html?curmid=174"> 山东11选5</a>-->
+                        <!--<a href="./newgame_play.html?curmid=16"> 江西11选5</a>
+                        <a href="./newgame_play.html?curmid=6"> 广东11选5</a>-->
+                    </div>
+                    <!-- all-games2 -->
+                    <div class="all-games3">
+                        {volist name="play_lists['3']" id="vo"}
+                        <a href="./newgame_play.html?curmid={$vo.id}">{$vo.title}</a>
+                        {/volist}
+                        <!--<a href="./newgame_play.html?curmid=2872">极速3D</a>-->
+                        <!--<a href="./newgame_play.html?curmid=9"> 福彩3D</a>-->
+                        <!--<a href="./newgame_play.html?curmid=615"> 体彩P3</a>-->
 
-          <div class="clear" id="navbar">
+                        <!-- <a href="#" onclick="sAlert('敬请期待')">福彩3D</a> -->
+                        <!-- <a href="#" onclick="sAlert('敬请期待')">体彩P3</a> -->
+                        <!--<a href="./game_play.html?curmid=341">北京快乐8</a>-->
+                    </div>
+                    <!-- all-games3 -->
+                    <div class="all-games4">
+                        {volist name="play_lists['6']" id="vo"}
+                        <a href="./newgame_play.html?curmid={$vo.id}">{$vo.title}</a>
+                        {/volist}
+                    </div><!-- all-games4 -->
+                    <div class="all-games5">
+                        <a href="./newgame_play.html?curmid=46">皇家龙凤</a>
+                    </div><!-- all-games5 -->
+                </div>
+                <!-- dropdown-box-inner -->
+            </div>
+            <!-- dropdown-box -->
+        </div><!-- all-games -->
+        <!--<div id="toogle_bell" class="bell_on"></div>--><!-- toogle_bell -->
+        <div class="clear" id="navbar">
             <ul>
-              <li class="balance">
-                <div class="th11gb">
-                  <div class="th11g_balanceDiv" id="usericon">
-                    <span
-                      ><a href="/user/index" one-link-mark="yes">
-                        {:session('userData.username')}</a
-                      >&nbsp;&nbsp;&nbsp;</span
-                    >
-                  </div>
-                  <div class="th11g_balanceDiv" id="uAmount">
-                    <span>余额：</span>
-                    <span class="J-balance-show"
-                      >{:session('userData.coin')}</span
-                    >
-                  </div>
-                  <div class="th11g_balanceDivre">
-                    <a class="refresh" one-link-mark="yes"
-                      ><i
-                        class="icon-refresh"
-                        style="
-                          background-image: url('https://n7ws.jnfzdz.cn/sy2/images/3new/allicon.png');
-                        "
-                      ></i
-                    ></a>
-                    <span class="J-balance-star toggle" style="display: none"
-                      >*****</span
-                    >
-                  </div>
-                  <div
-                    class="hideAmtli hideAmt"
-                    src="https://n7ws.jnfzdz.cn/sy2/images/matt/eye-open-white.png"
-                    style="
-                      background-image: url('https://n7ws.jnfzdz.cn/sy2/images/3new/allicon.png');
-                    "
-                  ></div>
-                  <!--samuel TGG新增 暫關-->
-                  <a
-                    class="meg"
-                    href="/user/index?tag=messages"
-                    one-link-mark="yes"
-                  >
-                    <div
-                      class="icon-mail"
-                      style="
-                        background-image: url('https://n7ws.jnfzdz.cn/sy2/images/3new/allicon.png');
-                      "
-                    ></div>
-                  </a>
-                </div>
-              </li>
+                <li id="userbar"><a href="user/index" style="color:#666">{:session('userData.username')}</a></li>
+
+                <li class="balance">
+                    <span class="J-balance-show">{:session('userData.coin')}</span>
+                    <a class="refresh"><i class="icon-refresh"></i></a>
+                    <span class="J-balance-star toggle">*****</span>
+                </li>
+                <li class="hideAmtli">
+                    <img class="hideAmt" src="__STATIC__/images/matt/eye-open-black.png">
+                </li>
             </ul>
-
             <div id="settings">
-              <a
-                href="/recharge/index?tag=cz"
-                class="headerSpecial hs1"
-                one-link-mark="yes"
-              >
-                <i
-                  class=""
-                  style="
-                    background-image: url('https://n7ws.jnfzdz.cn/sy2/images/3new/allicon.png');
-                  "
-                ></i
-                >充值
-              </a>
-              <a
-                href="/recharge/index"
-                class="headerSpecial hs2"
-                one-link-mark="yes"
-              >
-                <i
-                  class=""
-                  style="
-                    background-image: url('https://n7ws.jnfzdz.cn/sy2/images/3new/allicon.png');
-                  "
-                ></i
-                >提现
-              </a>
-              <a
-                href="{:url('//login/logout')}"
-                class="headerSpecial hs3"
-                one-link-mark="yes"
-              >
-                <i
-                  class="icon-signout"
-                  style="
-                    background-image: url('https://n7ws.jnfzdz.cn/sy2/images/3new/allicon.png');
-                  "
-                ></i
-                >登出
-              </a>
 
-              <!-- <a href="?controller=newspage&action=newsmain&flag=newslist&p=1&pn=10">
-                        <i class="icon-msg"></i>信息中心
-                    </a>
-
-                    <a href="/help_main.shtml?tag=cjwt">
-                        <i class="icon-qa"></i>帮助中心
-                    </a> -->
-            </div>
-          </div>
-          <!-- navbar -->
-        </div>
-        <!-- nav -->
-      </div>
-      <!-- header -->
-      <div id="menu-container">
-        <div class="clear" id="menu">
-          <div class="left" style="min-width: 1240px">
-            <div class="menulogo" id="logo">
-              <!-- <img src="__IMG__/matt/logo.png" width="100%" height="100%" /> -->
-              <a
-                class="logolink"
-                href="/"
-                one-link-mark="yes"
-                style="
-                  padding-top: 10px;
-                  float: right;
-                  font-size: 20px;
-                  color: #504219;
-                  display: block;
-                  padding-left: 30px;
-                "
-                >皇家娱乐</a
-              >
-            </div>
-
-            <div class="menuleft menutypeClass">
-              <div class="menuIndex floatTab">
-                <a class="menuTag cBrown" href="/" one-link-mark="yes"
-                  ><span>网站首页</span></a
-                >
-              </div>
-              <div class="menuLottery">
-                <a class="menuTag" href="javascript:void(0)" one-link-mark="yes"
-                  ><span>彩票游戏</span></a
-                >
-                <div class="newmenucontainer" style="width: 998px">
-                  <div class="harea pd14">
-                    <h1>时时彩</h1>
-                    <ul>
-                      <li>
-                        <a
-                          href="/newgame_play.html?curmid=36"
-                          one-link-mark="yes"
-                        >
-                          秒秒时时彩
-                        </a>
-                      </li>
-                      <li>
-                        <a
-                          href="/newgame_play.html?curmid=5"
-                          one-link-mark="yes"
-                        >
-                          一分时时彩
-                        </a>
-                      </li>
-                      <li>
-                        <a
-                          href="/newgame_play.html?curmid=45"
-                          one-link-mark="yes"
-                        >
-                          河内一分彩 <span class="newmenuIcon22"></span>
-                        </a>
-                      </li>
-                      <li>
-                        <a
-                          href="/newgame_play.html?curmid=44"
-                          one-link-mark="yes"
-                        >
-                          河内五分彩 <span class="hotIcon"></span>
-                        </a>
-                      </li>
-                      <li>
-                        <a
-                          href="/newgame_play.html?curmid=43"
-                          one-link-mark="yes"
-                        >
-                          腾讯分分彩
-                        </a>
-                      </li>
-                      <li>
-                        <a
-                          href="/newgame_play.html?curmid=42"
-                          one-link-mark="yes"
-                        >
-                          腾讯五分彩
-                        </a>
-                      </li>
-                      <li>
-                        <a
-                          href="/newgame_play.html?curmid=47"
-                          one-link-mark="yes"
-                        >
-                          幸运5分彩
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                  <div class="harea pd14">
-                    <h1>11选5</h1>
-                    <ul>
-                      <li>
-                        <a
-                          href="/newgame_play.html?curmid=38"
-                          one-link-mark="yes"
-                        >
-                          秒秒11选5
-                        </a>
-                      </li>
-                      <li>
-                        <a
-                          href="/newgame_play.html?curmid=39"
-                          one-link-mark="yes"
-                        >
-                          一分11选5
-                        </a>
-                      </li>
-                      <li>
-                        <a
-                          href="/newgame_play.html?curmid=44"
-                          one-link-mark="yes"
-                        >
-                          山东11选5
-                        </a>
-                      </li>
-                      <li>
-                        <a
-                          href="/newgame_play.html?curmid=16"
-                          one-link-mark="yes"
-                        >
-                          江西11选5
-                        </a>
-                      </li>
-                      <li>
-                        <a
-                          href="/newgame_play.html?curmid=6"
-                          one-link-mark="yes"
-                        >
-                          广东11选5
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-
-                  <div class="harea pd14">
-                    <h1>3D/P3/PK10</h1>
-                    <ul>
-                      <li>
-                        <a
-                          href="/newgame_play.html?curmid=20"
-                          one-link-mark="yes"
-                        >
-                          极速PK10
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                  <div class="harea pd14">
-                    <h1>皇家小游戏</h1>
-                    <ul>
-                      <li>
-                        <a
-                          href="/newgame_play.html?curmid=46"
-                          one-link-mark="yes"
-                        >
-                          皇家龙凤 <span class="newmenuIcon22"></span>
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
+                <div>
+                    <a href="recharge/index?tag=cz">
+                        充值                            </a>
                 </div>
-              </div>
+                <div>
+                    <a href="recharge/index">
+                        提现                            </a>
+                </div>
+                <!--<div class="header-dropdown" id="language">
+                    <a href="#">
+                        语言                            </a>
+                    <div class="dropdown-box">
+                        <div class="dropdown-box-inner clear">
+                            <a href="./default_chamgelang.html?code=1">中文</a>
+                            <a href="./default_chamgelang.html?code=2">English</a>
+                            <a href="./default_chamgelang.html?code=3">Tiếng Việt</a>
+                        </div>
+                    </div>
+                </div>-->
 
-              <div class="menuAction">
-                <a
-                  class="menuTag"
-                  href="{:url('/activity/index')}"
-                  one-link-mark="yes"
-                  ><span>活动好礼</span></a
-                >
-              </div>
+                <div class="logout">
+                    <a href="login/logout.html" title="登出"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 退出</a>
+                </div>
             </div>
-            <div class="right">
-              <a href="{:url('/game_record/index')}" one-link-mark="yes"
-                ><i
-                  class="icon-rec"
-                  style="
-                    background-image: url('https://n7ws.jnfzdz.cn/sy2/images/3new/allicon.png');
-                  "
-                ></i
-                >游戏记录</a
-              >
-              <a class=" " href="/user/index" one-link-mark="yes"
-                ><i
-                  class="icon-account"
-                  style="
-                    background-image: url('https://n7ws.jnfzdz.cn/sy2/images/3new/allicon.png');
-                  "
-                ></i
-                >帐户中心</a
-              >
-              <a
-                class=" "
-                href="{:url('/report_manage/index')}"
-                one-link-mark="yes"
-                ><i
-                  class="icon-report"
-                  style="
-                    background-image: url('https://n7ws.jnfzdz.cn/sy2/images/3new/allicon.png');
-                  "
-                ></i
-                >报表管理</a
-              >
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- menu -->
+            <!-- settings -->
+        </div><!-- navbar -->
+    </div><!-- nav -->
+</div><!-- header -->
 <div class="countdown countdown-current">
     <a href="javascript:void(0);"></a>
     <span>截止时间</span>
