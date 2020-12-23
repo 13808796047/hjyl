@@ -540,7 +540,32 @@ body {
 .a-h {
     margin: -32px 0 0 -36px
 }
+.deadline::before {
+    border-left-color: rgb(60, 65, 67);
+}
 
+.deadline::before {
+    content: '';
+    width: 10px;
+    border-left: 2px solid #d9d6d2;
+    height: 70px;
+    position: absolute;
+    top: 20px;
+    left: 0;
+}
+.deadline::after {
+    border-left-color: rgb(60, 65, 67);
+}
+
+.deadline::after {
+    content: '';
+    width: 10px;
+    border-left: 2px solid #d9d6d2;
+    height: 70px;
+    position: absolute;
+    top: 20px;
+    right: 0;
+}
 .deadline-text {
     float: left;
     display: block;
