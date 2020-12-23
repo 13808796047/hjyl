@@ -2064,6 +2064,10 @@ body[id^=lan_] .base-parameter .info {
     font-weight: bold;
 }
 
+.choose-bet > div {
+    float: left;
+}
+
 .choose-bet em {
     padding: 0 6px
 }
