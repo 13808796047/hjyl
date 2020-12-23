@@ -2245,13 +2245,13 @@ body[id^=lan_] .base-parameter .info {
     cursor: default
 }
 
-.add-order:hover,
-.add-plan:hover,
-.bet-btn .bet-submit-btn:hover,
-.chase-btn input:hover,
-.choose-btn input:hover {
-    background: #113a37
-}
+/*.add-order:hover,*/
+/*.add-plan:hover,*/
+/*.bet-btn .bet-submit-btn:hover,*/
+/*.chase-btn input:hover,*/
+/*.choose-btn input:hover {*/
+/*    background: #113a37*/
+/*}*/
 
 #qz-list:hover {
     background: -moz-linear-gradient(top, rgba(255, 128, 0, .8) 0, rgba(247, 190, 129, .8) 100%);
