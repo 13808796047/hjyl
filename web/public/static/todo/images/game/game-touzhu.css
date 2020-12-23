@@ -3037,6 +3037,7 @@ body[id^=lan_] .base-parameter .info {
 }
 
 .panel-section .history-section td {
+    font-size: 14px;
     padding: 8px 0;
     border: none;
     color: #555
