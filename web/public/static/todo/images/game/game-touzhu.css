@@ -1036,26 +1036,21 @@ body {
 }
 
 .play-select-content dd {
-    height: 27px;
-    margin: 5px 5px 0 0;
+    margin: 5px 0px 0 0;
     padding: 0 15px;
-    text-align: center;
-    cursor: pointer;
     white-space: nowrap;
     word-wrap: break-word;
-    line-height: 27px;
-    color: #767b82
+    border-radius: 20px;
+    /* background: #fff; */
+    border: 1px solid transparent;
+    color: #595959;
 }
 
 .play-select-content dd.current,
 .play-select-content dd:hover {
-    height: 27px;
-    line-height: 27px;
-    text-align: center;
-    vertical-align: middle;
-    cursor: pointer;
-    background: #c09764;
-    color: #fff
+    background-color: #c09764;
+    /* border: 1px solid #c39763; */
+    color: #fff;
 }
 
 #lan_en .play-select-title .superior,
