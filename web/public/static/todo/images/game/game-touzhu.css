@@ -2168,30 +2168,46 @@ body[id^=lan_] .base-parameter .info {
     margin: 0
 }
 
+.bet-statistics > div:last-child {
+    float: right;
+}
+
+.bet-statistics > div {
+    /* float: left; */
+    vertical-align: middle;
+    color: #282828;
+    display: inline-block;
+}
+
 .controlRight {
     float: right;
-    margin-top: 10px
+    margin-top: 10px;
 }
 
-.choose-bet {
-    float: left;
-    line-height: 40px;
-    font-weight: bold;
-}
+/*.controlRight {*/
+/*    float: right;*/
+/*    margin-top: 10px*/
+/*}*/
 
-.choose-bet > div {
-    float: left;
-}
+/*.choose-bet {*/
+/*    float: left;*/
+/*    line-height: 40px;*/
+/*    font-weight: bold;*/
+/*}*/
 
-.panel-section .bet-statistics {
-    float: left;
-    margin: 15px 0 0 20px;
-    text-align: right;
-}
+/*.choose-bet > div {*/
+/*    float: left;*/
+/*}*/
 
-.bet-statistics.clearfix {
-    width: 684px;
-}
+/*.panel-section .bet-statistics {*/
+/*    float: left;*/
+/*    margin: 15px 0 0 20px;*/
+/*    text-align: right;*/
+/*}*/
+
+/*.bet-statistics.clearfix {*/
+/*    width: 684px;*/
+/*}*/
 
 .panel-section .bet-submit-btn {
     float: right;
