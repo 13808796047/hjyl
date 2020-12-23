@@ -544,7 +544,7 @@ body {
 .deadline-text {
     float: left;
     display: block;
-    padding-top: 45px;
+    margin: 20px;
     text-align: center;
     font-weight: 600;
     color: #333
