@@ -3622,7 +3622,7 @@ ul.lottery-name+ul li:hover a {
 
 #lan_en .header-links,
 #lan_vm .header-links {
-    background: #034640;
+    background: #c39763;
     height: 90px;
     margin: 0;
     padding: 30px 10px 0 80px;
@@ -3632,7 +3632,7 @@ ul.lottery-name+ul li:hover a {
 
 #lan_en .header-links a,
 #lan_vm .header-links a {
-    background: #02312D;
+    background: #c39763;
     display: inline-block;
     width: 200px
 }
