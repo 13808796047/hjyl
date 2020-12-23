@@ -1722,10 +1722,9 @@ body {
 }
 
 .bet-statistics {
-    padding: 10px 0;
-    text-align: center;
     font-size: 14px;
-    color: #54556f
+    color: #54556f;
+    width: 750px;
 }
 
 .panel-section .bet-statistics {
