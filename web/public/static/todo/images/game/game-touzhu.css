@@ -2051,6 +2051,12 @@ body[id^=lan_] .base-parameter .info {
     width: 64px
 }
 
+.choose-bet {
+    float: left;
+    line-height: 40px;
+    font-weight: bold;
+}
+
 .choose-bet em {
     padding: 0 6px
 }
