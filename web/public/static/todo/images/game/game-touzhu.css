@@ -9,9 +9,9 @@ body[id^=lan_] #settings i {
 }
 
 body {
-    padding-bottom: 10px;
-    background: url(../../../images/royal88/bg-game-touzhu.png) center top repeat-x #d1d0d0;
-    position: relative
+      background: url(../game/bg3.jpg) center 0 no-repeat fixed #345161;
+      background-size: cover;
+      padding-bottom: 10px;
 }
 
 .no_selection {
