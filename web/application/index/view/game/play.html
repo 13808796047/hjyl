@@ -36,8 +36,7 @@
     <script type="text/javascript" src="__STATIC__/todo/js/release/gamebase.js"></script>
     <link rel="stylesheet" href="__STATIC__/todo/images/game/game-touzhu.css">
     <script>
-        $(function () {
-               function getnowtime() {
+          function getnowtime() {
         var Today = new Date();
         var day_list = ["日", "一", "二", "三", "四", "五", "六"];
 
@@ -67,6 +66,9 @@
         );
         setTimeout("getnowtime()", 1000);
       }
+        $(function () {
+            getnowtime();
+      
 
             $(document).on('click', '.refresh', function () {
                 //自动刷新
