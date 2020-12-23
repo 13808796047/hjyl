@@ -2117,7 +2117,7 @@ body[id^=lan_] .base-parameter .info {
     line-height: 26px;
     vertical-align: middle;
     cursor: pointer;
-    background: url(../../../images/allicon.png) no-repeat;
+    background: url(./allicon.png) no-repeat;
     filter: none;
     border: none;
 }
