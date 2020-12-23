@@ -997,7 +997,8 @@ body {
 .play-select-content {
     padding: 20px 0 0;
     clear: left;
-    background: #f3f3f3
+    background: #E3E3E3;
+    font-size: 14px;
 }
 
 .play-select-content li {
