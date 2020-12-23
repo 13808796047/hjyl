@@ -2072,6 +2072,11 @@ body[id^=lan_] .base-parameter .info {
     float: right;
 }
 
+.controlRight {
+    float: right;
+    margin-top: 10px;
+}
+
 .choose-bet em {
     padding: 0 6px
 }
