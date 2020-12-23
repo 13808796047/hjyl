@@ -2083,6 +2083,10 @@ body[id^=lan_] .base-parameter .info {
     margin-right: 10px;
 }
 
+#J-balls-statistics-lockMultiple {
+    opacity: 0;
+}
+
 .choose-bet em {
     padding: 0 6px
 }
