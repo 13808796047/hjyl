@@ -1555,11 +1555,11 @@ body {
     height: 37px;
     line-height: 37px;
     text-align: center;
-    color: #229c92;
-    font-size: 23px;
-    border-radius: 37px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, .6);
-    box-shadow: none \9;
+    color: #fff;
+    font-size: 22px;
+    border-radius: 50%;
+    /*box-shadow: 0 1px 3px rgba(0, 0, 0, .6);*/
+    /*box-shadow: none \9;*/
     background: -webkit-linear-gradient(#ebce9d 0, #b98d59 60%, #ebce9d 150%);
     background: -moz-linear-gradient(#ebce9d 0, #b98d59 60%, #ebce9d 150%);
     background: -o-linear-gradient(#ebce9d 0, #b98d59 60%, #ebce9d 150%);
