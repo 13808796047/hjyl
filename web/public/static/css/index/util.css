@@ -2,7 +2,6 @@ html, body {
 	color: #fff;
 	height: 100%;
 	min-width: 1150px;
-	background: #E1DFDE;
 }
 .clear:after, #toolbar #J-side-bar ul:after {
 	clear: both;
