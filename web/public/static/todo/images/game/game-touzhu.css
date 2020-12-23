@@ -1417,9 +1417,9 @@ body {
 }
 
 #J-balls-statistics-panel {
-    padding: 10px 0 10px 10px;
+    padding: 10px 0 10px 25px;
     border-top: none;
-    background-color: #f3f3f3
+    background-color: #f0eae1;
 }
 
 .number-select-title {
