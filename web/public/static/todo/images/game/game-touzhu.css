@@ -9,9 +9,9 @@ body[id^=lan_] #settings i {
 }
 
 body {
-      background: url(../game/bg3.jpg) center 0 no-repeat fixed #345161;
-      background-size: cover;
-      padding-bottom: 10px;
+    background: url(../game/bg3.jpg) center 0 no-repeat fixed #345161;
+    background-size: cover;
+    padding-bottom: 10px;
 }
 
 .no_selection {
@@ -273,7 +273,7 @@ body {
     background: -o-linear-gradient(top, rgba(72, 206, 247, 1) 0, rgba(37, 160, 225, 1) 100%);
     background: -ms-linear-gradient(top, rgba(72, 206, 247, 1) 0, rgba(37, 160, 225, 1) 100%);
     background: linear-gradient(to bottom, rgba(72, 206, 247, 1) 0, rgba(37, 160, 225, 1) 100%);
-    filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#48cef7', endColorstr='#25a0e1', GradientType=0)
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#48cef7', endColorstr='#25a0e1', GradientType=0)
 }
 
 .lottery-nav-list .lottery-name li.current a {
@@ -512,13 +512,13 @@ body {
 
 .deadline {
     /* width: 190px */
-        width: auto;
-        /* min-width: 330px; */
-        float: left;
-        color: #11396f;
-        padding: 0 20px;
-        height: 99px;
-        position: relative;
+    width: auto;
+    /* min-width: 330px; */
+    float: left;
+    color: #11396f;
+    padding: 0 20px;
+    height: 99px;
+    position: relative;
 }
 
 .clock-area {
@@ -556,6 +556,7 @@ body {
     top: 20px;
     left: 0;
 }
+
 .deadline::after {
     border-left-color: rgb(60, 65, 67);
 }
@@ -569,6 +570,7 @@ body {
     top: 20px;
     right: 0;
 }
+
 .deadline-text {
     float: left;
     display: block;
@@ -715,11 +717,11 @@ body {
 }
 
 .lottery-text strong {
-    color:rgb(133 109 66);
+    color: rgb(133 109 66);
     padding: 0 3px
 }
 
-.lottery-text div+div {
+.lottery-text div + div {
     display: none
 }
 
@@ -784,6 +786,7 @@ body {
     background: -o-linear-gradient(#ebce9d 0, #b98d59 60%, #ebce9d 150%);
     background: linear-gradient(#ebce9d 0, #b98d59 60%, #ebce9d 150%);
 }
+
 .lottery-link {
     display: inline-block;
     margin-left: 10px;
@@ -825,7 +828,7 @@ body {
 }
 
 .header-links a {
-    background:#c39763;
+    background: #c39763;
     display: block;
     line-height: 26px;
     margin: 0 0 9px;
@@ -900,7 +903,7 @@ body {
     width: 170px;
     padding: 3px 0 0;
     border-radius: 5px;
-    background-color:#c39763;
+    background-color: #c39763;
     color: #fff;
     text-align: center
 }
@@ -967,7 +970,7 @@ body {
     height: 44px;
     padding: 0 5px;
     line-height: 44px;
-    line-height: 46px\9;
+    line-height: 46px \9;
     font-size: 14px;
     color: #fff;
     text-align: center;
@@ -975,7 +978,7 @@ body {
     text-shadow: 0 1px 0 rgba(0, 0, 0, .8)
 }
 
-.play-select-title li+li {
+.play-select-title li + li {
     border-left: 1px solid #168c80
 }
 
@@ -1137,7 +1140,7 @@ body {
     padding: 3px 8px;
     height: 18px;
     line-height: 16px;
-    line-height: 18px\9;
+    line-height: 18px \9;
     color: #747D93;
     cursor: pointer;
     border-radius: 4px
@@ -1437,7 +1440,7 @@ body {
     padding: 3px 11px;
     height: 22px;
     line-height: 22px;
-    line-height: 22px\9;
+    line-height: 22px \9;
     font-weight: 700;
     color: #5b5b5b;
     cursor: pointer
@@ -1466,7 +1469,7 @@ body {
     padding: 3px 10px;
     height: 18px;
     line-height: 16px;
-    line-height: 18px\9;
+    line-height: 18px \9;
     cursor: pointer;
     border-radius: 3px
 }
@@ -1555,7 +1558,7 @@ body {
     font-size: 23px;
     border-radius: 37px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, .6);
-    box-shadow: none\9;
+    box-shadow: none \9;
     background: #fefefe;
     background: -moz-linear-gradient(top, rgba(254, 254, 254, 1) 0, rgba(235, 235, 235, 1) 100%);
     background: -webkit-linear-gradient(top, rgba(254, 254, 254, 1) 0, rgba(235, 235, 235, 1) 100%);
@@ -1604,7 +1607,7 @@ body {
     font-size: 16px;
     border-radius: 30px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, .7);
-    box-shadow: none\9;
+    box-shadow: none \9;
     border: none;
     background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2Y3ZjhmOCIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNlZGVlZjAiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
     background: -moz-linear-gradient(top, rgba(247, 248, 248, 1) 0, rgba(237, 238, 240, 1) 100%);
@@ -1784,7 +1787,7 @@ body {
     border-width: 5px;
     border-color: transparent #009d93 transparent transparent;
     border-style: solid solid solid none;
-    border-style: none\9
+    border-style: none \9
 }
 
 #isWinStop i {
@@ -2104,7 +2107,7 @@ body[id^=lan_] .base-parameter .info {
     background: -o-linear-gradient(top, rgba(135, 135, 135, 1) 0, rgba(91, 91, 91, 1) 100%);
     background: -ms-linear-gradient(top, rgba(135, 135, 135, 1) 0, rgba(91, 91, 91, 1) 100%);
     background: linear-gradient(to bottom, rgba(135, 135, 135, 1) 0, rgba(91, 91, 91, 1) 100%);
-    filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#878787', endColorstr='#5b5b5b', GradientType=0);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#878787', endColorstr='#5b5b5b', GradientType=0);
     vertical-align: middle
 }
 
@@ -2128,7 +2131,7 @@ body[id^=lan_] .base-parameter .info {
     background: -o-linear-gradient(top, rgba(255, 128, 0, .8) 0, rgba(247, 190, 129, .8) 100%);
     background: -ms-linear-gradient(top, rgba(255, 128, 0, .8) 0, rgba(247, 190, 129, .8) 100%);
     background: linear-gradient(to bottom, rgba(255, 128, 0, .8) 0, rgba(247, 190, 129, .8) 100%);
-    filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#ccff8000', endColorstr='#ccf7be81', GradientType=0)
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ccff8000', endColorstr='#ccf7be81', GradientType=0)
 }
 
 .choose-btn {
@@ -3000,7 +3003,8 @@ body[id^=lan_] .base-parameter .info {
     padding: 0;
     margin: 0;
     border-radius: 0 5px 5px 0;
-    box-shadow: inset 5px 0 7px rgba(0, 0, 0, .5), 0 1px 1px rgba(0, 0, 0, .8) -moz-transition: all .1s ease;
+    box-shadow: inset 5px 0 7px rgba(0, 0, 0, .5), 0 1px 1px rgba(0, 0, 0, .8)
+    -moz-transition: all .1s ease;
     -webkit-transition: all .1s ease;
     -o-transition: all .1s ease;
     transition: all .1s ease;
@@ -3216,9 +3220,9 @@ body[id^=lan_] .base-parameter .info {
     height: 23px;
     font-size: 12px;
     padding: 3px 0;
-    color: #fff;
+    color: #8a6d42;
     line-height: 23px;
-    border-bottom: 1px solid #c0c2c1
+    /*border-bottom: 1px solid #c0c2c1*/
 }
 
 .lottery-details th {
@@ -3443,7 +3447,7 @@ body[id^=lan_] .base-parameter .info {
     float: right
 }
 
-#menu .right li+li {
+#menu .right li + li {
     border-left: 1px solid rgba(255, 255, 255, .1)
 }
 
@@ -3529,10 +3533,10 @@ ul.lottery-name li {
     background: #239C93
 }
 
-ul.lottery-name+ul {
+ul.lottery-name + ul {
     border-radius: 5px;
     border: 4px solid rgba(0, 0, 0, .2);
-    border: 4px solid #034640\9;
+    border: 4px solid #034640 \9;
     height: 24px;
     margin: 5px 0;
     position: absolute;
@@ -3541,7 +3545,7 @@ ul.lottery-name+ul {
     z-index: 10
 }
 
-ul.lottery-name+ul li {
+ul.lottery-name + ul li {
     background: #fff;
     background: -webkit-linear-gradient(rgba(255, 255, 255, 1) 0, rgba(212, 212, 212, 1) 100%);
     background: -o-linear-gradient(rgba(255, 255, 255, 1) 0, rgba(212, 212, 212, 1) 100%);
@@ -3551,13 +3555,13 @@ ul.lottery-name+ul li {
     text-align: center
 }
 
-.lottery-name+.lottery-name a {
+.lottery-name + .lottery-name a {
     color: #045750;
     line-height: 24px;
     padding: 0
 }
 
-.lottery-name+.lottery-name .current {
+.lottery-name + .lottery-name .current {
     background: #fff;
     background: -webkit-linear-gradient(rgba(212, 212, 212, 1) 0, rgba(255, 255, 255, 1) 100%);
     background: -o-linear-gradient(rgba(212, 212, 212, 1) 0, rgba(255, 255, 255, 1) 100%);
@@ -3565,17 +3569,17 @@ ul.lottery-name+ul li {
     box-shadow: 0 0 3px rgba(0, 0, 0, .5) inset
 }
 
-ul.lottery-name+ul .current:hover,
-ul.lottery-name+ul li:hover {
+ul.lottery-name + ul .current:hover,
+ul.lottery-name + ul li:hover {
     background: #f2591d
 }
 
-ul.lottery-name+ul li:hover a {
+ul.lottery-name + ul li:hover a {
     color: #fff
 }
 
-#lan_en ul.lottery-name+ul li,
-#lan_vm ul.lottery-name+ul li {
+#lan_en ul.lottery-name + ul li,
+#lan_vm ul.lottery-name + ul li {
     min-width: 131px
 }
 
@@ -3644,7 +3648,7 @@ ul.lottery-name+ul li:hover a {
 
 #lan_en .header-links a:hover,
 #lan_vm .header-links a:hover {
-    background:#c39763
+    background: #c39763
 }
 
 #lan_en .play-select-content dl {
@@ -3701,7 +3705,7 @@ ul.lottery-name+ul li:hover a {
     min-width: 98px
 }
 
-.panel-select>ul>li {
+.panel-select > ul > li {
     clear: both
 }
 
@@ -3742,11 +3746,11 @@ span#announce span {
 
 #toolbar {
     left: calc(50% + 498px);
-    left: 50%\9;
-    margin: 0 0 0 498px\9
+    left: 50% \9;
+    margin: 0 0 0 498px \9
 }
 
-@media screen and (max-width:1440px) {
+@media screen and (max-width: 1440px) {
     #dice {
         border-radius: 0 8px 8px 0;
         box-shadow: 1px 0 0 rgba(0, 0, 0, .3);
@@ -3772,20 +3776,20 @@ span#announce span {
         top: 287px
     }
 
-    #toolbar>div {
+    #toolbar > div {
         background: rgba(0, 0, 0, .5);
         box-shadow: 0 0 1px rgba(250, 250, 250, .5)
     }
 
-    #toolbar>div:hover {
+    #toolbar > div:hover {
         background: rgba(0, 0, 0, .75)
     }
 
-    #toolbar>div>a+span {
+    #toolbar > div > a + span {
         right: 59px
     }
 
-    #toolbar>div #J-side-bar {
+    #toolbar > div #J-side-bar {
         border-right: 5px solid transparent
     }
 
@@ -3795,7 +3799,7 @@ span#announce span {
     }
 }
 
-@media screen and (max-width:1080px) {
+@media screen and (max-width: 1080px) {
     #dice {
         display: none
     }
