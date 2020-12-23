@@ -1,726 +1,478 @@
 {include file="header" /}
-
-<link rel="stylesheet" href="__CSS__/index/index.css">
-<link rel="stylesheet" href="__CSS__/index/owl.carousel.css">
-<link rel="stylesheet" href="__CSS__/index/owl.theme.default.min.css">
-<script src="__JS__/index/TweenMax.min.js"></script>
-<script src="__JS__/index/CSSPlugin.min.js"></script>
-<script src="__JS__/index/EasePack.min.js"></script>
-<script src="__JS__/index/TweenLite.min.js"></script>
-<script src="__JS__/index/owl.carousel.js"></script>
-<script type="text/javascript" src="__JS__/index/jquery.SuperSlide.2.1.2.js"></script>
-<script type="text/javascript" src="__JS__/index/script.js"></script>
-<!--[if !IE]> -->
-<!-- <![endif]-->
-
-<style>
-  #news-and-events ul li {
-    font-size: 14px;
-    line-height: 30px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    padding: 0 0 0 3%;
-    position: relative;
-    width: 97%
-  }
-  
-  #news-and-events ul li + li {
-    border-top: 1px solid #e0e0e0
-  }
-  
-  #news-and-events ul li:after, #news-and-events ul li:before {
-    border-style: solid;
-    border-width: 5px 0 5px 5px;
-    border-color: transparent transparent transparent #a1a1a1;
-    position: absolute;
-    content: "";
-    left: 0;
-    top: 10px
-  }
-  
-  #news-and-events ul li:after {
-    border-color: transparent transparent transparent #eee;
-    position: absolute;
-    left: -2px
-  }
-  
-  #news-and-events .news {
-    margin-left: 20px
-  }
-  
-  #news-and-events .news li a {
-    color: #000;
-    font-size: 18px
-  }
-  
-  #news-and-events .news li + li a {
-    color: #6e6e6e;
-    font-size: 14px
-  }
-  
-  #news-and-events .news li a:hover {
-    color: #d34a71
-  }
-  
-  .bgtitle, .setContent {
-    display: none;
-  }
-  
-  /* 舊版隱藏 留著先不刪 */
-  .width70then {
-    width: 70px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-  
-  .width100then {
-    width: 100px;
-    text-indent: 10px;
-  }
-  
-  
-  .winnerdiv {
-    width: 100%;
-    height: 100%;
-    position: fixed;
-    z-index: 999999999;
-    background-color: rgba(0, 0, 0, 0.8);
-    top: 0;
-    left: 0;
-    display: none;
-  }
-  
-  .applewinner {
-    width: 750px;
-    height: 539px;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    margin: auto;
-  }
-  
-  .appleClosebtn {
-    width: 375px;
-    height: 250px;
-    position: absolute;
-    right: 0;
-    cursor: pointer;
-  }
-  
-  .serverbtn {
-    
-    width: 750px;
-    height: 100px;
-    position: absolute;
-    bottom: -100px;
-    cursor: pointer;
-    overflow: hidden;
-  }
-  
-  .serverbtn:hover img:first-child {
-    display: none;
-  }
-  
-  .winnername {
-    width: 360px;
-    font-size: 20px;
-    color: #fff;
-    position: absolute;
-    top: 290px;
-    text-align: center;
-    line-height: 38px;
-    left: 0;
-    right: 0;
-    margin: auto;
-  }
-  
-  .winnernamediv {
-    
-    width: 360px;
-    background-color: #1d2140;
-    color: #fff;
-    display: inline-block;
-    border-radius: 100px;
-    
-    margin-bottom: 10px;
-  }
-
-
-</style>
-
-<div class="default_center">
-  
-  <div class="_rows  mb-10">
-    <div style="width: 100%">
-      <!-- <div class="full-bg" style="background-image: url(https://n7ws.jnfzdz.cn/sy2/images/3new/index/banner-1.png)"></div> -->
-      <!--            <div id="owl2" class="owl-carousel owl-theme owl-loaded owl-drag">-->
-      
-      <!--                &lt;!&ndash; <a href="/?controller=sbgame&action=lobby&view=0"><img src="https://n7ws.jnfzdz.cn/sy2/images/3new/index/14.jpg"></a>&ndash;&gt;-->
-      
-      
-      <!--                &lt;!&ndash; <a href="/?controller=kumagame&action=lobby"><img src="https://n7ws.jnfzdz.cn/sy2/images/3new/index/3.jpg"></a> &ndash;&gt;-->
-      
-      
-      <!--                <div class="owl-stage-outer">-->
-      <!--                    <div class="owl-stage"-->
-      <!--                         style="transform: translate3d(-1150px, 0px, 0px); transition: all 0.3s ease 0s; width: 11730px;">-->
-      <!--                        <div class="owl-item cloned" style="width: 779px; margin-right: 3px;"><a-->
-      <!--                                href="/newgame_play.html?curmid=20" one-link-mark="yes"><img-->
-      <!--                                src="__IMG__/index/BJPK10-banner24.jpg"/></a></div>-->
-      <!--                        <div class="owl-item cloned" style="width: 779px; margin-right: 3px;"><a-->
-      <!--                                href="/recharge/index?tag=cz" one-link-mark="yes"><img-->
-      <!--                                src="__IMG__/index/banner_20170323141710.jpg"/></a></div>-->
-      <!--                        <div class="owl-item cloned" style="width: 779px; margin-right: 3px;"><a-->
-      <!--                                href="/activity/index.html" one-link-mark="yes"><img-->
-      <!--                                src="__IMG__/index/banner_20160714-2.jpg"/></a></div>-->
-      <!--                        <div class="owl-item cloned" style="width: 779px; margin-right: 3px;"><a-->
-      <!--                                href="/recharge/index?tag=cz" one-link-mark="yes"><img-->
-      <!--                                src="__IMG__/index/R_bnr_QQ_01_20170509.jpg"/></a></div>-->
-      
-      <!--                    </div>-->
-      <!--                </div>-->
-      <!--                <div class="owl-nav disabled">-->
-      <!--                    <button type="button" role="presentation" class="owl-prev"><span aria-label="Previous">‹</span>-->
-      <!--                    </button>-->
-      <!--                    <button type="button" role="presentation" class="owl-next"><span aria-label="Next">›</span>-->
-      <!--                    </button>-->
-      <!--                </div>-->
-      <!--                <div class="owl-dots">-->
-      <!--                    <button role="button" class="owl-dot"><span></span></button>-->
-      <!--                    <button role="button" class="owl-dot"><span></span></button>-->
-      <!--                    <button role="button" class="owl-dot"><span></span></button>-->
-      <!--                    <button role="button" class="owl-dot"><span></span></button>-->
-      <!--                    <button role="button" class="owl-dot"><span></span></button>-->
-      <!--                    <button role="button" class="owl-dot"><span></span></button>-->
-      <!--                    <button role="button" class="owl-dot active"><span></span></button>-->
-      <!--                </div>-->
-      <!--            </div>-->
-      <div id="banner" class="sy-m-banner" style="border-radius: 12px">
+    <!-- menu-container -->
+    <link rel="stylesheet" href="__CSS__/index.min.css" />
+    <script type="text/javascript" src="__JS__/jquery.SuperSlide.2.1.2.js" ></script>
+    <!--<script type="text/javascript" src="__JS__/script.js" ></script>-->
+    <script type="text/javascript" src="__JS__/vimeoPlayer.js" ></script>
+    <script type="text/javascript" src="__JS__/indexVideos.js" ></script>
+    <div id="showdialog">
+    </div>
+    <div id="banner" class="sy-m-banner">
         <ul class="pic">
-          <li><a href="/newgame_play.html?curmid=20"><img src="__IMG__/index/BJPK10-banner24.jpg"/></a></li>
-          <!--<li><a href="#opener0"><img src="__IMG__/index/R88-wap-banner-0801.jpg"/></a></li>-->
-          <li><a href="/recharge/index?tag=cz"><img src="__IMG__/index/banner_20170323141710.jpg"/></a></li>
-          <li><a href="/activity/index.html"><img src="__IMG__/index/banner_20160714-2.jpg"/></a></li>
-          <li><a href="/recharge/index?tag=cz"><img src="__IMG__/index/R_bnr_QQ_01_20170509.jpg"/></a></li>
+            <li><a href="/newgame_play.html?curmid=20" ><img src="__IMG__/index/BJPK10-banner24.jpg"/></a></li>
+            <!--<li><a href="#opener0"><img src="__IMG__/index/R88-wap-banner-0801.jpg"/></a></li>-->
+            <li><a href="/recharge/index?tag=cz"><img src="__IMG__/index/banner_20170323141710.jpg"/></a></li>
+            <li><a href="/activity/index.html" ><img src="__IMG__/index/banner_20160714-2.jpg"/></a></li>
+            <li><a href="/recharge/index?tag=cz"><img src="__IMG__/index/R_bnr_QQ_01_20170509.jpg"/></a></li>
         </ul>
         <a class="arrow-left" href="javascript:void(0)"></a>
         <a class="arrow-right" href="javascript:void(0)"></a>
         <ul class="banner-page"></ul>
-      </div>
     </div>
-    <!--        <div style="width: 32%">-->
-    <!--            <div class="full-bg download">-->
-    <!--                <div class="phone">-->
-    <!--                    <img src="__IMG__/index/phone.png">-->
-    <!--                </div>-->
-    <!--                <div class="download-text">-->
-    <!--                    <div>手机端下载</div>-->
-    <!--                    <div>享受随时美妙便捷体验</div>-->
-    <!--                </div>-->
-    <!--                <div class="qrcode-wap">-->
-    <!--                    <img src="__IMG__/index/qrcode-wap.png">-->
-    <!--                    <div style="margin-top: 4px;">WAP</div>-->
-    <!--                </div>-->
-    <!--                <div class="qrcode-app">-->
-    <!--                    <img src="__IMG__/index/qrcode-app.png">-->
-    <!--                    <div style="margin-top: 4px;">APP</div>-->
-    <!--                </div>-->
-    <!--            </div>-->
-    <!--        </div>-->
-  </div>
-  
-  <!--    <div class="newsbar mb-20">-->
-  <!--        <div class="newsbarcontent">-->
-  <!--            <table width="100%" border="0" cellspacing="0" cellpadding="0" height="100%">-->
-  <!--                <tbody>-->
-  <!--                <tr>-->
-  <!--                    <td>-->
-  <!--                        <div class="newsIcon">最新公告 :</div>-->
-  <!--                    </td>-->
-  <!--                    <td valign="middle">-->
-  <!--                        <div class="newsrundiv">-->
-  <!--                            <ul>-->
-  <!--                                <li style="top: 30px;"><a-->
-  <!--                                        href="https://3niu18.com/help_main.shtml?tag=notice&amp;nid=767"-->
-  <!--                                        one-link-mark="yes">香港六合彩上市公告&nbsp;|&nbsp;2020-11-20</a></li>-->
-  <!--                                <li style="top: 30px;"><a-->
-  <!--                                        href="https://3niu18.com/help_main.shtml?tag=notice&amp;nid=780"-->
-  <!--                                        one-link-mark="yes">沙巴体育维护公告&nbsp;|&nbsp;2020-12-14</a></li>-->
-  <!--                                <li style="top: 30px;"><a-->
-  <!--                                        href="https://3niu18.com/help_main.shtml?tag=notice&amp;nid=779"-->
-  <!--                                        one-link-mark="yes">银行维护公告&nbsp;|&nbsp;2020-12-13</a></li>-->
-  <!--                                <li style="top: 30px;"><a-->
-  <!--                                        href="https://3niu18.com/help_main.shtml?tag=notice&amp;nid=778"-->
-  <!--                                        one-link-mark="yes">平台维护升级通知&nbsp;|&nbsp;2020-12-07</a></li>-->
-  <!--                                <li style="top: 21.0422px;"><a-->
-  <!--                                        href="https://3niu18.com/help_main.shtml?tag=notice&amp;nid=777"-->
-  <!--                                        one-link-mark="yes">银行维护公告&nbsp;|&nbsp;2020-12-06</a></li>-->
-  <!--                                <li style="top: 30px;"><a-->
-  <!--                                        href="https://3niu18.com/help_main.shtml?tag=notice&amp;nid=776"-->
-  <!--                                        one-link-mark="yes">浦发银行维护公告&nbsp;|&nbsp;2020-12-05</a></li>-->
-  <!--                            </ul>-->
-  <!--                        </div>-->
-  <!--                    </td>-->
-  <!--                </tr>-->
-  <!--                </tbody>-->
-  <!--            </table>-->
-  <!--        </div>-->
-  <!--    </div>-->
-  
-  <div class="_rows index_rows-10 mb-20" id="news-and-events">
-    <div style="width: 51%">
-      <div class="title">中奖信息</div>
-      <div class="clear" id="news-and-events">
-        <div class="events">
-          <div class="events-title">中奖信息</div>
-          <div id="qoo">
-            <ul class="bonus-message">
-              <li>恭喜8＊＊在极速3D中了6,000.00元</li>
-              <li>恭喜y＊在一分11选5中了16,840.00元</li>
-              <li>恭喜亮＊在一分11选5中了6,336.00元</li>
-              <li>恭喜8＊＊在秒秒时时彩中了29,280.00元</li>
-              <li>恭喜8＊＊在一分11选5中了145,530.00元</li>
-              <li>恭喜8＊＊在秒秒时时彩中了174,600.00元</li>
-              <li>恭喜8＊＊在秒秒时时彩中了262,752.00元</li>
-              <li>恭喜捷＊＊在秒秒时时彩中了28,800.00元</li>
-            </ul>
-          </div>
-        </div><!-- events -->
-        <div class="news">
-          <div class="news-title">平台公告</div>
-          <ul>
-            {volist name="notice" id="vo"}
-            <li><a href="/user/showmessage?id={$vo.id}" title="平台公告" target="_blank">{$vo.title}</a></li>
-            {/volist}
-          </ul>
-        </div><!-- news -->
-      </div><!-- news-and-events -->
-    </div>
-  </div>
-  <div style="width: 49%">
-    <div class="title">娱乐大厅</div>
-    <div class="_rows index_rows-2 row_height ch_h-100">
-      <div style="width: 45%;">
-        <div class="full-bg"
-             style="background-image: url(https://n7ws.jnfzdz.cn/sy2/images/3new/index/game-1.png);">
-          <div class="game-text">开元棋牌</div>
-          <div class="game-btn"><a class="btn btn-startgame"
-                                   href="https://3niu18.com/?controller=kygame&amp;action=lobby"
-                                   one-link-mark="yes">立即游戏</a></div>
-        </div>
-      </div>
-      <div style="width: 27.5%;">
-        <div class="full-bg"
-             style="background-image: url(https://n7ws.jnfzdz.cn/sy2/images/3new/index/game-2.png);">
-          <div class="game-text">体育投注</div>
-          <div class="game-btn"><a class="btn btn-startgame"
-                                   href="https://3niu18.com/?controller=sbgame&amp;action=lobby&amp;view=0"
-                                   one-link-mark="yes">立即游戏</a></div>
-        </div>
-      </div>
-      <div style="width: 27.5%;">
-        <div class="full-bg"
-             style="background-image: url(https://n7ws.jnfzdz.cn/sy2/images/3new/index/game-3.png);">
-          <div class="game-text">真人娱乐</div>
-          <div class="game-btn"><a class="btn btn-startgame"
-                                   href="https://3niu18.com/?controller=gplcasino&amp;action=lobby&amp;view=0"
-                                   one-link-mark="yes">立即游戏</a></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
 
-<div class="_rows index_rows-10 mb-20">
-  <div style="width: 73%">
-    <div class="title">电影免费看</div>
-    <div class="_rows index_rows-2">
-      <a href="https://3niu18.com/activity_main.shtml?act=active" one-link-mark="yes"><img
-          style="width: 830px;" src="__IMG__/index/av.png"></a>
-    </div>
-  </div>
-  <div style="width: 27%">
-    <div class="title">优惠活动</div>
-    <div class="index_act_block">
-      <!-- <a class="full-bg" style="background-image: url(https://n7ws.jnfzdz.cn/sy2/images/3new/index/act-1.png);" href="/activity_main.shtml"></a> -->
-      <a class="full-bg"
-         style="background-image: url(https://n7ws.jnfzdz.cn/sy2/images/3new/index/act-2.png);"
-         href="https://3niu18.com/activity_main.shtml" one-link-mark="yes"></a>
-      <a class="full-bg"
-         style="background-image: url(https://n7ws.jnfzdz.cn/sy2/images/3new/index/act-3.png);"
-         href="https://3niu18.com/activity_main.shtml" one-link-mark="yes"></a>
-    </div>
-  </div>
-</div>
-
-</div>
-
-
-<div class="setContent">
-  
-  <div class="clear" id="content2">
-    
-    <div class="indexlotterydiv">
-      <div class="hotgametitle">
-        <div class="hotgametitleimg"></div>
-      </div>
-      <div class="hotshop">
-        
-        <ul>
-          <li>
-            <a href="https://3niu18.com/newgame_play.shtml?curmid=7259" one-link-mark="yes">
-              <div class="lotterylogoIcon"></div>
-              <div class="lotterychname nameoe">万人龙虎</div>
-            </a>
-          </li>
-          <li>
-            <a href="https://3niu18.com/newgame_play.shtml?curmid=7455" one-link-mark="yes">
-              <div class="lotterylogoIcon"></div>
-              <div class="lotterychname nameoe">万人炸金花</div>
-            </a>
-          </li>
-          <li>
-            <a href="https://3niu18.com/newgame_play.shtml?curmid=4600" one-link-mark="yes">
-              <div class="lotterylogoIcon"></div>
-              <div class="lotterychname nameoe">HL40秒11选5</div>
-            </a>
-          </li>
-          <li>
-            <a href="https://3niu18.com/newgame_play.shtml?curmid=5104" one-link-mark="yes">
-              <div class="lotterylogoIcon"></div>
-              <div class="lotterychname nameoe">HL一分时时彩</div>
-            </a>
-          </li>
-          <li>
-            <a href="https://3niu18.com/newgame_play.shtml?curmid=2660" one-link-mark="yes">
-              <div class="lotterylogoIcon"></div>
-              <div class="lotterychname nameoe">一分时时彩</div>
-            </a>
-          </li>
-          <li>
-            <a href="https://3niu18.com/newgame_play.shtml?curmid=50" one-link-mark="yes">
-              <div class="lotterylogoIcon"></div>
-              <div class="lotterychname nameoe">重庆时时彩</div>
-            </a>
-          </li>
-          <li>
-            <a href="https://3niu18.com/newgame_play.shtml?curmid=5531" one-link-mark="yes">
-              <div class="lotterylogoIcon"></div>
-              <div class="lotterychname nameoe">极速PK10</div>
-            </a>
-          </li>
-          <li>
-            <a href="https://3niu18.com/newgame_play.shtml?curmid=7735" one-link-mark="yes">
-              <div class="lotterylogoIcon"></div>
-              <div class="lotterychname nameoe">安徽11选5</div>
-            </a>
-          </li>
-          <li>
-            <a href="https://3niu18.com/newgame_play.shtml?curmid=7281" one-link-mark="yes">
-              <div class="lotterylogoIcon"></div>
-              <div class="lotterychname nameoe">江苏快三</div>
-            </a>
-          </li>
-        </ul>
-        <div class="gameRight">
-          <a href="https://3niu18.com/?controller=agaming&amp;action=lobby" one-link-mark="yes">
-            <div class="gFish"></div>
-          </a>
-          <a class="Av" href="https://3niu18.com/?controller=kumagame&amp;action=lobby"
-             one-link-mark="yes">
-            <div class="gAv"></div>
-          </a>
-          <a class="Ky" href="https://3niu18.com/?controller=kygame&amp;action=lobby" one-link-mark="yes">
-            <div class="gKy"></div>
-          </a>
-        </div>
-      </div>
-    </div>
-    
-    
-    <div class="indexAbout">
-      <div class="indexAboutTitle"></div>
-      <div class="indexAboutContent">
-        <div class="cLeft">
-          <div class="AboutImg"></div>
-          <div class="AboutTxt">
-            三牛娱乐为全球博彩爱好者提供最优惠的赔率和最优质的服务，
-            并正发展成为最受欢迎最具公信力的博彩公司、有高质量的游戏平台、持有创新的市场概念和经营理念。
-            公司不仅拥有市场上最多样化的游戏投注平台，同时为来自亚洲各国的初级和资深博彩爱好者提供特有的服务并保证高质量的游戏。
-          </div>
-        </div>
-        <div class="cRight">
-          <div class="sLogo"></div>
-          <div class="qr_code">
-            <a class="qr_code_wap" one-link-mark="yes">
-              <div></div>
-              <span class="title_client">WAP</span>
-            </a>
-            <a class="qr_code_android" one-link-mark="yes">
-              <div></div>
-              <span class="title_client">App</span>
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div><!-- content -->
-</div>
-
-
-<!--apple 得獎訊息-->
-<div class="winnerdiv">
-
-</div>
-
-
-<div class="latest_news" hash="051d1b96710c1e394dd645eb3818c02f">
-  <div class="latest_news_header">最新公告<i class="btn_close"></i></div>
-  <!--        <iframe scrolling="no" allowtransparency="true" class="" frameborder="0"-->
-  <!--                src="__IMG__/index/saved_resource(2).html"-->
-  <!--                width="1000" height="500"></iframe>-->
-</div>
-
-<div class="mask_pop"></div><!-- latest_news -->
-
-<script type="text/javascript">
-    $(function () {
-        jQuery("#qoo").slide({
-            mainCell: ".bonus-message",
-            autoPlay: true,
-            effect: "topMarquee",
-            vis: 5,
-            interTime: 50
+    <script type="text/javascript">
+        function topBarAnimation(e) {
+            $(".topBar ul li").each(function (t) {
+                $(this).delay(3e3 * t).animate({
+                    top: 0
+                }, function () {
+                    $(this).delay(2e3).animate({
+                        top: "-48px"
+                    }, function () {
+                        $(this).css("top", "48px"), t === e && topBarAnimation(e)
+                    })
+                })
+            })
+        }
+        $(function () {
+            $(".sy-top-msg").slide({
+                mainCell: "ul",
+                autoPlay: !0,
+                effect: "topLoop"
+            }), $(".gongg").slide({
+                mainCell: "ul",
+                autoPlay: !0,
+                effect: "leftMarquee",
+                interTime: 50,
+                vis: 1
+            }), $(".program").slide({}), $(".sy-m-banner").slide({
+                titCell: ".banner-page",
+                mainCell: ".pic",
+                effect: "leftLoop",
+                autoPage: "<li><a></a></li>",
+                autoPlay: !0,
+                delayTime: 1e3,
+                interTime: 3e3,
+                prevCell: ".arrow-left",
+                nextCell: ".arrow-right",
+                pnLoop: !0,
+                trriger: "click",
+                vis: "auto"
+            }), $(".smallbanner").slide({
+                mainCell: ".pic",
+                effect: "left",
+                pnLoop: !1
+            });
+            var e = $(".topBar ul li").length - 1;
+            topBarAnimation(e)
         });
-    });
-
-    //呼叫客戶端內的瀏覽器,另開網頁視窗
-    function ShowVideo(name) {
-        cef.showvideo(name);
-    }
-
-    //设置cookie
-    function SetCookie(name, value, expire) {
-        var exp = new Date();
-        exp.setTime(expire.getTime());
-        document.cookie = name + "=" + escape(value) + ";expires=" + exp.toGMTString();
-    }
+        $(function(){jQuery("#qoo").slide({mainCell:".bonus-message",autoPlay:true,effect:"topMarquee",vis:5,interTime:50});});
+    </script>
+    <div class="clear" id="content">
 
 
-    function LotteryTime() {
-        var lastItem = $(".lotterys").last();
-        var cid = $(lastItem).attr("cid");
-        $("#lottery-img").css("background-image", "url(https://n7ws.jnfzdz.cn/sy2/images/logo/" + cid + ".png)");
-        $("#lottery-title").text($(lastItem).text());
-        $("#game-btn a").attr("href", "./newgame_play.shtml?curmid=" + cid);
-        $.get("/newgame_play.shtml?flag=dynamicConfig&curmid=" + cid, function (data, status) {
-            var obj = JSON.parse(data);
-            $("#lottery-info span").text(obj.data.number);
-            var nowtime = Date.parse(obj.data.nowtime);
-            var nowstoptime = Date.parse(obj.data.nowstoptime);
-            var offsetTime = (nowstoptime - nowtime) / 1000;
-            if (nowstoptime != 0) {
-                countTime(offsetTime);
-            }
-        })
 
-        var countTime = function (offTime) {
-            if (offTime > -1) {
-                var hr = padNum((Math.floor(offTime / 60 / 60) % 24).toString());
-                var min = padNum((Math.floor(offTime / 60) % 60).toString());
-                var sec = padNum((Math.floor(offTime % 60)).toString());
-                $("#lottery-time").html(hr + ":" + min + ":" + sec);
-                setTimeout(function () {
-                    countTime(offTime - 1);
-                }, 1000);
-            } else {
-                LotteryTime();
-            }
+        <div id="lottery">
+            <div class="lottery-1">
+                <a href="/newgame_play.html?curmid=36">
+
+                    <span class="lottery-win">开始游戏</span>
+                </a>
+            </div><!-- lottery-1 -->
+            <div class="lottery-2">
+                <a href="/newgame_play.html?curmid=6">
+
+                    <span class="lottery-win">开始游戏</span>
+                </a>
+            </div><!-- lottery-2 -->
+            <div class="lottery-3">
+                <a href="/newgame_play.html?curmid=45">
+
+                    <span class="lottery-win">开始游戏</span>
+                </a>
+            </div><!-- lottery-3 -->
+
+            <div class="lottery-bjpk10">
+                <a href="/newgame_play.html?curmid=20">
+
+                    <span class="lottery-win">开始游戏</span>
+                </a>
+            </div><!-- lottery-bjpk10 -->
+
+            <!--<div class="lottery-4">
+                <a href="/newgame_play.html?curmid=4346">
+                </a>
+                <a class="inner-btn" href="/newgame_play.html?curmid=4346">
+                    <span class="lottery-win">开始游戏</span>
+                </a>
+                <a class="inner-btn" href="http://xosothudo.com.vn/" target="_blank">
+                    <span class="lottery-win">官方网站</span>
+                </a>
+            </div>--><!-- lottery-4 -->
+
+        </div><!-- lottery -->
+    
+    
+        <div class="clear" id="news-and-events">
+            <div class="events">
+                <div class="events-title">中奖信息</div>
+                <div id="qoo">
+                    <ul class="bonus-message">
+                        <li>恭喜8＊＊在极速3D中了6,000.00元</li>
+                        <li>恭喜y＊在一分11选5中了16,840.00元</li>
+                        <li>恭喜亮＊在一分11选5中了6,336.00元</li>
+                        <li>恭喜8＊＊在秒秒时时彩中了29,280.00元</li>
+                        <li>恭喜8＊＊在一分11选5中了145,530.00元</li>
+                        <li>恭喜8＊＊在秒秒时时彩中了174,600.00元</li>
+                        <li>恭喜8＊＊在秒秒时时彩中了262,752.00元</li>
+                        <li>恭喜捷＊＊在秒秒时时彩中了28,800.00元</li>
+                    </ul>
+                </div>
+            </div><!-- events -->
+            <div class="news">
+                <div class="news-title">平台公告</div>
+                <ul>
+                    {volist name="notice" id="vo"}
+                    <li><a href="/user/showmessage?id={$vo.id}" title="平台公告" target="_blank">{$vo.title}</a></li>
+                    {/volist}
+                </ul>
+            </div><!-- news -->
+        </div><!-- news-and-events -->
+    </div><!-- content -->
+    <div class="latest_news" hash="{$hash}">
+        <div class="latest_news_inner">
+            <div class="latest_news_header">{$notice_first.title}<i class="btn_close"></i></div>
+            <div class="latest_news_content">
+                <!--<div class="latest_news_title" style="text-align: center;"></div>-->
+                <div class="anno_content">
+                        <?php echo $notice_first['content'] ?>
+                    <!--<div style="clear:both;"></div>
+                    <div style="margin: 0">
+                        <img src="__IMG__/announcement/1.png" alt=""  style="width:24px;vertical-align:middle"> 可以通过手动指定DNS，详情请
+                        <a href="help_center/index.html?tag=cjwt" target="_blank" class="link">点此查看</a>
+                    </div>-->
+                </div>
+                <p> <style type="text/css">
+                    .latest_news {
+                        height: 420px !important;
+                    }
+                    .latest_news_content {
+                        height: 370px !important;
+                        background-color: #dadada;
+                    }
+                    .anno_content {
+                        padding-left: 5px;
+                        font-size: 21px !important;
+                        padding-top: 20px;
+                        padding-right: 5px;
+                    }
+                    .link {
+                        text-decoration: underline !important;
+                    }
+                    .tongzhiviewinfo {
+                        text-align: center;
+                        color: #999;
+                        padding-bottom: 10px;
+                    }
+                    .tongzhiviewtxt {
+                        padding-top: 20px;
+                        font-size: 21px;
+                        padding-left: 20px;
+                        padding-right: 20px;
+                    }
+                    .tongzhiviewtxt p {
+                        font-size: 21px;
+                    }
+
+                    .gifts {
+                        text-align: center;
+                    }
+
+                    .gifts::after {
+                        clear: both;
+                        content: "";
+                        display: block;
+                        height: 0;
+                        visibility: hidden;
+                    }
+
+                    .gifts .title_gifts {
+                        color: #000000;
+                        font-size: 16px;
+                        font-weight: bold;
+                        margin-bottom: 9px;
+                        white-space: nowrap;
+                    }
+                    /*Download*/
+
+                    .gifts .download {
+                        display: inline-block;
+                        padding: 0 20px 5px;
+                        vertical-align: top;
+                    }
+
+                    .gifts .download a,
+                    .btn_event[href] {
+                        border: none;
+                        border-radius: 2px;
+                        color: #ffffff !important;
+                        cursor: pointer;
+                        display: inline-block;
+                        font-size: 13px;
+                        line-height: 14px;
+                        text-align: center;
+                        text-decoration: none !important;
+                        outline: none;
+                    }
+
+                    .gifts .download .btn_video {
+                        background: #0c7b70;
+                        margin: 4px 0 0 30px;
+                        padding: 8px 0;
+                        width: 170px;
+                    }
+
+                    .btn_event {
+                        background: #0c7b70;
+                        margin: 0 10px;
+                        padding: 8px;
+                        width: auto;
+                    }
+
+                    .btn_event:hover,
+                    .gifts .download .btn_video:hover {
+                        background: #018f81;
+                    }
+
+                    .gifts .download .btn_download,
+                    .gifts .download .btn_download.zip {
+                        background-color: #ffffff;
+                        border-radius: 2px;
+                        box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.2) inset;
+                        color: #4d4d4d !important;
+                        display: block;
+                        overflow: hidden;
+                        padding: 8px 10px 8px 40px;
+                        position: relative;
+                        -webkit-transition: 0.25s all ease;
+                        -moz-transition: 0.25s all ease;
+                        -ms-transition: 0.25s all ease;
+                        -o-transition: 0.25s all ease;
+                        transition: 0.25s all ease;
+                        width: 120px;
+                    }
+
+                    .gifts .download .btn_download:before,
+                    .gifts .download .btn_download:after,
+                    .gifts .download .btn_download.zip:before,
+                    .gifts .download .btn_download.zip:after {
+                        content: "";
+                        display: block;
+                        position: absolute;
+                    }
+                    .gifts .download .btn_download.zip:before {
+                        background: #96CD01 url(http://ucaaar1.bjewx.com/sy2/images/btn/btn_download.png) 6px center no-repeat;
+                        border-radius: 2px 0 0 2px;
+                        box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.2) inset;
+                        height: 100%;
+                        top: 0;
+                        left: 0;
+                        -webkit-transition: 0.25s all ease;
+                        -moz-transition: 0.25s all ease;
+                        -ms-transition: 0.25s all ease;
+                        -o-transition: 0.25s all ease;
+                        transition: 0.25s all ease;
+                        width: 28px;
+                    }
+                    .gifts .download .btn_download:before {
+                        background: #0c7b70 url(http://ucaaar1.bjewx.com/sy2/images/btn/btn_download.png) 6px center no-repeat;
+                        border-radius: 2px 0 0 2px;
+                        box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.2) inset;
+                        height: 100%;
+                        top: 0;
+                        left: 0;
+                        -webkit-transition: 0.25s all ease;
+                        -moz-transition: 0.25s all ease;
+                        -ms-transition: 0.25s all ease;
+                        -o-transition: 0.25s all ease;
+                        transition: 0.25s all ease;
+                        width: 28px;
+                    }
+
+                    .gifts .download .btn_download:after,
+                    .gifts .download .btn_download.zip:after {
+                        background: #fff;
+                        height: 86%;
+                        top: 7%;
+                        left: 29px;
+                        width: 1px;
+                    }
+
+                    .gifts .download .btn_download:hover,
+                    .gifts .download .btn_download.zip:hover {
+                        color: #ffffff !important;
+                    }
+
+                    .gifts .download .btn_download:hover:before,
+                    .gifts .download .btn_download.zip:hover:before {
+                        border-radius: 3px;
+                        width: 100%;
+                    }
+
+                    .gifts .download .btn_download span,
+                    .gifts .download .btn_download.zip span {
+                        position: relative;
+                        z-index: 2;
+                    }
+                    /*QRcode*/
+
+                    .gifts * {
+                        box-sizing: content-box;
+                    }
+
+                    .gifts .qr_code {
+                        display: inline-block;
+                        vertical-align: top;
+                    }
+
+                    .gifts .qr_code span {
+                        display: block;
+                        font-size: 16px;
+                        line-height: 24px;
+                    }
+
+                    .gifts .qr_code a {
+                        color: #000000 !important;
+                        display: inline-block;
+                        outline: none;
+                        text-decoration: none;
+                        padding: 0 20px;
+                    }
+
+                    .gifts .qr_code a:hover div {
+                        border-color: #ff931e;
+                    }
+
+                    .gifts .qr_code a div {
+                        border: 3px solid #00c4bf;
+                        display: inline-block;
+                        height: 72px;
+                        -webkit-transition: 0.3s all ease;
+                        -moz-transition: 0.3s all ease;
+                        -ms-transition: 0.3s all ease;
+                        -o-transition: 0.3s all ease;
+                        transition: 0.3s all ease;
+                        width: 72px;
+                    }
+
+                    .gifts .qr_code_android,
+                    .gifts .qr_code_wap {
+                        background: none;
+                    }
+
+                    .gifts .qr_code_wap div {
+                        background-image: url(http://ucaaar1.bjewx.com/sy2/images/qr_code/qr_code_wap.png);
+                    }
+
+                    .gifts .qr_code_android div {
+                        background-image: url(http://ucaaar1.bjewx.com/sy2/images/qr_code/qr_code_android.png);
+                    }
+                </style>
+                    <script type="text/javascript">
+                        function getCookieNotices( name ) {
+                            var arr = document.cookie.match( new RegExp("(^| )"+name+"=([^;]*)(;|$)") );
+                            if( arr != null) return unescape( arr[2] ); return null;
+                        }
+                        $(function() {
+                            var wapUrl = '#';
+                            var urlStr = window.location.href;
+                            var urlAry = urlStr.split('/');
+                            var hostAry = urlAry[2].split('.');
+                            if (hostAry[0] == 'm' || hostAry[0] == '139') {
+                                $('div.description').html(
+                                    '由于近期浏览器出现漏洞，导致您浏览平台页面时，会跳转到陌生页面 <br />' +
+                                    '如果无法正常开启平台页面，请依照下述步骤操作 <br /><br />' +
+                                    '1. 使用目前平台推出的「客户端加强版」。 <br />' +
+                                    '2. 使用目前全新线路 <br />'
+                                );
+                            } else {
+                                var clienttag = getCookieNotices('clienttag');
+                                if (clienttag == 'use') {
+                                    $('a.clienttag').click(function(event){
+                                        event.preventDefault();
+                                        ShowVideo($(this).attr('href'));
+                                    });
+                                }
+                            }
+                        });
+                    </script></p>
+            </div>
+        </div>
+    </div>
+    <div class="mask_pop"></div>
+
+
+    <script language="JavaScript">
+
+    </script>
+    <script type="text/javascript">
+
+        //设置cookie
+        function SetCookie( name, value, expire ) {
+            var exp  = new Date();
+            exp.setTime( expire.getTime() );
+            document.cookie = name + "="+ escape ( value ) + ";expires=" + exp.toGMTString();
         }
-    }
-
-    function padNum(num) {
-        if (num.length < 2) {
-            num = "0" + num
+        //获取cookie
+        function getCookie( name ) {
+            var arr = document.cookie.match( new RegExp("(^| )"+name+"=([^;]*)(;|$)") );
+            if( arr != null) return unescape( arr[2] ); return null;
         }
-        return num;
-    }
 
-    $(document).ready(function () {
-        LotteryTime();
+        $( document ).ready( function () {
+            var newsUser = getCookie("user");
+            var cookies = document.cookie;
+            var search1 = newsUser+"=";
+            var search2 = "; "+newsUser;
+            var cStart1 = cookies.indexOf( search1 );
+            var cStart2 = cookies.indexOf( search2 );
 
-        var cookieName = 'latestNewsHash';
-
-        var latestNewsHash = $(".latest_news").attr("hash");
-
-        if (getCookie(cookieName) != latestNewsHash) {
-            latestNews();
             var d = new Date();
             var year = d.getFullYear();
             var month = d.getMonth();
             var day = d.getDate() + 1;
-            var nextDay = new Date(year, month, day, 00, 00, 00);
-            SetCookie(cookieName, latestNewsHash, nextDay);
-        }
 
-        function latestNews() {
-            $(parent.document).find(".latest_news, .mask_pop").show();
-            $(parent.document).find(".btn_close").click(function () {
-                $(parent.document).find(".latest_news, .mask_pop").remove();
-            })
-            // bind esc to close it
-            $(document).focus();
-            $(document).keyup(function (e) {
-                if (e.keyCode == 27) {
-                    $(parent.document).find(".latest_news, .mask_pop").hide();
-                }
-            })
-        }
+            var nextDay = new Date( year, month, day, 00, 00, 00 );
 
-        $(".closeBtn").click(function () {
-            $(this).parent().hide();
-            document.cookie = "heros=hide";
-        })
-        if (getCookie("heros") == "hide") {
-            $(".indexMiddleright").hide();
-        }
+            var latestNewsHash = $(".latest_news").attr("hash");
 
-
-        function getCookie(cname) {
-            var name = cname + "=";
-            var decodedCookie = decodeURIComponent(document.cookie);
-            var ca = decodedCookie.split(';');
-            for (var i = 0; i < ca.length; i++) {
-                var c = ca[i];
-                while (c.charAt(0) == ' ') {
-                    c = c.substring(1);
-                }
-                if (c.indexOf(name) == 0) {
-                    return c.substring(name.length, c.length);
-                }
-            }
-            return "";
-        }
-
-
-        /*1.第一名 2.第二名 3.第三名 4.輸家 5.領取通知*/
-        //var ran=Math.floor(Math.random()*5)+1
-        //winstart(ran)
-        if (0 == 1) {
-
-            if (-1 == 5) { //已中奖
-                var level = -1;
-                winstart(level);
-
-            }
-            if (-1 == 4 || -1 == 1) { //未中奖
-                //winstart(4);
-
-                if (0 == 1) {
-                    winstart(4);
-                }
-
-
+            if( (cStart1 == -1 && cStart2 == -1) || getCookie(newsUser) != latestNewsHash ) {
+                latestNews();
+                SetCookie( newsUser, latestNewsHash, nextDay );
             }
 
-            if (-1 == 2) { //待抽奖
-                //bog自动抽奖 所以不需要弹， 3NR8要弹
-                winstart(5);
-                //winstart(4);
-            }
-
-        } else {
-
-            if (0 == 1) {
-                winstart(4);
-            }
-        }
-
-
-    });
-
-
-    function setCookie(name, value) {
-        var Days = 10;
-        var exp = new Date();
-        exp.setTime(exp.getTime() + Days * 24 * 60 * 60 * 1000);
-        document.cookie = name + "=" + escape(value) + ";expires=" + exp.toGMTString();
-    }
-
-    //读取cookies
-    function getCookie(name) {
-        var arr, reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");
-
-        if (arr = document.cookie.match(reg))
-
-            return unescape(arr[2]);
-        else
-            return null;
-    }
-
-
-    function winstart(num) {
-        if (getCookie('noshowpopup' + '20201214-20201220') == '1' && num != 5) {
-            return;
-        }
-        var str = '<div class="applewinner">';
-        if (num == 4) {
-            str += '<div class="winnername">';
-            str += '<div class="winnernamediv">周期：20201019-20201025</div>';
-            str += '<div class="winnernamediv">一等奖 中奖用户：e****8</div>';
-            str += '<div class="winnernamediv">二等奖 中奖用户：ht***aa</div>';
-            str += '<div class="winnernamediv">三等奖 中奖用户：SS****35</div>';
-            str += '</div>'
-        } else {
-
-
-            if (num == 5) {
-                str += '<div class="serverbtn" onclick="taketicket()"><img src="https://n7ws.jnfzdz.cn/sy2/images/index/winbtn2.png"><img src="https://n7ws.jnfzdz.cn/sy2/images/index/_winbtn2.png"></div>';
-            } else {
-                str += '<div class="serverbtn" onclick="linkserver()"><img src="https://n7ws.jnfzdz.cn/sy2/images/index/winbtn.png"><img src="https://n7ws.jnfzdz.cn/sy2/images/index/_winbtn.png"></div>';
+            function latestNews() {
+                $( parent.document ).find( ".latest_news, .mask_pop" ).show();
+                $( parent.document ).find( ".btn_close" ).click(function(){
+                    $( parent.document ).find( ".latest_news, .mask_pop" ).remove();
+                })
             }
 
 
-        }
-
-
-        str += '<div class="appleClosebtn" onclick="appleclose(' + num + ')"></div>';
-        str += '</div>';
-        $str = $(str);
-        $str.css("background-image", "url(https://n7ws.jnfzdz.cn/sy2/images/index//win" + num + ".png)");
-        $(".winnerdiv").html($str);
-        $(".winnerdiv").show()
-
-    }
-
-
-    function appleclose(num) {
-        if (num == 5) {
-            console.log("no save cookie")
-        } else {
-
-
-            if (-1 == 5) { //已中奖
-                setCookie('noshowpopup' + '20201214-20201220', 1);
-
+        });
+        $( document ).ready( function () {
+            for(i=0;i<$("#guide > a").length;i++){
+                $("#guide > a:eq("+i+")").click({id:i},function(e) {
+                    n=e.data.id;
+                    $("#guide > a, #guide #guide-inner > div").removeClass("current");
+                    $("#guide > a:eq("+n+"), #guide #guide-inner > div:eq("+n+")").addClass("current");
+                });
             }
-        }
+            $("#guide > a").on("click", function(e){
+                e.stopPropagation();
+            });
+        });
 
-        $(".winnerdiv").hide()
-    }
-
-    function taketicket() {
-        location.href = '/activity_main.shtml';
-    }
-
-    function linkserver() {
-        window.open('https://direct.lc.chat/8319881/')
-    }
-
-
-</script>
-{include file="footer" /}
+    </script>
+    <!--//foot//-->
+    {include file="footer" /}
