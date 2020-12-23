@@ -2102,6 +2102,10 @@ body[id^=lan_] .base-parameter .info {
 .icon-lock {
     background-position: -34px -158px;
 }
+.choose-model, .choose-multiple {
+    display: inline-block;
+    position: relative;
+}
 .choose-bet em {
     padding: 0 6px
 }
