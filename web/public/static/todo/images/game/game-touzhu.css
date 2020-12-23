@@ -471,14 +471,14 @@ body {
     margin: 0
 }
 
-.header .logo:before {
+/* .header .logo:before {
     content: '';
     display: inline-block;
     height: 100%;
     position: relative;
     vertical-align: middle;
     width: 0
-}
+} */
 
 .logo a {
     width: 64px;
