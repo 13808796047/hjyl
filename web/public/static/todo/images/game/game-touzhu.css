@@ -1516,6 +1516,8 @@ body {
     display: inline-block;
     width: 60px;
     height: 36px;
+    font-size: 14px;
+    color: #c09764;
     vertical-align: middle;
     box-shadow: 0 1px 0 rgba(255, 255, 255, .3);
     background: #fafafa;
