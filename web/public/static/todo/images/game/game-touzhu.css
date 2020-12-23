@@ -512,11 +512,11 @@ body {
 
 .deadline {
     float: left;
-    height: 70px;
+    height: 100%;
     margin: 0 0 0 5px;
     padding: 0 20px;
     color: #11396f;
-    width: 190px
+    /* width: 190px */
 }
 
 .clock-area {
@@ -543,10 +543,10 @@ body {
 
 .deadline-text {
     display: block;
-    padding-top: 10px;
+    padding-top: 45px;
     text-align: center;
-    font-weight: 400;
-    color: #fff
+    font-weight: 600;
+    color: #333
 }
 
 .deadline-text strong {
