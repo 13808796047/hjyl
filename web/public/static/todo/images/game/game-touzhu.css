@@ -516,6 +516,7 @@ body {
     margin: 0 0 0 5px;
     padding: 0 20px;
     color: #11396f;
+    position: relative;
     /* width: 190px */
 }
 
@@ -540,6 +541,7 @@ body {
 .a-h {
     margin: -32px 0 0 -36px
 }
+
 .deadline::before {
     border-left-color: rgb(60, 65, 67);
 }
