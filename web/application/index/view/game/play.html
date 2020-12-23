@@ -37,6 +37,37 @@
     <link rel="stylesheet" href="__STATIC__/todo/images/game/game-touzhu.css">
     <script>
         $(function () {
+               function getnowtime() {
+        var Today = new Date();
+        var day_list = ["日", "一", "二", "三", "四", "五", "六"];
+
+        var day = Today.getDay();
+        var h = (Today.getHours() < 10 ? "0" : "") + Today.getHours();
+        var m = (Today.getMinutes() < 10 ? "0" : "") + Today.getMinutes();
+        var s = (Today.getSeconds() < 10 ? "0" : "") + Today.getSeconds();
+
+        var mm =
+          (Today.getMonth() + 1 < 10 ? "0" : "") + (Today.getMonth() + 1);
+        var dd = (Today.getDate() < 10 ? "0" : "") + Today.getDate();
+
+        $(".headerdate").html(
+          Today.getFullYear() +
+            "-" +
+            mm +
+            "-" +
+            dd +
+            " (" +
+            day_list[day] +
+            ") " +
+            h +
+            ":" +
+            m +
+            ":" +
+            s
+        );
+        setTimeout("getnowtime()", 1000);
+      }
+
             $(document).on('click', '.refresh', function () {
                 //自动刷新
                 $.ajax({
@@ -62,60 +93,9 @@
 </div><!-- toolbar -->
 <div id="header" style="background-color: #272630;">
     <div class="clear" id="nav">
-        <div id="logo"><a href="/"></a></div><!-- logo -->
-        <div class="header-dropdown" id="all-games">
-            <span>全部游戏</span>
-            <div class="dropdown-box">
-                <div class="dropdown-box-inner clear">
-                    <div class="all-games1">
-                        {volist name="play_lists['1']" id="vo"}
-                        <a href="./newgame_play.html?curmid={$vo.id}">{$vo.title}</a>
-                        <!--<a href="./newgame_play.html?curmid=5">一分时时彩</a>
-                        <a href="./newgame_play.html?curmid=34">两分时时彩</a>
-                        <a href="./newgame_play.html?curmid=14">腾讯时时彩</a>
-                        <a href="./newgame_play.html?curmid=1">  重庆时时彩</a>-->
-                        {/volist}
-                    </div>
-                    <!-- all-games1 -->
-                    <div class="all-games2">
-                        {volist name="play_lists['2']" id="vo"}
-                        <a href="./newgame_play.html?curmid={$vo.id}">{$vo.title}</a>
-                        {/volist}
-                        <!--<a href="./newgame_play.html?curmid=38">秒秒11选5</a>
-                        <a href="./newgame_play.html?curmid=39">一分11选5</a>-->
-                        <!--<a href="./newgame_play.html?curmid=2726">两分11选5</a>
-                        <a href="./newgame_play.html?curmid=4655">五分11选5</a>
-                        <a href="./newgame_play.html?curmid=174"> 山东11选5</a>-->
-                        <!--<a href="./newgame_play.html?curmid=16"> 江西11选5</a>
-                        <a href="./newgame_play.html?curmid=6"> 广东11选5</a>-->
-                    </div>
-                    <!-- all-games2 -->
-                    <div class="all-games3">
-                        {volist name="play_lists['3']" id="vo"}
-                        <a href="./newgame_play.html?curmid={$vo.id}">{$vo.title}</a>
-                        {/volist}
-                        <!--<a href="./newgame_play.html?curmid=2872">极速3D</a>-->
-                        <!--<a href="./newgame_play.html?curmid=9"> 福彩3D</a>-->
-                        <!--<a href="./newgame_play.html?curmid=615"> 体彩P3</a>-->
-
-                        <!-- <a href="#" onclick="sAlert('敬请期待')">福彩3D</a> -->
-                        <!-- <a href="#" onclick="sAlert('敬请期待')">体彩P3</a> -->
-                        <!--<a href="./game_play.html?curmid=341">北京快乐8</a>-->
-                    </div>
-                    <!-- all-games3 -->
-                    <div class="all-games4">
-                        {volist name="play_lists['6']" id="vo"}
-                        <a href="./newgame_play.html?curmid={$vo.id}">{$vo.title}</a>
-                        {/volist}
-                    </div><!-- all-games4 -->
-                    <div class="all-games5">
-                        <a href="./newgame_play.html?curmid=46">皇家龙凤</a>
-                    </div><!-- all-games5 -->
-                </div>
-                <!-- dropdown-box-inner -->
-            </div>
-            <!-- dropdown-box -->
-        </div><!-- all-games -->
+          <div class="headerleft">
+            <div class="headerdate">2020-12-22 (二) 21:17:08</div>
+          </div>
         <!--<div id="toogle_bell" class="bell_on"></div>--><!-- toogle_bell -->
         <div class="clear" id="navbar">
             <ul>
