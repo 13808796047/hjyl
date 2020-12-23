@@ -825,7 +825,7 @@ body {
 }
 
 .header-links a {
-    background: #033d39;
+    background:#c39763;
     display: block;
     line-height: 26px;
     margin: 0 0 9px;
@@ -3644,7 +3644,7 @@ ul.lottery-name+ul li:hover a {
 
 #lan_en .header-links a:hover,
 #lan_vm .header-links a:hover {
-    background: #092422
+    background:#c39763
 }
 
 #lan_en .play-select-content dl {
