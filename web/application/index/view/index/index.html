@@ -14,488 +14,493 @@
 <!-- <![endif]-->
 
 <style>
-    #news-and-events ul li {
-        font-size: 14px;
-        line-height: 30px;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        padding: 0 0 0 3%;
-        position: relative;
-        width: 97%
-    }
-
-    #news-and-events ul li + li {
-        border-top: 1px solid #e0e0e0
-    }
-
-    #news-and-events ul li:after, #news-and-events ul li:before {
-        border-style: solid;
-        border-width: 5px 0 5px 5px;
-        border-color: transparent transparent transparent #a1a1a1;
-        position: absolute;
-        content: "";
-        left: 0;
-        top: 10px
-    }
-
-    #news-and-events ul li:after {
-        border-color: transparent transparent transparent #eee;
-        position: absolute;
-        left: -2px
-    }
-
-    #news-and-events .news {
-        margin-left: 20px
-    }
-
-    #news-and-events .news li a {
-        color: #000;
-        font-size: 18px
-    }
-
-    #news-and-events .news li + li a {
-        color: #6e6e6e;
-        font-size: 14px
-    }
-
-    #news-and-events .news li a:hover {
-        color: #d34a71
-    }
-
-    .bgtitle, .setContent {
-        display: none;
-    }
-
-    /* 舊版隱藏 留著先不刪 */
-    .width70then {
-        width: 70px;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
-
-    .width100then {
-        width: 100px;
-        text-indent: 10px;
-    }
-
-
-    .winnerdiv {
-        width: 100%;
-        height: 100%;
-        position: fixed;
-        z-index: 999999999;
-        background-color: rgba(0, 0, 0, 0.8);
-        top: 0;
-        left: 0;
-        display: none;
-    }
-
-    .applewinner {
-        width: 750px;
-        height: 539px;
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        margin: auto;
-    }
-
-    .appleClosebtn {
-        width: 375px;
-        height: 250px;
-        position: absolute;
-        right: 0;
-        cursor: pointer;
-    }
-
-    .serverbtn {
-
-        width: 750px;
-        height: 100px;
-        position: absolute;
-        bottom: -100px;
-        cursor: pointer;
-        overflow: hidden;
-    }
-
-    .serverbtn:hover img:first-child {
-        display: none;
-    }
-
-    .winnername {
-        width: 360px;
-        font-size: 20px;
-        color: #fff;
-        position: absolute;
-        top: 290px;
-        text-align: center;
-        line-height: 38px;
-        left: 0;
-        right: 0;
-        margin: auto;
-    }
-
-    .winnernamediv {
-
-        width: 360px;
-        background-color: #1d2140;
-        color: #fff;
-        display: inline-block;
-        border-radius: 100px;
-
-        margin-bottom: 10px;
-    }
+  #news-and-events ul li {
+    font-size: 14px;
+    line-height: 30px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding: 0 0 0 3%;
+    position: relative;
+    width: 97%
+  }
+  
+  #news-and-events ul li + li {
+    border-top: 1px solid #e0e0e0
+  }
+  
+  #news-and-events ul li:after, #news-and-events ul li:before {
+    border-style: solid;
+    border-width: 5px 0 5px 5px;
+    border-color: transparent transparent transparent #a1a1a1;
+    position: absolute;
+    content: "";
+    left: 0;
+    top: 10px
+  }
+  
+  #news-and-events ul li:after {
+    border-color: transparent transparent transparent #eee;
+    position: absolute;
+    left: -2px
+  }
+  
+  #news-and-events .news {
+    margin-left: 20px
+  }
+  
+  #news-and-events .news li a {
+    color: #000;
+    font-size: 18px
+  }
+  
+  #news-and-events .news li + li a {
+    color: #6e6e6e;
+    font-size: 14px
+  }
+  
+  #news-and-events .news li a:hover {
+    color: #d34a71
+  }
+  
+  .bgtitle, .setContent {
+    display: none;
+  }
+  
+  /* 舊版隱藏 留著先不刪 */
+  .width70then {
+    width: 70px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  .width100then {
+    width: 100px;
+    text-indent: 10px;
+  }
+  
+  
+  .winnerdiv {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: 999999999;
+    background-color: rgba(0, 0, 0, 0.8);
+    top: 0;
+    left: 0;
+    display: none;
+  }
+  
+  .applewinner {
+    width: 750px;
+    height: 539px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+  }
+  
+  .appleClosebtn {
+    width: 375px;
+    height: 250px;
+    position: absolute;
+    right: 0;
+    cursor: pointer;
+  }
+  
+  .serverbtn {
+    
+    width: 750px;
+    height: 100px;
+    position: absolute;
+    bottom: -100px;
+    cursor: pointer;
+    overflow: hidden;
+  }
+  
+  .serverbtn:hover img:first-child {
+    display: none;
+  }
+  
+  .winnername {
+    width: 360px;
+    font-size: 20px;
+    color: #fff;
+    position: absolute;
+    top: 290px;
+    text-align: center;
+    line-height: 38px;
+    left: 0;
+    right: 0;
+    margin: auto;
+  }
+  
+  .winnernamediv {
+    
+    width: 360px;
+    background-color: #1d2140;
+    color: #fff;
+    display: inline-block;
+    border-radius: 100px;
+    
+    margin-bottom: 10px;
+  }
 
 
 </style>
 
 <div class="default_center">
-
-    <div class="_rows  mb-10">
-        <div style="width: 100%">
-            <!-- <div class="full-bg" style="background-image: url(https://n7ws.jnfzdz.cn/sy2/images/3new/index/banner-1.png)"></div> -->
-            <!--            <div id="owl2" class="owl-carousel owl-theme owl-loaded owl-drag">-->
-
-            <!--                &lt;!&ndash; <a href="/?controller=sbgame&action=lobby&view=0"><img src="https://n7ws.jnfzdz.cn/sy2/images/3new/index/14.jpg"></a>&ndash;&gt;-->
-
-
-            <!--                &lt;!&ndash; <a href="/?controller=kumagame&action=lobby"><img src="https://n7ws.jnfzdz.cn/sy2/images/3new/index/3.jpg"></a> &ndash;&gt;-->
-
-
-            <!--                <div class="owl-stage-outer">-->
-            <!--                    <div class="owl-stage"-->
-            <!--                         style="transform: translate3d(-1150px, 0px, 0px); transition: all 0.3s ease 0s; width: 11730px;">-->
-            <!--                        <div class="owl-item cloned" style="width: 779px; margin-right: 3px;"><a-->
-            <!--                                href="/newgame_play.html?curmid=20" one-link-mark="yes"><img-->
-            <!--                                src="__IMG__/index/BJPK10-banner24.jpg"/></a></div>-->
-            <!--                        <div class="owl-item cloned" style="width: 779px; margin-right: 3px;"><a-->
-            <!--                                href="/recharge/index?tag=cz" one-link-mark="yes"><img-->
-            <!--                                src="__IMG__/index/banner_20170323141710.jpg"/></a></div>-->
-            <!--                        <div class="owl-item cloned" style="width: 779px; margin-right: 3px;"><a-->
-            <!--                                href="/activity/index.html" one-link-mark="yes"><img-->
-            <!--                                src="__IMG__/index/banner_20160714-2.jpg"/></a></div>-->
-            <!--                        <div class="owl-item cloned" style="width: 779px; margin-right: 3px;"><a-->
-            <!--                                href="/recharge/index?tag=cz" one-link-mark="yes"><img-->
-            <!--                                src="__IMG__/index/R_bnr_QQ_01_20170509.jpg"/></a></div>-->
-
-            <!--                    </div>-->
-            <!--                </div>-->
-            <!--                <div class="owl-nav disabled">-->
-            <!--                    <button type="button" role="presentation" class="owl-prev"><span aria-label="Previous">‹</span>-->
-            <!--                    </button>-->
-            <!--                    <button type="button" role="presentation" class="owl-next"><span aria-label="Next">›</span>-->
-            <!--                    </button>-->
-            <!--                </div>-->
-            <!--                <div class="owl-dots">-->
-            <!--                    <button role="button" class="owl-dot"><span></span></button>-->
-            <!--                    <button role="button" class="owl-dot"><span></span></button>-->
-            <!--                    <button role="button" class="owl-dot"><span></span></button>-->
-            <!--                    <button role="button" class="owl-dot"><span></span></button>-->
-            <!--                    <button role="button" class="owl-dot"><span></span></button>-->
-            <!--                    <button role="button" class="owl-dot"><span></span></button>-->
-            <!--                    <button role="button" class="owl-dot active"><span></span></button>-->
-            <!--                </div>-->
-            <!--            </div>-->
-            <div id="banner" class="sy-m-banner" style="border-radius: 12px">
-                <ul class="pic">
-                    <li><a href="/newgame_play.html?curmid=20"><img src="__IMG__/index/BJPK10-banner24.jpg"/></a></li>
-                    <!--<li><a href="#opener0"><img src="__IMG__/index/R88-wap-banner-0801.jpg"/></a></li>-->
-                    <li><a href="/recharge/index?tag=cz"><img src="__IMG__/index/banner_20170323141710.jpg"/></a></li>
-                    <li><a href="/activity/index.html"><img src="__IMG__/index/banner_20160714-2.jpg"/></a></li>
-                    <li><a href="/recharge/index?tag=cz"><img src="__IMG__/index/R_bnr_QQ_01_20170509.jpg"/></a></li>
-                </ul>
-                <a class="arrow-left" href="javascript:void(0)"></a>
-                <a class="arrow-right" href="javascript:void(0)"></a>
-                <ul class="banner-page"></ul>
-            </div>
-        </div>
-        <!--        <div style="width: 32%">-->
-        <!--            <div class="full-bg download">-->
-        <!--                <div class="phone">-->
-        <!--                    <img src="__IMG__/index/phone.png">-->
-        <!--                </div>-->
-        <!--                <div class="download-text">-->
-        <!--                    <div>手机端下载</div>-->
-        <!--                    <div>享受随时美妙便捷体验</div>-->
-        <!--                </div>-->
-        <!--                <div class="qrcode-wap">-->
-        <!--                    <img src="__IMG__/index/qrcode-wap.png">-->
-        <!--                    <div style="margin-top: 4px;">WAP</div>-->
-        <!--                </div>-->
-        <!--                <div class="qrcode-app">-->
-        <!--                    <img src="__IMG__/index/qrcode-app.png">-->
-        <!--                    <div style="margin-top: 4px;">APP</div>-->
-        <!--                </div>-->
-        <!--            </div>-->
-        <!--        </div>-->
+  
+  <div class="_rows  mb-10">
+    <div style="width: 100%">
+      <!-- <div class="full-bg" style="background-image: url(https://n7ws.jnfzdz.cn/sy2/images/3new/index/banner-1.png)"></div> -->
+      <!--            <div id="owl2" class="owl-carousel owl-theme owl-loaded owl-drag">-->
+      
+      <!--                &lt;!&ndash; <a href="/?controller=sbgame&action=lobby&view=0"><img src="https://n7ws.jnfzdz.cn/sy2/images/3new/index/14.jpg"></a>&ndash;&gt;-->
+      
+      
+      <!--                &lt;!&ndash; <a href="/?controller=kumagame&action=lobby"><img src="https://n7ws.jnfzdz.cn/sy2/images/3new/index/3.jpg"></a> &ndash;&gt;-->
+      
+      
+      <!--                <div class="owl-stage-outer">-->
+      <!--                    <div class="owl-stage"-->
+      <!--                         style="transform: translate3d(-1150px, 0px, 0px); transition: all 0.3s ease 0s; width: 11730px;">-->
+      <!--                        <div class="owl-item cloned" style="width: 779px; margin-right: 3px;"><a-->
+      <!--                                href="/newgame_play.html?curmid=20" one-link-mark="yes"><img-->
+      <!--                                src="__IMG__/index/BJPK10-banner24.jpg"/></a></div>-->
+      <!--                        <div class="owl-item cloned" style="width: 779px; margin-right: 3px;"><a-->
+      <!--                                href="/recharge/index?tag=cz" one-link-mark="yes"><img-->
+      <!--                                src="__IMG__/index/banner_20170323141710.jpg"/></a></div>-->
+      <!--                        <div class="owl-item cloned" style="width: 779px; margin-right: 3px;"><a-->
+      <!--                                href="/activity/index.html" one-link-mark="yes"><img-->
+      <!--                                src="__IMG__/index/banner_20160714-2.jpg"/></a></div>-->
+      <!--                        <div class="owl-item cloned" style="width: 779px; margin-right: 3px;"><a-->
+      <!--                                href="/recharge/index?tag=cz" one-link-mark="yes"><img-->
+      <!--                                src="__IMG__/index/R_bnr_QQ_01_20170509.jpg"/></a></div>-->
+      
+      <!--                    </div>-->
+      <!--                </div>-->
+      <!--                <div class="owl-nav disabled">-->
+      <!--                    <button type="button" role="presentation" class="owl-prev"><span aria-label="Previous">‹</span>-->
+      <!--                    </button>-->
+      <!--                    <button type="button" role="presentation" class="owl-next"><span aria-label="Next">›</span>-->
+      <!--                    </button>-->
+      <!--                </div>-->
+      <!--                <div class="owl-dots">-->
+      <!--                    <button role="button" class="owl-dot"><span></span></button>-->
+      <!--                    <button role="button" class="owl-dot"><span></span></button>-->
+      <!--                    <button role="button" class="owl-dot"><span></span></button>-->
+      <!--                    <button role="button" class="owl-dot"><span></span></button>-->
+      <!--                    <button role="button" class="owl-dot"><span></span></button>-->
+      <!--                    <button role="button" class="owl-dot"><span></span></button>-->
+      <!--                    <button role="button" class="owl-dot active"><span></span></button>-->
+      <!--                </div>-->
+      <!--            </div>-->
+      <div id="banner" class="sy-m-banner" style="border-radius: 12px">
+        <ul class="pic">
+          <li><a href="/newgame_play.html?curmid=20"><img src="__IMG__/index/BJPK10-banner24.jpg"/></a></li>
+          <!--<li><a href="#opener0"><img src="__IMG__/index/R88-wap-banner-0801.jpg"/></a></li>-->
+          <li><a href="/recharge/index?tag=cz"><img src="__IMG__/index/banner_20170323141710.jpg"/></a></li>
+          <li><a href="/activity/index.html"><img src="__IMG__/index/banner_20160714-2.jpg"/></a></li>
+          <li><a href="/recharge/index?tag=cz"><img src="__IMG__/index/R_bnr_QQ_01_20170509.jpg"/></a></li>
+        </ul>
+        <a class="arrow-left" href="javascript:void(0)"></a>
+        <a class="arrow-right" href="javascript:void(0)"></a>
+        <ul class="banner-page"></ul>
+      </div>
     </div>
-
-    <!--    <div class="newsbar mb-20">-->
-    <!--        <div class="newsbarcontent">-->
-    <!--            <table width="100%" border="0" cellspacing="0" cellpadding="0" height="100%">-->
-    <!--                <tbody>-->
-    <!--                <tr>-->
-    <!--                    <td>-->
-    <!--                        <div class="newsIcon">最新公告 :</div>-->
-    <!--                    </td>-->
-    <!--                    <td valign="middle">-->
-    <!--                        <div class="newsrundiv">-->
-    <!--                            <ul>-->
-    <!--                                <li style="top: 30px;"><a-->
-    <!--                                        href="https://3niu18.com/help_main.shtml?tag=notice&amp;nid=767"-->
-    <!--                                        one-link-mark="yes">香港六合彩上市公告&nbsp;|&nbsp;2020-11-20</a></li>-->
-    <!--                                <li style="top: 30px;"><a-->
-    <!--                                        href="https://3niu18.com/help_main.shtml?tag=notice&amp;nid=780"-->
-    <!--                                        one-link-mark="yes">沙巴体育维护公告&nbsp;|&nbsp;2020-12-14</a></li>-->
-    <!--                                <li style="top: 30px;"><a-->
-    <!--                                        href="https://3niu18.com/help_main.shtml?tag=notice&amp;nid=779"-->
-    <!--                                        one-link-mark="yes">银行维护公告&nbsp;|&nbsp;2020-12-13</a></li>-->
-    <!--                                <li style="top: 30px;"><a-->
-    <!--                                        href="https://3niu18.com/help_main.shtml?tag=notice&amp;nid=778"-->
-    <!--                                        one-link-mark="yes">平台维护升级通知&nbsp;|&nbsp;2020-12-07</a></li>-->
-    <!--                                <li style="top: 21.0422px;"><a-->
-    <!--                                        href="https://3niu18.com/help_main.shtml?tag=notice&amp;nid=777"-->
-    <!--                                        one-link-mark="yes">银行维护公告&nbsp;|&nbsp;2020-12-06</a></li>-->
-    <!--                                <li style="top: 30px;"><a-->
-    <!--                                        href="https://3niu18.com/help_main.shtml?tag=notice&amp;nid=776"-->
-    <!--                                        one-link-mark="yes">浦发银行维护公告&nbsp;|&nbsp;2020-12-05</a></li>-->
-    <!--                            </ul>-->
-    <!--                        </div>-->
-    <!--                    </td>-->
-    <!--                </tr>-->
-    <!--                </tbody>-->
-    <!--            </table>-->
+    <!--        <div style="width: 32%">-->
+    <!--            <div class="full-bg download">-->
+    <!--                <div class="phone">-->
+    <!--                    <img src="__IMG__/index/phone.png">-->
+    <!--                </div>-->
+    <!--                <div class="download-text">-->
+    <!--                    <div>手机端下载</div>-->
+    <!--                    <div>享受随时美妙便捷体验</div>-->
+    <!--                </div>-->
+    <!--                <div class="qrcode-wap">-->
+    <!--                    <img src="__IMG__/index/qrcode-wap.png">-->
+    <!--                    <div style="margin-top: 4px;">WAP</div>-->
+    <!--                </div>-->
+    <!--                <div class="qrcode-app">-->
+    <!--                    <img src="__IMG__/index/qrcode-app.png">-->
+    <!--                    <div style="margin-top: 4px;">APP</div>-->
+    <!--                </div>-->
+    <!--            </div>-->
     <!--        </div>-->
-    <!--    </div>-->
-
-    <div class="_rows index_rows-10 mb-20" id="news-and-events">
-        <div style="width: 51%">
-            <div class="title">中奖信息</div>
-            <div class="row_height">
-                <div class="full-bg"
-                     style="background-image: url(https://n7ws.jnfzdz.cn/sy2/images/3new/index/lottery-1.png); padding: 5px;">
-                    <div id="qoo">
-                        <ul class="bonus-message">
-                            <li>恭喜8＊＊在极速3D中了6,000.00元</li>
-                            <li>恭喜y＊在一分11选5中了16,840.00元</li>
-                            <li>恭喜亮＊在一分11选5中了6,336.00元</li>
-                            <li>恭喜8＊＊在秒秒时时彩中了29,280.00元</li>
-                            <li>恭喜8＊＊在一分11选5中了145,530.00元</li>
-                            <li>恭喜8＊＊在秒秒时时彩中了174,600.00元</li>
-                            <li>恭喜8＊＊在秒秒时时彩中了262,752.00元</li>
-                            <li>恭喜捷＊＊在秒秒时时彩中了28,800.00元</li>
-                        </ul>
-                    </div>
-                    <!--                    <div class="_rows ch_h-100" style="height: 100%;">-->
-                    <!--                        <div style="width: 28%;">-->
-                    <!--                            <div class="full-bg" style="background-color: #1F1A0A; padding: 5px;">-->
-                    <!--                                <div class="lottery-img" id="lottery-img"-->
-                    <!--                                     style="background-image: url(&quot;https://n7ws.jnfzdz.cn/sy2/images/logo/4500.png&quot;);"></div>-->
-                    <!--                                <div class="lottery-title" id="lottery-title">QQ分分彩</div>-->
-                    <!--                                <div class="lottery-info" id="lottery-info">距離<span>20201222-1158</span>期截止</div>-->
-                    <!--                                <div class="lottery-time" id="lottery-time">00:00:49</div>-->
-                    <!--                                <div class="game-btn" id="game-btn"><a class="btn btn-startgame"-->
-                    <!--                                                                       href="https://3niu18.com/newgame_play.shtml?curmid=4500"-->
-                    <!--                                                                       one-link-mark="yes">立即游戏</a></div>-->
-                    <!--                            </div>-->
-                    <!--                        </div>-->
-                    <!--                        <div class="_rows lottery-btns" style="width: 72%;">-->
-                    <!--                            <div class="lotterys" cid="5272"><a-->
-                    <!--                                    href="https://3niu18.com/newgame_play.shtml?curmid=5272"-->
-                    <!--                                    class="btn btn-lotterygame"-->
-                    <!--                                    one-link-mark="yes">HL40秒时时彩</a></div>-->
-                    <!--                            <div class="lotterys" cid="5372"><a-->
-                    <!--                                    href="https://3niu18.com/newgame_play.shtml?curmid=5372"-->
-                    <!--                                    class="btn btn-lotterygame" one-link-mark="yes">HL1.5分时时彩</a>-->
-                    <!--                            </div>-->
-                    <!--                            <div class="lotterys" cid="4600"><a-->
-                    <!--                                    href="https://3niu18.com/newgame_play.shtml?curmid=4600"-->
-                    <!--                                    class="btn btn-lotterygame" one-link-mark="yes">HL40秒11选5</a>-->
-                    <!--                            </div>-->
-                    <!--                            <div class="lotterys" cid="5472"><a-->
-                    <!--                                    href="https://3niu18.com/newgame_play.shtml?curmid=5472"-->
-                    <!--                                    class="btn btn-lotterygame" one-link-mark="yes">HL1.5分11选5</a>-->
-                    <!--                            </div>-->
-                    <!--                            <div class="lotterys" cid="4500"><a-->
-                    <!--                                    href="https://3niu18.com/newgame_play.shtml?curmid=4500"-->
-                    <!--                                    class="btn btn-lotterygame"-->
-                    <!--                                    one-link-mark="yes">QQ分分彩</a></div>-->
-                    <!--                        </div>-->
-                    <!--                    </div>-->
-                </div>
-            </div>
+  </div>
+  
+  <!--    <div class="newsbar mb-20">-->
+  <!--        <div class="newsbarcontent">-->
+  <!--            <table width="100%" border="0" cellspacing="0" cellpadding="0" height="100%">-->
+  <!--                <tbody>-->
+  <!--                <tr>-->
+  <!--                    <td>-->
+  <!--                        <div class="newsIcon">最新公告 :</div>-->
+  <!--                    </td>-->
+  <!--                    <td valign="middle">-->
+  <!--                        <div class="newsrundiv">-->
+  <!--                            <ul>-->
+  <!--                                <li style="top: 30px;"><a-->
+  <!--                                        href="https://3niu18.com/help_main.shtml?tag=notice&amp;nid=767"-->
+  <!--                                        one-link-mark="yes">香港六合彩上市公告&nbsp;|&nbsp;2020-11-20</a></li>-->
+  <!--                                <li style="top: 30px;"><a-->
+  <!--                                        href="https://3niu18.com/help_main.shtml?tag=notice&amp;nid=780"-->
+  <!--                                        one-link-mark="yes">沙巴体育维护公告&nbsp;|&nbsp;2020-12-14</a></li>-->
+  <!--                                <li style="top: 30px;"><a-->
+  <!--                                        href="https://3niu18.com/help_main.shtml?tag=notice&amp;nid=779"-->
+  <!--                                        one-link-mark="yes">银行维护公告&nbsp;|&nbsp;2020-12-13</a></li>-->
+  <!--                                <li style="top: 30px;"><a-->
+  <!--                                        href="https://3niu18.com/help_main.shtml?tag=notice&amp;nid=778"-->
+  <!--                                        one-link-mark="yes">平台维护升级通知&nbsp;|&nbsp;2020-12-07</a></li>-->
+  <!--                                <li style="top: 21.0422px;"><a-->
+  <!--                                        href="https://3niu18.com/help_main.shtml?tag=notice&amp;nid=777"-->
+  <!--                                        one-link-mark="yes">银行维护公告&nbsp;|&nbsp;2020-12-06</a></li>-->
+  <!--                                <li style="top: 30px;"><a-->
+  <!--                                        href="https://3niu18.com/help_main.shtml?tag=notice&amp;nid=776"-->
+  <!--                                        one-link-mark="yes">浦发银行维护公告&nbsp;|&nbsp;2020-12-05</a></li>-->
+  <!--                            </ul>-->
+  <!--                        </div>-->
+  <!--                    </td>-->
+  <!--                </tr>-->
+  <!--                </tbody>-->
+  <!--            </table>-->
+  <!--        </div>-->
+  <!--    </div>-->
+  
+  <div class="_rows index_rows-10 mb-20" id="news-and-events">
+    <div style="width: 51%">
+      <div class="title">中奖信息</div>
+      <div class="row_height">
+        <div class="full-bg"
+             style="background-image: url(https://n7ws.jnfzdz.cn/sy2/images/3new/index/lottery-1.png); padding: 5px;">
+          <div id="qoo">
+            <ul class="bonus-message">
+              <li>恭喜8＊＊在极速3D中了6,000.00元</li>
+              <li>恭喜y＊在一分11选5中了16,840.00元</li>
+              <li>恭喜亮＊在一分11选5中了6,336.00元</li>
+              <li>恭喜8＊＊在秒秒时时彩中了29,280.00元</li>
+              <li>恭喜8＊＊在一分11选5中了145,530.00元</li>
+              <li>恭喜8＊＊在秒秒时时彩中了174,600.00元</li>
+              <li>恭喜8＊＊在秒秒时时彩中了262,752.00元</li>
+              <li>恭喜jx＊＊在秒秒时时彩中了243,800.00元</li>
+              <li>恭喜xd＊＊在秒秒时时彩中了94,800.00元</li>
+              <li>恭喜张＊＊在秒秒时时彩中了162,3393元</li>
+              <li>恭喜sl＊＊在秒秒时时彩中了4,800.00元</li>
+              <li>恭喜lk＊＊在秒秒时时彩中了3,300.00元</li>
+            
+            </ul>
+          </div>
+          <!--                    <div class="_rows ch_h-100" style="height: 100%;">-->
+          <!--                        <div style="width: 28%;">-->
+          <!--                            <div class="full-bg" style="background-color: #1F1A0A; padding: 5px;">-->
+          <!--                                <div class="lottery-img" id="lottery-img"-->
+          <!--                                     style="background-image: url(&quot;https://n7ws.jnfzdz.cn/sy2/images/logo/4500.png&quot;);"></div>-->
+          <!--                                <div class="lottery-title" id="lottery-title">QQ分分彩</div>-->
+          <!--                                <div class="lottery-info" id="lottery-info">距離<span>20201222-1158</span>期截止</div>-->
+          <!--                                <div class="lottery-time" id="lottery-time">00:00:49</div>-->
+          <!--                                <div class="game-btn" id="game-btn"><a class="btn btn-startgame"-->
+          <!--                                                                       href="https://3niu18.com/newgame_play.shtml?curmid=4500"-->
+          <!--                                                                       one-link-mark="yes">立即游戏</a></div>-->
+          <!--                            </div>-->
+          <!--                        </div>-->
+          <!--                        <div class="_rows lottery-btns" style="width: 72%;">-->
+          <!--                            <div class="lotterys" cid="5272"><a-->
+          <!--                                    href="https://3niu18.com/newgame_play.shtml?curmid=5272"-->
+          <!--                                    class="btn btn-lotterygame"-->
+          <!--                                    one-link-mark="yes">HL40秒时时彩</a></div>-->
+          <!--                            <div class="lotterys" cid="5372"><a-->
+          <!--                                    href="https://3niu18.com/newgame_play.shtml?curmid=5372"-->
+          <!--                                    class="btn btn-lotterygame" one-link-mark="yes">HL1.5分时时彩</a>-->
+          <!--                            </div>-->
+          <!--                            <div class="lotterys" cid="4600"><a-->
+          <!--                                    href="https://3niu18.com/newgame_play.shtml?curmid=4600"-->
+          <!--                                    class="btn btn-lotterygame" one-link-mark="yes">HL40秒11选5</a>-->
+          <!--                            </div>-->
+          <!--                            <div class="lotterys" cid="5472"><a-->
+          <!--                                    href="https://3niu18.com/newgame_play.shtml?curmid=5472"-->
+          <!--                                    class="btn btn-lotterygame" one-link-mark="yes">HL1.5分11选5</a>-->
+          <!--                            </div>-->
+          <!--                            <div class="lotterys" cid="4500"><a-->
+          <!--                                    href="https://3niu18.com/newgame_play.shtml?curmid=4500"-->
+          <!--                                    class="btn btn-lotterygame"-->
+          <!--                                    one-link-mark="yes">QQ分分彩</a></div>-->
+          <!--                        </div>-->
+          <!--                    </div>-->
         </div>
-        <div style="width: 49%">
-            <div class="title">娱乐大厅</div>
-            <div class="_rows index_rows-2 row_height ch_h-100">
-                <div style="width: 45%;">
-                    <div class="full-bg"
-                         style="background-image: url(https://n7ws.jnfzdz.cn/sy2/images/3new/index/game-1.png);">
-                        <div class="game-text">开元棋牌</div>
-                        <div class="game-btn"><a class="btn btn-startgame"
-                                                 href="https://3niu18.com/?controller=kygame&amp;action=lobby"
-                                                 one-link-mark="yes">立即游戏</a></div>
-                    </div>
-                </div>
-                <div style="width: 27.5%;">
-                    <div class="full-bg"
-                         style="background-image: url(https://n7ws.jnfzdz.cn/sy2/images/3new/index/game-2.png);">
-                        <div class="game-text">体育投注</div>
-                        <div class="game-btn"><a class="btn btn-startgame"
-                                                 href="https://3niu18.com/?controller=sbgame&amp;action=lobby&amp;view=0"
-                                                 one-link-mark="yes">立即游戏</a></div>
-                    </div>
-                </div>
-                <div style="width: 27.5%;">
-                    <div class="full-bg"
-                         style="background-image: url(https://n7ws.jnfzdz.cn/sy2/images/3new/index/game-3.png);">
-                        <div class="game-text">真人娱乐</div>
-                        <div class="game-btn"><a class="btn btn-startgame"
-                                                 href="https://3niu18.com/?controller=gplcasino&amp;action=lobby&amp;view=0"
-                                                 one-link-mark="yes">立即游戏</a></div>
-                    </div>
-                </div>
-            </div>
-        </div>
+      </div>
     </div>
-
-    <div class="_rows index_rows-10 mb-20">
-        <div style="width: 73%">
-            <div class="title">电影免费看</div>
-            <div class="_rows index_rows-2">
-                <a href="https://3niu18.com/activity_main.shtml?act=active" one-link-mark="yes"><img
-                        style="width: 830px;" src="__IMG__/index/av.png"></a>
-            </div>
+    <div style="width: 49%">
+      <div class="title">娱乐大厅</div>
+      <div class="_rows index_rows-2 row_height ch_h-100">
+        <div style="width: 45%;">
+          <div class="full-bg"
+               style="background-image: url(https://n7ws.jnfzdz.cn/sy2/images/3new/index/game-1.png);">
+            <div class="game-text">开元棋牌</div>
+            <div class="game-btn"><a class="btn btn-startgame"
+                                     href="https://3niu18.com/?controller=kygame&amp;action=lobby"
+                                     one-link-mark="yes">立即游戏</a></div>
+          </div>
         </div>
-        <div style="width: 27%">
-            <div class="title">优惠活动</div>
-            <div class="index_act_block">
-                <!-- <a class="full-bg" style="background-image: url(https://n7ws.jnfzdz.cn/sy2/images/3new/index/act-1.png);" href="/activity_main.shtml"></a> -->
-                <a class="full-bg"
-                   style="background-image: url(https://n7ws.jnfzdz.cn/sy2/images/3new/index/act-2.png);"
-                   href="https://3niu18.com/activity_main.shtml" one-link-mark="yes"></a>
-                <a class="full-bg"
-                   style="background-image: url(https://n7ws.jnfzdz.cn/sy2/images/3new/index/act-3.png);"
-                   href="https://3niu18.com/activity_main.shtml" one-link-mark="yes"></a>
-            </div>
+        <div style="width: 27.5%;">
+          <div class="full-bg"
+               style="background-image: url(https://n7ws.jnfzdz.cn/sy2/images/3new/index/game-2.png);">
+            <div class="game-text">体育投注</div>
+            <div class="game-btn"><a class="btn btn-startgame"
+                                     href="https://3niu18.com/?controller=sbgame&amp;action=lobby&amp;view=0"
+                                     one-link-mark="yes">立即游戏</a></div>
+          </div>
         </div>
+        <div style="width: 27.5%;">
+          <div class="full-bg"
+               style="background-image: url(https://n7ws.jnfzdz.cn/sy2/images/3new/index/game-3.png);">
+            <div class="game-text">真人娱乐</div>
+            <div class="game-btn"><a class="btn btn-startgame"
+                                     href="https://3niu18.com/?controller=gplcasino&amp;action=lobby&amp;view=0"
+                                     one-link-mark="yes">立即游戏</a></div>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
+  
+  <div class="_rows index_rows-10 mb-20">
+    <div style="width: 73%">
+      <div class="title">电影免费看</div>
+      <div class="_rows index_rows-2">
+        <a href="https://3niu18.com/activity_main.shtml?act=active" one-link-mark="yes"><img
+            style="width: 830px;" src="__IMG__/index/av.png"></a>
+      </div>
+    </div>
+    <div style="width: 27%">
+      <div class="title">优惠活动</div>
+      <div class="index_act_block">
+        <!-- <a class="full-bg" style="background-image: url(https://n7ws.jnfzdz.cn/sy2/images/3new/index/act-1.png);" href="/activity_main.shtml"></a> -->
+        <a class="full-bg"
+           style="background-image: url(https://n7ws.jnfzdz.cn/sy2/images/3new/index/act-2.png);"
+           href="https://3niu18.com/activity_main.shtml" one-link-mark="yes"></a>
+        <a class="full-bg"
+           style="background-image: url(https://n7ws.jnfzdz.cn/sy2/images/3new/index/act-3.png);"
+           href="https://3niu18.com/activity_main.shtml" one-link-mark="yes"></a>
+      </div>
+    </div>
+  </div>
 
 </div>
 
 
 <div class="setContent">
-
-    <div class="clear" id="content2">
-
-        <div class="indexlotterydiv">
-            <div class="hotgametitle">
-                <div class="hotgametitleimg"></div>
-            </div>
-            <div class="hotshop">
-
-                <ul>
-                    <li>
-                        <a href="https://3niu18.com/newgame_play.shtml?curmid=7259" one-link-mark="yes">
-                            <div class="lotterylogoIcon"></div>
-                            <div class="lotterychname nameoe">万人龙虎</div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="https://3niu18.com/newgame_play.shtml?curmid=7455" one-link-mark="yes">
-                            <div class="lotterylogoIcon"></div>
-                            <div class="lotterychname nameoe">万人炸金花</div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="https://3niu18.com/newgame_play.shtml?curmid=4600" one-link-mark="yes">
-                            <div class="lotterylogoIcon"></div>
-                            <div class="lotterychname nameoe">HL40秒11选5</div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="https://3niu18.com/newgame_play.shtml?curmid=5104" one-link-mark="yes">
-                            <div class="lotterylogoIcon"></div>
-                            <div class="lotterychname nameoe">HL一分时时彩</div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="https://3niu18.com/newgame_play.shtml?curmid=2660" one-link-mark="yes">
-                            <div class="lotterylogoIcon"></div>
-                            <div class="lotterychname nameoe">一分时时彩</div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="https://3niu18.com/newgame_play.shtml?curmid=50" one-link-mark="yes">
-                            <div class="lotterylogoIcon"></div>
-                            <div class="lotterychname nameoe">重庆时时彩</div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="https://3niu18.com/newgame_play.shtml?curmid=5531" one-link-mark="yes">
-                            <div class="lotterylogoIcon"></div>
-                            <div class="lotterychname nameoe">极速PK10</div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="https://3niu18.com/newgame_play.shtml?curmid=7735" one-link-mark="yes">
-                            <div class="lotterylogoIcon"></div>
-                            <div class="lotterychname nameoe">安徽11选5</div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="https://3niu18.com/newgame_play.shtml?curmid=7281" one-link-mark="yes">
-                            <div class="lotterylogoIcon"></div>
-                            <div class="lotterychname nameoe">江苏快三</div>
-                        </a>
-                    </li>
-                </ul>
-                <div class="gameRight">
-                    <a href="https://3niu18.com/?controller=agaming&amp;action=lobby" one-link-mark="yes">
-                        <div class="gFish"></div>
-                    </a>
-                    <a class="Av" href="https://3niu18.com/?controller=kumagame&amp;action=lobby"
-                       one-link-mark="yes">
-                        <div class="gAv"></div>
-                    </a>
-                    <a class="Ky" href="https://3niu18.com/?controller=kygame&amp;action=lobby" one-link-mark="yes">
-                        <div class="gKy"></div>
-                    </a>
-                </div>
-            </div>
+  
+  <div class="clear" id="content2">
+    
+    <div class="indexlotterydiv">
+      <div class="hotgametitle">
+        <div class="hotgametitleimg"></div>
+      </div>
+      <div class="hotshop">
+        
+        <ul>
+          <li>
+            <a href="https://3niu18.com/newgame_play.shtml?curmid=7259" one-link-mark="yes">
+              <div class="lotterylogoIcon"></div>
+              <div class="lotterychname nameoe">万人龙虎</div>
+            </a>
+          </li>
+          <li>
+            <a href="https://3niu18.com/newgame_play.shtml?curmid=7455" one-link-mark="yes">
+              <div class="lotterylogoIcon"></div>
+              <div class="lotterychname nameoe">万人炸金花</div>
+            </a>
+          </li>
+          <li>
+            <a href="https://3niu18.com/newgame_play.shtml?curmid=4600" one-link-mark="yes">
+              <div class="lotterylogoIcon"></div>
+              <div class="lotterychname nameoe">HL40秒11选5</div>
+            </a>
+          </li>
+          <li>
+            <a href="https://3niu18.com/newgame_play.shtml?curmid=5104" one-link-mark="yes">
+              <div class="lotterylogoIcon"></div>
+              <div class="lotterychname nameoe">HL一分时时彩</div>
+            </a>
+          </li>
+          <li>
+            <a href="https://3niu18.com/newgame_play.shtml?curmid=2660" one-link-mark="yes">
+              <div class="lotterylogoIcon"></div>
+              <div class="lotterychname nameoe">一分时时彩</div>
+            </a>
+          </li>
+          <li>
+            <a href="https://3niu18.com/newgame_play.shtml?curmid=50" one-link-mark="yes">
+              <div class="lotterylogoIcon"></div>
+              <div class="lotterychname nameoe">重庆时时彩</div>
+            </a>
+          </li>
+          <li>
+            <a href="https://3niu18.com/newgame_play.shtml?curmid=5531" one-link-mark="yes">
+              <div class="lotterylogoIcon"></div>
+              <div class="lotterychname nameoe">极速PK10</div>
+            </a>
+          </li>
+          <li>
+            <a href="https://3niu18.com/newgame_play.shtml?curmid=7735" one-link-mark="yes">
+              <div class="lotterylogoIcon"></div>
+              <div class="lotterychname nameoe">安徽11选5</div>
+            </a>
+          </li>
+          <li>
+            <a href="https://3niu18.com/newgame_play.shtml?curmid=7281" one-link-mark="yes">
+              <div class="lotterylogoIcon"></div>
+              <div class="lotterychname nameoe">江苏快三</div>
+            </a>
+          </li>
+        </ul>
+        <div class="gameRight">
+          <a href="https://3niu18.com/?controller=agaming&amp;action=lobby" one-link-mark="yes">
+            <div class="gFish"></div>
+          </a>
+          <a class="Av" href="https://3niu18.com/?controller=kumagame&amp;action=lobby"
+             one-link-mark="yes">
+            <div class="gAv"></div>
+          </a>
+          <a class="Ky" href="https://3niu18.com/?controller=kygame&amp;action=lobby" one-link-mark="yes">
+            <div class="gKy"></div>
+          </a>
         </div>
-
-
-        <div class="indexAbout">
-            <div class="indexAboutTitle"></div>
-            <div class="indexAboutContent">
-                <div class="cLeft">
-                    <div class="AboutImg"></div>
-                    <div class="AboutTxt">
-                        三牛娱乐为全球博彩爱好者提供最优惠的赔率和最优质的服务，
-                        并正发展成为最受欢迎最具公信力的博彩公司、有高质量的游戏平台、持有创新的市场概念和经营理念。
-                        公司不仅拥有市场上最多样化的游戏投注平台，同时为来自亚洲各国的初级和资深博彩爱好者提供特有的服务并保证高质量的游戏。
-                    </div>
-                </div>
-                <div class="cRight">
-                    <div class="sLogo"></div>
-                    <div class="qr_code">
-                        <a class="qr_code_wap" one-link-mark="yes">
-                            <div></div>
-                            <span class="title_client">WAP</span>
-                        </a>
-                        <a class="qr_code_android" one-link-mark="yes">
-                            <div></div>
-                            <span class="title_client">App</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
+      </div>
+    </div>
+    
+    
+    <div class="indexAbout">
+      <div class="indexAboutTitle"></div>
+      <div class="indexAboutContent">
+        <div class="cLeft">
+          <div class="AboutImg"></div>
+          <div class="AboutTxt">
+            三牛娱乐为全球博彩爱好者提供最优惠的赔率和最优质的服务，
+            并正发展成为最受欢迎最具公信力的博彩公司、有高质量的游戏平台、持有创新的市场概念和经营理念。
+            公司不仅拥有市场上最多样化的游戏投注平台，同时为来自亚洲各国的初级和资深博彩爱好者提供特有的服务并保证高质量的游戏。
+          </div>
         </div>
-    </div><!-- content -->
+        <div class="cRight">
+          <div class="sLogo"></div>
+          <div class="qr_code">
+            <a class="qr_code_wap" one-link-mark="yes">
+              <div></div>
+              <span class="title_client">WAP</span>
+            </a>
+            <a class="qr_code_android" one-link-mark="yes">
+              <div></div>
+              <span class="title_client">App</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div><!-- content -->
 </div>
 
 
@@ -506,10 +511,10 @@
 
 
 <div class="latest_news" hash="051d1b96710c1e394dd645eb3818c02f">
-    <div class="latest_news_header">最新公告<i class="btn_close"></i></div>
-    <!--        <iframe scrolling="no" allowtransparency="true" class="" frameborder="0"-->
-    <!--                src="__IMG__/index/saved_resource(2).html"-->
-    <!--                width="1000" height="500"></iframe>-->
+  <div class="latest_news_header">最新公告<i class="btn_close"></i></div>
+  <!--        <iframe scrolling="no" allowtransparency="true" class="" frameborder="0"-->
+  <!--                src="__IMG__/index/saved_resource(2).html"-->
+  <!--                width="1000" height="500"></iframe>-->
 </div>
 
 <div class="mask_pop"></div><!-- latest_news -->
