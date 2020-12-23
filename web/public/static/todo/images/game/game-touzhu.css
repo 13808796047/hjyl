@@ -2208,6 +2208,12 @@ body[id^=lan_] .base-parameter .info {
     -moz-transition: background .5s;
     -o-transition: background .5s;
     transition: background .5s
+    background: #ebce9d;
+    background: -webkit-linear-gradient(#ebce9d 0, #b98d59 100%);
+    background: -moz-linear-gradient(#ebce9d 0, #b98d59 100%);
+    background: -o-linear-gradient(#ebce9d 0, #b98d59 100%);
+    background: linear-gradient(#ebce9d 0, #b98d59 100%);
+    border: 1px solid #b98d59;
 }
 
 #qz-list,
