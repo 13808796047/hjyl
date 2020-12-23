@@ -579,7 +579,7 @@ body {
 }
 
 .deadline-text strong {
-    color: #fff;
+    color: rgb(133 109 66);
     font-size: 12px;
     font-weight: 400;
     text-shadow: none
