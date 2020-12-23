@@ -2106,6 +2106,40 @@ body[id^=lan_] .base-parameter .info {
     display: inline-block;
     position: relative;
 }
+.choose-model .num-mins {
+    background-position: -130px -28px;
+    border-right: none;
+}
+.choose-model i, .choose-multiple i {
+    display: inline-block;
+    width: 26px!important;
+    height: 26px;
+    line-height: 26px;
+    vertical-align: middle;
+    cursor: pointer;
+    background: url(../../../images/allicon.png) no-repeat;
+    filter: none;
+    border: none;
+}
+.choose-model i, .choose-multiple i {
+    display: inline-block;
+    width: 25px;
+    height: 24px;
+    line-height: 24px;
+    margin-left: -1px;
+    border: 1px solid #CECECE;
+    vertical-align: middle;
+    cursor: pointer;
+    text-align: center;
+    background: #fff;
+    background: -moz-linear-gradient(top,#fff 0,#f1f1f1 50%,#e1e1e1 51%,#f6f6f6 100%);
+    background: -webkit-gradient(linear,left top,left bottom,color-stop(0,#fff),color-stop(50%,#f1f1f1),color-stop(51%,#e1e1e1),color-stop(100%,#f6f6f6));
+    background: -webkit-linear-gradient(top,#fff 0,#f1f1f1 50%,#e1e1e1 51%,#f6f6f6 100%);
+    background: -o-linear-gradient(top,#fff 0,#f1f1f1 50%,#e1e1e1 51%,#f6f6f6 100%);
+    background: -ms-linear-gradient(top,#fff 0,#f1f1f1 50%,#e1e1e1 51%,#f6f6f6 100%);
+    background: linear-gradient(to bottom,#fff 0,#f1f1f1 50%,#e1e1e1 51%,#f6f6f6 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#f6f6f6', GradientType=0 );
+}
 .choose-bet em {
     padding: 0 6px
 }
