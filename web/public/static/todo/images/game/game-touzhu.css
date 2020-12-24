@@ -1256,7 +1256,9 @@ body {
     white-space: nowrap;
     word-wrap: break-word
 }
-
+.title-text th{
+    background: #f5f1eb;
+}
 .chart-table .title-number th {
     padding-top: 0
 }
