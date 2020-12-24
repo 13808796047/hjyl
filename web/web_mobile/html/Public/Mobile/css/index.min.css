@@ -94,7 +94,7 @@ body {
     background: #00883d;
     color: white;
     margin-top: 15px;
-    border-radius: none
+    border-radius: 30px;
 }
 
 .btn-warning:focus,
