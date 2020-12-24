@@ -1247,7 +1247,8 @@ body {
 
 .chart-table {
     width: 96% !important;
-    margin: 0 auto
+    margin: 0 auto;
+    border: 1px solid #dddddd;
 }
 
 .chart-table .title-text th {
