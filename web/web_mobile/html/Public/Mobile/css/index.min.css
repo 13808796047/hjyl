@@ -142,6 +142,18 @@ body {
     border-color: rgb(140, 130, 115);
     background-image: initial;
     background-color: rgb(24, 26, 27);
+    width: 100%;
+    position: relative;
+    height: 110px;
+    line-height: 110px;
+    font-size: 0;
+    border-radius: 200px 200px 200px 200px;
+    -moz-border-radius: 200px;
+    -webkit-border-radius: 200px 200px 200px 200px;
+    border: 0 solid #000000;
+    background: rgba(255, 255, 255, 1);
+    margin: 0 0 25px;
+    
 }
 
 .new-form-control {
