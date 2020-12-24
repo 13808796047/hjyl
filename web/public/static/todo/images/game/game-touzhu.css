@@ -1274,10 +1274,9 @@ body {
     border: none !important
 }
 
-/* .chart-table.table.table-border tbody td:hover {
-    background: #229c92;
-    color: #fff
-} */
+.chart-table.table.table-border tbody td:hover {
+    color: #f2591d;
+}
 
 .game-chart .chart-table td {
     background-color: #e8e8e8;
