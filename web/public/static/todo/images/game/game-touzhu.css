@@ -1877,17 +1877,6 @@ body {
     border-right: none;
 }
 
-.choose-model i, .choose-multiple i {
-    display: inline-block;
-    width: 26px !important;
-    height: 26px;
-    line-height: 26px;
-    vertical-align: middle;
-    cursor: pointer;
-    background: url(./allicon.png) no-repeat;
-    filter: none;
-    border: none;
-}
 
 .choose-model .text,
 .choose-multiple .text {
@@ -2139,10 +2128,6 @@ body[id^=lan_] .base-parameter .info {
     background-position: -187px -28px;
 }
 
-.choose-model .num-mins {
-    background-position: -130px -28px;
-    border-right: none;
-}
 
 .choose-model .num-plus {
     background-position: -159px -28px;
