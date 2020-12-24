@@ -1788,9 +1788,8 @@ body {
 .choose-model .info,
 .choose-multiple .input {
     padding: 3px;
-    color: #097969;
     text-align: center;
-    font-weight: 700
+    font-weight: 700;
 }
 
 .bet-statistics .bet-tips i {
@@ -1832,15 +1831,15 @@ body {
 }
 
 .choose-model .info {
-    display: inline-block;
-    width: 31px;
-    height: 20px;
-    line-height: 18px;
-    border-bottom: 2px solid #b3b3b3;
-    box-shadow: inset 0 0 5px rgba(0, 0, 0, .1);
-    vertical-align: middle;
-    font-size: 12px;
-    background: #fff
+display: inline-block;
+width: 31px;
+height: 18px;
+line-height: 18px;
+background-color: #FFF;
+box-shadow: none;
+color: #282828;
+vertical-align: middle;
+font-size: 12px;
 }
 
 .choose-model .choose-input {
