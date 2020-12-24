@@ -3246,10 +3246,6 @@ body[id^=lan_] .base-parameter .info {
     margin: 0 15px 0 0
 }
 
-#header {
-    height: 44px
-}
-
 .right-toolbar .balance {
     height: 50px;
     margin: -2px 0 0;
