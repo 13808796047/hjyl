@@ -1306,12 +1306,12 @@ body {
 }
 
 #J-history-control table a {
-    color: #3574AE
+    color: #f2591d
 }
 
 .chart-table.table.table-border tbody td:hover a,
 .chart-table.table.table-border tbody td:hover span {
-    color: #FFF !important
+    color: rgb(184, 123, 43) !important
 }
 
 .chart-table .issue-numbers,
