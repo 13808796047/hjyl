@@ -1486,9 +1486,7 @@ input {
 	border-right: 1px solid rgba(255,255,255,.3);
 	background: #023439;
 }
-.w-bar2 :first-child{
-	padding-left: 20px;
-}
+
 .w-bar-ext2 {
 	display: none;
 	/*float: right;
