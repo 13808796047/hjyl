@@ -1029,18 +1029,21 @@
 	/* padding-right: 10px; */
 	/* display: inline; */
 	text-align: center;
-	width: 20px;
+	width: 25px;
 	line-height: 100px !important;
 }
 .pp-number {
 	/* float: left; */
 	/* display: inline; */
-	display: flex;
-	justify-content: space-between;
+	/* display: flex; */
+	/* justify-content: space-between; */
 	flex: 1;
 	/* width: 240px; */
 	margin-right: 10px;
 	margin-top: 10px;
+}
+.pp-number>div{
+	float: none !important;
 }
 .pp-action {
 	/* float: left; */
