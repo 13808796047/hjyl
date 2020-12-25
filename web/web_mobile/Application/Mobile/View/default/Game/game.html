@@ -59,12 +59,12 @@
         </div>
       </div>
       <div style=" background-color: #5E5756;">
-        <div style="padding: 5px 10px; background: #000; border-radius: 15px;float:left;">
+        <div style="padding: 5px 10px; background: #000; border-radius: 5px;float:left;">
           <php>
             $groups2 = array(); $i=0; foreach($groups as $group) { if($group['type']==$types[$type]['type']) {
             $groups2[$i] = $group; $i++; } }
           </php>
-          <a style="color:#fff;font-size:18px;" href="javascript: void(0)" id="groupMenu" onclick="showGroup()">{$groups2[0]['groupName']}▽</a>
+          <a style="color:#fff;font-size:16px;" href="javascript: void(0)" id="groupMenu" onclick="showGroup()">{$groups2[0]['groupName']}▽</a>
           <div
               style="width:240px;box-shadow: 0 0 10px rgba(0,0,0,.8);opacity: .9;    border-radius: 5px;position:absolute;z-index:25;background: #f7f7f7;visibility:hidden"
               id="group" onclick="hideGroup()">
