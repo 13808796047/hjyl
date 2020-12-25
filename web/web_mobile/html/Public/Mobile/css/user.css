@@ -1026,14 +1026,17 @@
 .title {
 	height: 100px;
 	/* float: left; */
-	padding-right: 10px;
+	/* padding-right: 10px; */
 	/* display: inline; */
+	text-align: center;
 	width: 20px;
 	line-height: 100px !important;
 }
 .pp-number {
 	/* float: left; */
 	/* display: inline; */
+	display: flex;
+	justify-content: space-between;
 	flex: 1;
 	/* width: 240px; */
 	margin-right: 10px;
@@ -1041,7 +1044,8 @@
 }
 .pp-action {
 	/* float: left; */
-	width: 135px;
+	width: 85px;
+
 	/* display: inline; */
 
 }
@@ -1059,9 +1063,9 @@
 	font-family: Arial,
 	"微軟正黑體";
 	display: inline-block;
-	margin-right: 10px;
-	    margin-top: 5px;
-	    margin-bottom: 10px;
+	/* margin-right: 10px; */
+	    /* margin-top: 5px; */
+	    /* margin-bottom: 10px; */
 	width: 33px;
 	height: 33px;
 	color: #8C8C8C;
