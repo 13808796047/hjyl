@@ -1026,7 +1026,7 @@
 	height: 62px;
 	float: left;
 	width: 5%;
-	padding-left: 10px;
+	padding-right: 10px;
 	display: inline;
 	line-height: 62px !important;
 }
@@ -1041,7 +1041,7 @@
 	float: left;
 	width: 20%;
 	display: inline;
-	margin-top:10px;
+
 }
 
 .code {
