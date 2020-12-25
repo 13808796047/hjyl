@@ -1056,13 +1056,13 @@
 	font-family: Arial,
 	"微軟正黑體";
 	display: block;
-	width: 77px;
-	height: 77px;
+	width: 33px;
+	height: 33px;
 	color: #8C8C8C;
 	font-size: 40px;
 	text-align: center;
-	line-height: 77px;
-	border-radius: 77px;
+	line-height: 33px;
+	border-radius: 50%;
 	background-color: #fff;
 	border: 1px solid #B3B3B3;
 }
