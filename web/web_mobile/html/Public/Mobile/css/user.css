@@ -1018,29 +1018,31 @@
 /* game */
 .pp {
 	margin-top:10px;
-	float:left;
-	display:inline;
+	/* float:left; */
+	/* display:inline; */
 	width:100%;
+	display: flex;
 }
 .title {
 	height: 100px;
-	float: left;
+	/* float: left; */
 	padding-right: 10px;
-	display: inline;
+	/* display: inline; */
 	width: 20px;
 	line-height: 100px !important;
 }
 .pp-number {
-	float: left;
-	display: inline;
-	width: 240px;
+	/* float: left; */
+	/* display: inline; */
+	flex: 1;
+	/* width: 240px; */
 	margin-right: 10px;
 	margin-top: 10px;
 }
 .pp-action {
-	float: left;
+	/* float: left; */
 	width: 135px;
-	display: inline;
+	/* display: inline; */
 
 }
 
