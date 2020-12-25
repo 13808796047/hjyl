@@ -107,7 +107,7 @@
 	overflow:hidden;
 	background-color:#D83652;
 	position:relative;
-	+zoom:1;
+	zoom:1;
 	font-size:12px;
 }
 .m-user-summary .bg {
@@ -192,7 +192,7 @@
 	background-color:#fff;
 	border-bottom:1px solid #DCDCDC;
 	position:relative;
-	+zoom:1;
+	zoom:1;
 	line-height:normal;
 	color:#666;
 }
