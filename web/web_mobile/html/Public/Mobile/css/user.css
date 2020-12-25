@@ -1055,7 +1055,7 @@
 	/* background-image: linear-gradient(to left,#7f8c8d,#95a5a6);  */
 	font-family: Arial,
 	"微軟正黑體";
-	display: block;
+	display: inline-block;
 	width: 33px;
 	height: 33px;
 	color: #8C8C8C;
