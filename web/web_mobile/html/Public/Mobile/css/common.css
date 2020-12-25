@@ -276,8 +276,8 @@ input {
 
 .w-textarea,.w-input {
 	display: inline-block;
-	+display: inline;
-	+zoom: 1;
+	display: inline;
+	zoom: 1;
 	position: relative;
 	width: auto;
 }
@@ -318,8 +318,8 @@ input {
 	padding: 0 24px;
 	position: relative;
 	display: inline-block;
-	+display: inline;
-	+zoom: 1;
+	display: inline;
+	zoom: 1;
 	vertical-align: middle;
 	-webkit-user-select: none;
 	user-select: none;
@@ -1336,8 +1336,8 @@ input {
 
 .w-form-name {
 	display: inline-block;
-	+display: inline;
-	+zoom: 1;
+	display: inline;
+	zoom: 1;
 	width: 138px;
 	text-align: right;
 }
@@ -1345,8 +1345,8 @@ input {
 .w-form-cont {
 	overflow: hidden;
 	display: inline-block;
-	+display: inline;
-	+zoom: 1;
+	display: inline;
+	zoom: 1;
 	vertical-align: top;
 }
 
@@ -1686,7 +1686,7 @@ textarea.w-bar-input {
 
 .w-shareItem .author {
 	position: relative;
-	+zoom: 1;
+	zoom: 1;
 	padding: 10px 0;
 }
 
@@ -2124,7 +2124,7 @@ textarea.w-bar-input {
 }
 
 .g-twoCol,.f-clear {
-	+zoom: 1;
+	zoom: 1;
 }
 
 .g-twoCol:after,.g-twoCol:before,.f-clear:before,.f-clear:after {
