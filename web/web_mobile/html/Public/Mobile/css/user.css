@@ -1032,7 +1032,7 @@
 }
 .pp-number {
 	float: left;
-	width: 64vw;
+	/* width: 64vw; */
 	display: inline;
 	margin-right: 10px;
 	margin-top: 10px;
