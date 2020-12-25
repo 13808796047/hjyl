@@ -1483,8 +1483,8 @@ input {
 	margin-right: -1px;
 	border-right: solid #d5d5d5;*/
 	box-sizing: border-box;
-	border-bottom: 1px solid rgba(255,255,255,.3);
-	border-right: 1px solid rgba(255,255,255,.3);
+	border-bottom: 1px solid #666;
+	border-right: 1px solid #666;
 }
 
 .w-bar-ext2 {
