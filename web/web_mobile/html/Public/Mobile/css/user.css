@@ -1025,20 +1025,21 @@
 .title {
 	height: 62px;
 	float: left;
-	width: 2%;
+	width: 5%;
+	padding-left: 10px;
 	display: inline;
 	line-height: 62px !important;
 }
 .pp-number {
 	float: left;
-	width: 60%;
+	width: 65%;
 	display: inline;
 	margin-right: 10px;
 
 }
 .pp-action {
 	float: left;
-	width: 38%;
+	width: 20%;
 	display: inline;
 	margin-top:10px;
 }
