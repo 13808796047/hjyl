@@ -40,15 +40,7 @@
         if($playedId==$played['id']){ $tpl=$played['playedTpl'];
         $simpleInfo=$played['simpleInfo']; }
       </php>
-      <li
-        style="
-          float: left;
-          width: 100px;
-          text-align: center;
-          font-size: 18px;
-          padding: 10px;
-        "
-      >
+      <li style="float: left; width: 100px; text-align: center; padding: 10px">
         <a
           href="#"
           data="{:U('game/played?type='.$type.'&playedId='.$played['id'])}"
