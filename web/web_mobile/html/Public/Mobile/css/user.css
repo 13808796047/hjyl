@@ -1023,12 +1023,12 @@
 	width:100%;
 }
 .title {
-	height: 62px;
+	height: 100px;
 	float: left;
 	width: 5%;
 	padding-right: 10px;
 	display: inline;
-	line-height: 62px !important;
+	line-height: 100px !important;
 }
 .pp-number {
 	float: left;
@@ -1078,11 +1078,12 @@
 
 }
 .action {
-	border: 0;
+	padding: 5px;
+	border: 1px solid #ddd;
 	display: inline-block;
     width: 31px;
     height: 31px;
-    border-radius: 50%;
+    border-radius: 5px;
     text-align: center;
     line-height: 31px;
     font-size: 18px;
