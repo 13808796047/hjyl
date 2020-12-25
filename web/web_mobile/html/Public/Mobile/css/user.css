@@ -1027,7 +1027,7 @@
 	float: left;
 	width: 20px;
 	display: inline;
-	/*line-height: 62px;*/
+	line-height: 62px !important;
 }
 .pp-number {
 	float: left;
