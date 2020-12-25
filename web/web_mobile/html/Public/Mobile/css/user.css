@@ -1144,6 +1144,7 @@
 	cursor: pointer;
 }
 .showhelp {
+	margin-top: 10px;
 	padding:20px;
 }
 #textarea-code {
