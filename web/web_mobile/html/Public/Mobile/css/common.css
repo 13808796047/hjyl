@@ -2910,11 +2910,13 @@ textarea.w-bar-input {
 	height: 45px;
 	line-height: 45px;
 	font-weight: bold;
-color: rgb(225, 209, 160);
+color: rgb(225, 209, 160) !important;
 	font-size: 20px;
+	background: linear-gradient(to bottom, rgb(235, 204, 157) 0%, rgb(185, 143, 92) 100%) !important;
 	    background-image: linear-gradient(rgb(101, 69, 21) 0%, rgb(133, 99, 57) 100%);
 	    background-color: initial;
-	    border-bottom-color: rgb(121, 89, 52)
+		border-bottom-color: rgb(121, 89, 52);
+		border-bottom: 1px solid #b88d5a;
 }
 
 .m-header-logo {
