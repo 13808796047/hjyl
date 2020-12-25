@@ -1031,14 +1031,14 @@
 }
 .pp-number {
 	float: left;
-	/* width: 180px; */
+	width: 180px;
 	display: inline;
-	/* margin-right: 10px; */
+	margin-right: 10px;
 
 }
 .pp-action {
 	float: left;
-	/* width: 101px; */
+	width: 101px;
 	display: inline;
 	margin-top:10px;
 }
