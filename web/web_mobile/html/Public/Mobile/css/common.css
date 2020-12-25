@@ -2910,9 +2910,11 @@ textarea.w-bar-input {
 	height: 45px;
 	line-height: 45px;
 	font-weight: bold;
-	color: #fff;
+color: rgb(225, 209, 160);
 	font-size: 20px;
-	background: #04564f;
+	    background-image: linear-gradient(rgb(101, 69, 21) 0%, rgb(133, 99, 57) 100%);
+	    background-color: initial;
+	    border-bottom-color: rgb(121, 89, 52)
 }
 
 .m-header-logo {
