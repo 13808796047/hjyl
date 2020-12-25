@@ -1018,38 +1018,28 @@
 /* game */
 .pp {
 	margin-top:10px;
-	/* float:left; */
-	/* display:inline; */
+	float:left;
+	display:inline;
 	width:100%;
-	display: flex;
 }
 .title {
 	height: 100px;
-	/* float: left; */
-	/* padding-right: 10px; */
-	/* display: inline; */
-	text-align: center;
-	width: 25px;
+	float: left;
+	padding-right: 10px;
+	display: inline;
 	line-height: 100px !important;
 }
 .pp-number {
-	/* float: left; */
-	/* display: inline; */
-	/* display: flex; */
-	/* justify-content: space-between; */
-	flex: 1;
-	/* width: 240px; */
+	float: left;
+	width: 530px;
+	display: inline;
 	margin-right: 10px;
 	margin-top: 10px;
 }
-.pp-number>div{
-	float: none !important;
-}
 .pp-action {
-	/* float: left; */
-	width: 85px;
-
-	/* display: inline; */
+	float: left;
+	width: 135px;
+	display: inline;
 
 }
 
@@ -1066,9 +1056,9 @@
 	font-family: Arial,
 	"微軟正黑體";
 	display: inline-block;
-	/* margin-right: 10px; */
-	    /* margin-top: 5px; */
-	    /* margin-bottom: 10px; */
+	margin-right: 10px;
+	    margin-top: 5px;
+	    margin-bottom: 10px;
 	width: 33px;
 	height: 33px;
 	color: #8C8C8C;
