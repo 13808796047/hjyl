@@ -17,14 +17,14 @@
     <div class="m-user-duobaoRecord" id="duobaoRcd_dvWrapper" style="bottom:150px;margin-bottom:134px;">
       <div>
         <div style=" height: 150px;  color: #333;     background: #eee;">
-          <div style="padding-left:80px;padding-top:10px;">
+          <div style="padding-left:50px;padding-top:10px;">
             第<span id="actionNo">{$actionNo['actionNo']}</span>期 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <a href="{:U('game/history?type='.$type)}"
                style="display: inline-block;padding:3px 3px;border: 1px solid #ddd;border-radius:5px;color:#000;background-color:#ddd">历史开奖</a>
             <a href="{:U('game/betlog')}"
                style="display: inline-block;padding:3px 3px;border: 1px solid #ddd;border-radius:5px;color:#000;background-color:#ddd">投注记录</a>
           </div>
-          <div style="margin:0 auto;width:300px;height:37px;padding-top:5px;">
+          <div style="margin:0 auto;width:300px;height:37px;padding-top:10px;">
             <ul class="kjhao">
               <php>if(in_array($_GET['type'],[9,10])){</php>
               <li>{:$this->iff($kjHao[0]!='',$kjHao[0],'?')}</li>
