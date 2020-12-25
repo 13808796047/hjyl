@@ -1044,11 +1044,7 @@
 }
 
 .code {
-	box-shadow: 0 3px 5px rgba(0,0,0,.5);
-	color: #fff;
-	display: inline-block;
-	width: 31px;
-	height: 31px;
+	/* color: #fff;
 	border-radius: 50%;
 	font-weight: 700;
 	text-align: center;
@@ -1056,7 +1052,19 @@
 	font-size: 18px;
 	border: 0;
 	/* background: linear-gradient(to bottom,#f3e7dd 0,#d2b5a0 100%); */
-	background-image: linear-gradient(to left,#7f8c8d,#95a5a6);
+	/* background-image: linear-gradient(to left,#7f8c8d,#95a5a6);  */
+	font-family: Arial,
+	"微軟正黑體";
+	display: block;
+	width: 77px;
+	height: 77px;
+	color: #8C8C8C;
+	font-size: 40px;
+	text-align: center;
+	line-height: 77px;
+	border-radius: 77px;
+	background-color: #fff;
+	border: 1px solid #B3B3B3;
 }
 .checked{
 
