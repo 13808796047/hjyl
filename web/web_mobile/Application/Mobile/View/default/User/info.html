@@ -90,21 +90,21 @@
           >银行资料<span class="w-bar-ext"><b class="ico-next"></b></span
         ></a>
         <!--<a href="{$settings['kefuGG']}" style="background: #fff!important;color: #333" class="w-bar" target="_blank">在线客服<span class="w-bar-ext"><b class="ico-next"></b></span></a>-->
+        <a
+          href="{:U('user/logout')}"
+          class="w-bar m-user-bar-margin m-user-bar-border"
+          style="
+            text-align: center;
+            background: #db3652 !important;
+            color: #fff;
+            border-radius: 5px;
+            margin: 40px 10px;
+            border: none;
+          "
+          id="btnLogout"
+          >退出登录</a
+        >
       </div>
-      <a
-        href="{:U('user/logout')}"
-        class="w-bar m-user-bar-margin m-user-bar-border"
-        style="
-          text-align: center;
-          background: #db3652 !important;
-          color: #fff;
-          border-radius: 5px;
-          margin: 10px;
-          border: none;
-        "
-        id="btnLogout"
-        >退出登录</a
-      >
     </div>
   </div>
 </block>
