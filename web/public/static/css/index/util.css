@@ -139,8 +139,9 @@ a {color: #fff;cursor: pointer;text-decoration: none;outline: none;}
 #toolbar > div a {
 	display: block;
 	height: 100%;
-
 	width: 100%;
+	    background-image: url(../../todo/images/game/allicon.png);
+	    background-position: -20px -120px;
 
 }
 
