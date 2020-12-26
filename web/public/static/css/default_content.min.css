@@ -27,7 +27,7 @@ body {
     height: 20px;
     color: #fff;
 }
-.navigation{
+.right-aside .navigation {
     display: none
 }
 .ys-content .main {
