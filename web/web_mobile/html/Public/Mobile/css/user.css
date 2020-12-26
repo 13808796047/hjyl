@@ -1023,18 +1023,21 @@
 	width:100%;
 }
 .title {
+	padding-top: 2rem;
 	float: left;
 	width: 0.2rem;
 	padding-right: 0.1rem;
 	display: inline;
 }
 .pp-number {
+	padding-top: 1rem;
 	float: left;
 	width: calc(100vw - 1.5rem);
 	display: inline;
 	margin: 0 auto;	
 }
 .pp-action {
+	padding-top: 1rem;
 	float: right;
 	width: 0.8rem;
 	display: inline;
