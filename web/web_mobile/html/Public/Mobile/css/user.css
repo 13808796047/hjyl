@@ -1023,27 +1023,21 @@
 	width:100%;
 }
 .title {
-	height: 1rem;
 	float: left;
 	width: 0.2rem;
 	padding-right: 0.1rem;
 	display: inline;
-	line-height: 1rem;
 }
 .pp-number {
-	height: 1rem;
 	float: left;
 	width: calc(100vw - 1.5rem);
 	display: inline;
 	margin: 0 auto;	
-	line-height: 1rem;
 }
 .pp-action {
-	height: 1rem;
 	float: right;
 	width: 0.8rem;
 	display: inline;
-line-height: 1rem;
 }
 
 .code {
