@@ -1027,19 +1027,14 @@
 	float: left;
 	width: 0.2rem;
 	padding-right: 0.1rem;
-	padding-top: 0.13rem;
 	display: inline;
 	line-height: 1rem;
-	
 }
 .pp-number {
 	float: left;
 	width: calc(100vw - 1.5rem);
 	display: inline;
-	margin: 0 auto;
-	line-height: 100%;
-	padding-top: 0.13rem;
-	
+	margin: 0 auto;	
 }
 .pp-action {
 	float: right;
