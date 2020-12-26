@@ -1032,10 +1032,10 @@
 }
 .pp-number {
 	float: left;
-	width: 2.1rem;
+	width: calc(100vw - 1.3rem);
 	display: inline;
-	margin-right: 10px;
-	margin-top: 10px;
+	margin-right: 0.1rem;
+	margin-top: 0.1rem;
 }
 .pp-action {
 	float: right;
