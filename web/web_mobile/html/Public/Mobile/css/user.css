@@ -44,6 +44,9 @@
 	border-width:0;
 	box-shadow:0 1px 3px RGBA(0,0,0,.2)
 }
+.m-user .m-simpleHeader >a {
+	color: #fff;
+}
 .m-user-link {
 	color:#0079fe!important;
 }
@@ -107,7 +110,7 @@ float: left;
 	border-top:0;
 }
 .m-user-bar .w-bar-label {
-	color:#CCC;
+	color:#333;
 }
 .m-user-summary {
 	height:100px;
@@ -1320,9 +1323,10 @@ float: left;
 	height: 50px;
 	color: rgb(255, 255, 255);
 	line-height: 50px;
+	margin: 40px 10px;
 	font-size: large;
 	background-image: none;
-	background-color: rgb(250, 112, 69);
+	background-color:#db3652;
 	width: 100%;
 	display: block;
 }
