@@ -79,16 +79,16 @@
 .m-user-bar-avatar .m-user-avatar img {
 	border-width:0;
 }
-.m-user-avatar{
-width: .3rem;
-height: .3rem;
+/* .m-user-avatar{
+width: .5rem;
+height: .5rem;
 background-position: -873px -1025px;
 background-repeat: no-repeat;
 float: left;
 }
 .allicon {
 	background-image: url(../images/allicon.png);
-}
+} */
 .m-user-avatar img {
 	border:0px solid #FFF;
 	border-radius:2px;
