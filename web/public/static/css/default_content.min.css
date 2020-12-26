@@ -168,7 +168,7 @@ form input[type=submit] {
 .btn:hover,
 form input[type=submit]:hover,
 form input[type=button]:hover {
-    background: #018f81
+    /* background: #018f81 */
 }
 
 .alert_btn:hover {
