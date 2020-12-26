@@ -1384,6 +1384,7 @@ input {
 
 .allicon {
     background-image: url(../images/allicon.png);
+    background-size: 1280px;
 }
 
 .w-switcher:after {
