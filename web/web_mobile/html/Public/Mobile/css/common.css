@@ -1523,6 +1523,7 @@ input {
 	outline: none;
 	padding: 0;
 	margin: 0;
+	border:1px solid #ddd;
 }
 
 

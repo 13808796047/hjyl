@@ -378,6 +378,9 @@ float: left;
 .m-user .w-inputBar-placeholder {
 	color:#CBCBCB;
 }
+.w-inputBar{
+	margin: 10px 0;
+}
 .m-user-index .m-user-bar {
 	margin-bottom:10px;
 }
