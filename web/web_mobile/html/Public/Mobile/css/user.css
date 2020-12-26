@@ -1032,7 +1032,7 @@
 }
 .pp-number {
 	float: left;
-	width: 2.5rem;
+	width: 2.1rem;
 	display: inline;
 	margin-right: 10px;
 	margin-top: 10px;
@@ -1058,8 +1058,8 @@
 	"微軟正黑體";
 	display: inline-block;
 	margin-right: 0.05rem;
-	margin-top: 5px;
-	margin-bottom: 10px;
+	margin-top: 0.05rem;
+	margin-bottom:0.1rem;
 	width: 0.3rem;
 	height:0.3rem;
 	color: #8C8C8C;
@@ -1078,16 +1078,16 @@
 
 }
 .action {
-	margin-right: 4px;
-	margin-bottom: 5px;
+	margin-right: 0.04rem;
+	margin-bottom: 0.05rem;
 	/* padding: 2px; */
 	border: 1px solid #ddd;
 	display: inline-block;
-	width: 31px;
-	height: 31px;
-	border-radius: 5px;
+	width: 0.3rem;
+	height: 0.3rem;
+	border-radius: 0.05rem;
 	text-align: center;
-	line-height: 31px;
+	line-height: 0.3rem;
 	/* font-size: 18px; */
 	color: #666;
 	/* background: linear-gradient(to bottom,#f3e7dd 0,#fff 100%);*/
