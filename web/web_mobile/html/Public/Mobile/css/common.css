@@ -1110,9 +1110,9 @@ input {
 	vertical-align: middle;
 }
 
-.w-goods-l {
+/* .w-goods-l {
 	padding: 12px 10px;
-}
+} */
 
 .w-goods-l .w-goods-pic {
 	float: left;
@@ -1135,9 +1135,9 @@ input {
 	margin: 10px 50px 0 0;
 }
 
-.w-goods-l .w-goods-info {
+/* .w-goods-l .w-goods-info {
 	margin-left: 100px;
-}
+} */
 
 .w-goods-l .w-goods-shortFunc {
 	position: absolute;
