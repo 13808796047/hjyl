@@ -379,6 +379,8 @@ float: left;
 	color:#CBCBCB;
 }
 .w-inputBar{
+	padding: 0 10px;
+	border-radius: 5px;
 	margin: 10px 0;
 }
 .m-user-index .m-user-bar {
