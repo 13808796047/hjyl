@@ -53,9 +53,7 @@
 .m-user-bar .w-bar {
 	color:#656565;
 	font-size:14px;
-	border-color:#DCDCDC;
-	border-width:0 0 1px 0;
-	margin-bottom:0;
+	margin-bottom:.1rem;
 }
 .m-user-bar .m-user-bar-border {
 	border-width:1px 0;
