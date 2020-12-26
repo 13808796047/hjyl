@@ -149,6 +149,7 @@ float: left;
 	position:absolute;
 	left:66px;
 	top:5px;
+	color: #333;
 	white-space:nowrap;
 }
 .m-user-summary .txt .name {
