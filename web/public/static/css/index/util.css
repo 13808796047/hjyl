@@ -159,7 +159,7 @@ a {color: #fff;cursor: pointer;text-decoration: none;outline: none;}
 	height: 100%;
 }
 #toolbar .index >a{
-	/*background-image: url(../images/allicon.png);*/
+	background-image: url(../../todo/images/game/allicon.png);
 	background-position: -1215px -10px;
 }
 
