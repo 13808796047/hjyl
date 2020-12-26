@@ -1023,19 +1023,20 @@
 	width:100%;
 }
 .title {
-	height: 100px;
+	line-height: 100%;
 	float: left;
 	width: 0.2rem;
 	padding-right: 10px;
 	display: inline;
-	line-height: 100px !important;
+	
 }
 .pp-number {
 	float: left;
-	width: calc(100vw - 1.3rem);
+	width: calc(100vw - 1.5rem);
 	display: inline;
-	margin-right: 0.1rem;
-	margin-top: 0.1rem;
+	margin: 0 auto;
+	line-height: 100%;
+	
 }
 .pp-action {
 	float: right;
