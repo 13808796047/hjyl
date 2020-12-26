@@ -13,12 +13,12 @@ body {
   color: #262626;
 }
 .ys-content .header {
-  color: #045851;
-  font-size: 18px;
+  background-color: #A39A7D;
+  padding: 15px 30px;
+  font-size: 16px;
   font-weight: 700;
   height: 20px;
-  padding: 15px 30px;
-  width: 715px;
+  color: #fff;
 }
 .ys-content .main{
   border: none;
