@@ -726,7 +726,15 @@ div[id*=playinfo] table td:hover {
 }
 
 .form .btn {
-    margin: 0 17px 0 150px
+    margin: 0 17px 0 150px;
+        color: #3f3216;
+        background: #f5d48c;
+        background: -webkit-linear-gradient(#feeab2 0, #fcd484 100%);
+        background: -o-linear-gradient(#feeab2 0, #fcd484 100%);
+        background: -moz-linear-gradient(#feeab2 0, #fcd484 100%);
+        background: linear-gradient(#feeab2 0, #fcd484 100%);
+        /* border: 1px solid #8b3d23; */
+        
 }
 
 .tab-last {
