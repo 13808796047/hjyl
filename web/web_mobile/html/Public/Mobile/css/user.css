@@ -1099,7 +1099,9 @@
 	font-size:18px;
 }
 
-#count{
+#count,
+#amount {
+	padding: 0 0.1rem;
 	color: #ED4444;
 }
 .container-fluid {
