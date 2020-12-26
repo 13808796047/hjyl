@@ -1099,7 +1099,9 @@
 	font-size:18px;
 }
 
-
+#count{
+	color: #ED4444;
+}
 .container-fluid {
 	position: fixed;
     right: 0;
