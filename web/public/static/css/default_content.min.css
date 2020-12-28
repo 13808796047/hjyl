@@ -329,11 +329,11 @@ table {
 }
 
 .list table thead {
-    background: #007c70
+    background: #c39763
 }
 
 .list table thead th {
-    background: #05544f;
+    background: #c39763;
     color: #fff;
     font-weight: 400;
     padding: 10px 0;
@@ -354,9 +354,8 @@ table {
     font-weight: 400;
     font-size: 12px;
     padding: 7px 0;
-    border-top: 1px solid #33978f;
-    background-color: #007c71;
-    color: #fff
+    background-color: #fff;
+    color: #333
 }
 
 .align-left,
@@ -365,7 +364,7 @@ table {
 }
 
 .list table tbody tr:hover td {
-    background-color: #03645b
+    background-color: #fff;
 }
 
 .list table tbody tr:first-child td {
@@ -373,8 +372,8 @@ table {
 }
 
 .list table tfoot {
-    background-color: #007c70;
-    color: #fff
+    background-color: #fff;
+    color: #333
 }
 
 .list table tfoot th {
