@@ -594,7 +594,7 @@ input {
     transform: translate(0, -50%);
     width: 28px;
     height: 28px;
-    background: url("/sy2/images/3new/login/icon-user.png") no-repeat center center;
+    background: url("https://n7ws.jnfzdz.cn/sy2/images/3new/login/icon-user.png") no-repeat center center;
     background-size: contain;
 }
 
@@ -606,7 +606,7 @@ input {
     transform: translate(0, -50%);
     width: 28px;
     height: 28px;
-    background: url("/sy2/images/3new/login/icon-password.png") no-repeat center center;
+    background: url("https://n7ws.jnfzdz.cn/sy2/images/3new/login/icon-password.png") no-repeat center center;
     background-size: contain;
 }
 
@@ -618,7 +618,7 @@ input {
     transform: translate(0, -50%);
     width: 28px;
     height: 28px;
-    background: url("/sy2/images/3new/login/icon-sercurity.png") no-repeat center center;
+    background: url("https://n7ws.jnfzdz.cn/sy2/images/3new/login/icon-sercurity.png") no-repeat center center;
     background-size: contain;
 }
 
