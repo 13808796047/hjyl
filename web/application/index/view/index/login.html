@@ -1,1344 +1,1393 @@
 <html>
+
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
     <style class="darkreader darkreader--fallback" media="screen"></style>
     <style class="darkreader darkreader--text" media="screen"></style>
     <style class="darkreader darkreader--invert" media="screen">
-        .jfk-bubble.gtx-bubble, embed[type="application/pdf"] {
+        .jfk-bubble.gtx-bubble,
+        embed[type="application/pdf"] {
             filter: invert(100%) hue-rotate(180deg) contrast(90%) !important;
-        }</style>
-    <style class="darkreader darkreader--inline" media="screen">[data-darkreader-inline-bgcolor] {
-        background-color: var(--darkreader-inline-bgcolor) !important;
-    }
+        }
+    </style>
+    <style class="darkreader darkreader--inline" media="screen">
+        [data-darkreader-inline-bgcolor] {
+            background-color: var(--darkreader-inline-bgcolor) !important;
+        }
 
-    [data-darkreader-inline-bgimage] {
-        background-image: var(--darkreader-inline-bgimage) !important;
-    }
+        [data-darkreader-inline-bgimage] {
+            background-image: var(--darkreader-inline-bgimage) !important;
+        }
 
-    [data-darkreader-inline-border] {
-        border-color: var(--darkreader-inline-border) !important;
-    }
+        [data-darkreader-inline-border] {
+            border-color: var(--darkreader-inline-border) !important;
+        }
 
-    [data-darkreader-inline-border-bottom] {
-        border-bottom-color: var(--darkreader-inline-border-bottom) !important;
-    }
+        [data-darkreader-inline-border-bottom] {
+            border-bottom-color: var(--darkreader-inline-border-bottom) !important;
+        }
 
-    [data-darkreader-inline-border-left] {
-        border-left-color: var(--darkreader-inline-border-left) !important;
-    }
+        [data-darkreader-inline-border-left] {
+            border-left-color: var(--darkreader-inline-border-left) !important;
+        }
 
-    [data-darkreader-inline-border-right] {
-        border-right-color: var(--darkreader-inline-border-right) !important;
-    }
+        [data-darkreader-inline-border-right] {
+            border-right-color: var(--darkreader-inline-border-right) !important;
+        }
 
-    [data-darkreader-inline-border-top] {
-        border-top-color: var(--darkreader-inline-border-top) !important;
-    }
+        [data-darkreader-inline-border-top] {
+            border-top-color: var(--darkreader-inline-border-top) !important;
+        }
 
-    [data-darkreader-inline-boxshadow] {
-        box-shadow: var(--darkreader-inline-boxshadow) !important;
-    }
+        [data-darkreader-inline-boxshadow] {
+            box-shadow: var(--darkreader-inline-boxshadow) !important;
+        }
 
-    [data-darkreader-inline-color] {
-        color: var(--darkreader-inline-color) !important;
-    }
+        [data-darkreader-inline-color] {
+            color: var(--darkreader-inline-color) !important;
+        }
 
-    [data-darkreader-inline-fill] {
-        fill: var(--darkreader-inline-fill) !important;
-    }
+        [data-darkreader-inline-fill] {
+            fill: var(--darkreader-inline-fill) !important;
+        }
 
-    [data-darkreader-inline-stroke] {
-        stroke: var(--darkreader-inline-stroke) !important;
-    }
+        [data-darkreader-inline-stroke] {
+            stroke: var(--darkreader-inline-stroke) !important;
+        }
 
-    [data-darkreader-inline-outline] {
-        outline-color: var(--darkreader-inline-outline) !important;
-    }</style>
-    <style class="darkreader darkreader--variables" media="screen">:root {
-        --darkreader-neutral-background: #181a1b;
-        --darkreader-neutral-text: #e8e6e3;
-        --darkreader-selection-background: #004daa;
-        --darkreader-selection-text: #e8e6e3;
-    }</style>
-    <style class="darkreader darkreader--user-agent" media="screen">html {
-        background-color: #181a1b !important;
-    }
+        [data-darkreader-inline-outline] {
+            outline-color: var(--darkreader-inline-outline) !important;
+        }
+    </style>
+    <style class="darkreader darkreader--variables" media="screen">
+        :root {
+            --darkreader-neutral-background: #181a1b;
+            --darkreader-neutral-text: #e8e6e3;
+            --darkreader-selection-background: #004daa;
+            --darkreader-selection-text: #e8e6e3;
+        }
+    </style>
+    <style class="darkreader darkreader--user-agent" media="screen">
+        html {
+            background-color: #181a1b !important;
+        }
 
-    html, body, input, textarea, select, button {
-        background-color: #181a1b;
-    }
+        html,
+        body,
+        input,
+        textarea,
+        select,
+        button {
+            background-color: #181a1b;
+        }
 
-    html, body, input, textarea, select, button {
-        border-color: #736b5e;
-        color: #e8e6e3;
-    }
+        html,
+        body,
+        input,
+        textarea,
+        select,
+        button {
+            border-color: #736b5e;
+            color: #e8e6e3;
+        }
 
-    a {
-        color: #3391ff;
-    }
+        a {
+            color: #3391ff;
+        }
 
-    table {
-        border-color: #545b5e;
-    }
+        table {
+            border-color: #545b5e;
+        }
 
-    ::placeholder {
-        color: #b2aba1;
-    }
+        ::placeholder {
+            color: #b2aba1;
+        }
 
-    input:-webkit-autofill,
-    textarea:-webkit-autofill,
-    select:-webkit-autofill {
-        background-color: #555b00 !important;
-        color: #e8e6e3 !important;
-    }
+        input:-webkit-autofill,
+        textarea:-webkit-autofill,
+        select:-webkit-autofill {
+            background-color: #555b00 !important;
+            color: #e8e6e3 !important;
+        }
 
-    ::selection {
-        background-color: #004daa !important;
-        color: #e8e6e3 !important;
-    }
+        ::selection {
+            background-color: #004daa !important;
+            color: #e8e6e3 !important;
+        }
 
-    ::-moz-selection {
-        background-color: #004daa !important;
-        color: #e8e6e3 !important;
-    }</style>
+        ::-moz-selection {
+            background-color: #004daa !important;
+            color: #e8e6e3 !important;
+        }
+    </style>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
     <title>皇家娱乐平台</title>
     <link rel="stylesheet" href="__CSS__/owl.carousel.css">
-    <style class="darkreader darkreader--cors" media="screen">.owl-carousel {
-        display: none;
-        width: 100%;
-        -webkit-tap-highlight-color: transparent;
+    <style class="darkreader darkreader--cors" media="screen">
+        .owl-carousel {
+            display: none;
+            width: 100%;
+            -webkit-tap-highlight-color: transparent;
 
-        position: relative;
-        z-index: 1;
-    }
-
-    .owl-carousel .owl-stage {
-        position: relative;
-        -ms-touch-action: pan-Y;
-        touch-action: manipulation;
-        -moz-backface-visibility: hidden;
-    }
-
-    .owl-carousel .owl-stage:after {
-        content: ".";
-        display: block;
-        clear: both;
-        visibility: hidden;
-        line-height: 0;
-        height: 0;
-    }
-
-    .owl-carousel .owl-stage-outer {
-        position: relative;
-        overflow: hidden;
-
-        -webkit-transform: translate3d(0px, 0px, 0px);
-    }
-
-    .owl-carousel .owl-wrapper,
-    .owl-carousel .owl-item {
-        -webkit-backface-visibility: hidden;
-        -moz-backface-visibility: hidden;
-        -ms-backface-visibility: hidden;
-        -webkit-transform: translate3d(0, 0, 0);
-        -moz-transform: translate3d(0, 0, 0);
-        -ms-transform: translate3d(0, 0, 0);
-    }
-
-    .owl-carousel .owl-item {
-        position: relative;
-        min-height: 1px;
-        float: left;
-        -webkit-backface-visibility: hidden;
-        -webkit-tap-highlight-color: transparent;
-        -webkit-touch-callout: none;
-    }
-
-    .owl-carousel .owl-item img {
-        display: block;
-        width: 100%;
-    }
-
-    .owl-carousel .owl-nav.disabled,
-    .owl-carousel .owl-dots.disabled {
-        display: none;
-    }
-
-    .owl-carousel .owl-nav .owl-prev,
-    .owl-carousel .owl-nav .owl-next,
-    .owl-carousel .owl-dot {
-        cursor: pointer;
-        -webkit-user-select: none;
-        -khtml-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
-    }
-
-    .owl-carousel .owl-nav button.owl-prev,
-    .owl-carousel .owl-nav button.owl-next,
-    .owl-carousel button.owl-dot {
-        background: none;
-        color: inherit;
-        border: none;
-        padding: 0 !important;
-        font: inherit;
-    }
-
-    .owl-carousel.owl-loaded {
-        display: block;
-    }
-
-    .owl-carousel.owl-loading {
-        opacity: 0;
-        display: block;
-    }
-
-    .owl-carousel.owl-hidden {
-        opacity: 0;
-    }
-
-    .owl-carousel.owl-refresh .owl-item {
-        visibility: hidden;
-    }
-
-    .owl-carousel.owl-drag .owl-item {
-        -ms-touch-action: pan-y;
-        touch-action: pan-y;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
-    }
-
-    .owl-carousel.owl-grab {
-        cursor: move;
-        cursor: grab;
-    }
-
-    .owl-carousel.owl-rtl {
-        direction: rtl;
-    }
-
-    .owl-carousel.owl-rtl .owl-item {
-        float: right;
-    }
-
-
-    .no-js .owl-carousel {
-        display: block;
-    }
-
-
-    .owl-carousel .animated {
-        animation-duration: 1000ms;
-        animation-fill-mode: both;
-    }
-
-    .owl-carousel .owl-animated-in {
-        z-index: 0;
-    }
-
-    .owl-carousel .owl-animated-out {
-        z-index: 1;
-    }
-
-    .owl-carousel .fadeOut {
-        animation-name: fadeOut;
-    }
-
-    @keyframes fadeOut {
-        0% {
-            opacity: 1;
+            position: relative;
+            z-index: 1;
         }
-        100% {
+
+        .owl-carousel .owl-stage {
+            position: relative;
+            -ms-touch-action: pan-Y;
+            touch-action: manipulation;
+            -moz-backface-visibility: hidden;
+        }
+
+        .owl-carousel .owl-stage:after {
+            content: ".";
+            display: block;
+            clear: both;
+            visibility: hidden;
+            line-height: 0;
+            height: 0;
+        }
+
+        .owl-carousel .owl-stage-outer {
+            position: relative;
+            overflow: hidden;
+
+            -webkit-transform: translate3d(0px, 0px, 0px);
+        }
+
+        .owl-carousel .owl-wrapper,
+        .owl-carousel .owl-item {
+            -webkit-backface-visibility: hidden;
+            -moz-backface-visibility: hidden;
+            -ms-backface-visibility: hidden;
+            -webkit-transform: translate3d(0, 0, 0);
+            -moz-transform: translate3d(0, 0, 0);
+            -ms-transform: translate3d(0, 0, 0);
+        }
+
+        .owl-carousel .owl-item {
+            position: relative;
+            min-height: 1px;
+            float: left;
+            -webkit-backface-visibility: hidden;
+            -webkit-tap-highlight-color: transparent;
+            -webkit-touch-callout: none;
+        }
+
+        .owl-carousel .owl-item img {
+            display: block;
+            width: 100%;
+        }
+
+        .owl-carousel .owl-nav.disabled,
+        .owl-carousel .owl-dots.disabled {
+            display: none;
+        }
+
+        .owl-carousel .owl-nav .owl-prev,
+        .owl-carousel .owl-nav .owl-next,
+        .owl-carousel .owl-dot {
+            cursor: pointer;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        .owl-carousel .owl-nav button.owl-prev,
+        .owl-carousel .owl-nav button.owl-next,
+        .owl-carousel button.owl-dot {
+            background: none;
+            color: inherit;
+            border: none;
+            padding: 0 !important;
+            font: inherit;
+        }
+
+        .owl-carousel.owl-loaded {
+            display: block;
+        }
+
+        .owl-carousel.owl-loading {
+            opacity: 0;
+            display: block;
+        }
+
+        .owl-carousel.owl-hidden {
             opacity: 0;
         }
-    }
+
+        .owl-carousel.owl-refresh .owl-item {
+            visibility: hidden;
+        }
+
+        .owl-carousel.owl-drag .owl-item {
+            -ms-touch-action: pan-y;
+            touch-action: pan-y;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        .owl-carousel.owl-grab {
+            cursor: move;
+            cursor: grab;
+        }
+
+        .owl-carousel.owl-rtl {
+            direction: rtl;
+        }
+
+        .owl-carousel.owl-rtl .owl-item {
+            float: right;
+        }
 
 
-    .owl-height {
-        transition: height 500ms ease-in-out;
-    }
+        .no-js .owl-carousel {
+            display: block;
+        }
 
 
-    .owl-carousel .owl-item {
-    }
+        .owl-carousel .animated {
+            animation-duration: 1000ms;
+            animation-fill-mode: both;
+        }
 
-    .owl-carousel .owl-item .owl-lazy {
-        opacity: 0;
-        transition: opacity 400ms ease;
-    }
+        .owl-carousel .owl-animated-in {
+            z-index: 0;
+        }
 
-    .owl-carousel .owl-item .owl-lazy[src^=""], .owl-carousel .owl-item .owl-lazy:not([src]) {
-        max-height: 0;
-    }
+        .owl-carousel .owl-animated-out {
+            z-index: 1;
+        }
 
-    .owl-carousel .owl-item img.owl-lazy {
-        transform-style: preserve-3d;
-    }
+        .owl-carousel .fadeOut {
+            animation-name: fadeOut;
+        }
+
+        @keyframes fadeOut {
+            0% {
+                opacity: 1;
+            }
+
+            100% {
+                opacity: 0;
+            }
+        }
 
 
-    .owl-carousel .owl-video-wrapper {
-        position: relative;
-        height: 100%;
-        background: #000;
-    }
+        .owl-height {
+            transition: height 500ms ease-in-out;
+        }
 
-    .owl-carousel .owl-video-play-icon {
-        position: absolute;
-        height: 80px;
-        width: 80px;
-        left: 50%;
-        top: 50%;
-        margin-left: -40px;
-        margin-top: -40px;
-        background: url("https://n7ws.jnfzdz.cn/js/OwlCarousel2-2.3.4/dist/assets/owl.video.play.png") no-repeat;
-        cursor: pointer;
-        z-index: 1;
-        -webkit-backface-visibility: hidden;
-        transition: transform 100ms ease;
-    }
 
-    .owl-carousel .owl-video-play-icon:hover {
-        -ms-transform: scale(1.3, 1.3);
-        transform: scale(1.3, 1.3);
-    }
+        .owl-carousel .owl-item {}
 
-    .owl-carousel .owl-video-playing .owl-video-tn,
-    .owl-carousel .owl-video-playing .owl-video-play-icon {
-        display: none;
-    }
+        .owl-carousel .owl-item .owl-lazy {
+            opacity: 0;
+            transition: opacity 400ms ease;
+        }
 
-    .owl-carousel .owl-video-tn {
-        opacity: 0;
-        height: 100%;
-        background-position: center center;
-        background-repeat: no-repeat;
-        background-size: contain;
-        transition: opacity 400ms ease;
-    }
+        .owl-carousel .owl-item .owl-lazy[src^=""],
+        .owl-carousel .owl-item .owl-lazy:not([src]) {
+            max-height: 0;
+        }
 
-    .owl-carousel .owl-video-frame {
-        position: relative;
-        z-index: 1;
-        height: 100%;
-        width: 100%;
-    }</style>
+        .owl-carousel .owl-item img.owl-lazy {
+            transform-style: preserve-3d;
+        }
+
+
+        .owl-carousel .owl-video-wrapper {
+            position: relative;
+            height: 100%;
+            background: #000;
+        }
+
+        .owl-carousel .owl-video-play-icon {
+            position: absolute;
+            height: 80px;
+            width: 80px;
+            left: 50%;
+            top: 50%;
+            margin-left: -40px;
+            margin-top: -40px;
+            background: url("https://n7ws.jnfzdz.cn/js/OwlCarousel2-2.3.4/dist/assets/owl.video.play.png") no-repeat;
+            cursor: pointer;
+            z-index: 1;
+            -webkit-backface-visibility: hidden;
+            transition: transform 100ms ease;
+        }
+
+        .owl-carousel .owl-video-play-icon:hover {
+            -ms-transform: scale(1.3, 1.3);
+            transform: scale(1.3, 1.3);
+        }
+
+        .owl-carousel .owl-video-playing .owl-video-tn,
+        .owl-carousel .owl-video-playing .owl-video-play-icon {
+            display: none;
+        }
+
+        .owl-carousel .owl-video-tn {
+            opacity: 0;
+            height: 100%;
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-size: contain;
+            transition: opacity 400ms ease;
+        }
+
+        .owl-carousel .owl-video-frame {
+            position: relative;
+            z-index: 1;
+            height: 100%;
+            width: 100%;
+        }
+    </style>
     <style class="darkreader darkreader--sync" media="screen"></style>
     <link rel="stylesheet" href="__CSS__/owl.theme.default.min.css">
 
-    <style class="darkreader darkreader--cors" media="screen">.owl-theme .owl-dots, .owl-theme .owl-nav {
-        text-align: center;
-        -webkit-tap-highlight-color: transparent
-    }
+    <style class="darkreader darkreader--cors" media="screen">
+        .owl-theme .owl-dots,
+        .owl-theme .owl-nav {
+            text-align: center;
+            -webkit-tap-highlight-color: transparent
+        }
 
-    .owl-theme .owl-nav {
-        margin-top: 10px
-    }
+        .owl-theme .owl-nav {
+            margin-top: 10px
+        }
 
-    .owl-theme .owl-nav [class*=owl-] {
-        color: #FFF;
-        font-size: 14px;
-        margin: 5px;
-        padding: 4px 7px;
-        background: #D6D6D6;
-        display: inline-block;
-        cursor: pointer;
-        border-radius: 3px
-    }
+        .owl-theme .owl-nav [class*=owl-] {
+            color: #FFF;
+            font-size: 14px;
+            margin: 5px;
+            padding: 4px 7px;
+            background: #D6D6D6;
+            display: inline-block;
+            cursor: pointer;
+            border-radius: 3px
+        }
 
-    .owl-theme .owl-nav [class*=owl-]:hover {
-        background: #869791;
-        color: #FFF;
-        text-decoration: none
-    }
+        .owl-theme .owl-nav [class*=owl-]:hover {
+            background: #869791;
+            color: #FFF;
+            text-decoration: none
+        }
 
-    .owl-theme .owl-nav .disabled {
-        opacity: .5;
-        cursor: default
-    }
+        .owl-theme .owl-nav .disabled {
+            opacity: .5;
+            cursor: default
+        }
 
-    .owl-theme .owl-nav.disabled + .owl-dots {
-        margin-top: 10px
-    }
+        .owl-theme .owl-nav.disabled+.owl-dots {
+            margin-top: 10px
+        }
 
-    .owl-theme .owl-dots .owl-dot {
-        display: inline-block;
-        zoom: 1
-    }
+        .owl-theme .owl-dots .owl-dot {
+            display: inline-block;
+            zoom: 1
+        }
 
-    .owl-theme .owl-dots .owl-dot span {
-        width: 10px;
-        height: 10px;
-        margin: 5px 7px;
-        background: #D6D6D6;
-        display: block;
-        -webkit-backface-visibility: visible;
-        transition: opacity .2s ease;
-        border-radius: 30px
-    }
+        .owl-theme .owl-dots .owl-dot span {
+            width: 10px;
+            height: 10px;
+            margin: 5px 7px;
+            background: #D6D6D6;
+            display: block;
+            -webkit-backface-visibility: visible;
+            transition: opacity .2s ease;
+            border-radius: 30px
+        }
 
-    .owl-theme .owl-dots .owl-dot.active span, .owl-theme .owl-dots .owl-dot:hover span {
-        background: #869791
-    }</style>
+        .owl-theme .owl-dots .owl-dot.active span,
+        .owl-theme .owl-dots .owl-dot:hover span {
+            background: #869791
+        }
+    </style>
     <style class="darkreader darkreader--sync" media="screen"></style>
     <link rel="stylesheet" href="__CSS__/login/auth.css">
-    <style class="darkreader darkreader--cors" media="screen">html, body {
-        height: 100%;
-    }
-
-    input, select, button {
-        background: none;
-        border: none;
-        font: 14px 'Microsoft Yahei', 'Microsoft JhengHei', tahoma, Srial, helvetica, sans-serif;
-    }
-
-    img {
-        border: none;
-    }
-
-    body {
-        background: url("__IMG__/login/bg.png") center bottom no-repeat fixed #052730;
-        background-size: cover;
-        margin: 0;
-        padding: 0;
-        font: 12px 'Microsoft Yahei', 'Microsoft JhengHei', tahoma, Srial, helvetica, sans-serif;
-    }
-
-    #wrap {
-        height: 100%;
-    }
-
-    #login {
-        min-height: 650px;
-        height: 100%;
-        position: relative;
-    }
-
-    .no-display {
-        display: none;
-    }
-
-
-    #notice-mask {
-        width: 100%;
-        height: 100%;
-        position: absolute;
-        z-index: 999;
-        background: rgba(0, 0, 0, 0.7);
-        top: 0;
-        left: 0;
-    }
-
-    #notice-mask .btn {
-        margin: auto;
-        vertical-align: middle;
-        background: #ff8830;
-        color: #fff;
-        cursor: pointer;
-        font-size: 14px;
-        height: 30px;
-        text-shadow: 2px 2px 0 rgba(0, 0, 0, .23);
-        width: 70px;
-        font-weight: normal;
-        line-height: 24px;
-    }
-
-    .pop {
-        width: 488px;
-        padding: 10px;
-        border: 1px solid #CACACA;
-        background-color: #f7f7f7;
-        text-align: center;
-        word-wrap: break-word;
-        border-radius: 5px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    }
-
-    .pop .hd {
-        height: 28px;
-        line-height: 18px;
-        border-bottom: 1px solid #EFEFEF;
-        font-size: 14px;
-        font-weight: 700;
-        text-align: left;
-        color: #555;
-    }
-
-    .pop .hd-info {
-        margin-left: 10px;
-        font-size: 12px;
-        font-weight: 100;
-    }
-
-    .pop .close {
-        float: right;
-        width: 15px;
-        height: 14px;
-        background-position: -240px -20px;
-        cursor: pointer;
-    }
-
-    .pop .close:hover {
-        height: 15px;
-        background-position: -240px 0;
-    }
-
-    .pop .bd {
-        padding: 10px;
-        text-align: left;
-        color: #555;
-    }
-
-    .pop-title {
-        padding: 5px;
-        text-align: center;
-        font-size: 14px;
-    }
-
-    .pop-btn {
-        padding-top: 20px;
-        text-align: center;
-    }
-
-    .pop-btn .btn {
-        margin: 0 10px;
-    }
-
-    .pop .input {
-        width: 160px;
-    }
-
-    .pop .ui-select {
-        width: 170px;
-    }
-
-    .pop-error, .pop-success {
-        text-align: center;
-    }
-
-    .pop .ico-success, .pop .ico-error {
-        display: inline-block;
-        *display: inline;
-        *zoom: 1;
-        width: 24px;
-        height: 24px;
-        margin-right: 5px;
-        vertical-align: middle;
-    }
-
-    .pop .ico-success {
-        background-position: -120px -80px;
-    }
-
-    .pop .ico-error {
-        background-position: -150px -80px;
-    }
-
-    .pop-text {
-        display: inline-block;
-        *display: inline;
-        *zoom: 1;
-        vertical-align: middle;
-        text-align: left;
-        line-height: 24px;
-        font-size: 14px;
-        overflow: hidden;
-    }
-
-    .pop .bd .ico-success, .pop .bd .ico-error, .pop .bd .ico-waring {
-        display: inline-block;
-        *display: inline;
-        *zoom: 1;
-        vertical-align: middle;
-        width: 30px;
-        height: 30px;
-        margin-right: 10px;
-    }
-
-    .pop .bd .ico-success {
-        background-position: 0 -80px;
-    }
-
-    .pop .bd .ico-error {
-        background-position: -40px -80px;
-    }
-
-    .pop .bd .ico-waring {
-        background-position: -80px -80px;
-    }
-
-    .pop .ico-success, .pop .ico-error, .pop .ico-waring {
-        display: inline-block;
-        vertical-align: middle;
-        width: 30px;
-        height: 30px;
-        margin-right: 10px;
-    }
-
-    .pop .ico-success {
-        background-position: 0 -80px;
-    }
-
-    .pop .ico-error {
-        background-position: -40px -80px;
-    }
-
-    .pop .ico-waring {
-        background-position: -80px -80px;
-    }
-
-    .pop .text-title {
-        padding: 0 10px 10px;
-        font-size: 14px;
-    }
-
-    .pop .radio-list {
-        font-size: 14px;
-    }
-
-    .pop .radio-list .label {
-        padding: 0 10px;
-    }
-
-    .pop .text-note {
-        padding-top: 5px;
-        color: #888;
-        text-align: center;
-    }
-
-    .pop .lottery-list {
-        border-top: 1px solid #EFEFEF;
-    }
-
-    .pop .lottery-list dt {
-        padding: 10px;
-        text-align: left;
-    }
-
-    .pop .lottery-list dd {
-        display: inline-block;
-        *display: inline;
-        width: 128px;
-        padding: 0 20px;
-        vertical-align: middle;
-    }
-
-    .pop .lottery-list dd .pic {
-        display: inline-block;
-        width: 128px;
-        height: 80px;
-        background-position: center center;
-        background-repeat: no-repeat;
-    }
-
-    .pop .lottery-numbers {
-        padding: 0 30px 20px;
-        font-size: 14px;
-    }
-
-    .pop .lottery-numbers .content {
-        overflow: hidden;
-        padding-top: 20px;
-        text-align: right;
-    }
-
-    .pop .lottery-numbers .content em {
-        float: left;
-        width: 35px;
-        height: 35px;
-        line-height: 34px;
-        text-align: center;
-        margin-right: 10px;
-        background-color: #03A284;
-        font-size: 18px;
-        color: #FFF;
-        border-radius: 50%;
-    }
-
-    .pop .lottery-numbers .content a {
-        line-height: 34px;
-    }
-
-    .pop-text {
-        max-width: 300px;
-        _width: 300px;
-        font-weight: 100;
-    }
-
-    .pop-text strong {
-        font-weight: 700;
-    }
-
-    .pop .ui-form {
-        font-size: 14px;
-    }
-
-    .pop .ui-form li {
-        margin-top: 10px;
-        margin-bottom: 10px;
-    }
-
-    .pop .ui-form .textarea {
-        width: 320px;
-        height: 84px;
-        overflow-y: auto;
-    }
-
-    .pop .ui-label {
-        width: auto;
-    }
-
-    .pop .title {
-        color: #555;
-    }
-
-    .btn {
-        margin: 0 16px 0 105px;
-        vertical-align: middle;
-        background: #eb7d3a;
-        color: #fff;
-        cursor: pointer;
-        font-size: 22px;
-        height: 45px;
-        text-shadow: 2px 2px 0 rgba(0, 0, 0, .23);
-        width: 145px;
-    }
-
-    .alert i, .alert-mini i, .pop i, .pop .close, .notice .close, .notice .ico-warning, .ui-check i, .prompt dt i {
-        background-image: url("https://n7ws.jnfzdz.cn/sy2/todo/images/common/ui-alert.png");
-        background-repeat: no-repeat;
-    }
-
-    .pop .bd .ico-waring {
-        background-position: -80px -80px;
-    }
-
-    .pop .bd .ico-success, .pop .bd .ico-error, .pop .bd .ico-waring {
-        display: inline-block;
-        vertical-align: middle;
-        width: 30px;
-        height: 30px;
-        margin-right: 10px;
-    }
-
-    .text-center {
-        text-align: center !important;
-    }
-
-    .pop h4 {
-        margin: 0;
-    }
-
-
-    * {
-        box-sizing: border-box;
-    }
-
-    ._rows:before, ._rows:after {
-        content: "";
-        display: block;
-        clear: both;
-    }
-
-    ._rows > * {
-        position: relative;
-        float: left;
-    }
-
-    .fixed-full {
-        position: fixed;
-        left: 0;
-        top: 0;
-        bottom: 0;
-        right: 0;
-    }
-
-    .fixed-5 {
-        position: fixed;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%);
-    }
-
-    .btn-download {
-        display: inline-block;
-        text-decoration: none;
-        width: 140px;
-        padding: 12px 12px;
-        line-height: 1;
-        background-color: #A48549;
-        border: none;
-        opacity: 0.9;
-        color: #fff;
-        cursor: pointer;
-        font-size: 16px;
-        border-radius: 50px;
-        text-align: center;
-    }
-
-    .btn-download:hover {
-        opacity: 1;
-    }
-
-
-    .loginaclogo {
-        margin-left: 20px;
-        width: 55px;
-    }
-
-    .newbiglogo {
-        width: 100%;
-        text-align: center;
-        position: relative;
-        margin-bottom: 20px;
-    }
-
-    .newbiglogo > * {
-        display: inline-block;
-    }
-
-
-    .card_zone {
-        height: 480px;
-    }
-
-    .card_zone > .card_zone__left {
-        width: 480px;
-        height: 100%;
-        margin-right: 10px;
-    }
-
-    .card_zone > .card_zone__right {
-        width: 760px;
-        height: 100%;
-    }
-
-
-    .card {
-        border-radius: 16px;
-        background-color: white;
-        height: 100%;
-    }
-
-    .card > .card-head {
-        position: relative;
-        border-radius: 16px 16px 0 0;
-        border-bottom: 2px solid #FCD381;
-        color: #5E4822;
-        font-size: 20px;
-        padding: 24px 16px;
-        background: #EBCC9D;
-        background: linear-gradient(#EBCC9D, #B88D5A);
-        background: -webkit-linear-gradient(#EBCC9D, #B88D5A);
-        background: -o-linear-gradient(#EBCC9D, #B88D5A);
-        background: -moz-linear-gradient(#EBCC9D, #B88D5A);
-    }
-
-    .card > .card-head > .head-title {
-        color: #5E4822;
-        font-size: 20px;
-        text-align: center;
-        padding: 0 50px;
-        text-shadow: 0px 1px #ffffff;
-        font-weight: bold;
-    }
-
-    /*.card > .card-head > .head-menu {*/
-    /*    position: absolute;*/
-    /*    right: 16px;*/
-    /*    top: 50%;*/
-    /*    transform: translate(0, -50%);*/
-    /*    font-size: 14px;*/
-    /*    cursor: pointer;*/
-    /*}*/
-
-    /*.card > .card-body {*/
-    /*    position: relative;*/
-    /*    padding: 16px;*/
-    /*    border-radius: 16px;*/
-    /*    background-color: white;*/
-    /*}*/
-
-    /*.card > .card-head + .card-body {*/
-    /*    border-radius: 0 0 16px 16px;*/
-    /*}*/
-
-    .card_2 {
-        position: relative;
-        display: block;
-        border-radius: 16px;
-        background-color: #F3F0F1;
-        height: 100%;
-        padding: 24px 16px;
-    }
-
-    .card_2.bright {
-        background-image: linear-gradient(135deg, #ffffff 0%, #E5E5E5 100%);
-        border: 1px solid #F8F8F8;
-    }
-
-
-    .qrcode_btn {
-        display: block;
-        width: 50px;
-        height: 50px;
-        background: url("https://n7ws.jnfzdz.cn/sy2/images/3new/login/icon-qrcode.png") no-repeat;
-        background-size: contain;
-    }
-
-    .qrcode_float {
-        padding: 13px 20px;
-        position: absolute;
-        background: #fff;
-        border-radius: 10px;
-        top: -70px;
-        width: 96px;
-        right: -30px;
-        display: none;
-    }
-
-    .qrcode_float:after {
-        content: '';
-        width: 0;
-        height: 0;
-        border: 10px solid transparent;
-        border-top: 20px solid #fff;
-        position: absolute;
-        bottom: -20px;
-        left: 41%;
-    }
-
-    .qrcode_btn:hover {
-        display: block;
-        width: 50px;
-        height: 50px;
-        background-image: url("https://n7ws.jnfzdz.cn/sy2/images/3new/login/icon-qrcode--hover.png");
-    }
-
-    .qrcode_btn:hover .qrcode_float {
-        display: block;
-    }
-
-    #J-login-form {
-        display: block;
-    }
-
-    .loginInputClass {
-        position: relative;
-        background-color: white;
-        border: 1px solid #ECE9E4;
-        border-radius: 50px;
-        margin-bottom: 20px;
-    }
-
-    .loginInputClass > .tip {
-        position: absolute;
-        top: 0px;
-        left: 101%;
-        width: 220px;
-        line-height: 20px;
-        display: none;
-        background: #446ea6;
-        color: #fff;
-        text-align: center;
-        z-index: 12;
-        padding: 8px 10px;
-    }
-
-    .loginInputClass.err > .tip {
-        background: #cd4444;
-    }
-
-    .loginInputClass > input {
-        width: 100%;
-        line-height: 48px;
-        height: 50px;
-        padding-left: 55px;
-        border-radius: 50px;
-    }
-
-    .loginInputClass > .icon1 {
-        position: absolute;
-        z-index: 1;
-        top: 50%;
-        left: 15px;
-        transform: translate(0, -50%);
-        width: 28px;
-        height: 28px;
-        background: url("https://n7ws.jnfzdz.cn/sy2/images/3new/login/icon-user.png") no-repeat center center;
-        background-size: contain;
-    }
-
-    .loginInputClass > .icon2 {
-        position: absolute;
-        z-index: 1;
-        top: 50%;
-        left: 15px;
-        transform: translate(0, -50%);
-        width: 28px;
-        height: 28px;
-        background: url("https://n7ws.jnfzdz.cn/sy2/images/3new/login/icon-password.png") no-repeat center center;
-        background-size: contain;
-    }
-
-    .loginInputClass > .icon3 {
-        position: absolute;
-        z-index: 1;
-        top: 50%;
-        left: 15px;
-        transform: translate(0, -50%);
-        width: 28px;
-        height: 28px;
-        background: url("https://n7ws.jnfzdz.cn/sy2/images/3new/login/icon-sercurity.png") no-repeat center center;
-        background-size: contain;
-    }
-
-    .login-status-block {
-        position: relative;
-        height: 30px;
-    }
-
-    .login-status {
-        line-height: 30px;
-        font-size: 14px;
-        font-weight: bold;
-        margin: 0;
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        text-align: center;
-        width: 100%;
-        color: #505050;
-    }
-
-    #J-form-submit {
-        width: 100%;
-        background-color: #FDDF9C;
-        opacity: 0.9;
-        background-image: linear-gradient(to bottom, #FEEBB7 0%, #FCD280 100%);
-        color: #463611;
-        cursor: pointer;
-        font-size: 18px;
-        height: 55px;
-        border-radius: 50px;
-        text-align: center;
-        font-weight: bold;
-    }
-
-    #J-form-submit:hover {
-        opacity: 1;
-    }
-
-    #account_reg_card .loginInputClass {
-        margin-bottom: 15px;
-    }
-
-
-    .acclogin_btn {
-        border: none;
-        border-radius: 50px;
-        background-color: #fff;
-        color: #A48549;
-        cursor: pointer;
-        line-height: 1.2;
-        padding: 4px 12px;
-        text-decoration: none;
-    }
-
-    .acclogin_btn > * {
-        display: inline-block;
-        vertical-align: middle;
-    }
-
-    .qrcode_text1 {
-        color: #AA934C;
-        font-size: 22px;
-        text-align: center;
-        margin: 15px 0;
-    }
-
-    #wx_login {
-        text-align: center;
-    }
-
-    .qrcode_text2 {
-        color: #505050;
-        font-size: 16px;
-        text-align: center;
-        margin: 8px 0;
-    }
-
-
-    /*#validate-block {*/
-    /*    display: inline-block;*/
-    /*    position: absolute;*/
-    /*    top: 50%;*/
-    /*    right: 20px;*/
-    /*    transform: translate(0, -50%);*/
-    /*    cursor: pointer;*/
-    /*}*/
-
-    #validate {
-        display: block;
-        border-radius: 30px;
-    }
-
-    /*#validate-mask {*/
-    /*    display: none;*/
-    /*    position: absolute;*/
-    /*    left: 0;*/
-    /*    right: 0;*/
-    /*    top: 0;*/
-    /*    bottom: 0;*/
-    /*    background-color: rgba(0, 0, 0, 0.7);*/
-    /*    z-index: 999;*/
-    /*}*/
-
-    /*#validate-mask > img {*/
-    /*    position: absolute;*/
-    /*    right: -35px;*/
-    /*    top: 1px;*/
-    /*    user-select: none;*/
-    /*}*/
-
-
-    .feature_block {
-        height: 170px;
-        margin-top: 15px;
-        margin-left: -7.5px;
-        margin-right: -7.5px;
-    }
-
-    .feature_block > * {
-        width: 25%;
-        height: 100%;
-        padding-left: 7.5px;
-        padding-right: 7.5px;
-    }
-
-    .feature_block__icon {
-        position: absolute;
-        left: 50%;
-        top: 40%;
-        transform: translate(-50%, -50%);
-    }
-
-    .feature_block__text {
-        position: absolute;
-        left: 0;
-        right: 0;
-        bottom: 27%;
-        transform: translate(0, 50%);
-        font-size: 18px;
-        text-align: center;
-        letter-spacing: 1px;
-        color: #505050;
-    }
-
-
-    .setLoginBanner {
-        position: relative;
-    }
-
-    .loginowl {
-        position: relative;
-        height: 260px;
-        border-radius: 12px;
-        overflow: hidden;
-    }
-
-    .loginowl .item {
-        width: 100%;
-        height: 260px;
-    }
-
-    .loginowl .full-bg {
-        position: relative;
-        display: block;
-        width: 100%;
-        height: 100%;
-        background: no-repeat center center;
-        background-size: cover;
-    }
-
-    .login_owlIcon {
-        width: 50px;
-        height: 50px;
-        background-image: url("__IMG__/login/allicon.png");
-        top: 0;
-        bottom: 0;
-        margin: auto;
-        z-index: 10;
-        cursor: pointer;
-    }
-
-    .login_owlright {
-        position: absolute;
-        right: 5px;
-        background-position: -313px -658px;
-    }
-
-    .login_owlleft {
-        position: absolute;
-        left: 5px;
-        background-position: -313px -711px;
-    }
-
-
-    .brower_summary {
-        padding: 20px 0;
-    }
-
-    .brower_summary img {
-        padding-right: 15px;
-    }
-
-    .brower_summary > .text {
-        color: #979797;
-        line-height: 30px;
-        height: 30px;
-    }
-
-
-    .footer {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        padding: 30px 0;
-    }
-
-    .footer > .footer__left {
-        float: left;
-        color: #463611;
-    }
-
-    .footer > .footer__right {
-        float: right;
-    }
-
-    @media screen and (max-height: 800px) {
-        .footer {
+    <style class="darkreader darkreader--cors" media="screen">
+        html,
+        body {
+            height: 100%;
+        }
+
+        input,
+        select,
+        button {
+            background: none;
+            border: none;
+            font: 14px 'Microsoft Yahei', 'Microsoft JhengHei', tahoma, Srial, helvetica, sans-serif;
+        }
+
+        img {
+            border: none;
+        }
+
+        body {
+            background: url("__IMG__/login/bg.png") center bottom no-repeat fixed #052730;
+            background-size: cover;
+            margin: 0;
+            padding: 0;
+            font: 12px 'Microsoft Yahei', 'Microsoft JhengHei', tahoma, Srial, helvetica, sans-serif;
+        }
+
+        #wrap {
+            height: 100%;
+        }
+
+        #login {
+            min-height: 650px;
+            height: 100%;
             position: relative;
         }
-    }
+
+        .no-display {
+            display: none;
+        }
 
 
-    .modal {
-        position: fixed;
-        left: 0;
-        top: 0;
-        bottom: 0;
-        right: 0;
-        background-color: rgba(0, 0, 0, 0.5);
-        z-index: 99999;
-    }
+        #notice-mask {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            z-index: 999;
+            background: rgba(0, 0, 0, 0.7);
+            top: 0;
+            left: 0;
+        }
 
-    .modal-popup {
-        position: absolute;
-        width: 520px;
-        height: 490px;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        margin: auto;
-    }
+        #notice-mask .btn {
+            margin: auto;
+            vertical-align: middle;
+            background: #ff8830;
+            color: #fff;
+            cursor: pointer;
+            font-size: 14px;
+            height: 30px;
+            text-shadow: 2px 2px 0 rgba(0, 0, 0, .23);
+            width: 70px;
+            font-weight: normal;
+            line-height: 24px;
+        }
 
-    .modal-open {
-        overflow: hidden;
-    }
+        .pop {
+            width: 488px;
+            padding: 10px;
+            border: 1px solid #CACACA;
+            background-color: #f7f7f7;
+            text-align: center;
+            word-wrap: break-word;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
 
-    .modal-close {
-        position: absolute;
-        top: 0;
-        right: 0;
-        padding: 16px;
-        cursor: pointer;
-    }
+        .pop .hd {
+            height: 28px;
+            line-height: 18px;
+            border-bottom: 1px solid #EFEFEF;
+            font-size: 14px;
+            font-weight: 700;
+            text-align: left;
+            color: #555;
+        }
 
-    .modal-close::before {
-        content: "✖";
-        color: #999999;
-        font-size: 26px;
-        line-height: 1;
-    }
+        .pop .hd-info {
+            margin-left: 10px;
+            font-size: 12px;
+            font-weight: 100;
+        }
+
+        .pop .close {
+            float: right;
+            width: 15px;
+            height: 14px;
+            background-position: -240px -20px;
+            cursor: pointer;
+        }
+
+        .pop .close:hover {
+            height: 15px;
+            background-position: -240px 0;
+        }
+
+        .pop .bd {
+            padding: 10px;
+            text-align: left;
+            color: #555;
+        }
+
+        .pop-title {
+            padding: 5px;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        .pop-btn {
+            padding-top: 20px;
+            text-align: center;
+        }
+
+        .pop-btn .btn {
+            margin: 0 10px;
+        }
+
+        .pop .input {
+            width: 160px;
+        }
+
+        .pop .ui-select {
+            width: 170px;
+        }
+
+        .pop-error,
+        .pop-success {
+            text-align: center;
+        }
+
+        .pop .ico-success,
+        .pop .ico-error {
+            display: inline-block;
+            *display: inline;
+            *zoom: 1;
+            width: 24px;
+            height: 24px;
+            margin-right: 5px;
+            vertical-align: middle;
+        }
+
+        .pop .ico-success {
+            background-position: -120px -80px;
+        }
+
+        .pop .ico-error {
+            background-position: -150px -80px;
+        }
+
+        .pop-text {
+            display: inline-block;
+            *display: inline;
+            *zoom: 1;
+            vertical-align: middle;
+            text-align: left;
+            line-height: 24px;
+            font-size: 14px;
+            overflow: hidden;
+        }
+
+        .pop .bd .ico-success,
+        .pop .bd .ico-error,
+        .pop .bd .ico-waring {
+            display: inline-block;
+            *display: inline;
+            *zoom: 1;
+            vertical-align: middle;
+            width: 30px;
+            height: 30px;
+            margin-right: 10px;
+        }
+
+        .pop .bd .ico-success {
+            background-position: 0 -80px;
+        }
+
+        .pop .bd .ico-error {
+            background-position: -40px -80px;
+        }
+
+        .pop .bd .ico-waring {
+            background-position: -80px -80px;
+        }
+
+        .pop .ico-success,
+        .pop .ico-error,
+        .pop .ico-waring {
+            display: inline-block;
+            vertical-align: middle;
+            width: 30px;
+            height: 30px;
+            margin-right: 10px;
+        }
+
+        .pop .ico-success {
+            background-position: 0 -80px;
+        }
+
+        .pop .ico-error {
+            background-position: -40px -80px;
+        }
+
+        .pop .ico-waring {
+            background-position: -80px -80px;
+        }
+
+        .pop .text-title {
+            padding: 0 10px 10px;
+            font-size: 14px;
+        }
+
+        .pop .radio-list {
+            font-size: 14px;
+        }
+
+        .pop .radio-list .label {
+            padding: 0 10px;
+        }
+
+        .pop .text-note {
+            padding-top: 5px;
+            color: #888;
+            text-align: center;
+        }
+
+        .pop .lottery-list {
+            border-top: 1px solid #EFEFEF;
+        }
+
+        .pop .lottery-list dt {
+            padding: 10px;
+            text-align: left;
+        }
+
+        .pop .lottery-list dd {
+            display: inline-block;
+            *display: inline;
+            width: 128px;
+            padding: 0 20px;
+            vertical-align: middle;
+        }
+
+        .pop .lottery-list dd .pic {
+            display: inline-block;
+            width: 128px;
+            height: 80px;
+            background-position: center center;
+            background-repeat: no-repeat;
+        }
+
+        .pop .lottery-numbers {
+            padding: 0 30px 20px;
+            font-size: 14px;
+        }
+
+        .pop .lottery-numbers .content {
+            overflow: hidden;
+            padding-top: 20px;
+            text-align: right;
+        }
+
+        .pop .lottery-numbers .content em {
+            float: left;
+            width: 35px;
+            height: 35px;
+            line-height: 34px;
+            text-align: center;
+            margin-right: 10px;
+            background-color: #03A284;
+            font-size: 18px;
+            color: #FFF;
+            border-radius: 50%;
+        }
+
+        .pop .lottery-numbers .content a {
+            line-height: 34px;
+        }
+
+        .pop-text {
+            max-width: 300px;
+            _width: 300px;
+            font-weight: 100;
+        }
+
+        .pop-text strong {
+            font-weight: 700;
+        }
+
+        .pop .ui-form {
+            font-size: 14px;
+        }
+
+        .pop .ui-form li {
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+
+        .pop .ui-form .textarea {
+            width: 320px;
+            height: 84px;
+            overflow-y: auto;
+        }
+
+        .pop .ui-label {
+            width: auto;
+        }
+
+        .pop .title {
+            color: #555;
+        }
+
+        .btn {
+            margin: 0 16px 0 105px;
+            vertical-align: middle;
+            background: #eb7d3a;
+            color: #fff;
+            cursor: pointer;
+            font-size: 22px;
+            height: 45px;
+            text-shadow: 2px 2px 0 rgba(0, 0, 0, .23);
+            width: 145px;
+        }
+
+        .alert i,
+        .alert-mini i,
+        .pop i,
+        .pop .close,
+        .notice .close,
+        .notice .ico-warning,
+        .ui-check i,
+        .prompt dt i {
+            background-image: url("https://n7ws.jnfzdz.cn/sy2/todo/images/common/ui-alert.png");
+            background-repeat: no-repeat;
+        }
+
+        .pop .bd .ico-waring {
+            background-position: -80px -80px;
+        }
+
+        .pop .bd .ico-success,
+        .pop .bd .ico-error,
+        .pop .bd .ico-waring {
+            display: inline-block;
+            vertical-align: middle;
+            width: 30px;
+            height: 30px;
+            margin-right: 10px;
+        }
+
+        .text-center {
+            text-align: center !important;
+        }
+
+        .pop h4 {
+            margin: 0;
+        }
 
 
-    #client_m .title {
-        font-size: 22px;
-        color: #AB944C;
-        text-align: center;
-        margin-top: 30px;
-    }
+        * {
+            box-sizing: border-box;
+        }
 
-    #client_m .content {
-        color: #AB944C;
-        margin: 30px auto 10px auto;
-        font-size: 16px;
-    }
+        ._rows:before,
+        ._rows:after {
+            content: "";
+            display: block;
+            clear: both;
+        }
 
-    #client_m .content_block {
-        width: 50%;
-        text-align: center;
-        color: #505050;
-    }
+        ._rows>* {
+            position: relative;
+            float: left;
+        }
 
-    #client_m .content_block > * {
-        margin-bottom: 15px
-    }
+        .fixed-full {
+            position: fixed;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            right: 0;
+        }
+
+        .fixed-5 {
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .btn-download {
+            display: inline-block;
+            text-decoration: none;
+            width: 140px;
+            padding: 12px 12px;
+            line-height: 1;
+            background-color: #A48549;
+            border: none;
+            opacity: 0.9;
+            color: #fff;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 50px;
+            text-align: center;
+        }
+
+        .btn-download:hover {
+            opacity: 1;
+        }
 
 
-    #client_pc > .modal-popup {
-        max-width: 400px;
-    }
+        .loginaclogo {
+            margin-left: 20px;
+            width: 55px;
+        }
 
-    #client_pc .title {
-        font-size: 22px;
-        color: #AB944C;
-        text-align: center;
-        margin-top: 30px;
-    }
+        .newbiglogo {
+            width: 100%;
+            text-align: center;
+            position: relative;
+            margin-bottom: 20px;
+        }
 
-    #client_pc .content {
-        color: #AB944C;
-        margin: 30px auto 10px auto;
-        font-size: 16px;
-    }
+        .newbiglogo>* {
+            display: inline-block;
+        }
 
-    #client_pc .content_block {
-        width: 50%;
-        text-align: center;
-        color: #505050;
-    }
 
-    #client_pc .content_block > * {
-        margin-bottom: 15px;
-    }
+        .card_zone {
+            height: 480px;
+        }
 
-    .newloginDev {
-        width: 1250px;
-        height: 100%;
-        position: relative;
-        margin: auto;
-        padding-top: 10vh;
-    }</style>
+        .card_zone>.card_zone__left {
+            width: 480px;
+            height: 100%;
+            margin-right: 10px;
+        }
+
+        .card_zone>.card_zone__right {
+            width: 760px;
+            height: 100%;
+        }
+
+
+        .card {
+            border-radius: 16px;
+            background-color: white;
+            height: 100%;
+        }
+
+        .card>.card-head {
+            position: relative;
+            border-radius: 16px 16px 0 0;
+            border-bottom: 2px solid #FCD381;
+            color: #5E4822;
+            font-size: 20px;
+            padding: 24px 16px;
+            background: #EBCC9D;
+            background: linear-gradient(#EBCC9D, #B88D5A);
+            background: -webkit-linear-gradient(#EBCC9D, #B88D5A);
+            background: -o-linear-gradient(#EBCC9D, #B88D5A);
+            background: -moz-linear-gradient(#EBCC9D, #B88D5A);
+        }
+
+        .card>.card-head>.head-title {
+            color: #5E4822;
+            font-size: 20px;
+            text-align: center;
+            padding: 0 50px;
+            text-shadow: 0px 1px #ffffff;
+            font-weight: bold;
+        }
+
+        /*.card > .card-head > .head-menu {*/
+        /*    position: absolute;*/
+        /*    right: 16px;*/
+        /*    top: 50%;*/
+        /*    transform: translate(0, -50%);*/
+        /*    font-size: 14px;*/
+        /*    cursor: pointer;*/
+        /*}*/
+
+        /*.card > .card-body {*/
+        /*    position: relative;*/
+        /*    padding: 16px;*/
+        /*    border-radius: 16px;*/
+        /*    background-color: white;*/
+        /*}*/
+
+        /*.card > .card-head + .card-body {*/
+        /*    border-radius: 0 0 16px 16px;*/
+        /*}*/
+
+        .card_2 {
+            position: relative;
+            display: block;
+            border-radius: 16px;
+            background-color: #F3F0F1;
+            height: 100%;
+            padding: 24px 16px;
+        }
+
+        .card_2.bright {
+            background-image: linear-gradient(135deg, #ffffff 0%, #E5E5E5 100%);
+            border: 1px solid #F8F8F8;
+        }
+
+
+        .qrcode_btn {
+            display: block;
+            width: 50px;
+            height: 50px;
+            background: url("https://n7ws.jnfzdz.cn/sy2/images/3new/login/icon-qrcode.png") no-repeat;
+            background-size: contain;
+        }
+
+        .qrcode_float {
+            padding: 13px 20px;
+            position: absolute;
+            background: #fff;
+            border-radius: 10px;
+            top: -70px;
+            width: 96px;
+            right: -30px;
+            display: none;
+        }
+
+        .qrcode_float:after {
+            content: '';
+            width: 0;
+            height: 0;
+            border: 10px solid transparent;
+            border-top: 20px solid #fff;
+            position: absolute;
+            bottom: -20px;
+            left: 41%;
+        }
+
+        .qrcode_btn:hover {
+            display: block;
+            width: 50px;
+            height: 50px;
+            background-image: url("https://n7ws.jnfzdz.cn/sy2/images/3new/login/icon-qrcode--hover.png");
+        }
+
+        .qrcode_btn:hover .qrcode_float {
+            display: block;
+        }
+
+        #J-login-form {
+            display: block;
+        }
+
+        .loginInputClass {
+            position: relative;
+            background-color: white;
+            border: 1px solid #ECE9E4;
+            border-radius: 50px;
+            margin-bottom: 20px;
+        }
+
+        .loginInputClass>.tip {
+            position: absolute;
+            top: 0px;
+            left: 101%;
+            width: 220px;
+            line-height: 20px;
+            display: none;
+            background: #446ea6;
+            color: #fff;
+            text-align: center;
+            z-index: 12;
+            padding: 8px 10px;
+        }
+
+        .loginInputClass.err>.tip {
+            background: #cd4444;
+        }
+
+        .loginInputClass>input {
+            width: 100%;
+            line-height: 48px;
+            height: 50px;
+            padding-left: 55px;
+            border-radius: 50px;
+        }
+
+        .loginInputClass>.icon1 {
+            position: absolute;
+            z-index: 1;
+            top: 50%;
+            left: 15px;
+            transform: translate(0, -50%);
+            width: 28px;
+            height: 28px;
+            background: url("https://n7ws.jnfzdz.cn/sy2/images/3new/login/icon-user.png") no-repeat center center;
+            background-size: contain;
+        }
+
+        .loginInputClass>.icon2 {
+            position: absolute;
+            z-index: 1;
+            top: 50%;
+            left: 15px;
+            transform: translate(0, -50%);
+            width: 28px;
+            height: 28px;
+            background: url("https://n7ws.jnfzdz.cn/sy2/images/3new/login/icon-password.png") no-repeat center center;
+            background-size: contain;
+        }
+
+        .loginInputClass>.icon3 {
+            position: absolute;
+            z-index: 1;
+            top: 50%;
+            left: 15px;
+            transform: translate(0, -50%);
+            width: 28px;
+            height: 28px;
+            background: url("https://n7ws.jnfzdz.cn/sy2/images/3new/login/icon-sercurity.png") no-repeat center center;
+            background-size: contain;
+        }
+
+        .login-status-block {
+            position: relative;
+            height: 30px;
+        }
+
+        .login-status {
+            line-height: 30px;
+            font-size: 14px;
+            font-weight: bold;
+            margin: 0;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            text-align: center;
+            width: 100%;
+            color: #505050;
+        }
+
+        #J-form-submit {
+            width: 100%;
+            background-color: #FDDF9C;
+            opacity: 0.9;
+            background-image: linear-gradient(to bottom, #FEEBB7 0%, #FCD280 100%);
+            color: #463611;
+            cursor: pointer;
+            font-size: 18px;
+            height: 55px;
+            border-radius: 50px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        #J-form-submit:hover {
+            opacity: 1;
+        }
+
+        #account_reg_card .loginInputClass {
+            margin-bottom: 15px;
+        }
+
+
+        .acclogin_btn {
+            border: none;
+            border-radius: 50px;
+            background-color: #fff;
+            color: #A48549;
+            cursor: pointer;
+            line-height: 1.2;
+            padding: 4px 12px;
+            text-decoration: none;
+        }
+
+        .acclogin_btn>* {
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        .qrcode_text1 {
+            color: #AA934C;
+            font-size: 22px;
+            text-align: center;
+            margin: 15px 0;
+        }
+
+        #wx_login {
+            text-align: center;
+        }
+
+        .qrcode_text2 {
+            color: #505050;
+            font-size: 16px;
+            text-align: center;
+            margin: 8px 0;
+        }
+
+
+        /*#validate-block {*/
+        /*    display: inline-block;*/
+        /*    position: absolute;*/
+        /*    top: 50%;*/
+        /*    right: 20px;*/
+        /*    transform: translate(0, -50%);*/
+        /*    cursor: pointer;*/
+        /*}*/
+
+        #validate {
+            display: block;
+            border-radius: 30px;
+        }
+
+        /*#validate-mask {*/
+        /*    display: none;*/
+        /*    position: absolute;*/
+        /*    left: 0;*/
+        /*    right: 0;*/
+        /*    top: 0;*/
+        /*    bottom: 0;*/
+        /*    background-color: rgba(0, 0, 0, 0.7);*/
+        /*    z-index: 999;*/
+        /*}*/
+
+        /*#validate-mask > img {*/
+        /*    position: absolute;*/
+        /*    right: -35px;*/
+        /*    top: 1px;*/
+        /*    user-select: none;*/
+        /*}*/
+
+
+        .feature_block {
+            height: 170px;
+            margin-top: 15px;
+            margin-left: -7.5px;
+            margin-right: -7.5px;
+        }
+
+        .feature_block>* {
+            width: 25%;
+            height: 100%;
+            padding-left: 7.5px;
+            padding-right: 7.5px;
+        }
+
+        .feature_block__icon {
+            position: absolute;
+            left: 50%;
+            top: 40%;
+            transform: translate(-50%, -50%);
+        }
+
+        .feature_block__text {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 27%;
+            transform: translate(0, 50%);
+            font-size: 18px;
+            text-align: center;
+            letter-spacing: 1px;
+            color: #505050;
+        }
+
+
+        .setLoginBanner {
+            position: relative;
+        }
+
+        .loginowl {
+            position: relative;
+            height: 260px;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .loginowl .item {
+            width: 100%;
+            height: 260px;
+        }
+
+        .loginowl .full-bg {
+            position: relative;
+            display: block;
+            width: 100%;
+            height: 100%;
+            background: no-repeat center center;
+            background-size: cover;
+        }
+
+        .login_owlIcon {
+            width: 50px;
+            height: 50px;
+            background-image: url("__IMG__/login/allicon.png");
+            top: 0;
+            bottom: 0;
+            margin: auto;
+            z-index: 10;
+            cursor: pointer;
+        }
+
+        .login_owlright {
+            position: absolute;
+            right: 5px;
+            background-position: -313px -658px;
+        }
+
+        .login_owlleft {
+            position: absolute;
+            left: 5px;
+            background-position: -313px -711px;
+        }
+
+
+        .brower_summary {
+            padding: 20px 0;
+        }
+
+        .brower_summary img {
+            padding-right: 15px;
+        }
+
+        .brower_summary>.text {
+            color: #979797;
+            line-height: 30px;
+            height: 30px;
+        }
+
+
+        .footer {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 30px 0;
+        }
+
+        .footer>.footer__left {
+            float: left;
+            color: #463611;
+        }
+
+        .footer>.footer__right {
+            float: right;
+        }
+
+        @media screen and (max-height: 800px) {
+            .footer {
+                position: relative;
+            }
+        }
+
+
+        .modal {
+            position: fixed;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 99999;
+        }
+
+        .modal-popup {
+            position: absolute;
+            width: 520px;
+            height: 490px;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+        }
+
+        .modal-open {
+            overflow: hidden;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 0;
+            right: 0;
+            padding: 16px;
+            cursor: pointer;
+        }
+
+        .modal-close::before {
+            content: "✖";
+            color: #999999;
+            font-size: 26px;
+            line-height: 1;
+        }
+
+
+        #client_m .title {
+            font-size: 22px;
+            color: #AB944C;
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        #client_m .content {
+            color: #AB944C;
+            margin: 30px auto 10px auto;
+            font-size: 16px;
+        }
+
+        #client_m .content_block {
+            width: 50%;
+            text-align: center;
+            color: #505050;
+        }
+
+        #client_m .content_block>* {
+            margin-bottom: 15px
+        }
+
+
+        #client_pc>.modal-popup {
+            max-width: 400px;
+        }
+
+        #client_pc .title {
+            font-size: 22px;
+            color: #AB944C;
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        #client_pc .content {
+            color: #AB944C;
+            margin: 30px auto 10px auto;
+            font-size: 16px;
+        }
+
+        #client_pc .content_block {
+            width: 50%;
+            text-align: center;
+            color: #505050;
+        }
+
+        #client_pc .content_block>* {
+            margin-bottom: 15px;
+        }
+
+        .newloginDev {
+            width: 1250px;
+            height: 100%;
+            position: relative;
+            margin: auto;
+            padding-top: 10vh;
+        }
+    </style>
     <style class="darkreader darkreader--sync" media="screen"></style>
     <meta name="darkreader" content="960caa95a051cf3896f331ff6d706f8f">
-    <style class="darkreader darkreader--override" media="screen">.vimvixen-hint {
-        background-color: #7b5300 !important;
-        border-color: #d8b013 !important;
-        color: #f3e8c8 !important;
-    }
+    <style class="darkreader darkreader--override" media="screen">
+        .vimvixen-hint {
+            background-color: #7b5300 !important;
+            border-color: #d8b013 !important;
+            color: #f3e8c8 !important;
+        }
 
-    ::placeholder {
-        opacity: 0.5 !important;
-    }</style>
+        ::placeholder {
+            opacity: 0.5 !important;
+        }
+    </style>
 
     <!--  <script type="text/javascript">-->
     <!--      document.cookie = "state=show;";-->
@@ -1353,571 +1402,569 @@
             padding-top: 10vh;
         }
 
-        .card_zone > .card_zone__left {
+        .card_zone>.card_zone__left {
             width: 480px;
             height: 100%;
             margin-right: 10px;
         }
 
-        .card_zone > .card_zone__right {
+        .card_zone>.card_zone__right {
             width: 760px;
             height: 100%;
         }
-
     </style>
 </head>
+
 <body id="lan">
-<div id="wrap" class="login">
-    <div id="login">
+    <div id="wrap" class="login">
+        <div id="login">
 
-        <h1 class="no-display">如果您不能正常浏览此页面，请点击链接下载安装平台客户端 <a href="http://down.paopao0839.com/setup.zip"
-                                                              style="text-decoration: underline;">客户端下载</a></h1>
+            <h1 class="no-display">如果您不能正常浏览此页面，请点击链接下载安装平台客户端 <a href="http://down.paopao0839.com/setup.zip"
+                    style="text-decoration: underline;">客户端下载</a></h1>
 
-        <div class="newloginDev">
-            <div class="newbiglogo" style="height: 82px">
-                <!--                            <img src="__CSS__/login/logo.png">-->
-            </div>
+            <div class="newloginDev">
+                <div class="newbiglogo" style="height: 82px">
+                    <!--                            <img src="__CSS__/login/logo.png">-->
+                </div>
 
-            <div class="card_zone _rows">
-                <div class="card_zone__left">
+                <div class="card_zone _rows">
+                    <div class="card_zone__left">
 
-                    <!-- 用户登录 -->
-                    <div id="account_login_card" class="card">
-                        <div class="card-head">
-                            <div class="head-title">用户登录</div>
-                            <!--              <div class="head-menu">-->
-                            <!--                <div class="qrcode_btn"-->
-                            <!--                     onclick="$(&#39;#account_login_card&#39;).hide(); $(&#39;#qrcode_login_card&#39;).show();">-->
-                            <!--                  <div class="qrcode_float">扫码登录</div>-->
-                            <!--                </div>-->
-                            <!--              </div>-->
-                        </div>
-                        <div class="card-body" style="height: 370px">
-                            <div class="card_2" style="min-height: 370px;">
-                                <form id="J-login-form" action="" method="post"
-                                      autocomplete="nope">
-                                    <input id="" type="hidden" name="testbtnpleasedelete" value="" att="">
+                        <!-- 用户登录 -->
+                        <div id="account_login_card" class="card">
+                            <div class="card-head">
+                                <div class="head-title">用户登录</div>
+                                <!--              <div class="head-menu">-->
+                                <!--                <div class="qrcode_btn"-->
+                                <!--                     onclick="$(&#39;#account_login_card&#39;).hide(); $(&#39;#qrcode_login_card&#39;).show();">-->
+                                <!--                  <div class="qrcode_float">扫码登录</div>-->
+                                <!--                </div>-->
+                                <!--              </div>-->
+                            </div>
+                            <div class="card-body" style="height: 370px">
+                                <div class="card_2" style="min-height: 370px;">
+                                    <form id="J-login-form" action="" method="post" autocomplete="nope">
+                                        <input id="" type="hidden" name="testbtnpleasedelete" value="" att="">
 
-                                    <div class="loginInputClass _rows">
-                                        <div class="icon1"></div>
-                                        <input id="J-user-name" type="text" placeholder="请输入用户名">
-                                    </div>
+                                        <div class="loginInputClass _rows">
+                                            <div class="icon1"></div>
+                                            <input id="J-user-name" type="text" placeholder="请输入用户名">
+                                        </div>
 
-                                    <div class="loginInputClass _rows">
-                                        <div class="icon2"></div>
-                                        <input id="J-user-password" type="password" placeholder="请输入密码">
-                                    </div>
+                                        <div class="loginInputClass _rows">
+                                            <div class="icon2"></div>
+                                            <input id="J-user-password" type="password" placeholder="请输入密码">
+                                        </div>
 
 
-                                    <div class="loginInputClass _rows">
-                                        <div class="icon3"></div>
-                                        <input id="J-verification" type="text" placeholder="请输入验证码">
-                                        <div id="validate-block">
-                                            <img id="validate" title="点击刷新"
-                                                 onclick="this.src=this.src+'?'+Math.random()"
-                                                 src="{:captcha_src()}">
-                                            <div id="validate-mask">
-                                                <img src="__CSS__/login/loading.gif">
+                                        <div class="loginInputClass _rows">
+                                            <div class="icon3"></div>
+                                            <input id="J-verification" type="text" placeholder="请输入验证码">
+                                            <div id="validate-block">
+                                                <img id="validate" title="点击刷新"
+                                                    onclick="this.src=this.src+'?'+Math.random()"
+                                                    src="{:captcha_src()}">
+                                                <div id="validate-mask">
+                                                    <img src="__CSS__/login/loading.gif">
+                                                </div>
                                             </div>
                                         </div>
+
+                                        <div class="login-status-block">
+                                            <div class="login-status"></div>
+                                        </div>
+                                        <input id="J-form-submit" type="submit" value="登录">
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 手机扫码登录 -->
+                        <!--          <div id="qrcode_login_card" class="card" style="display: none;">-->
+                        <!--            <div class="card-head">-->
+                        <!--              <div class="head-title">手机扫码登录</div>-->
+                        <!--              <div class="head-menu">-->
+                        <!--                <button class="acclogin_btn"-->
+                        <!--                        onclick="$(&#39;#account_login_card&#39;).show(); $(&#39;#qrcode_login_card&#39;).hide();">-->
+                        <!--                  <span style="transform: rotate(-45deg);">➜</span> <span>账号登录</span>-->
+                        <!--                </button>-->
+                        <!--              </div>-->
+                        <!--            </div>-->
+                        <!--            <div class="card-body" style="min-height: 400px;">-->
+                        <!--              &lt;!&ndash;微信&ndash;&gt;-->
+                        <!--              <div class="qrcode_text1">手机扫码，安全登录</div>-->
+                        <!--              <div id="wx_login">-->
+                        <!--                <iframe src="./三牛娱乐平台_files/qr_code.html" width="270" height="270" frameborder="0"-->
+                        <!--                        scrolling="no"></iframe>-->
+                        <!--              </div>-->
+                        <!--              <div class="qrcode_text2">打开手机 扫一扫登录</div>-->
+                        <!--              <script type="text/javascript" src="./三牛娱乐平台_files/jquery-1.9.1.min.js"></script>-->
+                        <!--              <script type="text/javascript">-->
+                        <!--                  $(function () {-->
+                        <!--                      var context = '<iframe src="https://api2.qrwechat.com/qr_code.php?ask_type=' + location.protocol + '//' + window.location.hostname + '" width="270" height="270" frameborder="0" scrolling="no"></iframe>'-->
+                        <!--                      $('#wx_login').append($(context))-->
+                        <!--                  })-->
+
+
+                        <!--                  function MainNotice(msg) {-->
+                        <!--                      msg = msg ? msg : '登入中，请稍后...';-->
+                        <!--                      var template = '<div id="notice-mask">' +-->
+                        <!--                          '<div class="j-ui-miniwindow pop fixed-5" style="z-index: 700;">' +-->
+                        <!--                          '<div class="hd">' +-->
+                        <!--                          '<span class="title">温馨提示</span>' +-->
+                        <!--                          '</div>' +-->
+                        <!--                          '<div class="content_mid bd">' +-->
+                        <!--                          '<div class="bd text-center">' +-->
+                        <!--                          '<div class="pop-waring">' +-->
+                        <!--                          '<h4 class="pop-text">' +-->
+                        <!--                          '<span id="text" class="color-green">' + msg + '</span>' +-->
+                        <!--                          '<br>' +-->
+                        <!--                          '</h4>' +-->
+                        <!--                          '</div>' +-->
+                        <!--                          '</div>' +-->
+                        <!--                          '</div>' +-->
+                        <!--                          '</div>' +-->
+                        <!--                          '</div>';-->
+                        <!--                      this.show = function () {-->
+                        <!--                          var me = this;-->
+                        <!--                          $('body').css('overflow', 'hidden');-->
+                        <!--                          $(template).appendTo('#wrap');-->
+                        <!--                      }-->
+                        <!--                      this.hide = function () {-->
+                        <!--                          $('#notice-mask').remove();-->
+                        <!--                          $('body').css('overflow', 'auto');-->
+                        <!--                      }-->
+                        <!--                      this.changeText = function (text) {-->
+                        <!--                          $('#notice-mask #text').html(text);-->
+                        <!--                      }-->
+                        <!--                      this.showButtonAndClose = function (cb) {-->
+                        <!--                          var me = this;-->
+                        <!--                          $('<i class="close closeBtn close-notice"></i>').prependTo('.j-ui-miniwindow .hd');-->
+                        <!--                          $('<button style="display: inline-block;" class="btn close-notice confirm">确 认</button>').appendTo('.j-ui-miniwindow');-->
+                        <!--                          $('#notice-mask .close-notice').on('click', function () {-->
+                        <!--                              if (cb) {-->
+                        <!--                                  cb();-->
+                        <!--                              } else {-->
+                        <!--                                  me.hide();-->
+                        <!--                              }-->
+                        <!--                          })-->
+                        <!--                      }-->
+                        <!--                      this.showButtonAndCloseAndCancel = function (cb, cb2) {-->
+                        <!--                          var me = this;-->
+                        <!--                          $('<i class="close closeBtn close-notice"></i></i>').prependTo('.j-ui-miniwindow .hd');-->
+                        <!--                          $('<button style="display: inline-block;" class="btn close-notice confirm">确 认</button><button style="display: inline-block;" class="btn cancel-notice confirm">取 消</button>').appendTo('.j-ui-miniwindow');-->
+                        <!--                          $('#notice-mask .close-notice').on('click', function () {-->
+                        <!--                              if (cb) {-->
+                        <!--                                  cb(me);-->
+                        <!--                                  me.hide();-->
+                        <!--                              } else {-->
+                        <!--                                  me.hide();-->
+                        <!--                              }-->
+                        <!--                          });-->
+                        <!--                          $('#notice-mask .cancel-notice').on('click', function () {-->
+                        <!--                              if (cb) {-->
+                        <!--                                  wechatType = ""-->
+                        <!--                                  cb(me);-->
+                        <!--                                  me.hide();-->
+                        <!--                              } else {-->
+                        <!--                                  me.hide();-->
+                        <!--                              }-->
+                        <!--                          });-->
+                        <!--                      };-->
+                        <!--                  }-->
+
+                        <!--                  //清除所有cookie函数-->
+                        <!--                  function clearAllCookie() {-->
+                        <!--                      var keys = document.cookie.match(/[^ =;]+(?=\=)/g);-->
+                        <!--                      if (keys) {-->
+                        <!--                          for (var i = keys.length; i&#45;&#45;;)-->
+                        <!--                              document.cookie = keys[i] + '=0;expires=' + new Date(0).toUTCString()-->
+                        <!--                      }-->
+                        <!--                  }-->
+
+                        <!--                  function callblack() {-->
+                        <!--                      var mainNotice = new MainNotice();-->
+                        <!--                      mainNotice.show();-->
+                        <!--                      //mainNotice.showButtonAndClose()-->
+                        <!--                      mainNotice.showButtonAndCloseAndCancel(function () {-->
+                        <!--                      }, function () {-->
+                        <!--                          clearAllCookie()-->
+                        <!--                      });-->
+                        <!--                      mainNotice.changeText("您好,这是您初次使用本平台微信登入功能, 请再一次使用[账号][密码]登入,您刚扫码的微信号将会自动绑定该账户, 若要绑定请按确认, 不绑定请按取消, 有任何疑问请洽询客服人员.<br><span style='color:#a64444'>一个微信号只能绑定一个平台帐号，并且绑定后无法更改</span>")-->
+                        <!--                  }-->
+                        <!--              </script>-->
+                        <!--              &lt;!&ndash;微信&ndash;&gt;-->
+                        <!--            </div>-->
+                        <!--          </div>-->
+
+                    </div>
+
+
+                    <div class="card_zone__right">
+                        <div class="card">
+                            <div class="card-body">
+
+                                <!-- owl輪播 -->
+                                <div class="setLoginBanner">
+                                    <div class="loginowl owl-carousel owl-theme owl-loaded owl-drag">
+
+
+                                        <div class="owl-stage-outer">
+                                            <div class="owl-stage"
+                                                style="transform: translate3d(-2912px, 0px, 0px); transition: all 0.3s ease 0s; width: 5096px;">
+                                                <div class="owl-item cloned" style="width: 728px;">
+                                                    <div class="item">
+                                                        <div class="full-bg"
+                                                            style="background-image: url( __IMG__/login/1.jpg );"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="owl-item cloned" style="width: 728px;">
+                                                    <div class="item">
+                                                        <div class="full-bg" style="background-image: url( );"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="owl-item" style="width: 728px;">
+                                                    <div class="item">
+                                                        <div class="full-bg" style="background-image: url( );"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="owl-item" style="width: 728px;">
+                                                    <div class="item">
+                                                        <div class="full-bg" style="background-image: url(  );"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="owl-item active" style="width: 728px;">
+                                                    <div class="item">
+                                                        <div class="full-bg" style="background-image: url( );"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="owl-item cloned" style="width: 728px;">
+                                                    <div class="item">
+                                                        <div class="full-bg" style="background-image: url( );"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="owl-item cloned" style="width: 728px;">
+                                                    <div class="item">
+                                                        <div class="full-bg" style="background-image: url( );"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="owl-nav disabled">
+                                            <button type="button" role="presentation" class="owl-prev"><span
+                                                    aria-label="Previous">‹</span>
+                                            </button>
+                                            <button type="button" role="presentation" class="owl-next"><span
+                                                    aria-label="Next">›</span></button>
+                                        </div>
+                                        <div class="owl-dots disabled"></div>
+                                    </div>
+                                    <div class="login_owlIcon login_owlleft " onclick="loginbannerleft()"></div>
+                                    <div class="login_owlIcon login_owlright" onclick="loginbannerright()"></div>
+                                </div>
+
+                                <!-- 4大功能按鈕 -->
+                                <div class="feature_block _rows">
+
+
+                                    <div>
+                                        <a class="card_2 bright"
+                                            href="javascript:openDownload(&#39;#client_m&#39;,true)">
+                                            <div class="feature_block__icon"><img src="__IMG__/login/icon-phone.png">
+                                            </div>
+                                            <div class="feature_block__text">手机客户端</div>
+                                        </a>
                                     </div>
 
-                                    <div class="login-status-block">
-                                        <div class="login-status"></div>
+
+                                    <div>
+                                        <a class="card_2 bright"
+                                            href="javascript:openDownload(&#39;#client_pc&#39;,true)">
+                                            <div class="feature_block__icon"><img src="__IMG__/login/icon-desktop.png">
+                                            </div>
+                                            <div class="feature_block__text">电脑客户端</div>
+                                        </a>
                                     </div>
-                                    <input id="J-form-submit" type="submit" value="登录">
-                                </form>
+                                    <div>
+                                        <a class="card_2 bright" href="#" target="_blank">
+                                            <div class="feature_block__icon"><img src="__IMG__/login/icon-globe.png">
+                                            </div>
+                                            <div class="feature_block__text">域名测速</div>
+                                        </a>
+                                    </div>
+                                    <div>
+                                        <a class="card_2 bright" href="javascript: openKefu()">
+                                            <div class="feature_block__icon"><img src="__IMG__/login/icon-service.png">
+                                            </div>
+                                            <div class="feature_block__text">在线客服</div>
+                                        </a>
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
                     </div>
-
-                    <!-- 手机扫码登录 -->
-                    <!--          <div id="qrcode_login_card" class="card" style="display: none;">-->
-                    <!--            <div class="card-head">-->
-                    <!--              <div class="head-title">手机扫码登录</div>-->
-                    <!--              <div class="head-menu">-->
-                    <!--                <button class="acclogin_btn"-->
-                    <!--                        onclick="$(&#39;#account_login_card&#39;).show(); $(&#39;#qrcode_login_card&#39;).hide();">-->
-                    <!--                  <span style="transform: rotate(-45deg);">➜</span> <span>账号登录</span>-->
-                    <!--                </button>-->
-                    <!--              </div>-->
-                    <!--            </div>-->
-                    <!--            <div class="card-body" style="min-height: 400px;">-->
-                    <!--              &lt;!&ndash;微信&ndash;&gt;-->
-                    <!--              <div class="qrcode_text1">手机扫码，安全登录</div>-->
-                    <!--              <div id="wx_login">-->
-                    <!--                <iframe src="./三牛娱乐平台_files/qr_code.html" width="270" height="270" frameborder="0"-->
-                    <!--                        scrolling="no"></iframe>-->
-                    <!--              </div>-->
-                    <!--              <div class="qrcode_text2">打开手机 扫一扫登录</div>-->
-                    <!--              <script type="text/javascript" src="./三牛娱乐平台_files/jquery-1.9.1.min.js"></script>-->
-                    <!--              <script type="text/javascript">-->
-                    <!--                  $(function () {-->
-                    <!--                      var context = '<iframe src="https://api2.qrwechat.com/qr_code.php?ask_type=' + location.protocol + '//' + window.location.hostname + '" width="270" height="270" frameborder="0" scrolling="no"></iframe>'-->
-                    <!--                      $('#wx_login').append($(context))-->
-                    <!--                  })-->
-
-
-                    <!--                  function MainNotice(msg) {-->
-                    <!--                      msg = msg ? msg : '登入中，请稍后...';-->
-                    <!--                      var template = '<div id="notice-mask">' +-->
-                    <!--                          '<div class="j-ui-miniwindow pop fixed-5" style="z-index: 700;">' +-->
-                    <!--                          '<div class="hd">' +-->
-                    <!--                          '<span class="title">温馨提示</span>' +-->
-                    <!--                          '</div>' +-->
-                    <!--                          '<div class="content_mid bd">' +-->
-                    <!--                          '<div class="bd text-center">' +-->
-                    <!--                          '<div class="pop-waring">' +-->
-                    <!--                          '<h4 class="pop-text">' +-->
-                    <!--                          '<span id="text" class="color-green">' + msg + '</span>' +-->
-                    <!--                          '<br>' +-->
-                    <!--                          '</h4>' +-->
-                    <!--                          '</div>' +-->
-                    <!--                          '</div>' +-->
-                    <!--                          '</div>' +-->
-                    <!--                          '</div>' +-->
-                    <!--                          '</div>';-->
-                    <!--                      this.show = function () {-->
-                    <!--                          var me = this;-->
-                    <!--                          $('body').css('overflow', 'hidden');-->
-                    <!--                          $(template).appendTo('#wrap');-->
-                    <!--                      }-->
-                    <!--                      this.hide = function () {-->
-                    <!--                          $('#notice-mask').remove();-->
-                    <!--                          $('body').css('overflow', 'auto');-->
-                    <!--                      }-->
-                    <!--                      this.changeText = function (text) {-->
-                    <!--                          $('#notice-mask #text').html(text);-->
-                    <!--                      }-->
-                    <!--                      this.showButtonAndClose = function (cb) {-->
-                    <!--                          var me = this;-->
-                    <!--                          $('<i class="close closeBtn close-notice"></i>').prependTo('.j-ui-miniwindow .hd');-->
-                    <!--                          $('<button style="display: inline-block;" class="btn close-notice confirm">确 认</button>').appendTo('.j-ui-miniwindow');-->
-                    <!--                          $('#notice-mask .close-notice').on('click', function () {-->
-                    <!--                              if (cb) {-->
-                    <!--                                  cb();-->
-                    <!--                              } else {-->
-                    <!--                                  me.hide();-->
-                    <!--                              }-->
-                    <!--                          })-->
-                    <!--                      }-->
-                    <!--                      this.showButtonAndCloseAndCancel = function (cb, cb2) {-->
-                    <!--                          var me = this;-->
-                    <!--                          $('<i class="close closeBtn close-notice"></i></i>').prependTo('.j-ui-miniwindow .hd');-->
-                    <!--                          $('<button style="display: inline-block;" class="btn close-notice confirm">确 认</button><button style="display: inline-block;" class="btn cancel-notice confirm">取 消</button>').appendTo('.j-ui-miniwindow');-->
-                    <!--                          $('#notice-mask .close-notice').on('click', function () {-->
-                    <!--                              if (cb) {-->
-                    <!--                                  cb(me);-->
-                    <!--                                  me.hide();-->
-                    <!--                              } else {-->
-                    <!--                                  me.hide();-->
-                    <!--                              }-->
-                    <!--                          });-->
-                    <!--                          $('#notice-mask .cancel-notice').on('click', function () {-->
-                    <!--                              if (cb) {-->
-                    <!--                                  wechatType = ""-->
-                    <!--                                  cb(me);-->
-                    <!--                                  me.hide();-->
-                    <!--                              } else {-->
-                    <!--                                  me.hide();-->
-                    <!--                              }-->
-                    <!--                          });-->
-                    <!--                      };-->
-                    <!--                  }-->
-
-                    <!--                  //清除所有cookie函数-->
-                    <!--                  function clearAllCookie() {-->
-                    <!--                      var keys = document.cookie.match(/[^ =;]+(?=\=)/g);-->
-                    <!--                      if (keys) {-->
-                    <!--                          for (var i = keys.length; i&#45;&#45;;)-->
-                    <!--                              document.cookie = keys[i] + '=0;expires=' + new Date(0).toUTCString()-->
-                    <!--                      }-->
-                    <!--                  }-->
-
-                    <!--                  function callblack() {-->
-                    <!--                      var mainNotice = new MainNotice();-->
-                    <!--                      mainNotice.show();-->
-                    <!--                      //mainNotice.showButtonAndClose()-->
-                    <!--                      mainNotice.showButtonAndCloseAndCancel(function () {-->
-                    <!--                      }, function () {-->
-                    <!--                          clearAllCookie()-->
-                    <!--                      });-->
-                    <!--                      mainNotice.changeText("您好,这是您初次使用本平台微信登入功能, 请再一次使用[账号][密码]登入,您刚扫码的微信号将会自动绑定该账户, 若要绑定请按确认, 不绑定请按取消, 有任何疑问请洽询客服人员.<br><span style='color:#a64444'>一个微信号只能绑定一个平台帐号，并且绑定后无法更改</span>")-->
-                    <!--                  }-->
-                    <!--              </script>-->
-                    <!--              &lt;!&ndash;微信&ndash;&gt;-->
-                    <!--            </div>-->
-                    <!--          </div>-->
-
                 </div>
 
 
-                <div class="card_zone__right">
-                    <div class="card">
-                        <div class="card-body">
-
-                            <!-- owl輪播 -->
-                            <div class="setLoginBanner">
-                                <div class="loginowl owl-carousel owl-theme owl-loaded owl-drag">
-
-
-                                    <div class="owl-stage-outer">
-                                        <div class="owl-stage"
-                                             style="transform: translate3d(-2912px, 0px, 0px); transition: all 0.3s ease 0s; width: 5096px;">
-                                            <div class="owl-item cloned" style="width: 728px;">
-                                                <div class="item">
-                                                    <div class="full-bg"
-                                                         style="background-image: url( https://n7ws.jnfzdz.cn/sy2/images/3new/login/banner/1.jpg );"></div>
-                                                </div>
-                                            </div>
-                                            <div class="owl-item cloned" style="width: 728px;">
-                                                <div class="item">
-                                                    <div class="full-bg"
-                                                         style="background-image: url( https://n7ws.jnfzdz.cn/sy2/images/3new/login/banner/4.jpg );"></div>
-                                                </div>
-                                            </div>
-                                            <div class="owl-item" style="width: 728px;">
-                                                <div class="item">
-                                                    <div class="full-bg"
-                                                         style="background-image: url( https://n7ws.jnfzdz.cn/sy2/images/3new/login/banner/0.jpg );"></div>
-                                                </div>
-                                            </div>
-                                            <div class="owl-item" style="width: 728px;">
-                                                <div class="item">
-                                                    <div class="full-bg"
-                                                         style="background-image: url( https://n7ws.jnfzdz.cn/sy2/images/3new/login/banner/1.jpg );"></div>
-                                                </div>
-                                            </div>
-                                            <div class="owl-item active" style="width: 728px;">
-                                                <div class="item">
-                                                    <div class="full-bg"
-                                                         style="background-image: url( https://n7ws.jnfzdz.cn/sy2/images/3new/login/banner/4.jpg );"></div>
-                                                </div>
-                                            </div>
-                                            <div class="owl-item cloned" style="width: 728px;">
-                                                <div class="item">
-                                                    <div class="full-bg"
-                                                         style="background-image: url( https://n7ws.jnfzdz.cn/sy2/images/3new/login/banner/0.jpg );"></div>
-                                                </div>
-                                            </div>
-                                            <div class="owl-item cloned" style="width: 728px;">
-                                                <div class="item">
-                                                    <div class="full-bg"
-                                                         style="background-image: url( https://n7ws.jnfzdz.cn/sy2/images/3new/login/banner/1.jpg );"></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="owl-nav disabled">
-                                        <button type="button" role="presentation" class="owl-prev"><span
-                                                aria-label="Previous">‹</span>
-                                        </button>
-                                        <button type="button" role="presentation" class="owl-next"><span
-                                                aria-label="Next">›</span></button>
-                                    </div>
-                                    <div class="owl-dots disabled"></div>
-                                </div>
-                                <div class="login_owlIcon login_owlleft " onclick="loginbannerleft()"></div>
-                                <div class="login_owlIcon login_owlright" onclick="loginbannerright()"></div>
-                            </div>
-
-                            <!-- 4大功能按鈕 -->
-                            <div class="feature_block _rows">
-
-
-                                <div>
-                                    <a class="card_2 bright" href="javascript:openDownload(&#39;#client_m&#39;,true)">
-                                        <div class="feature_block__icon"><img src="__IMG__/login/icon-phone.png"></div>
-                                        <div class="feature_block__text">手机客户端</div>
-                                    </a>
-                                </div>
-
-
-                                <div>
-                                    <a class="card_2 bright" href="javascript:openDownload(&#39;#client_pc&#39;,true)">
-                                        <div class="feature_block__icon"><img src="__IMG__/login/icon-desktop.png">
-                                        </div>
-                                        <div class="feature_block__text">电脑客户端</div>
-                                    </a>
-                                </div>
-                                <div>
-                                    <a class="card_2 bright" href="#" target="_blank">
-                                        <div class="feature_block__icon"><img src="__IMG__/login/icon-globe.png"></div>
-                                        <div class="feature_block__text">域名测速</div>
-                                    </a>
-                                </div>
-                                <div>
-                                    <a class="card_2 bright" href="javascript: openKefu()">
-                                        <div class="feature_block__icon"><img src="__IMG__/login/icon-service.png">
-                                        </div>
-                                        <div class="feature_block__text">在线客服</div>
-                                    </a>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
+                <!-- 瀏覽器建議 -->
+                <div class="brower_summary _rows">
+                    <a href="https://www.google.com/intl/zh-CN/chrome/" target="_blank"><img
+                            src="__IMG__/login/chrome.png"></a>
+                    <a href="https://www.mozilla.org/zh-CN/firefox/new/" target="_blank"><img
+                            src="__IMG__/login/firefox.png"></a>
+                    <a href="https://support.microsoft.com/zh-cn/help/17621/internet-explorer-downloads"
+                        target="_blank"><img src="__IMG__/login/ie.png"></a>
+                    <div class="text">浏览器建议: 首选为Chrome浏览器,其次为火狐和IE11浏览器 分辨率建议:使用1366*768分辨率</div>
                 </div>
+
+
+                <!-- 頁腳 -->
+                <footer class="footer _rows">
+                    <div class="footer__left">© 2020 娱乐版权所有 菲律宾政府PAGCOR博彩牌照认证<br>郑重提示：彩票有风险，投注需谨慎，不向未满18周岁的青少年出售彩票</div>
+                    <div class="footer__right"><img src="__IMG__/login/footer-logo.png"></div>
+                </footer>
+
+
+                <!-- 手机客户端彈窗 -->
+                <!--      <div id="client_m" class="modal" style="display: none;">-->
+                <!--        <div class="modal-popup">-->
+                <!--          <div class="card">-->
+                <!--            <div class="card-body">-->
+                <!--              <div class="modal-close" onclick="openDownload(&#39;#client_m&#39;,false)">-->
+                <!--                <div class="modal-close&#45;&#45;bg"></div>-->
+                <!--              </div>-->
+                <!--              -->
+                <!--              <div class="title">手机客户端 二维码下载</div>-->
+                <!--              <div class="content _rows">-->
+                <!--                <div class="content_block">-->
+                <!--                  <div>-->
+                <!--                    <img src="__IMG__/login/icon-apple.png" style="height: 35px;">-->
+                <!--                    <div>iOS 下载</div>-->
+                <!--                  </div>-->
+                <!--                  <div><img src="./三牛娱乐平台_files/qrcode-ios.png"></div>-->
+                <!--                  <button class="btn-download" onclick="window.open('m.hj776.net')">点击下载 APP-->
+                <!--                  </button>-->
+                <!--                </div>-->
+                <!--                <div class="content_block">-->
+                <!--                  <div>-->
+                <!--                    <img src="./三牛娱乐平台_files/icon-android.png" style="height: 35px;">-->
+                <!--                    <div>Android 下载</div>-->
+                <!--                  </div>-->
+                <!--                  <div><img src="./三牛娱乐平台_files/qrcode-android.png"></div>-->
+                <!--                  <button class="btn-download"-->
+                <!--                          onclick="window.open('m.hj776.net')">点击下载 APP-->
+                <!--                  </button>-->
+                <!--                </div>-->
+                <!--              </div>-->
+                <!--            -->
+                <!--            </div>-->
+                <!--          </div>-->
+                <!--        </div>-->
+                <!--      </div>-->
+
+
+                <!--      <div id="client_pc" class="modal" style="display: none;">-->
+                <!--        <div class="modal-popup">-->
+                <!--          <div class="card">-->
+                <!--            <div class="card-body">-->
+                <!--              <div class="modal-close" onclick="openDownload(&#39;#client_pc&#39;,false)">-->
+                <!--                <div class="modal-close&#45;&#45;bg"></div>-->
+                <!--              </div>-->
+                <!--              -->
+                <!--              <div class="title">电脑客户端 下载</div>-->
+                <!--              <div class="content _rows">-->
+                <!--                <div class="content_block">-->
+                <!--                  <div><img src="./三牛娱乐平台_files/icon-desktop.png" style="filter: brightness(1.3);"></div>-->
+                <!--                  <a class="btn-download" href="#">点击下载 载点1</a>-->
+                <!--                </div>-->
+                <!--                <div class="content_block">-->
+                <!--                  <div><img src="./三牛娱乐平台_files/icon-desktop.png" style="filter: brightness(1.3);"></div>-->
+                <!--                  <a class="btn-download" href="#">点击下载 载点2</a>-->
+                <!--                </div>-->
+                <!--              </div>-->
+                <!--            -->
+                <!--            </div>-->
+                <!--          </div>-->
+                <!--        </div>-->
+                <!--      </div>-->
+
+
             </div>
-
-
-            <!-- 瀏覽器建議 -->
-            <div class="brower_summary _rows">
-                <a href="https://www.google.com/intl/zh-CN/chrome/" target="_blank"><img src="__IMG__/login/chrome.png"></a>
-                <a href="https://www.mozilla.org/zh-CN/firefox/new/" target="_blank"><img
-                        src="__IMG__/login/firefox.png"></a>
-                <a href="https://support.microsoft.com/zh-cn/help/17621/internet-explorer-downloads"
-                   target="_blank"><img
-                        src="__IMG__/login/ie.png"></a>
-                <div class="text">浏览器建议: 首选为Chrome浏览器,其次为火狐和IE11浏览器 分辨率建议:使用1366*768分辨率</div>
-            </div>
-
-
-            <!-- 頁腳 -->
-            <footer class="footer _rows">
-                <div class="footer__left">© 2020 娱乐版权所有 菲律宾政府PAGCOR博彩牌照认证<br>郑重提示：彩票有风险，投注需谨慎，不向未满18周岁的青少年出售彩票</div>
-                <div class="footer__right"><img src="__IMG__/login/footer-logo.png"></div>
-            </footer>
-
-
-            <!-- 手机客户端彈窗 -->
-            <!--      <div id="client_m" class="modal" style="display: none;">-->
-            <!--        <div class="modal-popup">-->
-            <!--          <div class="card">-->
-            <!--            <div class="card-body">-->
-            <!--              <div class="modal-close" onclick="openDownload(&#39;#client_m&#39;,false)">-->
-            <!--                <div class="modal-close&#45;&#45;bg"></div>-->
-            <!--              </div>-->
-            <!--              -->
-            <!--              <div class="title">手机客户端 二维码下载</div>-->
-            <!--              <div class="content _rows">-->
-            <!--                <div class="content_block">-->
-            <!--                  <div>-->
-            <!--                    <img src="__IMG__/login/icon-apple.png" style="height: 35px;">-->
-            <!--                    <div>iOS 下载</div>-->
-            <!--                  </div>-->
-            <!--                  <div><img src="./三牛娱乐平台_files/qrcode-ios.png"></div>-->
-            <!--                  <button class="btn-download" onclick="window.open('m.hj776.net')">点击下载 APP-->
-            <!--                  </button>-->
-            <!--                </div>-->
-            <!--                <div class="content_block">-->
-            <!--                  <div>-->
-            <!--                    <img src="./三牛娱乐平台_files/icon-android.png" style="height: 35px;">-->
-            <!--                    <div>Android 下载</div>-->
-            <!--                  </div>-->
-            <!--                  <div><img src="./三牛娱乐平台_files/qrcode-android.png"></div>-->
-            <!--                  <button class="btn-download"-->
-            <!--                          onclick="window.open('m.hj776.net')">点击下载 APP-->
-            <!--                  </button>-->
-            <!--                </div>-->
-            <!--              </div>-->
-            <!--            -->
-            <!--            </div>-->
-            <!--          </div>-->
-            <!--        </div>-->
-            <!--      </div>-->
-
-
-            <!--      <div id="client_pc" class="modal" style="display: none;">-->
-            <!--        <div class="modal-popup">-->
-            <!--          <div class="card">-->
-            <!--            <div class="card-body">-->
-            <!--              <div class="modal-close" onclick="openDownload(&#39;#client_pc&#39;,false)">-->
-            <!--                <div class="modal-close&#45;&#45;bg"></div>-->
-            <!--              </div>-->
-            <!--              -->
-            <!--              <div class="title">电脑客户端 下载</div>-->
-            <!--              <div class="content _rows">-->
-            <!--                <div class="content_block">-->
-            <!--                  <div><img src="./三牛娱乐平台_files/icon-desktop.png" style="filter: brightness(1.3);"></div>-->
-            <!--                  <a class="btn-download" href="#">点击下载 载点1</a>-->
-            <!--                </div>-->
-            <!--                <div class="content_block">-->
-            <!--                  <div><img src="./三牛娱乐平台_files/icon-desktop.png" style="filter: brightness(1.3);"></div>-->
-            <!--                  <a class="btn-download" href="#">点击下载 载点2</a>-->
-            <!--                </div>-->
-            <!--              </div>-->
-            <!--            -->
-            <!--            </div>-->
-            <!--          </div>-->
-            <!--        </div>-->
-            <!--      </div>-->
-
-
         </div>
     </div>
-</div>
 
 
-<script src="__JS__/jquery-1.9.1.js"></script>
-<script type="text/javascript" src="__JS__/util/jquery.md5.js"></script>
-<script type="text/javascript" src="__JS__/module/index.js"></script>
+    <script src="__JS__/jquery-1.9.1.js"></script>
+    <script type="text/javascript" src="__JS__/util/jquery.md5.js"></script>
+    <script type="text/javascript" src="__JS__/module/index.js"></script>
 
-<!--<script type="text/javascript" src="./三牛娱乐平台_files/test-speed.js"></script>-->
-<script src="__JS__/owl.carousel.js"></script>
-
-
-<!--<script>-->
-<!--    //设置cookie-->
-<!--    function SetCookie(name, value, expire) {-->
-<!--        var exp = new Date();-->
-<!--        exp.setTime(expire.getTime());-->
-<!--        document.cookie = name + "=" + escape(value) + ";expires=" + exp.toGMTString();-->
-<!--    }-->
-
-<!--    //获取cookie-->
-<!--    function getCookie(name) {-->
-<!--        var arr = document.cookie.match(new RegExp("(^| )" + name + "=([^;]*)(;|$)"));-->
-<!--        if (arr != null) return unescape(arr[2]);-->
-<!--        return null;-->
-<!--    }-->
-
-<!--    window.setTimeout(function () {-->
-<!--        $.ajax({-->
-<!--            url: 'https://3niu99.com/urls.php',-->
-<!--            dataType: 'jsonp',-->
-<!--            success: function (res) {-->
-
-<!--                if (typeof (res) == 'object') {-->
-
-<!--                    console.dir(JSON.stringify(res.urls))-->
-<!--                    //hostData = res-->
-<!--                    var d = new Date();-->
-<!--                    var year = d.getFullYear();-->
-<!--                    var month = d.getMonth();-->
-<!--                    var day = d.getDate() + 365;-->
-<!--                    var nextDay = new Date(year, month, day, '00', '00', '00');-->
-
-<!--                    SetCookie('hostData', JSON.stringify(res.urls), nextDay);-->
-<!--                } else {-->
-
-<!--                }-->
-<!--            }-->
-<!--        });-->
-<!--        window.hostData = {}-->
-<!--    }, 3000)-->
-<script>
-    var owl
-    $(function () {
-        owl = $('.loginowl');
-        owl.owlCarousel({
-            loop: true,
-            nav: false,
-            rewind: false,
-            dots: false,
-            singleItem: true,
-            smartSpeed: 300,
-            autoplay: true,
-            autoplayTimeout: 5000,
-            autoplayHoverPause: true,
-            items: 1
-        });
-
-    })
-
-    function loginbannerleft() {
-        owl.trigger('next.owl.carousel');
-    }
-
-    function loginbannerright() {
-        owl.trigger('prev.owl.carousel');
-    }
-</script>
+    <!--<script type="text/javascript" src="./三牛娱乐平台_files/test-speed.js"></script>-->
+    <script src="__JS__/owl.carousel.js"></script>
 
 
-<!--        $('#dice, #toolbar').remove();-->
+    <!--<script>-->
+    <!--    //设置cookie-->
+    <!--    function SetCookie(name, value, expire) {-->
+    <!--        var exp = new Date();-->
+    <!--        exp.setTime(expire.getTime());-->
+    <!--        document.cookie = name + "=" + escape(value) + ";expires=" + exp.toGMTString();-->
+    <!--    }-->
 
-<!--        var targetName = 'spinner',-->
-<!--            $loadParentArea = $('#J-loading-area'),-->
-<!--            $loadArea = $('.newlogintitle'),-->
-<!--            $listDom = $('#J-host-list'),-->
-<!--            speed = window.speed;-->
+    <!--    //获取cookie-->
+    <!--    function getCookie(name) {-->
+    <!--        var arr = document.cookie.match(new RegExp("(^| )" + name + "=([^;]*)(;|$)"));-->
+    <!--        if (arr != null) return unescape(arr[2]);-->
+    <!--        return null;-->
+    <!--    }-->
 
-<!--        //域名数据-->
-<!--        var hostDatao = getCookie('hostData');-->
-<!--        try {-->
-<!--            var hostData = JSON.parse(hostDatao).slice(0, 5);-->
-<!--        } catch (e) {-->
-<!--            var hostData = [-->
-<!--                {-->
-<!--                    'name': '3niu6.com',-->
-<!--                    'host': '3niu6.com'-->
-<!--                },-->
-<!--                {-->
-<!--                    'name': '3niu66.com',-->
-<!--                    'host': '3niu66.com'-->
-<!--                },-->
-<!--                {-->
-<!--                    'name': '3niu668.com',-->
-<!--                    'host': '3niu668.com'-->
-<!--                },-->
-<!--                {-->
-<!--                    'name': '3niu168.com',-->
-<!--                    'host': '3niu168.com'-->
-<!--                },-->
-<!--                {-->
-<!--                    'name': '3niu88.com',-->
-<!--                    'host': '3niu88.com'-->
-<!--                }-->
-<!--            ];-->
-<!--        }-->
+    <!--    window.setTimeout(function () {-->
+    <!--        $.ajax({-->
+    <!--            url: 'https://3niu99.com/urls.php',-->
+    <!--            dataType: 'jsonp',-->
+    <!--            success: function (res) {-->
 
-<!--        $loadArea.click(function () {-->
-<!--            //开始测速-->
-<!--            speed.test(hostData, function () {-->
+    <!--                if (typeof (res) == 'object') {-->
 
-<!--            });-->
-<!--        });-->
+    <!--                    console.dir(JSON.stringify(res.urls))-->
+    <!--                    //hostData = res-->
+    <!--                    var d = new Date();-->
+    <!--                    var year = d.getFullYear();-->
+    <!--                    var month = d.getMonth();-->
+    <!--                    var day = d.getDate() + 365;-->
+    <!--                    var nextDay = new Date(year, month, day, '00', '00', '00');-->
 
-<!--        //渲染个节点-->
-<!--        speed.render(hostData);-->
-<!--    })-->
+    <!--                    SetCookie('hostData', JSON.stringify(res.urls), nextDay);-->
+    <!--                } else {-->
+
+    <!--                }-->
+    <!--            }-->
+    <!--        });-->
+    <!--        window.hostData = {}-->
+    <!--    }, 3000)-->
+    <script>
+        var owl
+        $(function () {
+            owl = $('.loginowl');
+            owl.owlCarousel({
+                loop: true,
+                nav: false,
+                rewind: false,
+                dots: false,
+                singleItem: true,
+                smartSpeed: 300,
+                autoplay: true,
+                autoplayTimeout: 5000,
+                autoplayHoverPause: true,
+                items: 1
+            });
+
+        })
+
+        function loginbannerleft() {
+            owl.trigger('next.owl.carousel');
+        }
+
+        function loginbannerright() {
+            owl.trigger('prev.owl.carousel');
+        }
+    </script>
 
 
-<!--    function openDownload(target, bool) {-->
-<!--        if (bool == true) {-->
-<!--            $('body').addClass('modal-open');-->
-<!--            $(target).show();-->
-<!--        } else {-->
-<!--            $('body').removeClass('modal-open');-->
-<!--            $(target).hide();-->
-<!--        }-->
-<!--    }-->
-<!--</script>-->
-<!--&lt;!&ndash; 客服系统 &ndash;&gt;-->
+    <!--        $('#dice, #toolbar').remove();-->
 
-<!--<div>-->
-<!--  <script type="text/javascript">-->
-<!--      window.$zopim || (function (d, s) {-->
-<!--          var z = $zopim = function (c) {-->
-<!--              z._.push(c)-->
-<!--          }, $ = z.s =-->
-<!--              d.createElement(s), e = d.getElementsByTagName(s)[0];-->
-<!--          z.set = function (o) {-->
-<!--              z.set._.push(o)-->
-<!--          };-->
-<!--          z._ = [];-->
-<!--          z.set._ = [];-->
-<!--          $.async = !0;-->
-<!--          $.setAttribute("charset", "utf-8");-->
-<!--          $.src = "https://v2.zopim.com/?37EzcPO7P83hHpbXtpkUOfqbhlcY5Omo";-->
-<!--          z.t = +new Date;-->
-<!--          $.type = "text/javascript";-->
-<!--          e.parentNode.insertBefore($, e)-->
-<!--      })(document, "script");-->
+    <!--        var targetName = 'spinner',-->
+    <!--            $loadParentArea = $('#J-loading-area'),-->
+    <!--            $loadArea = $('.newlogintitle'),-->
+    <!--            $listDom = $('#J-host-list'),-->
+    <!--            speed = window.speed;-->
 
-<!--      $zopim(function () {-->
-<!--          $zopim.livechat.setName('未登录用户');-->
-<!--      });-->
+    <!--        //域名数据-->
+    <!--        var hostDatao = getCookie('hostData');-->
+    <!--        try {-->
+    <!--            var hostData = JSON.parse(hostDatao).slice(0, 5);-->
+    <!--        } catch (e) {-->
+    <!--            var hostData = [-->
+    <!--                {-->
+    <!--                    'name': '3niu6.com',-->
+    <!--                    'host': '3niu6.com'-->
+    <!--                },-->
+    <!--                {-->
+    <!--                    'name': '3niu66.com',-->
+    <!--                    'host': '3niu66.com'-->
+    <!--                },-->
+    <!--                {-->
+    <!--                    'name': '3niu668.com',-->
+    <!--                    'host': '3niu668.com'-->
+    <!--                },-->
+    <!--                {-->
+    <!--                    'name': '3niu168.com',-->
+    <!--                    'host': '3niu168.com'-->
+    <!--                },-->
+    <!--                {-->
+    <!--                    'name': '3niu88.com',-->
+    <!--                    'host': '3niu88.com'-->
+    <!--                }-->
+    <!--            ];-->
+    <!--        }-->
 
-<!--      function openKefu() {-->
-<!--          $zopim.livechat.setName('未登录用户');-->
-<!--          $zopim.livechat.window.openPopout();-->
-<!--      }-->
-<!--  </script>-->
+    <!--        $loadArea.click(function () {-->
+    <!--            //开始测速-->
+    <!--            speed.test(hostData, function () {-->
 
-</div>
+    <!--            });-->
+    <!--        });-->
+
+    <!--        //渲染个节点-->
+    <!--        speed.render(hostData);-->
+    <!--    })-->
+
+
+    <!--    function openDownload(target, bool) {-->
+    <!--        if (bool == true) {-->
+    <!--            $('body').addClass('modal-open');-->
+    <!--            $(target).show();-->
+    <!--        } else {-->
+    <!--            $('body').removeClass('modal-open');-->
+    <!--            $(target).hide();-->
+    <!--        }-->
+    <!--    }-->
+    <!--</script>-->
+    <!--&lt;!&ndash; 客服系统 &ndash;&gt;-->
+
+    <!--<div>-->
+    <!--  <script type="text/javascript">-->
+    <!--      window.$zopim || (function (d, s) {-->
+    <!--          var z = $zopim = function (c) {-->
+    <!--              z._.push(c)-->
+    <!--          }, $ = z.s =-->
+    <!--              d.createElement(s), e = d.getElementsByTagName(s)[0];-->
+    <!--          z.set = function (o) {-->
+    <!--              z.set._.push(o)-->
+    <!--          };-->
+    <!--          z._ = [];-->
+    <!--          z.set._ = [];-->
+    <!--          $.async = !0;-->
+    <!--          $.setAttribute("charset", "utf-8");-->
+    <!--          $.src = "https://v2.zopim.com/?37EzcPO7P83hHpbXtpkUOfqbhlcY5Omo";-->
+    <!--          z.t = +new Date;-->
+    <!--          $.type = "text/javascript";-->
+    <!--          e.parentNode.insertBefore($, e)-->
+    <!--      })(document, "script");-->
+
+    <!--      $zopim(function () {-->
+    <!--          $zopim.livechat.setName('未登录用户');-->
+    <!--      });-->
+
+    <!--      function openKefu() {-->
+    <!--          $zopim.livechat.setName('未登录用户');-->
+    <!--          $zopim.livechat.window.openPopout();-->
+    <!--      }-->
+    <!--  </script>-->
+
+    </div>
 
 
 </body>
+
 </html>
