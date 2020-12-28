@@ -15,7 +15,7 @@ namespace Mobile\Controller;
 class GameController extends HomeController
 {
     private $stopCode = [
-        17, 20, 23, 60, 198, 200, 202
+        17, 20, 23, 60, 198, 200, 202,
     ];
     public $stop_times = [
         '36' => 6,
@@ -27,7 +27,7 @@ class GameController extends HomeController
         '16' => 30,
         '15' => 30,
         '6' => 30,
-        '20' => 30,
+        // '20' => 30,
         '34' => 6,
         '44' => 30,
         '45' => 6,
@@ -39,7 +39,7 @@ class GameController extends HomeController
 
     protected $zhushu_playeds = [
         45, 46, 47, 48, 49, 50, 51, 52, 152, 56, 53, 54, 20,
-        1, 7, 13, 274, 11, 275, 270, 276, 28, 26, 34, 32, 30, 36, 15, 9, 253, 254, 255, 256, 257, 258, 278, 279, 280, 281, 3
+        1, 7, 13, 274, 11, 275, 270, 276, 28, 26, 34, 32, 30, 36, 15, 9, 253, 254, 255, 256, 257, 258, 278, 279, 280, 281, 3,
     ];
 
     protected $maxzs = 0;
@@ -48,21 +48,25 @@ class GameController extends HomeController
     public function game($type = null, $groupId = null, $played = null)
     {
         $played = I('played');
-        if(I('type')) $this->type = I('type');
-        if(I('groupId')) {
+        if (I('type')) {
+            $this->type = I('type');
+        }
+
+        if (I('groupId')) {
             $this->groupId = I('groupId');
         } else {
             // 默认进入三星玩法
             $this->groupId = 1;
         }
 
-
         $lastNo = $this->getGameLastNo($this->type);
 
         //$this->getValue("select data from {$this->prename}data where type={$this->type} and number='{$lastNo['actionNo']}'");
         $return = M('data')->where(['type' => $this->type, 'number' => $lastNo['actionNo']])->field('data')->find();
         $kjHao = $return['data'];
-        if($kjHao) $kjHao = explode(',', $kjHao);
+        if ($kjHao) {
+            $kjHao = explode(',', $kjHao);
+        }
 
         $actionNo = $this->getGameNo($this->type);
         $types = $this->getTypes();
@@ -84,7 +88,6 @@ class GameController extends HomeController
         $history = M('data')->where(['type' => $this->type])->order('number desc')->limit(4)->field('time, number, data')->select();
         $this->assign('history', $history);
 
-
         $groups = $this->getGroups();
         $this->assign('groups', $groups);
 
@@ -94,11 +97,11 @@ class GameController extends HomeController
         $playeds = $this->getPlayeds();
         $this->assign('playeds', $playeds);
 
-        if(!$played) {
+        if (!$played) {
             $playeds2 = [];
             $i = 0;
-            foreach($playeds as $play) {
-                if($play['groupId'] == $this->groupId && $play['enable'] == 1) {
+            foreach ($playeds as $play) {
+                if ($play['groupId'] == $this->groupId && $play['enable'] == 1) {
                     $playeds2[$i] = $play;
                     $i++;
                 }
@@ -107,7 +110,9 @@ class GameController extends HomeController
         }
 
         //dump($played);
-        if($played) $this->played = $played;
+        if ($played) {
+            $this->played = $played;
+        }
 
         $this->assign('playedId', $this->played);
 
@@ -123,7 +128,7 @@ class GameController extends HomeController
         $this->display();
     }
 
-    public final function group($type, $groupId)
+    final public function group($type, $groupId)
     {
         $this->playeds = $this->getPlayeds();
         $this->type = $type;
@@ -131,8 +136,8 @@ class GameController extends HomeController
 
         $playeds2 = [];
         $i = 0;
-        foreach($this->playeds as $play) {
-            if($play['groupId'] == $groupId && $play['enable'] == 1) {
+        foreach ($this->playeds as $play) {
+            if ($play['groupId'] == $groupId && $play['enable'] == 1) {
                 $playeds2[$i] = $play;
                 break;
                 $i++;
@@ -150,7 +155,7 @@ class GameController extends HomeController
         $this->display('Game/load_tab_group');
     }
 
-    public final function played($type, $playedId)
+    final public function played($type, $playedId)
     {
 
         $this->playeds = $this->getPlayeds();
@@ -172,11 +177,10 @@ class GameController extends HomeController
         $this->display("Game/inc_game_played");
     }
 
-
     private function getPl($type = null, $played = null)
     {
         $types = M('type')->where(['id' => $type])->find();
-        if($types['is_official'] == 1) {
+        if ($types['is_official'] == 1) {
             $data = M('played')->where(['id' => $played])->field('guo_prop as bonusProp,guo_prop_base as bonusPropBase')->find();
         } else {
             $data = M('played')->where(['id' => $played])->field('bonusProp, bonusPropBase')->find();
@@ -184,25 +188,24 @@ class GameController extends HomeController
         return $data;
     }
 
-
     //验证是否开启投注
-    public final function checkBuy()
+    final public function checkBuy()
     {
         $actionNo = "";
 
         $this->settings = $this->getSystemSettings();
-        if($this->settings['switchBuy'] == 0) {
+        if ($this->settings['switchBuy'] == 0) {
             $actionNo['flag'] = 1;
         }
 
         $this->ajaxReturn($actionNo, 'JSON');
     }
 
-    public final function getNo($type)
+    final public function getNo($type)
     {
         $actionNo = $this->getGameNo($type);
 
-        if($type == 1 && $actionNo['actionTime'] == '00:00') {
+        if ($type == 1 && $actionNo['actionTime'] == '00:00') {
             $actionNo['actionTime'] = strtotime($actionNo['actionTime']) + 24 * 3600;
         } else {
             $actionNo['actionTime'] = strtotime($actionNo['actionTime']);
@@ -212,11 +215,10 @@ class GameController extends HomeController
         //echo json_encode($actionNo);
     }
 
-
-    public final function postCode()
+    final public function postCode()
     {
         $m = M('members')->where(['uid' => $this->user['uid']])->find();
-        if((!empty($m) && intval($m['is_sleep']) == 1) || empty($m)) {
+        if ((!empty($m) && intval($m['is_sleep']) == 1) || empty($m)) {
             $this->error('网络异常，请重新投注！');
             exit;
         }
@@ -227,15 +229,14 @@ class GameController extends HomeController
         $amount = 0;
         $fpcount = 1; //飞盘 默认为1
         $this->getSystemSettings();
-        if($this->settings['switchBuy'] == 0) {
+        if ($this->settings['switchBuy'] == 0) {
             $this->error('本平台已经停止购买！');
         }
-        if($this->settings['switchDLBuy'] == 0 && $this->user['type']) {
+        if ($this->settings['switchDLBuy'] == 0 && $this->user['type']) {
             $this->error('代理不能买单！');
         }
 
-
-        if(count($codes) == 0) {
+        if (count($codes) == 0) {
             $this->error('请先选择号码再提交投注');
         }
 
@@ -245,39 +246,47 @@ class GameController extends HomeController
         $actionNo = $this->getGameActionNo($para['type']); //当期期数
         /************************ 之间修改代码勿动 开始****************************/
         $no2 = str_replace('-', '', $actionNo);
-        foreach($actionNo_array as $action_no) {
+        foreach ($actionNo_array as $action_no) {
             $no = str_replace('-', '', $action_no);
-            if($no < $no2) {
+            if ($no < $no2) {
                 $this->error('投注失败：该期投注时间已过');
             }
         }
         $time = time() + $this->stop_times[$para['type']];
-        if($actionTime <= $time) $this->error('投注失败：该期投注时间已过');
+        if ($actionTime <= $time) {
+            $this->error('投注失败：该期投注时间已过');
+        }
+
         //当期投注截止时间已过 不准投注
-        if($actionTime - $this->before_stop_time < time()) $this->error('投注失败：该期投注时间已过');
+        if ($actionTime - $this->before_stop_time < time()) {
+            $this->error('投注失败：该期投注时间已过');
+        }
+
         /************************ 之间修改代码勿动 结束****************************/
-        if($actionNo != $para['actionNo']) $this->error('投注失败：你投注第' . $para['actionNo'] . '已过购买时间2');
+        if ($actionNo != $para['actionNo']) {
+            $this->error('投注失败：你投注第' . $para['actionNo'] . '已过购买时间2');
+        }
 
         // 查检每注的赔率是否正常
         $this->getPlayeds();
-        foreach($codes as $code) {
-            if(in_array($code['playedId'], $this->stopCode) && mb_strlen(str_replace(',', '', $code['actionData'])) > 9) {
+        foreach ($codes as $code) {
+            if (in_array($code['playedId'], $this->stopCode) && mb_strlen(str_replace(',', '', $code['actionData'])) > 9) {
                 return $this->error('最多只能选9个号');
             }
             //彩种开启关闭判断
             $cur_type = $this->types[$code['type']];
-            if($cur_type['enable'] != 1) {
+            if ($cur_type['enable'] != 1) {
                 $this->error($this->types[$code['type']]['title'] . '已停止投注！');
             }
 
             //检查开启
             $played = $this->playeds[$code['playedId']];
-            if($cur_type['is_official'] == 1) {
-                if(!$played['is_official_open']) {
+            if ($cur_type['is_official'] == 1) {
+                if (!$played['is_official_open']) {
                     $this->error('官彩游戏玩法组已停,请刷新再投 -1');
                 }
             } else {
-                if(!$played['enable']) {
+                if (!$played['enable']) {
                     $this->error('游戏玩法组已停,请刷新再投 -1');
                 }
             }
@@ -286,52 +295,52 @@ class GameController extends HomeController
             $chkBonus = ($played['bonusProp'] - $played['bonusPropBase']) / $this->settings['fanDianMax'] * ($this->user['fanDian'] - $code['fanDian']) + $played['bonusPropBase']; //实际奖金
 
 //            if($code['bonusProp'] > $played['bonusProp']) {
-//                $this->error('投注金额过大');
-//            }
-//            $this->success('最高赔付' . $played['bonusProp']);
-            if($code['bonusProp'] < $played['bonusPropBase']) {
+            //                $this->error('投注金额过大');
+            //            }
+            //            $this->success('最高赔付' . $played['bonusProp']);
+            if ($code['bonusProp'] < $played['bonusPropBase']) {
                 $this->error('提交数据出错，请重新投注 -2');
             }
 
-            if(intval($chkBonus) != intval($code['bonusProp'])) {
+            if (intval($chkBonus) != intval($code['bonusProp'])) {
                 $this->error('提交数据出错，请重新投注 -3');
             }
             //检查返点
-            if(floatval($code['fanDian']) > floatval($this->user['fanDian']) || floatval($code['fanDian']) > floatval($this->settings['fanDianMax'])) {
+            if (floatval($code['fanDian']) > floatval($this->user['fanDian']) || floatval($code['fanDian']) > floatval($this->settings['fanDianMax'])) {
                 $this->error('提交数据出错，请重新投注 -4');
             }
             //检查倍数
-            if(intval($code['beiShu']) < 1) {
+            if (intval($code['beiShu']) < 1) {
                 $this->error('倍数只能为大于1正整数');
             }
             // 检查注数
             /*  dump($played['betCountFun']);
-              if ($betCountFun == $played['betCountFun']) {
-                  if ($played['betCountFun'] == 'descar') {
-                      if ($code['actionNum'] > Bet::$betCountFun($code['actionData'])) {
-                          $this->error('提交数据出错，请重新投注 -5');
-                      }
-                  } elseif ($played['betCountFun'] == 'descar2') {
-                      if ($code['actionNum'] < 1) {
-                          $this->error('提交数据出错，请重新投注 -6');
-                      }
-                  } else {
-                      dump($betCountFun);
-                      exit;
-                      if ($code['actionNum'] != Bet::$betCountFun($code['actionData'])) {
-                          $this->error('提交数据出错，请重新投注 -7' . Bet::$betCountFun($code['actionData']));
-                      }
-                  }
-              } *////end
+            if ($betCountFun == $played['betCountFun']) {
+            if ($played['betCountFun'] == 'descar') {
+            if ($code['actionNum'] > Bet::$betCountFun($code['actionData'])) {
+            $this->error('提交数据出错，请重新投注 -5');
+            }
+            } elseif ($played['betCountFun'] == 'descar2') {
+            if ($code['actionNum'] < 1) {
+            $this->error('提交数据出错，请重新投注 -6');
+            }
+            } else {
+            dump($betCountFun);
+            exit;
+            if ($code['actionNum'] != Bet::$betCountFun($code['actionData'])) {
+            $this->error('提交数据出错，请重新投注 -7' . Bet::$betCountFun($code['actionData']));
+            }
+            }
+            } *////end
 
             //防作弊 20150722
-            if($this->types[$code['type']]['type'] != $played['type']) {
+            if ($this->types[$code['type']]['type'] != $played['type']) {
                 $this->error('提交数据出错，请重新投注2');
             }
 
-            if(strpos($played['name'], "任选") > -1 && $played['type'] == 1) {
+            if (strpos($played['name'], "任选") > -1 && $played['type'] == 1) {
                 //检查任选的万千百十个位数是否作弊
-                if($code['weiShu'] != 0 && $code['weiShu'] != 3 && $code['weiShu'] != 5 && $code['weiShu'] != 6 && $code['weiShu'] != 7 && $code['weiShu'] != 9 &&
+                if ($code['weiShu'] != 0 && $code['weiShu'] != 3 && $code['weiShu'] != 5 && $code['weiShu'] != 6 && $code['weiShu'] != 7 && $code['weiShu'] != 9 &&
                     $code['weiShu'] != 10 && $code['weiShu'] != 11 && $code['weiShu'] != 19 && $code['weiShu'] != 14 && $code['weiShu'] != 22 &&
                     $code['weiShu'] != 28 && $code['weiShu'] != 12 && $code['weiShu'] != 13 && $code['weiShu'] != 17 && $code['weiShu'] != 18 &&
                     $code['weiShu'] != 20 && $code['weiShu'] != 21 && $code['weiShu'] != 25 && $code['weiShu'] != 26 && $code['weiShu'] != 15 &&
@@ -340,97 +349,99 @@ class GameController extends HomeController
                 }
 
                 //任选四复式
-                if($played['id'] == 8) {
+                if ($played['id'] == 8) {
                     str_replace("-", "#", $code['actionData'], $num);
-                    if($num > 1) {
+                    if ($num > 1) {
                         $this->error('提交数据出错，请重新投注4');
                     }
                 }
                 //任选三复式
-                if($played['id'] == 14) {
+                if ($played['id'] == 14) {
                     str_replace("-", "#", $code['actionData'], $num);
-                    if($num > 2) {
+                    if ($num > 2) {
                         $this->error('提交数据出错，请重新投注4');
                     }
                 }
                 //任选二复式
-                if($played['id'] == 29) {
+                if ($played['id'] == 29) {
                     str_replace("-", "#", $code['actionData'], $num);
-                    if($num > 3) {
+                    if ($num > 3) {
                         $this->error('提交数据出错，请重新投注4');
                     }
                 }
                 //任选二大小单双
-                if($played['id'] == 44) {
+                if ($played['id'] == 44) {
                     str_replace("-", "#", $code['actionData'], $num);
-                    if($num > 3) {
+                    if ($num > 3) {
                         $this->error('提交数据出错，请重新投注4');
                     }
                 }
 
-                if($played['id'] == 9) {
-                    if($code['weiShu'] != 15 && $code['weiShu'] != 23 && $code['weiShu'] != 27 && $code['weiShu'] != 29 && $code['weiShu'] != 30) {
+                if ($played['id'] == 9) {
+                    if ($code['weiShu'] != 15 && $code['weiShu'] != 23 && $code['weiShu'] != 27 && $code['weiShu'] != 29 && $code['weiShu'] != 30) {
                         $this->error('提交数据出错，请重新投注2');
                     }
                 }
 
-                if($played['id'] == 15 || $played['id'] == 22 || $played['id'] == 23 || $played['id'] == 24 || $played['id'] == 41) {
-                    if($code['weiShu'] != 7 && $code['weiShu'] != 11 && $code['weiShu'] != 13 && $code['weiShu'] != 14 && $code['weiShu'] != 19 &&
+                if ($played['id'] == 15 || $played['id'] == 22 || $played['id'] == 23 || $played['id'] == 24 || $played['id'] == 41) {
+                    if ($code['weiShu'] != 7 && $code['weiShu'] != 11 && $code['weiShu'] != 13 && $code['weiShu'] != 14 && $code['weiShu'] != 19 &&
                         $code['weiShu'] != 21 && $code['weiShu'] != 22 && $code['weiShu'] != 25 && $code['weiShu'] != 26 && $code['weiShu'] != 28) {
                         $this->error('提交数据出错，请重新投注2');
                     }
                 }
 
-                if($played['id'] == 30 || $played['id'] == 35 || $played['id'] == 36) {
-                    if($code['weiShu'] != 3 && $code['weiShu'] != 5 && $code['weiShu'] != 6 && $code['weiShu'] != 9 && $code['weiShu'] != 10 &&
+                if ($played['id'] == 30 || $played['id'] == 35 || $played['id'] == 36) {
+                    if ($code['weiShu'] != 3 && $code['weiShu'] != 5 && $code['weiShu'] != 6 && $code['weiShu'] != 9 && $code['weiShu'] != 10 &&
                         $code['weiShu'] != 12 && $code['weiShu'] != 17 && $code['weiShu'] != 18 && $code['weiShu'] != 20 && $code['weiShu'] != 24) {
                         $this->error('提交数据出错，请重新投注2');
                     }
                 }
             }
 
-            if($played['id'] == 17 || $played['id'] == 20) {
-                if(mb_strlen($code['actionData']) > 9) {
+            if ($played['id'] == 17 || $played['id'] == 20) {
+                if (mb_strlen($code['actionData']) > 9) {
                     $this->error('单笔投注注数最大不能超过9位');
                 }
             }
 
             //11x5 bug
-            if(strpos($played['name'], "任选") > -1 && $played['type'] == 2) {
-                if(!strstr($code['actionData'], ' ') && $played['name'] != '任选一') {
+            if (strpos($played['name'], "任选") > -1 && $played['type'] == 2) {
+                if (!strstr($code['actionData'], ' ') && $played['name'] != '任选一') {
                     $this->error('提交数据出错，请重新投注');
                 }
                 //检查任选的投注号码是否重复的作弊
-                foreach(explode(' ', $code['actionData']) as $d) {
+                foreach (explode(' ', $code['actionData']) as $d) {
                     str_replace($d, "#", $code['actionData'], $num);
-                    if($num > 1) {
+                    if ($num > 1) {
                         $this->error('提交数据出错，1请重新投注3');
                     }
                 }
             }
             //11x5 bug
-            if(strpos($played['name'], "组选") > -1 && $played['type'] == 2) {
-                if(!strstr($code['actionData'], ' ')) {
+            if (strpos($played['name'], "组选") > -1 && $played['type'] == 2) {
+                if (!strstr($code['actionData'], ' ')) {
                     $this->error('提交数据出错，请重新投注3');
                 }
                 //检查任选的投注号码是否重复的作弊
-                foreach(explode(' ', $code['actionData']) as $d) {
+                foreach (explode(' ', $code['actionData']) as $d) {
                     str_replace($d, "#", $code['actionData'], $num);
-                    if($num > 1) {
+                    if ($num > 1) {
                         $this->error('提交数据出错，请重新投注3');
                     }
                 }
             }
-            if(!$this->MaxZhuShu($code['type'], $played['id'], $code['actionNum'], $actionNo, $this->user['uid']))
+            if (!$this->MaxZhuShu($code['type'], $played['id'], $code['actionNum'], $actionNo, $this->user['uid'])) {
                 return $this->error("超过最大注数");
-            if(!$this->ZhuShuMax($code['type'], $played, $code['actionNum'], $actionNo, $this->user['uid'], $cur_type)) {
+            }
+
+            if (!$this->ZhuShuMax($code['type'], $played, $code['actionNum'], $actionNo, $this->user['uid'], $cur_type)) {
                 return $this->error("超过最大注数");
             }
         }
 
         $ip = get_client_ip();
 
-        if($para['fpEnable']) {
+        if ($para['fpEnable']) {
             $fpcount = 2;
         }
 
@@ -444,16 +455,16 @@ class GameController extends HomeController
             'serializeId' => uniqid(),
         ];
 
-        if($zhuihao = I('zhuiHao')) {
+        if ($zhuihao = I('zhuiHao')) {
             $liqType = 102;
             $info = '追号投注';
 
             $beishu_array = explode('|', $para['beishu']);
 
             $codes_2 = [];
-            foreach($codes as $i => $code) {
+            foreach ($codes as $i => $code) {
                 $i = 0;
-                foreach($actionNo_array as $action_no) {
+                foreach ($actionNo_array as $action_no) {
                     $para2 = [
                         'actionTime' => $this->time,
                         'actionNo' => $action_no,
@@ -477,7 +488,7 @@ class GameController extends HomeController
             $liqType = 101;
             $info = '投注';
 
-            foreach($codes as $i => $code) {
+            foreach ($codes as $i => $code) {
                 $codes[$i] = array_merge($code, $para2);
                 $amount += abs($code['actionNum'] * $code['mode'] * $code['beiShu'] * $fpcount);
             }
@@ -486,7 +497,7 @@ class GameController extends HomeController
         // 查询用户可用资金
         $user = M('members')->where(['uid' => $this->user['uid']])->field('coin')->find();
         $userAmount = $user['coin'];
-        if($userAmount < $amount) {
+        if ($userAmount < $amount) {
             $this->error('您的可用资金不足，是否充值？');
         }
 
@@ -497,7 +508,7 @@ class GameController extends HomeController
         $isBetSuccess = [];
         $isCoinSuccess = [];
         $i = 0;
-        foreach($codes as $code) {
+        foreach ($codes as $code) {
             // 插入投注表
             $code['wjorderId'] = $code['type'] . $code['playedId'] . $this->randomkeys(8 - strlen($code['type'] . $code['playedId']));
             $code['actionNum'] = abs($code['actionNum']);
@@ -522,33 +533,33 @@ class GameController extends HomeController
             $i++;
         }
         $isSuc = true;
-        for(; $i >= 0; $i--) {
-            if($isBetSuccess[$i] === false || $isCoinSuccess[$i] === false) {
+        for (; $i >= 0; $i--) {
+            if ($isBetSuccess[$i] === false || $isCoinSuccess[$i] === false) {
                 $isSuc = false;
                 break;
             }
         }
 
-        if($isSuc) {
+        if ($isSuc) {
             //将投注记录写入文件
-//            if (!is_dir('./Record/')) {
-//                mkdir('./Record/');
-//            }
-//            $fp         = fopen("./Record/" . $code['username'] . ".txt", "a+");
-//            $tz_content = $code['wjorderId'] . " 投注内容：" . $code['actionData'] . " 玩法：" . $code['playedId'] . " 元角分：" . $code['mode'] . " 倍数：" . $code['beiShu'] . " 注数：" . $code['actionNum'] . " 时间：" . date('m-d H:i:s', time()) . "\r\n\r\n";
-//            $flag       = fwrite($fp, $tz_content);
-//            if (!$flag) {
-//                $this->error('创建投注记录文件失败');
-//            }
-//            fclose($fp);
+            //            if (!is_dir('./Record/')) {
+            //                mkdir('./Record/');
+            //            }
+            //            $fp         = fopen("./Record/" . $code['username'] . ".txt", "a+");
+            //            $tz_content = $code['wjorderId'] . " 投注内容：" . $code['actionData'] . " 玩法：" . $code['playedId'] . " 元角分：" . $code['mode'] . " 倍数：" . $code['beiShu'] . " 注数：" . $code['actionNum'] . " 时间：" . date('m-d H:i:s', time()) . "\r\n\r\n";
+            //            $flag       = fwrite($fp, $tz_content);
+            //            if (!$flag) {
+            //                $this->error('创建投注记录文件失败');
+            //            }
+            //            fclose($fp);
 
             $Model->commit(); //成功则提交
-            if(in_array(strtolower($this->user['username']), [
+            if (in_array(strtolower($this->user['username']), [
                 'cswt001', 'cswt002', 'cswt003', 'cswt004', 'cswt005', 'cswt006'])) { //委托账户批量投注
                 $Model = new \Think\Model();
-                foreach($isBetSuccess as $value) {
-                    if($value) {
-                        if($Model->query(" call sp_EntrustBet({$value},'{$this->user['username']}')") === false) {
+                foreach ($isBetSuccess as $value) {
+                    if ($value) {
+                        if ($Model->query(" call sp_EntrustBet({$value},'{$this->user['username']}')") === false) {
                             $this->error('投注成功，wr账户投注失败！' . ($Model->getDbError()));
                         }
                     }
@@ -562,11 +573,10 @@ class GameController extends HomeController
         }
     }
 
-
     /**
      * {{{ ajax撤单
      */
-    public final function deleteCode()
+    final public function deleteCode()
     {
         //$this->beginTransaction();
 
@@ -575,17 +585,36 @@ class GameController extends HomeController
 
         $id = I('id');
         //$sql="select * from {$this->prename}bets where id=".$id;
-        if(!$data = M('bets')->where(['id' => I('id')])->find()) $this->error('找不到定单。');
-        if($data['isDelete']) $this->error('这单子已经撤单过了。');
-        if($data['uid'] != $this->user['uid']) $this->error('这单子不是您的，您不能撤单。');        // 可考虑管理员能给用户撤单情况
-        if($data['kjTime'] <= $this->time) $this->error('已经开奖，不能撤单');
-        if($data['lotteryNo']) $this->error('已经开奖，不能撤单');
-        if($data['qz_uid']) $this->error('单子已经被人抢庄，不能撤单');
+        if (!$data = M('bets')->where(['id' => I('id')])->find()) {
+            $this->error('找不到定单。');
+        }
+
+        if ($data['isDelete']) {
+            $this->error('这单子已经撤单过了。');
+        }
+
+        if ($data['uid'] != $this->user['uid']) {
+            $this->error('这单子不是您的，您不能撤单。');
+        }
+        // 可考虑管理员能给用户撤单情况
+        if ($data['kjTime'] <= $this->time) {
+            $this->error('已经开奖，不能撤单');
+        }
+
+        if ($data['lotteryNo']) {
+            $this->error('已经开奖，不能撤单');
+        }
+
+        if ($data['qz_uid']) {
+            $this->error('单子已经被人抢庄，不能撤单');
+        }
 
         // 冻结时间后不能撤单
         $this->getTypes();
         $ftime = $this->getTypeFtime($data['type']);
-        if($data['kjTime'] - $ftime < $this->time) $this->error('这期已经结冻，不能撤单');
+        if ($data['kjTime'] - $ftime < $this->time) {
+            $this->error('这期已经结冻，不能撤单');
+        }
 
         $amount = $data['beiShu'] * $data['mode'] * $data['actionNum'] * intval(($data['fpEnable'] ? '2' : '1'));
         $amount = abs($amount);
@@ -604,21 +633,24 @@ class GameController extends HomeController
         $map['isDelete'] = 1;
         $isSuc2 = M('bets')->where('id=' . $id)->save($map);
 
-        if($isSuc1 !== false && $isSuc2 == true) {
+        if ($isSuc1 !== false && $isSuc2 == true) {
             //将投注记录写入文件
-            if(!is_dir('Record/')) mkdir('Record/');
+            if (!is_dir('Record/')) {
+                mkdir('Record/');
+            }
+
             $fp = fopen("Record/" . $data['username'] . ".txt", "a+");
             $tz_content = $data['wjorderId'] . " 撤单 " . date('m-d H:i:s', time()) . "\r\n\r\n";
             $flag = fwrite($fp, $tz_content);
-            if(!$flag) {
+            if (!$flag) {
                 $this->error('创建投注记录文件失败');
             }
             fclose($fp);
 
-            $Model->commit();//成功则提交
+            $Model->commit(); //成功则提交
             $this->success('撤单成功');
         } else {
-            $Model->rollback();//不成功，则回滚
+            $Model->rollback(); //不成功，则回滚
             $this->error('撤单失败');
         }
 
@@ -628,9 +660,11 @@ class GameController extends HomeController
     /**
      * ajax取定单列表
      */
-    public final function getOrdered($type = null)
+    final public function getOrdered($type = null)
     {
-        if(!$this->type) $this->type = $type;
+        if (!$this->type) {
+            $this->type = $type;
+        }
 
         //$sql="select * from {$this->prename}bets where uid={$_SESSION['user']['uid']} order by id desc limit 7";
         $order_list = M('bets')->where(['uid' => $this->user['uid']])->limit(7)->order('id desc')->select();
@@ -647,7 +681,7 @@ class GameController extends HomeController
         $this->display('Game/inc_game_order_history');
     }
 
-    public final function getQiHao($type)
+    final public function getQiHao($type)
     {
         $thisNo = $this->getGameNo($type);
         $data = [
@@ -655,26 +689,29 @@ class GameController extends HomeController
             'thisNo' => $this->getGameNo($type),
             'diffTime' => strtotime($thisNo['actionTime']) - $this->time,
             'validTime' => $thisNo['actionTime'],
-            'kjdTime' => $this->getTypeFtime($type)
+            'kjdTime' => $this->getTypeFtime($type),
         ];
 
         $this->ajaxReturn($data, 'JSON');
     }
 
-    public final function getLastKjData($type)
+    final public function getLastKjData($type)
     {
         //dump($type);
         $ykMoney = 0;
         $czName = '重庆时时彩';
         $this->type = $type;
-        if(!$lastNo = $this->getGameLastNo($this->type)) $this->error('查找最后开奖期号出错');
+        if (!$lastNo = $this->getGameLastNo($this->type)) {
+            $this->error('查找最后开奖期号出错');
+        }
 
         $data = D('data')->where(['type' => $this->type, 'number' => $lastNo['actionNo']])->field('data')->find();
 
-
-        if(!$lastNo['data'] = $data['data'])
-            //$this->error('获取数据出错');
+        if (!$lastNo['data'] = $data['data'])
+        //$this->error('获取数据出错');
+        {
             return null;
+        }
 
         $thisNo = $this->getGameNo($this->type);
         $lastNo['actionName'] = $czName;
@@ -687,7 +724,7 @@ class GameController extends HomeController
     }
 
     /*历史开奖*/
-    public final function history()
+    final public function history()
     {
 
         $this->type = I('type', '', 'intval');
@@ -698,9 +735,8 @@ class GameController extends HomeController
         $this->display();
     }
 
-
     /*投注记录*/
-    public final function betlog()
+    final public function betlog()
     {
         $where['uid'] = $this->user['uid'];
         $betList = M('bets')->field('id,wjorderId,uid,username,type,playedId,actionNo,beiShu,mode,lotteryNo,isDelete,zjCount,bonus,actionNum,fpEnable,actionTime')->where($where)->order('id desc,actionTime desc')->select();
@@ -709,7 +745,7 @@ class GameController extends HomeController
         $this->display();
     }
 
-    public final function gethistory()
+    final public function gethistory()
     {
 
         $this->type = I('type', '', 'intval');
@@ -727,13 +763,12 @@ class GameController extends HomeController
         $pattern = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
         $pattern1 = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $pattern2 = '0123456789';
-        for($i = 0; $i < $length; $i++) {
+        for ($i = 0; $i < $length; $i++) {
             $key .= $pattern{mt_rand(0, 35)};
         }
 
         return $key;
     }
-
 
     /**
      * 彩种玩法最大注数单独控制
@@ -747,21 +782,21 @@ class GameController extends HomeController
     protected function ZhuShuMax($curmid, $playedInfo, $num, $actionNo, $uid, $cur_type)
     {
         //查询官方id
-//        $gf = Type::where(array('is_official'=>1))->select();
-//        $guoTypes = array();
-//        foreach ($gf as $key=>$item) {
-//            $guoTypes[] = $item['id'];
-//        }
-        if($cur_type['is_official'] == 1) {
+        //        $gf = Type::where(array('is_official'=>1))->select();
+        //        $guoTypes = array();
+        //        foreach ($gf as $key=>$item) {
+        //            $guoTypes[] = $item['id'];
+        //        }
+        if ($cur_type['is_official'] == 1) {
 //        if(in_array($curmid,dynamicConfig::$guoTypes)){
             $maxzs = $playedInfo['gmaxCount'];
         } else {
             $maxzs = $playedInfo['maxCount'];
         }
-        if($maxzs < 0) {
+        if ($maxzs < 0) {
             $this->error('玩法正在升级中...');
             return false;
-        } elseif($maxzs > 0) {
+        } elseif ($maxzs > 0) {
             $played_id = $playedInfo['id'];
             $this->mus[$curmid][$played_id] = isset($this->mus[$curmid][$played_id]) ? $this->mus[$curmid][$played_id] + $num : $num;
             $num = $this->mus[$curmid][$played_id];
@@ -769,10 +804,10 @@ class GameController extends HomeController
                 'type' => $curmid,
                 'playedId' => $played_id,
                 'uid' => $uid,
-                'isDelete' => 0
+                'isDelete' => 0,
             ])->sum('actionNum');
             $num = $num + $betRe;
-            if($num > $maxzs) {
+            if ($num > $maxzs) {
 //                $this->error('该玩法当期累计最大投注注数不能超过' . $maxzs . '注');
                 return true;
             }
@@ -782,28 +817,28 @@ class GameController extends HomeController
 
     protected function MaxZhuShu($curmid, $played_id, $num, $actionNo, $uid)
     {
-        if(in_array($curmid, $this->zhushu_curmids)) {
-            if(in_array($played_id, $this->zhushu_playeds)) {
-                if($played_id == 3) {
+        if (in_array($curmid, $this->zhushu_curmids)) {
+            if (in_array($played_id, $this->zhushu_playeds)) {
+                if ($played_id == 3) {
                     $maxzs = 9999;
                 } else {
                     $maxzs = $this->settings['gc_syxw_ds_zs']['gc_syxw_ds_zs'];
                 }
 
-                if($maxzs < 0) {
+                if ($maxzs < 0) {
                     $this->error('玩法正在升级中...');
                     return false;
-                } elseif($maxzs > 0) {
+                } elseif ($maxzs > 0) {
                     $this->mus[$curmid][$played_id] = isset($this->mus[$curmid][$played_id]) ? $this->mus[$curmid][$played_id] + $num : $num;
                     $num = $this->mus[$curmid][$played_id];
                     $betRe = M("bets")->where(['actionNo' => $actionNo,
                         'type' => $curmid,
                         'playedId' => $played_id,
                         'uid' => $uid,
-                        'isDelete' => 0
+                        'isDelete' => 0,
                     ])->sum('actionNum');
                     $num = $num + $betRe;
-                    if($num > $maxzs) {
+                    if ($num > $maxzs) {
 //                        $this->error('该玩法当期累计最大投注注数不能超过' . $maxzs . '注');
                         return true;
                     }
