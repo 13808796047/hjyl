@@ -48,7 +48,7 @@ a img {
 }
 
 .nav {
-    background: url(../images/index/navbg.jpeg) repeat-x 0 0;
+    background: #333 url(../images/index/navbg.jpeg) repeat-x 0 0;
     line-height: 65px;
 }
 
