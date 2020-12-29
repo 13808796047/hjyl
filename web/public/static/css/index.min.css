@@ -183,6 +183,14 @@ a img {
     background: url(../images/index/ssc.png) no-repeat;
 }
 
+.drop_games .span_tit.topMenu_1 {
+    background: url(../images/index/115.png) no-repeat;
+}
+
+.drop_games .span_tit.topMenu_2 {
+    background: url(../images/index/pk10.png) no-repeat;
+}
+
 .drop_games .span_tit {
     width: 97px;
     height: 30px;
