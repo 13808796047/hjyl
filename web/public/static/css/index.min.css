@@ -109,11 +109,12 @@ a img {
     height: 100%;
 }
 
-.nav .logo img {
+.menu .logo img {
+    display: inline-block;
     vertical-align: middle;
 }
 
-.nav img {
+.menu img {
     max-width: 100%;
 }
 
