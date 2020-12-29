@@ -62,6 +62,7 @@ a img {
     text-align: center;
     background: url(../images/index/navbgimg.png) repeat-x 0;
     position: relative;
+    height: 65px;
 }
 
 .menu:before {
