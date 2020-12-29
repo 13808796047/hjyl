@@ -1703,16 +1703,8 @@ position:relative;
 
 /**/
 #menu-container {
-    height: 60px;
-    background-size: 100% 100%;
-    min-width: 1150px;
-    border-bottom: 2px solid #FEEBB7;
-    background: #EBCC9D;
-    background: linear-gradient(180deg, #EBCC9D, #B88D5A);
-    -ms-background: linear-gradient(180deg, #EBCC9D, #B88D5A);
-    -moz-background: linear-gradient(180deg, #EBCC9D, #B88D5A);
-    -webkit-background: linear-gradient(180deg, #EBCC9D, #B88D5A);
-    -webkit-box-shadow: 0px 2px 10px rgba(0,0,0,0.2);
+     background: url(../../images/index/navbg.jpeg) repeat-x 0 0;
+     line-height: 65px;
 }
 #menu {margin: 0 auto;max-width: 100%;width: 1150px; height: 60px;}
 #menu .left {position: absolute;  min-width: 1150px;}
