@@ -75,7 +75,7 @@ a img {
 }
 
 .menu ul>li {
-    float: left;
+    display: inline-block;
 }
 
 .menu:after,
@@ -226,7 +226,7 @@ body#lan_vm #menu-container>#menu {
 }
 
 #account {
-    background: #fff;
+    background: #fff\9;
     background: rgba(255, 255, 255, .95);
     box-shadow: 0 1px 4px rgba(0, 0, 0, .46);
     color: #191919;
