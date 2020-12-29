@@ -74,6 +74,10 @@ a img {
     right: -50px;
 }
 
+.menu ul>li {
+    display: inline-block;
+}
+
 .menu:after,
 .menu:before {
     content: "";
