@@ -48,7 +48,7 @@ a img {
 }
 
 .nav {
-    background: url(../images/index/navbg.jpeg) repeat-x 0 0;
+    background: #333 url(../images/index/navbg.jpeg) repeat-x 0 0;
     height: 60px;
 }
 
@@ -80,6 +80,13 @@ a img {
 
 .frt {
     float: right;
+}
+
+.menu>ul>li {
+    float: left;
+    position: relative;
+    z-index: 100;
+    padding: 0 24px;
 }
 
 .menu:after,
