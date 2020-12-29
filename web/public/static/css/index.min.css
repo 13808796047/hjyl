@@ -105,6 +105,14 @@ a img {
     border-bottom-color: #c1bd7e;
 }
 
+.nav .logo img {
+    vertical-align: middle;
+}
+
+.nav img {
+    max-width: 100%;
+}
+
 .menu:after,
 .menu:before {
     content: "";
