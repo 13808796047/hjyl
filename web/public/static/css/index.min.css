@@ -47,6 +47,23 @@ a img {
     visibility: hidden
 }
 
+.nav {
+    background: url(../images/index/navbg.jpeg) repeat-x 0 0;
+    line-height: 65px;
+}
+
+.nav .wrap {
+    width: 1240px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.nav .wrap .menu {
+    text-align: center;
+    background: url(../images/index/navbgimg.png) repeat-x 0;
+    position: relative;
+}
+
 #menu,
 #nav,
 body#lan_en #menu-container>#menu,
