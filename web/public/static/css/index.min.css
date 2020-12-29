@@ -48,8 +48,8 @@ a img {
 }
 
 .nav {
-    background: #333 url(../images/index/navbg.jpeg) repeat-x 0 0;
-    line-height: 65px;
+    background: url(../images/index/navbg.jpeg) repeat-x 0 0;
+    height: 60px;
 }
 
 .nav .wrap {
