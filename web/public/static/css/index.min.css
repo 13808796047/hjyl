@@ -245,7 +245,7 @@ body#lan_vm #menu-container>#menu {
     z-index: 10
 }
 
-#account {
+/* #account {
     background: #fff\9;
     background: rgba(255, 255, 255, .95);
     box-shadow: 0 1px 4px rgba(0, 0, 0, .46);
@@ -260,7 +260,7 @@ body#lan_vm #menu-container>#menu {
     top: -318px;
     width: 248px;
     z-index: 55px
-}
+} */
 
 #account .user-name {
     background: url(../images/royal88/icon-user-name.png) left top no-repeat;
