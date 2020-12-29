@@ -99,8 +99,8 @@ a img {
     border-bottom: 4px solid transparent;
 }
 
-.nav>ul>li.on>a,
-.nav>ul>li:hover>a {
+.menu>ul>li.on>a,
+.menu>ul>li:hover>a {
     color: #c1bd7e;
     border-bottom-color: #c1bd7e;
 }
