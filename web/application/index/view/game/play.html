@@ -39,7 +39,13 @@
     <script type="text/javascript" src="__STATIC__/todo/js/release/util.js"></script>
     <script src="__STATIC__/js/main.min.js"></script>
     <script type="text/javascript" src="__STATIC__/todo/js/release/gamebase.js"></script>
-
+<script>
+  $(function () {
+    $("#game").click(function () {
+      $(".drop_games").toggle();
+    })
+  })
+</script>
     <script>
           function getnowtime() {
         var Today = new Date();
