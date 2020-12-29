@@ -89,6 +89,15 @@ a img {
     padding: 0 24px;
 }
 
+.menu>ul>li>a {
+    line-height: 61px;
+    display: block;
+    font-size: 14px;
+    color: #fff;
+    position: relative;
+    border-bottom: 4px solid transparent;
+}
+
 .menu:after,
 .menu:before {
     content: "";
