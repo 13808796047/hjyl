@@ -9,25 +9,17 @@
 <div id="banner" class="sy-m-banner" style="border-radius: 12px">
   <ul class="pic">
     <li>
-      <a href="/newgame_play.html?curmid=20"
-        ><img src="__IMG__/index/BJPK10-banner24.jpg"
-      /></a>
+      <a href="/newgame_play.html?curmid=20"><img src="__IMG__/index/BJPK10-banner24.jpg" /></a>
     </li>
     <!--<li><a href="#opener0"><img src="__IMG__/index/R88-wap-banner-0801.jpg"/></a></li>-->
     <li>
-      <a href="/recharge/index?tag=cz"
-        ><img src="__IMG__/index/banner_20170323141710.jpg"
-      /></a>
+      <a href="/recharge/index?tag=cz"><img src="__IMG__/index/banner_20170323141710.jpg" /></a>
     </li>
     <li>
-      <a href="/activity/index.html"
-        ><img src="__IMG__/index/banner_20160714-2.jpg"
-      /></a>
+      <a href="/activity/index.html"><img src="__IMG__/index/banner_20160714-2.jpg" /></a>
     </li>
     <li>
-      <a href="/recharge/index?tag=cz"
-        ><img src="__IMG__/index/R_bnr_QQ_01_20170509.jpg"
-      /></a>
+      <a href="/recharge/index?tag=cz"><img src="__IMG__/index/R_bnr_QQ_01_20170509.jpg" /></a>
     </li>
   </ul>
   <a class="arrow-left" href="javascript:void(0)"></a>
@@ -40,15 +32,13 @@
     $(".topBar ul li").each(function (t) {
       $(this)
         .delay(3e3 * t)
-        .animate(
-          {
+        .animate({
             top: 0,
           },
           function () {
             $(this)
               .delay(2e3)
-              .animate(
-                {
+              .animate({
                   top: "-48px",
                 },
                 function () {
@@ -61,10 +51,10 @@
   }
   $(function () {
     $(".sy-top-msg").slide({
-      mainCell: "ul",
-      autoPlay: !0,
-      effect: "topLoop",
-    }),
+        mainCell: "ul",
+        autoPlay: !0,
+        effect: "topLoop",
+      }),
       $(".gongg").slide({
         mainCell: "ul",
         autoPlay: !0,
@@ -167,12 +157,7 @@
       <ul>
         {volist name="notice" id="vo"}
         <li>
-          <a
-            href="/user/showmessage?id={$vo.id}"
-            title="平台公告"
-            target="_blank"
-            >{$vo.title}</a
-          >
+          <a href="/user/showmessage?id={$vo.id}" title="平台公告" target="_blank">{$vo.title}</a>
         </li>
         {/volist}
       </ul>
@@ -205,33 +190,40 @@
             background: none;
             border-radius: 5px;
           }
+
           .latest_news_header {
             background: #c39763;
           }
+
           .latest_news_content {
             height: 370px !important;
             background-color: #dadada;
           }
+
           .anno_content {
             padding-left: 5px;
             font-size: 21px !important;
             padding-top: 20px;
             padding-right: 5px;
           }
+
           .link {
             text-decoration: underline !important;
           }
+
           .tongzhiviewinfo {
             text-align: center;
             color: #999;
             padding-bottom: 10px;
           }
+
           .tongzhiviewtxt {
             padding-top: 20px;
             font-size: 21px;
             padding-left: 20px;
             padding-right: 20px;
           }
+
           .tongzhiviewtxt p {
             font-size: 21px;
           }
@@ -255,6 +247,7 @@
             margin-bottom: 9px;
             white-space: nowrap;
           }
+
           /*Download*/
 
           .gifts .download {
@@ -322,10 +315,9 @@
             display: block;
             position: absolute;
           }
+
           .gifts .download .btn_download.zip:before {
-            background: #96cd01
-              url(http://ucaaar1.bjewx.com/sy2/images/btn/btn_download.png) 6px
-              center no-repeat;
+            background: #96cd01 url(http://ucaaar1.bjewx.com/sy2/images/btn/btn_download.png) 6px center no-repeat;
             border-radius: 2px 0 0 2px;
             box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.2) inset;
             height: 100%;
@@ -338,10 +330,9 @@
             transition: 0.25s all ease;
             width: 28px;
           }
+
           .gifts .download .btn_download:before {
-            background: #0c7b70
-              url(http://ucaaar1.bjewx.com/sy2/images/btn/btn_download.png) 6px
-              center no-repeat;
+            background: #0c7b70 url(http://ucaaar1.bjewx.com/sy2/images/btn/btn_download.png) 6px center no-repeat;
             border-radius: 2px 0 0 2px;
             box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.2) inset;
             height: 100%;
@@ -380,6 +371,7 @@
             position: relative;
             z-index: 2;
           }
+
           /*QRcode*/
 
           .gifts * {
@@ -450,9 +442,9 @@
             if (hostAry[0] == "m" || hostAry[0] == "139") {
               $("div.description").html(
                 "由于近期浏览器出现漏洞，导致您浏览平台页面时，会跳转到陌生页面 <br />" +
-                  "如果无法正常开启平台页面，请依照下述步骤操作 <br /><br />" +
-                  "1. 使用目前平台推出的「客户端加强版」。 <br />" +
-                  "2. 使用目前全新线路 <br />"
+                "如果无法正常开启平台页面，请依照下述步骤操作 <br /><br />" +
+                "1. 使用目前平台推出的「客户端加强版」。 <br />" +
+                "2. 使用目前全新线路 <br />"
               );
             } else {
               var clienttag = getCookieNotices("clienttag");
@@ -525,7 +517,9 @@
   });
   $(document).ready(function () {
     for (i = 0; i < $("#guide > a").length; i++) {
-      $("#guide > a:eq(" + i + ")").click({ id: i }, function (e) {
+      $("#guide > a:eq(" + i + ")").click({
+        id: i
+      }, function (e) {
         n = e.data.id;
         $("#guide > a, #guide #guide-inner > div").removeClass("current");
         $(
