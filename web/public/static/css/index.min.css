@@ -83,7 +83,7 @@ a img {
 }
 
 .menu>ul>li {
-    float: left;
+    display: inline-block;
     position: relative;
     z-index: 100;
     padding: 0 24px;
