@@ -110,6 +110,7 @@ a img {
 }
 
 .menu .logo img {
+    padding-top: 10px;
     display: inline-block;
     vertical-align: middle;
 }
