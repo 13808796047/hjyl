@@ -105,6 +105,10 @@ a img {
     border-bottom-color: #c1bd7e;
 }
 
+.menu .logo {
+    height: 100%;
+}
+
 .nav .logo img {
     vertical-align: middle;
 }
