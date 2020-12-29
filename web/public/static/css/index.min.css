@@ -74,8 +74,12 @@ a img {
     right: -50px;
 }
 
-.menu ul>li {
-    display: inline-block;
+.flt {
+    float: left;
+}
+
+.frt {
+    float: right;
 }
 
 .menu:after,
