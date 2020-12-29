@@ -129,7 +129,7 @@ a img {
     top: 0;
 }
 
-.nav>ul>li .drop.drop_games {
+.menu>ul>li .drop.drop_games {
     left: 0;
     width: 660px;
     padding-top: 15px;
@@ -138,14 +138,14 @@ a img {
     top: 67px;
 }
 
-.nav>ul>li .drop {
+.menu>ul>li .drop {
     position: absolute;
     box-shadow: 0 0 20px rgba(0, 0, 0, .2);
     border-radius: 5px;
     top: 75px;
 }
 
-.nav>ul>li .drop.drop_games i {
+.menu>ul>li .drop.drop_games i {
     position: absolute;
     border-bottom-color: #1a2437;
     margin-left: 40px;
@@ -153,7 +153,7 @@ a img {
     top: 2px;
 }
 
-.nav>ul>li .drop i {
+.menu>ul>li .drop i {
     position: absolute;
     border: 7px solid #fff;
     border-top-color: transparent;
