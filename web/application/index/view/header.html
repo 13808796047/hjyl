@@ -17,80 +17,80 @@
 </head>
 
 <body id="lan">
-  <div id="wrap">
-    <div id="header">
-      <div class="clear" id="nav">
-        <div class="headerleft">
-          <div class="headerdate">2020-12-22 (二) 21:17:08</div>
-        </div>
+  <div id="header">
+    <div class="clear" id="nav">
+      <div class="headerleft">
+        <div class="headerdate">2020-12-22 (二) 21:17:08</div>
+      </div>
 
-        <div class="clear" id="navbar">
-          <ul>
-            <li class="balance">
-              <div class="th11gb">
-                <div class="th11g_balanceDiv" id="usericon">
-                  <span><a href="/user/index" one-link-mark="yes">
-                      {:session('userData.username')}</a>&nbsp;&nbsp;&nbsp;</span>
-                </div>
-                <div class="th11g_balanceDiv" id="uAmount">
-                  <span>余额：</span>
-                  <span class="J-balance-show">{:session('userData.coin')}</span>
-                </div>
-                <div class="th11g_balanceDivre">
-                  <a class="refresh" one-link-mark="yes"><i class="icon-refresh" style="
+      <div class="clear" id="navbar">
+        <ul>
+          <li class="balance">
+            <div class="th11gb">
+              <div class="th11g_balanceDiv" id="usericon">
+                <span><a href="/user/index" one-link-mark="yes">
+                    {:session('userData.username')}</a>&nbsp;&nbsp;&nbsp;</span>
+              </div>
+              <div class="th11g_balanceDiv" id="uAmount">
+                <span>余额：</span>
+                <span class="J-balance-show">{:session('userData.coin')}</span>
+              </div>
+              <div class="th11g_balanceDivre">
+                <a class="refresh" one-link-mark="yes"><i class="icon-refresh" style="
                           background-image: url('https://n7ws.jnfzdz.cn/sy2/images/3new/allicon.png');
                         "></i></a>
-                  <span class="J-balance-star toggle" style="display: none">*****</span>
-                </div>
-                <div class="hideAmtli hideAmt" src="https://n7ws.jnfzdz.cn/sy2/images/matt/eye-open-white.png" style="
+                <span class="J-balance-star toggle" style="display: none">*****</span>
+              </div>
+              <div class="hideAmtli hideAmt" src="https://n7ws.jnfzdz.cn/sy2/images/matt/eye-open-white.png" style="
                       background-image: url('https://n7ws.jnfzdz.cn/sy2/images/3new/allicon.png');
                     "></div>
-                <!--samuel TGG新增 暫關-->
-                <a class="meg" href="/user/index?tag=messages" one-link-mark="yes">
-                  <div class="icon-mail" style="
+              <!--samuel TGG新增 暫關-->
+              <a class="meg" href="/user/index?tag=messages" one-link-mark="yes">
+                <div class="icon-mail" style="
                         background-image: url('https://n7ws.jnfzdz.cn/sy2/images/3new/allicon.png');
                       "></div>
-                </a>
-              </div>
-            </li>
-          </ul>
+              </a>
+            </div>
+          </li>
+        </ul>
 
-          <div id="settings">
-            <a href="/recharge/index?tag=cz" class="headerSpecial hs1" one-link-mark="yes">
-              <i class="" style="
+        <div id="settings">
+          <a href="/recharge/index?tag=cz" class="headerSpecial hs1" one-link-mark="yes">
+            <i class="" style="
                     background-image: url('https://n7ws.jnfzdz.cn/sy2/images/3new/allicon.png');
                   "></i>充值
-            </a>
-            <a href="/recharge/index" class="headerSpecial hs2" one-link-mark="yes">
-              <i class="" style="
+          </a>
+          <a href="/recharge/index" class="headerSpecial hs2" one-link-mark="yes">
+            <i class="" style="
                     background-image: url('https://n7ws.jnfzdz.cn/sy2/images/3new/allicon.png');
                   "></i>提现
-            </a>
-            <a href="{:url('//login/logout')}" class="headerSpecial hs3" one-link-mark="yes">
-              <i class="icon-signout" style="
+          </a>
+          <a href="{:url('//login/logout')}" class="headerSpecial hs3" one-link-mark="yes">
+            <i class="icon-signout" style="
                     background-image: url('https://n7ws.jnfzdz.cn/sy2/images/3new/allicon.png');
                   "></i>登出
-            </a>
+          </a>
 
-            <!-- <a href="?controller=newspage&action=newsmain&flag=newslist&p=1&pn=10">
+          <!-- <a href="?controller=newspage&action=newsmain&flag=newslist&p=1&pn=10">
                         <i class="icon-msg"></i>信息中心
                     </a>
 
                     <a href="/help_main.shtml?tag=cjwt">
                         <i class="icon-qa"></i>帮助中心
                     </a> -->
-          </div>
         </div>
-        <!-- navbar -->
       </div>
-      <!-- nav -->
+      <!-- navbar -->
     </div>
-    <!-- header -->
+    <!-- nav -->
+  </div>
+  <!-- <div id="wrap">
+
     <div id="menu-container">
       <div class="clear" id="menu">
         <div class="left" style="min-width: 1240px">
           <div class="menulogo" id="logo">
-            <!-- <img src="__IMG__/matt/logo.png" width="100%" height="100%" /> -->
+         <img src="__IMG__/matt/logo.png" width="100%" height="100%" /> 
             <a class="logolink" href="/" one-link-mark="yes" style="
                   padding-top: 10px;
                   float: right;
@@ -189,19 +189,6 @@
                     </li>
                   </ul>
                 </div>
-                <!--                  <div class="harea pd14">-->
-                <!--                    <h1>皇家小游戏</h1>-->
-                <!--                    <ul>-->
-                <!--                      <li>-->
-                <!--                        <a-->
-                <!--                          href="/newgame_play.html?curmid=46"-->
-                <!--                          one-link-mark="yes"-->
-                <!--                        >-->
-                <!--                          皇家龙凤 <span class="newmenuIcon22"></span>-->
-                <!--                        </a>-->
-                <!--                      </li>-->
-                <!--                    </ul>-->
-                <!--                  </div>-->
               </div>
             </div>
 
@@ -223,7 +210,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
   <!-- menu -->
 
   <div class="jumppopmessage">
