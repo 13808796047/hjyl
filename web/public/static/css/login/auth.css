@@ -431,13 +431,14 @@ input {
 }
 
 .newbiglogo {
-    width: 100%;
+    width: 480px;
+    text-align: center;
     position: relative;
     margin-bottom: 20px;
 }
 
 .newbiglogo>img {
-    height: 62px;
+    height: 82px;
 }
 
 .newbiglogo>* {
