@@ -1,9 +1,12 @@
 /* logreg的css */
-html, body {
+html,
+body {
     height: 100%;
 }
 
-input, select, button {
+input,
+select,
+button {
     background: none;
     border: none;
     font: 14px 'Microsoft Yahei', 'Microsoft JhengHei', tahoma, Srial, helvetica, sans-serif;
@@ -135,11 +138,13 @@ input {
     width: 170px;
 }
 
-.pop-error, .pop-success {
+.pop-error,
+.pop-success {
     text-align: center;
 }
 
-.pop .ico-success, .pop .ico-error {
+.pop .ico-success,
+.pop .ico-error {
     display: inline-block;
     *display: inline;
     *zoom: 1;
@@ -168,7 +173,9 @@ input {
     overflow: hidden;
 }
 
-.pop .bd .ico-success, .pop .bd .ico-error, .pop .bd .ico-waring {
+.pop .bd .ico-success,
+.pop .bd .ico-error,
+.pop .bd .ico-waring {
     display: inline-block;
     *display: inline;
     *zoom: 1;
@@ -190,7 +197,9 @@ input {
     background-position: -80px -80px;
 }
 
-.pop .ico-success, .pop .ico-error, .pop .ico-waring {
+.pop .ico-success,
+.pop .ico-error,
+.pop .ico-waring {
     display: inline-block;
     vertical-align: middle;
     width: 30px;
@@ -327,7 +336,14 @@ input {
     width: 145px;
 }
 
-.alert i, .alert-mini i, .pop i, .pop .close, .notice .close, .notice .ico-warning, .ui-check i, .prompt dt i {
+.alert i,
+.alert-mini i,
+.pop i,
+.pop .close,
+.notice .close,
+.notice .ico-warning,
+.ui-check i,
+.prompt dt i {
     background-image: url(/sy2/todo/images/common/ui-alert.png);
     background-repeat: no-repeat;
 }
@@ -336,7 +352,9 @@ input {
     background-position: -80px -80px;
 }
 
-.pop .bd .ico-success, .pop .bd .ico-error, .pop .bd .ico-waring {
+.pop .bd .ico-success,
+.pop .bd .ico-error,
+.pop .bd .ico-waring {
     display: inline-block;
     vertical-align: middle;
     width: 30px;
@@ -358,13 +376,14 @@ input {
     box-sizing: border-box;
 }
 
-._rows:before, ._rows:after {
+._rows:before,
+._rows:after {
     content: "";
     display: block;
     clear: both;
 }
 
-._rows > * {
+._rows>* {
     position: relative;
     float: left;
 }
@@ -418,7 +437,7 @@ input {
     margin-bottom: 20px;
 }
 
-.newbiglogo > * {
+.newbiglogo>* {
     display: inline-block;
 }
 
@@ -429,13 +448,13 @@ input {
     height: 480px;
 }
 
-.card_zone > .card_zone__left {
+.card_zone>.card_zone__left {
     width: 480px;
     height: 100%;
     margin-right: 10px;
 }
 
-.card_zone > .card_zone__right {
+.card_zone>.card_zone__right {
     width: 760px;
     height: 100%;
 }
@@ -448,7 +467,7 @@ input {
     height: 100%;
 }
 
-.card > .card-head {
+.card>.card-head {
     position: relative;
     border-radius: 16px 16px 0 0;
     border-bottom: 2px solid #FCD381;
@@ -462,7 +481,7 @@ input {
     background: -moz-linear-gradient(#EBCC9D, #B88D5A);
 }
 
-.card > .card-head > .head-title {
+.card>.card-head>.head-title {
     color: #5E4822;
     font-size: 20px;
     text-align: center;
@@ -471,7 +490,7 @@ input {
     font-weight: bold;
 }
 
-.card > .card-head > .head-menu {
+.card>.card-head>.head-menu {
     position: absolute;
     right: 16px;
     top: 50%;
@@ -480,14 +499,14 @@ input {
     cursor: pointer;
 }
 
-.card > .card-body {
+.card>.card-body {
     position: relative;
     padding: 16px;
     border-radius: 16px;
     background-color: white;
 }
 
-.card > .card-head + .card-body {
+.card>.card-head+.card-body {
     border-radius: 0 0 16px 16px;
 }
 
@@ -560,7 +579,7 @@ input {
     margin-bottom: 20px;
 }
 
-.loginInputClass > .tip {
+.loginInputClass>.tip {
     position: absolute;
     top: 0px;
     left: 101%;
@@ -574,19 +593,20 @@ input {
     padding: 8px 10px;
 }
 
-.loginInputClass.err > .tip {
+.loginInputClass.err>.tip {
     background: #cd4444;
 }
 
-.loginInputClass > input {
+.loginInputClass>input {
     width: 100%;
     line-height: 48px;
     height: 50px;
     padding-left: 55px;
     border-radius: 50px;
+    color: #333;
 }
 
-.loginInputClass > .icon1 {
+.loginInputClass>.icon1 {
     position: absolute;
     z-index: 1;
     top: 50%;
@@ -598,7 +618,7 @@ input {
     background-size: contain;
 }
 
-.loginInputClass > .icon2 {
+.loginInputClass>.icon2 {
     position: absolute;
     z-index: 1;
     top: 50%;
@@ -610,7 +630,7 @@ input {
     background-size: contain;
 }
 
-.loginInputClass > .icon3 {
+.loginInputClass>.icon3 {
     position: absolute;
     z-index: 1;
     top: 50%;
@@ -675,7 +695,7 @@ input {
     text-decoration: none;
 }
 
-.acclogin_btn > * {
+.acclogin_btn>* {
     display: inline-block;
     vertical-align: middle;
 }
@@ -725,7 +745,7 @@ input {
     z-index: 999;
 }
 
-#validate-mask > img {
+#validate-mask>img {
     position: absolute;
     right: -35px;
     top: 1px;
@@ -741,7 +761,7 @@ input {
     margin-right: -7.5px;
 }
 
-.feature_block > * {
+.feature_block>* {
     width: 25%;
     height: 100%;
     padding-left: 7.5px;
@@ -828,7 +848,7 @@ input {
     padding-right: 15px;
 }
 
-.brower_summary > .text {
+.brower_summary>.text {
     color: #979797;
     line-height: 30px;
     height: 30px;
@@ -844,12 +864,12 @@ input {
     padding: 30px 0;
 }
 
-.footer > .footer__left {
+.footer>.footer__left {
     float: left;
     color: #463611;
 }
 
-.footer > .footer__right {
+.footer>.footer__right {
     float: right;
 }
 
@@ -923,13 +943,13 @@ input {
     color: #505050;
 }
 
-#client_m .content_block > * {
+#client_m .content_block>* {
     margin-bottom: 15px
 }
 
 
 /* 电脑客户端彈窗 */
-#client_pc > .modal-popup {
+#client_pc>.modal-popup {
     max-width: 400px;
 }
 
@@ -952,7 +972,7 @@ input {
     color: #505050;
 }
 
-#client_pc .content_block > * {
+#client_pc .content_block>* {
     margin-bottom: 15px;
 }
 
