@@ -432,9 +432,12 @@ input {
 
 .newbiglogo {
     width: 100%;
-    text-align: center;
     position: relative;
     margin-bottom: 20px;
+}
+
+.newbiglogo>img {
+    height: 62px;
 }
 
 .newbiglogo>* {
