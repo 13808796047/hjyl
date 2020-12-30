@@ -84,14 +84,14 @@ a img {
   float: right;
 }
 
-.menu > ul > li {
+.menu>ul>li {
   display: inline-block;
   position: relative;
   z-index: 100;
   padding: 0 24px;
 }
 
-.menu > ul > li > a {
+.menu>ul>li>a {
   line-height: 61px;
   display: block;
   font-size: 14px;
@@ -101,8 +101,8 @@ a img {
   text-decoration: none;
 }
 
-.menu > ul > li.on > a,
-.menu > ul > li:hover > a {
+.menu>ul>li.on>a,
+.menu>ul>li:hover>a {
   color: #c1bd7e;
   border-bottom-color: #c1bd7e;
 }
@@ -115,6 +115,8 @@ a img {
   padding-top: 10px;
   display: inline-block;
   vertical-align: middle;
+  width: 150px;
+  height: 50px;
 }
 
 .menu img {
@@ -131,7 +133,7 @@ a img {
   top: 0;
 }
 
-.menu > ul > li .drop.drop_games {
+.menu>ul>li .drop.drop_games {
   left: 0;
   width: 660px;
   padding-top: 15px;
@@ -140,14 +142,14 @@ a img {
   top: 67px;
 }
 
-.menu > ul > li .drop {
+.menu>ul>li .drop {
   position: absolute;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
   border-radius: 5px;
   top: 75px;
 }
 
-.menu > ul > li .drop.drop_games i {
+.menu>ul>li .drop.drop_games i {
   position: absolute;
   border-bottom-color: #1a2437;
   margin-left: 40px;
@@ -155,7 +157,7 @@ a img {
   top: 2px;
 }
 
-.menu > ul > li .drop i {
+.menu>ul>li .drop i {
   position: absolute;
   border: 7px solid #fff;
   border-top-color: transparent;
@@ -206,21 +208,21 @@ a img {
   font-size: 0;
 }
 
-.menu > ul > li .drop.drop_games .list {
+.menu>ul>li .drop.drop_games .list {
   background: none;
   border: 0;
 }
 
-.menu > ul > li .drop_games .list a:hover {
+.menu>ul>li .drop_games .list a:hover {
   background: #be9e6b;
   color: #fff;
 }
 
-.menu > ul > li .drop .list {
+.menu>ul>li .drop .list {
   border-radius: 0 0 5px 5px;
 }
 
-.menu > ul > li .drop li {
+.menu>ul>li .drop li {
   line-height: 30px;
 }
 
@@ -233,7 +235,7 @@ a img {
   overflow: hidden;
 }
 
-.menu > ul > li .drop_games .list a {
+.menu>ul>li .drop_games .list a {
   display: block;
   text-align: center;
   background: #3b4053;
@@ -247,13 +249,13 @@ a img {
 
 #menu,
 #nav,
-body#lan_en #menu-container > #menu,
-body#lan_vm #menu-container > #menu {
+body#lan_en #menu-container>#menu,
+body#lan_vm #menu-container>#menu {
   width: 1240px;
 }
 
 #menu .right li,
-#menu .right li + li,
+#menu .right li+li,
 #menu .right li:hover {
   border-left: 1px solid rgba(255, 255, 255, 0.2);
   box-shadow: -1px 0 0 rgba(29, 29, 29, 0.5);
@@ -278,7 +280,7 @@ body#lan_vm #menu-container > #menu {
 }
 
 #guide,
-#news-and-events > div {
+#news-and-events>div {
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.46);
 }
 
@@ -338,8 +340,7 @@ body#lan_vm #menu-container > #menu {
 }
 
 #banner .arrow-left {
-  background: url(../images/matt/icon-banner-arrow-left.png) center center
-    no-repeat;
+  background: url(../images/matt/icon-banner-arrow-left.png) center center no-repeat;
   left: -53px;
 }
 
@@ -348,8 +349,7 @@ body#lan_vm #menu-container > #menu {
 }
 
 #banner .arrow-right {
-  background: url(../images/matt/icon-banner-arrow-right.png) center center
-    no-repeat;
+  background: url(../images/matt/icon-banner-arrow-right.png) center center no-repeat;
   right: -53px;
 }
 
@@ -418,8 +418,7 @@ body#lan_vm #menu-container > #menu {
 }
 
 #account .refresh {
-  background: url(../images/royal88/btn-account-refresh.png) center center
-    no-repeat;
+  background: url(../images/royal88/btn-account-refresh.png) center center no-repeat;
   border-radius: 12px;
   float: right;
   height: 17px;
@@ -459,14 +458,12 @@ body#lan_vm #menu-container > #menu {
 }
 
 #account .account-1 {
-  background: url(../images/royal88/btn-account-1.png) 26px center no-repeat
-    #2aaa9f;
+  background: url(../images/royal88/btn-account-1.png) 26px center no-repeat #2aaa9f;
   float: left;
 }
 
 #account .account-2 {
-  background: url(../images/royal88/btn-account-2.png) 26px center no-repeat
-    #2aaa9f;
+  background: url(../images/royal88/btn-account-2.png) 26px center no-repeat #2aaa9f;
   float: right;
 }
 
@@ -483,7 +480,7 @@ body#lan_vm #menu-container > #menu {
   width: 232px;
 }
 
-#lottery div + div {
+#lottery div+div {
   margin-left: 20px;
 }
 
@@ -514,14 +511,14 @@ body#lan_vm #menu-container > #menu {
   width: auto;
 }
 
-#lottery > div {
+#lottery>div {
   background-size: 100%;
   background-position: center center;
   background-repeat: no-repeat;
   transition: all 0.4s ease-in-out;
 }
 
-#lottery > div:hover {
+#lottery>div:hover {
   background-size: 125%;
 }
 
@@ -580,8 +577,7 @@ body#lan_vm #menu-container > #menu {
 }
 
 #lottery .lottery-bjpk10 a {
-  background: url(../images/royal88/bg-lottery-txt-bjpk10.png) center top
-    no-repeat;
+  background: url(../images/royal88/bg-lottery-txt-bjpk10.png) center top no-repeat;
 }
 
 #lottery .lottery-bjpk10 .lottery-win {
@@ -589,38 +585,31 @@ body#lan_vm #menu-container > #menu {
 }
 
 #lan_en #lottery .lottery-1 a {
-  background: url(../images/royal88/bg-lottery-txt-1-en.png) center top
-    no-repeat;
+  background: url(../images/royal88/bg-lottery-txt-1-en.png) center top no-repeat;
 }
 
 #lan_en #lottery .lottery-2 a {
-  background: url(../images/royal88/bg-lottery-txt-2-en.png) center top
-    no-repeat;
+  background: url(../images/royal88/bg-lottery-txt-2-en.png) center top no-repeat;
 }
 
 #lan_en #lottery .lottery-4 a:first-child {
-  background: url(../images/royal88/bg-lottery-txt-4-en.png) center top
-    no-repeat;
+  background: url(../images/royal88/bg-lottery-txt-4-en.png) center top no-repeat;
 }
 
 #lan_vm #lottery .lottery-1 a {
-  background: url(../images/royal88/bg-lottery-txt-1-vm.png) center top
-    no-repeat;
+  background: url(../images/royal88/bg-lottery-txt-1-vm.png) center top no-repeat;
 }
 
 #lan_vm #lottery .lottery-2 a {
-  background: url(../images/royal88/bg-lottery-txt-2-vm.png) center top
-    no-repeat;
+  background: url(../images/royal88/bg-lottery-txt-2-vm.png) center top no-repeat;
 }
 
 #lan_vm #lottery .lottery-4 a:first-child {
-  background: url(../images/royal88/bg-lottery-txt-4-vm.png) center top
-    no-repeat;
+  background: url(../images/royal88/bg-lottery-txt-4-vm.png) center top no-repeat;
 }
 
 body[id^="lan_"] #lottery .lottery-bjpk10 a {
-  background: url(../images/royal88/bg-lottery-txt-bjpk10-en.png) center top
-    no-repeat;
+  background: url(../images/royal88/bg-lottery-txt-bjpk10-en.png) center top no-repeat;
 }
 
 #news-and-events {
@@ -635,7 +624,7 @@ body[id^="lan_"] #lottery .lottery-bjpk10 a {
   text-transform: capitalize;
 }
 
-#news-and-events > div {
+#news-and-events>div {
   background: #eee;
   float: left;
   height: 219px;
@@ -659,7 +648,7 @@ body[id^="lan_"] #lottery .lottery-bjpk10 a {
   width: 97%;
 }
 
-#news-and-events ul li + li {
+#news-and-events ul li+li {
   border-top: 1px solid #e0e0e0;
 }
 
@@ -689,7 +678,7 @@ body[id^="lan_"] #lottery .lottery-bjpk10 a {
   font-size: 18px;
 }
 
-#news-and-events .news li + li a {
+#news-and-events .news li+li a {
   color: #6e6e6e;
   font-size: 14px;
 }
@@ -714,19 +703,19 @@ body[id^="lan_"] #lottery .lottery-bjpk10 a {
   padding: 5px 18px 0;
 }
 
-#guide > a {
+#guide>a {
   color: #6e6e6e;
   float: left;
   padding: 10px 20px;
 }
 
-#guide > a:hover {
+#guide>a:hover {
   background: #d0d0d0;
   color: #5e5e5e;
 }
 
-#guide > .current,
-#guide > .current:hover {
+#guide>.current,
+#guide>.current:hover {
   background: #eee;
   cursor: default;
   -webkit-user-select: none;
@@ -742,13 +731,13 @@ body[id^="lan_"] #lottery .lottery-bjpk10 a {
   width: 100%;
 }
 
-#guide-inner > div {
+#guide-inner>div {
   display: none;
   float: left;
   padding: 20px;
 }
 
-#guide-inner > .current {
+#guide-inner>.current {
   display: block;
 }
 
@@ -839,7 +828,7 @@ body[id^="lan_"] #lottery .lottery-bjpk10 a {
   word-wrap: break-word;
 }
 
-:root * > .latest_news_content * {
+:root *>.latest_news_content * {
   max-width: 100% !important;
 }
 
@@ -863,7 +852,7 @@ body[id^="lan_"] #lottery .lottery-bjpk10 a {
   background-position: right -75px;
 }
 
-.latest_news + .mask_pop {
+.latest_news+.mask_pop {
   background-color: #333;
   display: none;
   filter: alpha(opacity=50);
@@ -908,20 +897,20 @@ body[id^="lan_"] #lottery .lottery-bjpk10 a {
     top: 287px;
   }
 
-  #toolbar > div {
+  #toolbar>div {
     background: rgba(0, 0, 0, 0.5);
     box-shadow: 0 0 1px rgba(250, 250, 250, 0.5);
   }
 
-  #toolbar > div:hover {
+  #toolbar>div:hover {
     background: rgba(0, 0, 0, 0.75);
   }
 
-  #toolbar > div > a + span {
+  #toolbar>div>a+span {
     right: 59px;
   }
 
-  #toolbar > div #J-side-bar {
+  #toolbar>div #J-side-bar {
     border-right: 5px solid transparent;
   }
 
@@ -932,11 +921,12 @@ body[id^="lan_"] #lottery .lottery-bjpk10 a {
 }
 
 @media screen and (max-width: 1279px) {
+
   #menu,
   #nav,
   .topBar-inner,
-  body#lan_en #menu-container > #menu,
-  body#lan_vm #menu-container > #menu {
+  body#lan_en #menu-container>#menu,
+  body#lan_vm #menu-container>#menu {
     width: 980px;
   }
 
@@ -961,7 +951,7 @@ body[id^="lan_"] #lottery .lottery-bjpk10 a {
     width: 400px;
   }
 
-  #lottery div + div {
+  #lottery div+div {
     margin: 0;
   }
 
@@ -982,7 +972,7 @@ body[id^="lan_"] #lottery .lottery-bjpk10 a {
     margin-bottom: 38px;
   }
 
-  #news-and-events > div {
+  #news-and-events>div {
     width: 434px;
   }
 }
