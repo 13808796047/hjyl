@@ -437,9 +437,6 @@ input {
     margin-bottom: 20px;
 }
 
-.newbiglogo>img {
-    height: 82px;
-}
 
 .newbiglogo>* {
     display: inline-block;
