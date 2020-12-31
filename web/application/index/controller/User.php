@@ -117,14 +117,14 @@ class User extends Controller
         $arr = $user;
         if (!empty($_GET['uid'])) {
 //            $cur_member = Members::get($_GET['uid'])->getData();
-//
+            //
             $uid = $_GET['uid'];
 
             $cur_member = Members::with('parent')->where('uid', $uid)->find();
             $arr = $cur_member;
 //            $cur_member->parent();
-//            $arr = $cur_member->full_name;
-//            unset($arr[1]);
+            //            $arr = $cur_member->full_name;
+            //            unset($arr[1]);
         } else {
             if (isset($_GET['bank_min'])) {
                 $where['coin'] = ['>=', $_GET['bank_min']];
@@ -243,11 +243,11 @@ class User extends Controller
             $member = Members::where(['username' => $username])->find();
             $cur_username = $username;
         }
-        $p_days = isset($_GET['days']) ? $_GET['days'] : date('Y-m-d', time());//投注时间
-        $lotteryid = isset($_GET['lotteryid']) ? $_GET['lotteryid'] : "";//彩种名称
-        $methodid = isset($_GET['methodid']) ? $_GET['methodid'] : "";//游戏玩法
-        $issue = isset($_GET['issue']) ? $_GET['issue'] : "";//彩种奖期
-        $include = isset($_GET['include']) ? $_GET['include'] : "";//包含下级
+        $p_days = isset($_GET['days']) ? $_GET['days'] : date('Y-m-d', time()); //投注时间
+        $lotteryid = isset($_GET['lotteryid']) ? $_GET['lotteryid'] : ""; //彩种名称
+        $methodid = isset($_GET['methodid']) ? $_GET['methodid'] : ""; //游戏玩法
+        $issue = isset($_GET['issue']) ? $_GET['issue'] : ""; //彩种奖期
+        $include = isset($_GET['include']) ? $_GET['include'] : ""; //包含下级
         //获取投注时间
         $days = [];
         for ($idx = 0; $idx < 5; $idx++) {
@@ -321,7 +321,7 @@ class User extends Controller
         $fandian = $login_user ? $login_user['fanDian'] : 0;
         $option = "<option value='$fandian'>0</option>";
         for ($idx = 0.1; $idx <= $fandian; $idx += 0.1) {
-            $bldw = round($fandian - $idx, 1);//自身保留点位
+            $bldw = round($fandian - $idx, 1); //自身保留点位
             $idx = number_format($idx, 1);
             $option .= "<option value='$bldw'>$idx</option>";
         }
@@ -336,15 +336,21 @@ class User extends Controller
                 $this->error('用户已经存在');
             }
             $password = think_ucenter_md5($_POST['userpass'], UC_AUTH_KEY);
-            if ($_POST['point'] > $fandian) $this->error('返点设置有误！');
-            if ($_POST['usertype'] == 0) $_POST['point'] = 0;
+            if ($_POST['point'] > $fandian) {
+                $this->error('返点设置有误！');
+            }
+
+            if ($_POST['usertype'] == 0) {
+                $_POST['point'] = 0;
+            }
+
             $data = [
                 'type' => $_POST['usertype'],
                 'password' => $password,
                 'coinPassword' => $password,
                 'username' => $_POST['username'],
                 /* 'nickname'=>$_POST['nickname'],
-                 'qq'=>$_POST['qq'],*/
+                'qq'=>$_POST['qq'],*/
                 'fanDian' => $_POST['point'],
                 'regTime' => time(),
                 'is_test' => $user['is_test'],
@@ -427,7 +433,7 @@ class User extends Controller
             $bankDetail = $_GET['bankDetail'];
             $mbank = MemberBank::where(['uid' => $uid])->select();
             /*if (count($mbank) > 0 && $account_name != $mbank[0]['username']) {
-                $this->error('绑定的新银行持卡人必须跟之前绑定的一致');
+            $this->error('绑定的新银行持卡人必须跟之前绑定的一致');
             }*/
             if (!$account_name || !$account) {
                 $this->error('卡号信息有误');
@@ -474,7 +480,7 @@ class User extends Controller
             if ($changetype == 'loginpass') {
                 if (($member['password'] == $oldpass) || $oldpass == "") {
                     Members::where($where)->update([
-                        'password' => $newpass
+                        'password' => $newpass,
                     ]);
                 } else {
                     $this->error('旧密码不正确');
@@ -482,7 +488,7 @@ class User extends Controller
             } elseif ($changetype == 'secpass') {
                 if ($member['coinPassword'] == $oldpass || $oldpass == "") {
                     Members::where($where)->update([
-                        'coinPassword' => $newpass
+                        'coinPassword' => $newpass,
                     ]);
                 } else {
                     $this->error('资金密码不正确');
@@ -518,7 +524,7 @@ class User extends Controller
         $this->assign('nickname', $nickname);
         if (!empty($_POST['nickname'])) {
             Members::where(['uid' => $user['uid']])->update([
-                'nickname' => $_POST['nickname']
+                'nickname' => $_POST['nickname'],
             ]);
             $this->addLog(4, $user['uid'], $_POST['username']);
             $this->assign('nickname', $_POST['nickname']);
@@ -661,7 +667,7 @@ class User extends Controller
                     $actionNo = $sub_item['actionNo'];
                     $actionTime = $sub_item['actionNo'];
 //                    $kjTime = $me->getTypeFtime($me->type);
-//                    $atime  = date('H:i:s', $time + $kjTime);
+                    //                    $atime  = date('H:i:s', $time + $kjTime);
                     if (method_exists($me, $fun)) {
                         $me->$fun($actionNo, $actionTime, $time, $item['data_ftime']);
                         $data[$item['id']][$idx] = [
@@ -688,7 +694,7 @@ class User extends Controller
             'actionIP' => get_client_ip(1),
             'action' => $this->adminLogType[$type],
             'extfield0' => $extfield0,
-            'extfield1' => $extfield1
+            'extfield1' => $extfield1,
         ];
         AdminLog::insert($log);
         //\Think\Log::write('xiefff  '.M('admin_log')->getLastSql());
@@ -710,15 +716,15 @@ class User extends Controller
         if (empty($_POST['zjmm'])) {
             $this->error('资金密码不能为空');
         }
-        if ($this->user['is_test'] != 1) {
-            if (empty($_POST['bankno'])) {
-                $this->error('验证银行卡号不能为空！');
-            }
-            $banks = MemberBank::where(['uid' => $this->user['uid'], 'enable' => 1, 'account' => $_POST['bankno']])->count();
-            if ($banks == 0) {
-                $this->error('验证银行卡号不正确！');
-            }
-        }
+        // if ($this->user['is_test'] != 1) {
+        //     if (empty($_POST['bankno'])) {
+        //         $this->error('验证银行卡号不能为空！');
+        //     }
+        //     $banks = MemberBank::where(['uid' => $this->user['uid'], 'enable' => 1, 'account' => $_POST['bankno']])->count();
+        //     if ($banks == 0) {
+        //         $this->error('验证银行卡号不正确！');
+        //     }
+        // }
         $touid = $_POST['touid'];
         $money = $_POST['money'];
         $zjmm = $_POST['zjmm'];
@@ -795,7 +801,7 @@ class User extends Controller
             'rechargeTime' => time(),
             'state' => 1,
             'info' => '上级' . $this->user['username'] . '给下级转账',
-            'flag' => 1//上级给下级充值
+            'flag' => 1, //上级给下级充值
         ];
         $rech = MemberRecharge::insert($rechage);
         if (!$rech) {
@@ -829,7 +835,7 @@ class User extends Controller
         }
     }
 
-    function guid()
+    public function guid()
     {
         $chars = md5(uniqid(mt_rand(), true));
         $uuid = substr($chars, 0, 8);
@@ -912,13 +918,13 @@ class User extends Controller
                 'query' => [
                     'username' => $_GET['username'],
                     'uid' => $uid,
-                ]
+                ],
             ];
         } else {
             $config = [
                 'query' => [
                     'uid' => $uid,
-                ]
+                ],
             ];
         }
         $list = Members::alias('a')->where($where)
@@ -953,14 +959,14 @@ class User extends Controller
             if ($cur_v >= 120) {
                 $rgz_biaozhun[] = [
                     'title' => ($cur_v == 120 ? '1万10-' . $cur_v . '元' : '1万' . $cur_v . '元'),
-                    'renshu' => $cur_v == 200 ? "288人以上" : pow(2, ($cur_v - 120) / 10) . '人以上'
+                    'renshu' => $cur_v == 200 ? "288人以上" : pow(2, ($cur_v - 120) / 10) . '人以上',
                 ];
             }
         }
         if ($ri_gong_zi < 120) {
             $rgz_biaozhun[] = [
                 'title' => '1万10-' . $ri_gong_zi,
-                'renshu' => '1人以上'
+                'renshu' => '1人以上',
             ];
         }
         $this->assign('username', $username);
