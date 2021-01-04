@@ -1621,7 +1621,7 @@ input {
 }
 
 .w-bar-input {
-    width: 0.94rem;
+    width: 90%;
     height: 38px;
     background: none;
     border: none;
@@ -1653,7 +1653,7 @@ textarea.w-bar-input {
 }
 
 .w-bar-label {
-    width: 6em;
+    width: 20%;
     float: left;
 }
 
