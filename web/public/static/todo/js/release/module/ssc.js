@@ -28,7 +28,7 @@
                         t = "",
                         a = e.defConfig.limitBonus;
                     return e.defConfig.selectBallNum++,
-                    e.defConfig.selectBallNum == a && o.SSC.getInstance()["qiansan.zuxuan.zusandanshi"].uploadHtmlSet() && t
+                    e.defConfig.selectBallNum == a && o.SSC.getInstance()["dingweidan"].uploadHtmlSet() && t
                 },
                 removeFakeMenuDom: function() {
                     $("#J-menu-fake").remove()
