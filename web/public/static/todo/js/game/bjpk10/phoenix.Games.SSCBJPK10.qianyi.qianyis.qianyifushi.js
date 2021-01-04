@@ -1,7 +1,7 @@
 
 //BJPK10 前一/前一/前一
 (function (host, GameMethod, undefined) {
-	var defConfig = { name: "qianyi.qianyis.qianyifushi" },
+	var defConfig = { name: "dingweidan" },
     Games = host.Games,
     SSCBJPK10 = host.Games.SSCBJPK10.getInstance();
 
