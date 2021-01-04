@@ -234,11 +234,13 @@
         );
       }),
       $("#J-bet-order").click(function () {
-        e.getCurrentGameSubmit().submitBetOrderData();
-        // e.getCurrentGameOrder().addbet(e.getCurrentGameStatistics().getResultData(),
-        //     function() {
-        //         e.getCurrentGameSubmit().submitBetOrderData()
-        //     })
+        //  e.getCurrentGameSubmit().submitBetOrderData();
+        e.getCurrentGameOrder().addbet(
+          e.getCurrentGameStatistics().getResultData(),
+          function () {
+            e.getCurrentGameSubmit().submitBetOrderData();
+          }
+        );
       }),
       $("#randomone").click(function () {
         e.getCurrentGame().getCurrentGameMethod().randomLotterys(1);
