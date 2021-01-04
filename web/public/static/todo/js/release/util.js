@@ -7778,7 +7778,7 @@ document.querySelector || (document.querySelector = function(e) {
                     e.dom.remove(),
                         e.dom = null,
                         e.listDom = null,
-                        e.input = null
+                        // e.input = null
                 },
                 show: function() {
                     this.dom.show()
