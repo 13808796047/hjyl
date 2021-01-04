@@ -2983,6 +2983,7 @@ a {
 
 /* pop */
 .pop {
+	top: 100px !important;
 	width: 488px;
 	padding: 10px;
 	border: 1px solid #CACACA;
