@@ -223,7 +223,7 @@
 			me.dom.remove();
 			me.dom = null;
 			me.listDom = null;
-			me.input = null;
+			// me.input = null;
 		},
 		show:function(){
 			this.dom.show();
