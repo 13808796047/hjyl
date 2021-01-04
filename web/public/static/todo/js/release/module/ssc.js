@@ -100,6 +100,7 @@
                     t || n._appendHtml(n.html)
                 },
                 _bulidHTMl: function(e, t) {
+                    console.log(e);
                     var a = this,
                         n = a.html.find(".play-select-title"),
                         r = a.html.find(".play-select-content");
