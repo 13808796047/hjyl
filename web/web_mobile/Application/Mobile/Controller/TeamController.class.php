@@ -1295,16 +1295,16 @@ class TeamController extends HomeController
         if(empty($money) || intval($money) < 1) {
             $this->error('充值金额必须大于0');
         }
-        if($this->user['is_test'] != 1) {
-            $bankno = I('bankno');
-            if(empty($bankno)) {
-                $this->error('绑定银行卡号不能为空！');
-            }
-            $banks = M('member_bank')->where(['uid' => $this->user['uid'], 'enable' => 1, 'account' => $bankno])->count();
-            if($banks == 0) {
-                $this->error('验证银行卡号不正确！');
-            }
-        }
+        // if($this->user['is_test'] != 1) {
+        //     $bankno = I('bankno');
+        //     if(empty($bankno)) {
+        //         $this->error('绑定银行卡号不能为空！');
+        //     }
+        //     $banks = M('member_bank')->where(['uid' => $this->user['uid'], 'enable' => 1, 'account' => $bankno])->count();
+        //     if($banks == 0) {
+        //         $this->error('验证银行卡号不正确！');
+        //     }
+        // }
         if(empty($password)) {
             $this->error('资金密码不能为空');
         }
