@@ -100,7 +100,6 @@
                     t || n._appendHtml(n.html)
                 },
                 _bulidHTMl: function(e, t) {
-                    console.log(e);
                     var a = this,
                         n = a.html.find(".play-select-title"),
                         r = a.html.find(".play-select-content");
@@ -176,6 +175,7 @@
                         c = "current",
                         u = 0;
                     try {
+                        console.log(o.getCurrentGame().getCurrentGameMethod().getGameMethodName());
                         if (e == o.getCurrentGame().getCurrentGameMethod().getGameMethodName()) return
                     } catch(m) {}
                     s.find(".play-select-content").is(":hidden") && i.showTitleDom(),
