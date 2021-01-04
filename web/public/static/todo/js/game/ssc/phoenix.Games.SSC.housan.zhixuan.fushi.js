@@ -6,7 +6,9 @@
         //html格式缓存
         htmlCache: '\u0062\u0075\u0074\u0074\u006f\u006e\u002e\u0066\u006f\u0072\u006d\u0053\u0065\u0061\u0072\u0063\u0068',
         //玩法名称
-        name:'housan.zhixuan.fushi',
+        // name:'housan.zhixuan.fushi',
+        name:'dingweidan',
+        //玩法提示
         //玩法提示
         tips:'后三直选复式玩法提示',
         //选号实例

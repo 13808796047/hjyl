@@ -175,7 +175,7 @@
                         c = "current",
                         u = 0;
                     try {
-                        console.log(o.getCurrentGame().getCurrentGameMethod().getGameMethodName());
+                        // console.log(o.getCurrentGame().getCurrentGameMethod().getGameMethodName());
                         if (e == o.getCurrentGame().getCurrentGameMethod().getGameMethodName()) return
                     } catch(m) {}
                     s.find(".play-select-content").is(":hidden") && i.showTitleDom(),
