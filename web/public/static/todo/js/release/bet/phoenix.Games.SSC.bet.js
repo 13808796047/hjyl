@@ -60,7 +60,7 @@
                 this.innerHTML = a[e];
               }),
             e.getCurrentGame().showLotteryDescription(n.lastballsTrans),
-            console.log("dfjalkfjdlksa");
+      
           e.getCurrentGame().startGetBetBall(),
             i.setStartTime(new Date(n.nowtime)),
             i.setEndTime(new Date(n.nowstoptime)),

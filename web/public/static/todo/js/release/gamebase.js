@@ -289,6 +289,19 @@
                                 // 1 == Number(a.isSuccess) && (t.fireEvent("afterGetLastBall", a), t.getDynamicConfig().number && a.period.replace(/-/g, "") !== Number((t.getDynamicConfig().number+"").replace(/-/g, "")) && (e && e(), t.fireEvent("afterSuccessGetLastBall", a)))
                             }
                         })
+                         //追号记录初始化
+    var trace_content = $("#J-history-control .trace-content"),
+            trace_content_url = "/newgame_play.html?curmid=" + window.GamesInitData.curmid + "&flag=traceRecords&size=5";
+    $.ajax({
+        url: trace_content_url,
+        dataType: "html",
+        success: function(t) {
+            trace_content.html(t)
+        },
+        error: function(t, a) {
+            trace_content.html(translate.FailToBetRecordWording + t.responseText)
+        }
+    })  
                 },
                 getGameMethodByName: function (e) {
                     var t = this;
