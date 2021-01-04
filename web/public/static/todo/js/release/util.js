@@ -7777,7 +7777,7 @@ document.querySelector || (document.querySelector = function(e) {
                     var e = this;
                     e.dom.remove(),
                         e.dom = null,
-                        e.listDom = null,
+                        e.listDom = null
                         // e.input = null,
                 },
                 show: function() {
