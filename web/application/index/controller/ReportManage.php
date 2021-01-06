@@ -594,7 +594,7 @@ class ReportManage extends Controller
             $where['username'] = ['like', strtolower(trim($_GET['username'])) . '%'];
             $builder = $builder->where($where);
         }
-        $childs = $builder->select();
+        $childs = $builder->where('uid', session('userData.uid'))->select();
 
         if (isset($para['date2'])) {
             $toTime = strtotime($para['date2']);
