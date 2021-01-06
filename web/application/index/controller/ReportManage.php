@@ -594,6 +594,7 @@ class ReportManage extends Controller
         }
 
         $uid = $builder->where($where)->column('uid');
+        \dump($uid);
 
         if (isset($para['date2'])) {
             $toTime = strtotime($para['date2']);
