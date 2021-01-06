@@ -549,7 +549,7 @@ function gameKanJiangDataC(diffTime, actionNo) {
         $("#bet-confirm-mobile").text('确定投注');
         $('#bet-confirm-mobile').bind('click', gamePostCode);
         if (T) clearTimeout(T);
-
+getUserBalance();
         getQiHao();
         kjTimer = setTimeout(loadKjData, 2000);
 
