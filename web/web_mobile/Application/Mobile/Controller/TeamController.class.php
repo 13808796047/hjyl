@@ -274,7 +274,7 @@ class TeamController extends HomeController
 
         if (isset($para['username']) && $para['username'] != '') {
             $where['username'] = strtolower(trim($para['username']));
-            $uid = M('Member')->where($where)->get('uid');
+            // $uid = M('Member')->where($where)->get('uid');
         }
 
         $all = [];
