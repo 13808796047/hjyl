@@ -702,6 +702,7 @@ class ReportManage extends Controller
         // }*/
         // }
         $data = [];
+        $all = [];
         foreach ($childs as $key => $value) {
             $cuids = Members::where("FIND_IN_SET({$value->uid},parents)")->column('uid');
             $data[$key] = [
@@ -714,7 +715,19 @@ class ReportManage extends Controller
                 'zjAmount' => CoinLogReport::where('uid', 'in', $cuids)
                     ->where('actionTime', 'between', [$fromTime, $toTime])
                     ->sum('zjAmount'),
+                'fanDianAmount' => CoinLogReport::where('uid', 'in', $cuids)
+                    ->where('actionTime', 'between', [$fromTime, $toTime])
+                    ->sum('fanDianAmount'),
+                'brokerageAmount' => CoinLogReport::where('uid', 'in', $cuids)
+                    ->where('actionTime', 'between', [$fromTime, $toTime])
+                    ->sum('brokerageAmount'),
             ];
+            $all['betAmount'] += $data[$key]['betAmount'];
+            $all['zjAmount'] += $data[$key]['zjAmount'];
+            $all['fanDianAmount'] += $data[$key]['fanDianAmount'];
+            $all['brokerageAmount'] += $data[$key]['brokerageAmount'];
+            $all['zyk'] += floatval($data[$key]['zjAmount'] - $data[$key]['betAmount'] + $data[$key]['fanDianAmount'] + $data[$key]['brokerageAmount']);
+
         }
         // $this->assign('uid', $uid);
         // $this->assign('days', $days);
