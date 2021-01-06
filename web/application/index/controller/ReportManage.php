@@ -710,7 +710,7 @@ class ReportManage extends Controller
 
         foreach ($childs as $key => $value) {
             $cuids = Members::where("FIND_IN_SET({$value->uid},parents)")->column('uid');
-            $data = [
+            $data[$key] = [
                 'uid' => $value->uid,
                 'username' => $value->username,
                 'type' => $value->type,
@@ -727,11 +727,11 @@ class ReportManage extends Controller
                     ->where('actionTime', 'between', [$fromTime, $toTime])
                     ->sum('brokerageAmount'),
             ];
-            $all['betAmount'] += $data['betAmount'];
-            $all['zjAmount'] += $data['zjAmount'];
-            $all['fanDianAmount'] += $data['fanDianAmount'];
-            $all['brokerageAmount'] += $data['brokerageAmount'];
-            $all['zyk'] += floatval($data['zjAmount'] - $data['betAmount'] + $data['fanDianAmount'] + $data['brokerageAmount']);
+            $all['betAmount'] += $data[$key]['betAmount'];
+            $all['zjAmount'] += $data[$key]['zjAmount'];
+            $all['fanDianAmount'] += $data[$key]['fanDianAmount'];
+            $all['brokerageAmount'] += $data[$key]['brokerageAmount'];
+            $all['zyk'] += floatval($data[$key]['zjAmount'] - $data[$key]['betAmount'] + $data[$key]['fanDianAmount'] + $data[$key]['brokerageAmount']);
         }
         // $this->assign('uid', $uid);
         // $this->assign('days', $days);
@@ -742,6 +742,7 @@ class ReportManage extends Controller
         }*/
 
         //团队
+        \dump($data);
         $this->assign('data', $data);
         $this->assign('all', $all);
         $para = empty($para) ? ['dete0' => 1, 'date1' => 0, 'date2' => 0] : $para;
