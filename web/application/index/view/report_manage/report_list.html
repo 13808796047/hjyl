@@ -66,8 +66,8 @@ jQuery(document).ready(function() {
 				<dl class="clearfix field">
 					<label>投注时间</label>
 					<select class="selection" id="date0" name="date0"
-								onchange="if(jQuery(this).val()=='1') {jQuery('#lol').hide();jQuery('#lol1').show();jQuery('#lol2').hide();jQuery('#lol3').hide();jQuery('#lol4').hide();};
-										  if(jQuery(this).val()=='2' ) {jQuery('#lol').show();jQuery('#lol2').show();jQuery('#lol1').hide();jQuery('#lol3').hide();jQuery('#lol4').hide();};
+								onchange="if(jQuery(this).val()=='1') {jQuery('#lol').hide();jQuery('#lol1').show();jQuery('#lol2').hide();jQuery('#lol3').hide();jQuery('#lol4').show();};
+										  if(jQuery(this).val()=='2' ) {jQuery('#lol').show();jQuery('#lol2').show();jQuery('#lol1').hide();jQuery('#lol3').hide();jQuery('#lol4').show();};
 										  if(jQuery(this).val()=='3' ) {jQuery('#lol').show();jQuery('#lol3').show();jQuery('#lol1').hide();jQuery('#lol2').hide();jQuery('#lol4').show();}">
 								<option  value="1" {if 1 == @$_GET['date0']} selected {/if}>今天统计</option>
 								<option  value="2" {if 2 == @$_GET['date0']} selected {/if}>历史总计</option>
