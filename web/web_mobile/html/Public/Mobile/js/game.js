@@ -581,6 +581,20 @@ function gameKanJiangDataC(diffTime, actionNo) {
     }
 }
 
+function getUserBalance(){
+     $.ajax({
+        url: "/index.php?s=/mobile/user/getUserBalance", //请求的url地址
+        dataType: "json", //返回格式为json
+        type: "GET", //请求方式 get 或者post,
+        success:function(data){
+            if(data){
+                console.log(data);
+$('#user-balance').html()
+            }
+        }
+     });
+}
+
 function loadKjData() {
     var type = game.type;
     var now = Math.random();
