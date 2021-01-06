@@ -8,19 +8,17 @@
 
 namespace app\index\controller;
 
-
 use app\index\model\Bets;
 use app\index\model\MemberCash;
 use app\index\model\MemberRecharge;
 use app\index\model\Members;
+use app\index\model\Params;
 use app\index\model\Type;
 use think\Controller;
+use think\Db;
 use think\Request;
 use think\Session;
-use think\Db;
 use think\View;
-use app\index\model\Params;
-use think\model\Merge;
 
 class ReportManage extends Controller
 {
@@ -130,11 +128,11 @@ class ReportManage extends Controller
         $params = $request->param();
         if (!isset($params['isquery']) && !isset($params['id'])) {
 //            $this->assign('liqTypeName', $this->liqTypeName);
-//            $this->assign('modeConfig', $this->modeConfig);
-//            $this->assign('total', 0);
-//            $this->assign('page', "");
-//            $this->assign('currentPage', "");
-//            $this->assign('totalPage', 0);
+            //            $this->assign('modeConfig', $this->modeConfig);
+            //            $this->assign('total', 0);
+            //            $this->assign('page', "");
+            //            $this->assign('currentPage', "");
+            //            $this->assign('totalPage', 0);
             $this->assign('days', $days);
 //            $this->assign('types_data', $this->types());
             $this->assign('data', []);
@@ -145,14 +143,13 @@ class ReportManage extends Controller
 
         $builder = new Members();
 //        $pwhere[] = ['exp', 'FIND_IN_SET(' . $uid . ',parents)'];
-//        $pwhere['isDelete'] = 0;
+        //        $pwhere['isDelete'] = 0;
         if (isset($_GET['username']) && $_GET['username'] != '') {
             $where['username'] = ['like', strtolower(trim($_GET['username'])) . '%'];
             $where[] = ['exp', 'FIND_IN_SET(' . $uid . ',parents)'];
         } else {
             $where['parentId'] = $uid;
         }
-
 
         $childs = $builder->where($where)->select();
         if (isset($params['days']) && isset($params['days2'])) {
@@ -212,7 +209,7 @@ class ReportManage extends Controller
             return view('report_manage/orders_list');
         }
         $pageSize = isset($para['PageSize']) ? $para['PageSize'] : 20;
-        $lotteryid = isset($para['lotteryid']) ? $para['lotteryid'] : "";//彩种名称
+        $lotteryid = isset($para['lotteryid']) ? $para['lotteryid'] : ""; //彩种名称
         $where = [];
         $uid = session('userData.uid');
         $baseSql = Db::table('gygy_coin_log')->alias('c')
@@ -234,7 +231,7 @@ class ReportManage extends Controller
 
             $baseSql->where('m.username', '=', $para['username']);
             // $baseSql->where('m.parents', 'like', "%$uid%");
-//            $baseSql->where($pwhere);
+            //            $baseSql->where($pwhere);
         }
         if (!empty($para['user_select'])) {
             //用户类型限制
@@ -294,14 +291,14 @@ class ReportManage extends Controller
         $baseSql->whereBetween('c.actionTime', [$time, $time + 86399]);
         $data = $baseSql
 //            ->join("gygy_bets b","b.id=c.extfield0")
-            ->join("gygy_members m", "m.uid=c.uid")
-            /*->join("gygy_type t","t.id=c.type")
-            ->join("gygy_played p","p.id=c.playedId")*/
+        ->join("gygy_members m", "m.uid=c.uid")
+        /*->join("gygy_type t","t.id=c.type")
+        ->join("gygy_played p","p.id=c.playedId")*/
             ->where($where)
             ->order('m.username asc')
             ->paginate($pageSize, false, ['query' => $_GET]);
 //        dump($baseSql->getLastSql());
-//        exit;
+        //        exit;
         $total = $data->total();
 //        dump($data);
 
@@ -370,7 +367,7 @@ class ReportManage extends Controller
             // 用户名用模糊方式查询
             $userBaseSql->whereLike('username', $para['username'] . '%');
             // $userBaseSql->whereLike('parents',$uid);
-//            $userBaseSql->whereLike($pwhere);
+            //            $userBaseSql->whereLike($pwhere);
         } else {
             //用户类型限制
             $para['utype'] = isset($para['utype']) ? $para['utype'] : '';
@@ -391,7 +388,7 @@ class ReportManage extends Controller
                 default:
                     //所有人
                     $userBaseSql->where(function ($query) use ($uid, $pwhere) {
-                        $query->where(/*'parents', 'like', "%$uid%"*/ $pwhere)->whereOr('uid', '=', $uid);
+                        $query->where( /*'parents', 'like', "%$uid%"*/$pwhere)->whereOr('uid', '=', $uid);
                     });
                     break;
             }
@@ -418,13 +415,13 @@ class ReportManage extends Controller
             $where['actionTime'] = ['between', [strtotime(date("Y-m-d")), time()]];
         }
 //        if(isset($params['days']) && isset($params['days2'])) {
-//
-//            $start = strtotime($params['days'] . '00:00:00');
-//            $end = strtotime($params['days2'] . " 23:59:59");
-//        } else {
-//            $start = strtotime(date('Y-m-d 00:00:00', time()));
-//            $end = strtotime(date('Y-m-d 23:59:59', time()));
-//        }
+        //
+        //            $start = strtotime($params['days'] . '00:00:00');
+        //            $end = strtotime($params['days2'] . " 23:59:59");
+        //        } else {
+        //            $start = strtotime(date('Y-m-d 00:00:00', time()));
+        //            $end = strtotime(date('Y-m-d 23:59:59', time()));
+        //        }
         $where['uid'] = ['in', $userStr];
         $cashList = Db::table('gygy_member_recharge')
             ->field('id,uid,username,rechargeId,amount,rechargeAmount,mBankId,state,info,actionTime')
@@ -498,12 +495,12 @@ class ReportManage extends Controller
                     break;
                 case 3:
                     // 所有下级
-                    $userBaseSql->where(/*'parents', 'like', "%$uid%"*/ $pwhere)->where('uid', '<>', $uid);
+                    $userBaseSql->where( /*'parents', 'like', "%$uid%"*/$pwhere)->where('uid', '<>', $uid);
                     break;
                 default:
                     //所有人
                     $userBaseSql->where(function ($query) use ($uid, $pwhere) {
-                        $query->where(/*'parents', 'like', "%$uid%"*/ $pwhere)->whereOr('uid', '=', $uid);
+                        $query->where( /*'parents', 'like', "%$uid%"*/$pwhere)->whereOr('uid', '=', $uid);
                     });
                     break;
             }
@@ -518,7 +515,7 @@ class ReportManage extends Controller
         }
 
         $where = [
-            'isDelete' => 0
+            'isDelete' => 0,
         ];
 
         // 时间限制
@@ -540,8 +537,8 @@ class ReportManage extends Controller
         $total = $cashList->total();
         /*$i = 0;
         foreach ($cashList as $cash) {
-            $data[$i] = array_merge($cash, $userData[$cash['uid']]);
-            $i++;
+        $data[$i] = array_merge($cash, $userData[$cash['uid']]);
+        $i++;
         }*/
 
 //        var_dump(Db::table('gygy_member_cash')->getLastSql());exit;
@@ -570,7 +567,6 @@ class ReportManage extends Controller
             $days[$idx] = date("Y-m-d", $cur_day - (86400 * $idx));
         }
 
-
         $para = $request->get();
         if (!isset($para['isquery'])) {
             $all['coin'] = 0.00;
@@ -589,7 +585,10 @@ class ReportManage extends Controller
             return view('report_manage/report_list');
         }
         $pageSize = isset($para['PageSize']) ? $para['PageSize'] : 20;
-        $uid = session('userData.uid');
+        // $uid = session('userData.uid');
+        if (isset($para['username'])) {
+            $uid = Db('gygy_members')->field('uid')->where('username', $para['username'])->select();
+        }
         if (isset($para['date2'])) {
             $toTime = strtotime($para['date2']);
         } else {
@@ -606,7 +605,7 @@ class ReportManage extends Controller
         }
         $all = [];
         $sql = "SELECT * FROM (
-                SELECT 
+                SELECT
                  m.username,
                  m.uid,
                  if(m.type=1,'代理','会员') AS type,
@@ -619,10 +618,10 @@ class ReportManage extends Controller
                 	sum(r.brokerageAmount) AS brokerageAmount,
                 	sum(r.zyk) AS zyk
                 FROM gygy_members as m LEFT JOIN gygy_coin_log_report as r ON r.uid=m.uid AND r.actionTime BETWEEN {$fromTime} AND {$toTime}
-                WHERE m.uid = {$uid} 
+                WHERE m.uid = {$uid}
                 GROUP BY m.uid
                 UNION
-                SELECT  * FROM 
+                SELECT  * FROM
                 (SELECT
                         mm.username,
                          mm.uid,
@@ -635,7 +634,7 @@ class ReportManage extends Controller
                         sum(r2.fanDianAmount) AS fanDianAmount,
                         sum(r2.brokerageAmount) AS brokerageAmount,
                         sum(r2.zyk) AS zyk
-                     FROM gygy_members mm 
+                     FROM gygy_members mm
                     LEFT JOIN (
                     SELECT
                         m.uid,
@@ -691,13 +690,13 @@ class ReportManage extends Controller
             $data[$item]['brokerageAmount'] = floatval($sub['brokerageAmount']);
             $data[$item]['zyk'] = floatval($sub['zjAmount'] - $sub['betAmount'] + $sub['fanDianAmount'] + $sub['brokerageAmount']);
             /*if ($uid == $sub['uid']) {
-                $myRecord = $data[$item];
-                unset($data[$item]);
-            }*/
+        $myRecord = $data[$item];
+        unset($data[$item]);
+        }*/
         }
 
         /*if (!empty($myRecord)) {
-            array_unshift($data, $myRecord);
+        array_unshift($data, $myRecord);
         }*/
 
         //团队
