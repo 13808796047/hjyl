@@ -745,7 +745,6 @@ class ReportManage extends Controller
         }*/
 
         //团队
-        \dump($data);
         $this->assign('data', $data);
         $this->assign('all', $all);
         $para = empty($para) ? ['dete0' => 1, 'date1' => 0, 'date2' => 0] : $para;
