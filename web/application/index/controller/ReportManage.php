@@ -727,13 +727,11 @@ class ReportManage extends Controller
                     ->where('actionTime', 'between', [$fromTime, $toTime])
                     ->sum('brokerageAmount'),
             ];
-            dump($data);
             $all['betAmount'] += $data['betAmount'];
             $all['zjAmount'] += $data['zjAmount'];
             $all['fanDianAmount'] += $data['fanDianAmount'];
             $all['brokerageAmount'] += $data['brokerageAmount'];
             $all['zyk'] += floatval($data['zjAmount'] - $data['betAmount'] + $data['fanDianAmount'] + $data['brokerageAmount']);
-
         }
         // $this->assign('uid', $uid);
         // $this->assign('days', $days);
