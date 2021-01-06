@@ -705,7 +705,7 @@ class ReportManage extends Controller
         $all = [];
         foreach ($childs as $key => $value) {
             $cuids = Members::where("FIND_IN_SET({$value->uid},parents)")->column('uid');
-            $data[$key] = [
+            $data = [
                 'uid' => $value->uid,
                 'username' => $value->username,
                 'type' => $value->type,
@@ -723,11 +723,11 @@ class ReportManage extends Controller
                     ->sum('brokerageAmount'),
             ];
             dump($data);
-            $all['betAmount'] += $data[$key]['betAmount'];
-            $all['zjAmount'] += $data[$key]['zjAmount'];
-            $all['fanDianAmount'] += $data[$key]['fanDianAmount'];
-            $all['brokerageAmount'] += $data[$key]['brokerageAmount'];
-            $all['zyk'] += floatval($data[$key]['zjAmount'] - $data[$key]['betAmount'] + $data[$key]['fanDianAmount'] + $data[$key]['brokerageAmount']);
+            $all['betAmount'] += $data['betAmount'];
+            $all['zjAmount'] += $data['zjAmount'];
+            $all['fanDianAmount'] += $data['fanDianAmount'];
+            $all['brokerageAmount'] += $data['brokerageAmount'];
+            $all['zyk'] += floatval($data['zjAmount'] - $data['betAmount'] + $data['fanDianAmount'] + $data['brokerageAmount']);
 
         }
         // $this->assign('uid', $uid);
