@@ -272,8 +272,8 @@ class TeamController extends HomeController
             exit();
         }
 
-        if (isset($_GET['username']) && $_GET['username'] != '') {
-            $where['username'] = strtolower(trim($_GET['username']));
+        if (isset($para['username']) && $para['username'] != '') {
+            $where['username'] = strtolower(trim($para['username']));
             $uid = M('Member')->where($where)->get('uid');
         }
 
