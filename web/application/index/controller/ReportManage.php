@@ -586,10 +586,15 @@ class ReportManage extends Controller
         }
         $pageSize = isset($para['PageSize']) ? $para['PageSize'] : 20;
         // $uid = session('userData.uid');
-        if (isset($para['username'])) {
-            $uid = Members::field('uid')->where('username', $para['username'])->find()['uid'];
-            \dump($uid);
+        $builder = new Members();
+//        $pwhere[] = ['exp', 'FIND_IN_SET(' . $uid . ',parents)'];
+        //        $pwhere['isDelete'] = 0;
+        if (isset($_GET['username']) && $_GET['username'] != '') {
+            $where['username'] = ['like', strtolower(trim($_GET['username'])) . '%'];
         }
+
+        $uid = $builder->where($where)->column('uid');
+
         if (isset($para['date2'])) {
             $toTime = strtotime($para['date2']);
         } else {
