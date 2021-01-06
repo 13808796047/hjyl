@@ -586,15 +586,16 @@ class ReportManage extends Controller
             return view('report_manage/report_list');
         }
         $pageSize = isset($para['PageSize']) ? $para['PageSize'] : 20;
-        // $uid = session('userData.uid');
+        $uid = session('userData.uid');
         $builder = new Members();
 //        $pwhere[] = ['exp', 'FIND_IN_SET(' . $uid . ',parents)'];
         //        $pwhere['isDelete'] = 0;
-        if (isset($_GET['username']) && $_GET['username'] != '') {
-            $where['username'] = ['like', strtolower(trim($_GET['username'])) . '%'];
-            $builder = $builder->where($where);
+        if (isset($para['username']) && $para['username'] != '') {
+            $where['username'] = strtolower(trim($para['username']));
+            $uid = Member::field('uid')->where($where)->find()['uid'];
         }
-        $childs = $builder->where('uid', session('userData.uid'))->select();
+
+        // $childs = $builder->where('uid', session('userData.uid'))->select();
 
         if (isset($para['date2'])) {
             $toTime = strtotime($para['date2']);
@@ -610,97 +611,97 @@ class ReportManage extends Controller
             $fromTime = strtotime(date('Ymd', time()));
             $toTime = strtotime(date('Ymd', time()));
         }
-        // $all = [];
-        // $sql = "SELECT * FROM (
-        //         SELECT
-        //          m.username,
-        //          m.uid,
-        //          if(m.type=1,'代理','会员') AS type,
-        //           sum(r.coin) AS coin,
-        //             sum(r.rechargeAmount) AS rechargeAmount,
-        //             sum(r.cashAmount) AS cashAmount,
-        //             sum(r.betAmount) AS betAmount,
-        //             sum(r.zjAmount) AS zjAmount,
-        //             sum(r.fanDianAmount) AS fanDianAmount,
-        //             sum(r.brokerageAmount) AS brokerageAmount,
-        //             sum(r.zyk) AS zyk
-        //         FROM gygy_members as m LEFT JOIN gygy_coin_log_report as r ON r.uid=m.uid AND r.actionTime BETWEEN {$fromTime} AND {$toTime}
-        //         WHERE m.uid = {$uid}
-        //         GROUP BY m.uid
-        //         UNION
-        //         SELECT  * FROM
-        //         (SELECT
-        //                 mm.username,
-        //                  mm.uid,
-        //                 if(mm.type=1,'代理','会员') AS type,
-        //                 sum(r2.coin) AS coin,
-        //                 sum(r2.rechargeAmount) AS rechargeAmount,
-        //                 sum(r2.cashAmount) AS cashAmount,
-        //                 sum(r2.betAmount) AS betAmount,
-        //                 sum(r2.zjAmount) AS zjAmount,
-        //                 sum(r2.fanDianAmount) AS fanDianAmount,
-        //                 sum(r2.brokerageAmount) AS brokerageAmount,
-        //                 sum(r2.zyk) AS zyk
-        //              FROM gygy_members mm
-        //             LEFT JOIN (
-        //             SELECT
-        //                 m.uid,
-        //                 m.username,
-        //                 m.parentId,
-        //                 m.parents,
-        //                 r.coin,
-        //                 r.rechargeAmount,
-        //                 r.cashAmount,
-        //                 r.betAmount,
-        //                 r.zjAmount,
-        //                 r.fanDianAmount,
-        //                 r.brokerageAmount,
-        //                 r.zyk
-        //             FROM
-        //                 gygy_members AS m
-        //             JOIN gygy_coin_log_report AS r ON m.uid = r.uid
-        //             WHERE
-        //                 FIND_IN_SET({$uid}, m.parents) AND m.uid <> {$uid}
-        //             AND r.actionTime BETWEEN {$fromTime} AND {$toTime}
-        //             ) as r2
-        //             ON FIND_IN_SET(mm.uid,r2.parents)
-        //             WHERE mm.parentId = {$uid}
-        //             GROUP BY mm.uid
-        //             ORDER BY mm.username asc) t
-        //         ) r1 ";
-        // $data = Db::query($sql);
-        // $all['coin'] = 0.00;
-        // $all['rechargeAmount'] = 0.00;
-        // $all['cashAmount'] = 0.00;
-        // $all['betAmount'] = 0.00;
-        // $all['zjAmount'] = 0.00;
-        // $all['fanDianAmount'] = 0.00;
-        // $all['brokerageAmount'] = 0.00;
-        // $all['zyk'] = 0.00;
-        // $myRecord = [];
-        // foreach ($data as $item => $sub) {
-        //     $all['coin'] += $sub['coin'];
-        //     $all['rechargeAmount'] += $sub['rechargeAmount'];
-        //     $all['cashAmount'] += $sub['cashAmount'];
-        //     $all['betAmount'] += $sub['betAmount'];
-        //     $all['zjAmount'] += $sub['zjAmount'];
-        //     $all['fanDianAmount'] += $sub['fanDianAmount'];
-        //     $all['brokerageAmount'] += $sub['brokerageAmount'];
-        //     $all['zyk'] += floatval($sub['zjAmount'] - $sub['betAmount'] + $sub['fanDianAmount'] + $sub['brokerageAmount']);
+        $all = [];
+        $sql = "SELECT * FROM (
+                SELECT
+                 m.username,
+                 m.uid,
+                 if(m.type=1,'代理','会员') AS type,
+                  sum(r.coin) AS coin,
+                    sum(r.rechargeAmount) AS rechargeAmount,
+                    sum(r.cashAmount) AS cashAmount,
+                    sum(r.betAmount) AS betAmount,
+                    sum(r.zjAmount) AS zjAmount,
+                    sum(r.fanDianAmount) AS fanDianAmount,
+                    sum(r.brokerageAmount) AS brokerageAmount,
+                    sum(r.zyk) AS zyk
+                FROM gygy_members as m LEFT JOIN gygy_coin_log_report as r ON r.uid=m.uid AND r.actionTime BETWEEN {$fromTime} AND {$toTime}
+                WHERE m.uid = {$uid}
+                GROUP BY m.uid
+                UNION
+                SELECT  * FROM
+                (SELECT
+                        mm.username,
+                         mm.uid,
+                        if(mm.type=1,'代理','会员') AS type,
+                        sum(r2.coin) AS coin,
+                        sum(r2.rechargeAmount) AS rechargeAmount,
+                        sum(r2.cashAmount) AS cashAmount,
+                        sum(r2.betAmount) AS betAmount,
+                        sum(r2.zjAmount) AS zjAmount,
+                        sum(r2.fanDianAmount) AS fanDianAmount,
+                        sum(r2.brokerageAmount) AS brokerageAmount,
+                        sum(r2.zyk) AS zyk
+                     FROM gygy_members mm
+                    LEFT JOIN (
+                    SELECT
+                        m.uid,
+                        m.username,
+                        m.parentId,
+                        m.parents,
+                        r.coin,
+                        r.rechargeAmount,
+                        r.cashAmount,
+                        r.betAmount,
+                        r.zjAmount,
+                        r.fanDianAmount,
+                        r.brokerageAmount,
+                        r.zyk
+                    FROM
+                        gygy_members AS m
+                    JOIN gygy_coin_log_report AS r ON m.uid = r.uid
+                    WHERE
+                        FIND_IN_SET({$uid}, m.parents) AND m.uid <> {$uid}
+                    AND r.actionTime BETWEEN {$fromTime} AND {$toTime}
+                    ) as r2
+                    ON FIND_IN_SET(mm.uid,r2.parents)
+                    WHERE mm.parentId = {$uid}
+                    GROUP BY mm.uid
+                    ORDER BY mm.username asc) t
+                ) r1 ";
+        $data = Db::query($sql);
+        $all['coin'] = 0.00;
+        $all['rechargeAmount'] = 0.00;
+        $all['cashAmount'] = 0.00;
+        $all['betAmount'] = 0.00;
+        $all['zjAmount'] = 0.00;
+        $all['fanDianAmount'] = 0.00;
+        $all['brokerageAmount'] = 0.00;
+        $all['zyk'] = 0.00;
+        $myRecord = [];
+        foreach ($data as $item => $sub) {
+            $all['coin'] += $sub['coin'];
+            $all['rechargeAmount'] += $sub['rechargeAmount'];
+            $all['cashAmount'] += $sub['cashAmount'];
+            $all['betAmount'] += $sub['betAmount'];
+            $all['zjAmount'] += $sub['zjAmount'];
+            $all['fanDianAmount'] += $sub['fanDianAmount'];
+            $all['brokerageAmount'] += $sub['brokerageAmount'];
+            $all['zyk'] += floatval($sub['zjAmount'] - $sub['betAmount'] + $sub['fanDianAmount'] + $sub['brokerageAmount']);
 
-        //     $data[$item]['coin'] = floatval($sub['coin']);
-        //     $data[$item]['rechargeAmount'] = floatval($sub['rechargeAmount']);
-        //     $data[$item]['cashAmount'] = floatval($sub['cashAmount']);
-        //     $data[$item]['betAmount'] = floatval($sub['betAmount']);
-        //     $data[$item]['zjAmount'] = floatval($sub['zjAmount']);
-        //     $data[$item]['fanDianAmount'] = floatval($sub['fanDianAmount']);
-        //     $data[$item]['brokerageAmount'] = floatval($sub['brokerageAmount']);
-        //     $data[$item]['zyk'] = floatval($sub['zjAmount'] - $sub['betAmount'] + $sub['fanDianAmount'] + $sub['brokerageAmount']);
-        //     /*if ($uid == $sub['uid']) {
-        // $myRecord = $data[$item];
-        // unset($data[$item]);
-        // }*/
-        // }
+            $data[$item]['coin'] = floatval($sub['coin']);
+            $data[$item]['rechargeAmount'] = floatval($sub['rechargeAmount']);
+            $data[$item]['cashAmount'] = floatval($sub['cashAmount']);
+            $data[$item]['betAmount'] = floatval($sub['betAmount']);
+            $data[$item]['zjAmount'] = floatval($sub['zjAmount']);
+            $data[$item]['fanDianAmount'] = floatval($sub['fanDianAmount']);
+            $data[$item]['brokerageAmount'] = floatval($sub['brokerageAmount']);
+            $data[$item]['zyk'] = floatval($sub['zjAmount'] - $sub['betAmount'] + $sub['fanDianAmount'] + $sub['brokerageAmount']);
+            /*if ($uid == $sub['uid']) {
+        $myRecord = $data[$item];
+        unset($data[$item]);
+        }*/
+        }
         $data = [];
         $all['betAmount'] = 0.00;
         $all['zjAmount'] = 0.00;
