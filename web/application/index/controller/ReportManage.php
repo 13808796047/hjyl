@@ -702,7 +702,12 @@ class ReportManage extends Controller
         // }*/
         // }
         $data = [];
-        $all = [];
+        $all['betAmount'] = 0.00;
+        $all['zjAmount'] = 0.00;
+        $all['fanDianAmount'] = 0.00;
+        $all['brokerageAmount'] = 0.00;
+        $all['zyk'] = 0.00;
+
         foreach ($childs as $key => $value) {
             $cuids = Members::where("FIND_IN_SET({$value->uid},parents)")->column('uid');
             $data = [
