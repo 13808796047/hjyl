@@ -587,7 +587,7 @@ class ReportManage extends Controller
         $pageSize = isset($para['PageSize']) ? $para['PageSize'] : 20;
         // $uid = session('userData.uid');
         if (isset($para['username'])) {
-            $uid = Db('gygy_members')->field('uid')->where('username', $para['username'])->select();
+            $uid = Members::field('uid')->where('username', $para['username'])->select();
         }
         if (isset($para['date2'])) {
             $toTime = strtotime($para['date2']);
