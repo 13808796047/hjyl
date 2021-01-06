@@ -124,12 +124,12 @@ jQuery(document).ready(function() {
 						{volist name="data" id="vo"}
 						<tr align="center">
 							<td>{$vo.username}</td>
-							<td>{$vo.type}</td>
-						    <td>{$vo.betAmount}</td>
-							<td>{$vo.zjAmount}</td>
-							<td>{$vo.fanDianAmount}</td>
-							<td>{$vo.brokerageAmount}</td>
-							<td>{$vo.zyk}</td>
+							<td>{$vo.type?'代理':'会员'}</td>
+						    <td>{$vo.betAmount??'0.00'}</td>
+							<td>{$vo.zjAmount??'0.00'}</td>
+							<td>{$vo.fanDianAmount??'0.00'}</td>
+							<td>{$vo.brokerageAmount??'0.00'}</td>
+							<td>{$vo.zyk??'0.00'}</td>
                         </tr>
 						{/volist}
 						{empty name="data"}
@@ -140,11 +140,11 @@ jQuery(document).ready(function() {
 						<tr>
 							<td style="text-align:center">合计</th>
 						    <td style="text-align:center"></td>	
-							<td style="text-align:center">{$all.betAmount}</td>
-							<td style="text-align:center">{$all.zjAmount}</td>
-							<td style="text-align:center">{$all.fanDianAmount}</td>
-							<td style="text-align:center">{$all.brokerageAmount}</td>
-			                <td style="text-align:center">{$all.zyk}</td>
+							<td style="text-align:center">{$all.betAmount??'0.00'}</td>
+							<td style="text-align:center">{$all.zjAmount??'0.00'}</td>
+							<td style="text-align:center">{$all.fanDianAmount??'0.00'}</td>
+							<td style="text-align:center">{$all.brokerageAmount??'0.00'}</td>
+			                <td style="text-align:center">{$all.zyk??'0.00'}</td>
 		            	</tr>
 					</tbody>
 				</table>
