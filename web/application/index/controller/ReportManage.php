@@ -591,10 +591,9 @@ class ReportManage extends Controller
         //        $pwhere['isDelete'] = 0;
         if (isset($_GET['username']) && $_GET['username'] != '') {
             $where['username'] = ['like', strtolower(trim($_GET['username'])) . '%'];
+            $uid = $builder->where($where)->field('uid')['uid'];
+            $uid ?: $uid = session('userData')['uid'];
         }
-
-        $uid = $builder->where($where)->column('uid');
-        \dump($uid);
 
         if (isset($para['date2'])) {
             $toTime = strtotime($para['date2']);
