@@ -588,8 +588,7 @@ function getUserBalance(){
         type: "GET", //请求方式 get 或者post,
         success:function(data){
             if(data){
-                console.log(data);
-$('#user-balance').html()
+$('#user-balance').html(data)
             }
         }
      });
