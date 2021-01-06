@@ -726,6 +726,9 @@ class ReportManage extends Controller
                 'brokerageAmount' => CoinLogReport::where('uid', 'in', $cuids)
                     ->where('actionTime', 'between', [$fromTime, $toTime])
                     ->sum('brokerageAmount'),
+                'zyk' => CoinLogReport::where('uid', 'in', $cuids)
+                    ->where('actionTime', 'between', [$fromTime, $toTime])
+                    ->sum('zyk'),
             ];
             $all['betAmount'] += $data[$key]['betAmount'];
             $all['zjAmount'] += $data[$key]['zjAmount'];
