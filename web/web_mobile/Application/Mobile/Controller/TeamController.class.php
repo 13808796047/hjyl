@@ -276,7 +276,6 @@ class TeamController extends HomeController
             $where['username'] = strtolower(trim($para['username']));
             $uid = M('members')->field('uid')->where($where)->find()['uid'];
         }
-        dump($uid);die;
         $all = [];
         /* $sql = "SELECT * FROM (
         SELECT
