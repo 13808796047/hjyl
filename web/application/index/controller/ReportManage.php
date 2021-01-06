@@ -592,8 +592,9 @@ class ReportManage extends Controller
         //        $pwhere['isDelete'] = 0;
         if (isset($_GET['username']) && $_GET['username'] != '') {
             $where['username'] = ['like', strtolower(trim($_GET['username'])) . '%'];
-            $childs = $builder->where($where)->select();
+            $builder = $builder->where($where);
         }
+        $childs = $builder->select();
 
         if (isset($para['date2'])) {
             $toTime = strtotime($para['date2']);
