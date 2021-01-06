@@ -591,7 +591,8 @@ class ReportManage extends Controller
         //        $pwhere['isDelete'] = 0;
         if (isset($_GET['username']) && $_GET['username'] != '') {
             $where['username'] = ['like', strtolower(trim($_GET['username'])) . '%'];
-            $uid = $builder->where($where)->field('uid')->uid;
+            $uid = $builder->where($where)->field('uid');
+            \dump($uid);
             $uid ?: $uid = session('userData')['uid'];
         }
 
