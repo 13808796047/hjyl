@@ -314,7 +314,7 @@
   function chongzhi() {
     var cz_money = document.getElementById("cz_money").value;
     var zjmm = document.getElementById("zjmm").value;
-    var bankno = document.getElementById("bankno").value;
+    // var bankno = document.getElementById("bankno").value;
     if (confirm("是否确定充值？")) {
       $.ajax({
         type: "POST",
@@ -323,7 +323,7 @@
           touid: touid,
           money: cz_money,
           zjmm: zjmm,
-          bankno: bankno,
+          //   bankno: bankno,
         },
         dataType: "json",
         global: false,
