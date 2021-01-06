@@ -9,7 +9,6 @@
 namespace app\index\controller;
 
 use app\index\model\Bets;
-use app\index\model\CoinLogReport;
 use app\index\model\MemberCash;
 use app\index\model\MemberRecharge;
 use app\index\model\Members;
@@ -702,41 +701,41 @@ class ReportManage extends Controller
         unset($data[$item]);
         }*/
         }
-        $data = [];
-        $all['betAmount'] = 0.00;
-        $all['zjAmount'] = 0.00;
-        $all['fanDianAmount'] = 0.00;
-        $all['brokerageAmount'] = 0.00;
-        $all['zyk'] = 0.00;
+        // $data = [];
+        // $all['betAmount'] = 0.00;
+        // $all['zjAmount'] = 0.00;
+        // $all['fanDianAmount'] = 0.00;
+        // $all['brokerageAmount'] = 0.00;
+        // $all['zyk'] = 0.00;
 
-        foreach ($childs as $key => $value) {
-            $cuids = Members::where("FIND_IN_SET({$value->uid},parents)")->column('uid');
-            $data[$key] = [
-                'uid' => $value->uid,
-                'username' => $value->username,
-                'type' => $value->type,
-                'betAmount' => CoinLogReport::where('uid', 'in', $cuids)
-                    ->where('actionTime', 'between', [$fromTime, $toTime])
-                    ->sum('betAmount'),
-                'zjAmount' => CoinLogReport::where('uid', 'in', $cuids)
-                    ->where('actionTime', 'between', [$fromTime, $toTime])
-                    ->sum('zjAmount'),
-                'fanDianAmount' => CoinLogReport::where('uid', 'in', $cuids)
-                    ->where('actionTime', 'between', [$fromTime, $toTime])
-                    ->sum('fanDianAmount'),
-                'brokerageAmount' => CoinLogReport::where('uid', 'in', $cuids)
-                    ->where('actionTime', 'between', [$fromTime, $toTime])
-                    ->sum('brokerageAmount'),
-                'zyk' => CoinLogReport::where('uid', 'in', $cuids)
-                    ->where('actionTime', 'between', [$fromTime, $toTime])
-                    ->sum('zyk'),
-            ];
-            $all['betAmount'] += $data[$key]['betAmount'];
-            $all['zjAmount'] += $data[$key]['zjAmount'];
-            $all['fanDianAmount'] += $data[$key]['fanDianAmount'];
-            $all['brokerageAmount'] += $data[$key]['brokerageAmount'];
-            $all['zyk'] += floatval($data[$key]['zjAmount'] - $data[$key]['betAmount'] + $data[$key]['fanDianAmount'] + $data[$key]['brokerageAmount']);
-        }
+        // foreach ($childs as $key => $value) {
+        //     $cuids = Members::where("FIND_IN_SET({$value->uid},parents)")->column('uid');
+        //     $data[$key] = [
+        //         'uid' => $value->uid,
+        //         'username' => $value->username,
+        //         'type' => $value->type,
+        //         'betAmount' => CoinLogReport::where('uid', 'in', $cuids)
+        //             ->where('actionTime', 'between', [$fromTime, $toTime])
+        //             ->sum('betAmount'),
+        //         'zjAmount' => CoinLogReport::where('uid', 'in', $cuids)
+        //             ->where('actionTime', 'between', [$fromTime, $toTime])
+        //             ->sum('zjAmount'),
+        //         'fanDianAmount' => CoinLogReport::where('uid', 'in', $cuids)
+        //             ->where('actionTime', 'between', [$fromTime, $toTime])
+        //             ->sum('fanDianAmount'),
+        //         'brokerageAmount' => CoinLogReport::where('uid', 'in', $cuids)
+        //             ->where('actionTime', 'between', [$fromTime, $toTime])
+        //             ->sum('brokerageAmount'),
+        //         'zyk' => CoinLogReport::where('uid', 'in', $cuids)
+        //             ->where('actionTime', 'between', [$fromTime, $toTime])
+        //             ->sum('zyk'),
+        //     ];
+        //     $all['betAmount'] += $data[$key]['betAmount'];
+        //     $all['zjAmount'] += $data[$key]['zjAmount'];
+        //     $all['fanDianAmount'] += $data[$key]['fanDianAmount'];
+        //     $all['brokerageAmount'] += $data[$key]['brokerageAmount'];
+        //     $all['zyk'] += floatval($data[$key]['zjAmount'] - $data[$key]['betAmount'] + $data[$key]['fanDianAmount'] + $data[$key]['brokerageAmount']);
+        // }
         // $this->assign('uid', $uid);
         // $this->assign('days', $days);
         // $this->assign('data', $data);
