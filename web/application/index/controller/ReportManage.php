@@ -722,6 +722,7 @@ class ReportManage extends Controller
                     ->where('actionTime', 'between', [$fromTime, $toTime])
                     ->sum('brokerageAmount'),
             ];
+            dump($data);
             $all['betAmount'] += $data[$key]['betAmount'];
             $all['zjAmount'] += $data[$key]['zjAmount'];
             $all['fanDianAmount'] += $data[$key]['fanDianAmount'];
