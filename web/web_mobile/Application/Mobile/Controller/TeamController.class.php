@@ -17,7 +17,7 @@ use Think\Log;
 class TeamController extends HomeController
 {
 
-    public final function index()
+    final public function index()
     {
         $user = M('members')->where(['uid' => $this->user['uid']])->find();
         $this->assign('user', $user);
@@ -31,27 +31,26 @@ class TeamController extends HomeController
         $this->display('Team/recharge_stat');
 
 //        if (!I('get.')) {
-//            $this->display('Team/recharge_stat');
-//        } else {
-//            $this->display('Team/recharge_stat_list');
-//        }
+        //            $this->display('Team/recharge_stat');
+        //        } else {
+        //            $this->display('Team/recharge_stat_list');
+        //        }
 
     }
 
 //    public function statlist()
-//    {
-//        $this->searchRecStat();
-//        $this->display('Team/recharge_stat_list');
-//    }
+    //    {
+    //        $this->searchRecStat();
+    //        $this->display('Team/recharge_stat_list');
+    //    }
 
     public function searchstat()
     {
         $para = I('get.');
 
-
         isset($para['uid']) ? $uid = $para['uid'] : $uid = $this->user['uid'];
 //        $builder = M('members');
-        if(isset($_GET['username']) && $_GET['username'] != '') {
+        if (isset($_GET['username']) && $_GET['username'] != '') {
             $where['username'] = ['like', strtolower(trim($_GET['username'])) . '%'];
             $where[] = ['exp', 'FIND_IN_SET(' . $uid . ',parents)'];
         } else {
@@ -60,14 +59,14 @@ class TeamController extends HomeController
 
         $map['_complex'] = $where;
 //        $childs = $builder->where($where)->select();
-        if($para['fromTime'] && $para['toTime']) {
+        if ($para['fromTime'] && $para['toTime']) {
             $time['actionTime'] = ['between', [strtotime($para['fromTime']), strtotime($para['toTime'])]];
-        } elseif($para['fromTime']) {
+        } elseif ($para['fromTime']) {
             $time['actionTime'] = ['egt', strtotime($para['fromTime'])];
-        } elseif($para['toTime']) {
+        } elseif ($para['toTime']) {
             $time['actionTime'] = ['elt', strtotime($para['toTime'])];
         } else {
-            if($GLOBALS['fromTime'] && $GLOBALS['toTime']) {
+            if ($GLOBALS['fromTime'] && $GLOBALS['toTime']) {
                 $time['actionTime'] = ['between', [$GLOBALS['fromTime'], $GLOBALS['toTime']]];
             }
         }
@@ -79,39 +78,39 @@ class TeamController extends HomeController
             ->order('username')->select();
         $t = [];
         $k = 0;
-        foreach($userList as $key => $value) {
+        foreach ($userList as $key => $value) {
             $t[$key]['totalRecharge'] = M('member_recharge')->where($map)->where('state=11')->where($time)->sum('amount');
             $t[$key]['totalCash'] = M('member_cash')->where($map)->where('state=4')->where($time)->sum('amount');
-            if($value['uid'] == $uid) {
+            if ($value['uid'] == $uid) {
                 $t = $value;
                 $k = $key;
             }
         }
-        if(!empty($t)) {
+        if (!empty($t)) {
             unset($userList[$k]);
             array_unshift($userList, $t);
         }
         $this->recordList($userList, 20);
 //        $this->assign('user', $this->user);
-//        $data = [];
-//        foreach($childs as $key => $value) {
-//            $cuids = M('members')->where("FIND_IN_SET({$value['uid']},parents)")->getField('uid', true);
-//            $map['uid'] = ['in', $cuids];
-//            $data[$key] = [
-//                'uid' => $value['uid'],
-//                'username' => $value['username'],
-//                'type' => $value['type'],
-//                'coin' => $value['coin'],
-//                'totalRecharge' => M('member_recharge')->where($map)->where($where)->sum('amount'),
-//                'totalCash' => M('member_cash')->where($map)->where($where)->sum('amount'),
-//            ];
-//        }
-//        $this->assign('data', $data);
-//        $this->display('Team/recharge_stat');
+        //        $data = [];
+        //        foreach($childs as $key => $value) {
+        //            $cuids = M('members')->where("FIND_IN_SET({$value['uid']},parents)")->getField('uid', true);
+        //            $map['uid'] = ['in', $cuids];
+        //            $data[$key] = [
+        //                'uid' => $value['uid'],
+        //                'username' => $value['username'],
+        //                'type' => $value['type'],
+        //                'coin' => $value['coin'],
+        //                'totalRecharge' => M('member_recharge')->where($map)->where($where)->sum('amount'),
+        //                'totalCash' => M('member_cash')->where($map)->where($where)->sum('amount'),
+        //            ];
+        //        }
+        //        $this->assign('data', $data);
+        //        $this->display('Team/recharge_stat');
     }
 
     /*游戏记录*/
-    public final function record()
+    final public function record()
     {
         $this->getTypes();
         $this->getPlayeds();
@@ -120,13 +119,15 @@ class TeamController extends HomeController
 
         $this->search();
 
-        if(!I('get.'))
+        if (!I('get.')) {
             $this->display('Team/record');
-        else
+        } else {
             $this->display('Team/record-list');
+        }
+
     }
 
-    public final function search()
+    final public function search()
     {
         $para = I('get.');
 
@@ -135,10 +136,9 @@ class TeamController extends HomeController
         $this->assign('types', $this->types);
         $this->assign('playeds', $this->playeds);
 
-
         $where = [];
         // 用户名限制
-        if($para['username'] && $para['username'] != '用户名') {
+        if ($para['username'] && $para['username'] != '用户名') {
             // 按用户名查找时
             // 只要符合用户名且是自己所有下级的都可查询
             // 用户名用模糊方式查询
@@ -172,32 +172,32 @@ class TeamController extends HomeController
         //dump(M('members')->getLastSql());
         $userData = [];
         $userStr = '';
-        foreach($userList as $user) {
+        foreach ($userList as $user) {
             $userStr = $userStr . $user['uid'] . ',';
             $userData[$user['uid']] = $user;
         }
 
         $where = [];
         // 彩种限制
-        if($para['type']) {
+        if ($para['type']) {
             $where['type'] = $para['type'];
         }
 
         // 时间限制
-        if($para['fromTime'] && $para['toTime']) {
+        if ($para['fromTime'] && $para['toTime']) {
             $where['actionTime'] = ['between', [strtotime($para['fromTime']), strtotime($para['toTime'])]];
-        } elseif($para['fromTime']) {
+        } elseif ($para['fromTime']) {
             $where['actionTime'] = ['egt', strtotime($para['fromTime'])];
-        } elseif($para['toTime']) {
+        } elseif ($para['toTime']) {
             $where['actionTime'] = ['elt', strtotime($para['toTime'])];
         } else {
-            if($GLOBALS['fromTime'] && $GLOBALS['toTime']) {
+            if ($GLOBALS['fromTime'] && $GLOBALS['toTime']) {
                 $where['actionTime'] = ['between', [$GLOBALS['fromTime'], $GLOBALS['toTime']]];
             }
         }
 
         // 投注状态限制
-        if($para['state']) {
+        if ($para['state']) {
             switch ($para['state']) {
                 case 1:
                     // 已派奖
@@ -225,104 +225,112 @@ class TeamController extends HomeController
             }
         }
 
-
         //单号
-        if($para['betId'] && $para['betId'] != '输入单号') $where['wjorderId'] = $para['betId'];
+        if ($para['betId'] && $para['betId'] != '输入单号') {
+            $where['wjorderId'] = $para['betId'];
+        }
 
         $where['uid'] = ['in', $userStr];
         $betList = M('bets')->field('id,wjorderId,uid,username,type,playedId,actionNo,beiShu,mode,lotteryNo,isDelete,zjCount,bonus,actionNum,fpEnable,actionTime')->where($where)->order('id desc,actionTime desc')->select();
         $this->recordList($betList);
     }
 
-    public final function searchRecord()
+    final public function searchRecord()
     {
         $this->search();
         $this->display('Team/record-list');
     }
 
-
     /*盈亏报表*/
-    public final function report()
+    final public function report()
     {
 
         $this->reportSearch();
-        if(!I('get.'))
+        if (!I('get.')) {
             $this->display('Team/report');
-        else
+        } else {
             $this->display('Team/report-list');
+        }
+
     }
 
-    public final function searchReport()
+    final public function searchReport()
     {
         $this->reportSearch();
         $this->display('Team/report-list');
     }
 
-    public final function reportSearch()
+    final public function reportSearch()
     {
 
         $para = I('get.');
         $uid = $this->user['uid'];
         $toTime = isset($para['toTime']) ? strtotime($para['toTime']) : strtotime(date('Y-m-d 23:59:59'));
         $fromTime = isset($para['fromTime']) ? strtotime($para['fromTime']) : strtotime(date('Y-m-d 00:00'));
-        if($toTime - $fromTime >= 86400 * 20) {
+        if ($toTime - $fromTime >= 86400 * 20) {
             echo '<font color="red" size="15">时间区间过大</font>';
             exit();
         }
+
+        if (isset($_GET['username']) && $_GET['username'] != '') {
+            $where['username'] = strtolower(trim($_GET['username']));
+            $uid = M('Member')->where($where)->get('uid');
+        }
+
         $all = [];
         /* $sql = "SELECT * FROM (
- SELECT
-  m.username,
-  m.uid,
-  if(m.type=1,'代理','会员') AS type,
-   sum(r.coin) AS coin,
-     sum(r.rechargeAmount) AS rechargeAmount,
-     sum(r.cashAmount) AS cashAmount,
-     sum(r.betAmount) AS betAmount,
-     sum(r.zjAmount) AS zjAmount,
-     sum(r.fanDianAmount) AS fanDianAmount,
-     sum(r.brokerageAmount) AS brokerageAmount,
-     sum(r.zyk) AS zyk
- FROM gygy_members as m LEFT JOIN gygy_coin_log_report as r ON r.uid=m.uid
- WHERE m.uid = {$uid} AND r.actionTime BETWEEN {$fromTime} AND {$toTime}
- GROUP BY m.uid
- UNION
- SELECT
-  m.username,
-  m.uid,
-  if(m.type=1,'代理','会员') AS type,
-   sum(r2.coin) AS coin,
-     sum(r2.rechargeAmount) AS rechargeAmount,
-     sum(r2.cashAmount) AS cashAmount,
-     sum(r2.betAmount) AS betAmount,
-     sum(r2.zjAmount) AS zjAmount,
-     sum(r2.fanDianAmount) AS fanDianAmount,
-     sum(r2.brokerageAmount) AS brokerageAmount,
-     sum(r2.zyk) AS zyk
-  FROM gygy_members m
-  LEFT JOIN (
- SELECT r1.*,m1.parents FROM (
- SELECT
-   r.uid,
-   sum(r.coin) AS coin,
-     sum(r.rechargeAmount) AS rechargeAmount,
-     sum(r.cashAmount) AS cashAmount,
-     sum(r.betAmount) AS betAmount,
-     sum(r.zjAmount) AS zjAmount,
-     sum(r.fanDianAmount) AS fanDianAmount,
-     sum(r.brokerageAmount) AS brokerageAmount,
-     sum(r.zyk) AS zyk
- FROM gygy_coin_log_report as r WHERE uid in(
- SELECT uid FROM gygy_members WHERE FIND_IN_SET({$uid},parents)
- ) AND r.actionTime BETWEEN {$fromTime} AND {$toTime}
- GROUP BY uid
- ) r1 JOIN gygy_members AS m1 ON r1.uid = m1.uid
- ) r2 ON  INSTR(r2.parents,m.parents) > 0
-  WHERE m.parentId = {$uid}
- GROUP BY m.uid
- ) as t ORDER BY uid ";*/
+        SELECT
+        m.username,
+        m.uid,
+        if(m.type=1,'代理','会员') AS type,
+        sum(r.coin) AS coin,
+        sum(r.rechargeAmount) AS rechargeAmount,
+        sum(r.cashAmount) AS cashAmount,
+        sum(r.betAmount) AS betAmount,
+        sum(r.zjAmount) AS zjAmount,
+        sum(r.fanDianAmount) AS fanDianAmount,
+        sum(r.brokerageAmount) AS brokerageAmount,
+        sum(r.zyk) AS zyk
+        FROM gygy_members as m LEFT JOIN gygy_coin_log_report as r ON r.uid=m.uid
+        WHERE m.uid = {$uid} AND r.actionTime BETWEEN {$fromTime} AND {$toTime}
+        GROUP BY m.uid
+        UNION
+        SELECT
+        m.username,
+        m.uid,
+        if(m.type=1,'代理','会员') AS type,
+        sum(r2.coin) AS coin,
+        sum(r2.rechargeAmount) AS rechargeAmount,
+        sum(r2.cashAmount) AS cashAmount,
+        sum(r2.betAmount) AS betAmount,
+        sum(r2.zjAmount) AS zjAmount,
+        sum(r2.fanDianAmount) AS fanDianAmount,
+        sum(r2.brokerageAmount) AS brokerageAmount,
+        sum(r2.zyk) AS zyk
+        FROM gygy_members m
+        LEFT JOIN (
+        SELECT r1.*,m1.parents FROM (
+        SELECT
+        r.uid,
+        sum(r.coin) AS coin,
+        sum(r.rechargeAmount) AS rechargeAmount,
+        sum(r.cashAmount) AS cashAmount,
+        sum(r.betAmount) AS betAmount,
+        sum(r.zjAmount) AS zjAmount,
+        sum(r.fanDianAmount) AS fanDianAmount,
+        sum(r.brokerageAmount) AS brokerageAmount,
+        sum(r.zyk) AS zyk
+        FROM gygy_coin_log_report as r WHERE uid in(
+        SELECT uid FROM gygy_members WHERE FIND_IN_SET({$uid},parents)
+        ) AND r.actionTime BETWEEN {$fromTime} AND {$toTime}
+        GROUP BY uid
+        ) r1 JOIN gygy_members AS m1 ON r1.uid = m1.uid
+        ) r2 ON  INSTR(r2.parents,m.parents) > 0
+        WHERE m.parentId = {$uid}
+        GROUP BY m.uid
+        ) as t ORDER BY uid ";*/
         $sql = "SELECT * FROM (
-                SELECT 
+                SELECT
                  m.username,
                  m.uid,
                  if(m.type=1,'代理','会员') AS type,
@@ -335,10 +343,10 @@ class TeamController extends HomeController
                 	sum(r.brokerageAmount) AS brokerageAmount,
                 	sum(r.zyk) AS zyk
                 FROM gygy_members as m LEFT JOIN gygy_coin_log_report as r ON r.uid=m.uid AND r.actionTime BETWEEN {$fromTime} AND {$toTime}
-                WHERE m.uid = {$uid} 
+                WHERE m.uid = {$uid}
                 GROUP BY m.uid
                 UNION
-                SELECT  * FROM 
+                SELECT  * FROM
                 (SELECT
                         mm.username,
                          mm.uid,
@@ -351,7 +359,7 @@ class TeamController extends HomeController
                         sum(r2.fanDianAmount) AS fanDianAmount,
                         sum(r2.brokerageAmount) AS brokerageAmount,
                         sum(r2.zyk) AS zyk
-                     FROM gygy_members mm 
+                     FROM gygy_members mm
                     LEFT JOIN (
                     SELECT
                         m.uid,
@@ -381,7 +389,7 @@ class TeamController extends HomeController
         $Model = new \Think\Model();
 //        $data = $Model->query("CALL sp_getCoins({$uid},{$fromTime},{$toTime})");
         $data = $Model->query($sql);
-        foreach($data as $item => $sub) {
+        foreach ($data as $item => $sub) {
             $all['coin'] += $sub['coin'];
             $all['rechargeAmount'] += $sub['rechargeAmount'];
             $all['cashAmount'] += $sub['cashAmount'];
@@ -409,20 +417,20 @@ class TeamController extends HomeController
     }
 
     //会员管理
-    public final function member()
+    final public function member()
     {
-//		dump(I('get.'));
+//        dump(I('get.'));
         $this->memberSearch();
-//		if(!I('get.'))
+//        if(!I('get.'))
         $this->display('Team/member');
-//		else
-//			$this->display('Team/member-list');
+//        else
+        //            $this->display('Team/member-list');
     }
 
-    public final function memberDetail()
+    final public function memberDetail()
     {
         $uid = (I('get.uid'));
-        if(!$uid) {
+        if (!$uid) {
             $data = [];
         } else {
             $data = M('members')->where(['uid' => $uid])->find();
@@ -430,7 +438,7 @@ class TeamController extends HomeController
 
         $parentData = M('members')->where(['uid' => $user['parentId']])->find();
 
-        if($parentData['parentId']) {
+        if ($parentData['parentId']) {
             $parentData = $parentData;
         } else {
             $this->getSystemSettings();
@@ -447,50 +455,50 @@ class TeamController extends HomeController
         $this->display('Team/member-detail');
     }
 
-    public final function searchMember()
+    final public function searchMember()
     {
         $this->memberSearch();
         $this->display('Team/member-list');
     }
 
-    public final function memberSearch()
+    final public function memberSearch()
     {
         $uid = I('uid');
         !empty($uid) ? $user_id = $uid : $user_id = $this->user['uid'];
 //        $where['parentId'] = $user_id;
-//        $where['uid'] = $user_id;
-//        $where['_logic'] = 'OR';
-//        if(I('utype')) {
-//            switch (I('utype')) {
-//                case 1:
-//                    // 我自己
-//                    $where['uid'] = $user_id;
-//                    break;
-//                case 2:
-//                    // 直属下级
-////                    $uid = $user_id ;
-//
-//                    $where['parentId'] = $user_id;
-//                    break;
-//                case 3:
-//                    // 所有下级
-//                    $where['parents'] = ['like', "%" . $user_id . ",%"];
-//                    break;
-//                default:
-//                    //所有人
-//                    $where['parents'] = ['like', "%," . $user_id . ",%"];
-//                    $where['uid'] = $user_id;
-//                    $where['_logic'] = 'or';
-//                    break;
-//            }
-//        }
-        if(I('username') && I('username') != '用户名') {
+        //        $where['uid'] = $user_id;
+        //        $where['_logic'] = 'OR';
+        //        if(I('utype')) {
+        //            switch (I('utype')) {
+        //                case 1:
+        //                    // 我自己
+        //                    $where['uid'] = $user_id;
+        //                    break;
+        //                case 2:
+        //                    // 直属下级
+        ////                    $uid = $user_id ;
+        //
+        //                    $where['parentId'] = $user_id;
+        //                    break;
+        //                case 3:
+        //                    // 所有下级
+        //                    $where['parents'] = ['like', "%" . $user_id . ",%"];
+        //                    break;
+        //                default:
+        //                    //所有人
+        //                    $where['parents'] = ['like', "%," . $user_id . ",%"];
+        //                    $where['uid'] = $user_id;
+        //                    $where['_logic'] = 'or';
+        //                    break;
+        //            }
+        //        }
+        if (I('username') && I('username') != '用户名') {
             // 按用户名查找时
             // 只要符合用户名且是自己所有下级的都可查询
             // 用户名用模糊方式查询
-//            $where['username'] = ['like', strtolower(trim($_GET['username'])) . '%'];
-////            $where[] = ['exp', 'FIND_IN_SET(' . $uid . ',parents)'];
-//            $where['parents'] = ['like', "%," . $user_id . ",%"];
+            //            $where['username'] = ['like', strtolower(trim($_GET['username'])) . '%'];
+            ////            $where[] = ['exp', 'FIND_IN_SET(' . $uid . ',parents)'];
+            //            $where['parents'] = ['like', "%," . $user_id . ",%"];
             $where['username'] = ['like', strtolower(trim($_GET['username'])) . '%'];
             $where['parents'] = ['like', "%," . $user_id . ",%"];
 
@@ -506,13 +514,13 @@ class TeamController extends HomeController
             ->order('username')->select();
         $t = [];
         $k = 0;
-        foreach($userList as $key => $value) {
-            if($value['uid'] == $user_id) {
+        foreach ($userList as $key => $value) {
+            if ($value['uid'] == $user_id) {
                 $t = $value;
                 $k = $key;
             }
         }
-        if(!empty($t)) {
+        if (!empty($t)) {
             unset($userList[$k]);
             array_unshift($userList, $t);
         }
@@ -520,7 +528,7 @@ class TeamController extends HomeController
         $this->assign('user', $this->user);
     }
 
-    public final function userUpdate()
+    final public function userUpdate()
     {
 
         $user = M('members')->find(I('id'));
@@ -528,7 +536,7 @@ class TeamController extends HomeController
 
         $parentData = M('members')->find($user['parentId']);
 
-        if($parentData['parentId']) {
+        if ($parentData['parentId']) {
             $parentData = $parentData;
         } else {
             $this->getSystemSettings();
@@ -542,63 +550,72 @@ class TeamController extends HomeController
         $this->display('Team/update-menber');
     }
 
-    public final function userUpdateed()
+    final public function userUpdateed()
     {
-        if(I('fanDian') < 0)
+        if (I('fanDian') < 0) {
             $this->error('返点不能小于0');
-        $user = M('members')->where(['username' => I('username')])->find();
-        if($this->user['uid'] != $user['parentId'])
-            $this->error('不是你的直属下级，不可以修改');
+        }
 
-        if($this->user['fanDian'] < I('fanDian'))
+        $user = M('members')->where(['username' => I('username')])->find();
+        if ($this->user['uid'] != $user['parentId']) {
+            $this->error('不是你的直属下级，不可以修改');
+        }
+
+        if ($this->user['fanDian'] < I('fanDian')) {
             $this->error('返点不可以大于上级');
+        }
 
         $sonFanDianMax = M('members')->where(['isDelete' => 0, 'parentId' => $user['uid']])->field('max(fanDian) sonFanDian, max(fanDianBdw) sonFanDianBdw')->find();
 
-        if($sonFanDianMax['sonFanDian']) {
-            if($sonFanDianMax['sonFanDian'] >= I('fanDian'))
+        if ($sonFanDianMax['sonFanDian']) {
+            if ($sonFanDianMax['sonFanDian'] >= I('fanDian')) {
                 $this->error('返点不可以小于直属下级' . $sonFanDianMax['sonFanDian']);
+            }
+
         }
 
         $data['fanDian'] = $this->user['fanDian'] - I('fanDian');
-//		$data['type'] = I('type');
+//        $data['type'] = I('type');
 
-        if(M('members')->where(['uid' => $user['uid']])->save($data)) {
+        if (M('members')->where(['uid' => $user['uid']])->save($data)) {
             $this->success('修改成功', U('Team/memberdetail', ['uid' => $user['uid']]));
         } else {
             $this->error('修改失败');
         }
     }
 
-    public final function addMember()
+    final public function addMember()
     {
         //print_r($this->getMyUserCount());
         $this->display('Team/add-member');
     }
 
-    public final function insertMember()
+    final public function insertMember()
     {
-        if($this->user['type'] == 0) {
+        if ($this->user['type'] == 0) {
             $this->error('会员不能开号');
         }
         $username = I('username');
         $password = I('password');
-        if(!$username . trim() || !$password . trim())
+        if (!$username . trim() || !$password . trim()) {
             $this->error('用户名或密码不能为空');
+        }
 
-        if(!preg_match("/^[0-9a-zA-Z]{6,11}$/", I('username'))) {
+        if (!preg_match("/^[0-9a-zA-Z]{6,11}$/", I('username'))) {
             $this->error('用户名只能由英文和数字组成，长度6-11个字符');
         }
 
-        if(M('members')->where(['username' => I('username')])->find())
+        if (M('members')->where(['username' => I('username')])->find()) {
             $this->error('用户' . I('username') . '已经存在');
+        }
 
-
-        if(I('fanDian') < 0)
+        if (I('fanDian') < 0) {
             $this->error('自身保留返点不能小于0');
+        }
 
-        if($this->user['fanDian'] < I('fanDian'))
+        if ($this->user['fanDian'] < I('fanDian')) {
             $this->error('自身保留返点不可以自己返点');
+        }
 
         $para['parentId'] = $this->user['uid'];
         $para['parents'] = $this->user['parents'];
@@ -611,49 +628,56 @@ class TeamController extends HomeController
         $para['regTime'] = $this->time;
         $para['is_test'] = $this->user['is_test'];
 
-        if(!$para['nickname']) $para['nickname'] = $para['username'];
-        if(!$para['name']) $para['name'] = $para['username'];
+        if (!$para['nickname']) {
+            $para['nickname'] = $para['username'];
+        }
 
+        if (!$para['name']) {
+            $para['name'] = $para['username'];
+        }
 
         // 查检返点设置
-        if($para['fanDian'] = $this->user['fanDian'] - floatval(I('fanDian'))) {
-            if($para['type'] == 0) $para['fanDian'] = 0;
+        if ($para['fanDian'] = $this->user['fanDian'] - floatval(I('fanDian'))) {
+            if ($para['type'] == 0) {
+                $para['fanDian'] = 0;
+            }
+
         } else {
             $para['fanDian'] = 0;
         }
 
         M()->startTrans();
-        if($lastid = M('members')->add($para)) {
-            if(M('members')->where(['uid' => $lastid])->save(['parents' => $this->user['parents'] . ',' . $lastid])) {
-                M()->commit();//成功则提交
+        if ($lastid = M('members')->add($para)) {
+            if (M('members')->where(['uid' => $lastid])->save(['parents' => $this->user['parents'] . ',' . $lastid])) {
+                M()->commit(); //成功则提交
                 $this->success('添加会员成功', U('Team/member'));
             }
         }
 
-        M()->rollback();//不成功，则回滚
+        M()->rollback(); //不成功，则回滚
         $this->error('添加会员失败');
 
     }
 
     /*账变列表*/
-    public final function coin()
+    final public function coin()
     {
         $this->coinSearch();
         $this->assign('fromTime', date('Y-m-d 00:00'));
         /*if(!I('get.'))
-            $this->display('Team/coin');
+        $this->display('Team/coin');
         else
-            $this->display('Team/coin-list');*/
+        $this->display('Team/coin-list');*/
         $this->display('Team/coin');
     }
 
-    public final function searchCoin()
+    final public function searchCoin()
     {
         $this->coinSearch();
         $this->display('Team/coin-list');
     }
 
-    public final function coinSearch()
+    final public function coinSearch()
     {
         /*$this->getTypes();
         $this->getPlayeds();
@@ -665,32 +689,32 @@ class TeamController extends HomeController
 
         // 用户名限制
         if($para['username'] && $para['username']!='用户名'){
-            // 按用户名查找时
-            // 只要符合用户名且是自己所有下级的都可查询
-            // 用户名用模糊方式查询
-            $where['username'] = array('like',"%".$para['username']."%");
-            $where['parents'] = array('like',"%,".$this->user['uid'].",%");
+        // 按用户名查找时
+        // 只要符合用户名且是自己所有下级的都可查询
+        // 用户名用模糊方式查询
+        $where['username'] = array('like',"%".$para['username']."%");
+        $where['parents'] = array('like',"%,".$this->user['uid'].",%");
         }
         //用户类型限制
         switch($para['utype']){
-            case 1:
-                //我自己
-                $map['uid'] = $this->user['uid'];
-                break;
-            case 2:
-                //直属下线
-                $map['parentId'] = $this->user['uid'];
-                break;
-            case 3:
-                // 所有下级
-                $map['parents'] = array('like','%,'.$this->user['uid'].',%');
-                break;
-            default:
-                //所有人
-                $map['parents'] = array('like',"%,".$this->user['uid'].",%");
-                $map['uid'] = $this->user['uid'];
-                $map['_logic'] = 'or';
-                break;
+        case 1:
+        //我自己
+        $map['uid'] = $this->user['uid'];
+        break;
+        case 2:
+        //直属下线
+        $map['parentId'] = $this->user['uid'];
+        break;
+        case 3:
+        // 所有下级
+        $map['parents'] = array('like','%,'.$this->user['uid'].',%');
+        break;
+        default:
+        //所有人
+        $map['parents'] = array('like',"%,".$this->user['uid'].",%");
+        $map['uid'] = $this->user['uid'];
+        $map['_logic'] = 'or';
+        break;
         }
 
         $where['_complex'] = $map;
@@ -700,28 +724,28 @@ class TeamController extends HomeController
         $userStr = '';
         foreach($userList as $user)
         {
-            $userStr = $userStr.$user['uid'].',';
-            $userData[$user['uid']] = $user;
+        $userStr = $userStr.$user['uid'].',';
+        $userData[$user['uid']] = $user;
         }
 
         $where = array();
         // 账变类型限制
         if($para['liqType']){
-            $where['liqType'] = $para['liqType'];
-            if($para['liqType']==2) $where['liqType'] = array('between','2,3');
+        $where['liqType'] = $para['liqType'];
+        if($para['liqType']==2) $where['liqType'] = array('between','2,3');
         }
 
         // 时间限制
         if($para['fromTime'] && $para['toTime']){
-            $where['actionTime'] = array('between',array(strtotime($para['fromTime']),strtotime($para['toTime'])));
+        $where['actionTime'] = array('between',array(strtotime($para['fromTime']),strtotime($para['toTime'])));
         }elseif($para['fromTime']){
-            $where['actionTime'] = array('egt',strtotime($para['fromTime']));
+        $where['actionTime'] = array('egt',strtotime($para['fromTime']));
         }elseif($para['toTime']){
-            $where['actionTime'] = array('elt',strtotime($para['toTime']));
+        $where['actionTime'] = array('elt',strtotime($para['toTime']));
         }else{
-            if($GLOBALS['fromTime'] && $GLOBALS['toTime']){
-                $where['actionTime'] = array('between',array($GLOBALS['fromTime'],$GLOBALS['toTime']));
-            }
+        if($GLOBALS['fromTime'] && $GLOBALS['toTime']){
+        $where['actionTime'] = array('between',array($GLOBALS['fromTime'],$GLOBALS['toTime']));
+        }
         }
 
         $userStr = substr($userStr,0,-1);
@@ -734,17 +758,17 @@ class TeamController extends HomeController
         $betData=array();
         foreach($betList as $bet)
         {
-            $betData[$bet['id']] = $bet;
+        $betData[$bet['id']] = $bet;
         }
 
         $data = array();
         $i=0;
         foreach($coinList as $coin)
         {
-            $b = $betData[$coin['extfield0']];
-            $b = $b?$b:array();
-            $data[$i] = array_merge($coin,$userData[$coin['uid']],$b);
-            $i++;
+        $b = $betData[$coin['extfield0']];
+        $b = $b?$b:array();
+        $data[$i] = array_merge($coin,$userData[$coin['uid']],$b);
+        $i++;
         }
         //dump($data);
 
@@ -756,8 +780,8 @@ class TeamController extends HomeController
         $para = I('get.');
         $where = [];
         // 用户名限制
-        if($para['username'] && $para['username'] != '用户名') {
-            if(mb_strlen($para['username']) > 20) {
+        if ($para['username'] && $para['username'] != '用户名') {
+            if (mb_strlen($para['username']) > 20) {
                 $this->assign('data', []);
                 return;
             }
@@ -790,21 +814,21 @@ class TeamController extends HomeController
         }
         $where['_complex'] = $map;
         // 账变类型限制
-        if($para['liqType']) {
+        if ($para['liqType']) {
             $where['gygy_coin_log.liqType'] = $para['liqType'];
-            if($para['gygy_coin_log.liqType'] == 2) {
+            if ($para['gygy_coin_log.liqType'] == 2) {
                 $where['gygy_coin_log.liqType'] = ['between', '2,3'];
             }
         }
         $time = $para['fromTime'] ? $para['fromTime'] : date('Y-m-d');
-        if($para && empty($time)) {
+        if ($para && empty($time)) {
             echo '<font color="red" size="15">时间必须选择</font>';
             exit;
         } else {
             $time = strtotime(date('Y-m-d', strtotime($time)));
             $where['gygy_coin_log.actionTime'] = ['between', [$time, $time + 86399]];
         }
-        if(I('last_time') > 0) {
+        if (I('last_time') > 0) {
             $where['gygy_coin_log.actionTime'] = ['lt', I('last_time')];
         }
         $model = M('coin_log')->field('
@@ -822,13 +846,13 @@ class TeamController extends HomeController
         $this->assign('para', $para);
     }
 
-    public final function getCoin()
+    final public function getCoin()
     {
         $this->coinGet();
         $this->display('Team/coin-list');
     }
 
-    public final function coinGet()
+    final public function coinGet()
     {
         $this->getTypes();
         $this->getPlayeds();
@@ -838,8 +862,8 @@ class TeamController extends HomeController
         $pageSize = $para['PageSize'] > 10 ? $para['PageSize'] : 10;
         $where = [];
         // 用户名限制
-        if($para['username'] && $para['username'] != '用户名') {
-            if(mb_strlen($para['username']) > 20) {
+        if ($para['username'] && $para['username'] != '用户名') {
+            if (mb_strlen($para['username']) > 20) {
                 $this->assign('data', []);
                 return;
             }
@@ -873,14 +897,14 @@ class TeamController extends HomeController
         }
         $where['_complex'] = $map;
         // 账变类型限制
-        if($para['liqType']) {
+        if ($para['liqType']) {
             $where['gygy_coin_log.liqType'] = $para['liqType'];
-            if($para['gygy_coin_log.liqType'] == 2) {
+            if ($para['gygy_coin_log.liqType'] == 2) {
                 $where['gygy_coin_log.liqType'] = ['between', '2,3'];
             }
         }
         $time = $para['fromTime'];
-        if($para && empty($time)) {
+        if ($para && empty($time)) {
             echo '<font color="red" size="15">时间必须选择</font>';
             exit;
         } else {
@@ -905,7 +929,7 @@ class TeamController extends HomeController
     }
 
     //团队统计
-    public final function team()
+    final public function team()
     {
 
         $teamAll = M('members')->where(['isDelete' => 0, 'parents' => ['like', '%,' . $this->user['uid'] . ',%']])->field('sum(coin) coin, count(uid) count')->find();
@@ -918,28 +942,30 @@ class TeamController extends HomeController
     }
 
     //提现记录
-    public final function cashRecord()
+    final public function cashRecord()
     {
         $this->cashSearch();
-        if(!I('get.'))
+        if (!I('get.')) {
             $this->display('Team/cashRecord');
-        else
+        } else {
             $this->display('Team/cash-list');
+        }
+
     }
 
-    public final function searchCashRecord()
+    final public function searchCashRecord()
     {
         $this->cashSearch();
         $this->display('Team/cash-list');
     }
 
-    public final function cashSearch()
+    final public function cashSearch()
     {
 
         $para = I('get.');
 
         // 用户名限制
-        if($para['username'] && $para['username'] != '用户名') {
+        if ($para['username'] && $para['username'] != '用户名') {
             // 按用户名查找时
             // 只要符合用户名且是自己所有下级的都可查询
             // 用户名用模糊方式查询
@@ -974,7 +1000,7 @@ class TeamController extends HomeController
 
         $userData = [];
         $userStr = '';
-        foreach($userList as $user) {
+        foreach ($userList as $user) {
             $userStr = $userStr . $user['uid'] . ',';
             $userData[$user['uid']] = $user;
         }
@@ -982,14 +1008,14 @@ class TeamController extends HomeController
         $where = [];
 
         // 时间限制
-        if($para['fromTime'] && $para['toTime']) {
+        if ($para['fromTime'] && $para['toTime']) {
             $where['actionTime'] = ['between', [strtotime($para['fromTime']), strtotime($para['toTime'])]];
-        } elseif($para['fromTime']) {
+        } elseif ($para['fromTime']) {
             $where['actionTime'] = ['egt', strtotime($para['fromTime'])];
-        } elseif($para['toTime']) {
+        } elseif ($para['toTime']) {
             $where['actionTime'] = ['elt', strtotime($para['toTime'])];
         } else {
-            if($GLOBALS['fromTime'] && $GLOBALS['toTime']) {
+            if ($GLOBALS['fromTime'] && $GLOBALS['toTime']) {
                 $where['actionTime'] = ['between', [$GLOBALS['fromTime'], $GLOBALS['toTime']]];
             }
         }
@@ -998,14 +1024,14 @@ class TeamController extends HomeController
         $cashList = M('member_cash')->field('id,uid,actionTime,amount,account,username,state,bankId')->where($where)->order('id desc')->select();
 
         $i = 0;
-        foreach($cashList as $cash) {
+        foreach ($cashList as $cash) {
             $data[$i] = array_merge($cash, $userData[$cash['uid']]);
             $i++;
         }
 
         $bankList = M('bank_list')->field('id,name')->where(['isDelete' => 0])->order('id')->select();
         $bankData = [];
-        foreach($bankList as $bank) {
+        foreach ($bankList as $bank) {
             $bankData[$bank['id']] = $bank;
         }
         $this->assign('bankData', $bankData);
@@ -1013,30 +1039,31 @@ class TeamController extends HomeController
         $this->recordList($data);
     }
 
-
     //充值记录
-    public final function rechargeRecord()
+    final public function rechargeRecord()
     {
         $this->rechargeSearch();
-        if(!I('get.'))
+        if (!I('get.')) {
             $this->display('Team/rechargeRecord');
-        else
+        } else {
             $this->display('Team/recharge-list');
+        }
+
     }
 
-    public final function searchrechargeRecord()
+    final public function searchrechargeRecord()
     {
         $this->rechargeSearch();
         $this->display('Team/recharge-list');
     }
 
-    public final function rechargeSearch()
+    final public function rechargeSearch()
     {
 
         $para = I('get.');
 
         // 用户名限制
-        if($para['username'] && $para['username'] != '用户名') {
+        if ($para['username'] && $para['username'] != '用户名') {
             // 按用户名查找时
             // 只要符合用户名且是自己所有下级的都可查询
             // 用户名用模糊方式查询
@@ -1071,7 +1098,7 @@ class TeamController extends HomeController
 
         $userData = [];
         $userStr = '';
-        foreach($userList as $user) {
+        foreach ($userList as $user) {
             $userStr = $userStr . $user['uid'] . ',';
             $userData[$user['uid']] = $user;
         }
@@ -1079,14 +1106,14 @@ class TeamController extends HomeController
         $where = [];
 
         // 时间限制
-        if($para['fromTime'] && $para['toTime']) {
+        if ($para['fromTime'] && $para['toTime']) {
             $where['actionTime'] = ['between', [strtotime($para['fromTime']), strtotime($para['toTime'])]];
-        } elseif($para['fromTime']) {
+        } elseif ($para['fromTime']) {
             $where['actionTime'] = ['egt', strtotime($para['fromTime'])];
-        } elseif($para['toTime']) {
+        } elseif ($para['toTime']) {
             $where['actionTime'] = ['elt', strtotime($para['toTime'])];
         } else {
-            if($GLOBALS['fromTime'] && $GLOBALS['toTime']) {
+            if ($GLOBALS['fromTime'] && $GLOBALS['toTime']) {
                 $where['actionTime'] = ['between', [$GLOBALS['fromTime'], $GLOBALS['toTime']]];
             }
         }
@@ -1101,14 +1128,14 @@ class TeamController extends HomeController
             ->select();
 
         $i = 0;
-        foreach($cashList as $cash) {
+        foreach ($cashList as $cash) {
             $data[$i] = array_merge($cash, $userData[$cash['uid']]);
             $i++;
         }
 
         $bankList = M('bank_list')->field('id,name')->where(['isDelete' => 0])->order('id')->select();
         $bankData = [];
-        foreach($bankList as $bank) {
+        foreach ($bankList as $bank) {
             $bankData[$bank['id']] = $bank;
         }
         $this->assign('bankData', $bankData);
@@ -1117,7 +1144,7 @@ class TeamController extends HomeController
     }
 
     //推广链接
-    public final function linkList()
+    final public function linkList()
     {
 
         $list = M('links')->where(['uid' => $this->user['uid']])->order('fanDian desc')->select();
@@ -1125,35 +1152,39 @@ class TeamController extends HomeController
         $this->display('Team/link-list');
     }
 
-
-    public final function addLink()
+    final public function addLink()
     {
-        if(IS_POST) {
+        if (IS_POST) {
             //$para=$_POST;
             $para['regIP'] = $this->ip(true);
             $para['regTime'] = $this->time;
             $para['uid'] = $this->user['uid'];
             $para['type'] = I('type', '', 'intval');
             // 查检返点设置
-            if($para['fanDian'] = floatval(I('fanDian'))) {
-                if($para['fanDian'] % $this->settings['fanDianDiff']) $this->error(sprintf('返点只能是%.1f%的倍数', $this->settings['fanDianDiff']));
+            if ($para['fanDian'] = floatval(I('fanDian'))) {
+                if ($para['fanDian'] % $this->settings['fanDianDiff']) {
+                    $this->error(sprintf('返点只能是%.1f%的倍数', $this->settings['fanDianDiff']));
+                }
 
             } else {
                 $para['fanDian'] = 0;
             }
 
-            if(I('fanDian') >= $this->user['fanDian'])
+            if (I('fanDian') >= $this->user['fanDian']) {
                 $this->error('下级返点不能大于自己的返点');
+            }
 
             $para['fanDianBdw'] = floatval(I('fanDianBdw'));
 
-            if(M('links')->where(['uid' => $this->user['uid'], 'fanDian' => $para['fanDian']])->find())
+            if (M('links')->where(['uid' => $this->user['uid'], 'fanDian' => $para['fanDian']])->find()) {
                 $this->error('此链接已经存在');
+            }
 
-            if(M('links')->add($para))
+            if (M('links')->add($para)) {
                 $this->success('添加链接成功', U('Team/linklist'));
-            else
+            } else {
                 $this->error('添加链接失败');
+            }
 
         } else {
             $this->display('Team/add-link');
@@ -1161,35 +1192,41 @@ class TeamController extends HomeController
     }
 
     /*编辑注册链接*/
-    public final function linkUpdate()
+    final public function linkUpdate()
     {
-        if(IS_POST) {
+        if (IS_POST) {
 
             // 查检返点设置
-            if($para['fanDian'] = floatval(I('fanDian'))) {
-                if($para['fanDian'] % $this->settings['fanDianDiff']) $this->error(sprintf('返点只能是%.1f%的倍数', $this->settings['fanDianDiff']));
+            if ($para['fanDian'] = floatval(I('fanDian'))) {
+                if ($para['fanDian'] % $this->settings['fanDianDiff']) {
+                    $this->error(sprintf('返点只能是%.1f%的倍数', $this->settings['fanDianDiff']));
+                }
 
             } else {
                 $para['fanDian'] = 0;
             }
 
-            if(I('fanDian') >= $this->user['fanDian'] || I('fanDianBdw') >= $this->user['fanDianBdw'])
+            if (I('fanDian') >= $this->user['fanDian'] || I('fanDianBdw') >= $this->user['fanDianBdw']) {
                 $this->error('下级返点不能大于自己的返点');
+            }
 
             $para['fanDianBdw'] = floatval(I('fanDianBdw'));
             $para['lid'] = intval(I('lid'));
 
-            if(!M('links')->where(['uid' => $this->user['uid'], 'lid' => I('lid')])->find())
+            if (!M('links')->where(['uid' => $this->user['uid'], 'lid' => I('lid')])->find()) {
                 $this->error('此链接不存在');
+            }
 
-            if(M('links')->save($para))
+            if (M('links')->save($para)) {
                 $this->success('修改链接成功');
-            else
+            } else {
                 $this->error('修改链接失败');
+            }
+
         } else {
             $linkData = M('links')->where(['lid' => I('lid'), 'uid' => $this->user['uid']])->find();
 
-            if($linkData['uid']) {
+            if ($linkData['uid']) {
                 $parentData = M('members')->field('fanDian, fanDianBdw')->find($this->user['uid']);
             } else {
                 $parentData['fanDian'] = $this->settings['fanDianMax'];
@@ -1204,21 +1241,23 @@ class TeamController extends HomeController
 
     }
 
-    public final function deletelink()
+    final public function deletelink()
     {
-        if(IS_POST) {
-            if(M('links')->where(['lid' => I('lid'), 'uid' => $this->user['uid']])->delete())
+        if (IS_POST) {
+            if (M('links')->where(['lid' => I('lid'), 'uid' => $this->user['uid']])->delete()) {
                 $this->success('删除成功', U('Team/linklist'));
-            else
+            } else {
                 $this->error('删除失败');
+            }
+
         }
     }
 
-    public final function getlink()
+    final public function getlink()
     {
         $linkData = M('links')->where(['lid' => I('lid'), 'uid' => $this->user['uid']])->find();
 
-        if($linkData['uid']) {
+        if ($linkData['uid']) {
             $parentData = M('members')->field('fanDian, fanDianBdw')->find($this->user['uid']);
         } else {
             $parentData['fanDian'] = $this->settings['fanDianMax'];
@@ -1230,30 +1269,37 @@ class TeamController extends HomeController
         $this->display('get-link');
     }
 
-    public final function turnMoney()
+    final public function turnMoney()
     {
         $this->display('Team/turn-money');
     }
 
-    public final function turnRecharge()
+    final public function turnRecharge()
     {
         $me = M('members')->where(['uid' => $this->user['uid']])->find();
         //dump($me);
         //dump('--'.think_ucenter_md5(I('coinpwd'), UC_AUTH_KEY));
-        if($me['coinPassword'] != think_ucenter_md5(I('coinpwd'), UC_AUTH_KEY))
+        if ($me['coinPassword'] != think_ucenter_md5(I('coinpwd'), UC_AUTH_KEY)) {
             $this->error('资金密码不正确');
+        }
 
-        if(intval(I('amount')) <= 0)
+        if (intval(I('amount')) <= 0) {
             $this->error('转账金额必须大于0');
-        if($me['coin'] - I('amount') < 0)
+        }
+
+        if ($me['coin'] - I('amount') < 0) {
             $this->error('您的余额不足');
+        }
 
         $where['username'] = I('username');
         $child = M('members')->where($where)->find();
-        if(!$child)
+        if (!$child) {
             $this->error('此用户不存在');
-        if(strpos($child['parents'], ',' . $me['uid'] . ',') === false)
+        }
+
+        if (strpos($child['parents'], ',' . $me['uid'] . ',') === false) {
             $this->error('此用户不是你的下级');
+        }
 
         // 添加本人资金流动日志
         $this->addCoin([
@@ -1263,7 +1309,7 @@ class TeamController extends HomeController
             'info' => '用户[' . $me['username'] . ']转账给其下级[' . I('username') . ']' . I('amount') . '元',
             'extfield0' => I('amount'),
             'coin' => -I('amount'),
-            'fcoin' => 0
+            'fcoin' => 0,
         ]);
 
         // 添加下级资金流动日志
@@ -1274,13 +1320,13 @@ class TeamController extends HomeController
             'info' => '用户[' . $me['username'] . ']转账给其下级[' . I('username') . ']' . I('amount') . '元',
             'extfield0' => I('amount'),
             'coin' => I('amount'),
-            'fcoin' => 0
+            'fcoin' => 0,
         ]);
         $this->success('给下级转账成功');
     }
 
     //给下级充值
-    function chongzhi()
+    public function chongzhi()
     {
         // $data = M('params')->where('name="switchCharge"')->find();
         // if(isset($data['value']) && !$data['value']) {
@@ -1289,10 +1335,10 @@ class TeamController extends HomeController
         $touid = I('uid');
         $money = I('money');
         $password = I('password');
-        if($this->user['uid'] == $touid) {
+        if ($this->user['uid'] == $touid) {
             $this->error('不能给自己充值');
         }
-        if(empty($money) || intval($money) < 1) {
+        if (empty($money) || intval($money) < 1) {
             $this->error('充值金额必须大于0');
         }
         // if($this->user['is_test'] != 1) {
@@ -1305,34 +1351,34 @@ class TeamController extends HomeController
         //         $this->error('验证银行卡号不正确！');
         //     }
         // }
-        if(empty($password)) {
+        if (empty($password)) {
             $this->error('资金密码不能为空');
         }
         //转账次数限制
-        if(!$this->zzcs()) {
+        if (!$this->zzcs()) {
             $this->error("每天只能转账一次");
         }
         //转账限制
-        if(!$this->zzxz()) {
+        if (!$this->zzxz()) {
             $this->error("投注金额必须超过充值金额的30");
         }
         M()->startTrans();
         $me = M('Members')->where(['uid' => $this->user['uid']])->lock(true)->find();
         $menewmoney = $me['coin'] - $money;
-        if($menewmoney < 0) {
+        if ($menewmoney < 0) {
             M()->rollback();
             $this->error('余额不足，请先充值余额');
             exit();
         }
 
-        if(empty($me['coinPassword']) || ($me['coinPassword'] != think_ucenter_md5($password, UC_AUTH_KEY))) {
+        if (empty($me['coinPassword']) || ($me['coinPassword'] != think_ucenter_md5($password, UC_AUTH_KEY))) {
             M()->rollback();
             $this->error('资金密码未设置或不正确');
             exit();
         }
         $user = M('Members')->where(['uid' => $touid])->find();
         $p_arr = explode(',', $user['parents']);
-        if(!in_array($this->user['uid'], $p_arr)) {
+        if (!in_array($this->user['uid'], $p_arr)) {
             M()->rollback();
             $this->error('不是你的直属下级，不可以充值');
             exit();
@@ -1351,7 +1397,7 @@ class TeamController extends HomeController
             'info' => "资金转移到用户：" . $user['username'],
         ]);
         M('Members')->where('uid', $this->user['uid'])->setInc('scoreTotal', $money);
-        if($isSuc1 == true) {
+        if ($isSuc1 == true) {
             $isSuc2 = $this->addCoin([
                 'uid' => $user['uid'],
                 'coin' => $money,
@@ -1377,15 +1423,15 @@ class TeamController extends HomeController
             'actionTime' => time(),
             'rechargeTime' => time(),
             'state' => 1,
-            'info' => '上级' . $this->user['username'] . '给下级转账'
+            'info' => '上级' . $this->user['username'] . '给下级转账',
         ];
         $rech = M('MemberRecharge')->add($rechage);
-        if(!$rech) {
+        if (!$rech) {
             Log::record('给下级充值资金失败');
             M()->rollback();
             $this->error('操作失败-1');
         }
-        if($isSuc2 == true) {
+        if ($isSuc2 == true) {
             M()->commit();
             $this->success('操作成功', U('Team/memberdetail', ['uid' => $touid]));
         } else {
@@ -1398,14 +1444,14 @@ class TeamController extends HomeController
     final private function getRechId()
     {
         $rechargeId = $this->guid();
-        if(M('MemberRecharge')->where(['rechargeId' => $rechargeId])->find()) {
+        if (M('MemberRecharge')->where(['rechargeId' => $rechargeId])->find()) {
             $this->getRechId();
         } else {
             return $rechargeId;
         }
     }
 
-    function guid()
+    public function guid()
     {
         $chars = md5(uniqid(mt_rand(), true));
         $uuid = substr($chars, 0, 8);
@@ -1419,20 +1465,20 @@ class TeamController extends HomeController
     //充值限制
     public function zzxz()
     {
-        if($this->user['type'] == 1) {
+        if ($this->user['type'] == 1) {
             return true;
         }
         //充值金额
         $gRs = M('MemberRecharge')->where(['uid' => $this->user['uid'], 'state' => ['in', '1,2,9'], 'isDelete' => 0])->field('sum(case when rechargeAmount>0 then rechargeAmount else amount end) as rechargeAmount')->find();
         //投注金额
         $bet = M('Bets')->where(['uid' => $this->user['uid'], 'isDelete' => 0, 'lotteryNo' => ['neq', '']])->field('sum(mode*beiShu*actionNum) as betAmout')->find();
-        if(!empty($gRs) && !empty($bet)) {
+        if (!empty($gRs) && !empty($bet)) {
             return false;
         } else {
             $betAmout = $bet['betAmout'];
             $rechargeAmount = $gRs["rechargeAmount"];
             $bfb = round($betAmout / $rechargeAmount, 2) * 100;
-            if($bfb >= 30) {
+            if ($bfb >= 30) {
                 return true;
             } else {
                 return false;
@@ -1444,7 +1490,7 @@ class TeamController extends HomeController
     public function zzcs()
     {
         //代理商不限制
-        if($this->user['type'] == 1) {
+        if ($this->user['type'] == 1) {
             return true;
         }
         $map = [
@@ -1454,7 +1500,7 @@ class TeamController extends HomeController
         $m = M('CoinLog')->where($map)
             ->order('actionTime desc')
             ->find();
-        if(empty($m)) {
+        if (empty($m)) {
             return true;
         }
         return false;
