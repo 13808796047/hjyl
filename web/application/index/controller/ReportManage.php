@@ -588,6 +588,7 @@ class ReportManage extends Controller
         // $uid = session('userData.uid');
         if (isset($para['username'])) {
             $uid = Members::field('uid')->where('username', $para['username'])->select();
+            \dump($uid);
         }
         if (isset($para['date2'])) {
             $toTime = strtotime($para['date2']);
