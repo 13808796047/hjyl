@@ -592,7 +592,7 @@ class ReportManage extends Controller
         //        $pwhere['isDelete'] = 0;
         if (isset($para['username']) && $para['username'] != '') {
             $where['username'] = strtolower(trim($para['username']));
-            $uid = Member::field('uid')->where($where)->find()['uid'];
+            $uid = M('members')->field('uid')->where($where)->find()['uid'];
         }
 
         // $childs = $builder->where('uid', session('userData.uid'))->select();
