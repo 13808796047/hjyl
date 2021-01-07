@@ -286,7 +286,9 @@ class UserController extends HomeController
     }
     public function getUserBalance()
     {
-        return $this->ajaxReturn($this->user['coin'], 'JSON');
+        $user = M('members')->where(['uid' => $this->user['uid']])->find();
+
+        return $this->ajaxReturn($user['coin'], 'JSON');
     }
     /* 登录密码 */
     public function password()
