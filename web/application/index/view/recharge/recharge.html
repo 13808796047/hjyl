@@ -252,43 +252,36 @@
       <div class="col-2">开户行：</div>
       <div class="col-4">{$bank.banklist.name}</div>
     </div>
-    <table class="table table-responsive table-borderless">
-      <tr>
-        <td>开户行：</td>
-        <td>{$bank.banklist.name}</td>
-      </tr>
-      <tr>
-        <td>持卡人：</td>
-        <td>{$bank.username}</td>
-      </tr>
-      <tr>
-        <td>银行卡号：</td>
-        <td>{$bank.account}</td>
-      </tr>
-      <tr>
-        <td>充值金额：</td>
-        <td><input type="number" class="form-control form-control-sm" id="amount" min="0.01" required value="0.00">
-        </td>
-      <td><strong class="form-text text-danger">充值金额范围:100-50000元,必须带小数点</strong></td>
-      </tr>
-      <!-- <tr>
-        <td></td>
-        <td><strong class="form-text text-danger">充值金额范围:100-50000元,必须带小数点</strong></td>
-      </tr> -->
-      <tr>
-        <td>充值方式：</td>
-        <td>银行卡</td>
-     
-      </tr>
-      <tr>
-        <td>
-          <button id='form-submit' {$bank?
+      <div class="row">
+      <div class="col-2">持卡人：</div>
+      <div class="col-4">{$bank.username}</div>
+    </div>
+      <div class="row">
+      <div class="col-2">银行卡号：</div>
+      <div class="col-4">{$bank.account}</div>
+    </div>
+     <div class="row">
+      <div class="col-2">充值金额：</div>
+      <div class="col-4"><input type="number" class="form-control form-control-sm" id="amount" min="0.01" required value="0.00"></div>
+      <div class="col-4"><strong class="form-text text-danger">充值金额范围:100-50000元,必须带小数点</strong></div>
+    </div>
+     <div class="row">
+      <div class="col-2">充值方式：</div>
+      <div class="col-4">银行卡</div>
+      <div class="col-4"><strong class="form-text text-danger">转账成功后，再点确定，否则无法到账！</strong></div>
+    </div>
+    <div class="row">
+      <div class="col-2">
+  <button id='form-submit' {$bank?
           '':'disabled'} style="cursor: {$bank?'':'not-allowed'};background:{$bank?'':'#999'};" class="btn btn-info
           btn-block">确定</button>
-        </td>
-       <td><strong class="form-text text-danger">转账成功后，再点确定，否则无法到账！</strong></td>
-      </tr>
-    </table>
+      </div>
+     
+         <div class="col-4">
+            <strong class="form-text text-danger">转账成功后，再点确定，否则无法到账！</strong>
+         </div>
+    </div>
+
     <!-- <form>
       <div class="form-group row pb-1">
         <label for="" class="col-sm-2 col-form-label">开户行：</label>
