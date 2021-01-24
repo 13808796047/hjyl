@@ -217,6 +217,7 @@ a.btn {
 .section .select2-container .select2-selection--single {
   height: 30px;
   border-radius: 2px;
+  border: none;
 }
 
 .section #select2-keeppoint-container {
@@ -227,7 +228,6 @@ a.btn {
 .section .select2-selection__arrow {
   width: 30px;
   height: 28px;
-  border-left: 1px solid #ccc;
 }
 
 .section .select2-selection__arrow b {
