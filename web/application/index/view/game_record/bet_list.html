@@ -27,33 +27,6 @@
           <option value="{$vo}">{$vo}</option>
           {/if} {/volist}
         </select>
-      </div>
-      <div class="inline-fields">
-        <div class="field">
-          <label>彩种名称</label>
-          <select name="lotteryid" id="lotteryid" class="dept_select selection">
-            <option value="0">所有游戏</option>
-            {volist name="types_data" id="vo"} {if $lotteryid == $vo['id']}
-            <option value="{$vo.id}" selected="selected">{$vo.title}</option>
-            {else}
-            <option value="{$vo.id}">{$vo.title}</option>
-            {/if} {/volist}
-          </select>
-        </div>
-        <div class="field">
-          <label>游戏玩法</label>
-          <select name="methodid" id="methodid" class="dept_select selection">
-            <option value="0">所有玩法</option>
-          </select>
-        </div>
-        <div class="field">
-          <label>彩种奖期</label>
-          <select name="issue" id="issue" class="dept_select selection">
-            <option value="0">所有奖期</option>
-          </select>
-        </div>
-      </div>
-      <div class="field">
         <label>用户名</label>
         <input
           type="text"
@@ -83,6 +56,32 @@
           包含下级 {/if}
         </label>
       </div>
+      <div class="inline-fields">
+        <div class="field">
+          <label>彩种名称</label>
+          <select name="lotteryid" id="lotteryid" class="dept_select selection">
+            <option value="0">所有游戏</option>
+            {volist name="types_data" id="vo"} {if $lotteryid == $vo['id']}
+            <option value="{$vo.id}" selected="selected">{$vo.title}</option>
+            {else}
+            <option value="{$vo.id}">{$vo.title}</option>
+            {/if} {/volist}
+          </select>
+        </div>
+        <div class="field">
+          <label>游戏玩法</label>
+          <select name="methodid" id="methodid" class="dept_select selection">
+            <option value="0">所有玩法</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>彩种奖期</label>
+          <select name="issue" id="issue" class="dept_select selection">
+            <option value="0">所有奖期</option>
+          </select>
+        </div>
+      </div>
+
       <input type="submit" value="搜索" class="btn" />
     </form>
     <div class="list" id="touzhu_record" style="background: none">
