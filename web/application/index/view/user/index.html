@@ -41,7 +41,7 @@
             {if $user_type==1}
             <div class="row">
               <a href="user_adduser.html" target="mainFrame">
-                <i class="arrow-right"></i>添加用户
+                <i class="arrow-right"></i>注册用户
               </a>
             </div>
             {/if}
@@ -60,19 +60,19 @@
             <!-- menu title = 安全中心-->
             <div class="row">
               <a href="user_setmenu.html" target="mainFrame">
-                <i class="arrow-right"></i>安全中心
+                <i class="arrow-right"></i>个人中心
               </a>
             </div>
             <!-- menu title = 消息管理-->
             <div class="row <?=$tag=='messages'?'active':''?>">
               <a href="user_messages.html" target="mainFrame">
-                <i class="arrow-right"></i>消息管理
+                <i class="arrow-right"></i>消息中心
               </a>
             </div>
             <!-- menu title = 团队统计-->
             <div class="row">
               <a href="user_team.html" target="mainFrame">
-                <i class="arrow-right"></i>团队统计
+                <i class="arrow-right"></i>团队报表
               </a>
             </div>
             {if $user_rigongzi==true && $settings['RiGongZiKaiGuan']== 1}
