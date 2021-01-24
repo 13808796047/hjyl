@@ -164,10 +164,10 @@ form input[type="button"] {
   background: #ee8802;
 }
 
-.form .btn,
+/* .form .btn,
 form input[type="submit"] {
   margin: 20px 17px 0 126px;
-}
+} */
 
 .btn:hover,
 form input[type="submit"]:hover,
