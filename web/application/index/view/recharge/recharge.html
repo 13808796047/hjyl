@@ -267,9 +267,9 @@
     </div>
      <div class="row my-4">
       <div class="col-2">充值方式：</div>
-      <div class="col-4">
+      <div class="col-6">
         <div class="form-check form-check-inline">
-  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1" checked>
   <label class="form-check-label" for="inlineRadio1">银行卡</label>
 </div>
 <div class="form-check form-check-inline">
@@ -286,7 +286,7 @@
     <div class="row my-4">
       <div class="col-2">
   <button id='form-submit' {$bank?
-          '':'disabled'} style="cursor: {$bank?'':'not-allowed'};background:{$bank?'':'#999'};" class="btn btn-info
+          '':'disabled'} style="cursor: {$bank?'':'not-allowed'};background:{$bank?'':'#999'};" class="btn btn-warning
           btn-block">确定</button>
       </div>
      
