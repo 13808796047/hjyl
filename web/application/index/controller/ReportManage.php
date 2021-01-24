@@ -528,6 +528,7 @@ class ReportManage extends Controller
         } else {
             $where['actionTime'] = ['between', [strtotime(date("Y-m-d")), time()]];
         }
+        dump($where);
         $where['uid'] = ['in', $userStr];
         $cashList = Db::table('gygy_member_cash')
             ->field('id,uid,actionTime,amount,account,username,state,bankId,info')
