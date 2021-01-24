@@ -79,6 +79,7 @@ body {
 }
 
 .form {
+  padding: 10px;
   margin-bottom: 0;
 }
 
@@ -730,7 +731,7 @@ div[id*="playinfo"] table td:hover {
 .form .btn {
   /* margin: 0 17px 0 150px; */
   color: #fff;
-  background: rgba(255, 212, 50, 1);
+  background: #c39763;
   /* border: 1px solid #8b3d23; */
   padding: 6px 12px;
 }
