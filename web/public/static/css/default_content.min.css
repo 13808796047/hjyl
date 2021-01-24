@@ -146,7 +146,6 @@ form input[type="button"] {
   min-width: 95px;
   height: 30px;
   color: #fff;
-  border-radius: 20px;
   cursor: pointer;
   margin: 20px 17px 17px;
   font-family: Microsoft YaHei;
@@ -154,7 +153,6 @@ form input[type="button"] {
   top: 2px;
   display: inline-block;
   text-align: center;
-  border-radius: 5px;
   text-decoration: none;
 }
 
