@@ -307,7 +307,7 @@ a.btn {
 }
 
 .list {
-  margin: 15px auto;
+  margin: 15px;
   background: #f6f6f6;
   width: 755px;
 }
@@ -724,7 +724,7 @@ div[id*="playinfo"] table td:hover {
 }
 
 .form .field label {
-  min-width: 140px;
+  min-width: 65px;
 }
 
 .form .btn {
