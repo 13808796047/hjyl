@@ -160,7 +160,7 @@ class ReportManage extends Controller
             $start = strtotime(date('Y-m-d 00:00:00', time()));
             $end = strtotime(date('Y-m-d 23:59:59', time()));
         }
-
+        dump($start, $end);
         $data = [];
         foreach ($childs as $key => $value) {
             $cuids = Members::where("FIND_IN_SET({$value->uid},parents)")->column('uid');
