@@ -125,10 +125,8 @@ tr.tr-field {
 form input[type="text"],
 form input[type="password"] {
   background: #fff;
-  /* border: 1px solid #cecece; */
+  border: none;
   color: #595959;
-  font: 14px "Microsoft Yahei", "Microsoft JhengHei", tahoma, Srial, helvetica,
-    sans-serif;
   width: 156px;
   height: 33px;
   /* border-radius: 2px; */
