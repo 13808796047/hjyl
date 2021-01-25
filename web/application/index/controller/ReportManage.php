@@ -596,18 +596,18 @@ class ReportManage extends Controller
         // $childs = $builder->where('uid', session('userData.uid'))->select();
 
         if (isset($para['date2'])) {
-            $toTime = strtotime($para['date2']);
+            $toTime = strtotime($para['date2'] . '23:59:59');
         } else {
-            $toTime = strtotime(date('Ymd', time()));
+            $toTime = strtotime(date('Ymd' . '23:59:59', time()));
         }
         if (isset($para['date1'])) {
-            $fromTime = strtotime($para['date1']);
+            $fromTime = strtotime($para['date1'] . '00:00:00');
         } else {
-            $fromTime = strtotime(date('Ymd', time()));
+            $fromTime = strtotime(date('Ymd' . '00:00:00', time()));
         }
         if (isset($para['date0']) && $para['date0'] == 1) {
-            $fromTime = strtotime(date('Ymd', time()));
-            $toTime = strtotime(date('Ymd', time()));
+            $fromTime = strtotime(date('Ymd' . '00:00:00', time()));
+            $toTime = strtotime(date('Ymd' . '23:59:59', time()));
         }
         $all = [];
         $sql = "SELECT * FROM (
