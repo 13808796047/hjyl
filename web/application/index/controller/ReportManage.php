@@ -145,7 +145,7 @@ class ReportManage extends Controller
 //        $pwhere[] = ['exp', 'FIND_IN_SET(' . $uid . ',parents)'];
         //        $pwhere['isDelete'] = 0;
         if (isset($_GET['username']) && $_GET['username'] != '') {
-            $where['username'] = ['like', strtolower(trim($_GET['username'])) . '%'];
+            $where['username'] = $_GET['username'];
             $where[] = ['exp', 'FIND_IN_SET(' . $uid . ',parents)'];
         } else {
             $where['parentId'] = $uid;
