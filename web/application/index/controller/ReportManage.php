@@ -145,8 +145,8 @@ class ReportManage extends Controller
 //        $pwhere[] = ['exp', 'FIND_IN_SET(' . $uid . ',parents)'];
         //        $pwhere['isDelete'] = 0;
         if (isset($_GET['username']) && $_GET['username'] != '') {
-            $user = Members::where('username', $_GET['username'])->find();
-            $where[] = ['exp', 'FIND_IN_SET(' . $user->uid . ',parents)'];
+            $where['username'] = $_GET['username'];
+            $where[] = ['exp', 'FIND_IN_SET(' . $uid . ',parents)'];
         } else {
             $where['parentId'] = $uid;
         }
@@ -163,6 +163,7 @@ class ReportManage extends Controller
         $data = [];
         foreach ($childs as $key => $value) {
             $cuids = Members::where("FIND_IN_SET({$value->uid},parents)")->column('uid');
+            \dump($cuids);
             $data[$key] = [
                 'uid' => $value->uid,
                 'username' => $value->username,
