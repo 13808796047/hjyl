@@ -146,6 +146,7 @@ class ReportManage extends Controller
         //        $pwhere['isDelete'] = 0;
         if (isset($_GET['username']) && $_GET['username'] != '') {
             $uid = Members::where('username', $_GET['username'])->column('uid');
+            \dump($uid);
             $where[] = ['exp', 'FIND_IN_SET(' . $uid . ',parents)'];
         } else {
             $where['parentId'] = $uid;
