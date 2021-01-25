@@ -174,6 +174,7 @@ class ReportManage extends Controller
                     ->sum('amount'),
                 'totalCash' => MemberCash::where('uid', 'in', $cuids)
                     ->where('actionTime', 'between', [$start, $end])
+                    ->where('state', 0)
                     ->sum('amount'),
             ];
         }
