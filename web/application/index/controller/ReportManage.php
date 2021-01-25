@@ -163,7 +163,6 @@ class ReportManage extends Controller
         $data = [];
         foreach ($childs as $key => $value) {
             $cuids = Members::where("FIND_IN_SET({$value->uid},parents)")->column('uid');
-            \dump($cuids);
             $data[$key] = [
                 'uid' => $value->uid,
                 'username' => $value->username,
@@ -174,7 +173,6 @@ class ReportManage extends Controller
                     ->where('actionTime', 'between', [$start, $end])
                     ->sum('amount'),
                 'totalCash' => MemberCash::where('uid', 'in', $cuids)
-                    ->where('state', 4)
                     ->where('actionTime', 'between', [$start, $end])
                     ->sum('amount'),
             ];
