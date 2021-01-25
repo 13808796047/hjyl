@@ -2,7 +2,7 @@
 
 namespace app\index\controller;
 
-use app\index\model\Bets;
+use app\index\model\ActivityLog;
 use app\index\model\CoinLog;
 use app\index\model\MemberBank;
 use app\index\model\MemberCash;
@@ -12,7 +12,6 @@ use app\index\model\Members;
 use app\index\model\Params;
 use app\index\model\Paybusiness;
 use app\index\model\Rebackinfo;
-use app\index\model\ActivityLog;
 use app\index\service\GfbPay;
 use app\index\service\JqPay;
 use app\index\service\Pay;
@@ -39,10 +38,10 @@ class Recharge extends Controller
 
         View::share(['kefu' => $kefu, 'status' => $stauts]);
         $url = $_SERVER['REQUEST_URI'];
-        if(!empty(Session::get('userData'))) {
+        if (!empty(Session::get('userData'))) {
             $this->assign('play_lists', (new Game())->play_list);
             return view('index/login');
-        } elseif($url == '/recharge/respond_notify') {
+        } elseif ($url == '/recharge/respond_notify') {
         } else {
             $this->user = Session::get('userData');
         }
@@ -51,7 +50,7 @@ class Recharge extends Controller
     public function getIndex()
     {
         $this->user = Session::get('userData');
-        if($this->user['is_test'] != 0) {
+        if ($this->user['is_test'] != 0) {
 //            $this->error('无此权限');
         }
 
@@ -66,14 +65,14 @@ class Recharge extends Controller
 
         $count = MemberRecharge::where(['uid' => $this->user->uid, 'state' => 10])->order('id desc')->limit(5)->count();
 //        $fromTime = strtotime(date('Y-m-d ', $this->time) . $this->settings['rechargeFromTime'] . ':00');
-//////        $toTime = strtotime(date('Y-m-d ', $this->time) . $this->settings['rechargeToTime'] . ':00');
-//        if(($fromTime > $toTime && $this->time < $fromTime && $this->time > $toTime)
-//            || ($fromTime < $toTime && ($this->time < $fromTime || $this->time > $toTime))
-//        ) {
-//            return json(["code" => 3, "msg" => "充值时间：从" . $this->settings['rechargeFromTime'] . "到" . $this->settings['rechargeToTime'], "data" => '']);
-////            $this->error("提现时间：从" . $this->settings['rechargeFromTime'] . "到" . $this->settings['rechargeToTime']);
-//        }
-        if($count > 5) {
+        //////        $toTime = strtotime(date('Y-m-d ', $this->time) . $this->settings['rechargeToTime'] . ':00');
+        //        if(($fromTime > $toTime && $this->time < $fromTime && $this->time > $toTime)
+        //            || ($fromTime < $toTime && ($this->time < $fromTime || $this->time > $toTime))
+        //        ) {
+        //            return json(["code" => 3, "msg" => "充值时间：从" . $this->settings['rechargeFromTime'] . "到" . $this->settings['rechargeToTime'], "data" => '']);
+        ////            $this->error("提现时间：从" . $this->settings['rechargeFromTime'] . "到" . $this->settings['rechargeToTime']);
+        //        }
+        if ($count > 5) {
             return json(["code" => 2, "msg" => "充值次数太多，请30分钟后再操作!", "data" => 1800]);
         }
         $amount = input('amount');
@@ -83,9 +82,8 @@ class Recharge extends Controller
             'actionUid' => $this->user['uid'],
             'actionIP' => $this->ip(true),
             'actionTime' => time(),
-            'rechargeTime' => time()
+            'rechargeTime' => time(),
         ];
-
 
         $data['uid'] = $this->user['uid'];
         $data['coin'] = 0;
@@ -107,11 +105,11 @@ class Recharge extends Controller
             'actionTime' => time(),
         ];
         CoinLog::create($coinlog);
-        if(!$result) {
+        if (!$result) {
             return json(["code" => 0, "msg" => "失败", "data" => '']);
         }
         // $this->user
-        return json(["code" => 1, "msg" => "成功", "data" => 15]);;
+        return json(["code" => 1, "msg" => "成功", "data" => 300]);
     }
 
     public function getRecharge()
@@ -127,49 +125,49 @@ class Recharge extends Controller
         $direct_pay = (count($busines) == 1 && $busines[0]['id'] == 6) ? 'weixin' : 'direct_pay';
         $this->assign('direct_pay', $direct_pay);
         $old_line = "";
-        if($busines) {
+        if ($busines) {
             $old_line = $busines[0]['id'];
         }
-        if(!empty($busines)) {
+        if (!empty($busines)) {
             $this->assign('def_id', $busines[0]['id']);
         }
         $this->assign('busines', $busines);
         $this->assign('old_line', $old_line);
-        if(isset($_GET['def-w-label'])) {
+        if (isset($_GET['def-w-label'])) {
             $pay_type = $_GET['def-w-label'];
-            if($pay_type == 7) {
+            if ($pay_type == 7) {
                 $service_type = $_GET['payLinks'];
 
                 $this->zesheng($_GET);
 
                 /*if($service_type=='weixin' || $service_type=='alipay'){
-                    $this->zesheng($_GET);
-                }else{
-                    $this->redirect('/recharge/zs_pay', array('money' => $_GET['amount']));
-//                    exit('此功能维护中，请选择微信或者支付宝');
-                }*/
-            } elseif($pay_type == 5 || $pay_type == 8 || $pay_type == 12) {
+            $this->zesheng($_GET);
+            }else{
+            $this->redirect('/recharge/zs_pay', array('money' => $_GET['amount']));
+            //                    exit('此功能维护中，请选择微信或者支付宝');
+            }*/
+            } elseif ($pay_type == 5 || $pay_type == 8 || $pay_type == 12) {
                 //智付
                 $_GET['pay_type'] = $pay_type;
                 $service_type = $_GET['payLinks'];
-                if($service_type == 'direct_pay') {
+                if ($service_type == 'direct_pay') {
                     //网银
                     $this->getZfwy($_GET);
                 } else {
                     //支付宝和微信
                     $this->zfpay($_GET);
                 }
-            } elseif($pay_type == 9) {
+            } elseif ($pay_type == 9) {
                 //智付
                 $service_type = $_GET['payLinks'];
                 $this->yinshen($_GET);
-            } elseif($pay_type == 10 || $pay_type == 11) {
+            } elseif ($pay_type == 10 || $pay_type == 11) {
                 $this->yibaoQrcode($_GET);
-            } elseif($pay_type == 103) {
+            } elseif ($pay_type == 103) {
                 $this->guofubao($_GET);
-            } elseif($pay_type == 104) {
+            } elseif ($pay_type == 104) {
                 $this->zbzf($_GET);
-            } elseif($pay_type == 105) {
+            } elseif ($pay_type == 105) {
                 $this->jqzf($_GET);
             } else {
                 echo '错了';
@@ -199,15 +197,15 @@ class Recharge extends Controller
 
     public function getSecurity_platwithdraw()
     {
-        if(!empty($_GET)) {
+        if (!empty($_GET)) {
             $secpass = $_GET['secpass'];
             $user = Session::get('userData');
 
             $member = Members::where(['uid' => $user['uid']])->find();
-            if(trim($secpass) && $member['coinPassword'] == think_ucenter_md5($secpass, UC_AUTH_KEY)) {
+            if (trim($secpass) && $member['coinPassword'] == think_ucenter_md5($secpass, UC_AUTH_KEY)) {
                 $bank = MemberBank::where(['uid' => $user['uid']])->select();
 
-                foreach($bank as $key => $item) {
+                foreach ($bank as $key => $item) {
                     $bank[$key]['account'] = '***************' . substr($item['account'], strlen($item['account']) - 4, 4);
                 }
                 $this->assign('bank', $bank);
@@ -223,14 +221,14 @@ class Recharge extends Controller
 
     public function getQr_security_platwithdraw()
     {
-        if($_GET) {
+        if ($_GET) {
             $flag = $_GET['flag'];
             $bankId = $_GET['bankinfo'];
             $money = $_GET['money'];
             $user = Session::get('userData');
             $member = Members::where(['uid' => $user['uid']])->find();
             $bankInfo = MemberBank::where(['id' => $bankId])->find();
-            if(empty($bankInfo)) {
+            if (empty($bankInfo)) {
                 $this->error('银行卡错误');
             } else {
                 $bankInfo['account'] = '***************' . substr($bankInfo['account'], strlen($bankInfo['account']) - 4, 4);
@@ -238,10 +236,10 @@ class Recharge extends Controller
             $this->assign('bankInfo', $bankInfo);
             $this->assign('user', $member);
             $this->assign('money', $money);
-            if(!floatval($money) || !$bankId) {
+            if (!floatval($money) || !$bankId) {
                 $this->error('参数有误。');
             }
-            if($flag == "confirm") {
+            if ($flag == "confirm") {
                 $this->confirmMoney($member, $_GET);
             }
         } else {
@@ -257,16 +255,16 @@ class Recharge extends Controller
         $where = ['c.uid' => $this->user['uid']];
         $starttime = "";
         $endtime = "";
-        if(isset($_GET['endtime']) && isset($_GET['starttime'])) {
+        if (isset($_GET['endtime']) && isset($_GET['starttime'])) {
             $starttime = $_GET['starttime'];
             $endtime = $_GET['endtime'];
             $where['actionTime'] = ['between time', [strtotime($_GET['starttime']), strtotime($_GET['endtime'])]];
         } else {
-            if(isset($_GET['starttime'])) {
+            if (isset($_GET['starttime'])) {
                 $starttime = $_GET['starttime'];
                 $where['actionTime'] = ['egt', strtotime($_GET['starttime'])];
             }
-            if(isset($_GET['endtime'])) {
+            if (isset($_GET['endtime'])) {
                 $endtime = $_GET['endtime'];
                 $where['actionTime'] = ['elt', strtotime($_GET['endtime'])];
             }
@@ -276,7 +274,7 @@ class Recharge extends Controller
             ->where($where)
             ->field('c.username,c.actionTime,b.name as bankId,c.account,c.amount,c.state,c.info')
             ->paginate($pageSize, false, ['query' => $_GET]);
-        foreach($cash as $item => $sub) {
+        foreach ($cash as $item => $sub) {
             $cash[$item]['account'] = '******' . substr($sub['account'], strlen($sub['account']) - 4, 4);
             $cash[$item]['state'] = $this->cashStatus($sub['state']);
         }
@@ -307,15 +305,15 @@ class Recharge extends Controller
 
     private function confirmMoney($user, $get)
     {
-        if($user['is_test'] == 1) {
+        if ($user['is_test'] == 1) {
             $this->error('此账号无此权限');
         }
-        if($user['coin'] < intval($get['money'])) {
+        if ($user['coin'] < intval($get['money'])) {
             $this->error('你账户资金不足');
         }
         $amount = $get['money'];
         $amountGroup = [];
-        if($amount > 50000) {
+        if ($amount > 50000) {
             $amountGroup = $this->amountGroup($amount);
         }
         $this->init();
@@ -323,23 +321,23 @@ class Recharge extends Controller
         $time = strtotime(date('Y-m-d', $this->time));
         $cash = MemberCash::where(['actionTime' => ['egt', $time], 'uid' => $this->user['uid']])->field('count(*) as count')->find();
 //        $grade = MemberLevel::where(array('level' => $this->user['grade']))->field('maxToCashCount')->find();
-        if($times = $cash['count']) {
+        if ($times = $cash['count']) {
             //$cashTimes=$grade['maxToCashCount'];
             $cashTimes = $this->settings['cashTimes'];
-            if($times >= $cashTimes) {
+            if ($times >= $cashTimes) {
                 $this->error('对不起，今天你提现次数已达到最大限额，请明天再来');
             }
         }
 
         //增加黑客修改提现金额为负数不合法的判断
-        if($amount < 100) {
+        if ($amount < 100) {
             $this->error('提现金额不得低于100元');
         }
-        if($amount > 100000) {
+        if ($amount > 100000) {
             $this->error('单次提现金额不能大于10万');
         }
 
-        if($amount < $this->settings['cashMin'] || $amount > $this->settings['cashMax']) {
+        if ($amount < $this->settings['cashMin'] || $amount > $this->settings['cashMax']) {
             $this->error('提现金额必须介于' . $this->settings['cashMin'] . '和' . $this->settings['cashMax'] . '之间');
         }
 
@@ -348,7 +346,7 @@ class Recharge extends Controller
         $fromTime = strtotime(date('Y-m-d ', $this->time) . $this->settings['cashFromTime'] . ':00');
         $toTime = strtotime(date('Y-m-d ', $this->time) . $this->settings['cashToTime'] . ':00');
         //if($toTime<$baseTime) $toTime.=24*3600;
-        if(($fromTime > $toTime && $this->time < $fromTime && $this->time > $toTime)
+        if (($fromTime > $toTime && $this->time < $fromTime && $this->time > $toTime)
             || ($fromTime < $toTime && ($this->time < $fromTime || $this->time > $toTime))
         ) {
             $this->error("提现时间：从" . $this->settings['cashFromTime'] . "到" . $this->settings['cashToTime']);
@@ -360,61 +358,61 @@ class Recharge extends Controller
         $rechargeTime = strtotime('00:00');
 //        if ($this->settings['cashMinAmount']&&$this->user['type']!=1) {
         /*if ($this->settings['cashMinAmount']) {
-            $cashMinAmount = $this->settings['cashMinAmount'] / 100;
+        $cashMinAmount = $this->settings['cashMinAmount'] / 100;
 
-            $gRs = MemberRecharge::where(array('uid' => $this->user['uid'], 'state' => array('in', '1,2,9'), 'isDelete' => 0, 'rechargeTime' => array('egt', $rechargeTime)))->field('sum(case when rechargeAmount>0 then rechargeAmount else amount end) as rechargeAmount')->find();
-            if ($gRs) {
-                $rechargeAmount = $gRs["rechargeAmount"] * $cashMinAmount;
-            }
+        $gRs = MemberRecharge::where(array('uid' => $this->user['uid'], 'state' => array('in', '1,2,9'), 'isDelete' => 0, 'rechargeTime' => array('egt', $rechargeTime)))->field('sum(case when rechargeAmount>0 then rechargeAmount else amount end) as rechargeAmount')->find();
+        if ($gRs) {
+        $rechargeAmount = $gRs["rechargeAmount"] * $cashMinAmount;
+        }
 
-            if ($rechargeAmount) {
-                //近2天来消费总额
-                $bet = Bets::where(array('actionTime' => array('egt', $rechargeTime), 'uid' => $this->user['uid'], 'isDelete' => 0, 'lotteryNo' => array('neq', '')))->field('sum(mode*beiShu*actionNum) as betAmout')->find();
-                $betAmout = $bet['betAmout'];
-                if (floatval($betAmout) < floatval($rechargeAmount)) {
-                    if(floatval($gRs["rechargeAmount"])<=0&&$this->user['type']==1){
-                        //代理号，如果没有充值过，提现不限制
-                    }else{
-                        $this->error("消费满" . $this->settings['cashMinAmount'] . "%才能提现");
-                    }
-                }
-            }
-        }*/ /////近2天来的消费判断结束
+        if ($rechargeAmount) {
+        //近2天来消费总额
+        $bet = Bets::where(array('actionTime' => array('egt', $rechargeTime), 'uid' => $this->user['uid'], 'isDelete' => 0, 'lotteryNo' => array('neq', '')))->field('sum(mode*beiShu*actionNum) as betAmout')->find();
+        $betAmout = $bet['betAmout'];
+        if (floatval($betAmout) < floatval($rechargeAmount)) {
+        if(floatval($gRs["rechargeAmount"])<=0&&$this->user['type']==1){
+        //代理号，如果没有充值过，提现不限制
+        }else{
+        $this->error("消费满" . $this->settings['cashMinAmount'] . "%才能提现");
+        }
+        }
+        }
+        }*//////近2天来的消费判断结束
         $memberBankId = $get['bankinfo'];
         $bank = MemberBank::where(['uid' => $this->user['uid'], 'id' => $memberBankId])->find();
 
-        if(empty($bank)) {
+        if (empty($bank)) {
             $this->error('未绑定银行卡无法提现');
         }
-        if($bank['actionTime'] + 8 * 60 * 60 > time()) {
+        if ($bank['actionTime'] + 8 * 60 * 60 > time()) {
             $this->error('该银行卡添加不足8小时，不能用于提现');
         }
 
         // 检查充值投注总额有没有到充值总额的30%
-//        $rechargeTotal = M('member_recharge')->where(array('uid' => $this->user['uid'], 'state' => array('in', '1,2,9'), 'isDelete' => 0))->sum('amount');
+        //        $rechargeTotal = M('member_recharge')->where(array('uid' => $this->user['uid'], 'state' => array('in', '1,2,9'), 'isDelete' => 0))->sum('amount');
         // if ($user['type'] != 1){
         $gRs = MemberRecharge::where(['uid' => $this->user['uid'], 'state' => ['in', '1,2,9'], 'isDelete' => 0])
             ->field('sum(case when rechargeAmount>0 then rechargeAmount else amount end) as rechargeAmount')->find();
         $rechargeTotal = $gRs["rechargeAmount"];
-        if($rechargeTotal > 0) {
+        if ($rechargeTotal > 0) {
 //            $betAmount = M('bets')->where(array('uid' => $this->user['uid'], 'isDelete' => 0, 'lotteryNo' => array('neq', '')))->sum(mode * beiShu * actionNum);
             $betAmount = $user['scoreTotal'];
             // dump($rechargeTotal);//90000
             // dump($betAmount);//209
-            if($betAmount < ($rechargeTotal * 0.25)) {
+            if ($betAmount < ($rechargeTotal * 0.25)) {
                 $this->error('未达到投注量无法提现');
             }
         }
 //        else {
-//            //如果是代理号 没有充值过 可以提现流水
-//            if($user['type'] != 1) {
-//                /* $coin_log = M('coin_log')->where(array('uid' => $this->user['uid'], 'liqType' => 201))->find();
-//                 if(empty($coin_log)){
-//                     $this->error('还未充值，不能提现');
-//                 }*/
-//                $this->error('还未充值，不能提现');
-//            }
-//        }
+        //            //如果是代理号 没有充值过 可以提现流水
+        //            if($user['type'] != 1) {
+        //                /* $coin_log = M('coin_log')->where(array('uid' => $this->user['uid'], 'liqType' => 201))->find();
+        //                 if(empty($coin_log)){
+        //                     $this->error('还未充值，不能提现');
+        //                 }*/
+        //                $this->error('还未充值，不能提现');
+        //            }
+        //        }
         // }
         $para['username'] = $bank['username'];
         $para['account'] = $bank['account'];
@@ -426,14 +424,14 @@ class Recharge extends Controller
 
         Db::startTrans();
         $users = Members::where(['uid' => $user['uid']])->lock(true)->find();
-        if($users['coin'] < intval($get['money'])) {
+        if ($users['coin'] < intval($get['money'])) {
             Db::rollback();
             $this->error('你账户资金不足');
         }
         // 插入提现请求表
         $cash = new MemberCash();
         $cash::insert($para);
-        if($lastid = $cash->getLastInsID()) {
+        if ($lastid = $cash->getLastInsID()) {
             // 流动资金
             $return = $this->addCoin([
                 'coin' => 0 - $para['amount'],
@@ -444,9 +442,9 @@ class Recharge extends Controller
                 'extfield0' => $lastid,
             ]);
             // 提现金额分账记录
-            if(!empty($amountGroup)) {
+            if (!empty($amountGroup)) {
                 $cashSplit = [];
-                foreach($amountGroup as $amount) {
+                foreach ($amountGroup as $amount) {
                     $row['cashId'] = $lastid;
                     $row['uid'] = $this->user['uid'];
                     $row['actionTime'] = $this->time;
@@ -459,12 +457,12 @@ class Recharge extends Controller
                     $cashSplit[] = $row;
                 }
                 $splitRet = (new MemberCashSplit())->saveAll($cashSplit);
-                if(!$splitRet) {
+                if (!$splitRet) {
                     Db::rollback(); //不成功，则回滚
                     $this->error('提交提现请求出错');
                 }
             }
-            if($return) {
+            if ($return) {
                 Db::commit(); //成功则提交
                 $this->success('申请提现成功，提现将在10分钟内到账，如未到账请联系在线客服。');
             } else {
@@ -477,7 +475,7 @@ class Recharge extends Controller
     // 提现金额分账
     private function amountGroup($amount)
     {
-        if($amount < 50000) {
+        if ($amount < 50000) {
             return [];
         }
         $amountGroup = [];
@@ -500,32 +498,32 @@ class Recharge extends Controller
      */
     protected function addCoin($log)
     {
-        if(!isset($log['uid'])) {
+        if (!isset($log['uid'])) {
             $log['uid'] = $this->user['uid'];
         }
-        if(!isset($log['info'])) {
+        if (!isset($log['info'])) {
             $log['info'] = '';
         }
-        if(!isset($log['coin'])) {
+        if (!isset($log['coin'])) {
             $log['coin'] = 0;
         }
-        if(!isset($log['type'])) {
+        if (!isset($log['type'])) {
             $log['type'] = 0;
         }
-        if(!isset($log['fcoin'])) {
+        if (!isset($log['fcoin'])) {
             $log['fcoin'] = 0;
         }
-        if(!isset($log['extfield0'])) {
+        if (!isset($log['extfield0'])) {
             $log['extfield0'] = 0;
         }
-        if(!isset($log['extfield1'])) {
+        if (!isset($log['extfield1'])) {
             $log['extfield1'] = '';
         }
-        if(!isset($log['extfield2'])) {
+        if (!isset($log['extfield2'])) {
             $log['extfield2'] = '';
         }
         $sql = " call setCoin({$log['coin']}, {$log['fcoin']}, {$log['uid']}, {$log['liqType']}, {$log['type']}, '{$log['info']}', {$log['extfield0']}, '{$log['extfield1']}', '{$log['extfield2']}')";
-        if(Db::query($sql) === false) {
+        if (Db::query($sql) === false) {
             return false;
         } else {
             return true;
@@ -535,8 +533,8 @@ class Recharge extends Controller
 
     private function init()
     {
-        if($data = Params::select()) {
-            foreach($data as $var) {
+        if ($data = Params::select()) {
+            foreach ($data as $var) {
                 $this->settings[$var['name']] = $var['value'];
             }
         }
@@ -550,7 +548,7 @@ class Recharge extends Controller
         $data = $_GET;
         try {
             $user = Session::get('userData');
-            if($data['def-w-label'] == 12) {
+            if ($data['def-w-label'] == 12) {
 
                 $output = Pay::bankPay();
                 $order_no = Pay::$order_no;
@@ -575,8 +573,8 @@ class Recharge extends Controller
 
                 //支付宝  zfb_id
                 /*  $zfb_id = explode(' ',$radio[2]);
-                  $pay_code = $zfb_id[1];
-                  $zfb_id = $zfb_id[0];*/
+                $pay_code = $zfb_id[1];
+                $zfb_id = $zfb_id[0];*/
                 $this->assign('zfb_pay_id', '');
                 //pay_code
                 /*$al_code = explode('id=',$pay_code);
@@ -617,16 +615,16 @@ class Recharge extends Controller
                  * 除了sign_type参数，其他非空参数都要参与组装，组装顺序是按照a~z的顺序，下划线"_"优先于字母
                  */
                 $signStr = "";
-                if($bank_code != "") {
+                if ($bank_code != "") {
                     $signStr = $signStr . "bank_code=" . $bank_code . "&";
                 }
-                if($client_ip != "") {
+                if ($client_ip != "") {
                     $signStr = $signStr . "client_ip=" . $client_ip . "&";
                 }
-                if($extend_param != "") {
+                if ($extend_param != "") {
                     $signStr = $signStr . "extend_param=" . $extend_param . "&";
                 }
-                if($extra_return_param != "") {
+                if ($extra_return_param != "") {
                     $signStr = $signStr . "extra_return_param=" . $extra_return_param . "&";
                 }
                 $signStr = $signStr . "input_charset=" . $input_charset . "&";
@@ -636,27 +634,27 @@ class Recharge extends Controller
                 $signStr = $signStr . "order_amount=" . $order_amount . "&";
                 $signStr = $signStr . "order_no=" . $order_no . "&";
                 $signStr = $signStr . "order_time=" . $order_time . "&";
-                if($pay_type != "") {
+                if ($pay_type != "") {
                     $signStr = $signStr . "pay_type=" . $pay_type . "&";
                 }
-                if($product_code != "") {
+                if ($product_code != "") {
                     $signStr = $signStr . "product_code=" . $product_code . "&";
                 }
-                if($product_desc != "") {
+                if ($product_desc != "") {
                     $signStr = $signStr . "product_desc=" . $product_desc . "&";
                 }
                 $signStr = $signStr . "product_name=" . $product_name . "&";
-                if($product_num != "") {
+                if ($product_num != "") {
                     $signStr = $signStr . "product_num=" . $product_num . "&";
                 }
-                if($redo_flag != "") {
+                if ($redo_flag != "") {
                     $signStr = $signStr . "redo_flag=" . $redo_flag . "&";
                 }
-                if($return_url != "") {
+                if ($return_url != "") {
                     $signStr = $signStr . "return_url=" . $return_url . "&";
                 }
                 $signStr = $signStr . "service_type=" . $service_type;
-                if($show_url != "") {
+                if ($show_url != "") {
                     $signStr = $signStr . "&show_url=" . $show_url;
                 }
 
@@ -688,7 +686,7 @@ class Recharge extends Controller
                     'show_url' => $show_url,
                     'redo_flag' => $redo_flag,
                 ];
-                $url = $zf['tj_url'] . '?input_charset=UTF-8';//'https://pay.ddbill.com/gateway?input_charset=UTF-8';
+                $url = $zf['tj_url'] . '?input_charset=UTF-8'; //'https://pay.ddbill.com/gateway?input_charset=UTF-8';
                 //            dump($url);
 
                 $output = $this->getHtmlInfo($url, $parmas);
@@ -726,7 +724,6 @@ class Recharge extends Controller
                 $this->assign('zfb_pay_code', $al_pay_code);
             }
 
-
             //支付宝
 
             //预支付订单信息
@@ -738,7 +735,7 @@ class Recharge extends Controller
                 'actionIP' => $this->ip(true),
                 'actionTime' => time(),
                 'state' => '0',
-                'info' => '预支付'
+                'info' => '预支付',
             ];
             MemberRecharge::insert($rechage);
             header("Content-type: text/html; charset=utf-8");
@@ -799,7 +796,7 @@ class Recharge extends Controller
         curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
         curl_setopt($ch, CURLOPT_URL, $url);
 //        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Host:pay.ddbill.com','Origin:http://www.taapay.cn','Upgrade-Insecure-Requests:1','Content-Type:application/x-www-form-urlencoded;charset=UTF-8'));
-//        curl_setopt ($ch, CURLOPT_REFERER, 'http://www.taapay.cn/recharge/index.html');
+        //        curl_setopt ($ch, CURLOPT_REFERER, 'http://www.taapay.cn/recharge/index.html');
         curl_setopt($ch, CURLOPT_HTTPHEADER, ['Host:pay.ddbill.com', 'Origin:http://www.tcjkjb.top', 'Upgrade-Insecure-Requests:1', 'Content-Type:application/x-www-form-urlencoded;charset=UTF-8']);
         curl_setopt($ch, CURLOPT_REFERER, 'http://www.xfgkjd.cn/index.php?s=/home/recharge/index.html');
 //        curl_setopt ($ch, CURLOPT_REFERER, 'http://www.tcjkjb.top/index.php?s=/home/recharge/index.html');
@@ -826,14 +823,14 @@ class Recharge extends Controller
     final private function getRechId()
     {
         $rechargeId = $this->guid();
-        if(MemberRecharge::where(['rechargeId' => $rechargeId])->find()) {
+        if (MemberRecharge::where(['rechargeId' => $rechargeId])->find()) {
             $this->getRechId();
         } else {
             return $rechargeId;
         }
     }
 
-    function guid()
+    public function guid()
     {
         $chars = md5(uniqid(mt_rand(), true));
         $uuid = substr($chars, 0, 8);
@@ -864,7 +861,7 @@ class Recharge extends Controller
             'orderInfo' => '',
             'chlType' => '03',
         ];
-        if($pay_id == 12) {
+        if ($pay_id == 12) {
             $html = Pay::doPost('https://pay.dinpay.com/Pay', $params);
         } else {
             $html = $this->getHtmlInfo('https://pay.ddbill.com/Pay', $params);
@@ -902,10 +899,10 @@ class Recharge extends Controller
              * 除了sign_type DD4Sign参数，其他非空参数都要参与组装，组装顺序是按照a~z的顺序，下划线"_"优先于字母
              */
             $signStr = "";
-            if($bank_seq_no != "") {
+            if ($bank_seq_no != "") {
                 $signStr = $signStr . "bank_seq_no=" . $bank_seq_no . "&";
             }
-            if($extra_return_param != "") {
+            if ($extra_return_param != "") {
                 $signStr = $signStr . "extra_return_param=" . $extra_return_param . "&";
             }
             $signStr = $signStr . "interface_version=" . $interface_version . "&";
@@ -924,7 +921,7 @@ class Recharge extends Controller
             /**
              * 如果验签返回ture就响应SUCCESS,并处理业务逻辑，如果返回false，则终止业务逻辑。
              */
-            if($flag) {
+            if ($flag) {
                 $this->updateOrder($order_no, $order_time, $bank = '通道一');
             } else {
                 Log::record('充值失败,签名验证失败');
@@ -965,10 +962,10 @@ class Recharge extends Controller
          */
         $signStr = "";
         $signStr = $signStr . "client_ip=" . $client_ip . "&";
-        if($extend_param != "") {
+        if ($extend_param != "") {
             $signStr = $signStr . "extend_param=" . $extend_param . "&";
         }
-        if($extra_return_param != "") {
+        if ($extra_return_param != "") {
             $signStr = $signStr . "extra_return_param=" . $extra_return_param . "&";
         }
         $signStr = $signStr . "interface_version=" . $interface_version . "&";
@@ -977,14 +974,14 @@ class Recharge extends Controller
         $signStr = $signStr . "order_amount=" . $order_amount . "&";
         $signStr = $signStr . "order_no=" . $order_no . "&";
         $signStr = $signStr . "order_time=" . $order_time . "&";
-        if($product_code != "") {
+        if ($product_code != "") {
             $signStr = $signStr . "product_code=" . $product_code . "&";
         }
-        if($product_desc != "") {
+        if ($product_desc != "") {
             $signStr = $signStr . "product_desc=" . $product_desc . "&";
         }
         $signStr = $signStr . "product_name=" . $product_name . "&";
-        if($product_num != "") {
+        if ($product_num != "") {
             $signStr = $signStr . "product_num=" . $product_num . "&";
         }
         $signStr = $signStr . "service_type=" . $service_type;
@@ -1025,7 +1022,7 @@ class Recharge extends Controller
         curl_close($ch);
         Log::record($response);
         $arr = $this->getXml($response);
-        if(strtolower($arr['result_code']) != 0) {
+        if (strtolower($arr['result_code']) != 0) {
             $this->error($arr['resp_desc'] . $arr['result_code']);
         } else {
             //预支付订单信息
@@ -1037,7 +1034,7 @@ class Recharge extends Controller
                 'actionIP' => $this->ip(true),
                 'actionTime' => $this->time,
                 'state' => '0',
-                'info' => '预支付'
+                'info' => '预支付',
             ];
             MemberRecharge::insert($rechage);
             echo $response;
@@ -1057,14 +1054,14 @@ class Recharge extends Controller
             'resp_code' => 'fail',
             'resp_desc' => '获取失败',
         ];
-        foreach($vals as $key => $val) {
-            if(strtolower($val['tag']) == 'resp_code') {
+        foreach ($vals as $key => $val) {
+            if (strtolower($val['tag']) == 'resp_code') {
                 $rst['resp_code'] = $val['value'];
             }
-            if(strtolower($val['tag']) == 'result_code') {
+            if (strtolower($val['tag']) == 'result_code') {
                 $rst['result_code'] = $val['value'];
             }
-            if(strtolower($val['tag']) == 'resp_desc') {
+            if (strtolower($val['tag']) == 'resp_desc') {
                 $rst['resp_desc'] = $val['value'];
             }
         }
@@ -1077,11 +1074,11 @@ class Recharge extends Controller
         Log::record('回调充值更新开始' . $orderid);
         try {
             $rechage = MemberRecharge::where(['rechargeId' => $orderid, 'state' => 0])->find();
-            if(empty($rechage)) {
+            if (empty($rechage)) {
                 $this->createReqInfo('', $orderid, $bank, 1, '更新订单：充值失败，订单不存在,或者已经充值完成');
                 Log::record('充值失败，订单不存在,或者已经充值完成');
                 return;
-            } elseif(time() >= intval($rechage['actionTime']) + 1800) {
+            } elseif (time() >= intval($rechage['actionTime']) + 1800) {
                 $this->createReqInfo('订单已经失效', $orderid, $bank, 1, '充值失败，订单已经失效');
                 return;
             }
@@ -1091,12 +1088,12 @@ class Recharge extends Controller
             $data['state'] = 1;
             $data['info'] = $bank;
             $coin = Members::where(['uid' => $uid])->field('coin')->find();
-            if($coin) {
+            if ($coin) {
                 $member['coin'] = $coin['coin'] + $rechage['amount'];
                 Members::where(['uid' => $uid])->update($member);
             }
             $reg = MemberRecharge::where(['rechargeId' => $orderid])->update($data);
-            if($reg) {
+            if ($reg) {
                 Log::record($bank . '充值成功');
                 $this->createReqInfo(json_encode($data), $orderid, $bank, 0, '充值成功');
                 //$this->redirect('home/index/index', '充值成功，即将返回主页');
@@ -1116,42 +1113,42 @@ class Recharge extends Controller
     // 充值返利
     private function rechargeRebate($recharge, $data)
     {
-        if($recharge['isDelete'] != 0 || $data['state'] != 1 || $data['rechargeTime'] < 1) {
+        if ($recharge['isDelete'] != 0 || $data['state'] != 1 || $data['rechargeTime'] < 1) {
             Log::record('充值记录数据异常');
             return;
         }
 
         $params = Params::getParams();
-        if(!array_key_exists('ChongZhiFanLiKaiGuan', $params)) {
+        if (!array_key_exists('ChongZhiFanLiKaiGuan', $params)) {
             Log::record('参数设置错误：ChongZhiFanLiKaiGuan');
             return;
         }
-        if(!array_key_exists('ChongZhiFanLiBiLi', $params)) {
+        if (!array_key_exists('ChongZhiFanLiBiLi', $params)) {
             Log::record('参数设置错误：ChongZhiFanLiBiLi');
             return;
         }
-        if(!array_key_exists('ChongZhiFanLiStartDate', $params)) {
+        if (!array_key_exists('ChongZhiFanLiStartDate', $params)) {
             Log::record('参数设置错误：ChongZhiFanLiStartDate');
             return;
         }
-        if(!array_key_exists('ChongZhiFanLiEndDate', $params)) {
+        if (!array_key_exists('ChongZhiFanLiEndDate', $params)) {
             Log::record('参数设置错误：ChongZhiFanLiEndDate');
             return;
         }
-        if($params['ChongZhiFanLiKaiGuan'] != 1) {
+        if ($params['ChongZhiFanLiKaiGuan'] != 1) {
             Log::record('充值返利活动未开启');
             return;
         }
-        if($params['ChongZhiFanLiBiLi'] <= 0) {
+        if ($params['ChongZhiFanLiBiLi'] <= 0) {
             Log::record('充值返利比例设置错误：ChongZhiFanLiBiLi：' . $params['ChongZhiFanLiBiLi']);
             return;
         }
         $ratio = $params['ChongZhiFanLiBiLi'];
-        if(strtotime($params['ChongZhiFanLiStartDate']) > time()) {
+        if (strtotime($params['ChongZhiFanLiStartDate']) > time()) {
             Log::record('充值返利活动未开始,开始时间：' . $params['ChongZhiFanLiStartDate']);
             return;
         }
-        if(strtotime($params['ChongZhiFanLiEndDate']) < time()) {
+        if (strtotime($params['ChongZhiFanLiEndDate']) < time()) {
             Log::record('充值返利活动已结束，结束时间：' . $params['ChongZhiFanLiEndDate']);
             return;
         }
@@ -1160,10 +1157,10 @@ class Recharge extends Controller
             'uid' => $recharge['uid'],
             'type' => 4,
             'created_at' => $data['rechargeTime'],
-            'base_money' => $data['rechargeAmount']
+            'base_money' => $data['rechargeAmount'],
         ];
         $activityLogCnt = ActivityLog::where($actWhere)->count();
-        if($activityLogCnt > 0) {
+        if ($activityLogCnt > 0) {
             Log::record('充值返利已经计算完成');
             return;
         }
@@ -1175,15 +1172,15 @@ class Recharge extends Controller
             'money' => $actMoney,
             'base_money' => $data['rechargeAmount'],
             'created_at' => $data['rechargeTime'],
-            'remark' => '充值返利'
+            'remark' => '充值返利',
         ];
         $ret = ActivityLog::create($actLogData);
-        if(!$ret) {
+        if (!$ret) {
             Log::record('充值返利活动记录写入失败');
             return;
         }
         $sql = " call setCoin({$actMoney},0,{$recharge['uid']},57,0,'充值返利',0,'','')";
-        if(Db::query($sql) === false) {
+        if (Db::query($sql) === false) {
             Log::record('充值返利活动资金账边记录处理失败');
         }
     }
@@ -1199,7 +1196,7 @@ class Recharge extends Controller
                 'orderid' => $orderid,
                 'form' => $form,
                 'status' => $status,
-                'note' => $note
+                'note' => $note,
             ];
             Rebackinfo::insert($data);
         } catch (\Exception $e) {
@@ -1211,8 +1208,8 @@ class Recharge extends Controller
     private function qrcode($url = 'http://www.jihexian.com/', $level = 3, $size = 4)
     {
         Vendor('phpqrcode.phpqrcode');
-        $errorCorrectionLevel = intval($level);//容错级别
-        $matrixPointSize = intval($size);//生成图片大小
+        $errorCorrectionLevel = intval($level); //容错级别
+        $matrixPointSize = intval($size); //生成图片大小
         include_once 'zhifu/phpqrcode.php';
         //生成二维码图片
         //echo $_SERVER['REQUEST_URI'];
@@ -1223,7 +1220,7 @@ class Recharge extends Controller
     }
 
     //泽圣
-    function zesheng($data)
+    public function zesheng($data)
     {
         try {
             $this->init();
@@ -1248,7 +1245,7 @@ class Recharge extends Controller
                 "amount",
                 "orderCreateTime",
                 "noticeUrl",
-                "isSupportCredit"
+                "isSupportCredit",
             ];
             $map1 = [
                 "merchantCode" => $merchantCode,
@@ -1256,21 +1253,21 @@ class Recharge extends Controller
                 "amount" => $amount,
                 "orderCreateTime" => $orderCreateTime,
                 "noticeUrl" => $noticeUrl,
-                "isSupportCredit" => $isSupportCredit
+                "isSupportCredit" => $isSupportCredit,
             ];
             $sign0 = $this->zesheng_sign_mac($sign_fields1, $map1, $md5Key);
             // 将小写字母转成大写字母
             $sign1 = strtoupper($sign0);
             // 使用方法
             /* $service_type = $_POST['payLinks'];
-             $payChannel = 21;
-             $title = "微信";
-             if($service_type=='weixin'){
-                 $payChannel = 21;
-             }else if($service_type=='alipay'){
-                 $payChannel = 30;
-                 $title = "支付宝";
-             }*/
+            $payChannel = 21;
+            $title = "微信";
+            if($service_type=='weixin'){
+            $payChannel = 21;
+            }else if($service_type=='alipay'){
+            $payChannel = 30;
+            $title = "支付宝";
+            }*/
             $title = "QQ钱包扫码";
             $post_data1 = [
                 'model' => 'QR_CODE',
@@ -1287,13 +1284,13 @@ class Recharge extends Controller
                 'goodsMark' => 'goodsMark',
                 'isSupportCredit' => $isSupportCredit,
                 'ip' => $mch_create_ip,
-                'payChannel' => 31,//21微信，30-支付宝 31 -QQ钱包
-                'sign' => $sign1
+                'payChannel' => 31, //21微信，30-支付宝 31 -QQ钱包
+                'sign' => $sign1,
             ];
             $res = $this->zesheng_send_post('http://payment.zsagepay.com/scan/entrance.do', $post_data1);
             $arr_res = json_decode($res, true);
 
-            if($arr_res['code'] == 0) {
+            if ($arr_res['code'] == 0) {
                 //预支付订单信息
                 $rechage = [
                     'uid' => $this->user['uid'],
@@ -1327,7 +1324,7 @@ class Recharge extends Controller
     }
 
     /*发送数据  */
-    function zesheng_send_post($url, $post_data)
+    public function zesheng_send_post($url, $post_data)
     {
         $postdata = http_build_query($post_data);
         $options = [
@@ -1335,8 +1332,8 @@ class Recharge extends Controller
                 'method' => 'POST',
                 'header' => 'Content-type:application/x-www-form-urlencoded',
                 'content' => $postdata,
-                'timeout' => 15 * 60
-            ] // 超时时间（单位:s）
+                'timeout' => 15 * 60,
+            ], // 超时时间（单位:s）
 
         ];
         $context = stream_context_create($options);
@@ -1345,12 +1342,12 @@ class Recharge extends Controller
     }
 
     /* 构建签名原文 */
-    function zesheng_sign_src($sign_fields, $map, $md5_key)
+    public function zesheng_sign_src($sign_fields, $map, $md5_key)
     {
         // 排序-字段顺序
         sort($sign_fields);
         $sign_src = "";
-        foreach($sign_fields as $field) {
+        foreach ($sign_fields as $field) {
             $sign_src .= $field . "=" . $map[$field] . "&";
         }
         $sign_src .= "KEY=" . $md5_key;
@@ -1361,13 +1358,13 @@ class Recharge extends Controller
     /**
      * 计算md5签名  返回的是小写的，后面需转大写
      */
-    function zesheng_sign_mac($sign_fields, $map, $md5_key)
+    public function zesheng_sign_mac($sign_fields, $map, $md5_key)
     {
         $sign_src = $this->zesheng_sign_src($sign_fields, $map, $md5_key);
         return md5($sign_src);
     }
 
-    function postZesheng_server()
+    public function postZesheng_server()
     {
         try {
             $zf = Paybusiness::where(['id' => 7])->find();
@@ -1381,7 +1378,7 @@ class Recharge extends Controller
                 "instructCode",
                 "outOrderId",
                 "transTime",
-                "totalAmount"
+                "totalAmount",
             ];
             //获取异步通知数据，并赋值给数组
             $out_trade_no = $_POST["outOrderId"];
@@ -1391,17 +1388,17 @@ class Recharge extends Controller
                 "instructCode" => $_POST["instructCode"],
                 "outOrderId" => $out_trade_no,
                 "transTime" => $_POST["transTime"],
-                "totalAmount" => $_POST["totalAmount"]
+                "totalAmount" => $_POST["totalAmount"],
             ];
             $sign0 = $this->zesheng_sign_mac($sign_fields1, $map, $md5Key);
             // 将小写字母转成大写字母
             $sign1 = strtoupper($sign0);
             //验签
-            if($sign === $sign1) {
+            if ($sign === $sign1) {
                 echo "{'code':'00'}";
                 $rechage = MemberRecharge::where(['rechargeId' => $out_trade_no, 'state' => 0])
                     ->find();
-                if(empty($rechage)) {
+                if (empty($rechage)) {
                     Log::record($business_alias . '充值失败，订单不存在,或者已经充值完成');
                     exit('fail');
                     return;
@@ -1421,7 +1418,7 @@ class Recharge extends Controller
     }
 
     /*20170809 end*/
-    function postZesheng_wy()
+    public function postZesheng_wy()
     {
         try {
             $this->init();
@@ -1441,14 +1438,14 @@ class Recharge extends Controller
                 "outOrderId",
                 "totalAmount",
                 "orderCreateTime",
-                "lastPayTime"
+                "lastPayTime",
             ];
             $map = [
                 "merchantCode" => $merchantCode,
                 "outOrderId" => $outOrderId,
                 "totalAmount" => $totalAmount,
                 "orderCreateTime" => $orderCreateTime,
-                "lastPayTime" => $lastPayTime
+                "lastPayTime" => $lastPayTime,
             ];
             $sign = $this->zesheng_sign_mac($sign_fields, $map, $md5Key);
             // 将小写字母转成大写字母
@@ -1515,7 +1512,7 @@ class Recharge extends Controller
             'actionIP' => $this->ip(true),
             'actionTime' => time(),
             'state' => '0',
-            'info' => '预支付'
+            'info' => '预支付',
         ];
         MemberRecharge::insert($rechage);
         echo $this->get_code($order, []);
@@ -1539,7 +1536,7 @@ class Recharge extends Controller
             'actionIP' => $this->ip(true),
             'actionTime' => time(),
             'state' => '0',
-            'info' => '预支付'
+            'info' => '预支付',
         ];
         MemberRecharge::insert($rechage);
         $param = $this->get_code($order, []);
@@ -1561,7 +1558,7 @@ class Recharge extends Controller
      * xmlbackmsg_url 后台接口类银盛支付网关地址
      * filemsg_url 文件接口类银盛支付网关地址
      */
-    function ysepay()
+    public function ysepay()
     {
         $this->param = [];
         $this->param['seller_id'] = "yuheng";
@@ -1583,17 +1580,17 @@ class Recharge extends Controller
      * @param array $order 订单信息
      * @param array $payment 支付方式信息
      */
-    function get_code($order, $payment)
+    public function get_code($order, $payment)
     {
         $myParams = [];
         $myParams['business_code'] = '01000009';
         $myParams['charset'] = 'utf-8';
         $myParams['method'] = 'ysepay.online.directpay.createbyuser';
-        $myParams['notify_url'] = 'http://' . $_SERVER['HTTP_HOST'] . '/recharge/respond_notify';//'http://www.xxxx.com/respond_notify.php?code=ysepay';
-        $myParams['noticebg_url'] = 'http://' . $_SERVER['HTTP_HOST'] . '/recharge/respond_notify';;
+        $myParams['notify_url'] = 'http://' . $_SERVER['HTTP_HOST'] . '/recharge/respond_notify'; //'http://www.xxxx.com/respond_notify.php?code=ysepay';
+        $myParams['noticebg_url'] = 'http://' . $_SERVER['HTTP_HOST'] . '/recharge/respond_notify';
         $myParams['out_trade_no'] = $order['order_sn'];
         $myParams['partner_id'] = 'yuheng';
-        $myParams['return_url'] = 'http://' . $_SERVER['HTTP_HOST'];//'http://www.xxxx.com/respond.php?code=ysepay';
+        $myParams['return_url'] = 'http://' . $_SERVER['HTTP_HOST']; //'http://www.xxxx.com/respond.php?code=ysepay';
         $myParams['seller_id'] = 'yuheng';
         $myParams['seller_name'] = '上海愈衡实业有限公司';
         $myParams['sign_type'] = 'RSA';
@@ -1605,7 +1602,7 @@ class Recharge extends Controller
         ksort($myParams);
         $data = $myParams;
         $signStr = "";
-        foreach($myParams as $key => $val) {
+        foreach ($myParams as $key => $val) {
             $signStr .= $key . '=' . $val . '&';
         }
         $signStr = trim($signStr, '&');
@@ -1614,7 +1611,7 @@ class Recharge extends Controller
         $action = "https://openapi.ysepay.com/gateway.do";
         /*$def_url = "<br /><form name='yshen' style='text-align:center;' method=post action='".$action."' target='_blank'>";
         while ($param = each($myParams)) {
-            $def_url .= "<input type = 'hidden' id='" . $param['key'] . "' name='" . $param['key'] . "' value='" . $param['value'] . "' />";
+        $def_url .= "<input type = 'hidden' id='" . $param['key'] . "' name='" . $param['key'] . "' value='" . $param['value'] . "' />";
         }
         $def_url .= "<input type=submit style='display: none'>";
         $def_url .= "</form>";
@@ -1631,11 +1628,10 @@ class Recharge extends Controller
         return $rtn_ar;
     }
 
-
     /**
      * 同步响应操作
      */
-    function respond()
+    public function respond()
     {
         Log::record('yinshen=respond' . json_encode($_POST));
         //返回的数据处理
@@ -1644,19 +1640,22 @@ class Recharge extends Controller
         unset($result['sign']);
         ksort($result);
         $url = "";
-        foreach($result as $key => $val) {
-            if($val) $url .= $key . '=' . $val . '&';
+        foreach ($result as $key => $val) {
+            if ($val) {
+                $url .= $key . '=' . $val . '&';
+            }
+
         }
         $data = trim($url, '&');
         /*写入日志*/
 //        file_put_contents(ROOT_PATH."z.txt", "\r\n", FILE_APPEND);
-//        file_put_contents(ROOT_PATH."z.txt", "return|data:".$data."|sign:".$sign, FILE_APPEND);
+        //        file_put_contents(ROOT_PATH."z.txt", "return|data:".$data."|sign:".$sign, FILE_APPEND);
         /* 验证签名 */
-        if($this->sign_check($sign, $data) != true) {
+        if ($this->sign_check($sign, $data) != true) {
             echo "验证签名失败！";
             exit;
         }
-        if($result['trade_status'] == 'TRADE_SUCCESS') {
+        if ($result['trade_status'] == 'TRADE_SUCCESS') {
             /* 改变订单状态 */
             Log::record('改变订单状态');
 //            order_paid($result['out_trade_no']);
@@ -1681,20 +1680,23 @@ class Recharge extends Controller
         unset($result['sign']);
         ksort($result);
         $url = "";
-        foreach($result as $key => $val) {
+        foreach ($result as $key => $val) {
             /* 验证签名 */
-            if($val) $url .= $key . '=' . $val . '&';
+            if ($val) {
+                $url .= $key . '=' . $val . '&';
+            }
+
         }
         $data = trim($url, '&');
         /*写入日志*/
         file_put_contents(ROOT_PATH . "z.txt", "\r\n", FILE_APPEND);
         file_put_contents(ROOT_PATH . "z.txt", "notify|data:" . $data . "|sign:" . $sign, FILE_APPEND);
         /* 验证签名 */
-        if($this->sign_check($sign, $data) != true) {
+        if ($this->sign_check($sign, $data) != true) {
             echo "fail";
             exit;
         } else {
-            if($result['trade_status'] == 'TRADE_SUCCESS') {
+            if ($result['trade_status'] == 'TRADE_SUCCESS') {
                 $this->updateOrder($result['out_trade_no'], $result['account_date'], $bank = 'yinshen');
 //                order_paid($result['out_trade_no']);
             } else {
@@ -1715,7 +1717,7 @@ class Recharge extends Controller
      *输入参数：yyyy-MM-dd HH:mm:ss
      *输出参数：yyyyMMddHHmmss
      */
-    function datetime2string($datetime)
+    public function datetime2string($datetime)
     {
 
         return preg_replace('/\-*\:*\s*/', '', $datetime);
@@ -1729,7 +1731,7 @@ class Recharge extends Controller
      * @return success
      */
 
-    function sign_check($sign, $data)
+    public function sign_check($sign, $data)
     {
 
         $publickeyFile = $this->param['businessgatecerpath']; //公钥
@@ -1748,15 +1750,15 @@ class Recharge extends Controller
      * @return check
      * @return msg
      */
-    function sign_encrypt($input)
+    public function sign_encrypt($input)
     {
         $return = ['success' => 0, 'msg' => '', 'check' => ''];
         $pkcs12 = file_get_contents($this->param['pfxpath']); //私钥
-        if(openssl_pkcs12_read($pkcs12, $certs, $this->param['pfxpassword'])) {
+        if (openssl_pkcs12_read($pkcs12, $certs, $this->param['pfxpassword'])) {
             $privateKey = $certs['pkey'];
             $publicKey = $certs['cert'];
             $signedMsg = "";
-            if(openssl_sign($input['data'], $signedMsg, $privateKey, OPENSSL_ALGO_SHA1)) {
+            if (openssl_sign($input['data'], $signedMsg, $privateKey, OPENSSL_ALGO_SHA1)) {
                 $return['success'] = 1;
                 $return['check'] = base64_encode($signedMsg);
                 $return['msg'] = base64_encode($input['data']);
@@ -1786,10 +1788,10 @@ class Recharge extends Controller
             'actionIP' => $this->ip(true),
             'actionTime' => time(),
             'state' => '0',
-            'info' => 'yb预支付'
+            'info' => 'yb预支付',
         ];
         MemberRecharge::insert($rechage);
-        if($data['is_kjzf']) {
+        if ($data['is_kjzf']) {
             $order['userNameHF'] = $data['userNameHF'];
             $order['userAcctNo'] = $data['userAcctNo'];
             $order['userPhoneHF'] = $data['userPhoneHF'];
@@ -1819,7 +1821,7 @@ class Recharge extends Controller
             'actionIP' => $this->ip(true),
             'actionTime' => time(),
             'state' => '0',
-            'info' => 'yb-qrcode预支付'
+            'info' => 'yb-qrcode预支付',
         ];
         MemberRecharge::insert($rechage);
         $param = $this->get_yb_code($order, [], $myParams);
@@ -1871,7 +1873,7 @@ class Recharge extends Controller
         $tranDateTime = date('YmdHis');
         $sysTraceNum = $tranDateTime . floor(microtime() * 1000); //请求流水号，需要保持唯一
         $userId = ''; //易通支付会员ID代码，可为空
-        if(!empty($orderInfo)) {
+        if (!empty($orderInfo)) {
             $orderInfo = strToHex($orderInfo);
         }
         $pay = Paybusiness::where(['id' => $order['fl_id']])->find();
@@ -1898,7 +1900,7 @@ class Recharge extends Controller
         $myParams['currencyType'] = $currencyType;
         $myParams['merURL'] = $merUrl;
         $myParams['orderInfo'] = $orderInfo;
-        $myParams['bankId'] = $order['pay_type'] == 'onlinepay' ? '' : '888880600002900';//主扫：888880600002900 被扫：888880601002900
+        $myParams['bankId'] = $order['pay_type'] == 'onlinepay' ? '' : '888880600002900'; //主扫：888880600002900 被扫：888880601002900
         $myParams['stlmId'] = '';
         $myParams['userId'] = '';
         $myParams['userIp'] = '';
@@ -1908,8 +1910,8 @@ class Recharge extends Controller
         $myParams['reserver3'] = '';
         $myParams['reserver4'] = '';
 //        $myParams['payPage']     = '';//扫码
-//        $myParams['authCode']     = '';//扫码
-//        $myParams['channel']     = 'wxMicro';//扫码
+        //        $myParams['authCode']     = '';//扫码
+        //        $myParams['channel']     = 'wxMicro';//扫码
         $myParams['signValue'] = $signValue;
         $rtn_ar = [];
         while ($obj = each($myParams)) {
@@ -1955,7 +1957,7 @@ class Recharge extends Controller
                 . $bankSeq . "|" . $tranDateTime . "|" . $payMentTime . "|" . $settleDate . "|" . $currencyType . "|" . $orderInfo . "|" . $userId;
             $pay = Paybusiness::where(['id' => 10])->find();
             $verifySign = $this->verify_Sign($txnString, $signValue, $pay['business_key']);
-            if($respCode == '0000' && $verifySign) {
+            if ($respCode == '0000' && $verifySign) {
                 Log::record('yibao-验证通过');
                 $this->updateOrder($merOrderNum, strtotime($payMentTime), $bank = 'yibao');
                 exit('success');
