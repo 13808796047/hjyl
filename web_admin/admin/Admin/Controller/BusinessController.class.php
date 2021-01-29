@@ -89,7 +89,7 @@ class BusinessController extends AdminController
         $total_cash = $Model->table('__MEMBERS__ m ')
             ->join('LEFT JOIN __MEMBER_CASH__ c ON m.uid=c.uid')
             ->where('c.state=0 AND c.isDelete=0 AND m.is_test=0' . $userWhere . $timeWhere)->sum('c.amount');
-        dump($total_cash);
+        dump($total_cash);die;
         $this->assign('total_cash', $total_cash);
         $request = (array) I('request.');
         $page = new \COM\Page($total, $listRows, $request);
