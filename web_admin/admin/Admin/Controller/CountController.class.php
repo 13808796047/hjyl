@@ -9,8 +9,6 @@
 
 namespace Admin\Controller;
 
-use User\Api\UserApi as UserApi;
-
 /**
  * 后台首页控制器
  * @author 麦当苗儿 <zuojiazi@vip.qq.com>
@@ -18,7 +16,7 @@ use User\Api\UserApi as UserApi;
 class CountController extends AdminController
 {
 
-    static protected $allow = ['verify'];
+    protected static $allow = ['verify'];
 
     /**
      * 后台首页
@@ -26,9 +24,9 @@ class CountController extends AdminController
      */
     public function index()
     {
-//		$dataMonth = M('count')->where()->field('left(date,7) monthName,sum(betAmount) betAmount,sum(betAmount-zjAmount) winAmount')->
-//        group('monthName')->order('monthName desc')->select();
-//			$this->assign('dataMonth',$dataMonth);
+//        $dataMonth = M('count')->where()->field('left(date,7) monthName,sum(betAmount) betAmount,sum(betAmount-zjAmount) winAmount')->
+        //        group('monthName')->order('monthName desc')->select();
+        //            $this->assign('dataMonth',$dataMonth);
 
         $todayData = $this->getDateCount();
         $todayData['zyk'] = $todayData['betAmount'] - $todayData['zjAmount'] - $todayData['fanDianAmount'] - $todayData['brokerageAmount'];
@@ -59,7 +57,7 @@ class CountController extends AdminController
         $adminUidArr = !$admin ? [] : array_column($admin, 'uid');
         $onlineMap['isOnLine'] = ['EQ', 1];
         $onlineMap['accessTime'] = ['GT', time() - 900];
-        if(!empty($adminUidArr)) {
+        if (!empty($adminUidArr)) {
             $onlineMap['uid'] = ['NOT IN', $adminUidArr];
         }
         $onlineUserTotal = M('member_session')->where($onlineMap)->count();
@@ -67,7 +65,7 @@ class CountController extends AdminController
         $admin = M('members')->where('admin=1 or is_test=1')->field('uid')->select();
         $adminUidArr = !$admin ? [] : array_column($admin, 'uid');
         $onlineMap['isOnLine'] = ['EQ', 1];
-        if(!empty($adminUidArr)) {
+        if (!empty($adminUidArr)) {
             $onlineMap['uid'] = ['NOT IN', $adminUidArr];
         }
         $onlineUserTotalNotTest = M('member_session')->where($onlineMap)->count();
@@ -92,19 +90,19 @@ class CountController extends AdminController
      */
     private function getDateCount($date = null)
     {
-        if(!$date) {
+        if (!$date) {
             $date = strtotime(date("Y-m-d", time()));
         } else {
             $date = strtotime($date);
         }
         $fromTime = I('fromTime');
         $toTime = I('toTime');
-        if($fromTime) {
+        if ($fromTime) {
             $fromTime = strtotime($fromTime);
         } else {
             $fromTime = $date;
         }
-        if($toTime) {
+        if ($toTime) {
             $toTime = strtotime($toTime);
         } else {
             $toTime = $fromTime;
@@ -116,17 +114,17 @@ class CountController extends AdminController
         $map['lotteryNo'] = array('neq','');
         $map['isDelete'] = 0;
         if (!empty($tUidArr)){
-            $map['uid'] = ['NOT IN',$tUidArr];
+        $map['uid'] = ['NOT IN',$tUidArr];
         }
         $all = M('bets')->where($map)->field('IFNULL(count(*),0) betCount,IFNULL(sum(beiShu*mode*actionNum*(fpEnable+1)),0) betAmount,IFNULL(sum(bonus),0) zjAmount')->find();
 
         // 返点金额
         $mapF=array();
-//		$map['liqType'] = array('between',array(2,3));
+        //        $map['liqType'] = array('between',array(2,3));
         $mapF['liqType'] = array('EQ',2);
         $mapF['actionTime'] = array('between',array($date,$date+24*3600));
         if (!empty($tUidArr)){
-            $mapF['uid'] = ['NOT IN',$tUidArr];
+        $mapF['uid'] = ['NOT IN',$tUidArr];
         }
         $all = array_merge($all,M('coin_log')->where($mapF)->field('IFNULL(sum(coin),0) fanDianAmount')->find());*/
 
@@ -150,35 +148,36 @@ class CountController extends AdminController
                 '_string' => 'r.state=11',
             ])->sum('r.amount');
 
-        $cashAmount = M('member_cash')->where(['actionTime' => ['between', [$fromTime, $toTime]], 'state' => 4])->sum('amount');
+        $cashAmount = M('member_cash')->where(['actionTime' => ['between', [$fromTime, $toTime]], 'state' => 0])->sum('amount');
         $all['rechargeAmount'] = $rechargeAmount;
         $all['cashAmount'] = $cashAmount;
         return $all;
     }
 
-    public final function datelist()
+    final public function datelist()
     {
-        if(IS_POST)
+        if (IS_POST) {
             $para = I('post.');
-        else
+        } else {
             $para = I('get.');
+        }
 
-        if(isset($para['user_type']) && $para['user_type'] == 1) {
+        if (isset($para['user_type']) && $para['user_type'] == 1) {
             $whereInt = " and parentId=1";
         } else {
             $whereInt = "";
         }
         // 时间限制
-        if($para['fromTime'] && $para['toTime']) {
+        if ($para['fromTime'] && $para['toTime']) {
             $fromTime = strtotime($para['fromTime'] . " 00:00:00");
             $toTime = strtotime($para['toTime'] . " 23:59:59");
 
             $timeWhere = "and l.actionTime between $fromTime and $toTime";
-        } elseif($para['fromTime']) {
+        } elseif ($para['fromTime']) {
             $fromTime = strtotime($para['fromTime']);
 
             $timeWhere = "and l.actionTime >= $fromTime";
-        } elseif($para['toTime']) {
+        } elseif ($para['toTime']) {
             $toTime = strtotime($para['toTime']) + 24 * 3600;
 
             $timeWhere = "and l.actionTime < $toTime";
@@ -190,13 +189,13 @@ class CountController extends AdminController
 
         // 用户限制
         $amountTitle = '全部总结';
-        if($para['parentId'] = intval($para['parentId'])) {
+        if ($para['parentId'] = intval($para['parentId'])) {
             // 用户ID限制
             $userWhere = "and u.parentId={$para['parentId']}";
             $uid = $para['parentId'];
             $userWhere2 = "and concat(',', u.parents, ',') like '%,$uid,%'";
         }
-        if($para['uid'] = intval($para['uid'])) {
+        if ($para['uid'] = intval($para['uid'])) {
             // 用户ID限制
             $user = M('members')->where(['uid' => $para['uid']])->find();
             $uParentId = $user['parentId'];
@@ -204,7 +203,7 @@ class CountController extends AdminController
             $userWhere2 = "and concat(',', u.parents, ',') like '%,$uParentId,%'";
         }
 
-        if($para['username']) {
+        if ($para['username']) {
             $_username = trim($para['username']);
             // 用户名限制
             $userWhere = "and u.username='{$_username}'";
@@ -228,7 +227,7 @@ class CountController extends AdminController
         sum(case when l.liqType=1 then l.coin else 0 end) as rechargeAmount,
         sum(case when l.liqType in (50,51,52,53) then l.coin else 0 end) as brokerageAmount
         from gygy_coin_log l where 1 $timeWhere AND l.uid NOT IN $tUidStr group by l.uid) hh where hh.uid=u.uid $whereInt and 1 $userWhere group by u.uid order by (hh.zjAmount-hh.betAmount+hh.fanDianAmount) desc";*/
-        $sql = "select u.username, u.coin, u.uid, u.parentId, hh.fanDianAmount,hh.betAmount, hh.zjAmount,hh.cashAmount,hh.rechargeAmount,hh.brokerageAmount  
+        $sql = "select u.username, u.coin, u.uid, u.parentId, hh.fanDianAmount,hh.betAmount, hh.zjAmount,hh.cashAmount,hh.rechargeAmount,hh.brokerageAmount
 		from gygy_members u ,
 		(select l.uid,
 		sum(case when l.liqType = 2 then l.coin else 0 end) as fanDianAmount,
@@ -236,9 +235,9 @@ class CountController extends AdminController
 		sum(case when l.liqType = 6 then l.coin else 0 end) as zjAmount,
 		0-sum(case when l.liqType = 107 then l.fcoin else 0 end) as cashAmount,
 		sum(case when l.liqType = 1 then l.coin else 0 end) as rechargeAmount,
-		sum(case when l.liqType in (50,51,52,53) then l.coin else 0 end) as brokerageAmount 
+		sum(case when l.liqType in (50,51,52,53) then l.coin else 0 end) as brokerageAmount
 		from gygy_coin_log l join gygy_members AS mm on l.uid=mm.uid where 1 and mm.username='{$username}' and 0 = (SELECT COUNT(1) FROM gygy_coin_log WHERE extfield0=l.extfield0 AND liqType IN (5,7)) $timeWhere/* AND l.uid NOT IN $tUidStr*/ group by l.uid limit 1) hh where hh.uid=u.uid $whereInt and 1 $userWhere group by u.uid order by (hh.zjAmount-hh.betAmount+hh.fanDianAmount) desc";
-        if(isset($para['user_type']) && $para['user_type'] == 1) {
+        if (isset($para['user_type']) && $para['user_type'] == 1) {
             $sql = "SELECT
                         t.username,t.uid,
                         sum(coin) as coin,
@@ -267,15 +266,15 @@ class CountController extends AdminController
         $list = $Model->query($sql);
 
         /*if(!$list) {
-            //$uParentId2=$this->getValue("select parentId from {$this->prename}members where uid=?",$para['parentId']);
-            //$user = M('members')->where(array('uid'=>$para['parentId']))->find();
-            $list=array(array(
-                'parentId'=>0,
-                'uid'=>$para['parentId'],
-                'username'=>'没有下级了'
-                ));
-            $noChildren=true;
-            //dump($noChildren);
+        //$uParentId2=$this->getValue("select parentId from {$this->prename}members where uid=?",$para['parentId']);
+        //$user = M('members')->where(array('uid'=>$para['parentId']))->find();
+        $list=array(array(
+        'parentId'=>0,
+        'uid'=>$para['parentId'],
+        'username'=>'没有下级了'
+        ));
+        $noChildren=true;
+        //dump($noChildren);
         }*/
         //dump($list);
 
@@ -293,47 +292,47 @@ class CountController extends AdminController
         from gygy_coin_log l where 1 $timeWhere AND l.uid NOT IN $tUidStr group by l.uid) hh where hh.uid=u.uid $whereInt and 1 $userWhere2 group by u.uid) j";*/
 
         /*$sql2="select sum(j.fanDianAmount) as fanDianAmount2, sum(j.betAmount) as betAmount2,sum(j.zjAmount) as zjAmount2,
-		sum(j.cashAmount) as cashAmount2,sum(j.rechargeAmount) as rechargeAmount2,sum(j.brokerageAmount) as brokerageAmount2,sum(coin) as coin2 from
-		(select u.username, u.coin, u.uid, u.parentId, hh.fanDianAmount,hh.betAmount, hh.zjAmount,hh.cashAmount,hh.rechargeAmount,hh.brokerageAmount  
-		from gygy_members u ,
-		(select l.uid,
-		sum(case when l.liqType = 2 then l.coin else 0 end) as fanDianAmount,
-		0-sum(case when l.liqType = 101 then l.coin else 0 end) as betAmount,
-		sum(case when l.liqType = 6 then l.coin else 0 end) as zjAmount,
-		0-sum(case when l.liqType = 107 then l.fcoin else 0 end) as cashAmount,
-		sum(case when l.liqType = 1 then l.coin else 0 end) as rechargeAmount,
-		sum(case when l.liqType in (50,51,52,53) then l.coin else 0 end) as brokerageAmount 
-		from gygy_coin_log l where 1  and 0 = (SELECT COUNT(1) FROM gygy_coin_log WHERE extfield0=l.extfield0 AND liqType IN (5,7)) $timeWhere group by l.uid limit 1) hh where hh.uid=u.uid $whereInt and 1 $userWhere2 group by u.uid) j";
+        sum(j.cashAmount) as cashAmount2,sum(j.rechargeAmount) as rechargeAmount2,sum(j.brokerageAmount) as brokerageAmount2,sum(coin) as coin2 from
+        (select u.username, u.coin, u.uid, u.parentId, hh.fanDianAmount,hh.betAmount, hh.zjAmount,hh.cashAmount,hh.rechargeAmount,hh.brokerageAmount
+        from gygy_members u ,
+        (select l.uid,
+        sum(case when l.liqType = 2 then l.coin else 0 end) as fanDianAmount,
+        0-sum(case when l.liqType = 101 then l.coin else 0 end) as betAmount,
+        sum(case when l.liqType = 6 then l.coin else 0 end) as zjAmount,
+        0-sum(case when l.liqType = 107 then l.fcoin else 0 end) as cashAmount,
+        sum(case when l.liqType = 1 then l.coin else 0 end) as rechargeAmount,
+        sum(case when l.liqType in (50,51,52,53) then l.coin else 0 end) as brokerageAmount
+        from gygy_coin_log l where 1  and 0 = (SELECT COUNT(1) FROM gygy_coin_log WHERE extfield0=l.extfield0 AND liqType IN (5,7)) $timeWhere group by l.uid limit 1) hh where hh.uid=u.uid $whereInt and 1 $userWhere2 group by u.uid) j";
         if (isset($para['user_type']) && $para['user_type'] == 1){
-		    $sql2 = "SELECT
-                        sum(coin) as coin2,
-                        sum(case when liqType = 2 then lcoin else 0 end) as fanDianAmount2,
-                        0-sum(case when liqType = 101 then lcoin else 0 end) as betAmount2,
-                        sum(case when liqType = 6 then lcoin else 0 end) as zjAmount2,
-                        0-sum(case when liqType = 107 then lfcoin else 0 end) as cashAmount2,
-                        sum(case when liqType = 1 then lcoin else 0 end) as rechargeAmount2,
-                        sum(case when liqType in (50,51,52,53) then coin else 0 end) as brokerageAmount2
-                    FROM
-                        (
-                            SELECT
-                                a.uid,a.username,a.parentId, l.coin AS lcoin,l.fcoin AS lfcoin,l.liqType
-                            FROM
-                                gygy_members AS a
-                            LEFT JOIN gygy_coin_log AS l ON a.uid = l.uid
-                            WHERE a.sb = 0 $timeWhere AND 0 = (SELECT COUNT(1) FROM gygy_coin_log WHERE extfield0=l.extfield0 AND liqType IN (5,7)) limit 1
-                        ) t
-                    LEFT JOIN gygy_members AS t1 ON FIND_IN_SET(t.uid, t1.parents)
-                    WHERE
-                        t.parentId = 1";
+        $sql2 = "SELECT
+        sum(coin) as coin2,
+        sum(case when liqType = 2 then lcoin else 0 end) as fanDianAmount2,
+        0-sum(case when liqType = 101 then lcoin else 0 end) as betAmount2,
+        sum(case when liqType = 6 then lcoin else 0 end) as zjAmount2,
+        0-sum(case when liqType = 107 then lfcoin else 0 end) as cashAmount2,
+        sum(case when liqType = 1 then lcoin else 0 end) as rechargeAmount2,
+        sum(case when liqType in (50,51,52,53) then coin else 0 end) as brokerageAmount2
+        FROM
+        (
+        SELECT
+        a.uid,a.username,a.parentId, l.coin AS lcoin,l.fcoin AS lfcoin,l.liqType
+        FROM
+        gygy_members AS a
+        LEFT JOIN gygy_coin_log AS l ON a.uid = l.uid
+        WHERE a.sb = 0 $timeWhere AND 0 = (SELECT COUNT(1) FROM gygy_coin_log WHERE extfield0=l.extfield0 AND liqType IN (5,7)) limit 1
+        ) t
+        LEFT JOIN gygy_members AS t1 ON FIND_IN_SET(t.uid, t1.parents)
+        WHERE
+        t.parentId = 1";
         }
-		$all=$Model->query($sql2);
-		$all = $all[0];
-		$this->assign('all',$all);*/
+        $all=$Model->query($sql2);
+        $all = $all[0];
+        $this->assign('all',$all);*/
 
         $this->recordList($list);
         $this->assign('para', $para);
 
-//		$this->assign('noChildren',$noChildren);
+//        $this->assign('noChildren',$noChildren);
 
         $this->meta_title = '综合统计';
         $this->display();
@@ -341,7 +340,7 @@ class CountController extends AdminController
 
     public function date_i_type()
     {
-        if(I('post.searchTime')) {
+        if (I('post.searchTime')) {
             $fromTime = strtotime(I('post.searchTime'));
             $toTime = strtotime(I('post.searchTime')) + 24 * 3600 - 1;
         } else {
@@ -350,9 +349,9 @@ class CountController extends AdminController
         }
 
         $map['actionTime'] = ['between', [$fromTime, $toTime]];
-        if(I('isTest') == 2) {
+        if (I('isTest') == 2) {
             $map['istest'] = ['EQ', 0];
-        } elseif(I('isTest') == 3) {
+        } elseif (I('isTest') == 3) {
             $map['istest'] = ['EQ', 1];
         }
         $map1 = $map;
@@ -365,9 +364,9 @@ class CountController extends AdminController
 
         $map['liqType'] = 2;
         $fanDianAmount = M('coin_log')->where($map)->field('sum(coin) as fd,type')->group('type')->select();
-        foreach($rs as $k => $v) {
-            foreach($fanDianAmount as $value) {
-                if($v['type'] == $value['type']) {
+        foreach ($rs as $k => $v) {
+            foreach ($fanDianAmount as $value) {
+                if ($v['type'] == $value['type']) {
                     $rs[$k]['fd'] = $value['fd'];
                 }
             }
@@ -397,10 +396,10 @@ class CountController extends AdminController
         /*$sql="
         select d.*,tz-fd-fj yk
         from(
-            select actionNo qs, sum(fanDianAmount) fd, sum(actionNum*mode*beishu) tz, sum(bonus) fj
-            from gygy_bets
-            where (type=$type and actionTime between $fromTime and $toTime AND istest=0 AND isDelete=0)
-            group by actionNo
+        select actionNo qs, sum(fanDianAmount) fd, sum(actionNum*mode*beishu) tz, sum(bonus) fj
+        from gygy_bets
+        where (type=$type and actionTime between $fromTime and $toTime AND istest=0 AND isDelete=0)
+        group by actionNo
         ) d
         order by d.qs desc
         ";
@@ -408,8 +407,8 @@ class CountController extends AdminController
         $this->recordList($rs);*/
 
         $pageIndex = I('p') > 0 ? I('p') : 1;
-        if(isset($request['r'])) {
-            $listRows = (int)I('r');
+        if (isset($request['r'])) {
+            $listRows = (int) I('r');
         } else {
             $listRows = C('LIST_ROWS') > 0 ? C('LIST_ROWS') : 10;
         }
@@ -422,13 +421,13 @@ class CountController extends AdminController
         $field = 'actionNo qs,sum(fanDianAmount) fd,sum(actionNum * MODE * beishu) tz,sum(bonus) fj,sum(actionNum * MODE * beishu) - sum(fanDianAmount) - sum(bonus) yk';
         $lists = $Model->table('__BETS__')->where($map)->field($field)->group('actionNo')->order('actionNo DESC')->page($pageIndex, $listRows)->select();
 
-        $request = (array)I('request.');
+        $request = (array) I('request.');
         $total = $Model->table('__BETS__')->where($map)->group('actionNo')->count();
         $total = $total > 0 ? $total : 0;
         $page = new \COM\Page($total, $listRows, $request);
         $p = $page->show();
         $this->assign('_list', $lists);
-        if($total > $listRows) {
+        if ($total > $listRows) {
             $this->assign('_page', $p ? $p : '');
         }
 
