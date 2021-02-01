@@ -306,7 +306,6 @@ class Recharge extends Controller
 
     private function confirmMoney($user, $get)
     {
-        dump($user);
         if ($user['is_test'] == 1) {
             $this->error('此账号无此权限');
         }
@@ -382,7 +381,7 @@ class Recharge extends Controller
         }*//////近2天来的消费判断结束
         $memberBankId = $get['bankinfo'];
         $bank = MemberBank::where(['uid' => $this->user['uid'], 'id' => $memberBankId])->find();
-
+        dump($bank);die;
         if (empty($bank)) {
             $this->error('未绑定银行卡无法提现');
         }
