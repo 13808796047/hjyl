@@ -205,7 +205,7 @@ class Recharge extends Controller
             $member = Members::where(['uid' => $user['uid']])->find();
             if (trim($secpass) && $member['coinPassword'] == think_ucenter_md5($secpass, UC_AUTH_KEY)) {
                 $bank = MemberBank::where(['uid' => $user['uid']])->select();
-
+                dump($bank);
                 foreach ($bank as $key => $item) {
                     $bank[$key]['account'] = '***************' . substr($item['account'], strlen($item['account']) - 4, 4);
                 }
