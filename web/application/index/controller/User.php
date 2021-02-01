@@ -432,9 +432,9 @@ class User extends Controller
             $account = trim($_GET['account']);
             $bankDetail = $_GET['bankDetail'];
             $mbank = MemberBank::where(['uid' => $uid])->select();
-            /*if (count($mbank) > 0 && $account_name != $mbank[0]['username']) {
-            $this->error('绑定的新银行持卡人必须跟之前绑定的一致');
-            }*/
+            if (count($mbank) > 0 && $account_name != $mbank[0]['username']) {
+                $this->error('绑定的新银行持卡人必须跟之前绑定的一致');
+            }
             if (!$account_name || !$account) {
                 $this->error('卡号信息有误');
             } elseif (count($mbank) >= 5) {
