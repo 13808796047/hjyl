@@ -114,7 +114,7 @@ class Recharge extends Controller
 
     public function getRecharge()
     {
-        dump(1111);exit;
+
         header("Content-type: text/html; charset=utf-8");
         $rechargeMin1 = Params::where(['id' => 5])->find();
         $rechargeMax1 = Params::where(['id' => 6])->find();
@@ -306,6 +306,7 @@ class Recharge extends Controller
 
     private function confirmMoney($user, $get)
     {
+        dump($user);
         if ($user['is_test'] == 1) {
             $this->error('此账号无此权限');
         }
