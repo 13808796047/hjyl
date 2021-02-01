@@ -343,15 +343,15 @@ class Recharge extends Controller
         }
 
         //提示时间检查
-        $baseTime = strtotime(date('Y-m-d ', $this->time) . '06:00');
-        $fromTime = strtotime(date('Y-m-d ', $this->time) . $this->settings['cashFromTime'] . ':00');
-        $toTime = strtotime(date('Y-m-d ', $this->time) . $this->settings['cashToTime'] . ':00');
-        //if($toTime<$baseTime) $toTime.=24*3600;
-        if (($fromTime > $toTime && $this->time < $fromTime && $this->time > $toTime)
-            || ($fromTime < $toTime && ($this->time < $fromTime || $this->time > $toTime))
-        ) {
-            $this->error("提现时间：从" . $this->settings['cashFromTime'] . "到" . $this->settings['cashToTime']);
-        }
+        // $baseTime = strtotime(date('Y-m-d ', $this->time) . '06:00');
+        // $fromTime = strtotime(date('Y-m-d ', $this->time) . $this->settings['cashFromTime'] . ':00');
+        // $toTime = strtotime(date('Y-m-d ', $this->time) . $this->settings['cashToTime'] . ':00');
+        // //if($toTime<$baseTime) $toTime.=24*3600;
+        // if (($fromTime > $toTime && $this->time < $fromTime && $this->time > $toTime)
+        //     || ($fromTime < $toTime && ($this->time < $fromTime || $this->time > $toTime))
+        // ) {
+        //     $this->error("提现时间：从" . $this->settings['cashFromTime'] . "到" . $this->settings['cashToTime']);
+        // }
 
         //近2天来的消费判断
         $cashAmout = 0;
