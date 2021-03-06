@@ -24,6 +24,7 @@
                 </thead>
                 <tbody>
                 {volist name="list" id="vo"}
+                {if condition="$vo.bankId!=0"}
   			      <tr>
                     <td>{$vo.username}</td>
                     <td>{$vo.bankDetail}</td>
@@ -31,6 +32,7 @@
                     <td>{$vo.actionTime|date='Y-m-d H:i:m',###}</td>
                     <td></td>
                   </tr>
+                  {/if}
                 {/volist}
   			      </tbody>
               <tfoot>
@@ -62,8 +64,8 @@
                 <thead>
                   <tr>
                     <th>用户名</th>
-                    <th>绑定银行</th>
-                    <th>卡号</th>
+                    <th>USDT平台</th>
+                    <th>USDT账号</th>
                     <th>绑定时间</th>
                     <th>操作</th>
                   </tr>
