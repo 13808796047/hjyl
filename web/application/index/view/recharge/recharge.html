@@ -106,13 +106,14 @@
     </div>
     <script src="__JS__/layer/layui/layui.js"></script>
     <script>
+            var intDiff = parseInt(0); //倒计时总秒数量
+        var from = "{$rechargeFromTime}";
+        var to = "{$rechargeToTime}";
       layui.use(["jquery", "form", "layer"], function () {
         var form = layui.form(),
           $ = layui.jquery,
           layer = layui.layer;
-        var intDiff = parseInt(0); //倒计时总秒数量
-        var from = "{$rechargeFromTime}";
-        var to = "{$rechargeToTime}";
+    
         //监听提交
         form.on("submit(rechargeForm)", function (data) {
           layer.confirm(
