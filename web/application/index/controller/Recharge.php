@@ -111,7 +111,7 @@ class Recharge extends Controller
             return json(["code" => 0, "msg" => "失败", "data" => '']);
         }
         // $this->user
-        return json(["code" => 1, "msg" => "成功", "data" => 300]);
+        return json(["code" => 1, "msg" => "充值成功", "data" => 300]);
     }
 
     public function getRecharge()
