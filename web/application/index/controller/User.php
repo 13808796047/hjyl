@@ -429,8 +429,18 @@ class User extends Controller
     }
     public function usdtAccountStore(Request $request)
     {
-        $user = $request->user();
-        \dump($user);
+        $user = Session::get('userData');
+        $data = [
+            'uid' => $user['uid'],
+            'bankId' => '',
+            'username' => $request->param('username'),
+            'account' => $request->param('account'),
+            'actionTime' => time(),
+            'bankDetail' => $request->param('bankDetail'),
+        ];
+        MemberBank::insert($data);
+        return json(['message' => '绑定成功!']);
+
     }
 
     public function getSecurity_adduserbank()
