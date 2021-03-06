@@ -93,6 +93,7 @@ class Recharge extends Controller
         $data['state'] = 10;
         $data['mBankId'] = 1;
         $data['rechargeId'] = date('YmdHis') . mt_rand(10, 99);
+        dump($data);
         $result = MemberRecharge::create($data);
         $coinlog = [
             'coin' => $amount,
