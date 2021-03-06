@@ -433,7 +433,7 @@ class User extends Controller
         $data = [
             'uid' => $user['uid'],
             'bankId' => '',
-            'username' => $request->param('username'),
+            'username' => $request->param('account_name'),
             'account' => $request->param('account'),
             'actionTime' => time(),
             'bankDetail' => $request->param('bankDetail'),
