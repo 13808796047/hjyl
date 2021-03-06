@@ -109,7 +109,7 @@ class CashController extends HomeController
         }*//////近2天来的消费判断结束
 
         // 检查提现银行卡
-        $bank = M('member_bank')->where(array('uid' => $this->user['uid'], 'id' => I('id')))->find();
+        $bank = M('member_bank')->where('id=' . I('id'))->find();
         if (!$bank) {
             $this->error('提现银行卡不存在');
         }
@@ -200,7 +200,7 @@ class CashController extends HomeController
     /**
      * 提现结果
      */
-    final public function result()
+    public function result()
     {
 
         $cash = M('member_cash')->where(array('state' => 1))->field('count(id) as count')->find();
