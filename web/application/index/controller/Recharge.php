@@ -86,8 +86,8 @@ class Recharge extends Controller
         ];
 
         $data['uid'] = $this->user['uid'];
-        $data['coin'] = 0;
-        $data['fcoin'] = 0;
+        $data['coin'] = 0.00;
+        $data['fcoin'] = 0.00;
         $data['username'] = $this->user['username'];
         $data['info'] = '银行卡充值';
         $data['state'] = 10;
