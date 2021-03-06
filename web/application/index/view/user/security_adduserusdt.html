@@ -71,7 +71,7 @@
         form.on("submit(usdtForm)", function (data) {
           $.ajax({
             url: url("user/usdtAccountStore"),
-            type: "POST",
+            type: "post",
             data: data.field,
             beforeSend: function () {
               this.layerIndex = layer.load(0, { shade: [0.5, "#393D49"] });
