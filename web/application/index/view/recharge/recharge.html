@@ -34,8 +34,16 @@
                 <div class="layui-input-block">
                   <input
                     type="text"
-                    placeholder="请输入开户行"
-                    autocomplete="off"
+                    class="layui-input"
+                    value="{$bank.banklist.name}"
+                    readonly
+                  />
+                </div>
+              </div>
+                <label class="layui-form-label">持卡人：</label>
+                <div class="layui-input-block">
+                  <input
+                    type="text"
                     class="layui-input"
                     value="{$bank.banklist.name}"
                     readonly
