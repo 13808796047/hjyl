@@ -66,6 +66,7 @@
     <script>
       layui.use(["jquery", "form"], function () {
         var form = layui.form(),
+          layer = layui.layer,
           $ = layui.jquery;
 
         //监听提交
@@ -78,12 +79,9 @@
               this.layerIndex = layer.load(0, { shade: [0.5, "#393D49"] });
             },
             success: function (data) {
-              if (data.status == "error") {
-                layer.msg(data.msg, { icon: 5 }); //失败的表情
-                return;
-              } else {
+              if (data.code == 200) {
                 layer.msg(
-                  data.msg,
+                  data.message,
                   {
                     icon: 6, //成功的表情
                     time: 1000, //1秒关闭（如果不配置，默认是3秒）
@@ -92,6 +90,9 @@
                     location.reload();
                   }
                 );
+              } else {
+                layer.msg(data.message, { icon: 5 }); //失败的表情
+                return;
               }
             },
             complete: function () {
