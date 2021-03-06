@@ -64,9 +64,10 @@
 
     <script src="__JS__/layer/layui/layui.js"></script>
     <script>
-      layui.use("form", function () {
-        var form = layui.form();
-        form.render();
+      layui.use(["jquery", "form"], function () {
+        var form = layui.form(),
+          $ = layui.jquery;
+
         //监听提交
         form.on("submit(usdtForm)", function (data) {
           console.log($.ajax, "fsad");
