@@ -64,10 +64,9 @@
 
     <script src="__JS__/layer/layui/layui.js"></script>
     <script>
-      //一般直接写在一个js文件中
-      layui.use(["layer", "form"], function () {
-        var layer = layui.layer,
-          form = layui.form;
+      layui.use("form", function () {
+        var form = layui.form();
+
         //监听提交
         form.on("submit(formDemo)", function (data) {
           layer.msg(JSON.stringify(data.field));
