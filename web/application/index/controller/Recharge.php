@@ -94,10 +94,11 @@ class Recharge extends Controller
         $data['mBankId'] = 1;
         $data['rechargeId'] = date('YmdHis') . mt_rand(10, 99);
         $result = MemberRecharge::create($data);
-        \dump($result);
+
         $coinlog = [
             'coin' => $amount,
             'uid' => $this->user['uid'],
+            'fcoin' => 0.00,
             'liqType' => 106,
             'info' => "银行卡充值",
             'extfield0' => $result['rechargeId'],
