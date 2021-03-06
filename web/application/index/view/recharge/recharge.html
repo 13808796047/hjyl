@@ -124,7 +124,7 @@
               $.ajax({
                 url: "/user/recharge",
                 type: "post",
-                data: {'amount':data.field.account},
+                data: data.field,
                 beforeSend: function () {
                   this.layerIndex = layer.load(0, {
                     shade: [0.5, "#393D49"],
