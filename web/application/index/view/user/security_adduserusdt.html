@@ -79,8 +79,7 @@
               this.layerIndex = layer.load(0, { shade: [0.5, "#393D49"] });
             },
             success: function (data) {
-              if (data.code == 200) {
-                console.log(data);
+              if (data.code == 201) {
                 layer.msg(
                   data.message,
                   {

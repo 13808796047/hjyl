@@ -439,7 +439,7 @@ class User extends Controller
             'bankDetail' => $request->param('bankDetail'),
         ];
         MemberBank::insert($data);
-        return json(['message' => '绑定成功!']);
+        return json(['code' => 201, 'message' => '绑定成功!']);
 
     }
 
