@@ -71,7 +71,7 @@
         //监听提交
         form.on("submit(usdtForm)", function (data) {
           $.ajax({
-            url: "/user/usdtAccountStore.html",
+            url: url("user/usdt-account"),
             type: "post",
             data: data.field,
             beforeSend: function () {

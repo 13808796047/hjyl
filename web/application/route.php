@@ -62,3 +62,6 @@ Route::any('account/oneCheck', 'index/Account/oneCheck');
 Route::get('set', 'mobile/Set/set');
 Route::get('getqq', 'index/Wufencai/getQQData');
 Route::get('gettxssc', 'index/Wufencai/gettxssc');
+
+// usdt
+Route::post('user/usdt-account', 'index/User/usdtAccountStore');
