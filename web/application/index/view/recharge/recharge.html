@@ -144,7 +144,7 @@
                       }
                     );
                   } else {
-                    layer.msg(data.msg, { icon: 5 }, function () {
+                    layer.msg(data.msg, { icon: 5,time:2000 }, function () {
                       timeCountDown(data.data, $("#form-submit"));
                     }); //失败的表情
                   }
