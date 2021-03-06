@@ -87,12 +87,11 @@
                   <button
                     class="layui-btn"
                     lay-submit
+                    id="form-submit"
                     lay-filter="rechargeForm"
+                    {$bank?'':'disabled'} style="cursor: {$bank?'':'not-allowed'};background:{$bank?'':'#999'}; color:#fff;" 
                   >
                     立即提交
-                  </button>
-                  <button type="reset" class="layui-btn layui-btn-primary">
-                    重置
                   </button>
                 </div>
                 <div class="layui-form-mid layui-word-aux">
@@ -132,7 +131,7 @@
                   });
                 },
                 success: function (data) {
-                  if (data.code == 200) {
+                  if (data.code == 2) {
                     layer.msg(
                       data.message,
                       {
@@ -140,12 +139,13 @@
                         time: 1000, //1秒关闭（如果不配置，默认是3秒）
                       },
                       function () {
-                        location.reload();
+                        timeCountDown(data.data, $("#form-submit"));
                       }
                     );
                   } else {
-                    layer.msg(data.message, { icon: 5 }); //失败的表情
-                    return;
+                    layer.msg(data.message, { icon: 5 }, function () {
+                      timeCountDown(data.data, $("#form-submit"));
+                    }); //失败的表情
                   }
                 },
                 complete: function () {
@@ -158,6 +158,35 @@
           return false;
         });
       });
+      //时间倒计时
+
+      // 倒计时intDiff倒计时总秒数
+
+      function timeCountDown(intDiff, showElement) {
+        var timer = setInterval(function () {
+          let day = 0;
+          let hour = 0;
+          let minute = 0;
+          let second = 0;
+          if (intDiff > 0) {
+            day = Math.floor(intDiff / (60 * 60 * 24));
+            hour = Math.floor(intDiff / (60 * 60)) - day * 24;
+            minute = Math.floor(intDiff / 60) - day * 24 * 60 - hour * 60;
+            second = Math.floor(intDiff) - day * 24 * 60 * 60 - hour * 60 * 60;
+          }
+          if (minute <= 9) minute = "0" + minute;
+          if (second <= 9) second = "0" + second;
+          showElement.attr("disabled", "disabled");
+          showElement.html(`${second}秒`);
+
+          intDiff--;
+          if (intDiff < 0) {
+            showElement.removeAttr("disabled");
+            showElement.html("提交");
+            clearInterval(timer);
+          }
+        }, 1000);
+      }
     </script>
   </body>
 </html>
