@@ -84,7 +84,11 @@
               </div>
               <div class="layui-form-item">
                 <div class="layui-input-inline">
-                  <button class="layui-btn" lay-submit lay-filter="submitBtn">
+                  <button
+                    class="layui-btn"
+                    lay-submit
+                    lay-filter="rechargeForm"
+                  >
                     立即提交
                   </button>
                   <button type="reset" class="layui-btn layui-btn-primary">
@@ -103,16 +107,15 @@
     </div>
     <script src="__JS__/layer/layui/layui.js"></script>
     <script>
-      layui.use(["jquery", "form", "element", "layer"], function () {
+      layui.use(["jquery", "form", "layer"], function () {
         var form = layui.form(),
-          layer = layui.layer,
-          element = layui.element,
-          $ = layui.jquery;
+          $ = layui.jquery,
+          layer = layui.layer;
         var intDiff = parseInt(0); //倒计时总秒数量
         var from = "{$rechargeFromTime}";
         var to = "{$rechargeToTime}";
         //监听提交
-        form.on("submit(submitBtn)", function (data) {
+        form.on("submit(rechargeForm)", function (data) {
           alert(1111);
           layer.confirm(
             "充值时间 " + from + " 到 " + to + "您确认提交吗？",
