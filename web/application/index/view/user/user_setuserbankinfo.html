@@ -70,6 +70,7 @@
                 </thead>
                 <tbody>
                 {volist name="list" id="vo"}
+                {if condition="$vo.bankId==0"}
   			      <tr>
                     <td>{$vo.username}</td>
                     <td>{$vo.bankDetail}</td>
@@ -77,6 +78,7 @@
                     <td>{$vo.actionTime|date='Y-m-d H:i:m',###}</td>
                     <td></td>
                   </tr>
+                  {/if}
                 {/volist}
   			      </tbody>
               <tfoot>
