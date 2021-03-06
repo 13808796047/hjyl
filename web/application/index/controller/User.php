@@ -20,6 +20,7 @@ use app\index\model\Type;
 use think\Controller;
 use think\Db;
 use think\Log;
+use think\Request;
 use think\Session;
 use think\View;
 
@@ -425,6 +426,11 @@ class User extends Controller
     public function getSecurity_adduserusdt()
     {
         return view('user/security_adduserusdt');
+    }
+    public function usdtAccountStore(Request $request)
+    {
+        $user = $request->user();
+        \dump($user);
     }
 
     public function getSecurity_adduserbank()

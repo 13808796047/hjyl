@@ -14,7 +14,7 @@
         <div class="layui-input-block">
           <input
             type="text"
-            name="title"
+            name="bankDetail"
             required
             lay-verify="required"
             placeholder="请输入USDT平台名称"
@@ -27,8 +27,8 @@
         <label class="layui-form-label">钱包地址:</label>
         <div class="layui-input-block">
           <input
-            type="password"
-            name="password"
+            type="text"
+            name="account"
             required
             lay-verify="required"
             placeholder="USDT账号"
@@ -43,7 +43,7 @@
         <div class="layui-input-block">
           <input
             type="text"
-            name="title"
+            name="account_name"
             required
             lay-verify="required"
             placeholder="请输入开户人姓名"
@@ -54,7 +54,7 @@
       </div>
       <div class="layui-form-item">
         <div class="layui-input-block">
-          <button class="layui-btn" lay-submit lay-filter="formDemo">
+          <button class="layui-btn" lay-submit lay-filter="usdtForm">
             立即提交
           </button>
           <button type="reset" class="layui-btn layui-btn-primary">重置</button>
@@ -68,8 +68,35 @@
         var form = layui.form();
 
         //监听提交
-        form.on("submit(formDemo)", function (data) {
-          layer.msg(JSON.stringify(data.field));
+        form.on("submit(usdtForm)", function (data) {
+          $.ajax({
+            url: url("user/usdtAccountStore"),
+            type: "POST",
+            data: data.field,
+            beforeSend: function () {
+              this.layerIndex = layer.load(0, { shade: [0.5, "#393D49"] });
+            },
+            success: function (data) {
+              if (data.status == "error") {
+                layer.msg(data.msg, { icon: 5 }); //失败的表情
+                return;
+              } else {
+                layer.msg(
+                  data.msg,
+                  {
+                    icon: 6, //成功的表情
+                    time: 1000, //1秒关闭（如果不配置，默认是3秒）
+                  },
+                  function () {
+                    location.reload();
+                  }
+                );
+              }
+            },
+            complete: function () {
+              layer.close(this.layerIndex);
+            },
+          });
           return false;
         });
       });
