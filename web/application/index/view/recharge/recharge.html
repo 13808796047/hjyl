@@ -134,7 +134,7 @@
                 success: function (data) {
                   if (data.code == 1) {
                     layer.msg(
-                      data.message,
+                      data.msg,
                       {
                         icon: 6, //成功的表情
                         time: 1000, //1秒关闭（如果不配置，默认是3秒）
@@ -144,7 +144,7 @@
                       }
                     );
                   } else {
-                    layer.msg(data.message, { icon: 5 }, function () {
+                    layer.msg(data.msg, { icon: 5 }, function () {
                       timeCountDown(data.data, $("#form-submit"));
                     }); //失败的表情
                   }
