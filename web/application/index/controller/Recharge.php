@@ -72,9 +72,9 @@ class Recharge extends Controller
         //            return json(["code" => 3, "msg" => "充值时间：从" . $this->settings['rechargeFromTime'] . "到" . $this->settings['rechargeToTime'], "data" => '']);
         ////            $this->error("提现时间：从" . $this->settings['rechargeFromTime'] . "到" . $this->settings['rechargeToTime']);
         //        }
-        // if ($count > 5) {
-        //     return json(["code" => 2, "msg" => "充值次数太多，请30分钟后再操作!", "data" => 1800]);
-        // }
+        if ($count > 5) {
+            return json(["code" => 2, "msg" => "充值次数太多，请30分钟后再操作!", "data" => 1800]);
+        }
         $amount = input('amount');
         $data = [
             'amount' => $amount,
