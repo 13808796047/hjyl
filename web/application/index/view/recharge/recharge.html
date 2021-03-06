@@ -36,8 +36,8 @@
                     type="text"
                     class="layui-input"
                     value="{$bank.banklist.name}"
+                    readonly
                   />
-                  {$bank.banklist.name}
                 </div>
               </div>
               <div class="layui-form-item">
@@ -47,10 +47,35 @@
                     type="text"
                     class="layui-input"
                     value="{$bank.username}"
+                    readonly
                   />
                 </div>
               </div>
-
+              <div class="layui-form-item">
+                <label class="layui-form-label">银行卡号：</label>
+                <div class="layui-input-block">
+                  <input
+                    type="text"
+                    class="layui-input"
+                    value="{$bank.account}"
+                    readonly
+                  />
+                </div>
+              </div>
+              <div class="layui-form-item">
+                <label class="layui-form-label">充值金额：</label>
+                <div class="layui-input-block">
+                  <input
+                    name="amount"
+                    type="number"
+                    min="0.01"
+                    required
+                    value="0.00"
+                    class="layui-input"
+                    readonly
+                  />
+                </div>
+              </div>
               <div class="layui-form-item">
                 <div class="layui-input-block">
                   <button class="layui-btn" lay-submit lay-filter="formDemo">
