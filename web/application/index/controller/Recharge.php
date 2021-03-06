@@ -94,6 +94,7 @@ class Recharge extends Controller
         $data['mBankId'] = 1;
         $data['rechargeId'] = date('YmdHis') . mt_rand(10, 99);
         $result = MemberRecharge::create($data);
+        \dump($result);
         $coinlog = [
             'coin' => $amount,
             'uid' => $this->user['uid'],
