@@ -84,7 +84,7 @@
               </div>
               <div class="layui-form-item">
                 <div class="layui-input-inline">
-                  <button class="layui-btn" lay-submit lay-filter="formDemo">
+                  <button class="layui-btn" lay-submit lay-filter="submitBtn">
                     立即提交
                   </button>
                   <button type="reset" class="layui-btn layui-btn-primary">
@@ -112,7 +112,7 @@
         var from = "{$rechargeFromTime}";
         var to = "{$rechargeToTime}";
         //监听提交
-        form.on("submit(usdtForm)", function (data) {
+        form.on("submit(submitBtn)", function (data) {
           layer.confirm(
             "'充值时间 " + from + " 到 " + to + "您确认提交吗？",
             {
