@@ -8,22 +8,37 @@
     <link rel="stylesheet" href="__JS__/layer/layui/css/layui.css" />
   </head>
   <body>
-    <div class="layui-tab">
-      <ul class="layui-tab-title">
-        <li class="layui-this">银行卡充值</li>
-        <li>USDT充值</li>
-      </ul>
-      <div class="layui-tab-content">
-        <div class="layui-tab-item layui-show">
-          1. 高度默认自适应，也可以随意固宽。
-          <br />2. Tab进行了响应式处理，所以无需担心数量多少。
+    <div class="ys-content" style="height: 800px; background: #e0e0e0">
+      <h2
+        style="
+          color: #584204;
+          background-color: #a39a7d;
+          font-size: 18px;
+          font-weight: 700;
+          padding: 15px 30px;
+          margin-bottom: 50px;
+        "
+        class="header"
+      >
+        账号充值
+      </h2>
+      <div class="layui-tab">
+        <ul class="layui-tab-title">
+          <li class="layui-this">银行卡充值</li>
+          <li>USDT充值</li>
+        </ul>
+        <div class="layui-tab-content">
+          <div class="layui-tab-item layui-show">
+            1. 高度默认自适应，也可以随意固宽。
+            <br />2. Tab进行了响应式处理，所以无需担心数量多少。
+          </div>
+          <div class="layui-tab-item">内容2</div>
         </div>
-        <div class="layui-tab-item">内容2</div>
       </div>
     </div>
     <script src="__JS__/layer/layui/layui.js"></script>
     <script>
-      layui.use(["jquery", "form"], function () {
+      layui.use(["jquery", "form", "element"], function () {
         var form = layui.form(),
           layer = layui.layer,
           element = layui.element,
