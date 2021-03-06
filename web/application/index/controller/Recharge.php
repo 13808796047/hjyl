@@ -101,7 +101,7 @@ class Recharge extends Controller
             'fcoin' => 0.00,
             'liqType' => 106,
             'info' => "银行卡充值",
-            'extfield0' => $result['rechargeId'],
+            'extfield0' => $result['id'],
             'userCoin' => $this->user['coin'],
             'actionIP' => $this->ip(true),
             'actionTime' => time(),
