@@ -421,6 +421,12 @@ class User extends Controller
         return $list;
     }
 
+    // usdt
+    public function getSecurity_adduserusdt()
+    {
+        return view('user/security_adduserusdt');
+    }
+
     public function getSecurity_adduserbank()
     {
         $this->assign('list', $this->bankList());
