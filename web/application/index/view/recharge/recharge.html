@@ -1,486 +1,67 @@
-﻿<html>
-
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <!-- <script type="text/javascript" src="http://upccry1.3smao.net/sy2/js/jquery-1.9.1.js"></script> -->
-  <!--  <script type="text/javascript" src="http://upccry1.3smao.net/sy/js/sy/dialogUI/jquery-1.7.min.js"></script>
-  <script type="text/javascript" src="http://upccry1.3smao.net/sy/js/sy/dialogUI/jquery.dialogUI.js"></script>
-  <script type="text/javascript" src="http://upccry1.3smao.net/sy/js/sy/dialogUI/jquery.dragdrop.js"></script>
-  <script type="text/javascript" src="http://upccry1.3smao.net/sy2/todo/js/common/model/details.js" ></script>
-  <script type="text/javascript" src="http://upccry1.3smao.net/sy/js/sy/main.js"></script>
-  <script type="text/javascript" src="http://upccry1.3smao.net/sy2/js/jquery.md5.js"></script>-->
-  <!-- <script type="text/javascript" src="__JS__/jquery-1.9.1.js"></script>
-  <link href="__CSS__/dialogUI/dialogUI.css" media="all" type="text/css" rel="stylesheet">
-  <link rel="stylesheet" href="__CSS__/default_content.min.css">
-  <link rel="stylesheet" href="__CSS__/recharge/recharge.css">
-  <script src="__JS__/main.min.js"></script>
-  <script type="text/javascript" src="__JS__/common/model/details.js"></script>
-  <script type="text/javascript" src="__JS__/select2.min.js"></script>
-  <link rel="stylesheet" type="text/css" href="__CSS__/default_content.min.css" />
-  <link rel="stylesheet" type="text/css" href="__CSS__/select2.min.css" /> -->
-  <script type="text/javascript" src="__JS__/jquery-1.9.1.js"></script>
-  <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.5.3/css/bootstrap.min.css" rel="stylesheet">
-<script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.5.3/js/bootstrap.min.js"></script>
-  <script src="https://cdn.bootcdn.net/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
-  <!-- <link rel="stylesheet" type="text/css" href="__STATIC__/layui/css/layui.css" />
-  <script src="__STATIC__/layui/layui.all.js"></script> -->
-  <script>
-      // function changeIframeHeight(height) {
-      //     var parentDOM = $(parent.document);
-      //     var grandparentDOM = $(parent.parent.document);
-      //     if (parentDOM.find("#mainFrame_menu").length > 0) {
-      //         parentDOM.find("#mainFrame_menu").height(height);
-      //         grandparentDOM.find("#mainFrame").height($(parent.document).find(".ys-content").outerHeight(true));
-      //     } else {
-      //         parentDOM.find("#mainFrame").height($(parent.document).find(".ys-content").outerHeight(true));
-      //     }
-      // }
-      //
-      // (function ($) {
-      //     $(document).ready(function () {
-      //         $("form[name='updateform']").submit(function () {
-      //             if ($("#secpass").val() > '') ;
-      //             //$("#secpass").val($.md5($("#secpass").val()));
-      //         });
-      //         changeIframeHeight($(".ys-content").outerHeight(true) + 200);
-      //     });
-      // })(jQuery);
-      // var old_line = "{$old_line}";
-      // var old_pay = 1;
-      // // var min = {
-      // //     $bank_check.min
-      // // };
-      // // var max = {
-      // //     $bank_check.max
-      // // };
-      // var fl_id = {
-      //     $def_id
-      // };
-      //
-      // function chooseLine(id) {
-      //     if (id == '105') {
-      //         $('#paytype').hide();
-      //     } else if (id == '104') {
-      //         $('#paytype').show();
-      //     }
-      //     if (old_line) {
-      //         $('#line_' + old_line).removeClass('choose');
-      //     }
-      //     $('#line_' + id).addClass('choose');
-      //     $('#def-w-label').val(id);
-      //     old_line = id;
-      //     fl_id = old_line;
-      //     console.log(fl_id);
-      //     var dataid = $('#pay_' + old_pay).attr('data-id');
-      //     if (fl_id == 6 || dataid != "onlinepay") {
-      //         //     min = {
-      //         //         $code_check.min
-      //         //     };
-      //         //     max = {
-      //         //         $code_check.max
-      //         //     };
-      //         // } else {
-      //         //     min = {
-      //         //         $bank_check.min
-      //         //     };
-      //         //     max = {
-      //         //         $bank_check.max
-      //         //     };
-      //         // }
-      //     $("#shang_pay_txt").html("单笔最低充值金额为<span>" + min + "</span>元，最高<span>" + max + "</span>元");
-      // }
-      //
-      // function choosePayType(id) {
-      //     window.location.href = window.location.href + '#' + id;
-      //     if (old_pay) {
-      //         $('#pay_' + old_pay).removeClass('pay_type_choose');
-      //     }
-      //     $('#pay_' + id).addClass('pay_type_choose');
-      //     old_pay = id;
-      //     var dataid = $('#pay_' + old_pay).attr('data-id');
-      //     if (dataid == "onlinepay") {
-      //         min = {
-      //             $bank_check.min
-      //         };
-      //         max = {
-      //             $bank_check.max
-      //         };
-      //     } else {
-      //         min = {
-      //             $code_check.min
-      //         };
-      //         max = {
-      //             $code_check.max
-      //         };
-      //     }
-      //     $("#shang_pay_txt").html("单笔最低充值金额为<span>" + min + "</span>元，最高<span>" + max + "</span>元");
-      // }
-      //
-      // function pay_next_pay() {
-      //     var amount = parseFloat($('#amt').val());
-      //     if (isNaN(amount) || amount < min || amount > max) {
-      //         alert('充值金额必须在' + min + '元和' + max + '元之间');
-      //         return false;
-      //     } else if ((fl_id == 5 || fl_id == 8 || fl_id == 12)) {
-      //         document.getElementById("recharge").action = "/recharge/zfwy";
-      //     } else if (fl_id == 9) {
-      //         yinshen(amount);
-      //         return;
-      //     } else if ((fl_id == 10 || fl_id == 11) && $('#pay_' + old_pay).attr('data-id') != 'qq') {
-      //
-      //         yibao(amount, fl_id, $('#pay_' + old_pay).attr('data-id'));
-      //         return;
-      //     }
-      //     $('#recharge').submit();
-      // }
-      //
-      // function pay_pre() {
-      //     $('#userIpt').hide();
-      //     document.getElementById('pre_id').style.display = 'none';
-      //     document.getElementById('next_id').style.display = 'block';
-      //     document.getElementById('next_id_pay').style.display = 'none';
-      //     document.getElementById('tongdao').style.display = 'none';
-      //     document.getElementById('zfpt').style.display = 'block';
-      // }
-      //
-      // function pay_next() {
-      //     if (old_pay == 4) {
-      //         fl_id = 10;
-      //         $('#def-w-label').val(10);
-      //         $('#payLinks').val('qq');
-      //         pay_next_pay();
-      //         document.getElementById('next_id').innerHTML = "请稍后...";
-      //         document.getElementById('next_id').disabled = true;
-      //         return;
-      //     }
-      //     if (old_pay == 5) {
-      //         //          debugger;
-      //         fl_id = 10;
-      //         $('#def-w-label').val(10);
-      //         $('#payLinks').val('kjzf');
-      //         $('#userIpt').show();
-      //         $('#next_id_pay').show();
-      //         $('#pre_id').show();
-      //         $('#next_id').hide();
-      //         $('#zfpt').hide();
-      //         return;
-      //     }
-      //     document.getElementById('pre_id').style.display = 'block';
-      //     document.getElementById('next_id').style.display = 'none';
-      //     document.getElementById('next_id_pay').style.display = 'block';
-      //     document.getElementById('tongdao').style.display = 'block';
-      //     document.getElementById('zfpt').style.display = 'none';
-      // }
-      //
-      // function yinshen(amount) {
-      //     $.ajax({
-      //         type: "POST",
-      //         url: "/recharge/yinshen.html",
-      //         data: {
-      //             amount: amount
-      //         },
-      //         dataType: "json",
-      //         global: false,
-      //         async: false,
-      //         success: function (data) {
-      //             if (data.code == 1) {
-      //                 var arr = data.msg;
-      //                 var html = "";
-      //                 arr.forEach(function (val) {
-      //                     html += "<input type = 'hidden' name='" + val.name + "' value='" + val.value + "' />";
-      //                 });
-      //                 document.getElementById('yshen').innerHTML = html;
-      //                 document.yshen.submit();
-      //             } else {
-      //                 alert(data.msg);
-      //             }
-      //         },
-      //         error: null,
-      //         cache: false
-      //     });
-      // }
-      //
-      // function yibao(amount, fl_id, link) {
-      //     var userNameHF, userPhoneHF, userAcctNo, quickPayCertNo, is_kjzf = 0;
-      //     if (link == 'kuaijie') {
-      //         is_kjzf = 1;
-      //         userNameHF = $('#userNameHF').val();
-      //         userPhoneHF = $('#userPhoneHF').val();
-      //         userAcctNo = $('#userAcctNo').val();
-      //         quickPayCertNo = $('#quickPayCertNo').val();
-      //         if (!userNameHF) {
-      //             alert('开户名（姓名）不能为空！');
-      //             return false;
-      //         }
-      //         if (!userAcctNo) {
-      //             alert('开户行银行卡号不能为空！');
-      //             return false;
-      //         }
-      //         if (!userPhoneHF) {
-      //             alert('银行绑定手机号：不能为空！');
-      //             return false;
-      //         }
-      //         if (!quickPayCertNo) {
-      //             alert('开户行身份证号不能为空！');
-      //             return false;
-      //         }
-      //     }
-      //
-      // }
-  </script>
-</head>
-
-<body>
-
-<div class="ys-content" style="height:800px; background:#e0e0e0;">
-  <h2 style="color:#584204; background-color: #a39a7d;  font-size: 18px;
-    font-weight: 700;
-    padding: 15px 30px; margin-bottom: 50px;" class="header">
-    账号充值
-  </h2>
-  <div class="container" >
-    <!-- <form class="form-inline">
-      <div class="form-group">
-        <label for="inputPassword6">Password</label>
-        <input type="password" id="inputPassword6" class="form-control mx-sm-3" aria-describedby="passwordHelpInline">
-        <small id="passwordHelpInline" class="text-muted">
-          Must be 8-20 characters long.
-        </small>
-      </div>
-    </form> -->
-    <div class="row my-4">
-      <div class="col-2">开户行：</div>
-      <div class="col-4">{$bank.banklist.name}</div>
-    </div>
-      <div class="row my-4">
-      <div class="col-2">持卡人：</div>
-      <div class="col-4">{$bank.username}</div>
-    </div>
-      <div class="row my-4">
-      <div class="col-2">银行卡号：</div>
-      <div class="col-4">{$bank.account}</div>
-    </div>
-     <div class="row my-4">
-      <div class="col-2">充值金额：</div>
-      <div class="col-4"><input type="number" class="form-control form-control-sm" id="amount" min="0.01" required value="0.00"></div>
-      <div class="col-6"><strong class="form-text text-danger">充值金额范围:100-50000元,必须带小数点</strong></div>
-    </div>
-     <div class="row my-4">
-      <div class="col-2">充值方式：</div>
-      <div class="col-6">
-        <div class="form-check form-check-inline">
-  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1" checked>
-  <label class="form-check-label" for="inlineRadio1">银行卡</label>
-</div>
-<div class="form-check form-check-inline">
-  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-  <label class="form-check-label" for="inlineRadio2">微信</label>
-</div>
-<div class="form-check form-check-inline">
-  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3">
-  <label class="form-check-label" for="inlineRadio3">支付宝</label>
-</div>
-      </div>
-      <!-- <div class="col-6"><strong class="form-text text-danger">转账成功后，再点确定，否则无法到账！</strong></div> -->
-    </div>
-    <div class="row my-4">
-      <div class="col-2">
-  <button id='form-submit' {$bank?
-          '':'disabled'} style="cursor: {$bank?'':'not-allowed'};background:{$bank?'':'#999'}; color:#fff;" class="btn btn-warning
-          btn-block">确定</button>
-      </div>
-     
-         <div class="col-10">
-            <strong class="form-text text-danger">转账成功后，再点确定，否则无法到账！</strong>
-         </div>
-    </div>
-
-    <!-- <form>
-      <div class="form-group row pb-1">
-        <label for="" class="col-sm-2 col-form-label">开户行：</label>
-        <div class="col-sm-4 ">
-          <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="{$bank.banklist.name}">
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>账户充值</title>
+    <link rel="stylesheet" href="__JS__/layer/layui/css/layui.css" />
+  </head>
+  <body>
+    <div class="layui-tab">
+      <ul class="layui-tab-title">
+        <li class="layui-this">银行卡充值</li>
+        <li>USDT充值</li>
+      </ul>
+      <div class="layui-tab-content">
+        <div class="layui-tab-item layui-show">
+          1. 高度默认自适应，也可以随意固宽。
+          <br />2. Tab进行了响应式处理，所以无需担心数量多少。
         </div>
+        <div class="layui-tab-item">内容2</div>
       </div>
-      <div class="form-group row">
-        <label for="" class="col-sm-2 col-form-label">持卡人：</label>
-        <div class="col-sm-4">
-          <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="{$bank.username}">
-        </div>
-      </div>
+    </div>
+    <script src="__JS__/layer/layui/layui.js"></script>
+    <script>
+      layui.use(["jquery", "form"], function () {
+        var form = layui.form(),
+          layer = layui.layer,
+          element = layui.element,
+          $ = layui.jquery;
 
-      <div class="form-group row">
-
-        <label for="" class="col-sm-2 col-form-label">银行卡号：</label>
-        <div class="col-sm-4">
-          <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="{$bank.account}">
-        </div>
-      </div>
-      <div class="form-group row">
-
-        <label for="" class="col-sm-2 col-form-label">充值金额：</label>
-        <div class="col-sm-3">
-          <input type="number" class="form-control form-control-sm" id="amount" min="0.01" required value="0.00"
-            aria-describedby="passwordHelpBlock">
-
-
-        </div>
-        <div class="col-sm-6"><small class="form-text text-danger">充值金额范围:100-50000元,必须带小数点</small></div>
-      </div>
-
-
-      <fieldset class="form-group pt-0">
-        <div class="row">
-          <legend class="col-form-label col-sm-2 pt-0">充值方式</legend>
-          <div class="col-sm-2">
-            <div class="form-check">
-              <input class="form-check-input small" type="radio" name="gridRadios" id="gridRadios1" value="option1"
-                checked>
-              <label class="form-check-label" for="gridRadios1">
-                银行卡
-              </label>
-
-            </div>
-          </div>
-          <div class="col-sm-8"> <small class="form-text text-danger">转账成功后，再点确定，否则无法到账！</small></div>
-        </div>
-
-      </fieldset>
-      <div class="form-group row">
-        <div class="col-sm-2">
-          <input type="button" id='form-submit' value="确定" class="btn btn-info btn-block">
-
-        </div>
-      </div>
-
-    </form> -->
-  </div>
-
-</div>
-<script>
-    $(function () {
-        var intDiff = parseInt(0); //倒计时总秒数量
-        var from = '{$rechargeFromTime}';
-        var to = '{$rechargeToTime}';
-        $('#form-submit').click(function () {
-            if (!$('#amount').val()) {
-                swal("金额不能为空");
+        //监听提交
+        form.on("submit(usdtForm)", function (data) {
+          $.ajax({
+            url: "/user/usdt-account",
+            type: "post",
+            data: data.field,
+            beforeSend: function () {
+              this.layerIndex = layer.load(0, { shade: [0.5, "#393D49"] });
+            },
+            success: function (data) {
+              if (data.code == 201) {
+                layer.msg(
+                  data.message,
+                  {
+                    icon: 6, //成功的表情
+                    time: 1000, //1秒关闭（如果不配置，默认是3秒）
+                  },
+                  function () {
+                    location.reload();
+                  }
+                );
+              } else {
+                layer.msg(data.message, { icon: 5 }); //失败的表情
                 return;
-            }
-            if ($('#amount').val() == 0) {
-                swal({
-                    title: "提示!",
-                    text: '金额不能为0元',
-                    icon: "error",
-                    button: "确定",
-                });
-                return;
-            }
-            swal({
-                title: "确认提交吗?",
-                text: '充值时间 ' + from + ' 到 ' + to,
-                icon: "warning",
-                buttons: true,
-                dangerMode: true,
-            })
-                .then((willDelete) => {
-                    if (willDelete) {
-                        $.ajax({
-                            type: "POST",
-                            url: "/user/recharge",
-                            data: {
-                                amount: $('#amount').val()
-                            },
-
-                            success: function (data) {
-                                if (data.code == 1) {
-                                    swal({
-                                        title: "提示!",
-                                        text: data.msg,
-                                        icon: "success",
-                                        button: "确定",
-                                    });
-
-                                    timeCountDown(data.data, $('#form-submit'))
-                                }
-                                if (data.code == 2) {
-                                    swal({
-                                        title: "提示!",
-                                        text: data.msg,
-                                        icon: "error",
-                                        button: "确定",
-                                    });
-
-                                    timeCountDown(data.data, $('#form-submit'))
-                                }
-                                // if (data.code == 3) {
-                                //     swal({
-                                //         title: "提示!",
-                                //         text: data.msg,
-                                //         icon: "error",
-                                //         button: "确定",
-                                //     });
-                                // }
-                            },
-
-                        });
-                    } else {
-
-                    }
-                });
-
-
-        })
-        //时间倒计时
-
-        // 倒计时intDiff倒计时总秒数
-
-        function timeCountDown(intDiff, showElement) {
-            var timer = setInterval(function () {
-                let day = 0;
-                let hour = 0;
-                let minute = 0;
-                let second = 0;
-                if (intDiff > 0) {
-                    day = Math.floor(intDiff / (60 * 60 * 24));
-                    hour = Math.floor(intDiff / (60 * 60)) - (day * 24);
-                    minute = Math.floor(intDiff / 60) - (day * 24 * 60) - (hour * 60);
-                    second = Math.floor(intDiff) - (day * 24 * 60 * 60) - (hour * 60 * 60);
-                }
-                if (minute <= 9) minute = '0' + minute;
-                if (second <= 9) second = '0' + second;
-                showElement.attr("disabled", "disabled");
-                showElement.html(`${second}秒`);
-
-                intDiff--;
-                if (intDiff < 0) {
-                    showElement.removeAttr("disabled")
-                    showElement.html('提交');
-                    clearInterval(timer)
-                }
-            }, 1000);
-        }
-
-        // var wait = 15;
-
-        // function time(o) {
-
-        //   if (wait == 0) {
-        //     o.removeAttr("disabled");
-        //     o.html('提交');
-        //     wait = 0;
-        //   } else {
-        //     o.attr("disabled", "disabled");
-        //     o.html(wait + "秒");
-        //     wait--;
-        //     setTimeout(function () {
-        //         time(o);
-        //       },
-        //       1000);
-        //   }
-        // }
-    })
-</script>
-</body>
-
+              }
+            },
+            complete: function () {
+              layer.close(this.layerIndex);
+            },
+          });
+          return false;
+        });
+      });
+    </script>
+  </body>
 </html>
