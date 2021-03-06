@@ -28,22 +28,32 @@
         </ul>
         <div class="layui-tab-content">
           <div class="layui-tab-item layui-show">
-            <table class="layui-table" lay-skin="nob" lay-even>
-              <tbody>
-                <tr>
-                  <td>贤心</td>
-                  <td>2016-11-29</td>
-                  <td>人生就像是一场修行</td>
-                </tr>
-                <tr>
-                  <td>许闲心</td>
-                  <td>2016-11-28</td>
-                  <td>
-                    于千万人之中遇见你所遇见的人，于千万年之中，时间的无涯的荒野里…
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+            <form class="layui-form" action="">
+              <div class="layui-form-item">
+                <label class="layui-form-label">开户行：</label>
+                <div class="layui-input-block">
+                  <input
+                    type="text"
+                    placeholder="请输入开户行"
+                    autocomplete="off"
+                    class="layui-input"
+                    value="{$bank.banklist.name}"
+                    readonly
+                  />
+                </div>
+              </div>
+
+              <div class="layui-form-item">
+                <div class="layui-input-block">
+                  <button class="layui-btn" lay-submit lay-filter="formDemo">
+                    立即提交
+                  </button>
+                  <button type="reset" class="layui-btn layui-btn-primary">
+                    重置
+                  </button>
+                </div>
+              </div>
+            </form>
           </div>
           <div class="layui-tab-item">内容2</div>
         </div>
