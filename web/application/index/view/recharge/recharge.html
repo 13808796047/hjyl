@@ -116,44 +116,42 @@
         var to = "{$rechargeToTime}";
         //监听提交
         form.on("submit(rechargeForm)", function (data) {
-          alert(1111);
           layer.confirm(
             "充值时间 " + from + " 到 " + to + "您确认提交吗？",
             {
               btn: ["确定", "取消"], //按钮
             },
             function () {
-              //   $.ajax({
-              //     url: "/user/recharge",
-              //     type: "post",
-              //     data: data.field.account,
-              //     beforeSend: function () {
-              //       this.layerIndex = layer.load(0, {
-              //         shade: [0.5, "#393D49"],
-              //       });
-              //     },
-              //     success: function (data) {
-              //       if (data.code == 201) {
-              //         layer.msg(
-              //           data.message,
-              //           {
-              //             icon: 6, //成功的表情
-              //             time: 1000, //1秒关闭（如果不配置，默认是3秒）
-              //           },
-              //           function () {
-              //             location.reload();
-              //           }
-              //         );
-              //       } else {
-              //         layer.msg(data.message, { icon: 5 }); //失败的表情
-              //         return;
-              //       }
-              //     },
-              //     complete: function () {
-              //       layer.close(this.layerIndex);
-              //     },
-              //   });
-              //   return false;
+              $.ajax({
+                url: "/user/recharge",
+                type: "post",
+                data: data.field.account,
+                beforeSend: function () {
+                  this.layerIndex = layer.load(0, {
+                    shade: [0.5, "#393D49"],
+                  });
+                },
+                success: function (data) {
+                  if (data.code == 200) {
+                    layer.msg(
+                      data.message,
+                      {
+                        icon: 6, //成功的表情
+                        time: 1000, //1秒关闭（如果不配置，默认是3秒）
+                      },
+                      function () {
+                        location.reload();
+                      }
+                    );
+                  } else {
+                    layer.msg(data.message, { icon: 5 }); //失败的表情
+                    return;
+                  }
+                },
+                complete: function () {
+                  layer.close(this.layerIndex);
+                },
+              });
             },
             function () {}
           );
