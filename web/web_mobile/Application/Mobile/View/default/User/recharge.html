@@ -98,42 +98,6 @@
 
         </div>
     </div>
-    
- 
-    <!-- <script>
-        
-        !function (win, ydui) {
-            var dialog = ydui.dialog
-           $('.formBtn').click(function () {
-            dialog.toast('你点了确定', 'none', 1000);
-               //   if (!$('#amt').val()) {
-               //       swal("金额不能为空");
-               //       return;
-               //   }
-               //   if ($('#amt').val() == 0) {
-               //       swal({
-               //           title: "提示!",
-               //           text: '金额不能为0元',
-               //           icon: "error",
-               //           button: "确定",
-               //       });
-               //       return;
-               //   }
-            //    var from = '{$settings.rechargeFromTime}';
-            //    var to = '{$settings.rechargeToTime}';
-            //    var url = '__SELF__';
-            //    dialog.confirm('选填标题', '我有一个小毛驴我从来也不骑！', function () {
-            //     dialog.toast('你点了确定', 'none', 1000);
-            // });
-   
-           });
-       }(window, YDUI);
-   </script> -->
-</block>
-<block name="script">
-    <script src="__JS__/jquery.min.js"></script>
-    <script src="__JS__/ydui.flexible.js"></script>
-    <script src="__JS__/ydui.js"></script>
     <script>
         !function (win, $) {
             var dialog = win.YDUI.dialog;
@@ -145,7 +109,6 @@
                     dialog.toast('你点了确定', 'none', 1000);
                 });
             });
-            return false;
             //自定义按钮确认框
             $('#J_ConfirmCustom').on('click', function () {
                 dialog.confirm('自定义按钮', '我有一个小毛驴我从来也不骑！', [
@@ -212,5 +175,41 @@
             });
         }(window, jQuery);
     </script>
+ 
+    <!-- <script>
+        
+        !function (win, ydui) {
+            var dialog = ydui.dialog
+           $('.formBtn').click(function () {
+            dialog.toast('你点了确定', 'none', 1000);
+               //   if (!$('#amt').val()) {
+               //       swal("金额不能为空");
+               //       return;
+               //   }
+               //   if ($('#amt').val() == 0) {
+               //       swal({
+               //           title: "提示!",
+               //           text: '金额不能为0元',
+               //           icon: "error",
+               //           button: "确定",
+               //       });
+               //       return;
+               //   }
+            //    var from = '{$settings.rechargeFromTime}';
+            //    var to = '{$settings.rechargeToTime}';
+            //    var url = '__SELF__';
+            //    dialog.confirm('选填标题', '我有一个小毛驴我从来也不骑！', function () {
+            //     dialog.toast('你点了确定', 'none', 1000);
+            // });
+   
+           });
+       }(window, YDUI);
+   </script> -->
+</block>
+<block name="script">
+    <script src="__JS__/jquery.min.js"></script>
+    <script src="__JS__/ydui.flexible.js"></script>
+    <script src="__JS__/ydui.js"></script>
+
 </block>
 <block name="footer"></block>
