@@ -35,10 +35,18 @@
                 <div class="tab-panel-item {$k==1?'tab-active':''}">
                     <div class="m-cell">
                         <div class="cell-item">
-                            <div class="cell-left">手机号：</div>
+                            <div class="cell-left">
+                                {if condition='$vo.bankId===0'}
+                                USDT平台
+                                {else /}
+                                开户行：
+                                {/if}</div>
                             <div class="cell-right">
-                                <input type="number" pattern="[0-9]*" class="cell-input" placeholder="请输入手机号"
-                                    autocomplete="off" />
+                                {if condition='$vo.bankId===0'}
+                                <input type="text"  class="cell-input" readonly value="{$vo.bankDetail}"/>
+                                {else /}
+                                <input type="text"  class="cell-input" readonly value="{$vo.banklist.name}"/>
+                                {/if}
                             </div>
                         </div>
                     </div>
