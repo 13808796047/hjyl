@@ -576,8 +576,7 @@ class UserController extends HomeController
 
         } else {
             $bank = M('member_bank')->where(['uid' => 1, 'admin' => 1, 'enable' => 1])->select();
-            \dump($bank);
-            $bankName = M('bank_list')->where('id=' . $bank['bankId'])->find();
+            $bankName = M('bank_list')->where('id=' . $bank[0]['bankId'])->find();
             // var_dump($bankName);
             $this->getSystemSettings();
             $this->assign('settings', $this->settings);
