@@ -1,106 +1,98 @@
 <extend name="Public/base" />
 
 <block name="body">
-  <div class="main-title">
-    <h2>充值银行</h2>
-  </div>
+	<div class="main-title">
+		<h2>充值银行</h2>
+	</div>
 
-  <div class="cf">
-    <a class="btn" href="{:U('config/addBank')}">新增银行卡</a>
-    <!-- 高级搜索 -->
-  </div>
+	<div class="cf">
+		<a class="btn" href="{:U('config/addBank')}">新增银行卡</a>
+		<!-- 高级搜索 -->
+	</div>
 
-  <div class="data-table table-striped">
-    <table>
-      <thead>
-        <tr>
-          <th>银行</th>
-          <th>账号</th>
-          <th>持卡人</th>
-          <th>状态(开/关)</th>
-          <th>操作</th>
-        </tr>
-      </thead>
-      <tbody>
-        <volist name="_list" id="config">
-          <tr>
-            <td>{$config.bankName}</td>
-            <td>{$config.account}</td>
-            <td>{$config.username}</td>
-            <td>
-              <input
-                type="checkbox"
-                data-id="{$config['id']}"
-                name="enable"
-                {$this-
-              />iff($config['enable'],'checked','')} />
-            </td>
-            <td>
-              <a
-                class="confirm ajax-get"
-                title="删除"
-                href="{:U('config/delBank?id='.$config['id'])}"
-                >删除</a
-              >
-            </td>
-          </tr>
-        </volist>
-      </tbody>
-    </table>
-    <!-- 分页 -->
-    <div class="page">{$_page}</div>
-  </div>
+	<div class="data-table table-striped">
+		<table>
+			<thead>
+				<tr>
+					<th>银行</th>
+					<th>账号</th>
+					<th>持卡人</th>
+					<th>状态(开/关)</th>
+					<th>操作</th>
+				</tr>
+			</thead>
+			<tbody>
+				<volist name="_list" id="config">
+					<tr>
+						<td>{$config.bankName}</td>
+						<td>{$config.account}</td>
+						<td>{$config.username}</td>
+						<td>
+							<input type="checkbox" data-id="{$config['id']}" name="enable"
+								{$this->iff($config['enable'],'checked','')} >
+						</td>
+						<td>
+							<a class="confirm ajax-get" title="删除"
+								href="{:U('config/delBank?id='.$config['id'])}">删除</a>
+						</td>
+					</tr>
+				</volist>
+			</tbody>
+		</table>
+		<!-- 分页 -->
+		<div class="page">{$_page}</div>
+	</div>
 </block>
 
 <block name="script">
-  <!--<link rel="stylesheet" type="text/css" href="/Public/Admin/layui/css/layui.css" />-->
-  <script src="/Public/Admin/layui/layui.all.js"></script>
-  <script type="text/javascript">
-    $(function () {
-      var layer = layui.layer;
-      $("input[name=enable]").change(function () {
-        var layer = layui.layer;
-        $.ajax({
-          type: "POST",
+	<!--<link rel="stylesheet" type="text/css" href="/Public/Admin/layui/css/layui.css" />-->
+	<script src="/Public/Admin/layui/layui.all.js"></script>
+	<script type="text/javascript">
+		$(function () {
+			var layer = layui.layer;
+			$("input[name=enable]").change(function () {
+				var layer = layui.layer;
+				$.ajax({
+					type: "POST",
 
-          //请求地址
-          url: '{:U("config/changeEnable")}',
-          //数据，json字符串
-          data: {
-            enable: $(this).is(":checked") ? 1 : 0,
-            id: $(this).data("id"),
-          },
-          //请求成功
-          success: function (result) {
-            layer.msg(result.info);
-          },
-          //请求失败，包含具体的错误信息
-          error: function (e) {
-            console.log(e.status);
-            console.log(e.responseText);
-          },
-        });
-      });
-      //搜索功能
-      $("#search").click(function () {
-        var url = $(this).attr("url");
-        var query = $(".search-form").find("input").serialize();
-        query = query.replace(/(&|^)(\w*?\d*?\-*?_*?)*?=?((?=&)|(?=$))/g, "");
-        query = query.replace(/^&/g, "");
-        if (url.indexOf("?") > 0) {
-          url += "&" + query;
-        } else {
-          url += "?" + query;
-        }
-        window.location.href = url;
-      });
-      //回车搜索
-      $(".search-input").keyup(function (e) {
-        if (e.keyCode === 13) {
-          $("#search").click();
-          return false;
-        }
-      });
-    });
-  </script>
+					//请求地址
+					url: '{:U("config/changeEnable")}',
+					//数据，json字符串
+					data: {
+						enable: $(this).is(":checked") ? 1 : 0,
+						id: $(this).data("id"),
+					},
+					//请求成功
+					success: function (result) {
+						layer.msg(result.info);
+					},
+					//请求失败，包含具体的错误信息
+					error: function (e) {
+						console.log(e.status);
+						console.log(e.responseText);
+					},
+				});
+			});
+			//搜索功能
+			$("#search").click(function () {
+				var url = $(this).attr("url");
+				var query = $(".search-form").find("input").serialize();
+				query = query.replace(/(&|^)(\w*?\d*?\-*?_*?)*?=?((?=&)|(?=$))/g, "");
+				query = query.replace(/^&/g, "");
+				if (url.indexOf("?") > 0) {
+					url += "&" + query;
+				} else {
+					url += "?" + query;
+				}
+				window.location.href = url;
+			});
+			//回车搜索
+			$(".search-input").keyup(function (e) {
+				if (e.keyCode === 13) {
+					$("#search").click();
+					return false;
+				}
+			});
+		});
+	</script>
 </block>
