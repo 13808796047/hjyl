@@ -105,7 +105,8 @@
     </div>
 </block>
 <script>
-    $(function () {
+     !function (win, $) {
+        var dialog = win.YDUI.dialog;
         $('.form-btn').click(function () {
             //   if (!$('#amt').val()) {
             //       swal("金额不能为空");
@@ -124,7 +125,7 @@
             var to = '{$settings.rechargeToTime}';
             var url = '__SELF__';
             /* 调用1： */
-            YDUI.dialog.confirm('标题来的', '我有一个小毛驴我从来也不骑！', function () {
+            dialog.confirm('标题来的', '我有一个小毛驴我从来也不骑！', function () {
                 /* 确定后调用 */
             });
 
