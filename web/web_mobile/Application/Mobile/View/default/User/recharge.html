@@ -103,34 +103,35 @@
 
         </div>
     </div>
+    <script>
+        !function (win, $) {
+           var dialog = win.YDUI.dialog;
+           $('.formBtn').click(function () {
+               alert(1111)
+               //   if (!$('#amt').val()) {
+               //       swal("金额不能为空");
+               //       return;
+               //   }
+               //   if ($('#amt').val() == 0) {
+               //       swal({
+               //           title: "提示!",
+               //           text: '金额不能为0元',
+               //           icon: "error",
+               //           button: "确定",
+               //       });
+               //       return;
+               //   }
+               var from = '{$settings.rechargeFromTime}';
+               var to = '{$settings.rechargeToTime}';
+               var url = '__SELF__';
+               /* 调用1： */
+               dialog.confirm('标题来的', '我有一个小毛驴我从来也不骑！', function () {
+                   /* 确定后调用 */
+               });
+   
+           });
+       }(window, jQuery);
+   </script>
 </block>
-<script>
-     !function (win, $) {
-        var dialog = win.YDUI.dialog;
-        $('.formBtn').click(function () {
-            alert(1111)
-            //   if (!$('#amt').val()) {
-            //       swal("金额不能为空");
-            //       return;
-            //   }
-            //   if ($('#amt').val() == 0) {
-            //       swal({
-            //           title: "提示!",
-            //           text: '金额不能为0元',
-            //           icon: "error",
-            //           button: "确定",
-            //       });
-            //       return;
-            //   }
-            var from = '{$settings.rechargeFromTime}';
-            var to = '{$settings.rechargeToTime}';
-            var url = '__SELF__';
-            /* 调用1： */
-            dialog.confirm('标题来的', '我有一个小毛驴我从来也不骑！', function () {
-                /* 确定后调用 */
-            });
 
-        });
-    }(window, jQuery);
-</script>
 <block name="footer"></block>
