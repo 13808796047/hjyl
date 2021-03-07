@@ -41,10 +41,10 @@
               <div class="layui-input-block">
                 {if condition='$vo.bankId===0'}
 
-                <input type="text" class="layui-input" value="$vo.bankDetail" readonly />
+                <input type="text" class="layui-input" value="{$vo.bankDetail}" readonly />
                 {else /}
 
-                <input type="text" class="layui-input" value=" $vo.banklist.name" readonly />
+                <input type="text" class="layui-input" value=" {$vo.banklist.name}" readonly />
                 {/if}
 
               </div>
