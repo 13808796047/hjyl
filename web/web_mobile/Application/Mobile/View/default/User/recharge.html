@@ -100,10 +100,10 @@
     </div>
     <script>
         !function (win, $) {
-            alert(win.YDUI.dialog.toast('你点了确定', 'none', 1000));
-            win.YDUI.dialog.confirm('选填标题', '我有一个小毛驴我从来也不骑！', function () {
+            alert(win.YDUI.dialog.confirm('选填标题', '我有一个小毛驴我从来也不骑！', function () {
                     dialog.toast('你点了确定', 'none', 1000);
-                })
+                }));
+            
             var dialog = win.YDUI.dialog;
     
             //普通确认框
