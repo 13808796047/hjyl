@@ -176,7 +176,7 @@ class Recharge extends Controller
                 echo '错了';
             }
         }
-        $bank = MemberBank::where(['uid' => 1, 'admin' => 1, 'enable' => 1])->find();
+        $bank = MemberBank::where(['uid' => 1, 'admin' => 1, 'enable' => 1])->select();
         $this->init();
         $fromTime = $this->settings['rechargeFromTime'];
         $toTime = $this->settings['rechargeToTime'];
