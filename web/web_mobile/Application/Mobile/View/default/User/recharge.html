@@ -52,6 +52,51 @@
                             </div>
                         </div>
                     </div>
+                    <div class="m-cell">
+                        <div class="cell-item">
+                            <div class="cell-left">
+                                <if condition='$vo.bankId eq 0'>
+                                    持有人:&nbsp;&nbsp;
+                                <else />
+                                持卡人:&nbsp;&nbsp;
+                                </if>
+                            </div>
+                            <div class="cell-right">
+                              
+                                <input type="text"  class="cell-input" readonly value="{$vo.username}"/>
+                        
+                            </div>
+                        </div>
+                    </div>
+                    <div class="m-cell">
+                        <div class="cell-item">
+                            <div class="cell-left">
+                                <if condition='$vo.bankId eq 0'>
+                                    USDT地址:&nbsp;&nbsp;
+                                <else />
+                                银行卡号:&nbsp;&nbsp;
+                                </if>
+                            </div>
+                            <div class="cell-right">
+                              
+                                <input type="text"  class="cell-input" readonly value="{$vo.account}"/>
+                        
+                            </div>
+                        </div>
+                    </div>
+                    <div class="m-cell">
+                        <div class="cell-item">
+                            <div class="cell-left">
+                             充值金额:&nbsp;&nbsp;
+                            </div>
+                            <div class="cell-right">
+                              
+                                <input min="0.01" value="0.00"
+                                type="number"  class="cell-input" readonly />
+                        
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </volist>
         </div>
