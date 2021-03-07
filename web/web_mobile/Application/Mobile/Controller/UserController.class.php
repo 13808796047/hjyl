@@ -519,9 +519,7 @@ class UserController extends HomeController
                 return $this->ajaxReturn(['code' => 3, 'msg' => '充值金额必须大于0', 'data' => ''], 'json');
             }
 
-            if (!I('bankName') && !I('bankAccount')) {
-                return $this->ajaxReturn(['code' => 3, 'msg' => '后台未设置银行卡', 'data' => ''], 'json');
-            }
+        
             $this->user = session('user');
             $count = M('member_recharge')
                 ->where(['uid' => $this->user['uid'], 'state' => 10])
