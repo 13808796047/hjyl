@@ -31,6 +31,7 @@
             <li class="tab-nav-item"><a href="javascript:;">USDT充值</a></li>
         </ul>
         <div class="tab-panel">
+            {$bank}
             <volist name="bank" id="vo" key="k">
                 
                 <div class="tab-panel-item {$k==1?'tab-active':''}">
@@ -41,7 +42,8 @@
                                 USDT平台:
                                 <else />
                                 开户行:
-                                </if></div>
+                                </if>
+                            </div>
                             <div class="cell-right">
                                 <if condition='$vo.bankId==0'>
                                 <input type="text"  class="cell-input" readonly value="{$vo.bankDetail}"/>
