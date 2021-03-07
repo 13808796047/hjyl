@@ -104,13 +104,8 @@
         </div>
     </div>
     <script>
-        $(function(){
-            /* 调用1： */
-ydui.dialog.confirm('标题来的',  '我有一个小毛驴我从来也不骑！',  function () {
-    /* 确定后调用 */
-});
-        })
-        !function (win, $) {
+        !function (win, ydui) {
+            var dialog = ydui.dialog
            $('.formBtn').click(function () {
             dialog.toast('你点了确定', 'none', 1000);
                //   if (!$('#amt').val()) {
@@ -134,7 +129,7 @@ ydui.dialog.confirm('标题来的',  '我有一个小毛驴我从来也不骑！
             // });
    
            });
-       }(window, jQuery);
+       }(window, YDUI);
    </script>
 </block>
 
