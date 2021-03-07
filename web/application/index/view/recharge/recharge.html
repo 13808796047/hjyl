@@ -27,7 +27,7 @@
       </ul>
       <div class="layui-tab-content">
         {volist name="$bank" id="vo" key='k'}
-        <div class="layui-tab-item {$k==0?'layui-show':''}{$k}">
+        <div class="layui-tab-item {$k==1?'layui-show':''}">
           <form class="layui-form layui-form-pane" action="" style="margin-right: 200px; padding: 30px">
             <div class="layui-form-item">
               <label class="layui-form-label">{$vo.bankId==0?'USDT平台':'开户行：'}</label>
