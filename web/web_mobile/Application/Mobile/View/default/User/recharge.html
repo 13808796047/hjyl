@@ -36,17 +36,17 @@
                     <div class="m-cell">
                         <div class="cell-item">
                             <div class="cell-left">
-                                {if condition='$vo.bankId===0'}
+                                <if condition='$vo.bankId===0'>
                                 USDT平台
-                                {else /}
+                                <else />
                                 开户行：
-                                {/if}</div>
+                                </if></div>
                             <div class="cell-right">
-                                {if condition='$vo.bankId===0'}
+                                <if condition='$vo.bankId===0'>
                                 <input type="text"  class="cell-input" readonly value="{$vo.bankDetail}"/>
-                                {else /}
+                                <else />
                                 <input type="text"  class="cell-input" readonly value="{$vo.banklist.name}"/>
-                                {/if}
+                                </if>
                             </div>
                         </div>
                     </div>
