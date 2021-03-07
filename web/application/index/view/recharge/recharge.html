@@ -31,20 +31,38 @@
         <div class="layui-tab-item {$k==1?'layui-show':''}">
           <form class="layui-form layui-form-pane" action="" style="margin-right: 200px; padding: 30px">
             <div class="layui-form-item">
-              <label class="layui-form-label">{$vo.bankId===0?'USDT平台':'开户行：'}</label>
+              <label class="layui-form-label">
+                {if condition='$vo.bankId===0'}
+                USDT平台
+                {else /}
+                开户行：
+                {/if}
+              </label>
               <div class="layui-input-block">
-                <input type="text" class="layui-input" value="{$vo.bankId==0?$vo.bankDetail:$vo.banklist.name}"
-                  readonly />
+                <input type="text" class="layui-input" value="   {if condition='$vo.bankId===0'}
+               $vo.bankDetail
+                {else /}
+               $vo.banklist.name
+                {/if}" readonly />
               </div>
             </div>
             <div class="layui-form-item">
-              <label class="layui-form-label">{$vo.bankId==0?'USDT持有人':'持卡人：'}</label>
+              <label class="layui-form-label">{if condition='$vo.bankId===0'}
+                USDT持有人
+                {else /}
+                持卡人：
+                {/if}</label>
               <div class="layui-input-block">
                 <input type="text" class="layui-input" value="{$vo.username}" readonly />
               </div>
             </div>
             <div class="layui-form-item">
-              <label class="layui-form-label">{$vo.bankId==0?'USDT地址':'银行卡号：'}</label>
+              <label class="layui-form-label">
+                {if condition='$vo.bankId===0'}
+                USDT地址
+                {else /}
+                银行卡号：
+                {/if}</label>
               <div class="layui-input-block">
                 <input type="text" class="layui-input" value="{$vo.account}" readonly />
               </div>
