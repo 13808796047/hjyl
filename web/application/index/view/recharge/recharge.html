@@ -30,21 +30,22 @@
         <div class="layui-tab-item {$k==0?'layui-show':''}">
           <form class="layui-form layui-form-pane" action="" style="margin-right: 200px; padding: 30px">
             <div class="layui-form-item">
-              <label class="layui-form-label">{$bank.bankId==0?$'USDT平台':'开户行：'}</label>
+              <label class="layui-form-label">{$vo.bankId==0?$'USDT平台':'开户行：'}</label>
               <div class="layui-input-block">
-                <input type="text" class="layui-input" value="{$bank.bankId==0?$bank.banklist.name:''}" readonly />
+                <input type="text" class="layui-input" value="{$vo.bankId==0?$vo.banklist.name:$vo.bankDetail}"
+                  readonly />
               </div>
             </div>
             <div class="layui-form-item">
-              <label class="layui-form-label">{$bank.bankId==0?$'USDT持有人':'持卡人：'}</label>
+              <label class="layui-form-label">{$vo.bankId==0?$'USDT持有人':'持卡人：'}</label>
               <div class="layui-input-block">
-                <input type="text" class="layui-input" value="{$bank.username}" readonly />
+                <input type="text" class="layui-input" value="{$vo.username}" readonly />
               </div>
             </div>
             <div class="layui-form-item">
-              <label class="layui-form-label">{$bank.bankId==0?$'USDT地址':'银行卡号：'}</label>
+              <label class="layui-form-label">{$vo.bankId==0?$'USDT地址':'银行卡号：'}</label>
               <div class="layui-input-block">
-                <input type="text" class="layui-input" value="{$bank.account}" readonly />
+                <input type="text" class="layui-input" value="{$vo.account}" readonly />
               </div>
             </div>
             <div class="layui-form-item">
