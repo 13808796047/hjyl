@@ -287,9 +287,9 @@ class ConfigController extends AdminController
 
                     $str2 = implode(',', $data);
                     $this->addLog(11, $data['id'], $str2);
-                    $this->success('新增充值银行成功', U('config/bank'));
+                    $this->success('新增充值USDT成功', U('config/usdt'));
                 } else {
-                    $this->error('新增充值银行失败');
+                    $this->error('新增充值USDT失败');
                 }
             } else {
                 $this->error($Config->getError());
