@@ -124,10 +124,9 @@
                var from = '{$settings.rechargeFromTime}';
                var to = '{$settings.rechargeToTime}';
                var url = '__SELF__';
-               /* 调用1： */
-               dialog.confirm('标题来的', '我有一个小毛驴我从来也不骑！', function () {
-                   /* 确定后调用 */
-               });
+               dialog.confirm('选填标题', '我有一个小毛驴我从来也不骑！', function () {
+                dialog.toast('你点了确定', 'none', 1000);
+            });
    
            });
        }(window, jQuery);
