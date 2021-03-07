@@ -27,7 +27,7 @@
       </ul>
       <div class="layui-tab-content">
         {volist name="$bank" id="vo" key='k'}
-        {$vo.bankId}
+        {$vo.bankId==0}
         <div class="layui-tab-item {$k==1?'layui-show':''}">
           <form class="layui-form layui-form-pane" action="" style="margin-right: 200px; padding: 30px">
             <div class="layui-form-item">
