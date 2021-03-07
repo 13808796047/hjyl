@@ -38,15 +38,14 @@
                     <div class="m-cell">
                         <div class="cell-item">
                             <div class="cell-left">
-                                {$vo.bankId==0?'USDT平台:':'开户行:'}
-                                <if condition='$vo.bankId==0'>
+                                <if condition='$vo.bankId eq 0'>
                                 USDT平台:
                                 <else />
                                 开户行:
                                 </if>
                             </div>
                             <div class="cell-right">
-                                <if condition='$vo.bankId==0'>
+                                <if condition='$vo.bankId eq 0'>
                                 <input type="text"  class="cell-input" readonly value="{$vo.bankDetail}"/>
                                 <else />
                                 <input type="text"  class="cell-input" readonly value="{$bankName}"/>
