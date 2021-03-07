@@ -106,12 +106,11 @@
     <script>
         $(function(){
             /* 调用1： */
-YDUI.dialog.confirm('标题来的',  '我有一个小毛驴我从来也不骑！',  function () {
+ydui.dialog.confirm('标题来的',  '我有一个小毛驴我从来也不骑！',  function () {
     /* 确定后调用 */
 });
         })
         !function (win, $) {
-           var dialog = win.$;
            $('.formBtn').click(function () {
             dialog.toast('你点了确定', 'none', 1000);
                //   if (!$('#amt').val()) {
