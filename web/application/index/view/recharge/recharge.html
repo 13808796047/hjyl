@@ -39,11 +39,14 @@
                 {/if}
               </label>
               <div class="layui-input-block">
-                <input type="text" class="layui-input" value="   {if condition='$vo.bankId===0'}
-               $vo.bankDetail
+                {if condition='$vo.bankId===0'}
+
+                <input type="text" class="layui-input" value="$vo.bankDetail" readonly />
                 {else /}
-               $vo.banklist.name
-                {/if}" readonly />
+
+                <input type="text" class="layui-input" value=" $vo.banklist.name" readonly />
+                {/if}
+
               </div>
             </div>
             <div class="layui-form-item">
