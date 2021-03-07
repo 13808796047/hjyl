@@ -267,7 +267,9 @@ class ConfigController extends AdminController
     public function usdt()
     {
         $list = D('member_bank')->where('admin=1 AND bankId=0')->select();
-        \dump($list);
+        $this->recordList($list);
+        $this->meta_title = '用户信息';
+        $this->display();
 
     }
     final public function addBank()
