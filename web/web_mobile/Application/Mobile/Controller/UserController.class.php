@@ -575,7 +575,7 @@ class UserController extends HomeController
             $this->ajaxReturn(['code' => 1, 'msg' => '提交成功', 'data' => 15], 'json');
 
         } else {
-            $bank = M('member_bank')->where(['uid' => 1, 'admin' => 1, 'enable' => 1])->find();
+            $bank = M('member_bank')->where(['uid' => 1, 'admin' => 1, 'enable' => 1])->select();
 
             $bankName = M('bank_list')->where('id=' . $bank['bankId'])->find();
             // var_dump($bankName);

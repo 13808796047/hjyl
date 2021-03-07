@@ -1,7 +1,7 @@
-<extend name="Base/common"/>
+<extend name="Base/common" />
 
 <block name="title">
-  <title>在线充值－{:S('WEB_NAME')}</title>
+    <title>在线充值－{:S('WEB_NAME')}</title>
 </block>
 <block name="style">
     <link rel="stylesheet" href="__CSS__/ydui.css">
@@ -18,27 +18,32 @@
             <i class="back-ico"></i>返回
         </a>
         <div class="navbar-center">
-           
+
         </div>
         <a href="#" class="navbar-item">
-           
+
         </a>
     </header>
-    <div class="m-tab" data-ydui-tab style="margin-top: .1rem;"><!-- 这里添加data-ydui-tab就可以啦 -->
+    <div class="m-tab" data-ydui-tab style="margin-top: .1rem;">
+        <!-- 这里添加data-ydui-tab就可以啦 -->
         <ul class="tab-nav">
             <li class="tab-nav-item tab-active"><a href="javascript:;">银行卡充值</a></li>
             <li class="tab-nav-item"><a href="javascript:;">USDT充值</a></li>
         </ul>
         <div class="tab-panel">
-            <div class="tab-panel-item tab-active">
-                <div class="m-cell">
-                    <div class="cell-item">
-                        <div class="cell-left">手机号：</div>
-                        <div class="cell-right"><input type="number" pattern="[0-9]*" class="cell-input" placeholder="请输入手机号" autocomplete="off" /></div>
+            <volist name="bank" id="vo" key="k">
+                <div class="tab-panel-item {$k==1?'tab-active':''}">
+                    <div class="m-cell">
+                        <div class="cell-item">
+                            <div class="cell-left">手机号：</div>
+                            <div class="cell-right">
+                                <input type="number" pattern="[0-9]*" class="cell-input" placeholder="请输入手机号"
+                                    autocomplete="off" />
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="tab-panel-item">222222</div>
+            </volist>
         </div>
     </div>
 </block>
