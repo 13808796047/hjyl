@@ -10,6 +10,31 @@
     <script src="__JS__/jquery.min.js"></script>
     <script src="__JS__/ydui.flexible.js"></script>
     <script src="__JS__/ydui.js"></script>
+    <script>
+        $('.form-btn').click(function () {
+            //   if (!$('#amt').val()) {
+            //       swal("金额不能为空");
+            //       return;
+            //   }
+            //   if ($('#amt').val() == 0) {
+            //       swal({
+            //           title: "提示!",
+            //           text: '金额不能为0元',
+            //           icon: "error",
+            //           button: "确定",
+            //       });
+            //       return;
+            //   }
+            var from = '{$settings.rechargeFromTime}';
+            var to = '{$settings.rechargeToTime}';
+            var url = '__SELF__';
+            /* 调用1： */
+            YDUI.dialog.confirm('标题来的', '我有一个小毛驴我从来也不骑！', function () {
+                /* 确定后调用 */
+            });
+
+        });
+    </script>
 </block>
 <block name="header"></block>
 <block name="body">
@@ -32,22 +57,22 @@
         </ul>
         <div class="tab-panel">
             <volist name="bank" id="vo" key="k">
-                
+
                 <div class="tab-panel-item {$k==1?'tab-active':''}">
                     <div class="m-cell">
                         <div class="cell-item">
                             <div class="cell-left">
                                 <if condition='$vo.bankId eq 0'>
-                                USDT平台:&nbsp;&nbsp;
-                                <else />
-                                开户行:&nbsp;&nbsp;
+                                    USDT平台:&nbsp;&nbsp;
+                                    <else />
+                                    开户行:&nbsp;&nbsp;
                                 </if>
                             </div>
                             <div class="cell-right">
                                 <if condition='$vo.bankId eq 0'>
-                                <input type="text"  class="cell-input" readonly value="{$vo.bankDetail}"/>
-                                <else />
-                                <input type="text"  class="cell-input" readonly value="{$bankName.name}"/>
+                                    <input type="text" class="cell-input" readonly value="{$vo.bankDetail}" />
+                                    <else />
+                                    <input type="text" class="cell-input" readonly value="{$bankName.name}" />
                                 </if>
                             </div>
                         </div>
@@ -57,14 +82,14 @@
                             <div class="cell-left">
                                 <if condition='$vo.bankId eq 0'>
                                     持有人:&nbsp;&nbsp;
-                                <else />
-                                持卡人:&nbsp;&nbsp;
+                                    <else />
+                                    持卡人:&nbsp;&nbsp;
                                 </if>
                             </div>
                             <div class="cell-right">
-                              
-                                <input type="text"  class="cell-input" readonly value="{$vo.username}"/>
-                        
+
+                                <input type="text" class="cell-input" readonly value="{$vo.username}" />
+
                             </div>
                         </div>
                     </div>
@@ -73,34 +98,33 @@
                             <div class="cell-left">
                                 <if condition='$vo.bankId eq 0'>
                                     USDT地址:&nbsp;&nbsp;
-                                <else />
-                                银行卡号:&nbsp;&nbsp;
+                                    <else />
+                                    银行卡号:&nbsp;&nbsp;
                                 </if>
                             </div>
                             <div class="cell-right">
-                              
-                                <input type="text"  class="cell-input" readonly value="{$vo.account}"/>
-                        
+
+                                <input type="text" class="cell-input" readonly value="{$vo.account}" />
+
                             </div>
                         </div>
                     </div>
                     <div class="m-cell">
                         <div class="cell-item">
                             <div class="cell-left">
-                             充值金额:&nbsp;&nbsp;
+                                充值金额:&nbsp;&nbsp;
                             </div>
                             <div class="cell-right">
-                              
-                                <input min="0.01" value="0.00"
-                                type="number"  class="cell-input"/>
-                        
+
+                                <input min="0.01" value="0.00" type="number" class="cell-input" />
+
                             </div>
                         </div>
                     </div>
-                    <button type="button" class="btn-block btn-primary">立即提交</button>
+                    <button type="button" class="btn-block btn-primary form-btn">立即提交</button>
                 </div>
             </volist>
-           
+
         </div>
     </div>
 </block>
