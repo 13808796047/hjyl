@@ -128,8 +128,8 @@
 
       //监听提交
       form.on("submit(rechargeForm)", function (data) {
-        let data = data.field;
-        data.type = $(this).data('type')
+        let params = data.field;
+        params.type = $(this).data('type')
         layer.confirm(
           "充值时间 " + from + " 到 " + to + "您确认提交吗？",
           {
@@ -139,7 +139,7 @@
             $.ajax({
               url: "/user/recharge",
               type: "post",
-              data: data,
+              data: params,
               beforeSend: function () {
                 this.layerIndex = layer.load(0, {
                   shade: [0.5, "#393D49"],
