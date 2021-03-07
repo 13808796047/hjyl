@@ -180,11 +180,8 @@ class Recharge extends Controller
         $this->init();
         $fromTime = $this->settings['rechargeFromTime'];
         $toTime = $this->settings['rechargeToTime'];
-        if ($bank['bankId'] == 0) {
-            $this->assign('usdt', $bank);
-        } else {
-            $this->assign('bank', $bank);
-        }
+
+        $this->assign('bank', $bank);
 
         $this->assign('param', []);
         $this->assign('rechargeFromTime', $fromTime);

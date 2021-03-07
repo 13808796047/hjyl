@@ -74,19 +74,19 @@
             <div class="layui-form-item">
               <label class="layui-form-label">USDT平台：</label>
               <div class="layui-input-block">
-                <input type="text" class="layui-input" value="{$usdt.bankDetail}" readonly />
+                <input type="text" class="layui-input" value="{$bank.bankId==0?$bank.bankDetail:''}" readonly />
               </div>
             </div>
             <div class="layui-form-item">
               <label class="layui-form-label">USDT持有人：</label>
               <div class="layui-input-block">
-                <input type="text" class="layui-input" value="{$usdt.username}" readonly />
+                <input type="text" class="layui-input" value="{$bank.bankId==0?$bank.username:''}" readonly />
               </div>
             </div>
             <div class="layui-form-item">
               <label class="layui-form-label">USDT地址：</label>
               <div class="layui-input-block">
-                <input type="text" class="layui-input" value="{$usdt.account}" readonly />
+                <input type="text" class="layui-input" value="{$bank.bankId==0?$bank.account:''}" readonly />
               </div>
             </div>
             <div class="layui-form-item">
