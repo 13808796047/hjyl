@@ -107,7 +107,7 @@
         !function (win, $) {
            var dialog = win.YDUI.dialog;
            $('.formBtn').click(function () {
-               console.log(dialog);
+            dialog.toast('你点了确定', 'none', 1000);
                //   if (!$('#amt').val()) {
                //       swal("金额不能为空");
                //       return;
@@ -121,12 +121,12 @@
                //       });
                //       return;
                //   }
-               var from = '{$settings.rechargeFromTime}';
-               var to = '{$settings.rechargeToTime}';
-               var url = '__SELF__';
-               dialog.confirm('选填标题', '我有一个小毛驴我从来也不骑！', function () {
-                dialog.toast('你点了确定', 'none', 1000);
-            });
+            //    var from = '{$settings.rechargeFromTime}';
+            //    var to = '{$settings.rechargeToTime}';
+            //    var url = '__SELF__';
+            //    dialog.confirm('选填标题', '我有一个小毛驴我从来也不骑！', function () {
+            //     dialog.toast('你点了确定', 'none', 1000);
+            // });
    
            });
        }(window, jQuery);
