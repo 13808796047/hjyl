@@ -264,12 +264,39 @@ class ConfigController extends AdminController
         $this->meta_title = '用户信息';
         $this->display();
     }
+    // usdt
     public function usdt()
     {
         $list = D('member_bank')->where('admin=1 AND bankId=0')->select();
         $this->recordList($list);
         $this->meta_title = '用户信息';
         $this->display();
+
+    }
+    public function addUsdt()
+    {
+        if (IS_POST) {
+
+            $Config = D('member_bank');
+            $data = $Config->create();
+            if ($data) {
+                $data['admin'] = 1;
+                $data['uid'] = 1;
+
+                if ($lastid = $Config->add($data)) {
+
+                    $str2 = implode(',', $data);
+                    $this->addLog(11, $data['id'], $str2);
+                    $this->success('新增充值银行成功', U('config/bank'));
+                } else {
+                    $this->error('新增充值银行失败');
+                }
+            } else {
+                $this->error($Config->getError());
+            }
+        } else {
+            $this->display();
+        }
 
     }
     final public function addBank()
