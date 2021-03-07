@@ -28,12 +28,8 @@
             <td>{$config.account}</td>
             <td>{$config.username}</td>
             <td>
-              <input
-                type="checkbox"
-                data-id="{$config['id']}"
-                name="enable"
-                {$this-
-              />iff($config['enable'],'checked','')}>
+              <input type="checkbox" data-id="{$config['id']}" name="enable"
+              {$this-iff($config['enable'],'checked','')} />
             </td>
             <td>
               <a
