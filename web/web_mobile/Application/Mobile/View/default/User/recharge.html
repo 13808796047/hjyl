@@ -91,8 +91,7 @@
                             </div>
                         </div>
                     </div>
-                    <button type="button" {$bank?
-                        '':'disabled'} " class="btn-block btn-primary formBtn">立即提交</button>
+                    <button type="button" {$bank?'':'disabled'}" class="btn-block btn-primary formBtn">立即提交</button>
                 </div>
             </volist>
 
@@ -138,7 +137,9 @@
                           });
                 });
             });
-            function timeCountDown(intDiff, showElement) {
+           
+        }(window, jQuery);
+        function timeCountDown(intDiff, showElement) {
           var timer = setInterval(function () {
               let day = 0;
               let hour = 0;
@@ -162,7 +163,7 @@
                   clearInterval(timer)
               }
           }, 1000);
-        }(window, jQuery);
+        }
     </script>
  
 </body>
