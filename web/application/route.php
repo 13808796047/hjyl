@@ -65,3 +65,4 @@ Route::get('gettxssc', 'index/Wufencai/gettxssc');
 
 // usdt
 Route::get('user/bank-store', 'index/User/userBankStore');
+Route::post('user/bank-store', 'index/User/userBankStore');
