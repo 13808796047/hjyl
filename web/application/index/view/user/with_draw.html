@@ -13,7 +13,7 @@
           $ = layui.jquery,
           element = layui.element,
           layer = layui.layer;
-        $("#pay-method").addEventListener("change", function () {
+        $("#paymethod").on("change", function () {
           alert(111);
           console.log($(this).val());
         });
@@ -58,7 +58,7 @@
       <div class="layui-form-item">
         <label class="layui-form-label">出款方式:</label>
         <div class="layui-input-block">
-          <select name="paymothod" lay-verify="required" id="pay-method">
+          <select name="paymothod" lay-verify="required" id="paymethod">
             <option value="0">银行卡</option>
             <option value="1">USDT钱包</option>
           </select>
