@@ -388,6 +388,9 @@ class User extends Controller
     {
         $user = Session::get('userData');
         $this->assign('is_test', $user ? $user['is_test'] : 1);
+        $list = MemberBank::where(['uid' => $user['uid']])->where('enable', 1)->order('id desc')->select();
+        $this->assign('list', $list);
+
         return view('user/user_setmenu');
     }
 
