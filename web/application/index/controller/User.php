@@ -383,7 +383,7 @@ class User extends Controller
     {
         return view('user/user_userset');
     }
-
+    // =================================
     public function getUser_setmenu()
     {
         $user = Session::get('userData');
@@ -393,7 +393,30 @@ class User extends Controller
 
         return view('user/user_setmenu');
     }
+    public function userBankStore()
+    {
 
+        $type = \input('type');
+        switch ($type) {
+            case 'usdt':
+                if (IS_AJAX) {
+
+                }
+                return view('user/user_usdt_add');
+
+                break;
+
+            default:
+                if (IS_AJAX) {
+
+                }
+
+                return view('user/user_bank_add');
+                break;
+        }
+
+    }
+    // ============
     public function getUser_userbankinfo()
     {
         $user = Session::get('userData');
