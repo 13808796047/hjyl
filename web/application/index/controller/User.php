@@ -402,6 +402,7 @@ class User extends Controller
                 if (request()->jsAjax) {
 
                 }
+
                 return view('user/user_usdt_add');
 
                 break;
@@ -410,6 +411,8 @@ class User extends Controller
                 if (request()->jsAjax) {
 
                 }
+                $bank_list = BankList::order('id desc')->select();
+                $this->assign('bank_list', $bank_list);
 
                 return view('user/user_bank_add');
                 break;
