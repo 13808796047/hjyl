@@ -483,7 +483,7 @@ class User extends Controller
         }
 
     }
-    public function bank_del()
+    public function userBankDel()
     {
         MemberBank::destroy(input('id'));
         return \json([
