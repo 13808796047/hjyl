@@ -13,6 +13,9 @@
           $ = layui.jquery,
           element = layui.element,
           layer = layui.layer;
+        $("select[name=paymethod]").change(function () {
+          console.log($(this).val());
+        });
       });
     </script>
   </head>
@@ -63,7 +66,7 @@
       <div class="layui-form-item">
         <label class="layui-form-label">选择钱包:</label>
         <div class="layui-input-block">
-          <select name="paymothod" lay-verify="required">
+          <select name="bankId" lay-verify="required">
             <option value="0">银行卡</option>
             <option value="1">USDT钱包</option>
           </select>
@@ -71,7 +74,7 @@
       </div>
       <div class="layui-form-item">
         <label class="layui-form-label">提现金额</label>
-        <div class="layui-input-block">
+        <div class="layui-input-inline">
           <input
             type="number"
             name="amount"
