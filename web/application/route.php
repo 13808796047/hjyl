@@ -66,4 +66,4 @@ Route::get('gettxssc', 'index/Wufencai/gettxssc');
 // usdt
 Route::get('user/bank-store', 'index/User/userBankStore');
 Route::post('user/bank-store', 'index/User/userBankStore');
-Route::delete('users/bank-del', 'index/User/userBankDel');
+Route::delete('user/bank-del', 'index/User/userBankDel');
