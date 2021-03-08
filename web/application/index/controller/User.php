@@ -591,6 +591,10 @@ class User extends Controller
             $this->success('设置成功');
         }
     }
+    public function withDrawIndex()
+    {
+        return view('user/with_draw');
+    }
     // ============
     public function getUser_userbankinfo()
     {

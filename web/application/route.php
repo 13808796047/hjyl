@@ -68,3 +68,5 @@ Route::get('user/bank-store', 'index/User/userBankStore');
 Route::post('user/bank-store', 'index/User/userBankStore');
 Route::delete('user/bank-del', 'index/User/userBankDel');
 Route::post('user/change-password', 'index/User/changePassword');
+// 提现
+Route::get('user/withdraw', 'index/User/withDrawIndex');
