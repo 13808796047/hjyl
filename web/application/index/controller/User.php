@@ -402,14 +402,56 @@ class User extends Controller
         switch ($type) {
             case 'usdt':
                 if (request()->isPost()) {
+                    $account_name = input('account_name');
+                    $bankId = 0;
+                    $account = input('account');
+                    $bankDetail = input('bankDetail');
+
+                    $mbank = MemberBank::where(['uid' => $uid, 'bankId' => 0])->select();
+                    if (count($mbank) > 0 && $account_name != $mbank[0]['username']) {
+                        return json([
+                            'code' => 500,
+                            'msg' => '绑定的新银行持卡人必须跟之前绑定的一致',
+                        ]);
+                    }
+                    if (!$account_name || !$account) {
+                        return json([
+                            'code' => 500,
+                            'msg' => '卡号信息有误',
+                        ]);
+
+                    }
+                    if (count($mbank) >= 5) {
+                        return json([
+                            'code' => 500,
+                            'msg' => '最多绑定5个银行卡',
+                        ]);
+
+                    }
+                    $has_bank = MemberBank::where(['account' => $account])->find();
+                    if ($has_bank) {
+                        return json([
+                            'code' => 500,
+                            'msg' => '该银行已经存在',
+                        ]);
+
+                    }
+                    if ($user['coinPassword'] != think_ucenter_md5(input('scpassword'), UC_AUTH_KEY)) {
+                        return json([
+                            'code' => 500,
+                            'msg' => '资金密码不正确',
+                        ]);
+
+                    }
                     $data = [
-                        'uid' => $user['uid'],
+                        'uid' => $uid,
                         'bankId' => 0,
-                        'username' => $request->param('account_name'),
-                        'account' => $request->param('account'),
+                        'username' => $account_name,
+                        'account' => $account,
                         'actionTime' => time(),
-                        'bankDetail' => $request->param('bankDetail'),
+                        'bankDetail' => $bankDetail,
                     ];
+
                     MemberBank::insert($data);
                     return json(['code' => 200, 'message' => '绑定成功!']);
 
