@@ -64,4 +64,4 @@ Route::get('getqq', 'index/Wufencai/getQQData');
 Route::get('gettxssc', 'index/Wufencai/gettxssc');
 
 // usdt
-Route::post('user/usdt-account', 'index/User/usdtAccountStore');
+Route::post('user/bank-store', 'index/User/userBankStore');
