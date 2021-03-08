@@ -410,7 +410,7 @@ class User extends Controller
                 break;
 
             default:
-                if (request()->jsAjax) {
+                if (request()->isPost) {
                     $account_name = input('account_name');
                     $bankId = input('bankId');
                     $account = input('account');
