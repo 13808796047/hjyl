@@ -483,6 +483,14 @@ class User extends Controller
         }
 
     }
+    public function bank_del()
+    {
+        MemberBank::destroy(input('id'));
+        return \json([
+            'code' => 200,
+            'msg' => '删除成功!',
+        ]);
+    }
     // ============
     public function getUser_userbankinfo()
     {
