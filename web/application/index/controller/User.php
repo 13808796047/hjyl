@@ -397,6 +397,8 @@ class User extends Controller
     {
 
         $type = \input('type');
+        $user = Session::get('userData');
+        $uid = $user['uid'];
         switch ($type) {
             case 'usdt':
                 if (request()->jsAjax) {
@@ -409,7 +411,54 @@ class User extends Controller
 
             default:
                 if (request()->jsAjax) {
+                    $account_name = input('account_name');
+                    $bankId = input('bankId');
+                    $account = input('account');
+                    $bankDetail = input('bankDetail');
+                    $mbank = MemberBank::where(['uid' => $uid])->select();
+                    if (count($mbank) > 0 && $account_name != $mbank[0]['username']) {
+                        return json([
+                            'msg' => '绑定的新银行持卡人必须跟之前绑定的一致',
+                        ], 500);
+                    }
+                    if (!$account_name || !$account) {
+                        return json([
+                            'msg' => '卡号信息有误',
+                        ], 500);
 
+                    } elseif (count($mbank) >= 5) {
+                        return json([
+                            'msg' => '最多绑定5个银行卡',
+                        ], 500);
+
+                    } else {
+                        $bank = BankList::where(['id' => $bankId])->find();
+                        if (!$bank) {
+                            return json([
+                                'msg' => '银行信息有误',
+                            ], 500);
+                        }
+                        $has_bank = MemberBank::where(['account' => $account])->find();
+                        if ($has_bank) {
+                            return json([
+                                'msg' => '该银行已经存在',
+                            ], 500);
+
+                        }
+                        $data = [
+                            'uid' => $uid,
+                            'bankId' => $bankId,
+                            'username' => $account_name,
+                            'account' => $account,
+                            'actionTime' => time(),
+                            'bankDetail' => $bankDetail ? $bankDetail : $bank['name'],
+                        ];
+                        MemberBank::insert($data);
+                        return json([
+                            'msg' => '银行卡绑定成功!',
+                        ]);
+
+                    }
                 }
                 $bank_list = BankList::order('id desc')->select();
                 $this->assign('bank_list', $bank_list);
