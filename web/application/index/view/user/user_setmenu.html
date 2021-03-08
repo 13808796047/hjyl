@@ -8,11 +8,10 @@
     <link rel="stylesheet" href="__JS__/layer/layui/css/layui.css" />
     <script src="__JS__/layer/layui/layui.js"></script>
     <script>
-      layui.use(["jquery", "form", "layer", "element", "table"], function () {
+      layui.use(["jquery", "form", "layer", "element"], function () {
         var form = layui.form(),
           $ = layui.jquery,
           element = layui.element,
-          table = layui.table,
           layer = layui.layer;
         $("#bank-add").cleck(function () {
           layer.open({
