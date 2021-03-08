@@ -418,37 +418,43 @@ class User extends Controller
                     $mbank = MemberBank::where(['uid' => $uid])->select();
                     if (count($mbank) > 0 && $account_name != $mbank[0]['username']) {
                         return json([
+                            'code' => 500,
                             'msg' => '绑定的新银行持卡人必须跟之前绑定的一致',
-                        ], 500);
+                        ]);
                     }
                     if (!$account_name || !$account) {
                         return json([
+                            'code' => 500,
                             'msg' => '卡号信息有误',
-                        ], 500);
+                        ]);
 
                     } elseif (count($mbank) >= 5) {
                         return json([
+                            'code' => 500,
                             'msg' => '最多绑定5个银行卡',
-                        ], 500);
+                        ]);
 
                     } else {
                         $bank = BankList::where(['id' => $bankId])->find();
                         if (!$bank) {
                             return json([
+                                'code' => 500,
                                 'msg' => '银行信息有误',
-                            ], 500);
+                            ]);
                         }
                         $has_bank = MemberBank::where(['account' => $account])->find();
                         if ($has_bank) {
                             return json([
+                                'code' => 500,
                                 'msg' => '该银行已经存在',
-                            ], 500);
+                            ]);
 
                         }
                         if ($user['coinPassword'] != think_ucenter_md5(input('scpassword'), UC_AUTH_KEY)) {
                             return json([
+                                'code' => 500,
                                 'msg' => '资金密码不正确',
-                            ], 500);
+                            ]);
 
                         }
 
@@ -462,6 +468,7 @@ class User extends Controller
                         ];
                         MemberBank::insert($data);
                         return json([
+                            'code' => 200,
                             'msg' => '银行卡绑定成功!',
                         ]);
 
