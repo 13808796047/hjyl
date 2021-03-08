@@ -411,7 +411,7 @@ class User extends Controller
                     if (count($mbank) > 0 && $account_name != $mbank[0]['username']) {
                         return json([
                             'code' => 500,
-                            'msg' => '绑定的新银行持卡人必须跟之前绑定的一致',
+                            'msg' => '绑定的新usdt持有人必须跟之前绑定的一致',
                         ]);
                     }
                     if (!$account_name || !$account) {
@@ -424,7 +424,7 @@ class User extends Controller
                     if (count($mbank) >= 5) {
                         return json([
                             'code' => 500,
-                            'msg' => '最多绑定5个银行卡',
+                            'msg' => '最多绑定5个usdt地址',
                         ]);
 
                     }
@@ -453,7 +453,7 @@ class User extends Controller
                     ];
 
                     MemberBank::insert($data);
-                    return json(['code' => 200, 'message' => '绑定成功!']);
+                    return json(['code' => 200, 'msg' => '绑定成功!']);
 
                 }
 
