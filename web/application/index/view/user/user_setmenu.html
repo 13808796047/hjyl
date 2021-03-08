@@ -30,7 +30,7 @@
             },
             function () {
               $.ajax({
-                url: "/user/change-password?type=loginpass",
+                url: "/user/change-password?changetype=loginpass",
                 type: "post",
                 data: params,
                 beforeSend: function () {
@@ -72,7 +72,7 @@
             },
             function () {
               $.ajax({
-                url: "/user/change-password?type=secpass",
+                url: "/user/change-password?changetype=secpass",
                 type: "post",
                 data: params,
                 beforeSend: function () {
