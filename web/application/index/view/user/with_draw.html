@@ -13,10 +13,11 @@
           $ = layui.jquery,
           layer = layui.layer;
         console.log($("#paymethod"));
-        $("#paymethod").change(function () {
-          alert(111);
-          console.log($(this).val());
-        });
+       
+  //监听指定开关
+  form.on('switch(switchTest)', function(data){
+    console.log(data);
+  });
       });
     </script>
   </head>
@@ -58,7 +59,7 @@
       <div class="layui-form-item">
         <label class="layui-form-label">出款方式:</label>
         <div class="layui-input-block">
-          <select name="paymothod" lay-verify="required" id="paymethod">
+          <select name="paymothod" lay-verify="required" lay-filter="switchTest" id="paymethod">
             <option value="0">银行卡</option>
             <option value="1">USDT钱包</option>
           </select>
