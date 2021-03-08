@@ -55,7 +55,9 @@
                   <td>{$vo.account|}</td>
                   <td>{$vo.actionTime|date='Y-m-d H:i:m',###}</td>
                   <td>
-                    <a href=""><i class="layui-icon">&#xe640;</i> </a>
+                    <a href="user/bank_del?id={$vo.id}"
+                      ><i class="layui-icon">&#xe640;</i>
+                    </a>
                   </td>
                 </tr>
                 {/if} {/volist}
