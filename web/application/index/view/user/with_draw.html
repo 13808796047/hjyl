@@ -13,7 +13,7 @@
           $ = layui.jquery,
           element = layui.element,
           layer = layui.layer;
-        $("#pay-method").change(function () {
+        $("#pay-method").live(function () {
           alert(111);
           console.log($(this).val());
         });
