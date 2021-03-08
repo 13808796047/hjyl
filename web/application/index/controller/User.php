@@ -445,6 +445,13 @@ class User extends Controller
                             ], 500);
 
                         }
+                        if ($user['coinPassword'] != think_ucenter_md5(input('scpassword'), UC_AUTH_KEY)) {
+                            return json([
+                                'msg' => '资金密码不正确',
+                            ], 500);
+
+                        }
+
                         $data = [
                             'uid' => $uid,
                             'bankId' => $bankId,
