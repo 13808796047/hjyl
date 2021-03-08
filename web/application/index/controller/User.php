@@ -415,7 +415,8 @@ class User extends Controller
                     $bankId = input('bankId');
                     $account = input('account');
                     $bankDetail = input('bankDetail');
-                    $mbank = MemberBank::where(['uid' => $uid])->select();
+
+                    $mbank = MemberBank::where(['uid' => $uid])->where('bankId', '>', 0)->select();
                     if (count($mbank) > 0 && $account_name != $mbank[0]['username']) {
                         return json([
                             'code' => 500,
