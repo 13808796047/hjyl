@@ -23,6 +23,16 @@
             content: "/user/bank-store?type=bank", //iframe的url
           });
         });
+        $("#usdt-add").click(function () {
+          layer.open({
+            type: 2,
+            title: "绑定usdt钱包",
+            shadeClose: true,
+            shade: 0.8,
+            area: ["600px", "480px"],
+            content: "/user/bank-store?type=usdt", //iframe的url
+          });
+        });
         $(".bank-del").click(function () {
           var id = $(this).data("id");
           layer.confirm(
@@ -104,8 +114,8 @@
               </tbody>
             </table>
           </div>
-          <blockquote class="layui-elem-quote">USDT</blockquote>
-
+          <blockquote class="layui-elem-quote">USDT钱包</blockquote>
+          <button class="layui-btn" id="usdt-add">增加绑定</button>
           <div class="layui-form">
             <table class="layui-table">
               <thead>
@@ -125,7 +135,9 @@
                   <td>{$vo.account}</td>
                   <td>{$vo.actionTime|date='Y-m-d H:i:m',###}</td>
                   <td>
-                    <a href=""><i class="layui-icon">&#xe640;</i> </a>
+                    <a href="javascript:;" data-id="{$vo.id}"
+                      ><i class="layui-icon">&#xe640;</i>
+                    </a>
                   </td>
                 </tr>
                 {/if} {/volist}

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="__JS__/layer/layui/css/layui.css" />
+    <script src="__JS__/layer/layui/layui.js"></script>
+    <script>
+      layui.use(["jquery", "form", "layer", "element"], function () {
+        var form = layui.form(),
+          $ = layui.jquery,
+          layer = layui.layer;
+        form.on("submit(usdt-form)", function (data) {
+          let params = data.field;
+          layer.confirm(
+            "您确认提交吗？",
+            {
+              btn: ["确定", "取消"], //按钮
+            },
+            function () {
+              $.ajax({
+                url: "/user/bank-store?type=usdt",
+                type: "post",
+                data: params,
+                beforeSend: function () {
+                  this.layerIndex = layer.load(0, {
+                    shade: [0.5, "#393D49"],
+                  });
+                },
+                success: function (data) {
+                  if (data.code == 200) {
+                    layer.msg(
+                      data.msg,
+                      {
+                        icon: 6, //成功的表情
+                        time: 1000, //1秒关闭（如果不配置，默认是3秒）
+                      },
+                      function () {
+                        parent.layer.closeAll();
+                        location.href = "/user/user_setmenu";
+                      }
+                    );
+                  } else {
+                    layer.msg(data.msg, { icon: 5, time: 2000 }); //失败的表情
+                  }
+                },
+                complete: function () {
+                  layer.close(this.layerIndex);
+                },
+              });
+            },
+            function () {}
+          );
+          return false;
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <form
+      class="layui-form"
+      action=""
+      style="margin-right: 100px; margin-top: 20px"
+    >
+      <div class="layui-form-item">
+        <label class="layui-form-label">USDT平台:</label>
+        <div class="layui-input-block">
+          <input
+            type="text"
+            name="bankDetail"
+            lay-verify="title"
+            autocomplete="off"
+            placeholder="请输入开户人姓名"
+            class="layui-input"
+          />
+        </div>
+      </div>
+      <div class="layui-form-item">
+        <label class="layui-form-label">钱包地址:</label>
+        <div class="layui-input-block">
+          <input
+            type="text"
+            name="account"
+            lay-verify="title"
+            autocomplete="off"
+            placeholder="请输入钱包地址"
+            class="layui-input"
+          />
+        </div>
+      </div>
+      <div class="layui-form-item">
+        <label class="layui-form-label">持有人姓名:</label>
+        <div class="layui-input-block">
+          <input
+            type="text"
+            name="account_name"
+            lay-verify="title"
+            autocomplete="off"
+            placeholder="请输入持有人姓名"
+            class="layui-input"
+          />
+        </div>
+      </div>
+      <div class="layui-form-item">
+        <label class="layui-form-label">资金密码:</label>
+        <div class="layui-input-block">
+          <input
+            type="password"
+            name="scpassword"
+            lay-verify="title"
+            autocomplete="off"
+            placeholder="请输入资金密码"
+            class="layui-input"
+          />
+        </div>
+      </div>
+      <div class="layui-form-item">
+        <div class="layui-input-block">
+          <button class="layui-btn form-btn" lay-submit lay-filter="usdt-form">
+            立即提交
+          </button>
+          <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+        </div>
+      </div>
+    </form>
+  </body>
+</html>
