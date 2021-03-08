@@ -410,7 +410,7 @@ class User extends Controller
                 break;
 
             default:
-                if (request()->isPost) {
+                if (request()->isPost()) {
                     \dump(111);
                     $account_name = input('account_name');
                     $bankId = input('bankId');
