@@ -401,7 +401,17 @@ class User extends Controller
         $uid = $user['uid'];
         switch ($type) {
             case 'usdt':
-                if (request()->jsAjax) {
+                if (request()->isPost()) {
+                    $data = [
+                        'uid' => $user['uid'],
+                        'bankId' => 0,
+                        'username' => $request->param('account_name'),
+                        'account' => $request->param('account'),
+                        'actionTime' => time(),
+                        'bankDetail' => $request->param('bankDetail'),
+                    ];
+                    MemberBank::insert($data);
+                    return json(['code' => 200, 'message' => '绑定成功!']);
 
                 }
 
