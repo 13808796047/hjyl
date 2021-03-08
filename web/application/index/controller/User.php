@@ -411,6 +411,7 @@ class User extends Controller
 
             default:
                 if (request()->isPost) {
+                    \dump(111);
                     $account_name = input('account_name');
                     $bankId = input('bankId');
                     $account = input('account');
