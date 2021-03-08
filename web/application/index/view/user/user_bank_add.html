@@ -25,7 +25,7 @@
         <label class="layui-form-label">开户银行:</label>
         <div class="layui-input-block">
           <select name="bankId" lay-filter="bankId">
-            {volist name="bankList" id="vo"}
+            {volist name="bank_list" id="vo"}
             <option value="{$vo.id}">{$vo.name}</option>
             {/volist}
           </select>
