@@ -164,17 +164,43 @@
                 <form
                   class="layui-form"
                   action=""
-                  style="margin-right: 100px; margin-top: 20px"
+                  style="margin-right: 200px; margin-top: 20px"
                 >
                   <div class="layui-form-item">
-                    <label class="layui-form-label">资金密码:</label>
+                    <label class="layui-form-label">输入旧登录密码:</label>
                     <div class="layui-input-block">
                       <input
                         type="password"
-                        name="scpassword"
+                        name="oldpass"
                         lay-verify="title"
                         autocomplete="off"
-                        placeholder="请输入资金密码"
+                        placeholder="请输入旧登录密码"
+                        class="layui-input"
+                      />
+                    </div>
+                  </div>
+                  <div class="layui-form-item">
+                    <label class="layui-form-label">输入新登录密码:</label>
+                    <div class="layui-input-block">
+                      <input
+                        type="password"
+                        name="newpass"
+                        lay-verify="title"
+                        autocomplete="off"
+                        placeholder="请输入新登录密码"
+                        class="layui-input"
+                      />
+                    </div>
+                  </div>
+                  <div class="layui-form-item">
+                    <label class="layui-form-label">确认新登录密码:</label>
+                    <div class="layui-input-block">
+                      <input
+                        type="password"
+                        name="comfirm_pass"
+                        lay-verify="title"
+                        autocomplete="off"
+                        placeholder="确认新登录密码"
                         class="layui-input"
                       />
                     </div>
