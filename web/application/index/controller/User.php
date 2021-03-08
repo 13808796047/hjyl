@@ -543,6 +543,54 @@ class User extends Controller
             'msg' => '删除成功!',
         ]);
     }
+    public function changePassword()
+    {
+        if (!empty($_POST)) {
+            $changetype = $_POST['changetype'];
+            $user = Session::get('userData');
+            $where = ['uid' => $user['uid']];
+            $member = Members::where($where)->find();
+            if (!$member) {
+                $this->error('回话过期');
+            }
+            if ($_POST['newpass'] != input('confirm_newpass')) {
+                return json([
+                    'code' => 500,
+                    'msg' => '两次密码不一致',
+                ]);
+
+            }
+            $oldpass = think_ucenter_md5($_POST['oldpass'], UC_AUTH_KEY);
+            $newpass = think_ucenter_md5($_POST['newpass'], UC_AUTH_KEY);
+            if ($changetype == 'loginpass') {
+                if (($member['password'] == $oldpass) || $oldpass == "") {
+                    Members::where($where)->update([
+                        'password' => $newpass,
+                    ]);
+                } else {
+                    return json([
+                        'code' => 500,
+                        'msg' => '旧密码不正确',
+                    ]);
+                }
+            } elseif ($changetype == 'secpass') {
+                if ($member['coinPassword'] == $oldpass || $oldpass == "") {
+                    Members::where($where)->update([
+                        'coinPassword' => $newpass,
+                    ]);
+                } else {
+                    return json([
+                        'code' => 500,
+                        'msg' => '资金密码不正确',
+                    ]);
+
+                }
+            } else {
+                $this->success('你要弄什么');
+            }
+            $this->success('设置成功');
+        }
+    }
     // ============
     public function getUser_userbankinfo()
     {

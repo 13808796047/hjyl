@@ -67,3 +67,4 @@ Route::get('gettxssc', 'index/Wufencai/gettxssc');
 Route::get('user/bank-store', 'index/User/userBankStore');
 Route::post('user/bank-store', 'index/User/userBankStore');
 Route::delete('user/bank-del', 'index/User/userBankDel');
+Route::post('user/change-password', 'index/User/changePassword');
