@@ -11,8 +11,8 @@
       layui.use(["jquery", "form", "layer", "element"], function () {
         var form = layui.form(),
           $ = layui.jquery,
-          element = layui.element,
           layer = layui.layer;
+        console.log($("#paymethod"));
         $("#paymethod").on("change", function () {
           alert(111);
           console.log($(this).val());
