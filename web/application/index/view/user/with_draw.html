@@ -13,7 +13,7 @@
           $ = layui.jquery,
           element = layui.element,
           layer = layui.layer;
-        $("select[name=paymethod]").change(function () {
+        $("#pay-method").change(function () {
           console.log($(this).val());
         });
       });
@@ -57,7 +57,7 @@
       <div class="layui-form-item">
         <label class="layui-form-label">出款方式:</label>
         <div class="layui-input-block">
-          <select name="paymothod" lay-verify="required">
+          <select name="paymothod" lay-verify="required" id="pay-method">
             <option value="0">银行卡</option>
             <option value="1">USDT钱包</option>
           </select>
