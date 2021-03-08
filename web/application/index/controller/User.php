@@ -546,7 +546,7 @@ class User extends Controller
     public function changePassword()
     {
         if (!empty($_POST)) {
-            $changetype = $_POST['changetype'];
+            $changetype = input('changetype');
             $user = Session::get('userData');
             $where = ['uid' => $user['uid']];
             $member = Members::where($where)->find();
