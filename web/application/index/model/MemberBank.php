@@ -8,7 +8,6 @@
 
 namespace app\index\model;
 
-
 use think\Model;
 
 class MemberBank extends Model
@@ -16,6 +15,18 @@ class MemberBank extends Model
     protected $pk = 'id';
     public function bankList()
     {
-        return $this->belongsTo('BankList','bankId');
+        return $this->belongsTo('BankList', 'bankId');
+    }
+    public function getAccountAttr($value)
+    {
+        //截取银行卡号前4位
+        $prefix = substr($value, 0, 4);
+//截取银行卡号后4位
+        $suffix = substr($value, -4, 4);
+
+        $maskBankCardNo = $prefix . " **** **** **** " . $suffix;
+
+        return $maskBankCardNo;
+
     }
 }
