@@ -13,7 +13,7 @@
           $ = layui.jquery,
           layer = layui.layer;
         console.log($("#paymethod"));
-        $("#paymethod").on("change", function () {
+        $("#paymethod").trigger(function () {
           alert(111);
           console.log($(this).val());
         });
