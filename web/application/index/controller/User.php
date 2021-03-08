@@ -393,13 +393,13 @@ class User extends Controller
 
         return view('user/user_setmenu');
     }
-    public function userBankStore()
+    public function userBankStore(Request $request)
     {
 
         $type = \input('type');
         switch ($type) {
             case 'usdt':
-                if (IS_AJAX) {
+                if (request()->jsAjax) {
 
                 }
                 return view('user/user_usdt_add');
@@ -407,7 +407,7 @@ class User extends Controller
                 break;
 
             default:
-                if (IS_AJAX) {
+                if (request()->jsAjax) {
 
                 }
 
