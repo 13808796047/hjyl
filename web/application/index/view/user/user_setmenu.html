@@ -154,39 +154,50 @@
           </div>
         </div>
         <div class="layui-tab-item">
-          <form
-            class="layui-form"
-            action=""
-            style="margin-right: 100px; margin-top: 20px"
-          >
-            <div class="layui-form-item">
-              <label class="layui-form-label">资金密码:</label>
-              <div class="layui-input-block">
-                <input
-                  type="password"
-                  name="scpassword"
-                  lay-verify="title"
-                  autocomplete="off"
-                  placeholder="请输入资金密码"
-                  class="layui-input"
-                />
-              </div>
-            </div>
-            <div class="layui-form-item">
-              <div class="layui-input-block">
-                <button
-                  class="layui-btn form-btn"
-                  lay-submit
-                  lay-filter="bank-form"
+          <div class="layui-tab">
+            <ul class="layui-tab-title">
+              <li class="layui-this">登录密码修改</li>
+              <li>资金密码修改</li>
+            </ul>
+            <div class="layui-tab-content">
+              <div class="layui-tab-item layui-show">
+                <form
+                  class="layui-form"
+                  action=""
+                  style="margin-right: 100px; margin-top: 20px"
                 >
-                  立即提交
-                </button>
-                <button type="reset" class="layui-btn layui-btn-primary">
-                  重置
-                </button>
+                  <div class="layui-form-item">
+                    <label class="layui-form-label">资金密码:</label>
+                    <div class="layui-input-block">
+                      <input
+                        type="password"
+                        name="scpassword"
+                        lay-verify="title"
+                        autocomplete="off"
+                        placeholder="请输入资金密码"
+                        class="layui-input"
+                      />
+                    </div>
+                  </div>
+                  <div class="layui-form-item">
+                    <div class="layui-input-block">
+                      <button
+                        class="layui-btn form-btn"
+                        lay-submit
+                        lay-filter="bank-form"
+                      >
+                        立即提交
+                      </button>
+                      <button type="reset" class="layui-btn layui-btn-primary">
+                        重置
+                      </button>
+                    </div>
+                  </div>
+                </form>
               </div>
+              <div class="layui-tab-item">内容2</div>
             </div>
-          </form>
+          </div>
         </div>
       </div>
     </div>
