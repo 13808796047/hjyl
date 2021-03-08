@@ -24,6 +24,7 @@
           });
         });
         $(".bank-del").click(function () {
+          var id = $(this).data("id");
           layer.confirm(
             "您确认提交吗？",
             {
@@ -31,7 +32,7 @@
             },
             function () {
               $.ajax({
-                url: "/user/bank-del?id=" + $(this).attr("id"),
+                url: "/user/bank-del?id=" + id,
                 type: "delete",
                 beforeSend: function () {
                   this.layerIndex = layer.load(0, {
@@ -94,7 +95,7 @@
                   <td>{$vo.account|}</td>
                   <td>{$vo.actionTime|date='Y-m-d H:i:m',###}</td>
                   <td>
-                    <a href="javascript:;" class="bank-del" id="{$vo.id}"
+                    <a href="javascript:;" class="bank-del" data-id="{$vo.id}"
                       ><i class="layui-icon">&#xe640;</i>
                     </a>
                   </td>
