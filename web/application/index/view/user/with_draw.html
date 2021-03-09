@@ -12,15 +12,35 @@
         var form = layui.form(),
           $ = layui.jquery,
           layer = layui.layer;
-      
-       
-  //监听指定开关
-  form.on('select(switchTest)', function(data){
-    console.log(data.value);
-  });
+        getBank(0);
+        //监听指定开关
+        form.on("select(switchTest)", function (data) {
+          getBank(data.value);
+        });
       });
+
+      function getBank(params) {
+        $.ajax({
+          url: "user/withdraw?type=" + params,
+          type: "get",
+          success: function (data) {
+            if (data.code == 200) {
+              $("#banks").each(data, function (item) {
+                $(this).append(
+                  "<option value='" +
+                    data.id +
+                    "'>" +
+                    data.account +
+                    "</option>"
+                );
+              });
+            }
+          },
+        });
+      }
     </script>
   </head>
+
   <body>
     <form
       class="layui-form"
@@ -30,7 +50,12 @@
       <div class="layui-form-item">
         <label class="layui-form-label">出款方式:</label>
         <div class="layui-input-block">
-          <select name="paymothod" lay-verify="required" lay-filter="switchTest" id="paymethod">
+          <select
+            name="paymothod"
+            lay-verify="required"
+            lay-filter="switchTest"
+            id="paymethod"
+          >
             <option value="0">银行卡</option>
             <option value="1">USDT钱包</option>
           </select>
@@ -39,7 +64,7 @@
       <div class="layui-form-item">
         <label class="layui-form-label">选择钱包:</label>
         <div class="layui-input-block">
-          <select name="bankId" lay-verify="required">
+          <select name="bankId" lay-verify="required" id="banks">
             <option value="0">银行卡</option>
             <option value="1">USDT钱包</option>
           </select>

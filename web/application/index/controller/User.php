@@ -591,19 +591,23 @@ class User extends Controller
             $this->success('设置成功');
         }
     }
+    public function withDrawIndex()
+    {
+        return view('user/with_draw');
+    }
     public function getMemberBanks()
     {
         $type = input('type');
         $user = Session::get('userData');
-        if($type==1){
+        if ($type == 1) {
             return json([
-                'code'=>200,
-                'data'=>MemberBank::where(['uid' => $user['uid']])->where('bankId', '>', 0)->select()
+                'code' => 200,
+                'data' => MemberBank::where(['uid' => $user['uid']])->where('bankId', '>', 0)->select(),
             ]);
         }
         return json([
-            'code'=>200,
-            'data'=>MemberBank::where(['uid' => $user['uid'],'bankId'=>0])->select()
+            'code' => 200,
+            'data' => MemberBank::where(['uid' => $user['uid'], 'bankId' => 0])->select(),
         ]);
 
     }
