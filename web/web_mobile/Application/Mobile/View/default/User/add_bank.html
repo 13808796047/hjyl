@@ -89,7 +89,7 @@
       !(function (win, $) {
         var dialog = win.YDUI.dialog;
 
-        var url = "{:U('user/add_bank',['type'=>'bank'])}";
+        var url = "{:U('user/add_bank')}";
         //普通确认框
         $("#formBtn").on("click", function () {
           dialog.confirm("提示", "确认提交吧？", function () {
@@ -102,6 +102,7 @@
                 account: $("#account").val(),
                 secpass: $("#secpass").val(),
                 username: $("username").val(),
+                type: "bank",
               },
 
               success: function (data) {
