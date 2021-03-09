@@ -25,7 +25,34 @@
 
         </a>
     </header>
+    <div class="m-cell">
 
+        <div class="cell-item">
+            <div class="cell-left">开户行：</div>
+            <label class="cell-right cell-arrow">
+                <select class="cell-select" name="bankId">
+                    <volist name="banks" id="vo"></volist>
+                    <option value="{$vo.id}">{$vo.name}</option>
+                    </volist>
+                </select>
+            </label>
+        </div>
+        <div class="cell-item">
+            <div class="cell-left">开户支行：</div>
+            <div class="cell-right"><input type="text" class="cell-input" placeholder="请输入支行" autocomplete="off" />
+            </div>
+        </div>
+        <div class="cell-item">
+            <div class="cell-left">持有人：</div>
+            <div class="cell-right"><input type="text" class="cell-input" placeholder="请输入持有人" autocomplete="off" />
+            </div>
+        </div>
+        <div class="cell-item">
+            <div class="cell-left">卡号：</div>
+            <div class="cell-right"><input type="text" class="cell-input" placeholder="请输入持有人" autocomplete="off" />
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>
