@@ -71,9 +71,8 @@
       form.on("select(switchTest)", function (data) {
         getBank(data.value);
       });
-      form.on("submit(rechargeForm)", function (data) {
+      form.on("submit(form-btn)", function (data) {
         let params = data.field;
-        params.type = $(this).data('type')
         layer.confirm(
           "充值时间 " + from + " 到 " + to + "您确认提交吗？", {
             btn: ["确定", "取消"], //按钮
