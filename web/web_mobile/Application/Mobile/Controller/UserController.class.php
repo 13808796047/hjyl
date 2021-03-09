@@ -401,7 +401,6 @@ class UserController extends HomeController
             ->where($map)->where('bankId=0')->select();
 
         $this->assign('usdts', $usdts);
-        \var_dump($mybanks);
         $banks = M('bank_list')->where('isDelete=0')->order('sort')->select();
 
         foreach ($banks as $var) {
