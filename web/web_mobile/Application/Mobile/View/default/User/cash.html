@@ -74,6 +74,9 @@
         var url = "{:U('user/add_bank')}";
 
         getBank(0);
+        $("#paymethod").change(function () {
+          getBank($(this).val());
+        });
         function getBank(params) {
           $.ajax({
             url: "{:U('user/getMemberBanks')}&type=" + params,
