@@ -25,6 +25,7 @@
               if (data.code == 200) {
                 let html = "";
                 $.each(data.data, function (index, item) {
+                  console.log(data.data);
                   html +=
                     "<option value='" +
                     item.id +
