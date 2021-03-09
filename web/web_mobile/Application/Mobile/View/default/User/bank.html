@@ -40,7 +40,7 @@
 		<div class="m-cell">
 			<a class="cell-item" href="javascript:;">
 				<div class="cell-left"><i class="cell-icon icon-order"></i>{$vo.username}</div>
-				<div class="cell-right">{$vo.account}</div>
+				<div class="cell-right">{$vo.account|preg_replace='/^.*(\w{4})$/', '\1'}</div>
 				<div class="cell-right">{$vo.bankDetail}</div>
 			</a>
 		</div>
