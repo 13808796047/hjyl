@@ -391,7 +391,7 @@ class UserController extends HomeController
         $map['uid'] = $this->user['uid'];
         $map['enable'] = 1;
         $mybanks = M('MemberBank')->alias('m')
-            ->join('left join bank_list b ON m.bankId=b.id')
+            ->join('left join gygy_bank_list b ON m.bankId=b.id')
             ->field('m.*,b.name')
             ->where($map)->where('bankId>0')->select();
         $this->assign('mybanks', $mybanks);
