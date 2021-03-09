@@ -25,20 +25,12 @@
 
         </a>
     </header>
-    <div class="m-gridstitle">银行卡</div>
+    <div class="m-celltitle">银行卡</div>
     <volist name="mybanks" id="vo">
-        <div class="m-grids-4">
-            <a href="#" class="grids-item">
-                <div class="grids-txt"><span>{$vo.username}</span></div>
-            </a>
-            <a href="#" class="grids-item">
-                <div class="grids-txt"><span>{$vo.account}</span></div>
-            </a>
-            <a href="#" class="grids-item">
-                <div class="grids-txt"><span>grids-3</span></div>
-            </a>
-            <a href="#" class="grids-item">
-                <div class="grids-txt"><span>grids-3</span></div>
+        <div class="m-cell">
+            <a class="cell-item" href="javascript:;">
+                <div class="cell-left"><i class="cell-icon icon-order"></i>{$vo.username}</div>
+                <div class="cell-right cell-arrow">{$vo.account}</div>
             </a>
         </div>
     </volist>
