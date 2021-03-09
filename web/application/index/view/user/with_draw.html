@@ -24,7 +24,6 @@
       <label class="layui-form-label">选择钱包:</label>
       <div class="layui-input-block">
         <select name="bankId" lay-verify="required" id="banks">
-          <option value="">请选择</option>
         </select>
       </div>
     </div>
@@ -71,7 +70,7 @@
           success: function (data) {
             if (data.code == 200) {
               $.each(data.data, function (index, item) {
-                $('#banks').append(new Option(item.account, item.id)); // 下拉菜单里添加元素
+                $('#banks').html(new Option(item.account, item.id)); // 下拉菜单里添加元素
               });
 
               form.render("select");

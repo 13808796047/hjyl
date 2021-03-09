@@ -604,12 +604,13 @@ class User extends Controller
                 'code' => 200,
                 'data' => MemberBank::where(['uid' => $user['uid']])->where('bankId', '>', 0)->select(),
             ]);
-        }
-        return json([
-            'code' => 200,
-            'data' => MemberBank::where(['uid' => $user['uid'], 'bankId' => 0])->select(),
-        ]);
+        } else {
+            return json([
+                'code' => 200,
+                'data' => MemberBank::where(['uid' => $user['uid'], 'bankId' => 0])->select(),
+            ]);
 
+        }
     }
     // ============
     public function getUser_userbankinfo()
