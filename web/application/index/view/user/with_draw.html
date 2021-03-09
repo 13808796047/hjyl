@@ -26,9 +26,9 @@
                 $.each(data, function (index, item) {
                   $("#banks").append(
                     "<option value='" +
-                      data.id +
+                      item.id +
                       "'>" +
-                      data.account +
+                      item.account +
                       "</option>"
                   );
                 });
@@ -63,10 +63,7 @@
       <div class="layui-form-item">
         <label class="layui-form-label">选择钱包:</label>
         <div class="layui-input-block">
-          <select name="bankId" lay-verify="required" id="banks">
-            <option value="0">银行卡</option>
-            <option value="1">USDT钱包</option>
-          </select>
+          <select name="bankId" lay-verify="required" id="banks"></select>
         </div>
       </div>
       <div class="layui-form-item">
