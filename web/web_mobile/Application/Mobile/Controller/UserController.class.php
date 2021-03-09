@@ -465,6 +465,7 @@ class UserController extends HomeController
                 $b['account'] = I('account');
                 $b['username'] = I('username');
                 $b['actionTime'] = time();
+                var_dump($type);
                 var_dump($b);exit;
                 if (M('member_bank')->add($b)) {
                     // 如果是工行，参与工行卡首次绑定活动
