@@ -73,7 +73,8 @@
               $.each(data.data, function (index, item) {
                 $('#banks').append(new Option(item.account, item.id)); // 下拉菜单里添加元素
               });
-              layui.form.render("select");
+
+              form.render("select");
             }
           },
         });
