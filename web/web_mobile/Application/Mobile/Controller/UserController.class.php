@@ -534,6 +534,23 @@ class UserController extends HomeController
         }
 
     }
+    public function getMemberBanks()
+    {
+        $type = I('type');
+        $user = $this->user;
+        if ($type == 1) {
+            return json([
+                'code' => 200,
+                'data' => M('MemberBank')->where(['uid' => $user['uid']])->where('bankId', '>', 0)->select(),
+            ]);
+        } else {
+            return json([
+                'code' => 200,
+                'data' => M('MemberBank')->where(['uid' => $user['uid'], 'bankId' => 0])->select(),
+            ]);
+
+        }
+    }
     /**
      * 设置银行账户
      */

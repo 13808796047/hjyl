@@ -18,7 +18,16 @@
         </header>
         <div class="m-cell" style="padding-bottom: 20px">
           <div class="cell-item">
-            <div class="cell-left">开户行：</div>
+            <div class="cell-left">出款方式：</div>
+            <label class="cell-right cell-arrow">
+              <select class="cell-select" id="paymethod">
+                <option value="0">银行卡</option>
+                <option value="1">USDT钱包</option>
+              </select>
+            </label>
+          </div>
+          <div class="cell-item">
+            <div class="cell-left">选择钱包：</div>
             <label class="cell-right cell-arrow">
               <select class="cell-select" name="bankId" id="bankId">
                 <volist name="banks" id="vo">
@@ -28,35 +37,14 @@
             </label>
           </div>
           <div class="cell-item">
-            <div class="cell-left">开户支行：</div>
+            <div class="cell-left">提现金额：</div>
             <div class="cell-right">
               <input
-                type="text"
+                type="number"
                 class="cell-input"
-                placeholder="请输入支行"
-                id="bankDetail"
-              />
-            </div>
-          </div>
-          <div class="cell-item">
-            <div class="cell-left">持有人：</div>
-            <div class="cell-right">
-              <input
-                type="text"
-                class="cell-input"
-                placeholder="请输入持有人"
-                id="username"
-              />
-            </div>
-          </div>
-          <div class="cell-item">
-            <div class="cell-left">卡号：</div>
-            <div class="cell-right">
-              <input
-                type="text"
-                class="cell-input"
-                placeholder="请输入卡号"
-                id="account"
+                min="100"
+                placeholder="请输入提现金额"
+                id="amount"
               />
             </div>
           </div>
@@ -72,7 +60,7 @@
             </div>
           </div>
           <div class="m-button">
-            <a href="javascript:;" class="btn-block btn-danger" id="formBtn"
+            <a href="javascript:;" class="btn-block btn-danger" id="cashForm"
               >立即提交</a
             >
           </div>
@@ -83,5 +71,60 @@
     <script src="__JS__/jquery.min.js"></script>
 
     <script src="__JS__/ydui.js"></script>
+    <script>
+      !(function (win, $) {
+        var dialog = win.YDUI.dialog;
+
+        var url = "{:U('user/add_bank')}";
+
+        getBank(0);
+        function getBank(params) {
+          $.ajax({
+            url: "/user/getMemberBanks?type=" + params,
+            type: "get",
+            success: function (data) {
+              if (data.code == 200) {
+                $("#banks").empty();
+                $.each(data.data, function (index, item) {
+                  $("#banks").append(
+                    new Option(
+                      item.account + "(" + item.username + ")",
+                      item.id
+                    )
+                  ); // 下拉菜单里添加元素
+                });
+
+                form.render("select");
+              }
+            },
+          });
+        }
+        //普通确认框
+        $("#formBtn").on("click", function () {
+          dialog.confirm("提示", "确认提交吧？", function () {
+            $.ajax({
+              type: "POST",
+              url: url,
+              data: {
+                bankId: $("#bankId").val(),
+                bankDetail: $("#bankDetail").val(),
+                account: $("#account").val(),
+                secpass: $("#secpass").val(),
+                username: $("#username").val(),
+                type: "bank",
+              },
+
+              success: function (data) {
+                if (data.code == 200) {
+                  dialog.toast(data.msg, "success", 1000);
+                } else {
+                  dialog.toast(data.msg, "error", 1000);
+                }
+              },
+            });
+          });
+        });
+      })(window, jQuery);
+    </script>
   </body>
 </html>
