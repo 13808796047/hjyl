@@ -225,7 +225,7 @@ class CashController extends HomeController
             if ($return) {
                 M()->commit(); //成功则提交
                 return $this->ajaxReturn([
-                    'code' => 500,
+                    'code' => 200,
                     'msg' => '申请提现成功，提现将在10分钟内到账，如未到账请联系在线客服。',
                 ]);
 
