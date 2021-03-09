@@ -443,7 +443,7 @@ class UserController extends HomeController
                         'msg' => '最多只能绑定五张银行卡',
                     ]);
                 }
-                var_dump($bank[0]['username']);exit;
+                var_dump(I('username'), $bank[0]['username']);exit;
                 if (count($bank) > 0 && I('username') != $bank[0]['username']) {
                     return $this->ajaxReturn([
                         'code' => 500,
