@@ -19,7 +19,7 @@
         });
         function getBank(params) {
           $.ajax({
-            url: "/user/withdraw?type=" + params,
+            url: "/user/get_banks?type=" + params,
             type: "get",
             success: function (data) {
               if (data.code == 200) {
