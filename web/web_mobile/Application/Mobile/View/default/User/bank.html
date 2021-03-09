@@ -25,17 +25,8 @@
 
 		</a>
 	</header>
-	<!-- <div class="m-celltitle">银行卡&nbsp;&nbsp;<a href="{:U('user/add_bank',['type'=>'bank'])}"
-			class="btn btn-warning">增加绑定</a></div> -->
-	<div class="m-grids-2">
-		<a href="#" class="grids-item">
-			<div class="grids-txt"><span>银行卡</span></div>
-		</a>
-		<a href="#" class="grids-item">
-			<div class="grids-txt"><a href="{:U('user/add_bank',['type'=>'bank'])}" class="btn btn-warning">增加绑定</a>
-			</div>
-		</a>
-	</div>
+	<div class="m-celltitle">银行卡</div>
+
 	<volist name="mybanks" id="vo">
 		<div class="m-cell">
 			<a class="cell-item" href="javascript:;">
@@ -45,6 +36,9 @@
 			</a>
 		</div>
 	</volist>
+	<div class="m-button">
+		<a href="{:U('user/add_bank',['type'=>'bank'])}" class="btn btn-warning">增加绑定</a>
+	</div>
 	<div class="m-celltitle">USDT钱包&nbsp;&nbsp;<a href="{:U('user/add_bank',['type'=>'usdt'])} "
 			class="btn btn-warning">增加绑定</a></div>
 	<volist name="usdts" id="vo">
