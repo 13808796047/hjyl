@@ -325,7 +325,7 @@ class Recharge extends Controller
             ]);
 
         }
-        if (!trim(input('secpass')) && $user['coinPassword'] != think_ucenter_md5(input('secpass'), UC_AUTH_KEY)) {
+        if ($user['coinPassword'] != think_ucenter_md5(input('secpass'), UC_AUTH_KEY)) {
             return json([
                 'code' => 500,
                 'msg' => '资金密码不正确',
