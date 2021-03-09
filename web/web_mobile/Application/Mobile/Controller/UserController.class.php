@@ -423,7 +423,6 @@ class UserController extends HomeController
                     'msg' => '资金密码不正确',
                 ]);
             }
-            var_dump($user);die;
             var_dump($type);die;
             //检查银行账号唯一
             $map = [];
