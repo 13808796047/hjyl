@@ -80,7 +80,7 @@
         getBank(0);
         function getBank(params) {
           $.ajax({
-            url: "/user/getMemberBanks?type=" + params,
+            url: "{:U('user/getMemberBanks')}?type=" + params,
             type: "get",
             success: function (data) {
               if (data.code == 200) {
