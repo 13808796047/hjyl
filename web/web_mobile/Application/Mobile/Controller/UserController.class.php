@@ -433,7 +433,6 @@ class UserController extends HomeController
                     'msg' => '该' . I('account') . '账号已经使用',
                 ]);
             }
-            var_dump($type);exit;
             if ($type == 'bank') {
                 $map = [];
                 $map['uid'] = $this->user['uid'];
