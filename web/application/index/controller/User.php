@@ -593,7 +593,10 @@ class User extends Controller
     }
     public function withDrawIndex()
     {
-        return view('user/with_draw');
+        return view('user/with_draw', [
+            'user' => Session::get('userData'),
+
+        ]);
     }
     public function getMemberBanks()
     {
