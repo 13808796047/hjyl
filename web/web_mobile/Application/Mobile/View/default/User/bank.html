@@ -26,18 +26,19 @@
 			</header>
 			<div class="m-celltitle">银行卡</div>
 			<div class="m-gridstitle">等分三列</div>
-			<div class="m-grids-3">
-				<a href="#" class="grids-item">
-					<div class="grids-txt"><span>grids-3</span></div>
-				</a>
-				<a href="#" class="grids-item">
-					<div class="grids-txt"><span>grids-3</span></div>
-				</a>
-				<a href="#" class="grids-item">
-					<div class="grids-txt"><span>grids-3</span></div>
-				</a>
-			</div>
-
+			<volist name="mybanks" id="vo">
+				<div class="m-grids-3">
+					<a href="#" class="grids-item">
+						<div class="grids-txt"><span>{$vo.username}</span></div>
+					</a>
+					<a href="#" class="grids-item">
+						<div class="grids-txt"><span>{$vo.account|formatBankCardNo}</span></div>
+					</a>
+					<a href="#" class="grids-item">
+						<div class="grids-txt"><span>{$vo.name}</span></div>
+					</a>
+				</div>
+			</volist>
 			<volist name="mybanks" id="vo">
 				<div class="m-cell">
 					<a class="cell-item" href="javascript:;">
