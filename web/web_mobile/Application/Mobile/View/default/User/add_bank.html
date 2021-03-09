@@ -10,41 +10,6 @@
     <script src="__JS__/jquery.min.js"></script>
 
     <script src="__JS__/ydui.js"></script>
-    <script>
-      !(function (win, $) {
-        var dialog = win.YDUI.dialog;
-
-        var url = "{:U('user/add_bank',['type'=>'bank'])}";
-        //普通确认框
-        $("#formBtn").on("click", function () {
-          alert(1111);
-          dialog.confirm("提示", "确认提交吧？", function () {
-            $.ajax({
-              type: "POST",
-              url: url,
-              data: {
-                bankId: $("#bankId").val(),
-                bankDetail: $("#bankDetail").val(),
-                account: $("#account").val(),
-                secpass: $("#secpass").val(),
-              },
-
-              success: function (data) {
-                if (data.code == 1) {
-                  dialog.toast(data.msg, "success", 1000);
-                }
-                if (data.code == 2) {
-                  dialog.toast(data.msg, "error", 1000);
-                }
-                if (data.code == 3) {
-                  dialog.toast(data.msg, "error", 1000);
-                }
-              },
-            });
-          });
-        });
-      })(window, jQuery);
-    </script>
   </head>
 
   <body>
@@ -119,5 +84,40 @@
         </div>
       </div>
     </section>
+    <script>
+      !(function (win, $) {
+        var dialog = win.YDUI.dialog;
+
+        var url = "{:U('user/add_bank',['type'=>'bank'])}";
+        //普通确认框
+        $("#formBtn").on("click", function () {
+          alert(1111);
+          dialog.confirm("提示", "确认提交吧？", function () {
+            $.ajax({
+              type: "POST",
+              url: url,
+              data: {
+                bankId: $("#bankId").val(),
+                bankDetail: $("#bankDetail").val(),
+                account: $("#account").val(),
+                secpass: $("#secpass").val(),
+              },
+
+              success: function (data) {
+                if (data.code == 1) {
+                  dialog.toast(data.msg, "success", 1000);
+                }
+                if (data.code == 2) {
+                  dialog.toast(data.msg, "error", 1000);
+                }
+                if (data.code == 3) {
+                  dialog.toast(data.msg, "error", 1000);
+                }
+              },
+            });
+          });
+        });
+      })(window, jQuery);
+    </script>
   </body>
 </html>
