@@ -415,9 +415,9 @@ class UserController extends HomeController
         $type = \I('type');
         $user = $this->user;
         if (IS_POST) {
-            if (think_ucenter_md5(I('coinPassword'), UC_AUTH_KEY) != $user['coinPassword']) {
+            if (think_ucenter_md5(I('secpass'), UC_AUTH_KEY) != $user['coinPassword']) {
                 return $this->ajaxReturn([
-                    'code' => 200,
+                    'code' => 500,
                     'msg' => '资金密码不正确',
                 ]);
             }
