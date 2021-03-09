@@ -11,6 +11,7 @@ class MemberBankModel extends RelationModel
             'mapping_type' => self::BELONGS_TO,
             'class_name' => 'BankList',
             'foreign_key' => 'bankId',
+            'mapping_name' => 'bank',
         ),
     );
 }
