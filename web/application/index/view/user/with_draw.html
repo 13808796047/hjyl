@@ -23,8 +23,8 @@
             type: "get",
             success: function (data) {
               if (data.code == 200) {
-                $("#banks").each(data, function (item) {
-                  $(this).append(
+                $.each(data, function (index, item) {
+                  $("#banks").append(
                     "<option value='" +
                       data.id +
                       "'>" +
