@@ -27,24 +27,38 @@ class CashController extends HomeController
      */
     final public function cash()
     {
-        if (!I('id')) {
-            $this->error('未绑定银行卡无法提现');
+        if (!I('bankId')) {
+            return $this->ajaxReturn([
+                'code' => 500,
+                'msg' => '未绑定银行卡无法提现',
+            ]);
         }
         $this->getSystemSettings();
         $user = M('members')->where(array('uid' => $this->user['uid']))->find();
         if (!$user) {
-            $this->error('该用户不存在！');
-
+            return $this->ajaxReturn([
+                'code' => 500,
+                'msg' => '该用户不存在！',
+            ]);
         }
         if ($user['is_test'] == 1) {
-            $this->error('此账号无此权限');
+            return $this->ajaxReturn([
+                'code' => 500,
+                'msg' => '此账号无此权限',
+            ]);
         }
-        if ($user['coinPassword'] != think_ucenter_md5(I('coinpwd'), UC_AUTH_KEY)) {
-            $this->error('资金密码不正确');
+        if ($user['coinPassword'] != think_ucenter_md5(I('scpass'), UC_AUTH_KEY)) {
+            return $this->ajaxReturn([
+                'code' => 500,
+                'msg' => '资金密码不正确',
+            ]);
         }
 
         if ($user['coin'] < intval(I('amount'))) {
-            $this->error('你账户资金不足');
+            return $this->ajaxReturn([
+                'code' => 500,
+                'msg' => '你账户资金不足',
+            ]);
         }
 
         // 查询最大提现次数与已经提现次数
@@ -56,19 +70,28 @@ class CashController extends HomeController
             //$cashTimes=$grade['maxToCashCount'];
             $cashTimes = $this->settings['cashTimes'];
             if ($times >= $cashTimes) {
-                $this->error('对不起，今天你提现次数已达到最大限额，请明天再来');
+                return $this->ajaxReturn([
+                    'code' => 500,
+                    'msg' => '对不起，今天你提现次数已达到最大限额，请明天再来',
+                ]);
             }
 
         }
 
         //增加黑客修改提现金额为负数不合法的判断
         if (I('amount') < 1) {
-            $this->error('提现金额不得低于1元');
+            return $this->ajaxReturn([
+                'code' => 500,
+                'msg' => '提现金额不得低于1元',
+            ]);
         }
 
         $amount = I('amount', '', 'intval');
         if ($amount < $this->settings['cashMin'] || $amount > $this->settings['cashMax']) {
-            $this->error('提现金额必须介于' . $this->settings['cashMin'] . '和' . $this->settings['cashMax'] . '之间');
+            return $this->ajaxReturn([
+                'code' => 500,
+                'msg' => '提现金额必须介于' . $this->settings['cashMin'] . '和' . $this->settings['cashMax'] . '之间',
+            ]);
         }
 
         $amount = I('amount');
@@ -84,7 +107,10 @@ class CashController extends HomeController
         //if($toTime<$baseTime) $toTime.=24*3600;
         if (($fromTime > $toTime && $this->time < $fromTime && $this->time > $toTime)
             || ($fromTime < $toTime && ($this->time < $fromTime || $this->time > $toTime))) {
-            $this->error("提现时间：从" . $this->settings['cashFromTime'] . "到" . $this->settings['cashToTime']);
+            return $this->ajaxReturn([
+                'code' => 500,
+                'msg' => "提现时间：从" . $this->settings['cashFromTime'] . "到" . $this->settings['cashToTime'],
+            ]);
         }
 
         //近2天来的消费判断
@@ -109,12 +135,18 @@ class CashController extends HomeController
         }*//////近2天来的消费判断结束
 
         // 检查提现银行卡
-        $bank = M('member_bank')->where('id=' . I('id'))->find();
+        $bank = M('member_bank')->where('id=' . I('bankId'))->find();
         if (!$bank) {
-            $this->error('提现银行卡不存在');
+            return $this->ajaxReturn([
+                'code' => 500,
+                'msg' => '提现银行卡不存在',
+            ]);
         }
         if ($bank['actionTime'] + 8 * 60 * 60 > time()) {
-            $this->error('该银行卡添加不足8小时，不能用于提现');
+            return $this->ajaxReturn([
+                'code' => 500,
+                'msg' => '该银行卡添加不足8小时，不能用于提现',
+            ]);
         }
 
         // 检查充值投注总额有没有到充值总额的30%
@@ -131,12 +163,18 @@ class CashController extends HomeController
         if ($rechargeTotal > 0) {
             $betAmount = $user['scoreTotal'];
             if ($betAmount < ($rechargeTotal * 0.25)) {
-                $this->error('投注金额小于充值金额的30%，不能提现');
+                return $this->ajaxReturn([
+                    'code' => 500,
+                    'msg' => '投注金额小于充值金额的30%，不能提现',
+                ]);
             }
         } else {
             //如果是代理号 没有充值过 可以提现流水
             if ($user['type'] != 1) {
-                $this->error('还未充值，不能提现');
+                return $this->ajaxReturn([
+                    'code' => 500,
+                    'msg' => '还未充值，不能提现',
+                ]);
             }
         }
 
@@ -186,7 +224,11 @@ class CashController extends HomeController
 
             if ($return) {
                 M()->commit(); //成功则提交
-                $this->success('申请提现成功，提现将在10分钟内到账，如未到账请联系在线客服。', U('team/cashrecord'));
+                return $this->ajaxReturn([
+                    'code' => 500,
+                    'msg' => '申请提现成功，提现将在10分钟内到账，如未到账请联系在线客服。',
+                ]);
+
             } else {
                 M()->rollback(); //不成功，则回滚
                 $this->error('提交提现请求出错');
