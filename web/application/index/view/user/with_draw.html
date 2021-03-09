@@ -70,7 +70,7 @@
           success: function (data) {
             if (data.code == 200) {
               $.each(data.data, function (index, item) {
-                $('#banks').html(new Option(item.account, item.id)); // 下拉菜单里添加元素
+                $('#banks').append(new Option(item.account, item.id)); // 下拉菜单里添加元素
               });
 
               form.render("select");
