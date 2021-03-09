@@ -413,7 +413,7 @@ class UserController extends HomeController
     public function add_bank()
     {
         $type = I('type');
-        var_dump($type);die;
+
         $user = $this->user;
         if (IS_POST) {
             if (think_ucenter_md5(I('secpass'), UC_AUTH_KEY) != $user['coinPassword']) {
@@ -422,6 +422,7 @@ class UserController extends HomeController
                     'msg' => '资金密码不正确',
                 ]);
             }
+            var_dump($type);die;
             //检查银行账号唯一
             $map = [];
             $map['account'] = I('account');
