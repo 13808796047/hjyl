@@ -314,13 +314,16 @@ class Recharge extends Controller
         if ($user['is_test'] == 1) {
             return json([
                 'code' => 500,
-                'msg' => '资金密码不正确',
+                'msg' => '此账号无此权限',
             ]);
 
-            $this->error('此账号无此权限');
         }
         if ($user['coin'] < intval(input('amount'))) {
-            $this->error('你账户资金不足');
+            return json([
+                'code' => 500,
+                'msg' => '你账户资金不足',
+            ]);
+
         }
         if (trim(input('secpass')) && $user['coinPassword'] == think_ucenter_md5(input('secpass'), UC_AUTH_KEY)) {
             return json([
