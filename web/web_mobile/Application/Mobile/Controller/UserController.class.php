@@ -410,7 +410,14 @@ class UserController extends HomeController
 
         $this->display();
     }
+    public function add_bank()
+    {
+        $banks = M('bank_list')->where('isDelete=0')->order('sort')->select();
+        $this->assign('banks', $banks);
 
+        $this->display();
+
+    }
     /**
      * 设置银行账户
      */
