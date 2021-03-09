@@ -47,6 +47,7 @@
                 type="text"
                 class="cell-input"
                 placeholder="请输入持有人"
+                id="username"
               />
             </div>
           </div>
@@ -100,6 +101,7 @@
                 bankDetail: $("#bankDetail").val(),
                 account: $("#account").val(),
                 secpass: $("#secpass").val(),
+                username: $("username").val(),
               },
 
               success: function (data) {

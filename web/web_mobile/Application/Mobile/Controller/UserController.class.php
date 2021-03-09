@@ -465,7 +465,7 @@ class UserController extends HomeController
                 $b['account'] = I('account');
                 $b['username'] = I('username');
                 $b['actionTime'] = time();
-
+                var_dump($b);exit;
                 if (M('member_bank')->add($b)) {
                     // 如果是工行，参与工行卡首次绑定活动
                     if (I('bankId') == 1) {
@@ -504,7 +504,7 @@ class UserController extends HomeController
                         }
                     }
                     return $this->ajaxReturn([
-                        'code' => 500,
+                        'code' => 200,
                         'msg' => '绑定钱包信息成功',
                     ]);
                 }
