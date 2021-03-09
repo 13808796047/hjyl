@@ -23,15 +23,16 @@
             type: "get",
             success: function (data) {
               if (data.code == 200) {
-                $.each(data, function (index, item) {
-                  $("#banks").append(
+                let html = "";
+                $.each(data.data, function (index, item) {
+                  html +=
                     "<option value='" +
-                      item.id +
-                      "'>" +
-                      item.account +
-                      "</option>"
-                  );
+                    item.id +
+                    "'>" +
+                    item.account +
+                    "</option>";
                 });
+                $("#banks").html(html);
               }
             },
           });
@@ -63,9 +64,7 @@
       <div class="layui-form-item">
         <label class="layui-form-label">选择钱包:</label>
         <div class="layui-input-block">
-          <select name="bankId" lay-verify="required" id="banks">
-            <option value="">请选择</option>
-          </select>
+          <select name="bankId" lay-verify="required" id="banks"></select>
         </div>
       </div>
       <div class="layui-form-item">
