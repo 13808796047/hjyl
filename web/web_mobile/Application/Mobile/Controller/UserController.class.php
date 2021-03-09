@@ -537,9 +537,8 @@ class UserController extends HomeController
     public function getMemberBanks()
     {
         $type = I('type');
-        var_dump($type);exit;
         $user = $this->user;
-        if ($type == 1) {
+        if ($type == 0) {
             return $this->ajaxReturn([
                 'code' => 200,
                 'data' => M('MemberBank')->where(['uid' => $user['uid']])->where('bankId', '>', 0)->select(),
