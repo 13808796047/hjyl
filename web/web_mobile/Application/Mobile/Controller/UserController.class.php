@@ -390,10 +390,13 @@ class UserController extends HomeController
         $map = [];
         $map['uid'] = $this->user['uid'];
         $map['enable'] = 1;
-        $mybanks = M('member_bank')->where($map)->select();
+        $mybanks = M('member_bank')->where($map)->where('bankId>0')->relation(true)->select();
         $this->assign('mybanks', $mybanks);
-
+        $usdts = M('member_bank')->where($map)->where('bankId=0')->relation(true)->select();
+        $this->assign('usdts', $usdts);
+        \dump($mybanks);exit;
         $banks = M('bank_list')->where('isDelete=0')->order('sort')->select();
+
         foreach ($banks as $var) {
             $banks2[$var['id']] = $var;
         }
@@ -519,7 +522,6 @@ class UserController extends HomeController
                 return $this->ajaxReturn(['code' => 3, 'msg' => '充值金额必须大于0', 'data' => ''], 'json');
             }
 
-        
             $this->user = session('user');
             $count = M('member_recharge')
                 ->where(['uid' => $this->user['uid'], 'state' => 10])
