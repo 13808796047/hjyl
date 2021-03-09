@@ -7,7 +7,7 @@ class MemberBankModel extends RelationModel
 {
     protected $tableName = 'member_bank';
     protected $_link = array(
-        'bankList' => array(
+        'BankList' => array(
             'mapping_type' => self::BELONGS_TO,
             'class_name' => 'bank',
             'foreign_key' => 'bankId',
