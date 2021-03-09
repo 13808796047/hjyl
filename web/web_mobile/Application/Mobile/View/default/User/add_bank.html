@@ -10,6 +10,40 @@
     <script src="__JS__/jquery.min.js"></script>
 
     <script src="__JS__/ydui.js"></script>
+    <script>
+      !(function (win, $) {
+        var dialog = win.YDUI.dialog;
+
+        var url = "__SELF__";
+        //普通确认框
+        $("#formBtn").on("click", function () {
+          dialog.confirm("提示", "确认提交吧？", function () {
+            $.ajax({
+              type: "POST",
+              url: url,
+              data: {
+                bankId: $("#bankId").val(),
+                bankDetail: $("#bankDetail").val(),
+                account: $("#account").val(),
+                secpass: $("#secpass").val(),
+              },
+
+              success: function (data) {
+                if (data.code == 1) {
+                  dialog.toast(data.msg, "success", 1000);
+                }
+                if (data.code == 2) {
+                  dialog.toast(data.msg, "error", 1000);
+                }
+                if (data.code == 3) {
+                  dialog.toast(data.msg, "error", 1000);
+                }
+              },
+            });
+          });
+        });
+      })(window, jQuery);
+    </script>
   </head>
 
   <body>
@@ -26,7 +60,7 @@
           <div class="cell-item">
             <div class="cell-left">开户行：</div>
             <label class="cell-right cell-arrow">
-              <select class="cell-select" name="bankId">
+              <select class="cell-select" name="bankId" id="bankId">
                 <volist name="banks" id="vo">
                   <option value="{$vo.id}">{$vo.name}</option>
                 </volist>
@@ -36,7 +70,12 @@
           <div class="cell-item">
             <div class="cell-left">开户支行：</div>
             <div class="cell-right">
-              <input type="text" class="cell-input" placeholder="请输入支行" />
+              <input
+                type="text"
+                class="cell-input"
+                placeholder="请输入支行"
+                id="bankDetail"
+              />
             </div>
           </div>
           <div class="cell-item">
@@ -52,7 +91,12 @@
           <div class="cell-item">
             <div class="cell-left">卡号：</div>
             <div class="cell-right">
-              <input type="text" class="cell-input" placeholder="请输入卡号" />
+              <input
+                type="text"
+                class="cell-input"
+                placeholder="请输入卡号"
+                id="account"
+              />
             </div>
           </div>
           <div class="cell-item">
@@ -62,14 +106,12 @@
                 type="password"
                 class="cell-input"
                 placeholder="请输入资金密码"
+                id="secpass"
               />
             </div>
           </div>
           <div class="m-button">
-            <a
-              href="javascript:;"
-              class="btn-block btn-danger"
-              id="J_OpenKeyBoard"
+            <a href="javascript:;" class="btn-block btn-danger" id="formBtn"
               >立即提交</a
             >
           </div>

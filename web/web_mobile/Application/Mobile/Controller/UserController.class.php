@@ -413,16 +413,100 @@ class UserController extends HomeController
     public function add_bank()
     {
         $type = \I('type');
-        if ($type == 'bank') {
+        $user = $this->user;
+        if (IS_POST) {
+            if (think_ucenter_md5(I('coinPassword'), UC_AUTH_KEY) != $user['coinPassword']) {
+                return $this->ajaxReturn([
+                    'code' => 200,
+                    'msg' => '资金密码不正确',
+                ]);
+            }
+            //检查银行账号唯一
+            $map = [];
+            $map['account'] = I('account');
+            $bank = M('member_bank')->where($map)->find();
+            if ($bank) {
+                return $this->ajaxReturn([
+                    'code' => 500,
+                    'msg' => '该' . I('account') . '银行账号已经使用',
+                ]);
+            }
+            $map = [];
+            $map['uid'] = $this->user['uid'];
+            $bank = M('member_bank')->where($map)->select();
+            if (count($bank) > 5) {
+                return $this->ajaxReturn([
+                    'code' => 500,
+                    'msg' => '最多只能绑定五张银行卡',
+                ]);
+            } else {
+                if (count($bank) > 0 && I('username') != $bank[0]['username']) {
+                    return $this->ajaxReturn([
+                        'code' => 500,
+                        'msg' => '绑定的新银行持卡人必须跟之前绑定的一致',
+                    ]);
+                }
 
-            $banks = M('BankList')->where('isDelete=0')->order('sort')->select();
-            $this->assign('banks', $banks);
+                $b['uid'] = $this->user['uid'];
+                $b['editEnable'] = 0;
+                $b['bankId'] = $type=='bank'? I('bankId'):0;
+                $b['account'] = I('account');
+                $b['username'] = I('username');
+                $b['actionTime'] = time();
 
-            $this->display('user/add_bank');
+                if (M('member_bank')->add($b)) {
+                    // 如果是工行，参与工行卡首次绑定活动
+                    if (I('bankId') == 1) {
+                        //读取系统配置
+                        $this->getSystemSettings();
+                        if ($coin = floatval($this->settings['huoDongRegister'])) {
+                            $liqType = 51;
+                            $info = '首次绑定工行卡赠送';
+                            $ip = $this->ip(true);
+                            $bankAccount = I('account');
 
+                            if (!$ip) {
+                                $ip = 0;
+                            }
+
+                            // 查找是否已经赠送过
+                            //$sql="select id from {$this->prename}coin_log where liqType=$liqType and (`uid`={$this->user['uid']} or extfield0=$ip or extfield1=$bankAccount) limit 1";
+
+                            $where['uid'] = $this->user['uid'];
+                            $where['extfield0'] = $ip;
+                            $where['extfield1'] = $bankAccount;
+                            $where['_logic'] = 'or';
+                            $map['_complex'] = $where;
+                            $map['liqType'] = $liqType;
+
+                            if (!M('coin_log')->where($map)->find()) {
+                                $this->addCoin([
+                                    'coin' => $coin,
+                                    'liqType' => $liqType,
+                                    'info' => $info,
+                                    'extfield0' => $ip,
+                                    'extfield1' => $bankAccount,
+                                ]);
+                                $this->success(sprintf('更改银行信息成功，由于你第一次绑定工行卡，系统赠送%.2f元', $coin));
+                            }
+                        }
+                    }
+                    return $this->ajaxReturn([
+                        'code' => 500,
+                        'msg' => '更改银行信息成功',
+                    ]);
         } else {
-            $this->display('user/add_usdt');
+            if ($type == 'bank') {
 
+                $banks = M('BankList')->where('isDelete=0')->order('sort')->select();
+                $this->assign('banks', $banks);
+
+                $this->display('user/add_bank');
+
+            } else {
+                $this->display('user/add_usdt');
+
+            }
         }
 
     }
