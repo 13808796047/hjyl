@@ -31,7 +31,7 @@
             <a class="cell-item" href="javascript:;">
                 <div class="cell-left"><i class="cell-icon icon-order"></i>{$vo.username}</div>
                 <div class="cell-right">{$vo.account}</div>
-                <div class="cell-right">{$vo.account}</div>
+                <div class="cell-right">{$vo.bankId==0?$vo.bankDetail:$vo.bank.name}</div>
             </a>
         </div>
     </volist>
