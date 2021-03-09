@@ -17,27 +17,26 @@
         form.on("select(switchTest)", function (data) {
           getBank(data.value);
         });
+        function getBank(params) {
+          $.ajax({
+            url: "user/withdraw?type=" + params,
+            type: "get",
+            success: function (data) {
+              if (data.code == 200) {
+                $("#banks").each(data, function (item) {
+                  $(this).append(
+                    "<option value='" +
+                      data.id +
+                      "'>" +
+                      data.account +
+                      "</option>"
+                  );
+                });
+              }
+            },
+          });
+        }
       });
-
-      function getBank(params) {
-        $.ajax({
-          url: "user/withdraw?type=" + params,
-          type: "get",
-          success: function (data) {
-            if (data.code == 200) {
-              $("#banks").each(data, function (item) {
-                $(this).append(
-                  "<option value='" +
-                    data.id +
-                    "'>" +
-                    data.account +
-                    "</option>"
-                );
-              });
-            }
-          },
-        });
-      }
     </script>
   </head>
 
