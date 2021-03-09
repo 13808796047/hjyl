@@ -29,11 +29,7 @@
           <div class="cell-item">
             <div class="cell-left">选择钱包：</div>
             <label class="cell-right cell-arrow">
-              <select class="cell-select" name="bankId" id="bankId">
-                <volist name="banks" id="vo">
-                  <option value="{$vo.id}">{$vo.name}</option>
-                </volist>
-              </select>
+              <select class="cell-select" name="bankId" id="banks"></select>
             </label>
           </div>
           <div class="cell-item">
@@ -85,16 +81,21 @@
             success: function (data) {
               if (data.code == 200) {
                 $("#banks").empty();
+                let html = "";
                 $.each(data.data, function (index, item) {
-                  $("#banks").append(
-                    new Option(
-                      item.account + "(" + item.username + ")",
-                      item.id
-                    )
-                  ); // 下拉菜单里添加元素
+                  html +=
+                    "<option value='" +
+                    item.id +
+                    "' >" +
+                    item.account +
+                    "(" +
+                    item.username +
+                    ")" +
+                    "</option>";
+                  // 下拉菜单里添加元素
                 });
 
-                form.render("select");
+                $("#banks").html(html);
               }
             },
           });
