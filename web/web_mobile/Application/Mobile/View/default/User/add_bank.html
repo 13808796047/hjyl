@@ -31,8 +31,8 @@
             <div class="cell-left">开户行：</div>
             <label class="cell-right cell-arrow">
                 <select class="cell-select" name="bankId">
-                    <volist name="banks" id="vo"></volist>
-                    <option value="{$vo.id}">{$vo.name}</option>
+                    <volist name="banks" id="vo">
+                        <option value="{$vo.id}">{$vo.name}</option>
                     </volist>
                 </select>
             </label>
