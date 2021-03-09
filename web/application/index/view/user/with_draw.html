@@ -72,7 +72,8 @@
 
               $('#banks').empty()
               $.each(data.data, function (index, item) {
-                $('#banks').append(new Option(item.account, item.id)); // 下拉菜单里添加元素
+                $('#banks').append(new Option(item.account + "(" + item.username + ")", item
+                  .id)); // 下拉菜单里添加元素
               });
 
               form.render("select");
