@@ -12,42 +12,16 @@
 <body>
   <blockquote class="layui-elem-quote">提示信息</blockquote>
   <div class="layui-row">
-    <div class="layui-col-md1">
+    <div class="layui-col-xs4">
       <div class="grid-demo grid-demo-bg1">1/12</div>
     </div>
-    <div class="layui-col-md1">
+    <div class="layui-col-xs4">
       <div class="grid-demo">1/12</div>
     </div>
-    <div class="layui-col-md1">
+    <div class="layui-col-xs4">
       <div class="grid-demo grid-demo-bg1">1/12</div>
     </div>
-    <div class="layui-col-md1">
-      <div class="grid-demo">1/12</div>
-    </div>
-    <div class="layui-col-md1">
-      <div class="grid-demo grid-demo-bg1">1/12</div>
-    </div>
-    <div class="layui-col-md1">
-      <div class="grid-demo">1/12</div>
-    </div>
-    <div class="layui-col-md1">
-      <div class="grid-demo grid-demo-bg1">1/12</div>
-    </div>
-    <div class="layui-col-md1">
-      <div class="grid-demo">1/12</div>
-    </div>
-    <div class="layui-col-md1">
-      <div class="grid-demo grid-demo-bg1">1/12</div>
-    </div>
-    <div class="layui-col-md1">
-      <div class="grid-demo">1/12</div>
-    </div>
-    <div class="layui-col-md1">
-      <div class="grid-demo grid-demo-bg1">1/12</div>
-    </div>
-    <div class="layui-col-md1">
-      <div class="grid-demo">1/12</div>
-    </div>
+
   </div>
   <form class="layui-form" action="" style="margin-top: 20px; margin-right: 300px">
     <div class="layui-form-item">
@@ -72,6 +46,9 @@
         <input type="number" name="amount" required lay-verify="required" min="100" placeholder="请输入提现金额"
           autocomplete="off" class="layui-input" />
       </div>
+      <div class="layui-form-mid layui-word-aux"> (单笔最低提现金额：<font style="color:red;" id="minmoney">100</font>元，最高：
+        <font id="maxmoneys" style="color:red;">50000
+        </font>元)</div>
     </div>
     <div class="layui-form-item">
       <label class="layui-form-label">资金密码</label>
@@ -79,7 +56,6 @@
         <input type="password" name="secpass" required lay-verify="required" placeholder="请输入资金密码" autocomplete="off"
           class="layui-input" />
       </div>
-      <div class="layui-form-mid layui-word-aux">辅助文字</div>
     </div>
     <div class="layui-form-item">
       <div class="layui-input-block">
