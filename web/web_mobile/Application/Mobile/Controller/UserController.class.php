@@ -412,10 +412,11 @@ class UserController extends HomeController
     }
     public function add_bank()
     {
-        $type = I('type');
-        var_dump($type);die;
-        $user = $this->user;
+
         if (IS_POST) {
+            $type = I('type');
+
+            $user = $this->user;
             if (think_ucenter_md5(I('secpass'), UC_AUTH_KEY) != $user['coinPassword']) {
                 return $this->ajaxReturn([
                     'code' => 500,
@@ -515,6 +516,8 @@ class UserController extends HomeController
             }
 
         } else {
+            $type = I('type');
+
             if ($type == 'bank') {
 
                 $banks = M('BankList')->where('isDelete=0')->order('sort')->select();
