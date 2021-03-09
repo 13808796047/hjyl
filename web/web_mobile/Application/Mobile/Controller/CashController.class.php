@@ -47,7 +47,7 @@ class CashController extends HomeController
                 'msg' => '此账号无此权限',
             ]);
         }
-        if ($user['coinPassword'] != think_ucenter_md5(I('scpass'), UC_AUTH_KEY)) {
+        if ($user['coinPassword'] != think_ucenter_md5(I('secpass'), UC_AUTH_KEY)) {
             return $this->ajaxReturn([
                 'code' => 500,
                 'msg' => '资金密码不正确',
