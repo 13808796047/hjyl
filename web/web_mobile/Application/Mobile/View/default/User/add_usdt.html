@@ -1,56 +1,110 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>银行资料</title>
-    <link rel="stylesheet" href="__CSS__/ydui.css">
+    <link rel="stylesheet" href="__CSS__/ydui.css" />
     <script src="__JS__/ydui.flexible.js"></script>
     <script src="__JS__/jquery.min.js"></script>
 
     <script src="__JS__/ydui.js"></script>
-</head>
+  </head>
 
-<body>
-    <header class="m-navbar" style="margin-bottom: 20px;">
-        <a href="javascript:history.back(-1);" class="navbar-item">
-            <i class="back-ico"></i>返回
-        </a>
-        <div class="navbar-center">
-            绑定usdt钱包
-        </div>
-        <a href="#" class="navbar-item">
-
-        </a>
+  <body>
+    <header class="m-navbar" style="margin-bottom: 20px">
+      <a href="javascript:history.back(-1);" class="navbar-item">
+        <i class="back-ico"></i>返回
+      </a>
+      <div class="navbar-center">绑定usdt钱包</div>
+      <a href="#" class="navbar-item"> </a>
     </header>
     <div class="m-cell">
-
-        <div class="cell-item">
-            <div class="cell-left">USDT平台：</div>
-            <div class="cell-right"><input type="text" class="cell-input" placeholder="请输入USDT平台" />
-            </div>
+      <div class="cell-item">
+        <div class="cell-left">USDT平台：</div>
+        <div class="cell-right">
+          <input
+            type="text"
+            class="cell-input"
+            placeholder="请输入USDT平台"
+            id="bankDetail"
+          />
         </div>
-        <div class="cell-item">
-            <div class="cell-left">持有人：</div>
-            <div class="cell-right"><input type="text" class="cell-input" placeholder="请输入持有人" />
-            </div>
+      </div>
+      <div class="cell-item">
+        <div class="cell-left">持有人：</div>
+        <div class="cell-right">
+          <input
+            type="text"
+            class="cell-input"
+            placeholder="请输入持有人"
+            id="username"
+          />
         </div>
-        <div class="cell-item">
-            <div class="cell-left">USDT地址：</div>
-            <div class="cell-right"><input type="text" class="cell-input" placeholder="请输入USDT地址" />
-            </div>
+      </div>
+      <div class="cell-item">
+        <div class="cell-left">USDT地址：</div>
+        <div class="cell-right">
+          <input
+            type="text"
+            class="cell-input"
+            placeholder="请输入USDT地址"
+            id="account"
+          />
         </div>
-        <div class="cell-item">
-            <div class="cell-left">资金密码：</div>
-            <div class="cell-right"><input type="password" class="cell-input" placeholder="请输入资金密码" />
-            </div>
+      </div>
+      <div class="cell-item">
+        <div class="cell-left">资金密码：</div>
+        <div class="cell-right">
+          <input
+            type="password"
+            class="cell-input"
+            placeholder="请输入资金密码"
+            id="secpass"
+          />
         </div>
-        <div class="m-button">
-            <a href="javascript:;" class="btn-block btn-danger" id="J_OpenKeyBoard">立即提交</a>
-        </div>
+      </div>
+      <div class="m-button">
+        <a href="javascript:;" class="btn-block btn-danger" id="add_usdt"
+          >立即提交</a
+        >
+      </div>
     </div>
-</body>
+    <script src="__JS__/ydui.flexible.js"></script>
+    <script src="__JS__/jquery.min.js"></script>
 
+    <script src="__JS__/ydui.js"></script>
+    <script>
+      !(function (win, $) {
+        var dialog = win.YDUI.dialog;
+
+        var url = "{:U('user/add_bank')}";
+        //普通确认框
+        $("#add_usdt").on("click", function () {
+          dialog.confirm("提示", "确认提交吧？", function () {
+            $.ajax({
+              type: "POST",
+              url: url,
+              data: {
+                bankDetail: $("#bankDetail").val(),
+                account: $("#account").val(),
+                secpass: $("#secpass").val(),
+                username: $("#username").val(),
+                type: "usdt",
+              },
+
+              success: function (data) {
+                if (data.code == 200) {
+                  dialog.toast(data.msg, "success", 1000);
+                } else {
+                  dialog.toast(data.msg, "error", 1000);
+                }
+              },
+            });
+          });
+        });
+      })(window, jQuery);
+    </script>
+  </body>
 </html>
