@@ -18,9 +18,10 @@
  * @return boolean     检测结果
  * @author 麦当苗儿 <zuojiazi@vip.qq.com>
  */
-function check_verify($code, $id = 1){
-	$verify = new \COM\Verify();
-	return $verify->check($code, $id);
+function check_verify($code, $id = 1)
+{
+    $verify = new \COM\Verify();
+    return $verify->check($code, $id);
 }
 
 /**
@@ -29,9 +30,10 @@ function check_verify($code, $id = 1){
  * @param  integer $status   数据状态
  * @author 麦当苗儿 <zuojiazi@vip.qq.com>
  */
-function get_list_count($category, $status = 1){
+function get_list_count($category, $status = 1)
+{
     static $count;
-    if(!isset($count[$category])){
+    if (!isset($count[$category])) {
         $count[$category] = D('Document')->listCount($category, $status);
     }
     return $count[$category];
@@ -43,12 +45,29 @@ function get_list_count($category, $status = 1){
  * @return integer    段落总数
  * @author 麦当苗儿 <zuojiazi@vip.qq.com>
  */
-function get_part_count($id){
+function get_part_count($id)
+{
     static $count;
-    if(!isset($count[$id])){
+    if (!isset($count[$id])) {
         $count[$id] = D('Document')->partCount($id);
     }
     return $count[$id];
+}
+/**
+ * 对银行卡号进行掩码处理
+ * @param  string $bankCardNo 银行卡号
+ * @return string             掩码后的银行卡号
+ */
+function formatBankCardNo($bankCardNo)
+{
+//截取银行卡号前4位
+    $prefix = substr($bankCardNo, 0, 4);
+//截取银行卡号后4位
+    $suffix = substr($bankCardNo, -4, 4);
+
+    $maskBankCardNo = $prefix . " **** **** **** " . $suffix;
+
+    return $maskBankCardNo;
 }
 
 /**
@@ -57,16 +76,16 @@ function get_part_count($id){
  * @return string      解析或的url
  * @author 麦当苗儿 <zuojiazi@vip.qq.com>
  */
-function get_nav_url($url){
+function get_nav_url($url)
+{
     switch ($url) {
         case 'http://' === substr($url, 0, 7):
             break;
         case '#' === substr($url, 0, 1):
-            break;        
+            break;
         default:
             $url = U($url);
             break;
     }
     return $url;
 }
-
