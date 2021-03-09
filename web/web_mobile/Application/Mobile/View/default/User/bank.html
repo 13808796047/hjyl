@@ -37,10 +37,9 @@
 		</div>
 	</volist>
 	<div class="m-button">
-		<a href="{:U('user/add_bank',['type'=>'bank'])}" class="btn btn-warning">增加绑定</a>
+		<a href="{:U('user/add_bank',['type'=>'bank'])}" class="btn-block btn-warning">增加绑定</a>
 	</div>
-	<div class="m-celltitle">USDT钱包&nbsp;&nbsp;<a href="{:U('user/add_bank',['type'=>'usdt'])} "
-			class="btn btn-warning">增加绑定</a></div>
+
 	<volist name="usdts" id="vo">
 		<div class="m-cell">
 			<a class="cell-item" href="javascript:;">
@@ -50,6 +49,9 @@
 			</a>
 		</div>
 	</volist>
+	<div class="m-button">
+		<a href="{:U('user/add_bank',['type'=>'usdt'])}" class="btn-block btn-warning">增加绑定</a>
+	</div>
 </body>
 
 </html>
