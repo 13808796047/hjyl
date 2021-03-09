@@ -70,6 +70,6 @@ Route::delete('user/bank-del', 'index/User/userBankDel');
 Route::post('user/change-password', 'index/User/changePassword');
 // 提现
 Route::get('user/withdraw', 'index/User/withDrawIndex');
-Route::post('user/withdraw', 'index/User/withDrawStore');
+Route::post('user/withdraw', 'index/Recharge/confirmMoney');
 // 银行卡
 Route::get('user/get_banks', 'index/User/getMemberBanks');
