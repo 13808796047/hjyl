@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>提现</title>
-    <link rel="stylesheet" href="__JS__/layer/layui/css/layui.css" />
+    <link rel="stylesheet" href="__CSS__/layer/layui/css/layui.css" />
     <script src="__JS__/layer/layui/layui.js"></script>
     <script>
       layui.use(["jquery", "form", "layer", "element"], function () {
@@ -17,27 +17,27 @@
         form.on("select(switchTest)", function (data) {
           getBank(data.value);
         });
-        function getBank(params) {
-          $.ajax({
-            url: "/user/get_banks?type=" + params,
-            type: "get",
-            success: function (data) {
-              if (data.code == 200) {
-                let html = "";
-                $.each(data.data, function (index, item) {
-                  console.log(data.data);
-                  html +=
-                    "<option value='" +
-                    item.id +
-                    "'>" +
-                    item.account +
-                    "</option>";
-                });
-                $("#banks").html(html);
-              }
-            },
-          });
-        }
+        // function getBank(params) {
+        //   $.ajax({
+        //     url: "/user/get_banks?type=" + params,
+        //     type: "get",
+        //     success: function (data) {
+        //       if (data.code == 200) {
+        //         let html = "";
+        //         $.each(data.data, function (index, item) {
+        //           console.log(data.data);
+        //           html +=
+        //             "<option value='" +
+        //             item.id +
+        //             "'>" +
+        //             item.account +
+        //             "</option>";
+        //         });
+        //         $("#banks").html(html);
+        //       }
+        //     },
+        //   });
+        // }
       });
     </script>
   </head>
