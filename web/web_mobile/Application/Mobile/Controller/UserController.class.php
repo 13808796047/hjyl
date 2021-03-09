@@ -449,7 +449,7 @@ class UserController extends HomeController
 
                 $b['uid'] = $this->user['uid'];
                 $b['editEnable'] = 0;
-                $b['bankId'] = $type=='bank'? I('bankId'):0;
+                $b['bankId'] = $type == 'bank' ? I('bankId') : 0;
                 $b['account'] = I('account');
                 $b['username'] = I('username');
                 $b['actionTime'] = time();
@@ -495,6 +495,8 @@ class UserController extends HomeController
                         'code' => 500,
                         'msg' => '更改银行信息成功',
                     ]);
+                }
+            }
         } else {
             if ($type == 'bank') {
 
