@@ -24,7 +24,7 @@
     <div class="layui-form-item">
       <label class="layui-form-label">选择钱包:</label>
       <div class="layui-input-block">
-        <select name="bankId" lay-verify="required" id="banks">
+        <select name="bankinfo" lay-verify="required" id="banks">
         </select>
       </div>
     </div>
@@ -47,7 +47,7 @@
     </div>
     <div class="layui-form-item">
       <label class="layui-form-label">可提现金额</label>
-      <div class="layui-input-block" style="width: 180px;">
+      <div class="layui-input-block" style="padding-top: 12px;">
         {$Request.session.userData.coin}
       </div>
     </div>
@@ -70,6 +70,50 @@
       //监听指定开关
       form.on("select(switchTest)", function (data) {
         getBank(data.value);
+      });
+      form.on("submit(rechargeForm)", function (data) {
+        let params = data.field;
+        params.type = $(this).data('type')
+        layer.confirm(
+          "充值时间 " + from + " 到 " + to + "您确认提交吗？", {
+            btn: ["确定", "取消"], //按钮
+          },
+          function () {
+            $.ajax({
+              url: "/recharge/Qr_security_platwithdraw.html",
+              type: "post",
+              data: params,
+              beforeSend: function () {
+                this.layerIndex = layer.load(0, {
+                  shade: [0.5, "#393D49"],
+                });
+              },
+              success: function (data) {
+                if (data.code == 200) {
+                  layer.msg(
+                    data.msg, {
+                      icon: 6, //成功的表情
+                      time: 1000, //1秒关闭（如果不配置，默认是3秒）
+                    },
+                    // function () {
+                    //   timeCountDown(data.data, $(".layui-btn"));
+                    // }
+                  );
+                } else {
+                  layer.msg(data.msg, {
+                    icon: 5,
+                    time: 2000
+                  }); //失败的表情
+                }
+              },
+              complete: function () {
+                layer.close(this.layerIndex);
+              },
+            });
+          },
+          function () {}
+        );
+        return false;
       });
 
       function getBank(params) {

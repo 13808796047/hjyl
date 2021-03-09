@@ -247,7 +247,7 @@ class Recharge extends Controller
                 $this->confirmMoney($member, $_GET);
             }
         } else {
-            $this->error('参数错误');
+            $this->confirmMoney();
         }
         return view('recharge/qr_security_platwithdraw');
     }
@@ -307,15 +307,28 @@ class Recharge extends Controller
         return $arr[$status];
     }
 
-    private function confirmMoney($user, $get)
+    private function confirmMoney()
     {
+        $user = Session::get('userData');
+
         if ($user['is_test'] == 1) {
+            return json([
+                'code' => 500,
+                'msg' => '资金密码不正确',
+            ]);
+
             $this->error('此账号无此权限');
         }
-        if ($user['coin'] < intval($get['money'])) {
+        if ($user['coin'] < intval(input('amount'))) {
             $this->error('你账户资金不足');
         }
-        $amount = $get['money'];
+        if (trim(input('secpass')) && $user['coinPassword'] == think_ucenter_md5(input('secpass'), UC_AUTH_KEY)) {
+            return json([
+                'code' => 500,
+                'msg' => '资金密码不正确',
+            ]);
+        }
+        $amount = input('amount');
         $amountGroup = [];
         if ($amount > 50000) {
             $amountGroup = $this->amountGroup($amount);
@@ -329,20 +342,36 @@ class Recharge extends Controller
             //$cashTimes=$grade['maxToCashCount'];
             $cashTimes = $this->settings['cashTimes'];
             if ($times >= $cashTimes) {
-                $this->error('对不起，今天你提现次数已达到最大限额，请明天再来');
+                return json([
+                    'code' => 500,
+                    'msg' => '对不起，今天你提现次数已达到最大限额，请明天再来',
+                ]);
+
             }
         }
 
         //增加黑客修改提现金额为负数不合法的判断
         if ($amount < 100) {
-            $this->error('提现金额不得低于100元');
+            return json([
+                'code' => 500,
+                'msg' => '提现金额不得低于100元',
+            ]);
+
         }
         if ($amount > 100000) {
-            $this->error('单次提现金额不能大于10万');
+            return json([
+                'code' => 500,
+                'msg' => '单次提现金额不能大于10万',
+            ]);
+
         }
 
         if ($amount < $this->settings['cashMin'] || $amount > $this->settings['cashMax']) {
-            $this->error('提现金额必须介于' . $this->settings['cashMin'] . '和' . $this->settings['cashMax'] . '之间');
+            return json([
+                'code' => 500,
+                'msg' => '提现金额必须介于' . $this->settings['cashMin'] . '和' . $this->settings['cashMax'] . '之间',
+            ]);
+
         }
 
         //提示时间检查
@@ -353,14 +382,18 @@ class Recharge extends Controller
         if (($fromTime > $toTime && $this->time < $fromTime && $this->time > $toTime)
             || ($fromTime < $toTime && ($this->time < $fromTime || $this->time > $toTime))
         ) {
-            $this->error("提现时间：从" . $this->settings['cashFromTime'] . "到" . $this->settings['cashToTime']);
+            return json([
+                'code' => 500,
+                'msg' => "提现时间：从" . $this->settings['cashFromTime'] . "到" . $this->settings['cashToTime'],
+            ]);
+
         }
 
         //近2天来的消费判断
-        $cashAmout = 0;
-        $rechargeAmount = 0;
-        $rechargeTime = strtotime('00:00');
-//        if ($this->settings['cashMinAmount']&&$this->user['type']!=1) {
+        // $cashAmout = 0;
+        // $rechargeAmount = 0;
+        // $rechargeTime = strtotime('00:00');
+        //        if ($this->settings['cashMinAmount']&&$this->user['type']!=1) {
         /*if ($this->settings['cashMinAmount']) {
         $cashMinAmount = $this->settings['cashMinAmount'] / 100;
 
@@ -382,13 +415,21 @@ class Recharge extends Controller
         }
         }
         }*//////近2天来的消费判断结束
-        $memberBankId = $get['bankinfo'];
+        $memberBankId = input('bankinfo');
         $bank = MemberBank::where(['uid' => $this->user['uid'], 'id' => $memberBankId])->find();
         if (empty($bank)) {
-            $this->error('未绑定银行卡无法提现');
+            return json([
+                'code' => 500,
+                'msg' => '未绑定银行卡无法提现',
+            ]);
+
         }
         if ($bank['actionTime'] + 8 * 60 * 60 > time()) {
-            $this->error('该银行卡添加不足8小时，不能用于提现');
+            return json([
+                'code' => 500,
+                'msg' => '该银行卡添加不足8小时，不能用于提现',
+            ]);
+
         }
 
         // 检查充值投注总额有没有到充值总额的30%
@@ -403,7 +444,11 @@ class Recharge extends Controller
             // dump($rechargeTotal);//90000
             // dump($betAmount);//209
             if ($betAmount < ($rechargeTotal * 0.25)) {
-                $this->error('未达到投注量无法提现');
+                return json([
+                    'code' => 500,
+                    'msg' => '未达到投注量无法提现',
+                ]);
+
             }
         }
 //        else {
@@ -427,9 +472,13 @@ class Recharge extends Controller
 
         Db::startTrans();
         $users = Members::where(['uid' => $user['uid']])->lock(true)->find();
-        if ($users['coin'] < intval($get['money'])) {
+        if ($users['coin'] < $amount) {
             Db::rollback();
-            $this->error('你账户资金不足');
+            return json([
+                'code' => 500,
+                'msg' => '你账户资金不足',
+            ]);
+
         }
         // 插入提现请求表
         $cash = new MemberCash();
@@ -462,12 +511,20 @@ class Recharge extends Controller
                 $splitRet = (new MemberCashSplit())->saveAll($cashSplit);
                 if (!$splitRet) {
                     Db::rollback(); //不成功，则回滚
-                    $this->error('提交提现请求出错');
+                    return json([
+                        'code' => 500,
+                        'msg' => '提交提现请求出错',
+                    ]);
+
                 }
             }
             if ($return) {
                 Db::commit(); //成功则提交
-                $this->success('申请提现成功，提现将在10分钟内到账，如未到账请联系在线客服。');
+                return json([
+                    'code' => 200,
+                    'msg' => '申请提现成功，提现将在10分钟内到账，如未到账请联系在线客服。',
+                ]);
+
             } else {
                 Db::rollback(); //不成功，则回滚
                 $this->error('提交提现请求出错');

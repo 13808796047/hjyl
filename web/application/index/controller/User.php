@@ -598,6 +598,125 @@ class User extends Controller
 
         ]);
     }
+//     public function withDrawStore()
+    //     {
+    //         $user = Session::get('userData');
+    //         $amount = intval(input('amount'));
+    //         if ($user['is_test'] == 1) {
+    //             $this->error('此账号无此权限');
+    //         }
+    //         if ($user['coin'] < $amount) {
+    //             $this->error('你账户资金不足');
+    //         }
+    //         $time = strtotime(date('Y-m-d', $this->time));
+    //         $cash = MemberCash::where(['actionTime' => ['egt', $time], 'uid' => $user['uid']])->field('count(*) as count')->find();
+    // //        $grade = MemberLevel::where(array('level' => $this->user['grade']))->field('maxToCashCount')->find();
+    //         if ($times = $cash['count']) {
+    //             //$cashTimes=$grade['maxToCashCount'];
+    //             $cashTimes = $this->settings['cashTimes'];
+    //             if ($times >= $cashTimes) {
+    //                 $this->error('对不起，今天你提现次数已达到最大限额，请明天再来');
+    //             }
+    //         }
+    // //增加黑客修改提现金额为负数不合法的判断
+    //         if ($amount < 100) {
+    //             $this->error('提现金额不得低于100元');
+    //         }
+    //         if ($amount > 100000) {
+    //             $this->error('单次提现金额不能大于10万');
+    //         }
+
+//         if ($amount < $this->settings['cashMin'] || $amount > $this->settings['cashMax']) {
+    //             $this->error('提现金额必须介于' . $this->settings['cashMin'] . '和' . $this->settings['cashMax'] . '之间');
+    //         }
+    //         //提示时间检查
+    //         $baseTime = strtotime(date('Y-m-d ', $this->time) . '06:00');
+    //         $fromTime = strtotime(date('Y-m-d ', $this->time) . $this->settings['cashFromTime'] . ':00');
+    //         $toTime = strtotime(date('Y-m-d ', $this->time) . $this->settings['cashToTime'] . ':00');
+    // //if($toTime<$baseTime) $toTime.=24*3600;
+    //         if (($fromTime > $toTime && $this->time < $fromTime && $this->time > $toTime)
+    //             || ($fromTime < $toTime && ($this->time < $fromTime || $this->time > $toTime))
+    //         ) {
+    //             $this->error("提现时间：从" . $this->settings['cashFromTime'] . "到" . $this->settings['cashToTime']);
+    //         }
+    //         $memberBankId = input('bankId');
+    //         $bank = MemberBank::where(['uid' => $this->user['uid'], 'id' => $memberBankId])->find();
+    //         if (empty($bank)) {
+    //             $this->error('未绑定银行卡无法提现');
+    //         }
+    //         if ($bank['actionTime'] + 8 * 60 * 60 > time()) {
+    //             $this->error('该银行卡添加不足8小时，不能用于提现');
+    //         }
+    //         $gRs = MemberRecharge::where(['uid' => $this->user['uid'], 'state' => ['in', '1,2,9'], 'isDelete' => 0])
+    //             ->field('sum(case when rechargeAmount>0 then rechargeAmount else amount end) as rechargeAmount')->find();
+    //         $rechargeTotal = $gRs["rechargeAmount"];
+    //         if ($rechargeTotal > 0) {
+    // //            $betAmount = M('bets')->where(array('uid' => $this->user['uid'], 'isDelete' => 0, 'lotteryNo' => array('neq', '')))->sum(mode * beiShu * actionNum);
+    //             $betAmount = $user['scoreTotal'];
+    //             // dump($rechargeTotal);//90000
+    //             // dump($betAmount);//209
+    //             if ($betAmount < ($rechargeTotal * 0.25)) {
+    //                 $this->error('未达到投注量无法提现');
+    //             }
+    //         }
+    //         $para['username'] = $bank['username'];
+    //         $para['account'] = $bank['account'];
+    //         $para['amount'] = $amount;
+    //         $para['bankId'] = $bank['bankId'];
+    //         $para['memberBankId'] = $bank['id'];
+    //         $para['actionTime'] = $this->time;
+    //         $para['uid'] = $this->user['uid'];
+
+//         Db::startTrans();
+    //         $users = Members::where(['uid' => $user['uid']])->lock(true)->find();
+    //         if ($users['coin'] < $amount) {
+    //             Db::rollback();
+    //             $this->error('你账户资金不足');
+    //         }
+    // // 插入提现请求表
+    //         $cash = new MemberCash();
+    //         $cash::insert($para);
+    //         if ($lastid = $cash->getLastInsID()) {
+    //             // 流动资金
+    //             $return = $this->addCoin([
+    //                 'coin' => 0 - $para['amount'],
+    //                 'fcoin' => $para['amount'],
+    //                 'uid' => $para['uid'],
+    //                 'liqType' => 106,
+    //                 'info' => "提现[$lastid]资金冻结",
+    //                 'extfield0' => $lastid,
+    //             ]);
+    //             // 提现金额分账记录
+    //             if (!empty($amountGroup)) {
+    //                 $cashSplit = [];
+    //                 foreach ($amountGroup as $amount) {
+    //                     $row['cashId'] = $lastid;
+    //                     $row['uid'] = $this->user['uid'];
+    //                     $row['actionTime'] = $this->time;
+    //                     $row['splitAmount'] = $amount;
+    //                     $row['bankId'] = $bank['bankId'];
+    //                     $row['account'] = $bank['account'];
+    //                     $row['username'] = $bank['username'];
+    //                     $row['state'] = 1;
+
+//                     $cashSplit[] = $row;
+    //                 }
+    //                 $splitRet = (new MemberCashSplit())->saveAll($cashSplit);
+    //                 if (!$splitRet) {
+    //                     Db::rollback(); //不成功，则回滚
+    //                     $this->error('提交提现请求出错');
+    //                 }
+    //             }
+    //             if ($return) {
+    //                 Db::commit(); //成功则提交
+    //                 $this->success('申请提现成功，提现将在10分钟内到账，如未到账请联系在线客服。');
+    //             } else {
+    //                 Db::rollback(); //不成功，则回滚
+    //                 $this->error('提交提现请求出错');
+    //             }
+    //         }
+
+//     }
     public function getMemberBanks()
     {
         $type = input('type');
