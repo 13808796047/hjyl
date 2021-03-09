@@ -412,7 +412,7 @@ class UserController extends HomeController
     }
     public function add_bank()
     {
-        $banks = M('bank_list')->where('isDelete=0')->order('sort')->select();
+        $banks = M('BankList')->where('isDelete=0')->order('sort')->select();
         $this->assign('banks', $banks);
 
         $this->display();
