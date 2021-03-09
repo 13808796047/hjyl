@@ -53,7 +53,7 @@
     </div>
     <div class="layui-form-item">
       <div class="layui-input-block">
-        <button class="layui-btn" lay-submit lay-filter="form-btn">
+        <button class="layui-btn" lay-submit lay-filter="cashForm">
           立即提交
         </button>
         <button type="reset" class="layui-btn layui-btn-primary">重置</button>
@@ -71,7 +71,7 @@
       form.on("select(switchTest)", function (data) {
         getBank(data.value);
       });
-      form.on("submit(form-btn)", function (data) {
+      form.on("submit(cashForm)", function (data) {
         let params = data.field;
         layer.confirm(
           "充值时间 " + from + " 到 " + to + "您确认提交吗？", {
