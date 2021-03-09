@@ -24,6 +24,7 @@
       <label class="layui-form-label">选择钱包:</label>
       <div class="layui-input-block">
         <select name="bankId" lay-verify="required" id="banks">
+          <option th:each="book:${banks}" th:text="${book['account']}" th:value="${book['id']}"></option>
         </select>
       </div>
     </div>
@@ -53,9 +54,10 @@
   </form>
   <script src="__JS__/layui/layui.js"></script>
   <script>
-    layui.use(["jquery", "form", "layer", "element"], function () {
+    layui.use(["jquery", "form", "layer", "element", 'model'], function () {
       var form = layui.form,
         $ = layui.jquery,
+        model = layui.model,
         layer = layui.layer;
       getBank(0);
       //监听指定开关
@@ -69,11 +71,12 @@
           type: "get",
           success: function (data) {
             if (data.code == 200) {
-              $.each(data.data, function (index, item) {
-                $('#banks').append(new Option(item.account, item.id)); // 下拉菜单里添加元素
-              });
+              model.addAttribute("banks", data.data);
+              // $.each(data.data, function (index, item) {
+              //   $('#banks').append(new Option(item.account, item.id)); // 下拉菜单里添加元素
+              // });
 
-              form.render("select");
+              // form.render("select");
             }
           },
         });
