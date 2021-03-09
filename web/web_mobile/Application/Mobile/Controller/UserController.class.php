@@ -433,7 +433,7 @@ class UserController extends HomeController
             }
             $map = [];
             $map['uid'] = $this->user['uid'];
-            $bank = M('member_bank')->where($map)->select();
+            $bank = M('member_bank')->where($map)->where('bankId>0')->select();
             if (count($bank) > 5) {
                 return $this->ajaxReturn([
                     'code' => 500,
