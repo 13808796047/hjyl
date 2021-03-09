@@ -24,8 +24,7 @@
 					银行资料
 				</div>
 			</header>
-			<div class="m-celltitle">银行卡</div>
-			<div class="m-gridstitle">等分三列</div>
+			<div class="m-gridstitle">银行卡</div>
 			<volist name="mybanks" id="vo">
 				<div class="m-grids-3">
 					<a href="#" class="grids-item" style="width: 20%;">
@@ -39,25 +38,22 @@
 					</a>
 				</div>
 			</volist>
-			<volist name="mybanks" id="vo">
-				<div class="m-cell">
-					<a class="cell-item" href="javascript:;">
-						<div class="cell-left"><i class="cell-icon icon-order"></i>{$vo.username}</div>
-						<div class="cell-right">{$vo.account|formatBankCardNo}</div>
-						<div class="cell-right">{$vo.name}</div>
-					</a>
-				</div>
-			</volist>
+
 			<div class="m-button">
 				<a href="{:U('user/add_bank',['type'=>'bank'])}" class="btn-block btn-warning">增加绑定</a>
 			</div>
-			<div class="m-celltitle" style="margin-top: 20px;">USDT钱包</div>
-			<volist name="usdts" id="vo">
-				<div class="m-cell">
-					<a class="cell-item" href="javascript:;">
-						<div class="cell-left"><i class="cell-icon icon-order"></i>{$vo.username}</div>
-						<div class="cell-right">{$vo.account|formatBankCardNo}</div>
-						<div class="cell-right">{$vo.bankDetail}</div>
+
+			<div class="m-gridstitle">USDT钱包</div>
+			<volist name="mybanks" id="vo">
+				<div class="m-grids-3">
+					<a href="#" class="grids-item" style="width: 20%;">
+						<div class="grids-txt"><span>{$vo.username}</span></div>
+					</a>
+					<a href="#" class="grids-item" style="width: 50%;">
+						<div class="grids-txt"><span>{$vo.account|formatBankCardNo}</span></div>
+					</a>
+					<a href="#" class="grids-item" style="width:30%">
+						<div class="grids-txt"><span>{$vo.bankDetail}</span></div>
 					</a>
 				</div>
 			</volist>
