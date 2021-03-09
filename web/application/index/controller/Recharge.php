@@ -307,7 +307,7 @@ class Recharge extends Controller
         return $arr[$status];
     }
 
-    private function confirmMoney()
+    public function confirmMoney()
     {
         $user = Session::get('userData');
 
