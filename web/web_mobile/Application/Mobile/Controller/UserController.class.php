@@ -394,7 +394,7 @@ class UserController extends HomeController
         $this->assign('mybanks', $mybanks);
         $usdts = M('member_bank')->where($map)->where('bankId=0')->relation(true)->select();
         $this->assign('usdts', $usdts);
-        \dump($mybanks);exit;
+        \var_dump($mybanks);
         $banks = M('bank_list')->where('isDelete=0')->order('sort')->select();
 
         foreach ($banks as $var) {
