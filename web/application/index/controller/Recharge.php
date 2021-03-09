@@ -54,7 +54,7 @@ class Recharge extends Controller
 //            $this->error('无此权限');
         }
 
-        $this->assign('page_url', isset($_GET['tag']) ? 'recharge' : "security_platwithdraw");
+        // $this->assign('page_url', isset($_GET['tag']) ? 'recharge' : "security_platwithdraw");
         $this->assign('tag', isset($_GET['tag']) ? $_GET['tag'] : "");
         return view('recharge/index');
     }
