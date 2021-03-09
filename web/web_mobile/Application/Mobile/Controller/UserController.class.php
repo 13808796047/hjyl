@@ -428,7 +428,7 @@ class UserController extends HomeController
             if ($bank) {
                 return $this->ajaxReturn([
                     'code' => 500,
-                    'msg' => '该' . I('account') . '银行账号已经使用',
+                    'msg' => '该' . I('account') . '账号已经使用',
                 ]);
             }
             if ($type == 'bank') {
@@ -447,15 +447,15 @@ class UserController extends HomeController
                     if (count($bank) > 5) {
                         return $this->ajaxReturn([
                             'code' => 500,
-                            'msg' => '最多只能绑定五个usdt钱包',
+                            'msg' => '最多只能绑定五个钱包地址',
                         ]);
+                    }
                 }
-
             } else {
                 if (count($bank) > 0 && I('username') != $bank[0]['username']) {
                     return $this->ajaxReturn([
                         'code' => 500,
-                        'msg' => '绑定的新银行持卡人必须跟之前绑定的一致',
+                        'msg' => '绑定的新钱包持有人必须跟之前绑定的一致',
                     ]);
                 }
 
@@ -505,7 +505,7 @@ class UserController extends HomeController
                     }
                     return $this->ajaxReturn([
                         'code' => 500,
-                        'msg' => '更改银行信息成功',
+                        'msg' => '绑定钱包信息成功',
                     ]);
                 }
             }
