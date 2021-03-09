@@ -431,14 +431,26 @@ class UserController extends HomeController
                     'msg' => '该' . I('account') . '银行账号已经使用',
                 ]);
             }
-            $map = [];
-            $map['uid'] = $this->user['uid'];
-            $bank = M('member_bank')->where($map)->where('bankId>0')->select();
-            if (count($bank) > 5) {
-                return $this->ajaxReturn([
-                    'code' => 500,
-                    'msg' => '最多只能绑定五张银行卡',
-                ]);
+            if ($type == 'bank') {
+                $map = [];
+                $map['uid'] = $this->user['uid'];
+                $bank = M('member_bank')->where($map)->where('bankId>0')->select();
+                if (count($bank) > 5) {
+                    return $this->ajaxReturn([
+                        'code' => 500,
+                        'msg' => '最多只能绑定五张银行卡',
+                    ]);
+                } else {
+                    $map = [];
+                    $map['uid'] = $this->user['uid'];
+                    $bank = M('member_bank')->where($map)->where('bankId=0')->select();
+                    if (count($bank) > 5) {
+                        return $this->ajaxReturn([
+                            'code' => 500,
+                            'msg' => '最多只能绑定五个usdt钱包',
+                        ]);
+                }
+
             } else {
                 if (count($bank) > 0 && I('username') != $bank[0]['username']) {
                     return $this->ajaxReturn([
