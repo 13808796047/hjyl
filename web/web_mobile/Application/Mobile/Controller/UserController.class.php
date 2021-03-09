@@ -443,6 +443,12 @@ class UserController extends HomeController
                         'msg' => '最多只能绑定五张银行卡',
                     ]);
                 }
+                if (count($bank) > 0 && I('username') != $bank[0]['username']) {
+                    return $this->ajaxReturn([
+                        'code' => 500,
+                        'msg' => '绑定的新钱包持有人必须跟之前绑定的一致',
+                    ]);
+                }
             } else {
                 $map = [];
                 $map['uid'] = $this->user['uid'];
@@ -453,13 +459,12 @@ class UserController extends HomeController
                         'msg' => '最多只能绑定五个钱包地址',
                     ]);
                 }
-            }
-
-            if (count($bank) > 0 && I('username') != $bank[0]['username']) {
-                return $this->ajaxReturn([
-                    'code' => 500,
-                    'msg' => '绑定的新钱包持有人必须跟之前绑定的一致',
-                ]);
+                if (count($bank) > 0 && I('username') != $bank[0]['username']) {
+                    return $this->ajaxReturn([
+                        'code' => 500,
+                        'msg' => '绑定的新钱包持有人必须跟之前绑定的一致',
+                    ]);
+                }
             }
 
             $b['uid'] = $this->user['uid'];
