@@ -26,12 +26,13 @@
         </a>
     </header>
     <div class="m-gridstitle">银行卡</div>
+    {$vo='$mybanks' id='bank'}
     <div class="m-grids-4">
         <a href="#" class="grids-item">
-            <div class="grids-txt"><span>grids-3</span></div>
+            <div class="grids-txt"><span>{$bank.username}</span></div>
         </a>
         <a href="#" class="grids-item">
-            <div class="grids-txt"><span>grids-3</span></div>
+            <div class="grids-txt"><span>{$bank.account}</span></div>
         </a>
         <a href="#" class="grids-item">
             <div class="grids-txt"><span>grids-3</span></div>
@@ -40,6 +41,7 @@
             <div class="grids-txt"><span>grids-3</span></div>
         </a>
     </div>
+    {/$vo}
 </body>
 
 </html>
