@@ -395,7 +395,11 @@ class UserController extends HomeController
             ->field('m.*,b.name')
             ->where($map)->where('bankId>0')->select();
         $this->assign('mybanks', $mybanks);
-        $usdts = D('member_bank')->where($map)->where('bankId=0')->select();
+        $usdts = M('MemberBank')->alias('m')
+            ->join('left join gygy_bank_list b ON m.bankId=b.id')
+            ->field('m.*,b.name')
+            ->where($map)->where('bankId=0')->select();
+
         $this->assign('usdts', $usdts);
         \var_dump($mybanks);
         $banks = M('bank_list')->where('isDelete=0')->order('sort')->select();
