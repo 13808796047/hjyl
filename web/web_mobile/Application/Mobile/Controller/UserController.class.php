@@ -390,7 +390,7 @@ class UserController extends HomeController
         $map = [];
         $map['uid'] = $this->user['uid'];
         $map['enable'] = 1;
-        $mybanks = M('MemberBank')->relation('BankList')->where($map)->where('bankId>0')->select();
+        $mybanks = M('MemberBank')->relation(true)->where($map)->where('bankId>0')->select();
         $this->assign('mybanks', $mybanks);
         $usdts = D('member_bank')->where($map)->where('bankId=0')->select();
         $this->assign('usdts', $usdts);
