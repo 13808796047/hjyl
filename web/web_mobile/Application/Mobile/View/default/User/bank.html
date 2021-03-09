@@ -14,44 +14,48 @@
 </head>
 
 <body>
-	<header class="m-navbar" style="margin-bottom: 20px;">
-		<a href="javascript:history.back(-1);" class="navbar-item">
-			<i class="back-ico"></i>返回
-		</a>
-		<div class="navbar-center">
-			银行资料
-		</div>
-		<a href="#" class="navbar-item">
+	<section class="g-flexview">
+		<div class="g-scrollview">
+			<header class="m-navbar" style="margin-bottom: 20px;">
+				<a href="javascript:history.back(-1);" class="navbar-item">
+					<i class="back-ico"></i>返回
+				</a>
+				<div class="navbar-center">
+					银行资料
+				</div>
+				<a href="#" class="navbar-item">
 
-		</a>
-	</header>
-	<div class="m-celltitle">银行卡</div>
+				</a>
+			</header>
+			<div class="m-celltitle">银行卡</div>
 
-	<volist name="mybanks" id="vo">
-		<div class="m-cell">
-			<a class="cell-item" href="javascript:;">
-				<div class="cell-left"><i class="cell-icon icon-order"></i>{$vo.username}</div>
-				<div class="cell-right">{$vo.account|formatBankCardNo}</div>
-				<div class="cell-right">{$vo.name}</div>
-			</a>
-		</div>
-	</volist>
-	<div class="m-button">
-		<a href="{:U('user/add_bank',['type'=>'bank'])}" class="btn-block btn-warning">增加绑定</a>
-	</div>
+			<volist name="mybanks" id="vo">
+				<div class="m-cell">
+					<a class="cell-item" href="javascript:;">
+						<div class="cell-left"><i class="cell-icon icon-order"></i>{$vo.username}</div>
+						<div class="cell-right">{$vo.account|formatBankCardNo}</div>
+						<div class="cell-right">{$vo.name}</div>
+					</a>
+				</div>
+			</volist>
+			<div class="m-button">
+				<a href="{:U('user/add_bank',['type'=>'bank'])}" class="btn-block btn-warning">增加绑定</a>
+			</div>
 
-	<volist name="usdts" id="vo">
-		<div class="m-cell">
-			<a class="cell-item" href="javascript:;">
-				<div class="cell-left"><i class="cell-icon icon-order"></i>{$vo.username}</div>
-				<div class="cell-right">{$vo.account|formatBankCardNo}</div>
-				<div class="cell-right">{$vo.bankDetail}</div>
-			</a>
+			<volist name="usdts" id="vo">
+				<div class="m-cell">
+					<a class="cell-item" href="javascript:;">
+						<div class="cell-left"><i class="cell-icon icon-order"></i>{$vo.username}</div>
+						<div class="cell-right">{$vo.account|formatBankCardNo}</div>
+						<div class="cell-right">{$vo.bankDetail}</div>
+					</a>
+				</div>
+			</volist>
+			<div class="m-button">
+				<a href="{:U('user/add_bank',['type'=>'usdt'])}" class="btn-block btn-warning">增加绑定</a>
+			</div>
 		</div>
-	</volist>
-	<div class="m-button">
-		<a href="{:U('user/add_bank',['type'=>'usdt'])}" class="btn-block btn-warning">增加绑定</a>
-	</div>
+	</section>
 </body>
 
 </html>
