@@ -412,10 +412,18 @@ class UserController extends HomeController
     }
     public function add_bank()
     {
-        $banks = M('BankList')->where('isDelete=0')->order('sort')->select();
-        $this->assign('banks', $banks);
+        $type = \I('type');
+        if ($type == 'bank') {
 
-        $this->display();
+            $banks = M('BankList')->where('isDelete=0')->order('sort')->select();
+            $this->assign('banks', $banks);
+
+            $this->display('user/add_bank');
+
+        } else {
+            $this->display('user/add_usdt');
+
+        }
 
     }
     /**
