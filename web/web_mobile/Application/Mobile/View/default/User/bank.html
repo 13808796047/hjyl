@@ -25,7 +25,8 @@
 
 		</a>
 	</header>
-	<div class="m-celltitle">银行卡&nbsp;&nbsp;<a href="{:U('user/add_bank')}" class="btn btn-warning">增加绑定</a></div>
+	<div class="m-celltitle">银行卡&nbsp;&nbsp;<a href="{:U('user/add_bank',['type'=>'bank'])}"
+			class="btn btn-warning">增加绑定</a></div>
 
 	<volist name="mybanks" id="vo">
 		<div class="m-cell">
@@ -36,7 +37,8 @@
 			</a>
 		</div>
 	</volist>
-	<div class="m-celltitle">USDT钱包</div>
+	<div class="m-celltitle">USDT钱包&nbsp;&nbsp;<a href="{:U('user/add_bank',['type'=>'usdt'])} "
+			class="btn btn-warning">增加绑定</a></div>
 	<volist name="usdts" id="vo">
 		<div class="m-cell">
 			<a class="cell-item" href="javascript:;">
