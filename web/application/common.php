@@ -18,10 +18,10 @@ define('UC_AUTH_KEY', 'zaDcd)y:Y8@xfn,0KM3_W-t[C/^xfSw"Q4=sp%8H'); //加密KEY
  * @param  string $str 要加密的字符串
  * @return string
  */
-function think_ucenter_md5($str, $key = 'ThinkUCenter'){
+function think_ucenter_md5($str, $key = 'ThinkUCenter')
+{
     return '' === $str ? '' : md5(sha1($str) . $key);
 }
-
 
 /**
  * 系统加密方法
@@ -30,21 +30,25 @@ function think_ucenter_md5($str, $key = 'ThinkUCenter'){
  * @param int $expire  过期时间 (单位:秒)
  * @return string
  */
-function think_ucenter_encrypt($data, $key, $expire = 0) {
-    $key  = md5($key);
+function think_ucenter_encrypt($data, $key, $expire = 0)
+{
+    $key = md5($key);
     $data = base64_encode($data);
-    $x    = 0;
-    $len  = strlen($data);
-    $l    = strlen($key);
-    $char =  '';
+    $x = 0;
+    $len = strlen($data);
+    $l = strlen($key);
+    $char = '';
     for ($i = 0; $i < $len; $i++) {
-        if ($x == $l) $x=0;
-        $char  .= substr($key, $x, 1);
+        if ($x == $l) {
+            $x = 0;
+        }
+
+        $char .= substr($key, $x, 1);
         $x++;
     }
     $str = sprintf('%010d', $expire ? $expire + time() : 0);
     for ($i = 0; $i < $len; $i++) {
-        $str .= chr(ord(substr($data,$i,1)) + (ord(substr($char,$i,1)))%256);
+        $str .= chr(ord(substr($data, $i, 1)) + (ord(substr($char, $i, 1))) % 256);
     }
     return str_replace('=', '', base64_encode($str));
 }
@@ -55,27 +59,31 @@ function think_ucenter_encrypt($data, $key, $expire = 0) {
  * @param string $key  加密密钥
  * @return string
  */
-function think_ucenter_decrypt($data, $key){
-    $key    = md5($key);
-    $x      = 0;
-    $data   = base64_decode($data);
+function think_ucenter_decrypt($data, $key)
+{
+    $key = md5($key);
+    $x = 0;
+    $data = base64_decode($data);
     $expire = substr($data, 0, 10);
-    $data   = substr($data, 10);
-    if($expire > 0 && $expire < time()) {
+    $data = substr($data, 10);
+    if ($expire > 0 && $expire < time()) {
         return '';
     }
-    $len  = strlen($data);
-    $l    = strlen($key);
+    $len = strlen($data);
+    $l = strlen($key);
     $char = $str = '';
     for ($i = 0; $i < $len; $i++) {
-        if ($x == $l) $x = 0;
-        $char  .= substr($key, $x, 1);
+        if ($x == $l) {
+            $x = 0;
+        }
+
+        $char .= substr($key, $x, 1);
         $x++;
     }
     for ($i = 0; $i < $len; $i++) {
         if (ord(substr($data, $i, 1)) < ord(substr($char, $i, 1))) {
             $str .= chr((ord(substr($data, $i, 1)) + 256) - ord(substr($char, $i, 1)));
-        }else{
+        } else {
             $str .= chr(ord(substr($data, $i, 1)) - ord(substr($char, $i, 1)));
         }
     }
@@ -88,10 +96,11 @@ function think_ucenter_decrypt($data, $key){
  * @return string       签名
  * @author 麦当苗儿 <zuojiazi@vip.qq.com>
  */
-function data_auth_sign($data) {
+function data_auth_sign($data)
+{
     //数据类型检测
     $key = "Kyeol@!$";
-    return sha1($data.$key);
+    return sha1($data . $key);
     // if(!is_array($data)){
     // $data = (array)$data;
     // }
@@ -113,7 +122,7 @@ function isJson($param)
         return false;
     }
 
-    if(!is_array(json_decode($param,true))){
+    if (!is_array(json_decode($param, true))) {
         return false;
     }
     return true;
@@ -124,8 +133,26 @@ function isJson($param)
  * @param int $len
  * @return bool|string
  */
-function getUuidNum($len = 11){
-    return substr(implode(NULL, array_map('ord', str_split(substr(uniqid(), 7, 13), 1))), 0, $len);
+function getUuidNum($len = 11)
+{
+    return substr(implode(null, array_map('ord', str_split(substr(uniqid(), 7, 13), 1))), 0, $len);
+}
+
+/**
+ * 对银行卡号进行掩码处理
+ * @param  string $bankCardNo 银行卡号
+ * @return string             掩码后的银行卡号
+ */
+function formatBankCardNo($bankCardNo)
+{
+//截取银行卡号前4位
+    $prefix = substr($bankCardNo, 0, 4);
+//截取银行卡号后4位
+    $suffix = substr($bankCardNo, -4, 4);
+
+    $maskBankCardNo = $prefix . " **** **** **** " . $suffix;
+
+    return $maskBankCardNo;
 }
 
 /**
@@ -133,23 +160,30 @@ function getUuidNum($len = 11){
  * @param integer $type 返回类型 0 返回IP地址 1 返回IPV4地址数字
  * @return mixed
  */
-function get_client_ip($type = 0) {
-    $type       =  $type ? 1 : 0;
-    static $ip  =   NULL;
-    if ($ip !== NULL) return $ip[$type];
+function get_client_ip($type = 0)
+{
+    $type = $type ? 1 : 0;
+    static $ip = null;
+    if ($ip !== null) {
+        return $ip[$type];
+    }
+
     if (isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
-        $arr    =   explode(',', $_SERVER['HTTP_X_FORWARDED_FOR']);
-        $pos    =   array_search('unknown',$arr);
-        if(false !== $pos) unset($arr[$pos]);
-        $ip     =   trim($arr[0]);
-    }elseif (isset($_SERVER['HTTP_CLIENT_IP'])) {
-        $ip     =   $_SERVER['HTTP_CLIENT_IP'];
-    }elseif (isset($_SERVER['REMOTE_ADDR'])) {
-        $ip     =   $_SERVER['REMOTE_ADDR'];
+        $arr = explode(',', $_SERVER['HTTP_X_FORWARDED_FOR']);
+        $pos = array_search('unknown', $arr);
+        if (false !== $pos) {
+            unset($arr[$pos]);
+        }
+
+        $ip = trim($arr[0]);
+    } elseif (isset($_SERVER['HTTP_CLIENT_IP'])) {
+        $ip = $_SERVER['HTTP_CLIENT_IP'];
+    } elseif (isset($_SERVER['REMOTE_ADDR'])) {
+        $ip = $_SERVER['REMOTE_ADDR'];
     }
     // IP地址合法验证
-    $long = sprintf("%u",ip2long($ip));
-    $ip   = $long ? array($ip, $long) : array('0.0.0.0', 0);
+    $long = sprintf("%u", ip2long($ip));
+    $ip = $long ? array($ip, $long) : array('0.0.0.0', 0);
     return $ip[$type];
 }
 
@@ -160,9 +194,9 @@ function get_client_ip($type = 0) {
  */
 function _loadGameConfigByJson($name)
 {
-    $file = APP_PATH.'gameConfig/'.$name.'.json';
+    $file = APP_PATH . 'gameConfig/' . $name . '.json';
     if (is_file($file)) {
-       return json_decode(file_get_contents($file), true);
+        return json_decode(file_get_contents($file), true);
     }
     return [];
 }
@@ -174,20 +208,21 @@ function _loadGameConfigByJson($name)
  * @param int $mid
  * @return array|mixed
  */
-function _replaceMethodId($gameType='ssc', $gameTypeCn='秒秒时时彩', $mid=36){
+function _replaceMethodId($gameType = 'ssc', $gameTypeCn = '秒秒时时彩', $mid = 36)
+{
     $gameConfigData = _loadGameConfigByJson($gameType);
-    if (!empty($gameConfigData)){
+    if (!empty($gameConfigData)) {
         $gameConfigData['gameTypeCn'] = $gameTypeCn;
-        $gameConfigData['dynamicConfigUrl'] = strstr($gameConfigData['dynamicConfigUrl'],'RPMETHODID') ? str_replace('RPMETHODID',$mid,$gameConfigData['dynamicConfigUrl']) : $gameConfigData['dynamicConfigUrl'];
+        $gameConfigData['dynamicConfigUrl'] = strstr($gameConfigData['dynamicConfigUrl'], 'RPMETHODID') ? str_replace('RPMETHODID', $mid, $gameConfigData['dynamicConfigUrl']) : $gameConfigData['dynamicConfigUrl'];
 
-        if (!empty($gameConfigData['gameMethods'])){
-            foreach ($gameConfigData['gameMethods'] as $key => $value){
-                if (!empty($value['childs'])){
-                    foreach ($value['childs'] as $k => $v){
-                        if (!empty($v['childs'])){
-                            foreach ($v['childs'] as $ck => $cv){
-                                if (!empty($cv['methodId'])){
-                                    $gameConfigData['gameMethods'][$key]['childs'][$k]['childs'][$ck]['methodId'] = str_replace('RPMETHODID',$mid,$cv['methodId']);
+        if (!empty($gameConfigData['gameMethods'])) {
+            foreach ($gameConfigData['gameMethods'] as $key => $value) {
+                if (!empty($value['childs'])) {
+                    foreach ($value['childs'] as $k => $v) {
+                        if (!empty($v['childs'])) {
+                            foreach ($v['childs'] as $ck => $cv) {
+                                if (!empty($cv['methodId'])) {
+                                    $gameConfigData['gameMethods'][$key]['childs'][$k]['childs'][$ck]['methodId'] = str_replace('RPMETHODID', $mid, $cv['methodId']);
                                 }
                             }
                         }
@@ -207,15 +242,15 @@ function _replaceMethodId($gameType='ssc', $gameTypeCn='秒秒时时彩', $mid=3
  * @return bool|mixed
  *
  */
-function _array_get(array $base_arr,$search,$strict=false)
+function _array_get(array $base_arr, $search, $strict = false)
 {
-    foreach ($base_arr as $key => $item){
-        if($strict){
-            if($key === $search){
+    foreach ($base_arr as $key => $item) {
+        if ($strict) {
+            if ($key === $search) {
                 return $item;
             }
-        }else{
-            if($key == $search){
+        } else {
+            if ($key == $search) {
                 return $item;
             }
         }
@@ -223,17 +258,19 @@ function _array_get(array $base_arr,$search,$strict=false)
     return false;
 }
 
-function guid() {
+function guid()
+{
     $chars = md5(uniqid(mt_rand(), true));
-    $uuid  = substr($chars,0,8);
-    $uuid .= substr($chars,8,4);
-    $uuid .= substr($chars,12,4);
-    $uuid .= substr($chars,16,4);
-    $uuid .= substr($chars,20,12);
+    $uuid = substr($chars, 0, 8);
+    $uuid .= substr($chars, 8, 4);
+    $uuid .= substr($chars, 12, 4);
+    $uuid .= substr($chars, 16, 4);
+    $uuid .= substr($chars, 20, 12);
     return $uuid;
 }
 
-function base64EncodeImage ($image_file) {
+function base64EncodeImage($image_file)
+{
     $base64_image = '';
     $image_info = getimagesize($image_file);
     $image_data = fread(fopen($image_file, 'r'), filesize($image_file));
@@ -241,20 +278,20 @@ function base64EncodeImage ($image_file) {
     return $base64_image;
 }
 
-function hexToStr($hex){
-    $string='';
-    for ($i=0; $i < strlen($hex)-1; $i+=2)
-    {
-        $string .= chr(hexdec($hex[$i].$hex[$i+1]));
+function hexToStr($hex)
+{
+    $string = '';
+    for ($i = 0; $i < strlen($hex) - 1; $i += 2) {
+        $string .= chr(hexdec($hex[$i] . $hex[$i + 1]));
     }
     return $string;
 }
 
 //字符串转16进制ascii码
-function strToHex($string){
-    $hex='';
-    for ($i=0; $i < strlen($string); $i++)
-    {
+function strToHex($string)
+{
+    $hex = '';
+    for ($i = 0; $i < strlen($string); $i++) {
         $hex .= dechex(ord($string[$i]));
     }
     return strtoupper($hex);
