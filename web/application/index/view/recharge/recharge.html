@@ -26,7 +26,7 @@
         <li>USDT充值</li>
       </ul>
       <div class="layui-tab-content">
-        {volist name="$bank" id="vo" key='k'}
+        {volist name="bank" id="vo" key='k'}
 
         <div class="layui-tab-item {$k==1?'layui-show':''}">
           <form class="layui-form layui-form-pane" action="" style="margin-right: 200px; padding: 30px">
@@ -113,8 +113,7 @@
         let params = data.field;
         params.type = $(this).data('type')
         layer.confirm(
-          "充值时间 " + from + " 到 " + to + "您确认提交吗？",
-          {
+          "充值时间 " + from + " 到 " + to + "您确认提交吗？", {
             btn: ["确定", "取消"], //按钮
           },
           function () {
@@ -130,8 +129,7 @@
               success: function (data) {
                 if (data.code == 1) {
                   layer.msg(
-                    data.msg,
-                    {
+                    data.msg, {
                       icon: 6, //成功的表情
                       time: 1000, //1秒关闭（如果不配置，默认是3秒）
                     },
@@ -140,7 +138,10 @@
                     }
                   );
                 } else {
-                  layer.msg(data.msg, { icon: 5, time: 2000 }, function () {
+                  layer.msg(data.msg, {
+                    icon: 5,
+                    time: 2000
+                  }, function () {
                     timeCountDown(data.data, $(".layui-btn"));
                   }); //失败的表情
                 }
@@ -150,7 +151,7 @@
               },
             });
           },
-          function () { }
+          function () {}
         );
         return false;
       });
