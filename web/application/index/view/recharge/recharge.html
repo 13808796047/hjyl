@@ -82,7 +82,7 @@
             <div class="layui-form-item">
               <div class="layui-input-inline">
                 <button class="layui-btn" lay-submit data-type='bank' lay-filter="rechargeForm" {$vo?'':'disabled'}
-                  style="cursor: {$vo?'':'not-allowed'};background:{$vo?'':'#999'}; color:#fff;">
+                  style="cursor: {$vo?'':'not-allowed'};background:{$vo?'':'#999'}; color:#fff;" data-id="{$vo.bankId}">
                   立即提交
                 </button>
               </div>
@@ -112,6 +112,7 @@
       form.on("submit(rechargeForm)", function (data) {
         let params = data.field;
         params.type = $(this).data('type')
+        params.bankId = $(this).data('id')
         layer.confirm(
           "充值时间 " + from + " 到 " + to + "您确认提交吗？", {
             btn: ["确定", "取消"], //按钮
