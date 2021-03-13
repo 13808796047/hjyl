@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,6 +8,7 @@
     <title>在线充值</title>
     <link rel="stylesheet" href="__CSS__/ydui.css">
 </head>
+
 <body>
     <header class="m-navbar">
         <a href="javascript:history.back(-1);" class="navbar-item">
@@ -91,7 +93,8 @@
                             </div>
                         </div>
                     </div>
-                    <button type="button" {$bank?'':'disabled'}" class="btn-block btn-primary formBtn">立即提交</button>
+                    <button type="button" {$bank?'':'disabled'}" class="btn-block btn-primary formBtn"
+                        data-id='{$vo.bankId}'>立即提交</button>
                 </div>
             </volist>
 
@@ -100,71 +103,74 @@
 
     <script src="__JS__/ydui.flexible.js"></script>
     <script src="__JS__/jquery.min.js"></script>
-  
+
     <script src="__JS__/ydui.js"></script>
     <script>
-        !function (win, $) {
+        ! function (win, $) {
             var dialog = win.YDUI.dialog;
             var from = '{$settings.rechargeFromTime}';
-              var to = '{$settings.rechargeToTime}';
-              var url = '__SELF__';
+            var to = '{$settings.rechargeToTime}';
+            var url = '__SELF__';
             //普通确认框
             $('.formBtn').on('click', function () {
                 dialog.confirm('提示', '充值时间 ' + from + ' 到 ' + to + '确认提交吧？', function () {
                     $.ajax({
-                              type: "POST",
-                              url: url,
-                              data: {
-                                  amount: $('#amt').val(),
-                              },
+                        type: "POST",
+                        url: url,
+                        data: {
+                            amount: $('#amt').val(),
+                            bankId: $(this).data('id')
+                        },
 
-                              success: function (data) {
-                                  if (data.code == 1) {
-                                   
-                                      dialog.toast(data.msg, 'success', 1000);
-                                      timeCountDown(data.data, $('.formBtn'))
-                                  }
-                                  if (data.code == 2) {
-                                    dialog.toast(data.msg, 'error', 1000);
+                        success: function (data) {
+                            if (data.code == 1) {
 
-                                      timeCountDown(data.data, $('.formBtn'))
-                                  }
-                                  if (data.code == 3) {
-                                    dialog.toast(data.msg, 'error', 1000);
-                                  }
-                              },
+                                dialog.toast(data.msg, 'success', 1000);
+                                timeCountDown(data.data, $('.formBtn'))
+                            }
+                            if (data.code == 2) {
+                                dialog.toast(data.msg, 'error', 1000);
 
-                          });
+                                timeCountDown(data.data, $('.formBtn'))
+                            }
+                            if (data.code == 3) {
+                                dialog.toast(data.msg, 'error', 1000);
+                            }
+                        },
+
+                    });
                 });
             });
-           
-        }(window, jQuery);
-        function timeCountDown(intDiff, showElement) {
-          var timer = setInterval(function () {
-              let day = 0;
-              let hour = 0;
-              let minute = 0;
-              let second = 0;
-              if (intDiff > 0) {
-                  day = Math.floor(intDiff / (60 * 60 * 24));
-                  hour = Math.floor(intDiff / (60 * 60)) - (day * 24);
-                  minute = Math.floor(intDiff / 60) - (day * 24 * 60) - (hour * 60);
-                  second = Math.floor(intDiff) - (day * 24 * 60 * 60) - (hour * 60 * 60);
-              }
-              if (minute <= 9) minute = '0' + minute;
-              if (second <= 9) second = '0' + second;
-              showElement.attr("disabled", "disabled");
-              showElement.html(`${second}秒`);
 
-              intDiff--;
-              if (intDiff < 0) {
-                  showElement.removeAttr("disabled")
-                  showElement.html('提交');
-                  clearInterval(timer)
-              }
-          }, 1000);
+        }(window, jQuery);
+
+        function timeCountDown(intDiff, showElement) {
+            var timer = setInterval(function () {
+                let day = 0;
+                let hour = 0;
+                let minute = 0;
+                let second = 0;
+                if (intDiff > 0) {
+                    day = Math.floor(intDiff / (60 * 60 * 24));
+                    hour = Math.floor(intDiff / (60 * 60)) - (day * 24);
+                    minute = Math.floor(intDiff / 60) - (day * 24 * 60) - (hour * 60);
+                    second = Math.floor(intDiff) - (day * 24 * 60 * 60) - (hour * 60 * 60);
+                }
+                if (minute <= 9) minute = '0' + minute;
+                if (second <= 9) second = '0' + second;
+                showElement.attr("disabled", "disabled");
+                showElement.html(`${second}秒`);
+
+                intDiff--;
+                if (intDiff < 0) {
+                    showElement.removeAttr("disabled")
+                    showElement.html('提交');
+                    clearInterval(timer)
+                }
+            }, 1000);
         }
     </script>
- 
+
 </body>
+
 </html>

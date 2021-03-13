@@ -76,6 +76,7 @@ class Recharge extends Controller
             return json(["code" => 2, "msg" => "充值次数太多，请30分钟后再操作!", "data" => 1800]);
         }
         $amount = input('amount');
+        $bankId = input('bankId');
         $data = [
             'amount' => $amount,
             'rechargeAmount' => $amount,
@@ -89,9 +90,9 @@ class Recharge extends Controller
         $data['coin'] = 0;
         $data['fcoin'] = 0.00;
         $data['username'] = $this->user['username'];
-        $data['info'] = '银行卡充值';
+        $data['info'] = $bankId == 0 ? 'USDT充值' : '银行卡充值';
         $data['state'] = 10;
-        $data['mBankId'] = 1;
+        $data['mBankId'] = $bankId;
         $data['rechargeId'] = date('YmdHis') . mt_rand(10, 99);
         $result = MemberRecharge::create($data);
 
@@ -100,7 +101,7 @@ class Recharge extends Controller
             'uid' => $this->user['uid'],
             'fcoin' => 0.00,
             'liqType' => 106,
-            'info' => "银行卡充值",
+            'info' => $bankId == 0 ? 'USDT充值' : '银行卡充值',
             'extfield0' => $result['id'],
             'userCoin' => $this->user['coin'],
             'actionIP' => $this->ip(true),
