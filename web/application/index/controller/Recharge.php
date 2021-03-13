@@ -90,7 +90,7 @@ class Recharge extends Controller
         $data['coin'] = 0;
         $data['fcoin'] = 0.00;
         $data['username'] = $this->user['username'];
-        $data['info'] = $bankId == 0 ? 'USDT充值' : '银行卡充值';
+        $data['info'] = $bankId == 0 ? 'USDT平台:' . input('bankDetail') . '充值' : '银行卡充值';
         $data['state'] = 10;
         $data['mBankId'] = $bankId;
         $data['rechargeId'] = date('YmdHis') . mt_rand(10, 99);
