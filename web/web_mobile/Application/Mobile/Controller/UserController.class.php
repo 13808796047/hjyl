@@ -678,6 +678,7 @@ class UserController extends HomeController
                 return $this->ajaxReturn(["code" => 2, "msg" => "充值次数太多，请30分钟后再操作!", "data" => 1800]);
             }
             $amount = I('amount');
+            $bankId = input('bankId');
             $data = [
                 'amount' => $amount,
                 'rechargeAmount' => $amount,
@@ -691,9 +692,9 @@ class UserController extends HomeController
             $data['coin'] = 0;
             $data['fcoin'] = 0;
             $data['username'] = $this->user['username'];
-            $data['info'] = '银行卡充值';
+            $data['info'] = $bankId == 0 ? 'USDT平台:' . input('bankDetail') . '充值' : '银行卡充值';
             $data['state'] = 10;
-            $data['mBankId'] = 1;
+            $data['mBankId'] = $bankId;
             $data['rechargeId'] = date('YmdHis') . mt_rand(10, 99);
             $result = M('member_recharge')->add($data);
             if (!$result) {
@@ -706,8 +707,8 @@ class UserController extends HomeController
             $para['uid'] = $this->user['uid'];
             $para['username'] = $this->user['username'];
             $para['actionIP'] = $this->ip(true);
-            $para['mBankId'] = 13;
-            $para['info'] = '银行卡充值';
+            $para['mBankId'] = $bankId;
+            $para['info'] = $bankId == 0 ? 'USDT平台:' . input('bankDetail') . '充值' : '银行卡充值';
             $para['amount'] = intval(I('amount'));
             M('coin_log')->add($para);
             // if(M('member_recharge')->add($para)){

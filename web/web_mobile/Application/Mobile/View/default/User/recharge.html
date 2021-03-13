@@ -42,7 +42,8 @@
                             </div>
                             <div class="cell-right">
                                 <if condition='$vo.bankId eq 0'>
-                                    <input type="text" class="cell-input" readonly value="{$vo.bankDetail}" />
+                                    <input type="text" class="cell-input" id="bank-detail" readonly
+                                        value="{$vo.bankDetail}" />
                                     <else />
                                     <input type="text" class="cell-input" readonly value="{$bankName.name}" />
                                 </if>
@@ -119,7 +120,8 @@
                         url: url,
                         data: {
                             amount: $('#amt').val(),
-                            bankId: $(this).data('id')
+                            bankId: $(this).data('id'),
+                            bankDetail: $('#bank-detail').val(),
                         },
 
                         success: function (data) {
