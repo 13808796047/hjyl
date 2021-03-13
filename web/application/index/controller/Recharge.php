@@ -101,7 +101,7 @@ class Recharge extends Controller
             'uid' => $this->user['uid'],
             'fcoin' => 0.00,
             'liqType' => 106,
-            'info' => $bankId == 0 ? 'USDT充值' : '银行卡充值',
+            'info' => $bankId == 0 ? 'USDT平台:' . input('bankDetail') . '充值' : '银行卡充值',
             'extfield0' => $result['id'],
             'userCoin' => $this->user['coin'],
             'actionIP' => $this->ip(true),
