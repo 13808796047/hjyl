@@ -115,7 +115,13 @@
               <td>{$vo.rechargeAmount}</td>
               <td>{$vo.coin}</td>
               <td>{$vo.rechargeId}</td>
-              <td><a href="<?='http://'.$vo['home']?>" target="_blank">{$vo.bankId==0?$vo.info:$vo.name}</a></td>
+              <td><a href="<?='http://'.$vo['home']?>" target="_blank">
+                  <if condition="$vo.bankId eq 0 ">
+                    {$vo.info}
+                    <else />
+                    {$vo.name}
+                  </if>
+                </a></td>
               <!--			<td><?=$this->iff($vo['state'], '充值成功', '正在充值')?></td>-->
               <td>
                 <if condition="$vo.state eq 10 ">
