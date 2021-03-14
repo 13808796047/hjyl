@@ -13,6 +13,9 @@
     <fieldset class="layui-elem-field layui-field-title" style="margin: 20px">
       <legend>提示</legend>
       <div class="layui-field-box">充值比例：1USDT = 6.54RMB</div>
+      <div class="layui-field-box">
+        可提现金额：{$Request.session.userData.coin}
+      </div>
     </fieldset>
     <form class="layui-form" style="margin-top: 20px; margin-right: 300px">
       <div class="layui-form-item">
@@ -63,12 +66,12 @@
           />
         </div>
       </div>
-      <div class="layui-form-item">
+      <!-- <div class="layui-form-item">
         <label class="layui-form-label">可提现金额</label>
         <div class="layui-input-block" style="padding-top: 12px">
           {$Request.session.userData.coin}
         </div>
-      </div>
+      </div> -->
       <div class="layui-form-item">
         <div class="layui-input-block">
           <button class="layui-btn" lay-submit lay-filter="cashForm">
