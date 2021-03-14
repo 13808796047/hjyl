@@ -473,6 +473,7 @@ class Recharge extends Controller
         $para['memberBankId'] = $bank['id'];
         $para['actionTime'] = $this->time;
         $para['uid'] = $this->user['uid'];
+        $para['info'] = $bank['bankId'] == 0 ? 'USDT提现' : '银行卡提现';
 
         Db::startTrans();
         $users = Members::where(['uid' => $user['uid']])->lock(true)->find();
