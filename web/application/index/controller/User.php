@@ -721,7 +721,7 @@ class User extends Controller
     {
         $type = input('type');
         $user = Session::get('userData');
-        if ($type == 1) {
+        if ($type == 0) {
             return json([
                 'code' => 200,
                 'data' => MemberBank::where(['uid' => $user['uid']])->where('bankId', '>', 0)->select(),
