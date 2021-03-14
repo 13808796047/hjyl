@@ -1,4 +1,4 @@
-<extend name="Base/common"/>
+<extend name="Base/common" />
 
 <block name="title">
   <title>首页－{:S('WEB_NAME')}</title>
@@ -12,7 +12,7 @@
 </block>
 
 <block name="body">
-  
+
   <div class="g-body">
     <div class="m-index">
       <div class="g-body-hd">
@@ -20,15 +20,15 @@
           <div class="w-slide-wrap" style="width:100%;">
             <ul>
               <li data-pro="item" class="w-slide-wrap-list-item"
-                  style="background-color: rgb(255, 255, 255); width: 320px;">
+                style="background-color: rgb(255, 255, 255); width: 320px;">
                 <a class="frame" href="{:U('index/index')}" title=""><img src="__IMG__/banner1.jpg"></a>
               </li>
               <li data-pro="item" class="w-slide-wrap-list-item selected"
-                  style="background-color: rgb(255, 255, 255); width: 320px;">
+                style="background-color: rgb(255, 255, 255); width: 320px;">
                 <a class="frame" href="{:U('index/index')}" title=""><img src="__IMG__/h1.jpg"></a>
               </li>
               <li data-pro="item" class="w-slide-wrap-list-item"
-                  style="background-color: rgb(255, 255, 255); width: 320px;">
+                style="background-color: rgb(255, 255, 255); width: 320px;">
                 <a class="frame" href="{:U('index/index')}" title=""><img src="__IMG__/h2.png"></a>
               </li>
               <!--              <li data-pro="item" class="w-slide-wrap-list-item"-->
@@ -40,21 +40,21 @@
               <!--                <a class="frame" href="{:U('index/index')}" title=""><img src="__IMG__/h5.jpg"></a>-->
               <!--              </li>-->
               <li data-pro="item" class="w-slide-wrap-list-item"
-                  style="background-color: rgb(255, 255, 255); width: 320px;">
+                style="background-color: rgb(255, 255, 255); width: 320px;">
                 <a class="frame" href="{:U('index/index')}" title=""><img src="__IMG__/h6.jpg"></a>
               </li>
             </ul>
           </div>
           <script type="text/javascript" src="__JS__/yxMobileSlider.js"></script>
           <script>
-              $(".w-slide-wrap").yxMobileSlider({
-                  width: 320,
-                  height: 150,
-                  during: 3000
-              })
+            $(".w-slide-wrap").yxMobileSlider({
+              width: 320,
+              height: 150,
+              during: 3000
+            })
           </script>
           <div class="w-slide-controller">
-          
+
           </div>
         </div>
       </div>
@@ -69,7 +69,8 @@
           <li>
             <a href="{:U('user/recharge')}">
               <div class="allicon"
-                   style="width: 60px;height: 60px;border-radius: 50%;margin-bottom:5px;background-position: -26px -87px;"></div>
+                style="width: 60px;height: 60px;border-radius: 50%;margin-bottom:5px;background-position: -26px -87px;">
+              </div>
               <span style="color: #333">
                 充值
               </span>
@@ -78,14 +79,16 @@
           <li>
             <a href="{:U('user/cash')}">
               <div class="allicon"
-                   style="width: 60px;height: 60px;border-radius: 50%; margin-bottom:5px;   background-position: -144px -87px"></div>
+                style="width: 60px;height: 60px;border-radius: 50%; margin-bottom:5px;   background-position: -144px -87px">
+              </div>
               <span style="color: #333">提现</span>
             </a>
           </li>
           <li>
             <a href="{:U('team/index')}">
               <div class="allicon"
-                   style="width: 60px;height: 60px;border-radius: 50%; margin-bottom:5px;   background-position: -263px -88px;"></div>
+                style="width: 60px;height: 60px;border-radius: 50%; margin-bottom:5px;   background-position: -263px -88px;">
+              </div>
               <span style="color: #333">
                 管理
               </span>
@@ -94,7 +97,8 @@
           <li>
             <a href="{:U('user/info')}">
               <div class="allicon"
-                   style="width: 60px;height: 60px;border-radius: 50%;margin-bottom:5px;background-position: -383px -87px"></div>
+                style="width: 60px;height: 60px;border-radius: 50%;margin-bottom:5px;background-position: -383px -87px">
+              </div>
               <span style="color: #333">
                 个人中心
               </span>
@@ -128,7 +132,7 @@
         <span style="margin-left:10px">台湾五分彩</span>
         <span class="w-bar-ext2"><b class="ico-next"></b></span>
       </a>-->
-        
+
         <!--<a href="{:U('game/game?type=43&groupId=6')}" class="w-bar2">
         <span style="float:left"><img src="__IMG__/lottery/7.png"></img></span>
         <span style="margin-left:10px">东京1.5</span>
@@ -154,6 +158,11 @@
           <span style="margin-left:10px">幸运5分彩</span>
           <span class="w-bar-ext2"><b class="ico-next"></b></span>
         </a>
+        <a href="{:U('game/game?type=48&groupId=6')}" class="w-bar2">
+          <span style="float:left"><img src="__IMG__/lottery/11.png"></img></span>
+          <span style="margin-left:10px">幸运10分彩</span>
+          <span class="w-bar-ext2"><b class="ico-next"></b></span>
+        </a>
         <a href="{:U('game/game?type=38&groupId=6')}" class="w-bar2">
           <span style="float:left"><img src="__IMG__/lottery/c1.png"></img></span>
           <span style="margin-left:10px">秒秒11选5</span>
@@ -164,7 +173,7 @@
           <span style="margin-left:10px">分分彩</span>
           <span class="w-bar-ext2"><b class="ico-next"></b></span>
         </a>
-        
+
         </a>
         <a href="{:U('game/game?type=45&groupId=6')}" class="w-bar2">
           <span style="float:left"><img src="__IMG__/lottery/11.png"></img></span>
@@ -181,14 +190,14 @@
         <span style="margin-left:10px">五分时时彩</span>
         <span class="w-bar-ext2"><b class="ico-next"></b></span>
       </a>-->
-        
-        
+
+
         <!--        <a href="{:U('game/game?type=45&groupId=12')}" class="w-bar2">-->
         <!--          <span style="float:left"><img src="__IMG__/lottery/c5.png"></img></span>-->
         <!--          <span style="margin-left:10px">极速3D</span>-->
         <!--          <span class="w-bar-ext2"><b class="ico-next"></b></span>-->
         <!--        </a>-->
-        
+
         <a href="{:U('game/game?type=39&groupId=9')}" class="w-bar2">
           <span style="float:left"><img src="__IMG__/lottery/c4.png"></img></span>
           <span style="margin-left:10px">一分11选5</span>
@@ -239,7 +248,7 @@
           <span style="margin-left:10px">腾讯分分彩</span>
           <span class="w-bar-ext2"><b class="ico-next"></b></span>
         </a>
-        
+
         <!--	<a href="{:U('game/game?type=24&groupId=38')}" class="w-bar2">
         <span style="float:left"><img src="__IMG__/lottery/c2.png"></img></span>
         <span style="margin-left:10px">北京快乐8</span>

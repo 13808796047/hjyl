@@ -32,7 +32,7 @@
         <li>USDT充值</li>
       </ul>
       <div class="layui-tab-content">
-        {volist name="$bank" id="vo" key='k'}
+        {volist name="bank" id="vo" key='k'}
 
         <div class="layui-tab-item {$k==1?'layui-show':''}">
           <form class="layui-form layui-form-pane" action="" style="margin-right: 200px; padding: 30px">
@@ -47,7 +47,7 @@
               <div class="layui-input-block">
                 {if condition='$vo.bankId===0'}
 
-                <input type="text" class="layui-input" value="{$vo.bankDetail}" readonly />
+                <input type="text" class="layui-input" name="bankDetail" value="{$vo.bankDetail}" readonly />
                 {else /}
 
                 <input type="text" class="layui-input" value=" {$vo.banklist.name}" readonly />
@@ -88,7 +88,7 @@
             <div class="layui-form-item">
               <div class="layui-input-inline">
                 <button class="layui-btn" lay-submit data-type='bank' lay-filter="rechargeForm" {$vo?'':'disabled'}
-                  style="cursor: {$vo?'':'not-allowed'};background:{$vo?'':'#999'}; color:#fff;">
+                  style="cursor: {$vo?'':'not-allowed'};background:{$vo?'':'#999'}; color:#fff;" data-id="{$vo.bankId}">
                   立即提交
                 </button>
               </div>
@@ -118,9 +118,9 @@
       form.on("submit(rechargeForm)", function (data) {
         let params = data.field;
         params.type = $(this).data('type')
+        params.bankId = $(this).data('id')
         layer.confirm(
-          "充值时间 " + from + " 到 " + to + "您确认提交吗？",
-          {
+          "充值时间 " + from + " 到 " + to + "您确认提交吗？", {
             btn: ["确定", "取消"], //按钮
           },
           function () {
@@ -136,8 +136,7 @@
               success: function (data) {
                 if (data.code == 1) {
                   layer.msg(
-                    data.msg,
-                    {
+                    data.msg, {
                       icon: 6, //成功的表情
                       time: 1000, //1秒关闭（如果不配置，默认是3秒）
                     },
@@ -146,7 +145,10 @@
                     }
                   );
                 } else {
-                  layer.msg(data.msg, { icon: 5, time: 2000 }, function () {
+                  layer.msg(data.msg, {
+                    icon: 5,
+                    time: 2000
+                  }, function () {
                     timeCountDown(data.data, $(".layui-btn"));
                   }); //失败的表情
                 }
@@ -156,7 +158,7 @@
               },
             });
           },
-          function () { }
+          function () {}
         );
         return false;
       });
