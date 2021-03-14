@@ -42,7 +42,7 @@
                 {if condition='$vo.bankId===0'}
                 USDT平台
                 {else /}
-                开户行：
+                开户行
                 {/if}
               </label>
               <div class="layui-input-block">
@@ -60,7 +60,7 @@
               <label class="layui-form-label">{if condition='$vo.bankId===0'}
                 持有人
                 {else /}
-                持卡人：
+                持卡人
                 {/if}</label>
               <div class="layui-input-block">
                 <input type="text" class="layui-input" value="{$vo.username}" readonly />
@@ -71,14 +71,14 @@
                 {if condition='$vo.bankId===0'}
                 USDT地址
                 {else /}
-                银行卡号：
+                银行卡号
                 {/if}</label>
               <div class="layui-input-block">
                 <input type="text" class="layui-input" value="{$vo.account}" readonly />
               </div>
             </div>
             <div class="layui-form-item">
-              <label class="layui-form-label">充值金额：</label>
+              <label class="layui-form-label">充值金额</label>
               <div class="layui-input-inline">
                 <input name="amount" type="number" min="0.01" required value="0.01" class="layui-input" />
               </div>
