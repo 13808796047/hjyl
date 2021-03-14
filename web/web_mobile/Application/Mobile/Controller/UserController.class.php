@@ -541,12 +541,13 @@ class UserController extends HomeController
         if ($type == 0) {
             return $this->ajaxReturn([
                 'code' => 200,
-                'data' => M('MemberBank')->where(['uid' => $user['uid']])->where('bankId', '>', 0)->select(),
+                'data' => M('MemberBank')->where(['uid' => $user['uid'], 'bankId' => 0])->select(),
+
             ]);
         } else {
             return $this->ajaxReturn([
                 'code' => 200,
-                'data' => M('MemberBank')->where(['uid' => $user['uid'], 'bankId' => 0])->select(),
+                'data' => M('MemberBank')->where(['uid' => $user['uid']])->where('bankId', '>', 0)->select(),
             ]);
 
         }
