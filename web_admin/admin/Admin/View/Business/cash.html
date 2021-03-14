@@ -102,6 +102,9 @@
                 </php>
               </td>
               <td>
+                <span style="color: red">{$vo.info}</span>
+              </td>
+              <td>
                 <?php if($vo['state']==1 && $vo['amount'] >
                 50000){
                 $splitUrl=U('Business/to_cash_split?id='.$vo['id']);//.'&home='.$vo['home']);
@@ -138,7 +141,7 @@
                 >
               </td>
               <td>
-                <span style="color: red">{$vo.info}</span>
+                <!-- <span style="color: red">{$vo.info}</span> -->
               </td>
             </tr>
           </volist>
