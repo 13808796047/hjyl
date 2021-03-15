@@ -78,22 +78,51 @@
                             <div class="cell-right">
 
                                 <input type="text" class="cell-input account" readonly value="{$vo.account}" />
-                                <a href="javascript:;" class="btn btn-warning copy">复制</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="m-cell">
-                        <div class="cell-item">
-                            <div class="cell-left">
-                                充值金额:&nbsp;&nbsp;
-                            </div>
-                            <div class="cell-right">
-
-                                <input min="100" value="100" type="number" id="amt" class="cell-input" />
 
                             </div>
                         </div>
                     </div>
+
+                    <if condition='$vo.bankId eq 0'>
+                        <div class="m-cell">
+                            <div class="cell-item">
+                                <div class="cell-left">
+                                    充值个数:&nbsp;&nbsp;
+                                </div>
+                                <div class="cell-right">
+
+                                    <input min="1" value="1" type="number" id="num" class="cell-input" />
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="m-cell">
+                            <div class="cell-item">
+                                <div class="cell-left">
+                                    转换为:&nbsp;&nbsp;
+                                </div>
+                                <div class="cell-right">
+
+                                    <input type="number" class="cell-input" id="usdt-amount" readonly />
+
+                                </div>
+                            </div>
+                        </div>
+                        <else />
+                        <div class="m-cell">
+                            <div class="cell-item">
+                                <div class="cell-left">
+                                    充值金额:&nbsp;&nbsp;
+                                </div>
+                                <div class="cell-right">
+
+                                    <input min="100" value="100" type="number" class="cell-input" id="bank-amount" />
+
+                                </div>
+                            </div>
+                        </div>
+                    </if>
+
                     <button type="button" {$bank?'':'disabled'}" class="btn-block btn-primary formBtn"
                         data-id='{$vo.bankId}'>立即提交</button>
                 </div>
@@ -113,11 +142,13 @@
             var from = '{$settings.rechargeFromTime}';
             var to = '{$settings.rechargeToTime}';
             var url = '__SELF__';
-            $('.copy').on('click', function () {
-                var url = $('.account').select();
-                document.execCommand("copy"); //执行复制操作
-                dialog.toast('复制成功', 'success', 1000);
-            })
+            var usdt_setting = "{$settings['usdt_setting']}";
+            // 计算usdt
+            $("#usdt-amount").val(($("input[name=num]").val() * usdt_setting).toFixed(4));
+            $("input[name=num]").on('blur keyup input', function () {
+                var number = $(this).val();
+                $("#usdt-amount").val((number * usdt_setting).toFixed(4));
+            });
             //普通确认框
             $('.formBtn').on('click', function () {
                 dialog.confirm('提示', '充值时间 ' + from + ' 到 ' + to + '确认提交吧？', function () {
