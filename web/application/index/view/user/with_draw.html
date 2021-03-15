@@ -40,11 +40,10 @@
       <label class="layui-form-label">提现金额</label>
       <div class="layui-input-inline" style="width: 180px">
         <input type="number" name="amount" required lay-verify="required" min="100" placeholder="请输入提现金额"
-          autocomplete="off" class="layui-input" />
+          autocomplete="off" class="layui-input" value="100" />
       </div>
       <div class="layui-input-inline" style="width: 180px;" id="usdt-num">
-        <input type="number" name="num" required lay-verify="required" min="100" value="" autocomplete="off"
-          class="layui-input" />
+        <input type="number" name="num" required lay-verify="required" autocomplete="off" class="layui-input" />
       </div>
       <div class="layui-form-mid layui-word-aux">
         (单笔最低提现金额：<font style="color: red" id="minmoney">100</font>元，最高： <font id="maxmoneys" style="color: red">50000
@@ -98,9 +97,10 @@
 
       function getBank(params) {
         if (params == 0) {
-          $('#usdt-num').show();
-        } else {
           $('#usdt-num').hide();
+
+        } else {
+          $('#usdt-num').show();
         }
         $.ajax({
           url: "/user/get_banks?type=" + params,
