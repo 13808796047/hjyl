@@ -9,6 +9,7 @@
 namespace app\index\controller;
 
 use app\index\model\Members;
+use app\index\model\Params;
 use think\Controller;
 use think\Request;
 use think\Session;
@@ -81,6 +82,7 @@ class Login extends Controller
             Session::set('userData', $user);
             Session::set('user_auth_sign2', data_auth_sign($_SERVER['HTTP_USER_AGENT'])); //session实现ip认证，防止session被盗取时别人可以登录。在adminControll中验证ip是否一致
             //$this->success('登录成功！', url('index/index'),$user['uid']);
+            Session::set('usdt_setting', Params::getParams('usdt_setting')['usdt_setting']);
             return json(["code" => 1, "msg" => "登录成功！", "data" => $user['uid'], "url" => url('index/index'), "wait" => 3]);
         }
     }
