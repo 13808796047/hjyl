@@ -20,7 +20,7 @@
     <div class="layui-field-box" id="usdt-total">
     </div>
   </fieldset>
-  <form class="layui-form" style="margin-top: 20px; margin-right: 300px">
+  <form class="layui-form">
     <div class="layui-form-item">
       <label class="layui-form-label">出款方式</label>
       <div class="layui-input-block">
@@ -42,9 +42,16 @@
         <input type="number" name="amount" required lay-verify="required" min="100" placeholder="请输入提现金额"
           autocomplete="off" class="layui-input" value="100" />
       </div>
-      <div class="layui-input-inline" style="width: 180px;">
+
+      <div class="layui-form-mid layui-word-aux">
+        RMB,换算为
+      </div>
+      <div class="layui-input-inline" style="width: 100px;">
         <input type="number" name="num" required lay-verify="required" autocomplete="off" class="layui-input"
           id="usdt-num" />
+      </div>
+      <div class="layui-form-mid layui-word-aux">
+        USDT
       </div>
       <div class="layui-form-mid layui-word-aux">
         (单笔最低提现金额：<font style="color: red" id="minmoney">100</font>元，最高： <font id="maxmoneys" style="color: red">50000
