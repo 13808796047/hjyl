@@ -36,7 +36,7 @@
         {volist name="$bank" id="vo" key='k'}
 
         <div class="layui-tab-item {$k==1?'layui-show':''}">
-          <form class="layui-form layui-form-pane" action="" style="margin-right: 200px; padding: 30px">
+          <form class="layui-form layui-form-pane" action="" style="margin-right: 100px; padding: 30px">
             <div class="layui-form-item">
               <label class="layui-form-label">
                 {if condition='$vo.bankId===0'}
@@ -91,7 +91,7 @@
                 USDT换算为:
               </div>
 
-              <div class="layui-input-inline">
+              <div class="layui-input-inline" style="width: 100px;">
                 <input name="amount" type="number" required value="0" class="layui-input" readonly id="usdt-amount" />
               </div>
 
@@ -139,12 +139,13 @@
         $ = layui.jquery,
         element = layui.element
       layer = layui.layer;
-
-      $("#usdt-amount").val($("input[name=num]").val() * usdt_setting);
+      // 计算usdt
+      $("#usdt-amount").val(($("input[name=num]").val() * usdt_setting).toFixed(4));
       $("input[name=num]").on('blur keyup input', function () {
         var number = $(this).val();
-        $("#usdt-amount").val(number * usdt_setting);
+        $("#usdt-amount").val((number * usdt_setting).toFixed(4));
       });
+      //
       //监听提交
       form.on("submit(rechargeForm)", function (data) {
         let params = data.field;
