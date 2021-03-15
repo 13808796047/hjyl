@@ -25,10 +25,7 @@ class Index extends Controller
         $this->assign('hash', md5(Session::get('userData.sessionId')));
         $this->assign('notice', $notice);
         $this->assign('notice_first', count($notice) > 0 ? $notice[0] : array());
-        return view('index/index', [
-            'usdt_setting' => Params::getParams('usdt_setting')['usdt_setting'],
-
-        ]);
+        return view('index/index');
     }
 
 //    public function getLogin()
