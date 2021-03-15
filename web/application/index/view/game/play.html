@@ -836,7 +836,7 @@
         src="__STATIC__/todo/js/release/module{$game_js['module_js']}?_time={$today}"></script>
     <script type="text/javascript">
         (function (host, name, Event, undefined) {
-            var gameConfigData = "{:json_encode($gameConfigData)}";
+            var gameConfigData ={:json_encode($gameConfigData)};
             var defConfig = {
                 //当前彩种名称
                 gameType: gameConfigData['gameType'],
