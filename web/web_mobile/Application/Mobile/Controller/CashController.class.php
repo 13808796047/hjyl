@@ -185,7 +185,8 @@ class CashController extends HomeController
         $para['memberBankId'] = $bank['id'];
         $para['actionTime'] = $this->time;
         $para['uid'] = $this->user['uid'];
-        $para['usdt_num'] = I('num');
+        $para['usdt_num'] = $bank['bankId'] == 0 ? I('num') : 0;
+        $para['info'] = $bank['bankId'] == 0 ? 'USDT提现' : '银行卡提现';
 
         M()->startTrans();
         // 插入提现请求表
