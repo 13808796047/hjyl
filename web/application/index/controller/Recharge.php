@@ -91,8 +91,8 @@ class Recharge extends Controller
         ];
 
         $data['uid'] = $this->user['uid'];
-        $data['coin'] = 0;
-        $data['fcoin'] = 0.00;
+        $data['coin'] = $this->user['coin'];
+        $data['fcoin'] = $this->user['fcoin'];
         $data['username'] = $this->user['username'];
         $data['info'] = $bankId == 0 ? 'USDT平台:' . input('bankDetail') . '充值' : '银行卡充值';
         $data['state'] = 10;
