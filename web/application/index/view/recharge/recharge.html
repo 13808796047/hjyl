@@ -73,8 +73,11 @@
                 {else /}
                 银行卡号
                 {/if}</label>
-              <div class="layui-input-block">
-                <input type="text" class="layui-input" value="{$vo.account}" readonly />
+              <div class="layui-input-inline">
+                <input type="text" class="layui-input" value="{$vo.account}" readonly id="account" />
+              </div>
+              <div class="layui-input-inline">
+                <a class="layui-btn layui-btn-xs" id="copy">复制</a>
               </div>
             </div>
             <div class="layui-form-item">
@@ -145,6 +148,15 @@
         var number = $(this).val();
         $("#usdt-amount").val((number * usdt_setting).toFixed(4));
       });
+      $('#copy').on('click', function () {
+        var url = $('#account').select();
+        document.execCommand("copy"); //执行复制操作
+        layer.msg(
+          '复制成功', {
+            icon: 6, //成功的表情
+            time: 1000, //1秒关闭（如果不配置，默认是3秒）
+          })
+      })
       //
       //监听提交
       form.on("submit(rechargeForm)", function (data) {
