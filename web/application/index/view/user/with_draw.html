@@ -42,6 +42,10 @@
         <input type="number" name="amount" required lay-verify="required" min="100" placeholder="请输入提现金额"
           autocomplete="off" class="layui-input" />
       </div>
+      <div class="layui-input-inline" style="width: 180px;" id="usdt-num">
+        <input type="number" name="num" required lay-verify="required" min="100" value="" autocomplete="off"
+          class="layui-input" />
+      </div>
       <div class="layui-form-mid layui-word-aux">
         (单笔最低提现金额：<font style="color: red" id="minmoney">100</font>元，最高： <font id="maxmoneys" style="color: red">50000
         </font>元)
@@ -78,7 +82,14 @@
       // 计算
       var usdt_setting = "{$usdt_setting}";
       var user_coin = "{:session('userData.coin')}"
-      $('#usdt-total').html('可提现USDT:' + (user_coin / usdt_setting).toFixed(4))
+      $('#usdt-total').html('可提现USDT: ' + (user_coin / usdt_setting).toFixed(4))
+      // 计算usdt
+      $("#usdt-num").val(($("input[name=amount]").val() / usdt_setting).toFixed(4));
+      $("input[name=amount]").on('blur keyup input', function () {
+        var number = $(this).val();
+        $("#usdt-num").val((number / usdt_setting).toFixed(4));
+      });
+
       getBank(0);
       //监听指定开关
       form.on("select(switchTest)", function (data) {
@@ -86,6 +97,11 @@
       });
 
       function getBank(params) {
+        if (params == 0) {
+          $('#usdt-num').show();
+        } else {
+          $('#usdt-num').hide();
+        }
         $.ajax({
           url: "/user/get_banks?type=" + params,
           type: "get",
