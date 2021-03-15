@@ -419,29 +419,27 @@ class BusinessController extends AdminController
 
             $para = I('post.');
             // 开始事物处理
-            //            $Model = new \Think\Model();
-            //            $Model->startTrans();
+            $Model = new \Think\Model();
+            $Model->startTrans();
             //            $MemberRecharge = M('member_recharge');
             //            $MemberRecharge->where('id=' . $para['id'])->setField(['state' => $para['state']]);
             M('member_recharge')->where(['id' => I('id', '', 'intval')])->save(['state' => $para['state']]);
 
-            if ($para['state'] == 11) {
-                $return = $this->addCoin([
-                    'uid' => $member_recharge['uid'],
-                    'coin' => $para['amount'],
-                    'liqType' => 1,
-                    'extfield0' => $member_recharge['id'],
-                    'extfield1' => $member_recharge['rechargeId'],
-                    'info' => '上账余额',
-                ]);
-                if ($return) {
-//                    $Model->commit();//成功则提交
-                    $this->addLog(2, $member_recharge['uid'], $para['amount']);
-                    $this->success('上账成功', U('business/recharge'));
+            $return = $this->addCoin([
+                'uid' => $member_recharge['uid'],
+                'coin' => $para['amount'],
+                'liqType' => 1,
+                'extfield0' => $member_recharge['id'],
+                'extfield1' => $member_recharge['rechargeId'],
+                'info' => '上账余额',
+            ]);
+            if ($return) {
+                $Model->commit(); //成功则提交
+                $this->addLog(2, $member_recharge['uid'], $para['amount']);
+                $this->success('上账成功', U('business/recharge'));
 
-                }
                 //dump($MRecharge->getLastSql());
-                //                $Model->rollback();//不成功，则回滚
+                $Model->rollback(); //不成功，则回滚
                 $this->error('上账失败');
             } else {
                 $this->success('操作成功', U('business/recharge'));
