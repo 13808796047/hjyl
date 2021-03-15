@@ -73,3 +73,4 @@ Route::get('user/withdraw', 'index/User/withDrawIndex');
 Route::post('user/withdraw', 'index/Recharge/confirmMoney');
 // 银行卡
 Route::get('user/get_banks', 'index/User/getMemberBanks');
+Route::get('user/getuserbalance', 'index/User/getUserBalance');

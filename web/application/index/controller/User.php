@@ -384,6 +384,10 @@ class User extends Controller
         return view('user/user_userset');
     }
     // =================================
+    public function getUserBalance()
+    {
+
+    }
     public function getUser_setmenu()
     {
         $user = Session::get('userData');
