@@ -149,6 +149,7 @@
         $("#usdt-amount").val((number * usdt_setting).toFixed(4));
       });
       $('#copy').on('click', function () {
+        console.log('copy');
         var url = $('#account').select();
         document.execCommand("copy"); //执行复制操作
         layer.msg(
