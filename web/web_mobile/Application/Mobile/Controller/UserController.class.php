@@ -538,7 +538,7 @@ class UserController extends HomeController
     {
         $type = I('type');
         $user = $this->user;
-        if ($type == 0) {
+        if ($type == 1) {
             return $this->ajaxReturn([
                 'code' => 200,
                 'data' => M('MemberBank')->where(['uid' => $user['uid'], 'bankId' => 0])->select(),
