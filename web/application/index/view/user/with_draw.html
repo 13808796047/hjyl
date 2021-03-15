@@ -13,7 +13,7 @@
   <blockquote class="layui-elem-quote">账户提现</blockquote>
   <fieldset class="layui-elem-field" style="margin: 35px">
     <legend>提示</legend>
-    <div class="layui-field-box">提现比例：1USDT = {$settings['usdt_setting']}RMB</div>
+    <div class="layui-field-box">提现比例：1USDT = {$usdt_setting}RMB</div>
     <div class="layui-field-box">
       可提现金额：{:session('userData.coin')} RMB
     </div>
@@ -76,7 +76,7 @@
         $ = layui.jquery,
         layer = layui.layer;
       // 计算
-      var usdt_setting = "{$settings['usdt_setting']}";
+      var usdt_setting = "{$usdt_setting}";
       var user_coin = "{:session('userData.coin')}"
       $('#usdt-total').html('可提现USDT:' + (user_coin / usdt_setting).toFixed(4))
       getBank(0);

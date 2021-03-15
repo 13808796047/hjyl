@@ -595,7 +595,7 @@ class User extends Controller
     {
         return view('user/with_draw', [
             'user' => Session::get('userData'),
-
+            'usdt_setting' => $this->settings['usdt_setting'],
         ]);
     }
 //     public function withDrawStore()
