@@ -78,10 +78,21 @@
               </div>
             </div>
             <div class="layui-form-item">
-              <label class="layui-form-label">充值金额</label>
+              <label class="layui-form-label">
+                {if condition='$vo.bankId===0'}
+                充值个数
+                {else /}
+                充值金额
+                {/if}
+              </label>
               <div class="layui-input-inline">
-                <input name="amount" type="number" min="0.01" required value="0.01" class="layui-input" />
+                <input name="num" type="number" min="1" required value="1" class="layui-input" />
               </div>
+              USDT换算为
+              <div class="layui-input-inline">
+                <input name="amount" type="number" min="0.01" required value="0.01" class="layui-input" readonly />
+              </div>
+              RMB
               <div class="layui-form-mid layui-word-aux">
                 充值金额范围:100-50000元,必须带小数点
               </div>
@@ -109,12 +120,16 @@
     var intDiff = parseInt(0); //倒计时总秒数量
     var from = "{$rechargeFromTime}";
     var to = "{$rechargeToTime}";
+    var usdt_setting = "{$usdt_setting}";
     layui.use(["jquery", "form", "layer", "element"], function () {
       var form = layui.form(),
         $ = layui.jquery,
         element = layui.element
       layer = layui.layer;
-
+      $("input[name=num]").on('blur keyup input', function () {
+        var number = $(this).val();
+        $("input[name=amount]").val(number * usdt_setting);
+      });
       //监听提交
       form.on("submit(rechargeForm)", function (data) {
         let params = data.field;
