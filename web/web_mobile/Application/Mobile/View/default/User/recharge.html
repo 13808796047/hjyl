@@ -151,6 +151,7 @@
             });
             //普通确认框
             $('.formBtn').on('click', function () {
+                console.log($(this).data('id'));
                 dialog.confirm('提示', '充值时间 ' + from + ' 到 ' + to + '确认提交吧？', function () {
                     $.ajax({
                         type: "POST",
