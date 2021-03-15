@@ -665,7 +665,11 @@ class UserController extends HomeController
     {
 
         if (IS_POST) {
-            if (I('amount') <= 0) {
+            $bankId = input('bankId');
+
+            $amount = $bankId == 0 ? input('usdt_amount') : input('bank_amount');
+
+            if ($amount <= 0) {
                 return $this->ajaxReturn(['code' => 3, 'msg' => '充值金额必须大于0', 'data' => ''], 'json');
             }
 
@@ -678,8 +682,7 @@ class UserController extends HomeController
             if ($count > 5) {
                 return $this->ajaxReturn(["code" => 2, "msg" => "充值次数太多，请30分钟后再操作!", "data" => 1800]);
             }
-            $bankId = input('bankId');
-            $amount = $bankId == 0 ? input('usdt_amount') : input('bank_amount');
+
             $data = [
                 'amount' => $amount,
                 'rechargeAmount' => $amount,
