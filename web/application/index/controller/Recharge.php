@@ -477,7 +477,7 @@ class Recharge extends Controller
         //            }
         //        }
         // }
-        $usdt_num = $bank['bankId'] == 0 ? input('usdt_num') : 0;
+        $usdt_num = $bank['bankId'] == 0 ? input('num') : 0;
         $para['username'] = $bank['username'];
         $para['account'] = $bank['account'];
         $para['amount'] = $amount;
