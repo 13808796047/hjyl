@@ -66,7 +66,7 @@
           <th>上级关系</th>
           <th>充值金额</th>
           <th>实际到账</th>
-          <th>usdt充值个数</th>
+          <th>usdt充值数量</th>
           <th>充值前资金</th>
           <th>充值编号</th>
           <th>充值银行</th>
@@ -115,7 +115,13 @@
 
               <td>{$vo.amount}</td>
               <td>{$vo.rechargeAmount}</td>
-              <td>{$vo.usdt_num}</td>
+              <td>
+                <if condition="$vo.bankId eq 0 ">
+                  {$vo.usdt_num}
+                  <else />
+                  -
+                </if>
+              </td>
               <td>{$vo.coin}</td>
               <td>{$vo.rechargeId}</td>
               <td><a href="<?='http://'.$vo['home']?>" target="_blank">
