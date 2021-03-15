@@ -181,12 +181,19 @@ class Recharge extends Controller
         $this->init();
         $fromTime = $this->settings['rechargeFromTime'];
         $toTime = $this->settings['rechargeToTime'];
+        // USDT
+        $usdtSetting = $this->settings['usdt_setting'];
+        //
         $this->assign('bank', $bank);
 
         $this->assign('param', []);
         $this->assign('rechargeFromTime', $fromTime);
         $this->assign('rechargeToTime', $toTime);
-        return view('recharge/recharge');
+        // USDT
+        return view('recharge/recharge', [
+            'usdt_setting' => $usdtSetting,
+        ]);
+        //
     }
 
     public function getzs_pay()
