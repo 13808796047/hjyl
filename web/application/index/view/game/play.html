@@ -1026,7 +1026,7 @@
                 return instance || (instance = new Main(cfg));
             };
 
-            host.Games.host[name] = Main;
+            host.Games.{$game_js['name']}[name] = Main;
 
         })(phoenix, "Config", phoenix.Event);
 
