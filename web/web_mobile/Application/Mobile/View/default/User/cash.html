@@ -86,7 +86,7 @@
       var dialog = win.YDUI.dialog;
       // 计算
       var usdt_setting = "{$settings.usdt_setting}";
-      var user_coin = "{:session('userData.coin')}"
+      var user_coin = "{$user.coin}"
       $('#usdt-total').html('可提现USDT: ' + (user_coin / usdt_setting).toFixed(4))
       // 计算usdt
       $("#usdt-num").val(($("input[name=amount]").val() / usdt_setting).toFixed(4));

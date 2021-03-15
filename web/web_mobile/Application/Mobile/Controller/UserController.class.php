@@ -656,6 +656,7 @@ class UserController extends HomeController
         $cash = M('member_cash')->where(['actionTime' => ['egt', $time], 'uid' => $this->user['uid']])->field('count(*) as count')->find();
         $this->assign('cashTimes', 3 - $cash['count']);
         $this->assign('settings', $this->settings);
+        $this->assign('user', $this->user);
 
         $this->display();
     }
