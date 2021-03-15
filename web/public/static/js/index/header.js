@@ -52,6 +52,7 @@ $(function () {
       }
       document.cookie = "state=" + newState + ";";
       $(".J-balance-show").toggle();
+      $(".J-usdt-show").toggle();
       $(".J-balance-star").toggle();
       $(".refresh").toggle();
       var src = $(this).attr("src");
