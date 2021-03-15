@@ -665,9 +665,9 @@ class UserController extends HomeController
     {
 
         if (IS_POST) {
-            $bankId = input('bankId');
+            $bankId = I('bankId');
 
-            $amount = $bankId == 0 ? input('usdt_amount') : input('bank_amount');
+            $amount = $bankId == 0 ? I('usdt_amount') : I('bank_amount');
 
             if ($amount <= 0) {
                 return $this->ajaxReturn(['code' => 3, 'msg' => '充值金额必须大于0', 'data' => ''], 'json');
@@ -695,9 +695,9 @@ class UserController extends HomeController
             $data['uid'] = $this->user['uid'];
             $data['coin'] = $this->user['coin'];
             $data['fcoin'] = $this->user['fcoin'];
-            $data['usdt_num'] = $bankId == 0 ? \input('num') : 0;
+            $data['usdt_num'] = $bankId == 0 ? I('num') : 0;
             $data['username'] = $this->user['username'];
-            $data['info'] = $bankId == 0 ? 'USDT平台:' . input('bankDetail') . '充值' : '银行卡充值';
+            $data['info'] = $bankId == 0 ? 'USDT平台:' . I('bankDetail') . '充值' : '银行卡充值';
             $data['state'] = 10;
             $data['mBankId'] = $bankId;
             $data['rechargeId'] = date('YmdHis') . mt_rand(10, 99);
@@ -713,7 +713,7 @@ class UserController extends HomeController
             $para['username'] = $this->user['username'];
             $para['actionIP'] = $this->ip(true);
             $para['mBankId'] = $bankId;
-            $para['info'] = $bankId == 0 ? 'USDT平台:' . input('bankDetail') . '充值' : '银行卡充值';
+            $para['info'] = $bankId == 0 ? 'USDT平台:' . I('bankDetail') . '充值' : '银行卡充值';
             $para['amount'] = $amount;
             M('coin_log')->add($para);
             // if(M('member_recharge')->add($para)){
