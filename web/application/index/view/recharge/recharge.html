@@ -48,7 +48,7 @@
               <div class="layui-input-block">
                 {if condition='$vo.bankId===0'}
 
-                <input type="text" class="layui-input" value="{$vo.bankDetail}" readonly />
+                <input type="text" class="layui-input" value="{$vo.bankDetail}" name="bankDetail" readonly />
                 {else /}
 
                 <input type="text" class="layui-input" value=" {$vo.banklist.name}" readonly />
@@ -116,8 +116,8 @@
             </div>
             <div class="layui-form-item">
               <div class="layui-input-inline">
-                <button class="layui-btn" lay-submit data-type='bank' lay-filter="rechargeForm" {$vo?'':'disabled'}
-                  style="cursor: {$vo?'':'not-allowed'};background:{$vo?'':'#999'}; color:#fff;">
+                <button class="layui-btn btn-submit" lay-submit data-type='bank' lay-filter="rechargeForm"
+                  {$vo?'':'disabled'} style="cursor: {$vo?'':'not-allowed'};background:{$vo?'':'#999'}; color:#fff;">
                   立即提交
                 </button>
               </div>
@@ -185,7 +185,7 @@
                       time: 1000, //1秒关闭（如果不配置，默认是3秒）
                     },
                     function () {
-                      timeCountDown(data.data, $(".layui-btn"));
+                      timeCountDown(data.data, $(".btn-submit"));
                     }
                   );
                 } else {
@@ -193,7 +193,7 @@
                     icon: 5,
                     time: 2000
                   }, function () {
-                    timeCountDown(data.data, $(".layui-btn"));
+                    timeCountDown(data.data, $(".btn-submit"));
                   }); //失败的表情
                 }
               },
