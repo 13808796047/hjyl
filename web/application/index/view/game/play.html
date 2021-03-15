@@ -31,7 +31,7 @@
             isTestUser: "{:session('userData.is_test')}",
             lotterycnname: "{$lottery['lotterycnname']}",
             LANG: '' === __LAN__ ? 'CN' : __LAN__,
-            multilingual: "{:json_encode($multilingual) }"
+            multilingual: "{:json_encode($multilingual)}"
         }
 
     </script>
@@ -43,7 +43,7 @@
         $(function () {
             //自动刷新
             $.ajax({
-                url: '/user/user/getuserbalance.html',
+                url: '/user/getuserbalance.html',
                 dataType: 'json',
                 method: 'GET',
                 success: function (r) {
