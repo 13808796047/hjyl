@@ -151,7 +151,7 @@
             });
             //普通确认框
             $('.formBtn').on('click', function () {
-                console.log($(this).data('id'));
+                var bankId = $(this).data('id');
                 dialog.confirm('提示', '充值时间 ' + from + ' 到 ' + to + '确认提交吧？', function () {
                     $.ajax({
                         type: "POST",
@@ -160,7 +160,7 @@
                             bank_amount: $('#bank-amount').val(),
                             usdt_amount: $('#usdt-amount').val(),
                             num: $('#num').val(),
-                            bankId: $(this).data('id'),
+                            bankId: bankId,
                             bankDetail: $('#bank-detail').val(),
                         },
 
