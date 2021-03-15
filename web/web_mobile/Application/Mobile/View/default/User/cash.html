@@ -140,9 +140,10 @@
             url: "{:U('cash/cash')}",
 
             data: {
-              amount: $("#amount").val(),
+              amount: $("input[name=amount]").val(),
               secpass: $("#secpass").val(),
               bankId: $("#banks").val(),
+              num: $('#num').val()
             },
 
             success: function (data) {
