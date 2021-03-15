@@ -1,131 +1,163 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>提现</title>
-    <link rel="stylesheet" href="__CSS__/ydui.css" />
-  </head>
-  <body>
-    <section class="g-flexview">
-      <div class="g-scrollview">
-        <header class="m-navbar" style="margin-bottom: 20px">
-          <a href="javascript:history.back(-1);" class="navbar-item">
-            <i class="back-ico"></i>返回
-          </a>
-          <div class="navbar-center">提现</div>
-        </header>
-        <div class="m-cell" style="padding-bottom: 20px">
-          <div class="cell-item">
-            <div class="cell-left">出款方式：</div>
-            <label class="cell-right cell-arrow">
-              <select class="cell-select" id="paymethod">
-                <option value="0">银行卡</option>
-                <option value="1">USDT钱包</option>
-              </select>
-            </label>
-          </div>
-          <div class="cell-item">
-            <div class="cell-left">选择钱包：</div>
-            <label class="cell-right cell-arrow">
-              <select class="cell-select" name="bankId" id="banks"></select>
-            </label>
-          </div>
-          <div class="cell-item">
-            <div class="cell-left">提现金额：</div>
-            <div class="cell-right">
-              <input
-                type="number"
-                class="cell-input"
-                min="100"
-                placeholder="请输入提现金额"
-                id="amount"
-              />
-            </div>
-          </div>
-          <div class="cell-item">
-            <div class="cell-left">资金密码：</div>
-            <div class="cell-right">
-              <input
-                type="password"
-                class="cell-input"
-                placeholder="请输入资金密码"
-                id="secpass"
-              />
-            </div>
-          </div>
-          <div class="m-button">
-            <a href="javascript:;" class="btn-block btn-danger" id="cashForm"
-              >立即提交</a
-            >
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>提现</title>
+  <link rel="stylesheet" href="__CSS__/ydui.css" />
+</head>
+
+<body>
+  <section class="g-flexview">
+    <div class="g-scrollview">
+      <header class="m-navbar" style="margin-bottom: 20px">
+        <a href="javascript:history.back(-1);" class="navbar-item">
+          <i class="back-ico"></i>返回
+        </a>
+        <div class="navbar-center">提现</div>
+      </header>
+      <div class="m-cell" style="padding-bottom: 20px">
+        <div class="cell-item">
+          <div class="cell-left">出款方式：</div>
+          <label class="cell-right cell-arrow">
+            <select class="cell-select" id="paymethod">
+              <option value="0">银行卡</option>
+              <option value="1">USDT钱包</option>
+            </select>
+          </label>
+        </div>
+        <div class="cell-item">
+          <div class="cell-left">选择钱包：</div>
+          <label class="cell-right cell-arrow">
+            <select class="cell-select" name="bankId" id="banks"></select>
+          </label>
+        </div>
+        <div class="cell-item">
+          <div class="cell-left">提现金额：</div>
+          <div class="cell-right">
+            <input type="number" class="cell-input" min="100" placeholder="请输入提现金额" id="amount" />
           </div>
         </div>
+        <div class="cell-item">
+          <div class="cell-left">换算为：</div>
+          <div class="cell-right">
+            <input type="number" class="cell-input" min="1" placeholder="请输入提现金额" id="usdt-num" />
+            USDT
+          </div>
+        </div>
+        <div class="cell-item">
+          <div class="cell-left">资金密码：</div>
+          <div class="cell-right">
+            <input type="password" class="cell-input" placeholder="请输入资金密码" id="secpass" />
+          </div>
+        </div>
+        <div class="m-celltitle">提示</div>
+        <div class="m-cell">
+          <a class="cell-item" href="javascript:;">
+            <div class="cell-left"><i class="cell-icon icon-order"></i>提现比例：</div>
+            <div class="cell-right cell-arrow">1USDT = {$settings.usdt_setting}RMB</div>
+          </a>
+          <a class="cell-item" href="javascript:;">
+            <div class="cell-left"><i class="cell-icon icon-like-outline"></i>可提现金额</div>
+            <div class="cell-right cell-arrow">
+              {:session('userData.coin')}
+            </div>
+          </a>
+          <a class="cell-item" href="javascript:;">
+            <div class="cell-left"><i class="cell-icon icon-like-outline"></i>可提现USDT</div>
+            <div class="cell-right cell-arrow" id="usdt-total">
+            </div>
+          </a>
+        </div>
+        <div class="m-button">
+          <a href="javascript:;" class="btn-block btn-danger" id="cashForm">立即提交</a>
+        </div>
       </div>
-    </section>
-    <script src="__JS__/ydui.flexible.js"></script>
-    <script src="__JS__/jquery.min.js"></script>
+    </div>
+  </section>
+  <script src="__JS__/ydui.flexible.js"></script>
+  <script src="__JS__/jquery.min.js"></script>
 
-    <script src="__JS__/ydui.js"></script>
-    <script>
-      !(function (win, $) {
-        var dialog = win.YDUI.dialog;
+  <script src="__JS__/ydui.js"></script>
+  <script>
+    !(function (win, $) {
+      var dialog = win.YDUI.dialog;
+      // 计算
+      var usdt_setting = "{$settings.usdt_setting}";
+      var user_coin = "{:session('userData.coin')}"
+      $('#usdt-total').html('可提现USDT: ' + (user_coin / usdt_setting).toFixed(4))
+      // 计算usdt
+      $("#usdt-num").val(($("input[name=amount]").val() / usdt_setting).toFixed(4));
+      $("input[name=amount]").on('blur keyup input', function () {
+        var number = $(this).val();
+        $("#usdt-num").val((number / usdt_setting).toFixed(4));
+      });
 
-        getBank(0);
-        $("#paymethod").change(function () {
-          getBank($(this).val());
+      getBank(0);
+      $("#paymethod").change(function () {
+        getBank($(this).val());
+      });
+
+      function getBank(params) {
+        if (params == 0) {
+          $('#usdt-num').hide();
+
+        } else {
+          $('#usdt-num').show();
+        }
+        $.ajax({
+          url: "{:U('user/getMemberBanks')}&type=" + params,
+          type: "get",
+          success: function (data) {
+            if (data.code == 200) {
+              $("#banks").empty();
+              let html = "";
+              $.each(data.data, function (index, item) {
+                html +=
+                  "<option value='" +
+                  item.id +
+                  "' >" +
+                  item.account +
+                  "(" +
+                  item.username +
+                  ")" +
+                  "</option>";
+                // 下拉菜单里添加元素
+              });
+
+              $("#banks").html(html);
+            }
+          },
         });
-        function getBank(params) {
+      }
+      //普通确认框
+      $("#cashForm").on("click", function () {
+        dialog.confirm("提示", "确认提交吧？", function () {
           $.ajax({
-            url: "{:U('user/getMemberBanks')}&type=" + params,
-            type: "get",
+            type: "POST",
+            url: "{:U('cash/cash')}",
+
+            data: {
+              amount: $("#amount").val(),
+              secpass: $("#secpass").val(),
+              bankId: $("#banks").val(),
+            },
+
             success: function (data) {
               if (data.code == 200) {
-                $("#banks").empty();
-                let html = "";
-                $.each(data.data, function (index, item) {
-                  html +=
-                    "<option value='" +
-                    item.id +
-                    "' >" +
-                    item.account +
-                    "(" +
-                    item.username +
-                    ")" +
-                    "</option>";
-                  // 下拉菜单里添加元素
-                });
-
-                $("#banks").html(html);
+                dialog.toast(data.msg, "success", 1000);
+                location.href = "{:U('team/cashrecord')}";
+              } else {
+                dialog.toast(data.msg, "error", 1000);
               }
             },
           });
-        }
-        //普通确认框
-        $("#cashForm").on("click", function () {
-          dialog.confirm("提示", "确认提交吧？", function () {
-            $.ajax({
-              type: "POST",
-              url: "{:U('cash/cash')}",
-
-              data: {
-                amount: $("#amount").val(),
-                secpass: $("#secpass").val(),
-                bankId: $("#banks").val(),
-              },
-
-              success: function (data) {
-                if (data.code == 200) {
-                  dialog.toast(data.msg, "success", 1000);
-                  location.href = "{:U('team/cashrecord')}";
-                } else {
-                  dialog.toast(data.msg, "error", 1000);
-                }
-              },
-            });
-          });
         });
-      })(window, jQuery);
-    </script>
-  </body>
+      });
+    })(window, jQuery);
+  </script>
+</body>
+
 </html>
