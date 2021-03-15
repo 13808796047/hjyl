@@ -78,23 +78,36 @@
               </div>
             </div>
             <div class="layui-form-item">
+              {if condition='$vo.bankId===0'}
               <label class="layui-form-label">
-                {if condition='$vo.bankId===0'}
+
                 充值个数
-                {else /}
-                充值金额
-                {/if}
+
               </label>
               <div class="layui-input-inline">
                 <input name="num" type="number" min="1" required value="1" class="layui-input" />
               </div>
-              USDT换算为
+              <div class="layui-form-mid layui-word-aux">
+                USDT换算为:
+              </div>
+
               <div class="layui-input-inline">
                 <input name="amount" type="number" required value="0" class="layui-input" readonly />
               </div>
-              RMB
+
+
+              {else /}
+              <label class="layui-form-label">
+
+                充值金额
+
+              </label>
+              <div class="layui-input-inline">
+                <input name="amount" type="number" min="100" required value="100" class="layui-input" />
+              </div>
+              {/if}
               <div class="layui-form-mid layui-word-aux">
-                充值金额范围:100-50000元,必须带小数点
+                RMB,充值金额范围:100-50000元,必须带小数点
               </div>
             </div>
             <div class="layui-form-item">
