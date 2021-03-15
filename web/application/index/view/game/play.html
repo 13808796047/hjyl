@@ -31,7 +31,7 @@
             isTestUser: "{:session('userData.is_test')}",
             lotterycnname: "{$lottery['lotterycnname']}",
             LANG: '' === __LAN__ ? 'CN' : __LAN__,
-            multilingual: "{:json_encode($multilingual)}"
+            multilingual: {:json_encode($multilingual) }
         }
 
     </script>
