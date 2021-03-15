@@ -43,7 +43,7 @@
                 <span>余额：</span>
                 <span class="J-balance-show">{:session('userData.coin')}</span>
                 <span>USDT：</span>
-                <span class="J-balance-show">{:session('usdt_setting')}</span>
+                <span class="J-usdt-show"></span>
               </div>
               <div class="th11g_balanceDivre">
                 <a class="refresh" one-link-mark="yes"><i class="icon-refresh" style="
@@ -307,6 +307,20 @@
   </div>
 
   <script type="text/javascript">
+    $(function () {
+      //自动刷新
+      $.ajax({
+        url: "/user/getuserbalance.html",
+        dataType: "json",
+        method: "GET",
+        success: function (r) {
+          if (Number(r["isSuccess"]) == 1) {
+            $(".J-balance-show").text(r["availablebalance"]);
+            $(".J-usdt-show").text(r["usdt_total"]);
+          }
+        },
+      });
+    })
     function SetHome2(mc, url) {
       //location.href=url
       window.open(url);

@@ -24,6 +24,7 @@ $(function () {
       success: function (r) {
         if (Number(r["isSuccess"]) == 1) {
           $(".J-balance-show").text(r["availablebalance"]);
+          $(".J-usdt-show").text(r["usdt_total"]);
         }
       },
     });
