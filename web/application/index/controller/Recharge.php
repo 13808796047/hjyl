@@ -477,6 +477,7 @@ class Recharge extends Controller
         //            }
         //        }
         // }
+        $usdt_num = $bank['bankId'] == 0 ? input('usdt_num') : 0;
         $para['username'] = $bank['username'];
         $para['account'] = $bank['account'];
         $para['amount'] = $amount;
@@ -484,6 +485,7 @@ class Recharge extends Controller
         $para['memberBankId'] = $bank['id'];
         $para['actionTime'] = $this->time;
         $para['uid'] = $this->user['uid'];
+        $para['usdt_num'] = $usdt_num;
         $para['info'] = $bank['bankId'] == 0 ? 'USDT提现' : '银行卡提现';
 
         Db::startTrans();
