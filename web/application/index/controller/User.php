@@ -386,7 +386,9 @@ class User extends Controller
     // =================================
     public function getUserBalance()
     {
-
+        $user = Session::get('userData');
+        $usdt_total = \number_format($user['coin'] / $this->settings['usdt_setting'], 4);
+        return json(["isSuccess" => 1, "availablebalance" => $user['coin'], 'usdt_total' => $usdt_total]);
     }
     public function getUser_setmenu()
     {
