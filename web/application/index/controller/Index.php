@@ -14,9 +14,8 @@ class Index extends Controller
         // 客服
         $kefu = Params::getParams('kefuGG')['kefuGG'];
         $stauts = Params::getParams('kefuStatus')['kefuStatus'];
-        $usdt_setting = Params::getParams('usdt_setting')['usdt_setting'];
 
-        View::share(['kefu' => $kefu, 'status' => $stauts, 'usdt_setting' => $usdt_setting]);
+        View::share(['kefu' => $kefu, 'status' => $stauts]);
         $json = config('multilingual');
 
         $this->assign('foot', 'footer');
