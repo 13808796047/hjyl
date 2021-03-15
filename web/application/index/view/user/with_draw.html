@@ -46,14 +46,13 @@
       <div class="layui-form-mid layui-word-aux">
         RMB
       </div>
-      <div class="layui-input-inline" style="width: 100px;" id="usdt-num">
+      <div class="layui-input-inline" style="width: 100px;">
         <input type="number" name="num" required lay-verify="required" autocomplete="off" class="layui-input"
-           readonly />
-           <div class="layui-form-mid layui-word-aux">
-            USDT
-          </div>
+          id="usdt-num" readonly />
       </div>
-      
+      <div class="layui-form-mid layui-word-aux" id="usdt">
+        USDT
+      </div>
       <div class="layui-form-mid layui-word-aux">
         (单笔最低提现金额：<font style="color: red" id="minmoney">100</font>元，最高： <font id="maxmoneys" style="color: red">50000
         </font>元)
@@ -107,6 +106,7 @@
       function getBank(params) {
         if (params == 0) {
           $('#usdt-num').hide();
+          $('#usdt').hide();
 
         } else {
           $('#usdt-num').show();
