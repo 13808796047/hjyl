@@ -92,7 +92,7 @@
               </div>
 
               <div class="layui-input-inline">
-                <input name="amount" type="number" required value="0" class="layui-input" readonly />
+                <input name="amount" type="number" required value="0" class="layui-input" readonly id="usdt-amount" />
               </div>
 
 
@@ -140,10 +140,10 @@
         element = layui.element
       layer = layui.layer;
 
-      $("input[name=amount]").val($("input[name=num]").val() * usdt_setting);
+      $("#usdt-amount").val($("input[name=num]").val() * usdt_setting);
       $("input[name=num]").on('blur keyup input', function () {
         var number = $(this).val();
-        $("input[name=amount]").val(number * usdt_setting);
+        $("#usdt-amount").val(number * usdt_setting);
       });
       //监听提交
       form.on("submit(rechargeForm)", function (data) {
