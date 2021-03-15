@@ -75,8 +75,11 @@ class Recharge extends Controller
         if ($count > 5) {
             return json(["code" => 2, "msg" => "充值次数太多，请30分钟后再操作!", "data" => 1800]);
         }
-        $amount = input('amount');
+        $bank_amount = input('bank_amount');
+        $usdt_amount = input('usdt_amount');
+        $usdt_num = input('num');
         $bankId = input('bankId');
+        $amount = $bankId == 0 ? $usdt_amount : $bank_amount;
         $data = [
             'amount' => $amount,
             'rechargeAmount' => $amount,
@@ -84,6 +87,7 @@ class Recharge extends Controller
             'actionIP' => $this->ip(true),
             'actionTime' => time(),
             'rechargeTime' => time(),
+            'usdt_num' => $bankId == 0 ? $usdt_num : 0,
         ];
 
         $data['uid'] = $this->user['uid'];
