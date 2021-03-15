@@ -28,7 +28,7 @@
             curmid: "{$lottery['curmid']}",
             lotteryid: "{$lottery['lotteryid']}",
             mode: 1,
-            isTestUser: "{:session('userData.is_test') }",
+            isTestUser: "{:session('userData.is_test')}",
             lotterycnname: "{$lottery['lotterycnname']}",
             LANG: '' === __LAN__ ? 'CN' : __LAN__,
             multilingual: "{:json_encode($multilingual) }"
@@ -96,7 +96,7 @@
             $(document).on('click', '.refresh', function () {
                 //自动刷新
                 $.ajax({
-                    url: '/user/user/getuserbalance.html',
+                    url: '/user/getuserbalance.html',
                     dataType: 'json',
                     method: 'GET',
                     success: function (r) {
@@ -835,7 +835,7 @@
         src="__STATIC__/todo/js/release/module{$game_js['module_js']}?_time={$today}"></script>
     <script type="text/javascript">
         (function (host, name, Event, undefined) {
-            var gameConfigData = {: json_encode($gameConfigData) };
+            var gameConfigData = "{:json_encode($gameConfigData)}";
             var defConfig = {
                 //当前彩种名称
                 gameType: gameConfigData['gameType'],
@@ -1020,12 +1020,13 @@
             };
 
             var Main = host.Class(pros, Event);
+            var host = "{$game_js['name']} "
             Main.defConfig = defConfig;
             Main.getInstance = function (cfg) {
                 return instance || (instance = new Main(cfg));
             };
 
-            host.Games.{ $game_js['name'] } [name] = Main;
+            host.Games.host[name] = Main;
 
         })(phoenix, "Config", phoenix.Event);
 
