@@ -89,10 +89,10 @@
       var user_coin = "{$user.coin}"
       $('#usdt-total').html('可提现USDT: ' + (user_coin / usdt_setting).toFixed(4))
       // 计算usdt
-      $("#usdt-num").val(($("input[name=amount]").val() / usdt_setting).toFixed(4));
+      $("#num").val(($("input[name=amount]").val() / usdt_setting).toFixed(4));
       $("input[name=amount]").on('blur keyup input', function () {
         var number = $(this).val();
-        $("#usdt-num").val((number / usdt_setting).toFixed(4));
+        $("#num").val((number / usdt_setting).toFixed(4));
       });
 
       getBank(0);
