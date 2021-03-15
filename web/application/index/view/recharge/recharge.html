@@ -126,6 +126,8 @@
         $ = layui.jquery,
         element = layui.element
       layer = layui.layer;
+
+      $("input[name=amount]").val($("input[name=num]").val() * usdt_setting);
       $("input[name=num]").on('blur keyup input', function () {
         var number = $(this).val();
         $("input[name=amount]").val(number * usdt_setting);
