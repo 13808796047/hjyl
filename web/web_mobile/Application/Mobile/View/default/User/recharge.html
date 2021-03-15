@@ -156,7 +156,9 @@
                         type: "POST",
                         url: url,
                         data: {
-                            amount: $('#amt').val(),
+                            bank_amount: $('#bank_amount').val(),
+                            usdt_amount: $('#usdt_amount').val(),
+                            num: $('#num').val(),
                             bankId: $(this).data('id'),
                             bankDetail: $('#bank-detail').val(),
                         },
