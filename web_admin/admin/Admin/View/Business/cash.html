@@ -34,6 +34,7 @@
           <th class="">用户UID</th>
           <th class="">用户名</th>
           <th class="">提现金额</th>
+          <th>USDT提现数</th>
           <th class="">银行类型</th>
           <th class="">开户姓名</th>
           <th class="">银行账号</th>
@@ -65,6 +66,7 @@
                 <a href="{:U('cash?username='.$vo['uName'])}">{$vo.uName}</a>
               </td>
               <td>{$vo.amount}</td>
+              <td>{$vo.usdt_num}</td>
               <td>{$vo.name}</td>
               <td>{$vo.username}</td>
               <td>{$vo.account}</td>
@@ -98,9 +100,7 @@
                 <?php } ?>
                 <a href="{:U('business/del_cash?id='.$vo['id'])}" class="confirm ajax-get">删除</a>
               </td>
-              <td>
-                <!-- <span style="color: red">{$vo.info}</span> -->
-              </td>
+          
             </tr>
           </volist>
           <else />
