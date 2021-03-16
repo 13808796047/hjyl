@@ -18,6 +18,24 @@
 </head>
 <script>
   $(function () {
+    var uid = "{:session('userData.uid')}";
+    function getBlance(){
+           //自动刷新
+           $.ajax({
+        url: "/user/getuserbalance.html?user_id="+uid,
+        dataType: "json",
+        method: "GET",
+        success: function (r) {
+          if (Number(r["isSuccess"]) == 1) {
+            $(".J-balance-show").text(r["availablebalance"]);
+            $(".J-usdt-show").text(r["usdt_total"]);
+          }
+        },
+      });
+    }
+    $(document).on("click", ".refresh", function () {
+      getBlance()
+  });
     $("#game").click(function () {
       $(".drop_games").toggle();
     })
@@ -41,7 +59,7 @@
               </div>
               <div class="th11g_balanceDiv" id="uAmount">
                 <span>余额：</span>
-                <span class="J-balance-show">{:session('userData.coin')}</span>
+                <span class="J-balance-show"></span>
                 <span class="J-balance-star toggle" style="display: none">*****</span>
                 <span>USDT：</span>
                 <span class="J-usdt-show"></span>
@@ -309,20 +327,6 @@
   </div>
 
   <script type="text/javascript">
-    $(function () {
-      //自动刷新
-      $.ajax({
-        url: "/user/getuserbalance.html",
-        dataType: "json",
-        method: "GET",
-        success: function (r) {
-          if (Number(r["isSuccess"]) == 1) {
-            $(".J-balance-show").text(r["availablebalance"]);
-            $(".J-usdt-show").text(r["usdt_total"]);
-          }
-        },
-      });
-    })
     function SetHome2(mc, url) {
       //location.href=url
       window.open(url);

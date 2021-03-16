@@ -15,20 +15,6 @@ $(function () {
       $("#J-side-bar").removeClass("J-side-bar-acive");
     }
   );
-  $(document).on("click", ".refresh", function () {
-    //自动刷新
-    $.ajax({
-      url: "/user/getuserbalance.html",
-      dataType: "json",
-      method: "GET",
-      success: function (r) {
-        if (Number(r["isSuccess"]) == 1) {
-          $(".J-balance-show").text(r["availablebalance"]);
-          $(".J-usdt-show").text(r["usdt_total"]);
-        }
-      },
-    });
-  });
   // if hideAmt is click, set cookie state to hide || show. Also toggle amount DOM
   var currentState;
   $(".hideAmt")
