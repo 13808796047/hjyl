@@ -386,7 +386,7 @@ class User extends Controller
     // =================================
     public function getUserBalance()
     {
-        $user = Members::where(['uid'=>input('uid')])->find();
+        $user = Members::where(['uid'=>input('user_id')])->find();
         $usdt_total = \number_format($user['coin'] / $this->settings['usdt_setting'], 4);
         return json(["isSuccess" => 1, "availablebalance" => $user['coin'], 'usdt_total' => $usdt_total]);
     }
