@@ -37,6 +37,34 @@
     $(document).on("click", ".refresh", function () {
       getBlance()
   });
+  var toggle = true;
+  $('.eye').click(function () {
+    if (toggle) {
+      $(".hideAmt").attr(
+        "src",
+        window["CDN"] + "/sy2/images/matt/eye-open-white.png"
+      );
+      $(".balance-show").show();
+      $(".balance-star").hide();
+      $(".refresh").show();
+      toggle = false;
+    }else{
+      $(".hideAmt").attr(
+        "src",
+        window["CDN"] + "/sy2/images/matt/eye-close-white.png"
+      );
+      $(".balance-show").hide();
+      $(".balance-star").show();
+      $(".refresh").hide();
+      toggle = true;
+    }
+   
+     
+    // } else {
+  
+    //   $(".hideAmtli ").addClass("iconhide");
+    // }
+  })
     $("#game").click(function () {
       $(".drop_games").toggle();
     })
@@ -60,11 +88,11 @@
               </div>
               <div class="th11g_balanceDiv" id="uAmount">
                 <span>余额：</span>
-                <span class="balance-show" ></span>
-                <span class="balance-star" style="display: none">*****</span>
+                <span class="balance-show" style="display: none"></span>
+                <span class="balance-star" >*****</span>
                 <span>USDT：</span>
-                <span class="usdt-show" ></span>
-                <span class="balance-star" style="display: none">*****</span>
+                <span class="usdt-show" style="display: none"></span>
+                <span class="balance-star" >*****</span>
               </div>
               <div class="th11g_balanceDivre">
                 <a class="refresh" one-link-mark="yes"><i class="icon-refresh" style="
@@ -72,7 +100,7 @@
                         "></i></a>
 
               </div>
-              <div class="hideAmtli hideAmt" src="https://n7ws.jnfzdz.cn/sy2/images/matt/eye-open-white.png" style="
+              <div class="eye hideAmt" src="https://n7ws.jnfzdz.cn/sy2/images/matt/eye-open-white.png" style="
                       background-image: url('https://n7ws.jnfzdz.cn/sy2/images/3new/allicon.png');
                     "></div>
               <!--samuel TGG新增 暫關-->

@@ -16,67 +16,67 @@ $(function () {
     }
   );
   // if hideAmt is click, set cookie state to hide || show. Also toggle amount DOM
-  var currentState;
-  $(".hideAmt")
-    .unbind("click")
-    .bind("click", function () {
-      var allcookies = document.cookie;
-      var newState;
-      cookiearray = allcookies.split(";");
-      for (var i = 0; i < cookiearray.length; i++) {
-        if (cookiearray[i].indexOf("state") === 1) {
-          currentState = cookiearray[i].split("=")[1];
-          break;
-        }
-      }
-      if (currentState === "hide") {
-        newState = "show";
-        $(this).removeClass("iconhide");
-      } else {
-        newState = "hide";
-        $(this).addClass("iconhide");
-      }
-      document.cookie = "state=" + newState + ";";
-      $(".J-balance-show").toggle();
-      $(".J-usdt-show").toggle();
-      $(".J-balance-star").toggle();
-      $(".refresh").toggle();
-      var src = $(this).attr("src");
-      var newsrc =
-        src == window["CDN"] + "/sy2/images/matt/eye-open-white.png"
-          ? window["CDN"] + "/sy2/images/matt/eye-close-white.png"
-          : window["CDN"] + "/sy2/images/matt/eye-open-white.png";
-      $(this).attr("src", newsrc);
-    });
-  // When web page reload get state value from cookie, if state is show, show amount. If state is hide, hide amount
-  if (document.readyState === "interactive") {
-    var allcookies = document.cookie;
-    cookiearray = allcookies.split(";");
-    for (var i = 0; i < cookiearray.length; i++) {
-      if (cookiearray[i].indexOf("state") === 1) {
-        currentState = cookiearray[i].split("=")[1];
-      }
-    }
+  // var currentState;
+  // $(".hideAmt")
+  //   .unbind("click")
+  //   .bind("click", function () {
+  //     var allcookies = document.cookie;
+  //     var newState;
+  //     cookiearray = allcookies.split(";");
+  //     for (var i = 0; i < cookiearray.length; i++) {
+  //       if (cookiearray[i].indexOf("state") === 1) {
+  //         currentState = cookiearray[i].split("=")[1];
+  //         break;
+  //       }
+  //     }
+  //     if (currentState === "hide") {
+  //       newState = "show";
+  //       $(this).removeClass("iconhide");
+  //     } else {
+  //       newState = "hide";
+  //       $(this).addClass("iconhide");
+  //     }
+  //     document.cookie = "state=" + newState + ";";
+  //     $(".J-balance-show").toggle();
+  //     $(".J-usdt-show").toggle();
+  //     $(".J-balance-star").toggle();
+  //     $(".refresh").toggle();
+  //     var src = $(this).attr("src");
+  //     var newsrc =
+  //       src == window["CDN"] + "/sy2/images/matt/eye-open-white.png"
+  //         ? window["CDN"] + "/sy2/images/matt/eye-close-white.png"
+  //         : window["CDN"] + "/sy2/images/matt/eye-open-white.png";
+  //     $(this).attr("src", newsrc);
+  //   });
+  // // When web page reload get state value from cookie, if state is show, show amount. If state is hide, hide amount
+  // if (document.readyState === "interactive") {
+  //   var allcookies = document.cookie;
+  //   cookiearray = allcookies.split(";");
+  //   for (var i = 0; i < cookiearray.length; i++) {
+  //     if (cookiearray[i].indexOf("state") === 1) {
+  //       currentState = cookiearray[i].split("=")[1];
+  //     }
+  //   }
 
-    if (currentState === "show") {
-      $(".hideAmt").attr(
-        "src",
-        window["CDN"] + "/sy2/images/matt/eye-open-white.png"
-      );
-      $(".balance-show").show();
-      $(".balance-star").hide();
-      $(".refresh").show();
-    } else {
-      $(".hideAmt").attr(
-        "src",
-        window["CDN"] + "/sy2/images/matt/eye-close-white.png"
-      );
-      $(".balance-show").hide();
-      $(".balance-star").show();
-      $(".refresh").hide();
-      $(".hideAmtli ").addClass("iconhide");
-    }
-  }
+  //   if (currentState === "show") {
+  //   //   $(".hideAmt").attr(
+  //   //     "src",
+  //   //     window["CDN"] + "/sy2/images/matt/eye-open-white.png"
+  //   //   );
+  //   //   $(".balance-show").show();
+  //   //   $(".balance-star").hide();
+  //   //   $(".refresh").show();
+  //   // } else {
+  //   //   $(".hideAmt").attr(
+  //   //     "src",
+  //   //     window["CDN"] + "/sy2/images/matt/eye-close-white.png"
+  //   //   );
+  //   //   $(".balance-show").hide();
+  //   //   $(".balance-star").show();
+  //   //   $(".refresh").hide();
+  //   //   $(".hideAmtli ").addClass("iconhide");
+  //   // }
+  // }
 });
 //警告视窗
 function styleAlert(message) {
