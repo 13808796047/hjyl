@@ -63,16 +63,16 @@ $(function () {
         "src",
         window["CDN"] + "/sy2/images/matt/eye-open-white.png"
       );
-      $(".J-balance-show").show();
-      $(".J-balance-star").hide();
+      $(".balance-show").show();
+      $(".balance-star").hide();
       $(".refresh").show();
     } else {
       $(".hideAmt").attr(
         "src",
         window["CDN"] + "/sy2/images/matt/eye-close-white.png"
       );
-      $(".J-balance-show").hide();
-      $(".J-balance-star").show();
+      $(".balance-show").hide();
+      $(".balance-star").show();
       $(".refresh").hide();
       $(".hideAmtli ").addClass("iconhide");
     }
