@@ -99,22 +99,6 @@
         }
         $(function () {
             getnowtime();
-
-
-            $(document).on('click', '.refresh', function () {
-                //自动刷新
-                $.ajax({
-                    url: '/user/getuserbalance.html',
-                    dataType: 'json',
-                    method: 'GET',
-                    success: function (r) {
-                        if (Number(r['isSuccess']) == 1) {
-                            $('.J-balance-show').text(r['availablebalance']);
-                            $(".J-usdt-show").text(r["usdt_total"]);
-                        }
-                    }
-                });
-            })
         })
     </script>
     <script src="__STATIC__/todo/js/release/jquery.cookie.js"></script>
