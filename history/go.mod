@@ -1,4 +1,4 @@
-module github.com/13808796047
+module github.com/13808796047/history
 
 go 1.13
 
