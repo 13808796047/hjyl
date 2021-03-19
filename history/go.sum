@@ -1,3 +1,5 @@
+gitee.com/go-package/carbon v1.3.5 h1:DyVL1Dn3ucwSOm0CYXNTW/d5B3Qsu7n+sISqvDH/pSM=
+gitee.com/go-package/carbon v1.3.5/go.mod h1:6fBo5RqqXvTkdH2t1AD1JLSdfOELVEy4wVrdpIQuIrM=
 github.com/PuerkitoBio/goquery v1.5.1/go.mod h1:GsLWisAFVj4WgDibEWF4pvYnkVQBpKBKeU+7zCJoLcc=
 github.com/andybalholm/cascadia v1.1.0/go.mod h1:GsXiBklL0woXo1j/WYWtSYYC4ouU9PqHO0sqidkEA4Y=
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=

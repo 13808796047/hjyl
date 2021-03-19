@@ -12,7 +12,8 @@ type Data struct {
 	Data   string `json:"data"`
 }
 
-func GetDatas(maps interface{}) (datas []Data) {
-	orm.Eloquent.Where(maps).Find(&datas)
+func GetDatas(maps map[string]interface{}) (datas []Data) {
+
+	orm.Eloquent.Where("time BETWEEN ? AND ?", maps["start_date"], maps["end_date"]).Find(&datas)
 	return
 }
