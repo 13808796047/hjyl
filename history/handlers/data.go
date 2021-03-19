@@ -1,7 +1,6 @@
 package handlers
 
 import (
-	"fmt"
 	"history/models"
 	"net/http"
 
@@ -25,7 +24,6 @@ func Index(c *gin.Context) {
 	} else {
 		maps["start_date"] = endDayTime
 	}
-	fmt.Println(maps)
 	result := models.GetDatas(maps)
 	c.JSON(http.StatusOK, gin.H{
 		"code": 1,
