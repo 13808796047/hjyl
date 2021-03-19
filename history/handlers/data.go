@@ -3,7 +3,7 @@ package handlers
 import (
 	"history/models"
 	"net/http"
-	"github.com/Unknwon/com"
+	"strconv"
 	"gitee.com/go-package/carbon"
 	"github.com/gin-gonic/gin"
 )
@@ -24,9 +24,10 @@ func Index(c *gin.Context) {
 	} else {
 		maps["end_date"] = endDayTime
 	}
-	if data_type :=com.StrTo(c.DefaultQuery("data_type", "36")).MustInt(); {
-		maps["data_type"] = data_type
-	} 
+	
+	data_type,_ :=strconv.Atoi(c.DefaultQuery("data_type", "36"))
+	maps["data_type"] = data_type
+	
 	result := models.GetDatas(maps)
 	c.JSON(http.StatusOK, gin.H{
 		"code": 1,
