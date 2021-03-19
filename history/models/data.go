@@ -14,7 +14,6 @@ type Data struct {
 }
 
 func GetDatas(maps map[string]interface{}) (datas []Data) {
-	fmt.Println(maps["start_date"], maps["end_date"])
 	orm.Eloquent.Where("type=?", 36).Where("time >?", maps["start_date"]).Where("time<?", maps["end_date"]).Find(&datas)
 	return
 }
