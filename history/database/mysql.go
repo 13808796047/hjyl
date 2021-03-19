@@ -12,12 +12,12 @@ func init() {
 	gorm.DefaultTableNameHandler = func(Eloquent *gorm.DB, defaultTableName string) string {
 		return "gygy_" + defaultTableName
 	}
-	CloseDB()
+	// CloseDB()
 	// if err != nil {
 	// 	fmt.Printf("mysql connect error %v", err)
 	// }
 }
 
-func CloseDB() {
-	defer Eloquent.Close()
-}
+// func CloseDB() {
+// 	defer Eloquent.Close()
+// }
