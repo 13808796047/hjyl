@@ -10,8 +10,8 @@ import (
 
 // 列表数据
 func Index(c *gin.Context) {
-	startDayTime := carbon.Now().StartOfDay().ToTimestamp()
-	endDayTime := carbon.Now().EndOfDay().ToTimestamp()
+	startDayTime := carbon.Now().StartOfDay()
+	endDayTime := carbon.Now().EndOfDay()
 	maps := make(map[string]interface{})
 	if start_date := c.Query("startTime"); start_date != "" {
 		maps["start_date"] = carbon.Parse(start_date).ToTimestamp()

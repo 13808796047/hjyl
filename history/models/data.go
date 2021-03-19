@@ -1,9 +1,8 @@
 package models
 
 import (
+	"fmt"
 	orm "history/database"
-
-	"github.com/unknwon/com"
 )
 
 type Data struct {
@@ -15,7 +14,7 @@ type Data struct {
 }
 
 func GetDatas(maps map[string]interface{}) (datas []Data) {
-
-	orm.Eloquent.Where("type=?", 36).Where("time >?", com.StrTo(maps["start_date"]).MustString()).Where("time<?", com.StrTo(maps["end_date"]).MustString()).Find(&datas)
+	fmt.Println(maps["start_date"], maps["end_date"])
+	orm.Eloquent.Where("type=?", 36).Where("time >?", maps["start_date"]).Where("time<?", maps["end_date"]).Find(&datas)
 	return
 }
