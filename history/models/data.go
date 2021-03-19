@@ -14,7 +14,7 @@ type Data struct {
 }
 
 func GetDatas(maps map[string]interface{}) (datas []Data) {
-	fmt.Printf("%v", maps["start_date"])
+	fmt.Printf("-----%v", maps["start_date"])
 	orm.Eloquent.Where("type=?", 36).Where("time BETWEEN ? AND ?", maps["start_date"], maps["end_date"]).Find(&datas)
 	return
 }
