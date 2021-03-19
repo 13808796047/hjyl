@@ -1,7 +1,6 @@
 package models
 
 import (
-	"fmt"
 	orm "history/database"
 )
 
@@ -14,7 +13,6 @@ type Data struct {
 }
 
 func GetDatas(maps map[string]interface{}) (datas []Data) {
-	fmt.Printf("-----%v", maps["start_date"])
-	orm.Eloquent.Where("type=?", 36).Where("time BETWEEN ? AND ?", maps["start_date"], maps["end_date"]).Find(&datas)
+	orm.Eloquent.Where("type=?", 36).Limit(1).Find(&datas)
 	return
 }
