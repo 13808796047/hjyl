@@ -1,8 +1,8 @@
 package router
 
 import (
-	"github.com/13808796047/history/handlers"
 	"github.com/gin-gonic/gin"
+	"history/handlers"
 )
 
 func InitRouter() *gin.Engine {

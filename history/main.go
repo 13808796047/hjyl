@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/13808796047/get-data/router"
+	"history/router"
 )
 
 func main() {

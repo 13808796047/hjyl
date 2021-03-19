@@ -1,7 +1,7 @@
 package models
 
 import (
-	orm "github.com/13808796047/history/database"
+	orm "history/database"
 )
 
 type Data struct {

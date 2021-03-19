@@ -1,12 +1,15 @@
-module github.com/13808796047/history
+module history
 
 go 1.13
 
 replace (
-	github.com/13808796047/history/database => ./database
-	github.com/13808796047/history/handlers => ./handlers
-	github.com/13808796047/history/models => ./models
-	github.com/13808796047/history/router => ./router
+	history/database => ./database
+	history/handlers => ./handlers
+	history/models => ./models
 )
 
-require github.com/gin-gonic/gin v1.6.3
+require (
+	github.com/gin-gonic/gin v1.6.3
+	github.com/go-sql-driver/mysql v1.5.0
+	github.com/jinzhu/gorm v1.9.16
+)
