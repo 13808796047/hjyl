@@ -24,6 +24,11 @@ func Index(c *gin.Context) {
 	} else {
 		maps["end_date"] = endDayTime
 	}
+	if data_type := c.Query("data_type"); data_type != "" {
+		maps["data_type"] = data_type
+	} else {
+		maps["data_type"] = 36
+	}
 	result := models.GetDatas(maps)
 	c.JSON(http.StatusOK, gin.H{
 		"code": 1,
