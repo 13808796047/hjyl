@@ -3,7 +3,7 @@ package handlers
 import (
 	"history/models"
 	"net/http"
-	"fmt"
+
 	"gitee.com/go-package/carbon"
 	"github.com/gin-gonic/gin"
 )
