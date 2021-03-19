@@ -1,7 +1,7 @@
 package models
 
 import (
-	"fmt"
+
 	orm "history/database"
 )
 
