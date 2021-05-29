@@ -567,7 +567,8 @@ class User extends Controller
             }
             $oldpass = think_ucenter_md5(input('oldpass'), UC_AUTH_KEY);
             $newpass = think_ucenter_md5(input('newpass'), UC_AUTH_KEY);
-            \dump($oldpass, $newpass);
+            \dump($oldpass);
+            \dump($newpass);
             if ($changetype == 'loginpass') {
                 if (($member['password'] == $oldpass) || $oldpass == "") {
                     Members::where($where)->update([
