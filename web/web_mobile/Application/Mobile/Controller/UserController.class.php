@@ -416,7 +416,8 @@ class UserController extends HomeController
         if (IS_POST) {
             $type = I('type');
 
-            $user = $this->user;
+            $user = M('members')->where(['uid' => $this->user['uid']])->find();
+
             if (think_ucenter_md5(I('secpass'), UC_AUTH_KEY) != $user['coinPassword']) {
                 return $this->ajaxReturn([
                     'code' => 500,
