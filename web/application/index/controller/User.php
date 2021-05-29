@@ -440,7 +440,7 @@ class User extends Controller
                     if ($has_bank) {
                         return json([
                             'code' => 500,
-                            'msg' => '该银行已经存在',
+                            'msg' => '该钱包已经存在',
                         ]);
 
                     }
