@@ -556,19 +556,18 @@ class User extends Controller
             $user = Session::get('userData');
             $where = ['uid' => $user['uid']];
             $member = Members::where($where)->find();
-            dump($member);
-            if (!$member) {
-                $this->error('回话过期');
-            }
-            if ($_POST['newpass'] != input('confirm_newpass')) {
+//    ["coinPassword"] =&gt; string(32) "9601f874b0e5c0c05dba8a9c5f209e99"
+
+            if (input('newpass') != input('confirm_newpass')) {
                 return json([
                     'code' => 500,
                     'msg' => '两次密码不一致',
                 ]);
 
             }
-            $oldpass = think_ucenter_md5($_POST['oldpass'], UC_AUTH_KEY);
-            $newpass = think_ucenter_md5($_POST['newpass'], UC_AUTH_KEY);
+            $oldpass = think_ucenter_md5(input('oldpass'), UC_AUTH_KEY);
+            $newpass = think_ucenter_md5(input('newpass'), UC_AUTH_KEY);
+            \dump($oldpass, $newpass);
             if ($changetype == 'loginpass') {
                 if (($member['password'] == $oldpass) || $oldpass == "") {
                     Members::where($where)->update([
