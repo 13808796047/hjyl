@@ -403,8 +403,10 @@ class User extends Controller
     {
 
         $type = \input('type');
-        $user = Session::get('userData');
-        $uid = $user['uid'];
+        $userData = Session::get('userData');
+        $uid = $userData['uid'];
+        $user = Members::where(['uid' => $uid])->find();
+
         switch ($type) {
             case 'usdt':
                 if (request()->isPost()) {
@@ -442,8 +444,6 @@ class User extends Controller
                         ]);
 
                     }
-                    dump($user['coinPassword']);
-                    \dump(think_ucenter_md5(input('scpassword'), UC_AUTH_KEY));
                     if ($user['coinPassword'] != think_ucenter_md5(input('scpassword'), UC_AUTH_KEY)) {
                         return json([
                             'code' => 500,
