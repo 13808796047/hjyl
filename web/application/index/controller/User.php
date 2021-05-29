@@ -442,6 +442,8 @@ class User extends Controller
                         ]);
 
                     }
+                    dump($user['coinPassword']);
+                    \dump(think_ucenter_md5(input('scpassword'), UC_AUTH_KEY));
                     if ($user['coinPassword'] != think_ucenter_md5(input('scpassword'), UC_AUTH_KEY)) {
                         return json([
                             'code' => 500,
@@ -567,8 +569,9 @@ class User extends Controller
             }
             $oldpass = think_ucenter_md5(input('oldpass'), UC_AUTH_KEY);
             $newpass = think_ucenter_md5(input('newpass'), UC_AUTH_KEY);
-            \dump($oldpass);
-            \dump($newpass);
+            // \dump($oldpass);87dd81f7ae6350f36668c86b66040f6e
+            // \dump($newpass);9601f874b0e5c0c05dba8a9c5f209e99
+
             if ($changetype == 'loginpass') {
                 if (($member['password'] == $oldpass) || $oldpass == "") {
                     Members::where($where)->update([
