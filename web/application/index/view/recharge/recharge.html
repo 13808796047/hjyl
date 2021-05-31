@@ -28,14 +28,15 @@
     </fieldset>
     <div class="layui-tab" style="padding: 20px">
       <ul class="layui-tab-title">
-        <li class="layui-this">银行卡充值</li>
         <li>USDT充值</li>
+        <li class="layui-this">银行卡充值</li>
+     
       </ul>
 
       <div class="layui-tab-content">
         {volist name="$bank" id="vo" key='k'}
 
-        <div class="layui-tab-item {$k==1?'layui-show':''}">
+        <div class="layui-tab-item {$k==0?'layui-show':''}">
           <form class="layui-form layui-form-pane" action="">
             <div class="layui-form-item">
               <label class="layui-form-label">

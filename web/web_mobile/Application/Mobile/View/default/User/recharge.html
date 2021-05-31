@@ -24,13 +24,13 @@
     <div class="m-tab" data-ydui-tab style="margin-top: .1rem;">
         <!-- 这里添加data-ydui-tab就可以啦 -->
         <ul class="tab-nav">
-            <li class="tab-nav-item tab-active"><a href="javascript:;">银行卡充值</a></li>
-            <li class="tab-nav-item"><a href="javascript:;">USDT充值</a></li>
+            <li class="tab-nav-item tab-active"><a href="javascript:;">USDT充值</a></li>
+            <li class="tab-nav-item"><a href="javascript:;">银行卡充值</a></li>
         </ul>
         <div class="tab-panel">
             <volist name="bank" id="vo" key="k">
 
-                <div class="tab-panel-item {$k==1?'tab-active':''}">
+                <div class="tab-panel-item {$k==0?'tab-active':''}">
                     <div class="m-cell">
                         <div class="cell-item">
                             <div class="cell-left">
