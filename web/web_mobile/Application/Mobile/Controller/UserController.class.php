@@ -690,7 +690,7 @@ class UserController extends HomeController
                 ->count();
 
             if ($count >= 15) {
-                return $this->ajaxReturn(["code" => 2, "msg" => "充值次数太多，请30分钟后再操作!", "data" => '']);
+                return $this->ajaxReturn(["code" => 2, "msg" => "今天充值次数太多，请明天再操作!", "data" => '']);
             }
 
             $data = [
