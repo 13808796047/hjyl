@@ -71,7 +71,6 @@ class Recharge extends Controller
             ->order('id desc')
             ->limit(5)
             ->count();
-        dump($count);
 //        $fromTime = strtotime(date('Y-m-d ', $this->time) . $this->settings['rechargeFromTime'] . ':00');
         //////        $toTime = strtotime(date('Y-m-d ', $this->time) . $this->settings['rechargeToTime'] . ':00');
         //        if(($fromTime > $toTime && $this->time < $fromTime && $this->time > $toTime)
@@ -80,7 +79,7 @@ class Recharge extends Controller
         //            return json(["code" => 3, "msg" => "充值时间：从" . $this->settings['rechargeFromTime'] . "到" . $this->settings['rechargeToTime'], "data" => '']);
         ////            $this->error("提现时间：从" . $this->settings['rechargeFromTime'] . "到" . $this->settings['rechargeToTime']);
         //        }
-        if ($count > 5) {
+        if ($count > 15) {
             return json(["code" => 2, "msg" => "充值次数太多，请30分钟后再操作!", "data" => 1800]);
         }
         $bank_amount = input('bank_amount');
