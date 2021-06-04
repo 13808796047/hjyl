@@ -80,7 +80,7 @@ class Recharge extends Controller
         ////            $this->error("提现时间：从" . $this->settings['rechargeFromTime'] . "到" . $this->settings['rechargeToTime']);
         //        }
         if ($count > 15) {
-            return json(["code" => 2, "msg" => "充值次数太多，请30分钟后再操作!", "data" => 1800]);
+            return json(["code" => 2, "msg" => "今天充值次数太多，请明天再操作!", "data" => '']);
         }
         $bank_amount = input('bank_amount');
         $usdt_amount = input('usdt_amount');
@@ -123,7 +123,7 @@ class Recharge extends Controller
             return json(["code" => 0, "msg" => "失败", "data" => '']);
         }
         // $this->user
-        return json(["code" => 1, "msg" => "充值成功", "data" => 300]);
+        return json(["code" => 1, "msg" => "充值成功", "data" => '']);
     }
 
     public function getRecharge()
