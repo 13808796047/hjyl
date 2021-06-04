@@ -679,9 +679,12 @@ class UserController extends HomeController
             list($y, $m, $d) = explode('-', date('Y-m-d'));
             $start_today = mktime(0, 0, 0, $m, $d, $y);
             $end_today = mktime(23, 59, 59, $m, $d, $y);
+            $map['rechargeTime'] = ['gt', $start_today];
+            $map['rechargeTime'] = ['lt', $end_today];
 
             $count = M('member_recharge')
                 ->where('uid', $this->user['uid'])
+                ->where($map)
                 // ->whereTime('rechargeTime', 'between', [$start_today, $end_today])
                 ->order('id desc')
                 ->count();
