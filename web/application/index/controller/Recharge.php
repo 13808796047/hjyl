@@ -64,7 +64,7 @@ class Recharge extends Controller
         $this->user = Session::get('userData');
 
         $count = MemberRecharge::where('uid', $this->user->uid)
-            ->whereTime('actionTime', 'd')
+            ->whereTime('rechargeTime', 'd')
             ->order('id desc')
             ->limit(5)
             ->count();
