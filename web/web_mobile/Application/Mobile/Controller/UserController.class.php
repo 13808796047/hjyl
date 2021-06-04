@@ -734,7 +734,7 @@ class UserController extends HomeController
 
             // $data['rechargeId'] = $para['rechargeId'];
 
-            $this->ajaxReturn(['code' => 1, 'msg' => '提交成功', 'data' => 15], 'json');
+            $this->ajaxReturn(['code' => 1, 'msg' => '提交成功', 'data' => 180], 'json');
 
         } else {
             $bank = M('member_bank')->where(['uid' => 1, 'admin' => 1, 'enable' => 1])->select();
