@@ -683,7 +683,7 @@ class UserController extends HomeController
             $map['rechargeTime'] = ['lt', $end_today];
 
             $count = M('member_recharge')
-                ->where('uid', $this->user['uid'])
+                ->where("uid=$this->user['uid']")
                 ->where($map)
                 // ->whereTime('rechargeTime', 'between', [$start_today, $end_today])
                 ->order('id desc')
