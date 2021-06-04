@@ -69,7 +69,6 @@ class Recharge extends Controller
         $count = MemberRecharge::where('uid', $this->user->uid)
             ->whereTime('rechargeTime', 'between', [$start_today, $end_today])
             ->order('id desc')
-            ->limit(5)
             ->count();
 //        $fromTime = strtotime(date('Y-m-d ', $this->time) . $this->settings['rechargeFromTime'] . ':00');
         //////        $toTime = strtotime(date('Y-m-d ', $this->time) . $this->settings['rechargeToTime'] . ':00');
@@ -79,7 +78,7 @@ class Recharge extends Controller
         //            return json(["code" => 3, "msg" => "充值时间：从" . $this->settings['rechargeFromTime'] . "到" . $this->settings['rechargeToTime'], "data" => '']);
         ////            $this->error("提现时间：从" . $this->settings['rechargeFromTime'] . "到" . $this->settings['rechargeToTime']);
         //        }
-        if ($count > 15) {
+        if ($count >= 15) {
             return json(["code" => 2, "msg" => "今天充值次数太多，请明天再操作!", "data" => '']);
         }
         $bank_amount = input('bank_amount');
@@ -123,7 +122,7 @@ class Recharge extends Controller
             return json(["code" => 0, "msg" => "失败", "data" => '']);
         }
         // $this->user
-        return json(["code" => 1, "msg" => "充值成功", "data" => '']);
+        return json(["code" => 1, "msg" => "充值成功", "data" => 180]);
     }
 
     public function getRecharge()

@@ -676,13 +676,18 @@ class UserController extends HomeController
             }
 
             $this->user = session('user');
-            $count = M('member_recharge')
-                ->where(['uid' => $this->user['uid'], 'state' => 10])
-                ->order('id desc')
-                ->limit(15)->count();
+            list($y, $m, $d) = explode('-', date('Y-m-d'));
+            $start_today = mktime(0, 0, 0, $m, $d, $y);
+            $end_today = mktime(23, 59, 59, $m, $d, $y);
 
-            if ($count > 15) {
-                return $this->ajaxReturn(["code" => 2, "msg" => "充值次数太多，请30分钟后再操作!", "data" => 1800]);
+            $count = M('member_recharge')
+                ->where('uid', $this->user['uid'])
+                ->whereTime('rechargeTime', 'between', [$start_today, $end_today])
+                ->order('id desc')
+                ->count();
+
+            if ($count >= 15) {
+                return $this->ajaxReturn(["code" => 2, "msg" => "充值次数太多，请30分钟后再操作!", "data" => '']);
             }
 
             $data = [
