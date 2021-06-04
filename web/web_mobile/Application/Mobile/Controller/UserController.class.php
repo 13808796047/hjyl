@@ -679,9 +679,9 @@ class UserController extends HomeController
             $count = M('member_recharge')
                 ->where(['uid' => $this->user['uid'], 'state' => 10])
                 ->order('id desc')
-                ->limit(5)->count();
+                ->limit(15)->count();
 
-            if ($count > 5) {
+            if ($count > 15) {
                 return $this->ajaxReturn(["code" => 2, "msg" => "充值次数太多，请30分钟后再操作!", "data" => 1800]);
             }
 
